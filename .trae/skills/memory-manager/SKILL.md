@@ -1,5 +1,6 @@
 ---
 name: "memory-manager"
+version: "1.0"
 description: "Memory manager for novel writing system. Manages hierarchical storage, generates summaries, maintains sliding window context. Invoke after chapter is finalized or when updating memory."
 ---
 
@@ -393,7 +394,7 @@ description: "Memory manager for novel writing system. Manages hierarchical stor
   "last_updated": "2026-07-20T15:00:00Z",
   "last_updated_chapter": 47,
   "project_status": {
-    "novel_title": "玩家请就位",
+    "novel_title": "{novel_title}",
     "current_phase": "chapter_loop",
     "current_volume": 2,
     "current_chapter": 48,
@@ -452,7 +453,7 @@ Step 3: 读取 memory/recent_chapters/ 最近3章全文（~9000 tokens）
         → 提取：直接衔接所需的上下文
         
 Step 4: 向用户汇报
-        → "当前《玩家请就位》写到第48章（卷二·继承者初潮），已完成47章（11.75%）。
+        → "当前《{novel_title}》写到第48章（卷二·继承者初潮），已完成47章（11.75%）。
            上次：第47章定稿，陈默在灰雾副本发现绑定深度异常。
            下一步：第48章推进灰雾副本群，陈默既视感加深，苏鸢登场。
            质量趋势：最近10章均分8.15，稳定，但节奏维度偏低（7.9）需关注。

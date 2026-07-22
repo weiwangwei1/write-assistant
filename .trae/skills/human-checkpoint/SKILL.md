@@ -1,5 +1,6 @@
 ---
 name: "human-checkpoint"
+version: "1.0"
 description: "人工参与检查点，在关键节点把设计或章节亮点呈现给用户交互。Invoke at milestone points: outline finalized, character cards done, golden 3 chapters, volume climax, foreshadowing reveal. User can skip but the checkpoint must exist."
 ---
 

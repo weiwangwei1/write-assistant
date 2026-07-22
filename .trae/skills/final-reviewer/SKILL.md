@@ -1,5 +1,6 @@
 ---
 name: "final-reviewer"
+version: "1.0"
 description: "终审员，发布前最后一道质量关卡。多维度终审打分，均分≥9.5才放行发布，否则退回重走整个优化流程。Invoke after fanqie-adapter and before memory-manager/publishing."
 ---
 
@@ -14,7 +15,7 @@ description: "终审员，发布前最后一道质量关卡。多维度终审打
 | 角色 | 颗粒度 | 核心动作 | 介入时机 |
 |------|--------|---------|---------|
 | detail-reviewer | 逐句 | 微观打磨 | 草稿后 |
-| quality-reviewer | 7维+画像 | 宏观评分 | 打磨后 |
+| quality-reviewer | 8维+画像 | 宏观评分 | 打磨后 |
 | de-ai-processor | 全章语感 | 去AI味 | 评审后 |
 | fanqie-adapter | 平台适配 | 番茄化 | 去AI后 |
 | **final-reviewer** | **发布前终审** | **多维度裁决** | **适配后、发布前** |
@@ -44,7 +45,7 @@ chapter-writer 生成草稿
        ↓
 detail-reviewer 逐句微观打磨
        ↓
-quality-reviewer 宏观7维+读者画像评审
+quality-reviewer 宏观8维+读者画像评审
        ↓
 de-ai-processor 去AI味
        ↓
@@ -297,7 +298,7 @@ memory-manager 记忆入库 → 发布到番茄
 **检查点**：
 - [ ] 本章开头是否承接前章结尾的钩子？
 - [ ] 角色位置/情绪/能力是否与前章结束时的 current_state 一致？
-- [ ] 数据是否连续（精神通道道数/辐射值/角色年龄等）？
+- [ ] 数据是否连续（等级/能力值/角色年龄等）？
 - [ ] 伏笔状态是否与 foreshadowing_tracker 一致？
 - [ ] 术语是否全局一致（如弦系命名）？
 
@@ -461,7 +462,7 @@ final-reviewer 判定 rejected
     {"dimension": "平台适配度", "score": 9.5, "findings": ["排版达标", "3处加粗", "无敏感词"], "risks": []},
     {"dimension": "商业潜力", "score": 9.7, "findings": ["追读动力强", "爽点密度达标"], "risks": []},
     {"dimension": "读者体验", "score": 9.5, "findings": ["代入感强", "信息节奏合理"], "risks": []},
-    {"dimension": "跨章一致性", "score": 9.7, "findings": ["精神通道道数连续", "伏笔状态正确"], "risks": []}
+    {"dimension": "跨章一致性", "score": 9.7, "findings": ["关键数据连续", "伏笔状态正确"], "risks": []}
   ],
   "cross_check": {
     "dialogue_logic": "通过：对话追问链自洽，无自相矛盾",

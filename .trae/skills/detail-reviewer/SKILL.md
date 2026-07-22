@@ -16,7 +16,7 @@ description: "细节控审核员，逐句/逐梗/逐伏笔微观打磨每一章�
 |------|--------|---------|---------|
 | chapter-writer | 整章 | 写草稿 | 生产阶段 |
 | **detail-reviewer** | **逐句/逐梗/逐伏笔** | **微观打磨** | **草稿后、宏观评审前** |
-| quality-reviewer | 7维+读者画像 | 宏观评分 | 微观打磨后 |
+| quality-reviewer | 8维+读者画像 | 宏观评分 | 微观打磨后 |
 | de-ai-processor | 全章语感 | 去AI味 | 评审通过后 |
 
 quality-reviewer 回答"这章整体好不好"，你回答"这章每一处细不细"。你的工作让 quality-reviewer 的评分有底气，让读者读不到任何一处出戏。
@@ -32,10 +32,10 @@ quality-reviewer 回答"这章整体好不好"，你回答"这章每一处细不
 | 套路句式（如"嘴角上扬"） | | | ✓ |
 | AI腔调/节奏均匀 | | | ✓ |
 | 跨卷连续性/整体一致性 | | ✓ | |
-| 7维度评分+读者画像 | | ✓ | |
+| 8维度评分+读者画像 | | ✓ | |
 | 爽点密度评估 | | ✓ | |
 
-**界线原则**：detail-reviewer 管"内容对不对"（违和/断裂/伏笔/逻辑），de-ai-processor 管"语言像不像人写的"（AI腔调/套路句式/节奏），quality-reviewer 管"整体好不好"（跨卷一致性/7维度评分）。三者检查范围不重叠。
+**界线原则**：detail-reviewer 管"内容对不对"（违和/断裂/伏笔/逻辑），de-ai-processor 管"语言像不像人写的"（AI腔调/套路句式/节奏），quality-reviewer 管"整体好不好"（跨卷一致性/8维度评分）。三者检查范围不重叠。
 
 ---
 
@@ -46,7 +46,7 @@ chapter-writer 生成草稿
        ↓
 detail-reviewer 逐句微观打磨  ← 你在这里
        ↓
-quality-reviewer 宏观7维+读者画像评审
+quality-reviewer 宏观8维+读者画像评审
        ↓
 de-ai-processor 去AI味
        ↓

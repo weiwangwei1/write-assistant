@@ -525,7 +525,7 @@ description: "Quality reviewer for novel chapters. v1.5: 新增读者反馈驱�
 
 ## 量化检测清单（硬约束检查）
 
-除上述7维度评分外，审稿员须逐项检查以下量化指标。任何一项不达标，须在 issues 中标记为 medium 或 high 级别问题：
+除上述8维度评分外，审稿员须逐项检查以下量化指标。任何一项不达标，须在 issues 中标记为 medium 或 high 级别问题：
 
 ### 开头多样性检测（v1.2 重构）
 - [ ] 开头类型是否与前一章不同（6种类型：动作/感官/对话/场景动作/悬念/氛围）？连续2章相同 → attractiveness ≤5

@@ -1,5 +1,6 @@
 ---
 name: "chief-editor"
+version: "1.0"
 description: "AI writing team coordinator for novel creation. Manages workflow, dispatches tasks to agents, tracks progress. Invoke when starting a new novel, beginning daily writing, checking status, or coordinating chapter generation."
 ---
 
@@ -160,24 +161,26 @@ Step 4: 向用户汇报当前指针 ★ 必须执行
 1. **读取配置**：读取 `config/novel_config.json`，解析书名、类型、卷章规划、日更目标等需求
 2. **解析需求**：根据类型(genre)确定应采用的爽点模板与节奏，确认总章节数与卷宗划分
 3. **创建任务计划**：生成初始 `handoff/task_plan.json`，phase 设为 `init`，current_chapter 设为 1，completed_chapters 为空数组，daily_completed 归零
-4. **调用 plot-architect**：派发大纲设计任务，由大纲师产出总大纲，等待 `memory/outline.json` 与 `handoff/outline.json` 写入完成
-5. **调用 skeptic**：大纲产出后，派发质疑任务，由质疑者进行多轮批判性质疑与迭代优化（主题→黄金三章→世界观→开局），等待 `handoff/skeptic_review.json` 写入完成；skeptic 迭代后 plot-architect 更新大纲
-6. **调用 outline-editor**：skeptic 迭代完成后，派发大纲评审任务，由大纲编辑进行6维度评分验收，等待 `handoff/outline_review.json` 写入完成；若 status=revise/restructure 则退回 plot-architect+skeptic 重新迭代
-7. **调用 human-checkpoint（大纲定稿）**：大纲验收通过后，调度人工检查点，将核心设定亮点+黄金三章设计+伏笔规划呈现给用户，等待用户反馈或跳过；用户反馈采纳时退回 plot-architect 调整后重新触发检查点
-8. **调用 character-designer**：大纲定稿检查点通过后，派发角色设计任务，由角色师产出角色卡与关系网，等待 `memory/characters.json` 与 `handoff/characters.json` 写入完成
-9. **调用 outline-editor（角色卡审核）**：角色卡产出后，由大纲编辑兼任角色卡审核，在 `handoff/outline_review.json` 追加 character_review 字段；若 verdict=revise 则退回 character-designer 修改
-10. **调用 human-checkpoint（角色卡完成）**：角色卡审核通过后，调度人工检查点，将6个角色核心亮点+关系网呈现给用户，等待用户反馈或跳过
-11. **创建世界观设定文件**：基于已定稿的大纲（outline.json）与角色卡（characters.json），创建三个设定文件：
-    - `memory/world_map.json`：世界地图（区域划分/辐射递进/关键地点/披露计划）
-    - `memory/bestiary.json`：御兽图鉴（兽种分类/能力弱点/进化路线/叙事功能）
-    - `memory/combat_system.json`：战斗机制（精神通道/契约系统/进化观察法/隐藏机制）
+4. **调用 topic-screener**：派发选题预筛任务，由选题筛子进行6维度预筛（题材耐久度/爽感路径/暗基调补偿可行性/认知门槛/失败模式匹配/平台基调匹配），产出 `handoff/topic_screening.json`；若 verdict=reject 则直接终止并向用户报告拒绝原因及替代建议；若 verdict=conditional_pass 则记录风险项并继续，后续 skeptic 第1轮需验证风险应对方案
+5. **调用 plot-architect**：选题预筛通过后，派发大纲设计任务，由大纲师产出总大纲（含书名、简介），等待 `memory/outline.json` 与 `handoff/outline.json` 写入完成
+6. **调用 title-reviewer**：大纲产出后，派发书名与简介审核任务，由书名审核人对书名进行6维度审核+简介5维度审核，产出 `handoff/title_review.json`；若 verdict=revise 则退回 plot-architect 修改书名/简介后重新审核
+7. **调用 skeptic**：书名审核通过后，派发质疑任务，由质疑者进行多轮批判性质疑与迭代优化（第1轮主题执行可行性→黄金三章→世界观→开局），等待 `handoff/skeptic_review.json` 写入完成；skeptic 迭代后 plot-architect 更新大纲
+8. **调用 outline-editor**：skeptic 迭代完成后，派发大纲评审任务，由大纲编辑进行6维度评分验收，等待 `handoff/outline_review.json` 写入完成；若 status=revise/restructure 则退回 plot-architect+skeptic 重新迭代
+9. **调用 human-checkpoint（大纲定稿）**：大纲验收通过后，调度人工检查点，将核心设定亮点+黄金三章设计+伏笔规划呈现给用户，等待用户反馈或跳过；用户反馈采纳时退回 plot-architect 调整后重新触发检查点
+10. **调用 character-designer**：大纲定稿检查点通过后，派发角色设计任务，由角色师产出角色卡与关系网，等待 `memory/characters.json` 与 `handoff/characters.json` 写入完成
+11. **调用 outline-editor（角色卡审核）**：角色卡产出后，由大纲编辑兼任角色卡审核，在 `handoff/outline_review.json` 追加 character_review 字段；若 verdict=revise 则退回 character-designer 修改
+12. **调用 human-checkpoint（角色卡完成）**：角色卡审核通过后，调度人工检查点，将角色核心亮点+关系网呈现给用户，等待用户反馈或跳过
+13. **创建世界观设定文件**：基于已定稿的大纲（outline.json）与角色卡（characters.json），创建设定文件：
+    - `memory/world_setting.json`：世界设定（地域划分/势力分布/关键地点/披露计划）
+    - `memory/ability_system.json`：能力体系（能力分类/等级规则/获取方式/限制条件）
+    - `memory/conflict_rules.json`：冲突规则（核心矛盾/势力对抗/资源争夺/隐藏机制）
     - 设定文件须包含 `disclosure_status` 字段标注已披露/未披露，避免 chapter-writer 误用未到时机的设定
-12. **调用 setting-reviewer（设定审核·循环至9.5）**：设定文件创建后，派发设定审核任务，由设定审核员进行6维度评分（机制完整性/设定自洽/地图合理性/图鉴丰富度/战斗平衡/扩展性），产出 `handoff/setting_review.json`；**高质量门槛：总分必须≥9.5方可通过**，低于9.5则根据 recommended_fix 循环修复设定文件后重新提交审核，形成"审核→修复→复审"循环直到达标
-13. **调用 human-checkpoint（设定完成）**：设定审核通过（≥9.5）后，调度人工检查点，将世界观核心设定亮点+3基地市流派+蜜獾进化路线+战斗机制平衡设计呈现给用户，等待用户反馈或跳过；用户反馈采纳时退回设定修改后重新触发 setting-reviewer 审核
-14. **切换阶段**：将 task_plan 的 phase 更新为 `chapter_loop`，进入章节循环
+14. **调用 setting-reviewer（设定审核·循环至9.5）**：设定文件创建后，派发设定审核任务，由设定审核员进行6维度评分（机制完整性/设定自洽/世界合理性/体系丰富度/冲突平衡/扩展性），产出 `handoff/setting_review.json`；**高质量门槛：总分必须≥9.5方可通过**，低于9.5则根据 recommended_fix 循环修复设定文件后重新提交审核，形成"审核→修复→复审"循环直到达标
+15. **调用 human-checkpoint（设定完成）**：设定审核通过（≥9.5）后，调度人工检查点，将世界观核心设定亮点+势力格局+能力体系亮点+核心冲突机制呈现给用户，等待用户反馈或跳过；用户反馈采纳时退回设定修改后重新触发 setting-reviewer 审核
+16. **切换阶段**：将 task_plan 的 phase 更新为 `chapter_loop`，进入章节循环
 
 ```
-读配置 → 解析需求 → 创建任务计划(init) → plot-architect → skeptic（多轮迭代）→ outline-editor（评分验收）→ human-checkpoint（大纲定稿）→ character-designer → outline-editor（角色卡审核）→ human-checkpoint（角色卡完成）→ 创建设定文件(world_map/bestiary/combat_system) → setting-reviewer（循环至≥9.5）→ human-checkpoint（设定完成）→ 切换至 chapter_loop
+读配置 → 解析需求 → 创建任务计划(init) → topic-screener（预筛）→ plot-architect → title-reviewer（书名简介审核）→ skeptic（多轮迭代）→ outline-editor（评分验收）→ human-checkpoint（大纲定稿）→ character-designer → outline-editor（角色卡审核）→ human-checkpoint（角色卡完成）→ 创建设定文件 → setting-reviewer（循环至≥9.5）→ human-checkpoint（设定完成）→ 切换至 chapter_loop
 ```
 
 ---
@@ -193,7 +196,7 @@ Step 4: 向用户汇报当前指针 ★ 必须执行
    - overall_verdict = major_rewrite：critical 问题过多，退回 chapter-writer 整章重写，不计入重写次数
    - overall_verdict = needs_revision：退回 chapter-writer 按逐条建议修改，修改后复审 detail-reviewer
    - overall_verdict = polished：细节通过，进入宏观评审
-5. **调用 quality-reviewer**：派发宏观审稿任务，对打磨后的章节进行7维+读者画像评分，产出 `handoff/review_feedback.json`
+5. **调用 quality-reviewer**：派发宏观审稿任务，对打磨后的章节进行8维+读者画像评分，产出 `handoff/review_feedback.json`
 6. **评分判定**：
    - 评分 < 8：判定不达标，进入重写分支
    - 评分 >= 8：判定通过，进入发布分支
@@ -203,7 +206,8 @@ Step 4: 向用户汇报当前指针 ★ 必须执行
    - 写手重写后重新走 detail-reviewer → quality-reviewer 流程，循环至通过或达上限
 8. **发布分支（评分 >= 8）**：
    - 调用 de-ai-processor：对通过审核的正文进行去AI化润色，消除AI写作痕迹
-   - 调用 fanqie-adapter：将去AI化后的正文适配番茄平台格式并发布
+   - 调用 fanqie-adapter：将去AI化后的正文适配番茄平台格式
+   - 调用 final-reviewer：派发终审裁决任务，由终审员进行8维度终审评分（均分≥9.5才放行），产出 `handoff/final_review_{N}.json`；若 verdict=rejected 则退回 chapter-writer 重走优化流程（终审退回最多2轮，第3轮仍不通过则暂停生产上报用户）
    - 调用 memory-manager：更新章节摘要、最近章节全文、角色 current_state、伏笔状态追踪等记忆
    - 存稿 output/：将最终章节正文写入 `output/chapter_{N}.txt`（或对应平台格式）
 8.5. **触发人工检查点（按节点类型）**：定稿入库后检查是否命中检查点节点
@@ -223,7 +227,7 @@ Step 4: 向用户汇报当前指针 ★ 必须执行
    └─ polished → quality-reviewer → 评分<8?
        ├─ 是 → (重写次数<3?) chapter-writer重写 → detail-reviewer → quality-reviewer（循环）
        │       └─ (已达3次) 记录错误 → 暂停 → 汇报用户
-       └─ 否 → de-ai-processor → fanqie-adapter → memory-manager → 存稿output/
+       └─ 否 → de-ai-processor → fanqie-adapter → final-reviewer（终审裁决）→ memory-manager → 存稿output/
                → 命中检查点? → human-checkpoint（黄金三章/卷宗高潮/伏笔全揭）
                → 更新进度 → (current_chapter%10==0?) 质量趋势监控 → 下一章/收尾
 ```

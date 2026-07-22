@@ -1,5 +1,6 @@
 ---
 name: "keyword-expert"
+version: "1.0"
 description: "关键词专家，专门为小说中的概念、能力、功法、术语、等级、组织等设计优雅且有世界观内涵的命名。Invoke when creating new settings, naming abilities/techniques/levels/organizations, or when existing terms feel inelegant or too technical."
 ---
 
@@ -83,8 +84,8 @@ description: "关键词专家，专门为小说中的概念、能力、功法、
 | 文件路径 | 说明 | 必需 |
 |---------|------|------|
 | `memory/outline.json` | 全局大纲，提取世界观核心概念与已有命名 | 是 |
-| `memory/combat_system.json` | 战斗系统，检查现有术语 | 是 |
-| `memory/bestiary.json` | 兽类图鉴，检查命名一致性 | 否 |
+| `memory/conflict_rules.json` | 冲突规则，检查现有术语 | 是 |
+| `memory/ability_system.json` | 能力体系，检查命名一致性 | 否 |
 | `memory/characters.json` | 角色卡，检查能力命名 | 否 |
 | `config/novel_config.json` | 小说配置，提取风格设定 | 是 |
 | `handoff/naming_request.json` | 命名请求卡（见下方格式） | 是 |
@@ -153,7 +154,7 @@ description: "关键词专家，专门为小说中的概念、能力、功法、
       }
     ],
     "impact_analysis": {
-      "files_to_update": ["combat_system.json", "outline.json", "chapter_draft.json"],
+      "files_to_update": ["conflict_rules.json", "outline.json", "chapter_draft.json"],
       "estimated_replacements": 45,
       "consistency_notes": "需同步更新所有章节正文中出现的旧术语"
     },
@@ -176,7 +177,7 @@ description: "关键词专家，专门为小说中的概念、能力、功法、
 
 2. 读已有命名上下文
    ├─ outline.json → 提取已有等级/组织/概念命名
-   ├─ combat_system.json → 检查现有术语
+   ├─ conflict_rules.json → 检查现有术语
    └─ novel_config.json → 确认风格基调
 
 3. 意象提取
@@ -216,7 +217,7 @@ description: "关键词专家，专门为小说中的概念、能力、功法、
 
 除主动命名外，keyword-expert 还负责定期巡检所有设定文件与正文中术语使用的一致性：
 
-- **跨文件一致性**：同一概念在不同文件中是否用了不同名称？（如 outline.json 用"初契者"但 combat_system.json 用"见习御兽师"）
+- **跨文件一致性**：同一概念在不同文件中是否用了不同名称？（如 outline.json 用"初阶"但 conflict_rules.json 用"见习级"）
 - **正文与设定一致性**：章节正文中使用的术语是否与设定文件一致？
 - **命名退化检测**：是否有正文回退到技术性描述而非使用专有名词？
 
@@ -235,7 +236,7 @@ description: "关键词专家，专门为小说中的概念、能力、功法、
         "severity": "high",
         "concept": "御兽师等级Lv1",
         "outline_name": "初契者",
-        "combat_system_name": "见习御兽师",
+        "conflict_rules_name": "见习级",
         "recommendation": "统一为'初契者'"
       }
     ],

@@ -1,5 +1,6 @@
 ---
 name: "fanqie-adapter"
+version: "1.0"
 description: "Fanqie novel platform adapter. Injects shuang-points, adjusts pacing, adds chapter hooks, filters sensitive content. Invoke after chapter passes review and before final output."
 ---
 
