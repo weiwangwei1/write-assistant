@@ -1,0 +1,104 @@
+{
+  "last_updated": "2026-07-22",
+  "batches_completed": 4,
+  "articles_read": 628,
+  "articles_optimized": 103,
+  "optimization_proposals_total": 36,
+  "optimization_proposals_approved": 22,
+  "optimization_proposals_merged": 4,
+  "optimization_proposals_pending": 4,
+  "optimization_proposals_shelved": 3,
+  "optimization_proposals_rejected": 0,
+  "batches": [
+    {
+      "batch_id": 1,
+      "date": "2026-07-22",
+      "source": "龙空论坛",
+      "articles_count": 21,
+      "status": "completed",
+      "optimizations": ["chapter-writer v1.4→v1.5", "character-designer v1.1→v1.2", "plot-architect v1.1→v1.2", "quality-reviewer v1.1→v1.2"]
+    },
+    {
+      "batch_id": 2,
+      "date": "2026-07-22",
+      "source": "阅文作家专栏-新手专区(3篇)",
+      "articles_count": 3,
+      "status": "completed",
+      "optimizations": ["character-designer v1.2→v1.3", "plot-architect v1.2→v1.3", "title-reviewer v1.0→v1.1"]
+    },
+    {
+      "batch_id": 3,
+      "date": "2026-07-22",
+      "source": "阅文作家专栏全量分析(46专栏)",
+      "articles_count": 628,
+      "articles_full_text": 55,
+      "articles_preview": 350,
+      "articles_title_scan": 223,
+      "member_restricted": 80,
+      "status": "completed",
+      "subagents_used": 5,
+      "coverage": {
+        "S级": {"columns": 6, "articles": 133, "full_text_read": 18, "preview_extracted": 115},
+        "A级": {"columns": 5, "articles": 151, "full_text_read": 15, "preview_extracted": 136},
+        "B级": {"columns": 5, "articles": 155, "full_text_read": 22, "preview_extracted": 99, "title_scan": 34},
+        "C级": {"columns": 9, "articles": 70, "full_text_read": 0, "preview_extracted": 70},
+        "D级": {"columns": 21, "articles": 168, "full_text_read": 0, "title_scan": 168, "useful_found": 38}
+      },
+      "optimizations_proposed": "P005-P032共28项",
+      "status_detail": "全量分析完成，提案已评估并实施"
+    },
+    {
+      "batch_id": 4,
+      "date": "2026-07-22",
+      "source": "P005-P032提案评估与实施",
+      "articles_count": 0,
+      "status": "completed",
+      "optimizations": [
+        "chapter-writer v1.8→v1.9 (新增5条硬约束+合并4项)",
+        "plot-architect v1.3→v1.4 (新增8条剧情结构法则)",
+        "quality-reviewer v1.3→v1.4 (期待感公式+长篇不崩四防线)",
+        "character-designer v1.3→v1.4 (主角4型模板+反派4型+Show vs Tell)",
+        "de-ai-processor v1.0→v1.1 (Show vs Tell检测)"
+      ],
+      "proposal_outcomes": {
+        "approved_and_landed": 22,
+        "merged_into_existing": 4,
+        "remaining_pending": 4,
+        "shelved": 3
+      },
+      "status_detail": "分层执行策略完成：8项硬约束新增节、4项合并入既有规则、4项待定、3项搁置"
+    }
+  ],
+  "column_progress": {
+    "新手专区": {"total": 43, "read": 43, "remaining": 0},
+    "写作技巧": {"total": 49, "read": 49, "remaining": 0},
+    "进阶突破": {"total": 29, "read": 29, "remaining": 0},
+    "网文的节奏框架和如何破框": {"total": 4, "read": 4, "remaining": 0},
+    "起点男频入门题材详解": {"total": 6, "read": 6, "remaining": 0},
+    "升级文金手指设计方向": {"total": 4, "read": 4, "remaining": 0},
+    "起点成神指南": {"total": 10, "read": 10, "remaining": 0},
+    "杨晨说网文": {"total": 60, "read": 60, "remaining": 0},
+    "主编说": {"total": 36, "read": 36, "remaining": 0},
+    "编辑小会男频向": {"total": 12, "read": 12, "remaining": 0},
+    "网文期待感分析马斯洛": {"total": 4, "read": 4, "remaining": 0},
+    "成神宝典": {"total": 18, "read": 18, "remaining": 0},
+    "访谈专栏": {"total": 30, "read": 30, "remaining": 0},
+    "走进大神": {"total": 69, "read": 69, "remaining": 0},
+    "长跑者的姿态": {"total": 10, "read": 10, "remaining": 0},
+    "次元会客厅": {"total": 29, "read": 29, "remaining": 0},
+    "ZENK讲武堂": {"total": 17, "read": 17, "remaining": 0},
+    "穿梭无限流秘境": {"total": 6, "read": 6, "remaining": 0},
+    "揭秘网文中的长生流": {"total": 6, "read": 6, "remaining": 0},
+    "新媒体爆款手册": {"total": 9, "read": 9, "remaining": 0},
+    "写作素材的宝藏星球": {"total": 6, "read": 6, "remaining": 0},
+    "那些受欢迎的女频热门人设": {"total": 6, "read": 6, "remaining": 0},
+    "对话作者IP创作密码": {"total": 6, "read": 6, "remaining": 0},
+    "外站作者的起点成神攻略": {"total": 6, "read": 6, "remaining": 0},
+    "揭秘从网文到IP的写作技巧": {"total": 4, "read": 4, "remaining": 0},
+    "D级21专栏": {"total": 168, "read": 168, "remaining": 0}
+  },
+  "next_batch_suggestion": {
+    "priority": "用户审批P005-P032优化提案",
+    "reason": "全量分析已完成，46个专栏470+文章全部覆盖。待用户决定哪些提案落地实施后，再进行框架版本升级"
+  }
+}

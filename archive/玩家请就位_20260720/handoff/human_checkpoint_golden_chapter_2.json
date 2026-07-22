@@ -1,0 +1,50 @@
+{
+  "card_type": "human_checkpoint",
+  "timestamp": "2026-07-20T13:50:00Z",
+  "checkpoint_type": "golden_chapter",
+  "checkpoint_id": "chapter_2",
+  "highlights": [
+    {
+      "title": "整活名场面",
+      "content": "李大锤举面板拍照'活人感拉满了'",
+      "why_it_shines": "沙雕行为+网络梗，番茄读者最爱的整活爽感"
+    },
+    {
+      "title": "周老师戳穿",
+      "content": "'这不是游戏。对吧？'一句话戳中核心",
+      "why_it_shines": "萌新角色说出最关键判断，反差感强"
+    },
+    {
+      "title": "四零四说漏嘴",
+      "content": "'它在认主'后炸毛逃跑",
+      "why_it_shines": "章末钩子+伏笔半揭+角色禁区间接体现三合一"
+    },
+    {
+      "title": "绑定深度异常",
+      "content": "1.2→1.3无人死亡却上升",
+      "why_it_shines": "数据悬念钩子，为第3章首杀闭环铺垫"
+    }
+  ],
+  "questions_for_user": [
+    {
+      "question": "第2章黄金三章检查点：'认主'这个主题是否在第2章中得到了充分体现？",
+      "context": "第2章标题'认主'，通过诡物认主行为+四零四说漏嘴来体现。用户已授权自动进行。",
+      "options": [
+        "充分体现",
+        "需要加强",
+        "跳过，你来决定"
+      ]
+    }
+  ],
+  "user_response": {
+    "status": "skipped",
+    "feedback": "",
+    "timestamp": "2026-07-20T13:50:00Z",
+    "note": "用户授权自动进行（'不要停留问我，按照之前的步骤自动进行'）"
+  },
+  "ai_decision": {
+    "adopted": false,
+    "reason": "用户授权AI自行决定。第2章'认主'主题通过诡物'定向报告'行为+四零四'在认主'说漏嘴+绑定深度异常三层递进充分体现，主题表达完整。质量趋势上升（8.43/7.45→8.71/8.35），无需调整。",
+    "adjustments": []
+  }
+}

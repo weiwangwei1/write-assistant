@@ -1,0 +1,118 @@
+{
+  "novel_id": "novel_002",
+  "title": "临渊",
+  "genre": "暗黑奇幻",
+  "theme": "力量的代价与何以为人",
+  "background": "世界不是平的，是层层叠压的。每一纪元的文明走到尽头时不会消失——整片大陆、整条历史、整套法则沉入渊海，在现世之下形成完整的'沉没世界'。当前是第七纪（灰纪），建在六个沉没纪元的骸骨之上。沉没世界的知识可被刻印为'渊刻'借用旧纪元力量，代价是'渊蚀'——变强的过程就是失去人性的过程。主角陆沉是黑市拾渊者，身怀罕见的'渊脉视觉'，为救治渊蚀恶化的妹妹而不断潜入更深的纪元，最终发现沉没循环背后的真相。",
+  "target_total_chapters": 300,
+  "total_volumes": 8,
+  "volume_plan": [
+    { "vol": 1, "title": "渊脉初现", "chapters": "1-30" },
+    { "vol": 2, "title": "魔纪遗城", "chapters": "31-65" },
+    { "vol": 3, "title": "渊海教会", "chapters": "66-100" },
+    { "vol": 4, "title": "灰塔秘辛", "chapters": "101-140" },
+    { "vol": 5, "title": "永世阴谋", "chapters": "141-180" },
+    { "vol": 6, "title": "沉者归来", "chapters": "181-220" },
+    { "vol": 7, "title": "深渊之底", "chapters": "221-260" },
+    { "vol": 8, "title": "纪元之择", "chapters": "261-300" }
+  ],
+  "daily_chapter_target": 2,
+  "words_per_chapter": 4000,
+  "protagonist_name": "陆沉",
+  "protagonist_setting": "25岁黑市拾渊者。父母为灰塔学者，研究沉没循环时潜入第四纪失踪。在贫民窟长大，靠非法潜入第六纪浅层废墟捡拾遗物贩卖为生。嘴贱是防御机制，内心背负父母失踪与妹妹渊蚀的双重压力。",
+  "golden_finger": {
+    "name": "渊脉视觉",
+    "description": "能直接看见连接沉没世界的渊脉走向，无需仪器即可定位入口。源于第一纪血脉，是原纪在沉没前埋下的'反抗机制'。使用代价为渊蚀：微蚀(瞳色变灰)→半蚀(皮肤浮现纹路)→深蚀(记忆缺失)→全蚀(化为渊兽)。",
+    "initial_level": "浅视级 - 仅能看见第六纪浅层渊脉，使用后头疼欲裂",
+    "growth_path": ["浅视级(第六纪浅层)", "深视级(第三纪深度)", "渊视级(全渊海结构)", "原视级(第一纪心脏)"]
+  },
+  "world_setting": {
+    "name": "渊海",
+    "description": "纵向的墓场。每个灭亡纪元沉入渊海形成自包含的'沉没世界'，可被潜渊者进入。当前为第七纪(灰纪)，建在六个沉没纪元之上。",
+    "eras": [
+      { "era": 1, "name": "原纪", "fall_reason": "不明(禁忌)", "feature": "法则原始，力量最纯粹，渊海的核心'心脏'所在" },
+      { "era": 2, "name": "神纪", "fall_reason": "神战崩塌", "feature": "神明遗骸化为地理" },
+      { "era": 3, "name": "魂纪", "fall_reason": "魂灾失控", "feature": "万物有灵，生死界限模糊" },
+      { "era": 4, "name": "机纪", "fall_reason": "构造体叛乱", "feature": "机械与血肉融合的废墟，保存核心数据库" },
+      { "era": 5, "name": "兽纪", "fall_reason": "渊兽潮吞没", "feature": "巨兽骨架构成山脉河流" },
+      { "era": 6, "name": "魔纪", "fall_reason": "魔法反噬", "feature": "魔法规则仍在运转的遗迹城" },
+      { "era": 7, "name": "灰纪(现世)", "fall_reason": "进行中", "feature": "工业化初期，渊刻技术普及" }
+    ],
+    "power_system": {
+      "name": "渊刻",
+      "description": "从沉没世界获取的知识可刻印为渊刻，借用旧纪元力量。等级对应潜渊深度。",
+      "levels": [
+        { "level": "浅刻", "source_era": "第六纪", "power": "低", "erosion_risk": "微蚀(可逆)" },
+        { "level": "深刻", "source_era": "第四~五纪", "power": "中", "erosion_risk": "半蚀(困难可逆)" },
+        { "level": "渊刻", "source_era": "第二~三纪", "power": "高", "erosion_risk": "深蚀(几乎不可逆)" },
+        { "level": "原刻", "source_era": "第一纪", "power": "灭世级", "erosion_risk": "全蚀(不可逆)" }
+      ],
+      "types": ["体刻(强化肉身)", "器刻(附魔武器)", "阵刻(建筑/城市级)", "魂刻(刻在灵魂上，最强最险)"],
+      "cost": "渊蚀：微蚀→半蚀→深蚀→全蚀。变强的过程就是失去人性的过程。所有守渊者都曾是英雄。"
+    },
+    "organizations": [
+      {
+        "name": "潜渊者公会",
+        "creed": "渊不认人，人认人",
+        "creed_full": "天道不讲情面，但人可以。绳子系着的不只是命，是'我带你回来'这句话。",
+        "principle": "行业工会。关心行业能否存续，不关心世界。契约至上、搭档互济、遗物登记、信息共享、不问来路。武力最弱但乱世中最稳定。",
+        "stance": "中立务实"
+      },
+      {
+        "name": "渊海教会",
+        "creed": "溺即飞升",
+        "creed_full": "世人看沉没是坠落，我们看是展翅。水淹过头顶的那一刻，才是真正活着的开始。",
+        "principle": "温柔而疯狂。真心信奉渊蚀是进化。主动接触渊蚀患者提供庇护(实为观察实验)，不强迫信教，收集遗物研究进化路径，终极目标是推动第七纪主动沉没。",
+        "stance": "激进"
+      },
+      {
+        "name": "永世王朝",
+        "creed": "秩序之内皆活人",
+        "creed_full": "在名单上你就是人。不在名单上你就是变量。变量要被消除——不是残忍，是算术。",
+        "principle": "理性冷血官僚。管控户籍、垄断深层入口、征用遗物、登记沉者之裔。内部续命派(延缓沉没)与换届派(方舟计划)分裂。最后坚守防线的是他们。",
+        "stance": "统治者"
+      },
+      {
+        "name": "灰塔",
+        "creed": "不知真者，不配绝望",
+        "creed_full": "连真相都没看到就喊绝望是矫情。看到真相还敢绝望那才是勇敢。我们负责让你勇敢。",
+        "principle": "学痴。只研究不干预，知识至上，学术独立，记录一切，不主动干预，守密分级。离真相越近离人性越远。唯一从始至终目标不变的组织。",
+        "stance": "秘密学术"
+      },
+      {
+        "name": "沉者之裔",
+        "creed": "沉过六次，何惧第七",
+        "creed_full": "六个世界死在我们脚下我们还站着。你们怕沉？我们等这句话等了一万年。",
+        "principle": "不是组织是民族。沉没世界幸存者后裔，血脉含旧纪元残余力量，被歧视为'不洁之人'。互助共存、隐忍蓄力、血脉传承、不害平民、归渊之约。武力弱但生存力最强——沉过六次还活着。",
+        "stance": "被压迫者"
+      }
+    ]
+  },
+  "fanqie_config": {
+    "platform": "番茄小说",
+    "account": "",
+    "auto_publish": false,
+    "sensitive_word_filter": true,
+    "style_template": "fast-paced",
+    "hook_type": "cliffhanger",
+    "shuang_point_interval": 2000,
+    "chapter_end_hook": true,
+    "min_word_count": 2000,
+    "max_word_count": 5000,
+    "paragraph_max_lines": 5,
+    "dialogue_independent_paragraph": true,
+    "bold_key_sentences": true
+  },
+  "llm_config": {
+    "outline_model": "gpt-4o",
+    "character_model": "deepseek-chat",
+    "writer_model": "deepseek-chat",
+    "reviewer_model": "gpt-4o-mini",
+    "adapter_model": "deepseek-chat",
+    "memory_model": "gpt-4o-mini"
+  },
+  "quality_threshold": 8,
+  "max_rewrite_attempts": 3,
+  "created_at": "2026-07-16T18:00:00Z",
+  "updated_at": "2026-07-16T18:00:00Z"
+}

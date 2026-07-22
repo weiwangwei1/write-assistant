@@ -1,0 +1,26 @@
+{
+  "card_type": "outline",
+  "timestamp": "2026-07-23T00:30:00Z",
+  "from_agent": "plot-architect",
+  "to_agent": "character-designer",
+  "status": "ready",
+  "outline_ref": "memory/outline.json",
+  "content": {
+    "title": "他从门后来",
+    "genre": "都市悬疑/民俗恐怖",
+    "total_chapters": 300,
+    "total_volumes": 10,
+    "main_plot_line": "林深从继承爷爷旧门到成为造门人，守护vs开放的核心矛盾贯穿全书",
+    "key_roles_needed": [
+      "林深（男主）——嘴硬心软+精算习惯+好奇心驱动，继承门权的野生守门人",
+      "沈鹿（同伴/情感线）——殡仪馆化妆师，被门后界标记绑定，能看生后面孔，反差感强",
+      "先生（隐藏反派）——借爷爷旧友身体的门后来者，在现世生活15年不想回去，被迫为师伯效力（门息胁迫），生存驱动而非理念驱动",
+      "师伯（终极反派）——爷爷的师兄，开门派，认为两界融合是进化，伪装成盟友/导师",
+      "爷爷（被困者/传承者）——被困门后界但活着，通过碎片和标记与主角沟通，守门40年"
+    ],
+    "outline_version": "v5",
+    "skeptic_status": "7轮30个挑战全部解决",
+    "outline_review_status": "revise→修复中（must_fix+recommended_fix）",
+    "note": "大纲v5已通过7轮质疑迭代。角色配置维度9.5分。正在修复outline-editor指出的must_fix项（Ch211-300展开+章节字数调整）。修复后进入character-designer。"
+  }
+}

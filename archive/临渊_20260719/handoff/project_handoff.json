@@ -1,0 +1,144 @@
+{
+  "card_type": "project_handoff",
+  "purpose": "跨电脑迁移项目，在另一台TRAE Work环境继续工作",
+  "timestamp": "2026-07-18T00:00:00Z",
+  "generated_by": "chief-editor",
+
+  "project_info": {
+    "novel_title": "临渊",
+    "novel_id": "novel_002",
+    "genre": "暗黑奇幻",
+    "theme": "力量的代价与何以为人",
+    "target_total_chapters": 300,
+    "total_volumes": 8,
+    "daily_chapter_target": 2,
+    "words_per_chapter": 4000,
+    "protagonist_name": "陆沉",
+    "platform": "番茄小说",
+    "style": "卖报小郎君式调侃表层 + 三九音域式暗黑节奏底层，笑着写悲剧"
+  },
+
+  "current_progress": {
+    "phase": "chapter_loop",
+    "current_chapter": 8,
+    "completed_chapters": [1, 2, 3, 4, 5, 6, 7],
+    "completed_count": 7,
+    "daily_target": 2,
+    "daily_completed_today": 2,
+    "today_date": "2026-07-17",
+    "last_updated": "2026-07-17T12:30:00Z",
+    "chapter_titles": {
+      "1": "未知",
+      "2": "未知",
+      "3": "局",
+      "4": "暗流",
+      "5": "未知",
+      "6": "灰塔",
+      "7": "旧码头"
+    },
+    "quality_scores": {
+      "3": 8.14,
+      "4": 8.14,
+      "6": 8.14,
+      "7": 8.57
+    }
+  },
+
+  "next_action": {
+    "chapter_to_write": 8,
+    "plot_direction": "第8章应安排强爽点（打脸公会潜水员）作为第6、7章信息密集铺垫后的情绪释放",
+    "key_hooks_to_resolve": [
+      "裴铮主管测试陆沉（港区分部，正式编制任务）",
+      "陆瑶渊蚀加速（手背纹路已三道，比昨天多两道）",
+      "灰塔信任危机（周铎揭露灰塔召回救援队真相，贺长青未说全）",
+      "灰塔内部赞成召回的神秘决策者身份（周铎未透露）",
+      "陆沉右眼的光'这次没灭'——力量质变暗示"
+    ],
+    "new_character": "周铎（灰塔前回收绳，已离开旧码头，短期不再登场）"
+  },
+
+  "handoff_cards_status": {
+    "task_plan.json": "active - phase=chapter_loop, current_chapter=8",
+    "outline.json": "ready - 总大纲就绪，8卷300章",
+    "characters.json": "ready - 8个主要角色卡完成",
+    "chapter_draft.json": "ready - 第7章初稿（旧码头）",
+    "review_feedback.json": "ready - 第7章评审通过，总分8.57",
+    "final_chapter.json": "ready - 第7章终稿，ready_to_publish=true",
+    "de_ai_polish.json": "ready - 第4、5章去AI化完成",
+    "no_pending_or_rejected": true
+  },
+
+  "known_issues": [
+    {
+      "severity": "resolved",
+      "description": "writing_log.jsonl 缺少第1、2、5章的日志记录（仅存第3、4、6、7章）",
+      "resolution": "2026-07-18 已从 memory/chapter_summaries/ 补录第1、2、5章记录（标记 backfilled=true），7章日志完整"
+    },
+    {
+      "severity": "resolved",
+      "description": "writing_log.jsonl 第3、4章记录中 characters_updated 字段为'陆辰'，与主角正确名'陆沉'不符",
+      "resolution": "2026-07-18 已修正为'陆沉'"
+    },
+    {
+      "severity": "info",
+      "description": "日志中第3章标题记为'局'、第4章记为'暗流'，与终稿实际标题（'他笑的时候最危险'、'旧书店'）不一致",
+      "impact": "仅历史记录标题差异，不影响写作",
+      "suggestion": "以 output/ 终稿标题为准；如需可同步修正日志标题"
+    },
+    {
+      "severity": "info",
+      "description": "task_plan.json 的 last_updated 字段仍为2026-07-16T20:30:00Z，但实际进度已推进到第7章",
+      "impact": "时间戳未同步，进度数据本身正确",
+      "suggestion": "下次写作流程开始时自动更新"
+    }
+  ],
+
+  "directory_structure": {
+    "config/": "novel_config.json - 小说全局配置",
+    "handoff/": "8个交接卡JSON + 1个格式规范MD + 本交接卡",
+    "memory/": {
+      "chapter_summaries/": "第1-7章章节摘要JSON",
+      "recent_chapters/": "第5、6、7章近作TXT（滑动窗口）",
+      "characters.json": "角色卡完整版",
+      "outline.json": "大纲完整版"
+    },
+    "output/": "第1-7章终稿TXT",
+    "logs/": "writing_log.jsonl - 写作日志",
+    ".trae/skills/": "8个Agent的Skill定义MD文件"
+  },
+
+  "agent_skills": [
+    "chief-editor（总编）",
+    "plot-architect（大纲师）",
+    "character-designer（角色师）",
+    "chapter-writer（写手）",
+    "quality-reviewer（审稿员）",
+    "fanqie-adapter（适配师）",
+    "de-ai-processor（去AI化）",
+    "memory-manager（记忆管家）"
+  ],
+
+  "resume_instructions": {
+    "step_1": "将本打包解压到新电脑的 d:\\write-assistant\\ 目录",
+    "step_2": "在新电脑打开 TRAE Work，打开该目录作为工作区",
+    "step_3": "读取 handoff/project_handoff.json（本文件）和 handoff/task_plan.json 恢复上下文",
+    "step_4": "读取 memory/chapter_summaries/chapter_007.json 和 memory/recent_chapters/chapter_007.txt 获取最近章节",
+    "step_5": "按 next_action 字段开始第8章写作流程：写手→审稿员→适配师→记忆管家",
+    "step_6": "写作流程：对话中输入'开始写第8章'触发，或等待定时任务（每日09:00）"
+  },
+
+  "environment_notes": {
+    "original_os": "Windows",
+    "trae_skills_location": ".trae/skills/（随项目迁移，无需单独安装）",
+    "llm_config": {
+      "outline_model": "gpt-4o",
+      "character_model": "deepseek-chat",
+      "writer_model": "deepseek-chat",
+      "reviewer_model": "gpt-4o-mini",
+      "adapter_model": "deepseek-chat",
+      "memory_model": "gpt-4o-mini"
+    },
+    "quality_threshold": 8,
+    "max_rewrite_attempts": 3
+  }
+}

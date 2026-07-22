@@ -1,0 +1,51 @@
+{
+  "card_type": "final",
+  "timestamp": "2026-07-21T23:04:28.742948Z",
+  "from_agent": "fanqie-adapter",
+  "content": {
+    "chapter_num": 1,
+    "title": "暴动",
+    "word_count": 3037,
+    "adaptations": [
+      {
+        "type": "sensitive_filter",
+        "description": "敏感词检查通过，无违规内容"
+      },
+      {
+        "type": "pacing_adjustment",
+        "description": "节奏检查通过，段落≤8行，对话独立成段"
+      },
+      {
+        "type": "chapter_hook",
+        "description": "章末钩子有效，类型多样"
+      },
+      {
+        "type": "format_adjustment",
+        "description": "移除**加粗标记，输出纯文本终稿。加粗建议记录在bold_suggestions中"
+      },
+      {
+        "type": "style_unification",
+        "description": "风格统一检查通过，fast-paced模板，短句为主"
+      },
+      {
+        "type": "shuang_enhancement",
+        "description": "用户反馈修改：将L29「一弦精控……铁壁市十年没人敢碰多弦。」改为留白+氛围式表达「三弦。」+有人吸了口气+「十年了。」。去掉未铺垫术语（一弦精控/铁壁市），用旁人反应暗示三弦同控的冲击力"
+      }
+    ],
+    "bold_suggestions": [
+      {
+        "line": "兽在怕。",
+        "reason": "情绪高点——兽群恐惧本质揭示"
+      },
+      {
+        "line": "是在怕那个方向的东西。",
+        "reason": "关键揭示——暴动方向性"
+      },
+      {
+        "line": "像踩了个空。",
+        "reason": "章末钩子核心——沈老师异常"
+      }
+    ],
+    "ready_to_publish": true
+  }
+}

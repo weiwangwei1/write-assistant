@@ -1,0 +1,73 @@
+{
+  "card_type": "review",
+  "timestamp": "2026-07-20T03:03:08.250758",
+  "from_agent": "quality-reviewer",
+  "content": {
+    "chapter_num": 5,
+    "chapter_title": "不速之客",
+    "word_count": 2463,
+    "scores": {
+      "plot_consistency": 9,
+      "character_consistency": 9,
+      "logical_rationality": 9,
+      "writing_quality": 9,
+      "shuang_density": 8,
+      "pacing_control": 9,
+      "chapter_hook": 9
+    },
+    "total_score": 8.86,
+    "passed": true,
+    "reader_reactions": {
+      "追读指数": 8.15,
+      "综合弃书率": "12%",
+      "readers": [
+        {
+          "name": "爽感猎人·阿爽",
+          "追读意愿": 7,
+          "弃书概率": "18%",
+          "verdict": "追读",
+          "feedback": "双诡物战斗有进步，李大锤当斗牛士那段有意思。但爽感还是中等，没有炸裂的爽点。"
+        },
+        {
+          "name": "逻辑警察·老缜",
+          "追读意愿": 9,
+          "弃书概率": "5%",
+          "verdict": "追读",
+          "feedback": "强行推送机制逻辑严密，3次历史记录铺底。评估等级递进(合格→可以)暗示系统性评估。#004通道未关+'有人在看'悬念拉满。"
+        },
+        {
+          "name": "角色粉·小迷",
+          "追读意愿": 8,
+          "弃书概率": "8%",
+          "verdict": "追读",
+          "feedback": "李大锤'万一没有以后呢'那段心疼。整活外壳下的恐惧写得好。诡物'低头展示光点'有莫名感动——它在主动接受评估？"
+        },
+        {
+          "name": "氛围党·画师",
+          "追读意愿": 9,
+          "弃书概率": "5%",
+          "verdict": "追读",
+          "feedback": "荒原深处的信标像一只眼睛，这个意象很美。窗外光从'风声/叹息'升级到'信标/凝视'，意象进化了。"
+        },
+        {
+          "name": "碎片党·地铁客",
+          "追读意愿": 8,
+          "弃书概率": "10%",
+          "verdict": "追读",
+          "feedback": "节奏比第4章紧凑。双诡物战斗不拖沓。结尾'通道未关+光更近了'钩子到位。"
+        },
+        {
+          "name": "老书虫·毒舌",
+          "追读意愿": 8,
+          "弃书概率": "8%",
+          "verdict": "追读",
+          "feedback": "世界观扩展(别的避难所)是加分项。评估等级递进有设计感。字数控制比第4章好(2716 vs 3218)。但'第三次候选人杀了主脑'这个信息出现得有点早——需要确保后续能接住。"
+        }
+      ],
+      "market_risk": false,
+      "risk_readers": []
+    },
+    "issues": [],
+    "next_agent": "de-ai-processor"
+  }
+}

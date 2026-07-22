@@ -1,0 +1,19 @@
+{
+  "card_type": "de_ai_polish",
+  "timestamp": "2026-07-20T03:03:08.250758",
+  "from_agent": "de-ai-processor",
+  "to_agent": "fanqie-adapter",
+  "status": "ready",
+  "content": {
+    "chapter_num": 5,
+    "title": "不速之客",
+    "word_count": 2463,
+    "ai_score": 1.0,
+    "ai_traces": [],
+    "changes_made": [],
+    "stats": {
+      "total_changes": 0,
+      "reason": "AI score 1.0 ≤ 2.0"
+    }
+  }
+}

@@ -1,0 +1,96 @@
+{
+  "card_type": "naming_solution",
+  "timestamp": "2026-07-21T12:30:00Z",
+  "from_agent": "keyword-expert",
+  "to_agent": "chief-editor",
+  "status": "applied",
+  "content": {
+    "naming_system": "弦系命名方案",
+    "system_name": "精神通道（保留为正式系统名）",
+    "unit_root": "弦",
+    "etymology": "取'弦'意象——精神通道如琴弦，御兽师拨弦驭兽。'弦'可断可续可共振，完美对应精神通道受损/恢复/影翼鸦共振等剧情需求",
+    "world_binding": "契约是'弦'，御兽师是'弹琴人'，兽是'琴上音'。后期揭示契约本质是收割系统时，'弦'变成'枷锁之弦'——你以为在弹琴，其实你是被弹的弦",
+    "solutions": [
+      {
+        "current": "精神线程",
+        "proposed": "弦",
+        "context": "操控一只兽所需的最小精神通道单位"
+      },
+      {
+        "current": "单线程",
+        "proposed": "一弦",
+        "context": "操控1只兽，正常御兽师水平"
+      },
+      {
+        "current": "双线程",
+        "proposed": "双弦",
+        "context": "同时操控2只兽，天才水平"
+      },
+      {
+        "current": "三线程",
+        "proposed": "三弦",
+        "context": "同时操控3只兽，林牧半年自学达成"
+      },
+      {
+        "current": "四线程",
+        "proposed": "四弦",
+        "context": "大师御兽师水平"
+      },
+      {
+        "current": "五线程",
+        "proposed": "五弦",
+        "context": "宗师（无碑者）水平"
+      },
+      {
+        "current": "多线程",
+        "proposed": "多弦",
+        "context": "多弦操控流派"
+      },
+      {
+        "current": "线程合并",
+        "proposed": "并弦",
+        "context": "将多股弦合并为一股集中压制"
+      },
+      {
+        "current": "精神纹路",
+        "proposed": "弦纹",
+        "context": "精神通道的量化指标（口语中可简称'纹路'）"
+      },
+      {
+        "current": "精神通道过载",
+        "proposed": "弦崩",
+        "context": "弦承受超过阈值的负荷时碎裂"
+      }
+    ],
+    "preserved_terms": [
+      {
+        "term": "精神通道",
+        "reason": "保留为系统正式名称，'弦'作为单位（类似'电流'与'安培'的关系）"
+      },
+      {
+        "term": "纹路",
+        "reason": "保留为'弦纹'的口语简称，正文角色可自然使用"
+      },
+      {
+        "term": "见习/正式/精英/大师/宗师",
+        "reason": "用户选择保留combat_system版御兽师等级"
+      }
+    ],
+    "impact_analysis": {
+      "files_updated": [
+        "combat_system.json",
+        "chapter_draft.json",
+        "chapter_draft_ch2.json",
+        "chapter_draft_ch3.json",
+        "outline.json",
+        "bestiary.json",
+        "characters.json"
+      ],
+      "txt_regenerated": [
+        "chapter_1.txt",
+        "chapter_2.txt",
+        "chapter_3.txt"
+      ]
+    }
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "last_updated": "2026-07-22",
+  "batch_3_summary": {
+    "source": "阅文作家专栏全量分析(46专栏/470+文章)",
+    "articles_covered": 628,
+    "full_text_read": 55,
+    "preview_extracted": 350,
+    "title_scanned": 223,
+    "member_restricted": 80,
+    "columns_covered": 46
+  },
+  "approved": [
+    {"proposal_id": "P001", "batch_id": 1, "source": "龙空论坛21篇精华帖", "title": "chapter-writer新增8条龙空规则", "target_agent": "chapter-writer", "version_change": "v1.4→v1.5", "status": "approved_and_landed", "approved_date": "2026-07-22"},
+    {"proposal_id": "P002", "batch_id": 1, "source": "龙空论坛21篇精华帖", "title": "character-designer/plot-architect/quality-reviewer龙空规则升级", "target_agent": "character-designer, plot-architect, quality-reviewer", "version_change": "v1.1→v1.2 (3个Agent)", "status": "approved_and_landed", "approved_date": "2026-07-22"},
+    {"proposal_id": "P003", "batch_id": 2, "source": "阅文编辑橡皮《人物塑造三技巧》", "title": "character-designer三维度反差化框架+性格对应故事交叉约束", "target_agent": "character-designer, plot-architect", "version_change": "v1.2→v1.3 (2个Agent)", "status": "approved_and_landed", "approved_date": "2026-07-22"},
+    {"proposal_id": "P004", "batch_id": 2, "source": "阅文编辑武行《开书六步法》+阅文《简介该这么写》", "title": "plot-architect串糖葫芦+简介写作+title-reviewer简介审核", "target_agent": "plot-architect, title-reviewer", "version_change": "v1.2→v1.3 / v1.0→v1.1", "status": "approved_and_landed", "approved_date": "2026-07-22"},
+    {"proposal_id": "P005", "batch_id": 3, "source": "网文期待感分析(马斯洛)+网文全武行第四期", "title": "期待感双要素公式", "target_agent": "quality-reviewer", "version_change": "v1.3→v1.4", "status": "approved_and_landed", "approved_date": "2026-07-22", "implementation": "作为quality-reviewer期待感4子维度的底层计算逻辑(情绪×事件)"},
+    {"proposal_id": "P006", "batch_id": 3, "source": "网文全武行第二期(动作与反应)", "title": "动作-反应双循环结构", "target_agent": "chapter-writer", "version_change": "v1.8→v1.9", "status": "approved_and_landed", "approved_date": "2026-07-22", "implementation": "chapter-writer十七.1 剧情微观结构法则"},
+    {"proposal_id": "P007", "batch_id": 3, "source": "网文全武行第四期(期待感=不平衡)", "title": "场景不平衡理论", "target_agent": "chapter-writer", "version_change": "v1.8→v1.9", "status": "approved_and_landed", "approved_date": "2026-07-22", "implementation": "chapter-writer十七.2 剧情微观结构法则"},
+    {"proposal_id": "P008", "batch_id": 3, "source": "进阶突破(矛盾冲突)+进阶突破(人物地位)", "title": "矛盾层次性与反派三级体系", "target_agent": "plot-architect", "version_change": "v1.3→v1.4", "status": "approved_and_landed", "approved_date": "2026-07-22", "implementation": "plot-architect剧情结构设计法则.1"},
+    {"proposal_id": "P009", "batch_id": 3, "source": "成神宝典(314)-预期值决定YY度", "title": "预期值管理法则", "target_agent": "chapter-writer", "version_change": "v1.8→v1.9", "status": "approved_and_landed", "approved_date": "2026-07-22", "implementation": "chapter-writer十七.3 剧情微观结构法则"},
+    {"proposal_id": "P010", "batch_id": 3, "source": "成神宝典(314)-如何加强代入感", "title": "认同感优先法则", "target_agent": "chapter-writer", "version_change": "v1.8→v1.9", "status": "approved_and_landed", "approved_date": "2026-07-22", "implementation": "chapter-writer十七.4 剧情微观结构法则"},
+    {"proposal_id": "P012", "batch_id": 3, "source": "成神宝典(会狼叫的猪)-高潮篇", "title": "高潮铺垫链", "target_agent": "plot-architect", "version_change": "v1.3→v1.4", "status": "approved_and_landed", "approved_date": "2026-07-22", "implementation": "plot-architect剧情结构设计法则.2"},
+    {"proposal_id": "P014", "batch_id": 3, "source": "C级-新媒体爆款手册", "title": "长篇不崩四防线", "target_agent": "quality-reviewer", "version_change": "v1.3→v1.4", "status": "approved_and_landed", "approved_date": "2026-07-22", "implementation": "quality-reviewer量化检测清单-长篇不崩四防线检测(50章+专项)"},
+    {"proposal_id": "P015", "batch_id": 3, "source": "成神宝典(会狼叫的猪)-热血篇", "title": "热血四要素", "target_agent": "chapter-writer", "version_change": "v1.8→v1.9", "status": "approved_and_landed", "approved_date": "2026-07-22", "implementation": "chapter-writer十七.5 剧情微观结构法则"},
+    {"proposal_id": "P016", "batch_id": 3, "source": "C级-写作素材星球", "title": "世界观设计5问框架", "target_agent": "plot-architect", "version_change": "v1.3→v1.4", "status": "approved_and_landed", "approved_date": "2026-07-22", "implementation": "plot-architect剧情结构设计法则.3"},
+    {"proposal_id": "P017", "batch_id": 3, "source": "C级-写作素材星球", "title": "主角4型模板+反派4型分类法", "target_agent": "character-designer", "version_change": "v1.3→v1.4", "status": "approved_and_landed", "approved_date": "2026-07-22", "implementation": "character-designer主角4型模板+反派4型分类法"},
+    {"proposal_id": "P019", "batch_id": 3, "source": "C级-ZENK讲武堂", "title": "体系设计三原则", "target_agent": "plot-architect", "version_change": "v1.3→v1.4", "status": "approved_and_landed", "approved_date": "2026-07-22", "implementation": "plot-architect剧情结构设计法则.4"},
+    {"proposal_id": "P020", "batch_id": 3, "source": "S级-升级文金手指设计方向", "title": "金手指四象限设计法", "target_agent": "plot-architect", "version_change": "v1.3→v1.4", "status": "approved_and_landed", "approved_date": "2026-07-22", "implementation": "plot-architect剧情结构设计法则.5"},
+    {"proposal_id": "P021", "batch_id": 3, "source": "进阶突破(如何在不灌水的前提下把书写长)", "title": "故事延长五法", "target_agent": "plot-architect", "version_change": "v1.3→v1.4", "status": "approved_and_landed", "approved_date": "2026-07-22", "implementation": "plot-architect剧情结构设计法则.6"},
+    {"proposal_id": "P022", "batch_id": 3, "source": "进阶突破(角色扁平)+写作技巧(人物怎么写)", "title": "多角度角色特质+Show vs Tell全面应用", "target_agent": "character-designer, de-ai-processor", "version_change": "v1.3→v1.4 / v1.0→v1.1", "status": "approved_and_landed", "approved_date": "2026-07-22", "implementation": "character-designer Show vs Tell规则3条 + de-ai-processor十三.Tell式角色塑造检测"},
+    {"proposal_id": "P029", "batch_id": 3, "source": "C级-ZENK讲武堂", "title": "开篇三问框架", "target_agent": "plot-architect", "version_change": "v1.3→v1.4", "status": "approved_and_landed", "approved_date": "2026-07-22", "implementation": "plot-architect剧情结构设计法则.7"},
+    {"proposal_id": "P030", "batch_id": 3, "source": "C级-外站成神攻略", "title": "【低武+加点】选题公式", "target_agent": "plot-architect", "version_change": "v1.3→v1.4", "status": "approved_and_landed", "approved_date": "2026-07-22", "implementation": "plot-architect剧情结构设计法则.8"}
+  ],
+  "merged": [
+    {"proposal_id": "P011", "batch_id": 3, "source": "成神宝典(314)-YY利器联想式脑补+进阶突破(脑补的能量)", "title": "脑补放大法则", "target_agent": "chapter-writer", "merged_into": "v1.7 信息差张力法则.脑补放大法(v1.9合并)", "status": "merged", "merged_date": "2026-07-22"},
+    {"proposal_id": "P013", "batch_id": 3, "source": "C级-新媒体爆款手册", "title": "粘性三件套(章尾设计)", "target_agent": "chapter-writer", "merged_into": "v1.5 剥洋葱技法.章尾粘性三件套(v1.9合并)", "status": "merged", "merged_date": "2026-07-22"},
+    {"proposal_id": "P018", "batch_id": 3, "source": "C级-无限流秘境", "title": "信息差爽点机制", "target_agent": "chapter-writer", "merged_into": "v1.7 信息差张力法则.信息差爽点(v1.9合并)", "status": "merged", "merged_date": "2026-07-22"},
+    {"proposal_id": "P025", "batch_id": 3, "source": "B级-走进大神(通吃道人/咬火等)", "title": "情绪节奏控制论-制造观众", "target_agent": "chapter-writer", "merged_into": "v1.7 社交确认法则.制造观众(v1.9合并)", "status": "merged", "merged_date": "2026-07-22"}
+  ],
+  "pending": [
+    {"proposal_id": "P023", "priority": "MEDIUM", "target_agent": "character-designer, plot-architect", "title": "反派美化法则", "source": "成神宝典(314)-怎样提高作品的逼格", "description": "有敌人但没坏人——理念不同/立场不同/信息不同。为反派寻找正义/合理的理由，加悲情色彩引起同情", "status": "pending"},
+    {"proposal_id": "P024", "priority": "MEDIUM", "target_agent": "plot-architect, chapter-writer", "title": "穷举创新法", "source": "成神宝典(314)-谈谈网文的创新", "description": "选定一个点→穷举所有变化→替代法辨真伪→选最佳", "status": "pending"},
+    {"proposal_id": "P026", "priority": "MEDIUM", "target_agent": "plot-architect", "title": "结局先行法", "source": "B级-访谈专栏(蝴蝶蓝)", "description": "开篇就决定整个故事结局，所有线索奔着结果去", "status": "pending"},
+    {"proposal_id": "P028", "priority": "MEDIUM", "target_agent": "title-reviewer", "title": "简介写作系列补充", "source": "D级-吸引人的女频简介要这么写(6篇全通用)", "description": "简介常见问题诊断+迭代方法+投放文案技巧", "status": "pending"}
+  ],
+  "shelved": [
+    {"proposal_id": "P027", "priority": "LOW-MEDIUM", "target_agent": "chapter-writer, character-designer", "title": "人设驱动论", "source": "B级-走进大神(楠楠李/三戒大师等)", "description": "是人设推着情节走。塑造人物要典型化——抓住一个特点反复写", "status": "shelved", "reason": "与character-designer v1.3 personality_extreme.story_driver已有覆盖"},
+    {"proposal_id": "P031", "priority": "LOW-MEDIUM", "target_agent": "chapter-writer", "title": "留吐槽空间设计", "source": "B级-走进大神(妖夜)", "description": "专门在文中设计可供读者互动的'空间'", "status": "shelved", "reason": "属于运营层面而非写作规则，暂不纳入框架"},
+    {"proposal_id": "P032", "priority": "LOW-MEDIUM", "target_agent": "quality-reviewer", "title": "追读比量化标准", "source": "B级-长跑者(鹤守月满池)", "description": "20万字前3:1追读比比较健康，超过4:1-5:1甚至7:1就该切书", "status": "shelved", "reason": "属于平台运营数据指标，非写作框架规则"}
+  ],
+  "rejected": []
+}

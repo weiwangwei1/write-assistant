@@ -1,0 +1,280 @@
+{
+  "card_type": "title_review",
+  "round": 5,
+  "timestamp": "2026-07-21T10:00:00Z",
+  "from_agent": "title-reviewer",
+  "to_agent": "plot-architect",
+  "design_principle": "以平头哥（蜜獾）为主题。平头哥=中文互联网文化符号（无所畏惧/不服就干/以小博大）。匹配设定：体型小战力强=弱势开局但认知碾压；不服输=主角逆反性格。",
+  "candidates": [
+    {
+      "title": "从平头哥开始",
+      "scores": {
+        "distinctiveness": 9,
+        "relevance": 9,
+        "intrigue": 8,
+        "memorability": 9,
+        "shareability": 9,
+        "market_fit": 7
+      },
+      "total_score": 8.5,
+      "verdict": "通过",
+      "strengths": [
+        "'平头哥'自带极强网感——读者一看就知道性格",
+        "匹配主角'不服输'逆反性格",
+        "'从X开始'有故事感",
+        "说出口有趣有传播力'我在看从平头哥开始'",
+        "辨识度极高"
+      ],
+      "weaknesses": [
+        "不知道是御兽流",
+        "'从X开始'句式不独特",
+        "平头哥和'无印记/系统看不见'设定关联弱"
+      ],
+      "suggestions": "",
+      "design_intent": "直白用'平头哥'。'从X开始'句式有故事感。平头哥自带'不服就干'的网感，读者一看就知道主角性格——无畏以小博大。"
+    },
+    {
+      "title": "开局一只平头哥",
+      "scores": {
+        "distinctiveness": 9,
+        "relevance": 9,
+        "intrigue": 8,
+        "memorability": 9,
+        "shareability": 9,
+        "market_fit": 8
+      },
+      "total_score": 8.67,
+      "verdict": "通过",
+      "strengths": [
+        "'开局一只X'句式+平头哥=网感拉满",
+        "比'开局一只猫'强10倍——平头哥有性格有战力暗示",
+        "读者一看就想'平头哥？那个不服就干的？'引发好奇",
+        "6字简洁有力",
+        "说出口极有传播力'我在看开局一只平头哥'",
+        "匹配弱势开局但以小博大"
+      ],
+      "weaknesses": [
+        "'开局一只X'句式有同类（《开局一只猴》）",
+        "不知道是御兽流（但平头哥暗示战斗/御兽）",
+        "平头哥和'无印记/进化观察法'设定关联弱"
+      ],
+      "suggestions": "",
+      "design_intent": "'开局一只X'句式+平头哥。比'开局一只猫'强10倍——平头哥有网感有性格有战力暗示。读者一看就想'平头哥？这不是那个不服就干的吗？'引发好奇。"
+    },
+    {
+      "title": "御兽：开局一只平头哥",
+      "scores": {
+        "distinctiveness": 9,
+        "relevance": 10,
+        "intrigue": 8,
+        "memorability": 9,
+        "shareability": 8,
+        "market_fit": 10
+      },
+      "total_score": 9.0,
+      "verdict": "通过",
+      "strengths": [
+        "冒号式番茄主流+类型最明确（御兽）",
+        "平头哥网感拉满",
+        "类型+意象完美结合",
+        "读者一看就知道：末世御兽流+平头哥=有趣",
+        "前期完全匹配——Ch3契约平头哥"
+      ],
+      "weaknesses": [
+        "7字偏长（但冒号分隔易读）",
+        "说出口略长'我在看御兽开局一只平头哥'"
+      ],
+      "suggestions": "",
+      "design_intent": "冒号式（番茄主流）+开局一只平头哥。类型明确（御兽）+网感意象（平头哥）。7字但冒号分隔易读。"
+    },
+    {
+      "title": "开局一只平头哥，越级打怪不用愁",
+      "scores": {
+        "distinctiveness": 8,
+        "relevance": 9,
+        "intrigue": 7,
+        "memorability": 9,
+        "shareability": 9,
+        "market_fit": 8
+      },
+      "total_score": 8.33,
+      "verdict": "通过",
+      "strengths": [
+        "押韵有网感",
+        "'越级打怪'点明御兽流",
+        "'不用愁'自嘲反转"
+      ],
+      "weaknesses": [
+        "11字太长",
+        "'越级打怪不用愁'较俗",
+        "悬念感不足"
+      ],
+      "suggestions": "",
+      "design_intent": "自嘲式长句+平头哥。'越级打怪不用愁'押韵有网感，暗示平头哥以小博大的特性=主角的认知碾压。"
+    },
+    {
+      "title": "开局一只平头哥，神仙来了也敢掏",
+      "scores": {
+        "distinctiveness": 10,
+        "relevance": 8,
+        "intrigue": 8,
+        "memorability": 10,
+        "shareability": 10,
+        "market_fit": 8
+      },
+      "total_score": 9.0,
+      "verdict": "通过",
+      "strengths": [
+        "'神仙来了也敢掏'=平头哥名梗+无畏精神",
+        "网感极强传播力极强",
+        "记忆锚点极强",
+        "说出口极有趣'我在看开局一只平头哥神仙来了也敢掏'",
+        "暗示后期'面对神魔/系统也敢干'的主题"
+      ],
+      "weaknesses": [
+        "12字很长",
+        "'掏'（掏肛）可能低俗",
+        "部分读者可能觉得low"
+      ],
+      "suggestions": "",
+      "design_intent": "自嘲式长句+'掏'（平头哥掏肛名梗）。'神仙来了也敢掏'=无畏性格+网梗。有极强传播力。但'掏'可能低俗。"
+    },
+    {
+      "title": "开局一只平头哥，谁都不服就干谁",
+      "scores": {
+        "distinctiveness": 8,
+        "relevance": 8,
+        "intrigue": 6,
+        "memorability": 8,
+        "shareability": 8,
+        "market_fit": 7
+      },
+      "total_score": 7.5,
+      "verdict": "通过",
+      "strengths": [
+        "'谁都不服就干谁'=平头哥精神",
+        "匹配主角逆反性格"
+      ],
+      "weaknesses": [
+        "11字长",
+        "太直白无悬念",
+        "较俗"
+      ],
+      "suggestions": "",
+      "design_intent": "自嘲式长句+平头哥性格。'谁都不服就干谁'=平头哥精神=主角逆反性格。但太直白。"
+    },
+    {
+      "title": "开局一只平头哥，打脸全靠胆子大",
+      "scores": {
+        "distinctiveness": 7,
+        "relevance": 6,
+        "intrigue": 6,
+        "memorability": 7,
+        "shareability": 7,
+        "market_fit": 7
+      },
+      "total_score": 6.67,
+      "verdict": "需修改",
+      "strengths": [
+        "有自嘲感"
+      ],
+      "weaknesses": [
+        "主角打脸靠认知不是胆子——匹配度低",
+        "11字长",
+        "较俗"
+      ],
+      "suggestions": "",
+      "design_intent": "自嘲式长句。'打脸全靠胆子大'——但主角打脸靠认知不是胆子，有偏差。"
+    },
+    {
+      "title": "开局一只蜜獾",
+      "scores": {
+        "distinctiveness": 7,
+        "relevance": 9,
+        "intrigue": 6,
+        "memorability": 7,
+        "shareability": 6,
+        "market_fit": 7
+      },
+      "total_score": 7.0,
+      "verdict": "需修改",
+      "strengths": [
+        "'蜜獾'学名更文雅",
+        "6字简洁"
+      ],
+      "weaknesses": [
+        "少了'平头哥'的网感",
+        "辨识度不如'平头哥'",
+        "不知道是御兽流"
+      ],
+      "suggestions": "",
+      "design_intent": "用学名'蜜獾'替代俗称'平头哥'。更文雅但少了网感。"
+    },
+    {
+      "title": "从蜜獾开始",
+      "scores": {
+        "distinctiveness": 7,
+        "relevance": 9,
+        "intrigue": 7,
+        "memorability": 7,
+        "shareability": 6,
+        "market_fit": 6
+      },
+      "total_score": 7.0,
+      "verdict": "需修改",
+      "strengths": [
+        "'从X开始'有故事感",
+        "'蜜獾'文雅"
+      ],
+      "weaknesses": [
+        "少了网感",
+        "不知道是御兽流",
+        "辨识度一般"
+      ],
+      "suggestions": "",
+      "design_intent": "'从X开始'+学名。文雅有神秘感但少了网感。"
+    },
+    {
+      "title": "开局一只平头哥，管你几阶都敢掏",
+      "scores": {
+        "distinctiveness": 9,
+        "relevance": 10,
+        "intrigue": 8,
+        "memorability": 9,
+        "shareability": 9,
+        "market_fit": 9
+      },
+      "total_score": 9.0,
+      "verdict": "通过",
+      "strengths": [
+        "'几阶'点明御兽流等级体系",
+        "'都敢掏'=平头哥网梗+无畏",
+        "类型+网感+性格三合一",
+        "记忆锚点强",
+        "暗示后期面对高阶/系统也敢干的逆反主题",
+        "说出口极有趣"
+      ],
+      "weaknesses": [
+        "12字长",
+        "'掏'可能低俗",
+        "部分读者可能觉得low"
+      ],
+      "suggestions": "",
+      "design_intent": "自嘲式长句+'几阶'点明御兽流+'掏'网梗。类型+网感+性格三合一。"
+    }
+  ],
+  "ranking": [
+    "御兽：开局一只平头哥",
+    "开局一只平头哥，神仙来了也敢掏",
+    "开局一只平头哥，管你几阶都敢掏",
+    "开局一只平头哥",
+    "从平头哥开始",
+    "开局一只平头哥，越级打怪不用愁",
+    "开局一只平头哥，谁都不服就干谁",
+    "开局一只蜜獾",
+    "从蜜獾开始",
+    "开局一只平头哥，打脸全靠胆子大"
+  ],
+  "recommended": "御兽：开局一只平头哥",
+  "overall_assessment": "10个候选中7个通过。排名前3：御兽：开局一只平头哥、开局一只平头哥，神仙来了也敢掏、开局一只平头哥，管你几阶都敢掏。"
+}

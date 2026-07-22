@@ -1,0 +1,110 @@
+{
+  "card_type": "session_pointer",
+  "last_updated": "2026-07-23T09:00:00Z",
+  "last_updated_chapter": 3,
+  "project_status": {
+    "novel_title": "他从门后来",
+    "current_phase": "chapter_loop",
+    "current_volume": 1,
+    "current_chapter": 4,
+    "total_chapters": 300,
+    "completed_chapters": 3,
+    "overall_progress": "1.0%",
+    "daily_target": 2,
+    "daily_completed": 3
+  },
+  "recent_milestone": {
+    "type": "golden_chapters_complete",
+    "chapter": 3,
+    "summary": "黄金三章全部完成。Ch3《送客》全pipeline一次通过（R1 PASS）。技术分9.51，追读指数9.27，弃书率7.3%，AI痕迹0.9。门权升级链确立（送回→门息→感知提升），沈鹿首次出场+被标记（F014），来客类型多样化（黑色蜡团走管道），信息差三层结构建立。"
+  },
+  "character_quick_state": [
+    {
+      "name": "林深",
+      "location": "爷爷旧房（客厅/厨房），送走沈鹿后独自在门前",
+      "emotion": "警惕+满足（门息获得）+隐瞒愧疚（沈鹿标记未告知）+不安（来客通过管道找出口）",
+      "power": "门权一阶·关门+窥探半阶觉醒，首次主动送回本体（碾压式），获得门息，感知精度提升（模糊→精确三步外）",
+      "last_chapter": 3
+    },
+    {
+      "name": "宋叔（先生）",
+      "location": "楼上",
+      "emotion": "表面关心+暗中试探（你到底知道多少）",
+      "power": "门后来者（伪装中），借身15年，三异常暴露",
+      "last_chapter": 2
+    },
+    {
+      "name": "沈鹿",
+      "location": "隔壁301（送饭后返回自己家）",
+      "emotion": "恐惧+贫嘴（越怕话越多）+职业冷静（先退后判断）+不安（问会不会有，林深说不会）",
+      "power": "能看到灰纹和门异常颜色（暗示感知能力），左臂灰色手形标记（F014，林深已知但未告知）",
+      "last_chapter": 3
+    }
+  ],
+  "foreshadowing_quick_status": [
+    {
+      "id": "F001",
+      "status": "planted",
+      "last_action_chapter": 2,
+      "action_type": "deepened",
+      "next_milestone": 5
+    },
+    {
+      "id": "F002",
+      "status": "small_clue",
+      "last_action_chapter": 3,
+      "action_type": "small_clue",
+      "next_milestone": 20
+    },
+    {
+      "id": "F009",
+      "status": "planted",
+      "last_action_chapter": 3,
+      "action_type": "deepened",
+      "next_milestone": 5
+    },
+    {
+      "id": "F011",
+      "status": "planted",
+      "last_action_chapter": 2,
+      "action_type": "deepened",
+      "next_milestone": 20
+    },
+    {
+      "id": "F012",
+      "status": "planted",
+      "last_action_chapter": 3,
+      "action_type": "progressed",
+      "next_milestone": 8
+    },
+    {
+      "id": "F013",
+      "status": "small_clue",
+      "last_action_chapter": 3,
+      "action_type": "small_clue",
+      "next_milestone": 10
+    },
+    {
+      "id": "F014",
+      "status": "planted",
+      "last_action_chapter": 3,
+      "action_type": "planted",
+      "next_milestone": 5
+    }
+  ],
+  "last_session_summary": "第3章《送客》完成全pipeline。detail-reviewer 2处minor修复（管道→通道、门息规则句融入内心独白）。quality-reviewer R1一次通过（9.51技术+9.27追读，弃书率7.3%）。de-ai仅1处四字词组替换（不急不缓→像量过似的），AI痕迹1.2→0.9。fanqie-adapter 6项全PASS+7项合规全PASS，0处修改。新增F014（沈鹿标记），深化F002（small_clue新来客类型）+F009（门息系统）+F012（管道出口）+F013（沈鹿出场）。",
+  "next_action": "第4章：按大纲推进+融入第三方读者反馈。门权升级后感知精度提升，林深需处理沈鹿标记问题（F014推进）+内心挣扎（第三方反馈：'我没说'需尽快给出合理解释）。Ch4必须有主动出击+明确收益（第三方反馈：爽点密度不足）。可安排：1)门后呼吸声延续——林深主动应对而非被动等待；2)沈鹿标记开始有反应/扩散迹象+林深内心挣扎；3)宋叔再次出场（F011推进）；4)升级感具象化（第三方反馈：之前做不到的事现在能做到了）。开头类型需与Ch1(悬念)/Ch2(感官)/Ch3(动作)不同，可用对话/场景/氛围开头。结尾类型需与Ch1(留白反转)/Ch2(信息揭示)/Ch3(悬念型)不同，可用动作未完成/对话结尾/场景描写。",
+  "quality_trend": {
+    "last_10_avg": 9.50,
+    "trend": "stable",
+    "weakest_dimension": "shuang_density",
+    "note": "Ch1爽点密度9.0最低，Ch2提升至9.3（灰纹压制B级+窥探A级），Ch3为9.25（送回B级+门息A级，但前1050字纯铺垫无传统爽点）。三章均分9.50稳定，爽点密度持续关注。"
+  },
+  "open_decisions": [],
+  "pipeline_status": {
+    "chapter_1": "completed (all 6 agents passed, score 9.50, reader 9.60)",
+    "chapter_2": "completed (all 6 agents passed, R1→R2, score 9.50, reader 9.02)",
+    "chapter_3": "completed (all 6 agents passed, R1 PASS, score 9.51, reader 9.27)",
+    "chapter_4": "pending (chapter-writer next)"
+  }
+}

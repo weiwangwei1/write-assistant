@@ -1,0 +1,143 @@
+{
+  "novel_title": "玩家请就位",
+  "novel_title_candidates": ["玩家请就位", "继承者试炼", "永夜OL"],
+  "genre": "末世+无限流+第四天灾",
+  "genre_tags": ["末世", "无限流", "第四天灾", "避难所", "继承者", "试炼"],
+  "platform": "番茄小说",
+  "theme": "在传承中守护，在试炼中成长，在牺牲中自由",
+  "logline": "他培养的天才越多，自己消失得越快——穿越永夜末世成避难所主脑，陆夜发现自己陷入死局：不培养继承者立刻消散，培养成功也会消散。他把无限流副本包装成继承者试炼，玩家知道自己在被考验，却不知道通过试炼的代价是主脑的存在。而上一任主脑临终前留给他的最后一句话是：别培养太优秀的继承者。",
+  "core_concept": "继承者试炼流：主脑培养玩家成为新主脑（非骗玩家打工）+ 玩家知道被考验但不知代价 + 继承者继位即原主脑消散 的三重张力",
+  "originality_note": "与《这游戏也太真实了》彻底区分：不是'骗你打工'，而是'培养你继承我的位置，但你继承的那天就是我消失的那天'",
+  "total_chapters": 400,
+  "total_volumes": 10,
+  "chapter_word_count": 2500,
+  "total_word_count": 1000000,
+  "volume_plan": [
+    {"vol": 1, "title": "404号避难所", "chapters": "1-40", "word_count": 100000},
+    {"vol": 2, "title": "继承者初潮", "chapters": "41-80", "word_count": 100000},
+    {"vol": 3, "title": "永夜荒原", "chapters": "81-120", "word_count": 100000},
+    {"vol": 4, "title": "主脑议会", "chapters": "121-160", "word_count": 100000},
+    {"vol": 5, "title": "黑雾深渊", "chapters": "161-200", "word_count": 100000},
+    {"vol": 6, "title": "觉醒者阵营", "chapters": "201-240", "word_count": 100000},
+    {"vol": 7, "title": "诡物王攻城", "chapters": "241-280", "word_count": 100000},
+    {"vol": 8, "title": "协议真相", "chapters": "281-320", "word_count": 100000},
+    {"vol": 9, "title": "永夜本源", "chapters": "321-360", "word_count": 100000},
+    {"vol": 10, "title": "永夜黎明", "chapters": "361-400", "word_count": 100000}
+  ],
+  "style_settings": {
+    "fusion_recipe": "三派融合配方v1.0",
+    "layers": {
+      "骨架层": "卖报小郎君·副本单元剧双轨制，占比15%",
+      "肌肉层": "活儿该·画面动词驱动，占比35%",
+      "神经层": "缘分0·逻辑伏笔前置，占比20%",
+      "魂层": "融合·玩梗+反差萌+团队配置，占比30%"
+    },
+    "element_ratio": {"玩梗对话": 30, "画面动作": 35, "逻辑推演": 20, "副本结构": 15}
+  },
+  "reader_persona_matrix": {
+    "enabled": true,
+    "personas": [
+      {"name": "爽感猎人·阿爽", "weight": 20},
+      {"name": "逻辑警察·老缜", "weight": 15},
+      {"name": "角色粉·小迷", "weight": 20},
+      {"name": "氛围党·画师", "weight": 15},
+      {"name": "碎片党·地铁客", "weight": 20},
+      {"name": "老书虫·毒舌", "weight": 10}
+    ],
+    "pass_criteria": "技术总分>=8 且 追读指数>=7.0"
+  },
+  "meme_library": "config/meme_library.json",
+  "meme_rules": {
+    "max_age_months": 12,
+    "max_per_chapter": 3,
+    "serious_scene_ban": true,
+    "update_schedule": "季度更新，下次2026-10-01"
+  },
+  "writing_rules": {
+    "fusion_recipe_hard_constraints": [
+      "梗时效性自检：每章使用的网络梗时效性必须≤1年，每章新梗≤3个，严肃场景禁用",
+      "推理段缓冲：连续推理/逻辑推演段超过300字时必须插入角色吐槽或玩梗缓冲",
+      "群像预留：即使当前章节只有主角+1队友出场也必须至少提及1名未出场队友",
+      "认知碾压描写：智斗流破局瞬间除逻辑推演外必须补一段认知碾压描写",
+      "伏笔半揭：章末埋设的强伏笔不能只埋不揭必须在同章给出一个半揭细节"
+    ],
+    "chapter_structure": "60/30/10结构（缩段60%+伸段30%+断章钩10%）",
+    "dialogue_ratio": "50-60%对话区间",
+    "shuang_point_interval": "小爽点间隔≤500字",
+    "chapter_hook": "每章末尾必备钩子，5型轮换",
+    "tragedy_balance_rule": "第1章悲壮感前置但不超过30%篇幅，首杀爽点闭环仍在第3章完成。悲壮是底色而非主调，爽感仍是第一驱动力"
+  },
+  "audit_compliance": {
+    "player_death_description": "玩家死亡统一用化作光点重生，规避血腥描写",
+    "protagonist_morality": "主角的悲壮传承始终有道德正当性——明知会消散仍真心培养继承者，不存在欺骗问题",
+    "moral_dilemma_presentation": "悲壮感前置到第1章，明确主角是过渡品主脑而非操控者，培养继承者即自我消散"
+  },
+  "human_checkpoint": {
+    "enabled": true,
+    "nodes": {
+      "outline_finalized": true,
+      "character_cards": true,
+      "golden_chapter": true,
+      "volume_climax": true,
+      "foreshadowing_reveal": true
+    },
+    "timeout_hours": 24,
+    "max_questions_per_checkpoint": 2,
+    "max_highlights_per_checkpoint": 5
+  },
+  "pipeline_modes": {
+    "description": "两种流水线模式：完整模式用于关键章节，快速模式用于常规章节",
+    "full_pipeline": {
+      "applicable": ["黄金三章", "卷宗高潮章", "伏笔全揭章", "转折章", "第1章/卷末章"],
+      "steps": ["chapter-writer", "detail-reviewer", "quality-reviewer", "de-ai-processor", "fanqie-adapter", "memory-manager"],
+      "description": "完整6步流水线，每步独立执行并生成交接卡"
+    },
+    "fast_pipeline": {
+      "applicable": ["常规章节（非高潮/非转折）"],
+      "steps": ["chapter-writer", "detail-reviewer", "fast-review"],
+      "description": "快速3步：chapter-writer产出 → detail-reviewer微观审核 → fast-review合并(quality+de-ai+fanqie+memory)一步完成",
+      "fast_review_rules": {
+        "quality_check": "7维度评分+6读者画像，但合并到一个脚本执行",
+        "de_ai_check": "AI痕迹检测，AI≤2.0即pass",
+        "fanqie_check": "合规检查+加粗句检查",
+        "memory_update": "session_pointer+chapter_summary+writing_log同步更新",
+        "pass_criteria": "技术分≥8.0 且 追读指数≥7.0 且 AI≤2.0 且 0合规问题"
+      },
+      "escalation_rule": "若fast-review中任一指标不通过，升级为full_pipeline重走"
+    }
+  },
+  "quality_early_warning": {
+    "reader_index_yellow": 8.0,
+    "reader_index_red": 7.5,
+    "technical_yellow": 8.5,
+    "technical_red": 8.0,
+    "ai_score_red": 2.5,
+    "churn_rate_red": "15%",
+    "action_on_yellow": "记录预警，继续生产但下一章需加强分镜",
+    "action_on_red": "暂停生产，退回chapter-writer重写"
+  },
+  "imagery_tracker": {
+    "description": "章末意象追踪，防止同一意象连续使用",
+    "max_consecutive": 3,
+    "tracked_imagery": {
+      "窗外风声/叹息": {"chapters_used": [1, 2, 3, 5], "note": "系列母题，但需控制频率"},
+      "窗外光/信标": {"chapters_used": [4, 5, 6], "note": "新意象，从风声升级到光"},
+      "笔记本记录": {"chapters_used": [1, 2, 3, 4, 5, 6], "note": "陈默核心行为，不算章末意象"}
+    },
+    "warning_rule": "同一意象连续3章使用时预警，建议更换"
+  },
+  "production_schedule": {
+    "plan_start_date": "2026-07-20",
+    "plan_daily_chapters": 2,
+    "plan_total_days": 210,
+    "plan_end_date": "2027-02-15",
+    "actual_chapters_done": 6,
+    "actual_start_date": "2026-07-20",
+    "deviation_days": 0,
+    "note": "每章完成后更新actual_chapters_done，计算偏差天数"
+  },
+  "created_at": "2026-07-19",
+  "updated_at": "2026-07-20",
+  "version": "3.4",
+  "status": "outline_review_passed"
+}

@@ -1,0 +1,15 @@
+# 压缩包和二进制文件
+*.zip
+*.7z
+*.rar
+
+# 大型JS库（echarts等）
+*echarts.min.js
+
+# 临时文件
+*.tmp
+*.temp
+
+# 系统文件
+Thumbs.db
+.DS_Store

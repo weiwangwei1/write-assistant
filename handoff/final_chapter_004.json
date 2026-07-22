@@ -1,0 +1,47 @@
+{
+  "card_type": "final",
+  "timestamp": "2026-07-21T23:04:28.748512Z",
+  "from_agent": "fanqie-adapter",
+  "content": {
+    "chapter_num": 4,
+    "title": "标记",
+    "word_count": 3956,
+    "adaptations": [
+      {
+        "type": "sensitive_filter",
+        "description": "敏感词检查通过，无违规内容"
+      },
+      {
+        "type": "pacing_adjustment",
+        "description": "节奏检查通过，段落≤8行，对话独立成段"
+      },
+      {
+        "type": "chapter_hook",
+        "description": "章末钩子有效，类型多样"
+      },
+      {
+        "type": "format_adjustment",
+        "description": "移除**加粗标记，输出纯文本终稿。加粗建议记录在bold_suggestions中"
+      },
+      {
+        "type": "style_unification",
+        "description": "风格统一检查通过，fast-paced模板，短句为主"
+      }
+    ],
+    "bold_suggestions": [
+      {
+        "line": "都在躲蜜獾。",
+        "reason": "关键揭示——蜜獾的威压效应"
+      },
+      {
+        "line": "暗点上面有东西。",
+        "reason": "关键发现——暗点不是空的"
+      },
+      {
+        "line": "明天就知道了。",
+        "reason": "章末钩子——期待感"
+      }
+    ],
+    "ready_to_publish": true
+  }
+}

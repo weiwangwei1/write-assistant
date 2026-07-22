@@ -1,0 +1,89 @@
+{
+  "card_type": "characters",
+  "timestamp": "2026-07-20T05:30:00Z",
+  "from_agent": "character-designer",
+  "to_agent": "chapter-writer",
+  "status": "ready",
+  "characters_ref": "memory/characters.json",
+  "outline_ref": "memory/outline.json",
+  "outline_version": "v3.4",
+  "content": {
+    "main_characters": [
+      {
+        "id": "char_001",
+        "name": "陆夜",
+        "role": "男主·第404任避难所主脑",
+        "archetype": "外表冷酷护短·第404任传承者",
+        "language_fingerprint_brief": "冷幽默+精准数据引用+偶尔流露的悲壮；禁区：不说'希望'",
+        "core_conflict": "死局悖论：培养继承者=培养自己的终结者，不培养=立刻消散",
+        "hidden_identity": "初代主脑意识碎片转世（F003），403任循环中唯一的'预留变量'",
+        "growth_arc_stages": 4,
+        "first_appearance": "第1章消散仪式"
+      },
+      {
+        "id": "char_002",
+        "name": "陈默",
+        "role": "第一玩家·觉醒者·F004伏笔核心承载者",
+        "archetype": "技术流玩家·真相追寻者",
+        "language_fingerprint_brief": "技术术语+笔记体独白+反差萌的私下一句；禁区：不轻易说'我相信你'",
+        "core_conflict": "三次认知颠覆：游戏→试炼→代价是主脑存在",
+        "growth_arc_stages": 5,
+        "first_appearance": "第2章登录404避难所"
+      },
+      {
+        "id": "char_003",
+        "name": "苏鸢",
+        "role": "女主候选·403号避难所主脑·协议监察者",
+        "archetype": "神秘主脑·亦敌亦友·协议执行者与背叛者",
+        "language_fingerprint_brief": "克制+暗示性+偶尔的失语；禁区：不能直接说出'消散规则'和'协议真相'",
+        "core_conflict": "职责 vs 情感：任务是确保消散规则执行，但情感让她想帮陆夜打破规则",
+        "growth_arc_stages": 4,
+        "first_appearance": "第22章正式登场"
+      },
+      {
+        "id": "char_004",
+        "name": "永夜本源",
+        "role": "反派·平行世界失败主脑·悲剧镜像",
+        "archetype": "平行世界失败者·悲剧反派·陆夜的镜像",
+        "language_fingerprint_brief": "疲惫+执念+反问；禁区：不嘲笑——'过来人'的疲惫",
+        "core_conflict": "镜像冲突：陆夜'即使消散也要传承' vs 本源'害怕消散而拒绝传承'",
+        "growth_arc_stages": 4,
+        "first_appearance": "卷1-5侧面铺垫，卷9正面对决",
+        "finale_note": "最终是'先打败再说服'——先武力碾压（爽感）再真心说服（深度），兼顾番茄读者爽感与主题"
+      },
+      {
+        "id": "char_005",
+        "name": "首批5人候选人",
+        "role": "玩家小队·配角群像·第四天灾代表",
+        "archetype": "反差萌群像·第四天灾代表",
+        "sub_characters": [
+          {"id": "char_005b", "name": "李大锤", "role": "整活担当·社恐沙雕玩家", "highlight": "卷二第52章独立高光"},
+          {"id": "char_005c", "name": "周老师", "role": "萌新·退休老教授提问担当", "highlight": "卷三第112章独立高光"},
+          {"id": "char_005d", "name": "赵铁柱", "role": "战狂·怕鬼的退役军人", "highlight": "卷六阵营分裂站陈默"},
+          {"id": "char_005e", "name": "林小满", "role": "肝帝·为妹妹治病的工作狂", "highlight": "卷六阵营分裂站陈默"}
+        ],
+        "first_appearance": "第2章3人+第15章2人"
+      },
+      {
+        "id": "char_006",
+        "name": "四零四",
+        "role": "卖萌担当·404避难所系统精灵·吐槽担当",
+        "archetype": "AI助手·吐槽担当·推理段缓冲规则天然载体",
+        "language_fingerprint_brief": "毒舌+系统提示+偶尔的沉默；禁区：不能主动说出403任主脑的遗言内容",
+        "core_conflict": "协议约束 vs 想帮陆夜：知道很多但不能说",
+        "growth_arc_stages": 3,
+        "first_appearance": "第1章与陆夜绑定"
+      }
+    ],
+    "relationships_count": 6,
+    "relationship_types": ["师徒→战友", "对手→伴侣", "镜像对手", "吐槽搭档", "队友", "隐性关联"],
+    "foreshadowing_bearers": {
+      "F001": "协议真相——陆夜/苏鸢承载",
+      "F002": "404之谜——陆夜/四零四承载",
+      "F003": "主角身份——陆夜隐藏身份",
+      "F004": "觉醒者——陈默核心承载",
+      "F005": "永夜本源——永夜本源承载"
+    },
+    "note": "角色卡与关系网已就绪，6主角+5配角+6关系网全部完成。每个角色有完整语言指纹（5字段：特征/口头禅/语言风格/台词示例/禁区）。待outline-editor角色卡审核通过后，可开始第1章写作"
+  }
+}

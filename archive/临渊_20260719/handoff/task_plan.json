@@ -1,0 +1,19 @@
+{
+  "novel_title": "临渊",
+  "novel_id": "novel_002",
+  "phase": "chapter_loop",
+  "current_chapter": 10,
+  "completed_chapters": [1, 2, 3, 4, 5, 6, 7, 8, 9],
+  "daily_target": 2,
+  "daily_completed": 2,
+  "current_date": "2026-07-18",
+  "rewrite_count": {},
+  "errors": [],
+  "init_steps": {
+    "config_loaded": true,
+    "outline_created": true,
+    "characters_created": true,
+    "ready_for_chapter_loop": true
+  },
+  "last_updated": "2026-07-18T06:00:00Z"
+}

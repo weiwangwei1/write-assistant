@@ -1,0 +1,12 @@
+{
+  "card_type": "characters",
+  "timestamp": "2026-07-16T18:30:00Z",
+  "from_agent": "character-designer",
+  "to_agent": "chapter-writer",
+  "status": "ready",
+  "characters_ref": "memory/characters.json",
+  "content": {
+    "main_characters": ["陆沉", "陆瑶", "姜离", "贺长青", "钱多多", "裴铮", "白沐", "铁山"],
+    "note": "角色卡与关系网已就绪，可开始第1章写作。写作风格：卖报小郎君式调侃表层+三九音域式暗黑节奏底层。笑着写悲剧。每个角色有独特之'道'和辨识标记。书名《临渊》。"
+  }
+}

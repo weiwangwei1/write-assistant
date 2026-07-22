@@ -1,0 +1,121 @@
+{
+  "card_type": "detail_review_recheck",
+  "timestamp": "2026-07-20T08:30:00Z",
+  "from_agent": "detail-reviewer",
+  "to_agent": "quality-reviewer",
+  "chapter_num": 1,
+  "chapter_title": "第404任",
+  "recheck_type": "修改后复审",
+  "original_verdict": "needs_revision",
+  "recheck_verdict": "polished",
+  "fix_verification": [
+    {
+      "issue_id": 1,
+      "original_issue": "Beat1·'像信号不好的收音机'比喻套路且现代感过强",
+      "fix_applied": "改为'每个字都在流失'",
+      "verification": "通过",
+      "note": "感官描写更贴合消散场景，无套路感"
+    },
+    {
+      "issue_id": 2,
+      "original_issue": "Beat1·'努力地笑'套路句式",
+      "fix_applied": "改为'嘴角往上扯了扯'",
+      "verification": "通过",
+      "note": "'扯'字体现消散中的艰难，动作具体有画面"
+    },
+    {
+      "issue_id": 3,
+      "original_issue": "Beat2·'随便你怎么理解'多余削弱冲击力",
+      "fix_applied": "删除该句",
+      "verification": "通过",
+      "note": "'催命符'直接落地后接哈欠，节奏更干脆"
+    },
+    {
+      "issue_id": 4,
+      "original_issue": "[major] Beat2·前世信息释放过早（过劳猝死+穿越）",
+      "fix_applied": "删除'因过劳猝死。醒过来就到了这里'，改为'数据不会说谎——死局也是数据'",
+      "verification": "通过",
+      "note": "前世信息只保留'数据分析师'，穿越细节留给后续章节"
+    },
+    {
+      "issue_id": 5,
+      "original_issue": "[major] Beat3·档案库空间逻辑模糊（'下方三层'无移动描写）",
+      "fix_applied": "改为'陆夜在控制台上调出档案库'",
+      "verification": "通过",
+      "note": "空间逻辑问题消除，全息调出更紧凑"
+    },
+    {
+      "issue_id": 6,
+      "original_issue": "Beat4·'五个字'字数有误",
+      "fix_applied": "改为'几个字'",
+      "verification": "通过",
+      "note": "避免字数争议"
+    },
+    {
+      "issue_id": 7,
+      "original_issue": "Beat5·陈默前世信息过完整（'五年后端开发'）",
+      "fix_applied": "删除'五年后端开发'",
+      "verification": "通过",
+      "note": "保留'程序员'身份，后端细节留后续通过行为展现"
+    },
+    {
+      "issue_id": 8,
+      "original_issue": "Beat5·诡物描写缺独特记忆点",
+      "fix_applied": "增加'没有呼吸声——只有一种类似电流过载的嗡鸣'",
+      "verification": "通过",
+      "note": "非视觉细节（声音）作为记忆点，强化诡物的'非生物'特征"
+    },
+    {
+      "issue_id": 9,
+      "original_issue": "Beat6·'像某种古老的呼唤'套路表达",
+      "fix_applied": "改为'像地底有什么东西在挠墙'",
+      "verification": "通过",
+      "note": "具体感官描写替代抽象套路，'挠墙'有触觉感"
+    },
+    {
+      "issue_id": 10,
+      "original_issue": "[F003] 四零四反应缺少暗示性半揭",
+      "fix_applied": "增加'绿眼睛闪了一下，又迅速恢复正常'",
+      "verification": "通过",
+      "note": "眼神闪烁暗示四零四可能看到了但不肯说，F003半揭到位"
+    },
+    {
+      "issue_id": 11,
+      "original_issue": "[major] Beat1·陆夜穿越过程缺失（怎么出现在消散仪式现场）",
+      "fix_applied": "开头补充'十分钟前他还在改代码。这一秒，一只正在变透明的手抓住了他的手腕。'",
+      "verification": "通过",
+      "note": "用时间对比建立穿越感，不展开穿越细节但消除读者困惑"
+    },
+    {
+      "issue_id": 12,
+      "original_issue": "Beat2·陆夜反应过快（冷静接受死局不合常理）",
+      "fix_applied": "增加'手指蜷了一下，又松开'",
+      "verification": "通过",
+      "note": "微小情绪泄露暗示并非完全冷静，只是习惯压抑"
+    },
+    {
+      "issue_id": 13,
+      "original_issue": "[用户反馈] 四零四您/你代词混用（私下吐槽应用'你'非'您'）",
+      "fix_applied": "私下吐槽6处全改'你'，系统机械音保留'您'（2处）",
+      "verification": "通过",
+      "note": "角色语言指纹一致性达标——系统通知=您（机械），私下吐槽=你（口语）"
+    }
+  ],
+  "new_issues_check": {
+    "result": "无新问题",
+    "details": "13处修改均自然融入正文，未引入新的违和/断裂/逻辑/伏笔问题。各处衔接顺畅。"
+  },
+  "consistency_recheck": {
+    "character_voice": "通过。陆夜冷静计算（'数据''解释''从最重要的开始'）、四零四毒舌吐槽（'又来一个''催命符''这破避难所'）、陈默技术流（'难度曲线设计得挺合理''AI不会犹豫'）均符合角色卡语言指纹。代词您/你区分正确。",
+    "setting_consistency": "通过。死局机制、403任循环、继承者试炼、白雾副本、诡物均与大纲v3.4一致。",
+    "timeline_check": "通过。'十分钟前→这一秒'建立时间线，后续档案查阅→试炼启动→陈默进副本时序合理。",
+    "previous_chapter_continuity": "首章无前章衔接，不适用。"
+  },
+  "summary": {
+    "total_fixes_verified": 13,
+    "all_fixes_passed": true,
+    "new_issues_found": 0,
+    "verdict_reason": "13处修改全部验证通过（3 major + 9 minor + 1 用户反馈），无新问题引入。角色语言指纹、设定一致性、时间线、前章衔接均通过。章节达到polished状态，可流转quality-reviewer宏观评审。"
+  },
+  "next_step": "流转quality-reviewer进行宏观7维+读者画像评审"
+}

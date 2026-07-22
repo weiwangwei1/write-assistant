@@ -1,0 +1,17 @@
+{
+  "card_type": "outline",
+  "timestamp": "2026-07-16T18:30:00Z",
+  "from_agent": "plot-architect",
+  "to_agent": "character-designer",
+  "status": "ready",
+  "outline_ref": "memory/outline.json",
+  "content": {
+    "title": "临渊",
+    "genre": "暗黑奇幻",
+    "total_chapters": 300,
+    "total_volumes": 8,
+    "main_plot_line": "从'为什么世界会沉'到'谁在收割'到'如何打破'——主角在救妹妹的过程中逐步揭开沉没循环真相，最终以自身为代价碎裂循环",
+    "key_roles_needed": ["男主(陆沉)", "主角妹妹(陆瑶)", "女主/沉者之裔(姜离)", "导师/灰塔学者(贺长青)", "公会同伴(钱多多)", "前期反派/公会高层(裴铮)", "中期反派/教会圣子(白沐)", "沉者之裔盟友(铁山)"],
+    "note": "总大纲已就绪。世界观含七大纪元层叠、渊刻力量体系(含渊蚀代价)、五大组织(各有信条)。请开始角色设计，注意每个角色需有独特之'道'和辨识标记，配角也要有血有肉。"
+  }
+}

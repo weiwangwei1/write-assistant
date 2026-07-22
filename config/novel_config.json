@@ -1,0 +1,339 @@
+{
+  "novel_info": {
+    "title": "他从门后来",
+    "genre": "都市悬疑/民俗恐怖",
+    "platform": "番茄小说",
+    "target_word_count": 1000000,
+    "target_chapters": 300,
+    "chapter_word_target": 2700,
+    "status": "abandoned",
+    "created_at": "2026-07-22",
+    "current_volume": 1,
+    "current_chapter": 1
+  },
+  "core_setting": {
+    "one_liner": "爷爷留了一扇旧门，门后连着他没讲完的世界——有人从那边过来了",
+    "golden_finger": {
+      "name": "门权",
+      "type": "遗产继承",
+      "quadrant": "B（执行简单+收益深化）",
+      "execution": "开/关门一个动作",
+      "depth": "门后世界无限展开+门契收集养成",
+      "limitation": "门权消耗门神力，用多了门会松动；每扇签约门需维护",
+      "stages": [
+        {
+          "stage": 1,
+          "name": "关门",
+          "ability": "感知门后+关门封印来客",
+          "chapters": "1-60"
+        },
+        {
+          "stage": 2,
+          "name": "开门",
+          "ability": "主动开门放门后之物为武器+门间穿梭",
+          "chapters": "61-180"
+        },
+        {
+          "stage": 3,
+          "name": "造门",
+          "ability": "凭空开路连通两个空间",
+          "chapters": "181-300"
+        }
+      ],
+      "point_system": {
+        "attributes": [
+          "感知(门后感知范围)",
+          "控制(开关门力度)",
+          "穿梭(门间移动能力)"
+        ],
+        "upgrade_rule": "每次升级获得1点门契点数，可分配到三个属性",
+        "reset_rule": "在主门处重置门契，代价是回退一级",
+        "design_intent": "选择成本制造差异化，洗点代价高给读者想象空间"
+      }
+    },
+    "tone": "灵境行者式（轻松幽默+暗线悬疑），惊悚场景中夹冷幽默，日常感与超自然碰撞",
+    "reference_novels": [
+      "《诡舍》(夜来风雨声丶) - 副本制+中式恐怖+规则感",
+      "《他从地狱来》(纯洁滴小龙) - 感知死者+人性深度+暗黑氛围",
+      "《灵境行者》(卖报小郎君) - 节奏+对话+幽默+任务体系",
+      "《捞尸人》(纯洁滴小龙) - 民俗悬疑+禁忌职业+传承感"
+    ]
+  },
+  "writing_style": {
+    "fusion_recipe": {
+      "冷幽默对话": 0.25,
+      "画面动作": 0.3,
+      "悬疑推演": 0.25,
+      "民俗氛围": 0.2
+    },
+    "narrative_pov": "第一人称",
+    "pacing_principle": "爽感路径A级（≤2步）：感知来客→开门猎/送回"
+  },
+  "worldview": {
+    "core_conflict": "门后世界与现世的边界正在模糊——门本来是屏障，现在屏障在松动",
+    "protagonist_position": "普通都市青年，继承爷爷旧门后成为野生守门人，社会底层无人知晓",
+    "driving_force": "门权——古老的传承力量，控制门的开关和门后空间通行",
+    "forbidden_zones": "门后界——爷爷守了一辈子也没完全进去过的完整世界",
+    "hidden_truth": "爷爷不是第一个守门人；门后界曾有人过来，有些'人'已混在现世很久",
+    "disclosure_plan": {
+      "Q1_Q2": "前3章展示",
+      "Q3": "前3章部分暗示",
+      "Q4_Q5": "不提，后续逐步揭示"
+    },
+    "low_wu_principle": "门权是唯一超自然力量，最强守门人也无法同时守住十扇以上的门"
+  },
+  "antagonist_system": {
+    "tier_1_pawn": {
+      "type": "门后来客（迷路鬼/讨债魂/游荡影）",
+      "chapters": "前20章频繁登场",
+      "function": "制造短期爽点，测试主角实力"
+    },
+    "tier_2_hidden": {
+      "type": "'先生'——已混入现世的门后来者，伪装成古董店老板",
+      "chapters": "20-50章逐步揭示",
+      "function": "暗中操控来客溢出事件，制造中期悬念"
+    },
+    "tier_3_ultimate": {
+      "type": "师伯——爷爷的师兄，上一代开门派守门人",
+      "chapters": "50章+揭露真面目",
+      "function": "认为门后世界应与现世融合，伪装成主角盟友",
+      "first_appearance_disguise": "以帮主角对付混入者的导师身份登场"
+    }
+  },
+  "pipeline_modes": {
+    "full_pipeline": {
+      "applicable": [
+        "黄金三章",
+        "卷宗高潮章",
+        "伏笔全揭章",
+        "转折章",
+        "第1章/卷末章"
+      ],
+      "steps": [
+        "chapter-writer",
+        "detail-reviewer",
+        "quality-reviewer",
+        "de-ai-processor",
+        "fanqie-adapter",
+        "memory-manager"
+      ]
+    },
+    "fast_pipeline": {
+      "applicable": [
+        "常规章节（非高潮/非转折）"
+      ],
+      "steps": [
+        "chapter-writer",
+        "detail-reviewer",
+        "fast-review"
+      ],
+      "escalation_rule": "若fast-review中任一指标不通过，升级为full_pipeline重走"
+    }
+  },
+  "quality_early_warning": {
+    "pass_threshold_technical": 9.5,
+    "pass_threshold_reader": 8.5,
+    "reader_index_yellow": 9.0,
+    "reader_index_red": 8.5,
+    "technical_yellow": 9.0,
+    "technical_red": 8.5,
+    "ai_score_red": 2.5,
+    "churn_rate_red": "15%",
+    "attractiveness_red": 6.0,
+    "shuang_path_max_steps_first10": 2,
+    "opening_ending_diversity_required": true,
+    "character_depth_required": true,
+    "terminology_readability_first5ch": true
+  },
+  "quality_dimensions": {
+    "total_dimensions": 8,
+    "dimensions": [
+      "plot_consistency",
+      "character_consistency",
+      "logical_rationality",
+      "writing_quality",
+      "shuang_density",
+      "pacing_control",
+      "chapter_hook",
+      "attractiveness"
+    ],
+    "attractiveness_subdims": [
+      "opening_hook_strength",
+      "character_charm",
+      "plot_compactness",
+      "shuang_path_directness",
+      "terminology_readability",
+      "ending_diversity",
+      "core_expectation_clarity",
+      "expectation_continuity",
+      "immersion_building",
+      "hook_rhythm"
+    ],
+    "scoring_formula": "加权评分：attractiveness×0.20 + shuang_density×0.15 + pacing×0.125 + hook×0.125 + writing×0.10 + character×0.10 + plot×0.10 + logic×0.10",
+    "pass_threshold_technical": 9.5,
+    "pass_threshold_reader": 8.5
+  },
+  "production_schedule": {
+    "plan_daily_chapters": 2,
+    "plan_total_days": 150,
+    "actual_chapters_done": 3,
+    "deviation_days": 0
+  },
+  "human_checkpoint": {
+    "enabled": true,
+    "nodes": {
+      "outline_finalized": true,
+      "character_cards": true,
+      "golden_chapter_1": true,
+      "golden_chapter_2": true,
+      "golden_chapter_3": true,
+      "volume_climax": true,
+      "foreshadowing_full_reveal": true
+    },
+    "timeout_hours": 72
+  },
+  "framework_version": {
+    "topic-screener": "1.0",
+    "chapter-writer": "2.0",
+    "character-designer": "1.4",
+    "plot-architect": "1.4",
+    "quality-reviewer": "1.5",
+    "detail-reviewer": "1.3",
+    "de-ai-processor": "1.1",
+    "fanqie-adapter": "1.0",
+    "title-reviewer": "1.1",
+    "skeptic": "1.0",
+    "outline-editor": "1.0",
+    "last_upgraded": "2026-07-23",
+    "total_rules": 155,
+    "cross_references": 15
+  },
+  "skeptic_review_framework": {
+    "description": "质疑者(skeptic)多轮迭代方法论——在plot-architect设计大纲后、outline-editor评分验收前，通过多轮尖锐追问打磨大纲。默认态度'我不买账，说服我'，只有大纲在连续追问下站得住才算经得起市场考验",
+    "principles": [
+      "默认不买账：每条设定默认'这有问题'，直到被说服。不接受'会好的'空泛保证",
+      "多轮迭代：不是一次性打分，而是多轮追问，每轮聚焦一个维度",
+      "具体化追问：不接受笼统描述，所有设定必须落到具体场景",
+      "反套路警觉：识别并挑战所有套路化设计，每个套路必须有至少一个反套路细节",
+      "读者代入测试：每轮必须包含至少一个读者代入测试（具体画像+阅读场景+弃书风险）",
+      "给方向不给方案：指出问题和大方向，具体方案由plot-architect设计"
+    ],
+    "dimensions": [
+      {
+        "round": 1,
+        "name": "主题执行可行性",
+        "core_questions": [
+          "大纲核心设定是否与 topic-screener 通过时的概念一致？（漂移检测）",
+          "预筛通过的补偿方案在大纲中是否落地？",
+          "预筛标注的未知风险在大纲中是否有了更清晰的评估？",
+          "设定能支撑100万字不腻吗？第1章和第100章的赌注是否有数量级差异？（深度检测）"
+        ],
+        "anti_cliche_checks": [
+          "'穿越成XX'是否烂大街？",
+          "'系统/面板'是否审美疲劳？",
+          "题材组合是否过饱和？"
+        ],
+        "drift_detection": "读取 handoff/topic_screening.json 的 concept 字段，与当前大纲 core_setting 对比。如核心设定/爽感路径/基调方向有本质偏离→标记'主题漂移'→触发重新预筛"
+      },
+      {
+        "round": 2,
+        "name": "黄金三章",
+        "core_questions": [
+          "第1章首句是什么？能3秒入坑吗？",
+          "第1章结尾钩子是什么？读者会想看第2章吗？",
+          "第2章如何避免夹心饼干困境？",
+          "第3章的爽点具体是什么？",
+          "黄金三章信息量够不够？会不会信息过载？"
+        ],
+        "anti_cliche_checks": [
+          "第1章是不是'醒来-发现-震惊-接受'老套路？",
+          "第2章是不是'了解世界-遇伙伴-小试牛刀'老套路？",
+          "第3章是不是'小反派-打脸-装逼'老套路？"
+        ]
+      },
+      {
+        "round": 3,
+        "name": "世界观严谨",
+        "core_questions": [
+          "核心规则有逻辑漏洞吗？",
+          "设定之间是否咬合？有无矛盾？",
+          "规则可推演性如何？读者能预测后续吗？",
+          "规则边界清晰吗？有没有'作者说了算'的灰色地带？",
+          "反派动机是否符合其设定？"
+        ],
+        "vulnerability_checklist": [
+          "金手指为什么不直接解决所有问题？",
+          "继承/获得能力的条件是否合理？",
+          "反派为什么不直接动手而要绕路？",
+          "代价规则为什么存在？",
+          "异常是怎么产生的？"
+        ]
+      },
+      {
+        "round": 4,
+        "name": "开局节奏",
+        "core_questions": [
+          "第1章第一幕是什么场景？读者第一眼看到什么？",
+          "开局令人意想不到吗？",
+          "信息披露节奏如何？会不会变成'磨蹭'？",
+          "悬念的'钩'在哪里？读者因为什么'必须看下一章'？"
+        ],
+        "unexpected_test": "列出3种常见开局，你的开局与它们有什么本质不同？如果读者看完第1段就猜到后续，开局就是失败的"
+      },
+      {
+        "round": 5,
+        "name": "综合压力测试",
+        "core_questions": [
+          "连续追问'然后呢？'直到大纲崩塌或站稳",
+          "中后期(Ch60+)是否有具体展开还是只有摘要？",
+          "经济逻辑是否自洽？主角靠什么活？",
+          "开门/融合的负面后果是否清晰？读者会站在哪边？"
+        ],
+        "stress_test_method": "对每个关键设定连续追问3层'然后呢'，如果第3层答不出来说明设定不够深"
+      },
+      {
+        "round": 6,
+        "name": "长线续航力与角色深度",
+        "core_questions": [
+          "Ch121-300是否有具体展开？还是只有摘要？",
+          "敌人/来客类型是否足够多样支撑50+单元？",
+          "主角是否有同伴/情感线？还是孤狼模式？",
+          "配角是否有完整弧光轨迹？还是只有'揭示'没有'变化'？"
+        ],
+        "longevity_check": "30万字后还有内容可写吗？延长机制是否预埋？"
+      },
+      {
+        "round": 7,
+        "name": "综合角色评估",
+        "core_questions": [
+          "所有角色的能力是否有功能重叠？边界是否清晰？",
+          "角色的绑定机制是否互补还是冗余？",
+          "反派之间的动机区分度是否足够？还是同质化？",
+          "角色的存在感是否均匀？有没有角色前100章只是谜团导致读者遗忘？",
+          "角色之间的'温度梯度'是否平衡？是否都是同一种性格类型？",
+          "配角之间的互动关系是否设计？还是只有'主角×配角'的单一维度？",
+          "角色的独立能力是否会与主线悬念冲突（如过早揭示信息）？"
+        ],
+        "character_interaction_matrix": "检查所有角色两两之间的互动关系是否设计——不只是主角×每个配角，还要包括配角×配角",
+        "temperature_gradient_check": "每个角色标注情感温度(热/温/冷/冷热交替)，检查梯度是否平衡——全闷骚型角色会让读者审美疲劳"
+      }
+    ],
+    "iteration_protocol": {
+      "step_1": "读取当前大纲与配置",
+      "step_2": "确定本轮质疑焦点（按维度顺序）",
+      "step_3": "执行质疑：列出3-5个尖锐追问+读者代入测试+反套路检查",
+      "step_4": "判定结论：通过/需迭代/需重构",
+      "step_5": "写报告到handoff/skeptic_review.json",
+      "step_6": "plot-architect迭代后进入下一轮",
+      "max_rounds": "通常3-5轮足够，特殊情况下可扩展至7轮。如果7轮后仍有致命问题，说明核心设定需要重构",
+      "pass_criteria": "所有维度的所有挑战都被标记为'已解决'，且读者代入测试弃书风险为low"
+    },
+    "applied_history": {
+      "project": "他从门后来",
+      "rounds_completed": 7,
+      "total_challenges_resolved": "C1-C30（30个挑战全部解决）",
+      "framework_status": "已固化到config/novel_config.json，后续项目可复用"
+    }
+  },
+  "note": "项目《他从门后来》已放弃（主题晦涩、不可持续）。框架已升级：新增 topic-screener v1.0（选题预筛）、skeptic v1.0（泛化+漂移检测）、outline-editor v1.0（耐久度+否决项定义）、chapter-writer v2.0、quality-reviewer v1.5。完整流水线：topic-screener → plot-architect → skeptic → outline-editor → character-designer → ...。等待新项目启动。"
+}

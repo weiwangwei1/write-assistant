@@ -1,0 +1,37 @@
+{
+  "card_type": "characters",
+  "timestamp": "2026-07-23T01:00:00Z",
+  "from_agent": "character-designer",
+  "to_agent": "chapter-writer",
+  "status": "ready",
+  "characters_ref": "memory/characters.json",
+  "content": {
+    "project": "他从门后来",
+    "main_characters": [
+      "林深（男主·谨慎型基底+精算极致化）——嘴硬心软+精算习惯+好奇心驱动，继承门权的野生守门人",
+      "沈鹿（同伴/情感线/成长镜像）——殡仪馆化妆师，被门后界标记绑定，恐惧驱动+职业冷静反差",
+      "先生（隐藏反派·伪装型）——借身15年的门后来者，生存驱动而非理念驱动，门息胁迫下被迫效力师伯",
+      "师伯（终极反派·伪装型）——爷爷师兄，开门派领袖，理念至上+真情残余，伪装成导师登场",
+      "爷爷（被困守护者/传承者）——守门40年，活着被困门后界，通过碎片和标记与主角沟通",
+      "老周（中前期配角·信息源+赎罪镜像）——退休守门人组织外勤，便利店老板，嘴碎心软"
+    ],
+    "antagonists": [
+      "先生（隐藏级·伪装型，Ch99暴露）",
+      "师伯（终极级·伪装型，Ch197暴露）"
+    ],
+    "total_characters": 6,
+    "total_relationships": 11,
+    "character_design_version": "v1.4",
+    "outline_version": "v6",
+    "design_highlights": [
+      "主角4型模板：林深=谨慎型基底+精算极致化，禁止混搭",
+      "反派4型分类：先生=伪装型（生存驱动），师伯=伪装型（理念驱动），动机差异化",
+      "三维度反差化：每个角色都有identity_contrast+appearance_contrast+personality_extreme",
+      "Show vs Tell：6个角色共18个show_events+24个scene_sides+12组show_variants",
+      "角色形象渐入：visual_anchor标注，配合chapter-writer v1.8形象渐入法则逐步释放",
+      "龙空经验整合：标签化人物（内外反差）+配角脸谱化（1-2突出特点）+女性角色独立人格",
+      "语言指纹：6个角色各有独立language_fingerprint+fingerprint_examples，台词风格可辨识"
+    ],
+    "note": "角色卡与关系网已就绪。6个主要角色（含2个伪装型反派），11组关系（含沈鹿×先生/师伯/爷爷3对交叉互动）。林深标志性行为=精算成本收益。沈鹿标志性行为=评价骨相打分。先生伪装锚点=月底面色发灰（门息断供征兆）。可开始第1章写作。"
+  }
+}

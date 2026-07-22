@@ -1,0 +1,243 @@
+{
+  "project": "他从门后来",
+  "last_updated_chapter": 3,
+  "last_updated_at": "2026-07-23T09:00:00Z",
+  "foreshadowings": [
+    {
+      "id": "F001",
+      "title": "门簿规矩——爷爷守门四十年的完整规则体系",
+      "plan_from_outline": {
+        "plant_chapter": 1,
+        "small_clue_chapter": 5,
+        "half_reveal_chapter": 30,
+        "full_reveal_chapter": 60
+      },
+      "actual_progress": [
+        {
+          "chapter": 1,
+          "action": "planted",
+          "detail": "门簿37页记录+来客说'你爷爷没教过你规矩'",
+          "status": "completed"
+        },
+        {
+          "chapter": 2,
+          "action": "deepened",
+          "detail": "翻门簿发现'又印了'记录11次，爷爷40年堵漏真相浮出——门的影响蔓延到水管阀门，爷爷每天检查擦印",
+          "status": "completed"
+        }
+      ],
+      "current_status": "planted",
+      "next_milestone": {
+        "chapter": 5,
+        "action": "small_clue",
+        "detail": "门簿中某条记录的异常暗示规则细节"
+      },
+      "overdue": false,
+      "chapters_since_last_action": 1
+    },
+    {
+      "id": "F002",
+      "title": "门后来客——门后世界的存在与来客类型",
+      "plan_from_outline": {
+        "plant_chapter": 1,
+        "small_clue_chapter": 3,
+        "half_reveal_chapter": 20,
+        "full_reveal_chapter": 50
+      },
+      "actual_progress": [
+        {
+          "chapter": 1,
+          "action": "planted",
+          "detail": "灰白来客被拽出+被门吸回+'他从门后来'",
+          "status": "completed"
+        },
+        {
+          "chapter": 2,
+          "action": "deepened",
+          "detail": "窥探能力觉醒，看到来客执念残影：一个男人反复敲门等待，永远在等一扇不会开的门。来客被'印'在门连接的所有物件上",
+          "status": "completed"
+        },
+        {
+          "chapter": 3,
+          "action": "small_clue",
+          "detail": "不同类型来客出现——黑色无五官蜡团，走管道网络而非敲门。黑色线状物在管道中穿行像蛇。来客类型多样化，暗示门后世界多样性",
+          "status": "completed"
+        }
+      ],
+      "current_status": "small_clue",
+      "next_milestone": {
+        "chapter": 20,
+        "action": "half_reveal",
+        "detail": "来客类型的系统化揭示"
+      },
+      "overdue": false,
+      "chapters_since_last_action": 0
+    },
+    {
+      "id": "F009",
+      "title": "门债——守门人的绑定代价+门息报酬系统",
+      "plan_from_outline": {
+        "plant_chapter": 2,
+        "small_clue_chapter": 5,
+        "half_reveal_chapter": 15,
+        "full_reveal_chapter": 40
+      },
+      "actual_progress": [
+        {
+          "chapter": 1,
+          "action": "planted",
+          "detail": "门债概念脑内浮现+掌心灰纹+不能离开门太久",
+          "status": "completed"
+        },
+        {
+          "chapter": 2,
+          "action": "progressed",
+          "detail": "门债规则初步摸清：3步安全距离，4步以上灰纹发烫提醒。灰纹可压制'印'3秒后反弹更清晰。记账APP记录门债数据",
+          "status": "completed"
+        },
+        {
+          "chapter": 3,
+          "action": "deepened",
+          "detail": "门息系统引入——送回来客本体→门给门息（泥土味+老木头香）→灰纹充电→感知精度提升（模糊→精确三步外）。爷爷40年不只是在堵漏，在积累门息。门权升级链确立：送回→门息→感知增强→更多来客",
+          "status": "completed"
+        }
+      ],
+      "current_status": "planted",
+      "next_milestone": {
+        "chapter": 5,
+        "action": "small_clue",
+        "detail": "门息/门债规则的具体测试"
+      },
+      "overdue": false,
+      "chapters_since_last_action": 0
+    },
+    {
+      "id": "F011",
+      "title": "先生伪装——宋叔是门后来者",
+      "plan_from_outline": {
+        "plant_chapter": 1,
+        "small_clue_chapter": 20,
+        "half_reveal_chapter": 50,
+        "full_reveal_chapter": 99
+      },
+      "actual_progress": [
+        {
+          "chapter": 1,
+          "action": "planted",
+          "detail": "宋叔目光停在旧门上+'这门还是老样子'+提到爷爷半夜自言自语",
+          "status": "completed"
+        },
+        {
+          "chapter": 2,
+          "action": "deepened",
+          "detail": "宋叔三异常暴露：看水（像在确认水还是不是水）/尝水（先尝后喝）/问门（你动过没有）。提到爷爷'交代我照顾你'但不提门。脚步声跟昨晚一样轻",
+          "status": "completed"
+        }
+      ],
+      "current_status": "planted",
+      "next_milestone": {
+        "chapter": 20,
+        "action": "small_clue",
+        "detail": "先生月底面色发灰的首次暗示"
+      },
+      "overdue": false,
+      "chapters_since_last_action": 1
+    },
+    {
+      "id": "F012",
+      "title": "门后找出口——门后存在在找别的出口",
+      "plan_from_outline": {
+        "plant_chapter": 2,
+        "small_clue_chapter": 8,
+        "half_reveal_chapter": 25,
+        "full_reveal_chapter": 55
+      },
+      "actual_progress": [
+        {
+          "chapter": 2,
+          "action": "planted",
+          "detail": "结尾林深感知到门后有东西在动，不是等着开门的安静，是在找别的出口。门簿记录间隔越来越短——裂缝在变大",
+          "status": "completed"
+        },
+        {
+          "chapter": 3,
+          "action": "progressed",
+          "detail": "来客通过管道网络找到了门以外的出口——管子就是出口。黑色手印从阀门向水管爬，黑色线状物在管道中穿行朝301移动。从'在找'升级为'已找到'",
+          "status": "completed"
+        }
+      ],
+      "current_status": "planted",
+      "next_milestone": {
+        "chapter": 8,
+        "action": "small_clue",
+        "detail": "门后存在通过其他渠道渗透的迹象（非管道、非门）"
+      },
+      "overdue": false,
+      "chapters_since_last_action": 0
+    },
+    {
+      "id": "F013",
+      "title": "沈鹿铺垫——隔壁301搬来个姑娘",
+      "plan_from_outline": {
+        "plant_chapter": 2,
+        "small_clue_chapter": 3,
+        "half_reveal_chapter": 10,
+        "full_reveal_chapter": 30
+      },
+      "actual_progress": [
+        {
+          "chapter": 2,
+          "action": "planted",
+          "detail": "宋叔离开时随口提到'隔壁301搬来个姑娘，昨天到的，挺安静'。林深思考：是随口说的还是在告诉我什么？",
+          "status": "completed"
+        },
+        {
+          "chapter": 3,
+          "action": "small_clue",
+          "detail": "沈鹿首次正式出场——殡仪馆化妆师，带卤肉饭上门。能看到灰纹和旧门异常颜色（暗示感知能力）。从昨晚起301也有管道异响。与林深产生直接交集",
+          "status": "completed"
+        }
+      ],
+      "current_status": "small_clue",
+      "next_milestone": {
+        "chapter": 10,
+        "action": "half_reveal",
+        "detail": "沈鹿标记能力/感知能力的系统揭示"
+      },
+      "overdue": false,
+      "chapters_since_last_action": 0
+    },
+    {
+      "id": "F014",
+      "title": "沈鹿标记——来客碰了一下就标记了她",
+      "plan_from_outline": {
+        "plant_chapter": 3,
+        "small_clue_chapter": 5,
+        "half_reveal_chapter": 10,
+        "full_reveal_chapter": 30
+      },
+      "actual_progress": [
+        {
+          "chapter": 3,
+          "action": "planted",
+          "detail": "来客退回前碰了沈鹿左臂一下，留下灰色手形印记（与阀门上的一模一样）。灰纹在掌心跳了——门在说'又一个'。林深看到但没告诉沈鹿，谎称'不会'。信息差三层结构建立（读者知/林深知/沈鹿不知）",
+          "status": "completed"
+        }
+      ],
+      "current_status": "planted",
+      "next_milestone": {
+        "chapter": 5,
+        "action": "small_clue",
+        "detail": "沈鹿标记的进一步反应/扩散迹象"
+      },
+      "overdue": false,
+      "chapters_since_last_action": 0
+    }
+  ],
+  "overdue_alerts": [],
+  "density_check": {
+    "chapters_since_last_foreshadowing_action": 0,
+    "alert": false,
+    "note": "Ch3 deepened 4 foreshadowings (F002 small_clue + F009 deepened + F012 progressed + F013 small_clue) + planted 1 new (F014 Shen Lu marked). All 7 foreshadowings active. Density optimal. F002 and F013 reached small_clue milestone."
+  }
+}

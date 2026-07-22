@@ -1,0 +1,105 @@
+{
+  "card_type": "detail_review",
+  "timestamp": "2026-07-23T05:30:00Z",
+  "from_agent": "detail-reviewer",
+  "to_agent": "quality-reviewer",
+  "chapter_num": 2,
+  "chapter_title": "水印",
+  "overall_verdict": "polished",
+
+  "sentence_level": [
+    {
+      "location": "Beat 3·宋叔洗手段",
+      "original": "像在确认什么",
+      "issue": "'确认'一词在Beat 3中出现3次（像在确认什么/像在确认水还是水/像在确认能喝），构成观察模式重复。但作为林深系统性观察宋叔异常行为的叙事设计，此重复有叙事意图——展示林深通过三次'确认'行为建立判断。判定为刻意节奏性重复，保留",
+      "severity": "minor",
+      "suggestion": "保留——三次'确认'构成林深的观察递进（洗手→看水→喝水），是刻意模式而非冗余。但后续章节不宜再用'确认'一词"
+    },
+    {
+      "location": "Beat 4·宋叔问门前",
+      "original": "笑纹堆在眼角，很温和",
+      "issue": "'笑纹'在Ch1-Ch2中累计出现4次（Ch1×1+Ch2×3），作为宋叔视觉锚点已足够建立。后续章节可减少使用频次，改为其他行为细节",
+      "severity": "minor",
+      "suggestion": "后续章节宋叔笑纹描写降至≤1次/章，用其他行为细节替代（如搓手/指节敲击/脚步声）"
+    }
+  ],
+
+  "meme_level": [],
+
+  "foreshadowing_level": [
+    {
+      "foreshadowing_id": "F001",
+      "location": "Beat 6·门簿记录",
+      "issue": "beat_sheet标注'半揭'但实际内容为'small_clue'级别——门簿'又印了'记录揭示了'印'（门后影响渗透到物品）这一规则细节，但未触及门簿完整规则体系。符合大纲F001 small_clue_chapter=5的时间线（提前到Ch2可接受，因为Ch1已planted）",
+      "severity": "minor",
+      "suggestion": "将foreshadowing_tracker中F001的actual_progress从'半揭'修正为'small_clue'。文字本身无需修改——信息释放节奏自然"
+    },
+    {
+      "foreshadowing_id": "F011",
+      "location": "Beat 2-3·宋叔看水+问门",
+      "issue": "F011强化执行到位——宋叔看水异常（像从没见过水/喝水先尝）+直接问门，双重破绽加深读者怀疑。与大纲F011 small_clue_chapter=20对比略显提前，但Ch1已planted且Ch2只是加深而非揭示，可接受",
+      "severity": "pass",
+      "suggestion": "无需修改。注意后续章节F011不要再加深，保持悬念到Ch20才small_clue"
+    },
+    {
+      "foreshadowing_id": "F012",
+      "location": "Beat 7·门后找别的出口",
+      "issue": "新伏笔F012'门后东西在找别的出口'——与大纲'门后世界'主线一致，暗示门后存在具有主动意识的实体。埋设方式自然（通过林深贴门感知获得），无生硬感",
+      "severity": "pass",
+      "suggestion": "需在foreshadowing_tracker中新增F012条目，plan_from_outline可设定为planted_chapter=2, small_clue_chapter=8, half_reveal_chapter=30"
+    }
+  ],
+
+  "logic_level": [
+    {
+      "location": "Beat 1·门债边界",
+      "issue": "Ch1门债描述为'不能离开门太久'（时间维度，模糊），Ch2定义为'3步安全距离'（空间维度，具体）。从模糊到具体是合理的信息细化——林深经过一夜测试摸清了规则。无矛盾",
+      "severity": "pass",
+      "suggestion": "无需修改"
+    },
+    {
+      "location": "Beat 1·昨晚敲门三遍",
+      "issue": "Ch1结尾'门外又响起了敲门声'→Ch2解释为'敲了三遍，每遍三下，间隔越来越短'。衔接自然，间隔递增（5分钟→3分钟→1分钟）制造紧迫感合理",
+      "severity": "pass",
+      "suggestion": "无需修改"
+    },
+    {
+      "location": "Beat 6·十一次",
+      "issue": "门簿'又印了'出现十一次，跨四十年。早期三四月一次（约每年3-4次），如果40年都按此频率应有120-160次，与11次不符。但考虑到爷爷可能只记录'又印了'这一特定措辞的次数（其他记录用不同表述如'水管印了''阀门又印了'），11次仅指'又印了'这个精确词组的出现次数。逻辑可成立",
+      "severity": "minor",
+      "suggestion": "可增加一句澄清——'光是以「又印了」开头的记录就有十一条'。但非必须修改，当前表述可接受"
+    }
+  ],
+
+  "consistency_check": {
+    "character_voice": "PASS — 林深语言指纹完整（精算习惯/好奇心/观察力/冷幽默）。宋叔语言指纹一致（温和/话多/脚步轻）。无串味",
+    "setting_consistency": "PASS — 门债/灰纹/门簿/门息设定与Ch1一致。'印'为新概念但通过门簿日记自然引入，非临时加设定",
+    "timeline_check": "PASS — Ch1结束~12:17AM→Ch2开始8:12AM（约8小时）。宋叔白天来访合理。全章时间跨度约1-2小时",
+    "previous_chapter_continuity": "PASS — Ch1结尾敲门声→Ch2开头解释昨晚敲门三遍。灰纹/门债/门簿/宋叔目光停门上均延续。宋叔饺子→修水管（从送饭到帮忙，关系递进自然）",
+    "dialogue_logic": "PASS — 宋叔问门→林深装傻→宋叔确认→林深承认→宋叔不接话。追问链自洽。'什么门？'→'我知道'的转变有桥接（宋叔看眼睛确认）",
+    "behavior_consistency": "PASS — 林深'装傻→承认'转折有桥接（宋叔目光确认）。宋叔'问门→不说→走'的行为符合伪装者身份（试探但不暴露）",
+    "number_plausibility": "PASS（含1处minor）— '十一次'数字合理但有表述歧义（见logic_level）",
+    "terminology_check": "PASS — '印'为门簿日记用语，非正式术语，通过上下文自然理解。'门债'延续Ch1。无未解释术语",
+    "metaphor_consistency": "PASS — '像冬天的河面'与Ch1一致（描述门相关冰凉触感）。无异质隐喻引入",
+    "scene_repetition": "PASS — 无同场景逐字重复。'确认'3次为刻意观察模式（见sentence_level）",
+    "reference_ambiguity": "PASS — '门'在不同语境指旧门/大门/门概念，上下文清晰。'手印'与'灰纹'指代明确"
+  },
+
+  "summary": {
+    "total_issues": 4,
+    "critical_count": 0,
+    "major_count": 0,
+    "minor_count": 4,
+    "polish_priority": [
+      "1. foreshadowing_tracker修正F001状态（半揭→small_clue）+新增F012条目",
+      "2. 后续章节宋叔'笑纹'描写降频",
+      "3. '十一次'表述可选择性澄清"
+    ],
+    "strengths": [
+      "宋叔借身者破绽展示精妙——看水/喝水/问门三重异常，每重不到100字但让读者记住",
+      "门簿日记体持续发力——'又印了'十一次的数字冲击+爷爷四十年堵漏的长段反思",
+      "信息释放节奏优秀——从'门后有鬼'→'影响扩散'→'裂缝变大'→'找别的出口'层层递进",
+      "林深精算习惯延续自然——记账APP记门债，与Ch1建立的性格一致"
+    ]
+  }
+}

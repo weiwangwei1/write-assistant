@@ -1,0 +1,1071 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>《玩家请就位》世界观设定集 · Global Bible</title>
+<style>
+:root {
+  --bg: #0a0a12;
+  --surface: #12121e;
+  --surface2: #1a1a2e;
+  --border: #2a2a4a;
+  --text: #e0e0f0;
+  --text-dim: #8888aa;
+  --accent: #ff6b35;
+  --accent2: #4ecdc4;
+  --accent3: #ffe66d;
+  --danger: #ff4757;
+  --success: #2ed573;
+  --white-fog: #c8c8d8;
+  --gray-fog: #6868a0;
+  --black-fog: #2a2a3a;
+  --blood-fog: #8b0000;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  padding: 20px;
+}
+.container { max-width: 1400px; margin: 0 auto; }
+h1 {
+  text-align: center;
+  font-size: 2em;
+  background: linear-gradient(90deg, var(--accent), var(--accent2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 5px;
+}
+.subtitle {
+  text-align: center;
+  color: var(--text-dim);
+  margin-bottom: 30px;
+  font-size: 0.9em;
+}
+nav {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+}
+nav button {
+  padding: 10px 20px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-size: 0.95em;
+}
+nav button:hover, nav button.active {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+.section { display: none; }
+.section.active { display: block; }
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+.card h2 {
+  color: var(--accent);
+  margin-bottom: 15px;
+  font-size: 1.3em;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 10px;
+}
+.card h3 {
+  color: var(--accent2);
+  margin: 15px 0 10px;
+  font-size: 1.1em;
+}
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 15px;
+}
+.info-item {
+  background: var(--surface2);
+  border-radius: 8px;
+  padding: 15px;
+  border-left: 3px solid var(--accent);
+}
+.info-item h4 { color: var(--accent3); margin-bottom: 8px; }
+.info-item p { color: var(--text-dim); font-size: 0.9em; }
+.badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 0.75em;
+  font-weight: bold;
+}
+.badge-white { background: var(--white-fog); color: #000; }
+.badge-gray { background: var(--gray-fog); color: #fff; }
+.badge-black { background: var(--black-fog); color: #fff; border: 1px solid #555; }
+.badge-blood { background: var(--blood-fog); color: #fff; }
+.badge-danger { background: var(--danger); color: #fff; }
+.badge-success { background: var(--success); color: #000; }
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 10px 0;
+}
+th, td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.9em;
+}
+th { color: var(--accent); }
+tr:hover { background: var(--surface2); }
+
+/* World Map */
+.map-container {
+  background: var(--surface2);
+  border-radius: 12px;
+  padding: 20px;
+  overflow-x: auto;
+}
+.map-layer {
+  margin-bottom: 20px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 15px;
+}
+.map-layer h3 { margin-bottom: 10px; }
+
+/* Timeline */
+.timeline {
+  position: relative;
+  padding-left: 30px;
+}
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 10px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--border);
+}
+.timeline-item {
+  position: relative;
+  margin-bottom: 20px;
+  padding: 15px;
+  background: var(--surface2);
+  border-radius: 8px;
+  border-left: 3px solid var(--accent2);
+}
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -24px;
+  top: 20px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 2px solid var(--bg);
+}
+.timeline-item.hook::before { background: var(--danger); }
+.timeline-item.climax::before { background: var(--accent3); }
+.timeline-item.foreshadow::before { background: var(--accent2); }
+.timeline-chapter { color: var(--accent3); font-weight: bold; }
+.timeline-vol { color: var(--accent); font-size: 0.8em; }
+
+/* Foreshadowing */
+.foreshadow-track {
+  background: var(--surface2);
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-left: 4px solid var(--accent);
+}
+.foreshadow-track.f001 { border-color: #ff6b35; }
+.foreshadow-track.f002 { border-color: #4ecdc4; }
+.foreshadow-track.f003 { border-color: #ffe66d; }
+.foreshadow-track.f004 { border-color: #a55eea; }
+.foreshadow-track.f005 { border-color: #ff4757; }
+.foreshadow-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.foreshadow-title { font-size: 1.1em; font-weight: bold; }
+.foreshadow-status { font-size: 0.85em; }
+.foreshadow-timeline {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+.foreshadow-node {
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 0.8em;
+  background: var(--surface);
+  border: 1px solid var(--border);
+}
+.foreshadow-node.plant { border-color: var(--success); }
+.foreshadow-node.half { border-color: var(--accent3); }
+.foreshadow-node.full { border-color: var(--danger); }
+.foreshadow-node.small { border-color: var(--accent2); opacity: 0.8; }
+
+/* Faction Graph */
+.faction-card {
+  background: var(--surface2);
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-top: 3px solid var(--accent);
+}
+.faction-relations {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 10px;
+  margin-top: 10px;
+}
+.relation-item {
+  padding: 8px;
+  background: var(--surface);
+  border-radius: 4px;
+  font-size: 0.85em;
+}
+.relation-item.ally { border-left: 3px solid var(--success); }
+.relation-item.enemy { border-left: 3px solid var(--danger); }
+.relation-item.neutral { border-left: 3px solid var(--text-dim); }
+
+/* Character Arc */
+.arc-chart {
+  background: var(--surface2);
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 15px;
+}
+.arc-stage {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  margin-bottom: 15px;
+  padding: 10px;
+  background: var(--surface);
+  border-radius: 6px;
+}
+.arc-stage-num {
+  background: var(--accent);
+  color: #000;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+.arc-stage-content { flex: 1; }
+.arc-stage-title { color: var(--accent3); font-weight: bold; margin-bottom: 5px; }
+.arc-stage-desc { color: var(--text-dim); font-size: 0.9em; }
+.arc-stage-trigger { color: var(--accent2); font-size: 0.85em; margin-top: 5px; }
+
+/* SVG World Map */
+.svg-map {
+  width: 100%;
+  height: auto;
+  background: #0d0d18;
+  border-radius: 8px;
+}
+.svg-map text { fill: var(--text); font-size: 12px; }
+.svg-map .zone-404 { fill: #1a3a1a; stroke: #2ed573; }
+.svg-map .zone-403 { fill: #1a2a3a; stroke: #4ecdc4; }
+.svg-map .zone-wasteland { fill: #2a1a1a; stroke: #ff4757; }
+.svg-map .zone-fog { fill: #1a1a2a; stroke: #6868a0; stroke-dasharray: 5,3; }
+.svg-map .zone-origin { fill: #2a0a0a; stroke: #8b0000; }
+.svg-map .label { font-size: 11px; fill: var(--text); }
+.svg-map .label-key { font-size: 13px; fill: var(--accent3); font-weight: bold; }
+
+/* Volume Cards */
+.volume-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 15px;
+}
+.volume-card {
+  background: var(--surface2);
+  border-radius: 8px;
+  padding: 15px;
+  border-top: 3px solid var(--accent);
+}
+.volume-card.current { border-color: var(--success); box-shadow: 0 0 10px rgba(46,213,115,0.2); }
+.volume-card h4 { color: var(--accent3); margin-bottom: 8px; }
+.volume-meta { font-size: 0.8em; color: var(--text-dim); margin-bottom: 8px; }
+.volume-events { font-size: 0.85em; color: var(--text-dim); }
+.volume-events li { margin-bottom: 3px; }
+
+/* Progress Bar */
+.progress-bar {
+  background: var(--surface);
+  border-radius: 4px;
+  height: 6px;
+  overflow: hidden;
+  margin-top: 5px;
+}
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--success), var(--accent2));
+  border-radius: 4px;
+}
+.note {
+  background: rgba(255,107,53,0.1);
+  border-left: 3px solid var(--accent);
+  padding: 10px 15px;
+  border-radius: 4px;
+  margin: 10px 0;
+  font-size: 0.9em;
+}
+.note strong { color: var(--accent); }
+</style>
+</head>
+<body>
+<div class="container">
+<h1>《玩家请就位》世界观设定集</h1>
+<p class="subtitle">Global Bible v1.0 · 空间结构 + 时间线 + 伏笔追踪 + 势力关系 + 角色弧线 · 最后更新：2026-07-20</p>
+
+<nav>
+  <button class="active" onclick="showSection('map')">世界观地图</button>
+  <button onclick="showSection('timeline')">大事件时间线</button>
+  <button onclick="showSection('foreshadow')">伏笔追踪</button>
+  <button onclick="showSection('faction')">势力关系</button>
+  <button onclick="showSection('arc')">角色弧线</button>
+  <button onclick="showSection('progress')">生产进度</button>
+</nav>
+
+<!-- ========== 世界观地图 ========== -->
+<div id="map" class="section active">
+
+<div class="card">
+<h2>永夜世界 · 空间结构总览</h2>
+<div class="note"><strong>核心设定：</strong>数百年前永夜降临，诡物猎食人类。初代主脑们为对抗永夜本源，付出"意识作为燃料"的代价建立避难所。世界分为三层：避难所内（安全区）→ 永夜荒原（危险区）→ 秘境副本（试炼场）。平行世界：地球=被永夜本源毁灭的平行世界，玩家记忆是协议模拟的。</div>
+
+<div class="map-container">
+<svg class="svg-map" viewBox="0 0 900 600" xmlns="http://www.w3.org/2000/svg">
+  <!-- 背景 -->
+  <rect width="900" height="600" fill="#0d0d18"/>
+  
+  <!-- 永夜荒原（外层） -->
+  <rect x="50" y="50" width="800" height="500" class="zone-wasteland" stroke-width="2" rx="10"/>
+  <text x="450" y="80" text-anchor="middle" class="label-key">永 夜 荒 原</text>
+  <text x="450" y="100" text-anchor="middle" class="label">诡物肆虐的废土 · 三方势力博弈发生地 · 300年未发信标</text>
+  
+  <!-- 404号避难所（中心） -->
+  <rect x="350" y="250" width="200" height="100" class="zone-404" stroke-width="3" rx="8"/>
+  <text x="450" y="280" text-anchor="middle" class="label-key">404号避难所</text>
+  <text x="450" y="300" text-anchor="middle" class="label">第404任主脑·陆夜</text>
+  <text x="450" y="320" text-anchor="middle" class="label">初代主脑隐藏的测试舱</text>
+  <text x="450" y="340" text-anchor="middle" class="label">协议找不到·唯一不受完全约束</text>
+  
+  <!-- 403号避难所 -->
+  <rect x="100" y="150" width="150" height="80" class="zone-403" stroke-width="2" rx="6"/>
+  <text x="175" y="175" text-anchor="middle" class="label-key">403号避难所</text>
+  <text x="175" y="195" text-anchor="middle" class="label">主脑·苏鸢</text>
+  <text x="175" y="210" text-anchor="middle" class="label">协议监察者</text>
+  
+  <!-- 小型避难所群 -->
+  <rect x="700" y="150" width="120" height="60" class="zone-403" stroke-width="1" opacity="0.6" rx="5"/>
+  <text x="760" y="175" text-anchor="middle" class="label">小型避难所群</text>
+  <text x="760" y="190" text-anchor="middle" class="label">卷三外交对象</text>
+  
+  <!-- 流浪者营地 -->
+  <circle cx="200" cy="450" r="40" class="zone-403" stroke-width="1" opacity="0.5"/>
+  <text x="200" y="450" text-anchor="middle" class="label">流浪者</text>
+  <text x="200" y="465" text-anchor="middle" class="label">营地</text>
+  
+  <!-- 诡物巢穴 -->
+  <polygon points="700,400 750,380 780,420 760,460 710,450" class="zone-wasteland" stroke-width="2" opacity="0.8"/>
+  <text x="740" y="425" text-anchor="middle" class="label">诡物巢穴</text>
+  <text x="740" y="440" text-anchor="middle" class="label">卷三征讨</text>
+  
+  <!-- 永夜本源（最深处） -->
+  <ellipse cx="800" cy="500" rx="60" ry="40" class="zone-origin" stroke-width="3"/>
+  <text x="800" y="495" text-anchor="middle" class="label-key" fill="#ff4757">永夜本源</text>
+  <text x="800" y="512" text-anchor="middle" class="label">平行世界失败主脑</text>
+  
+  <!-- 副本入口（白雾） -->
+  <circle cx="300" cy="250" r="25" class="zone-fog" stroke-width="2"/>
+  <text x="300" y="250" text-anchor="middle" class="badge badge-white" style="font-size:10px">白雾</text>
+  
+  <!-- 副本入口（灰雾） -->
+  <circle cx="600" cy="250" r="25" class="zone-fog" stroke-width="2"/>
+  <text x="600" y="250" text-anchor="middle" class="badge badge-gray" style="font-size:10px">灰雾</text>
+  
+  <!-- 副本入口（黑雾） -->
+  <circle cx="500" cy="400" r="25" class="zone-fog" stroke-width="2"/>
+  <text x="500" y="400" text-anchor="middle" class="badge badge-black" style="font-size:10px">黑雾</text>
+  
+  <!-- 副本入口（血雾） -->
+  <circle cx="700" cy="300" r="25" class="zone-fog" stroke-width="2"/>
+  <text x="700" y="300" text-anchor="middle" class="badge badge-blood" style="font-size:10px">血雾</text>
+  
+  <!-- 连接线 -->
+  <line x1="250" y1="190" x2="350" y2="270" stroke="#4ecdc4" stroke-width="1" stroke-dasharray="3,3"/>
+  <text x="300" y="225" class="label" style="font-size:9px;fill:#4ecdc4">卷三·暧昧</text>
+  
+  <line x1="450" y1="350" x2="450" y2="390" stroke="#6868a0" stroke-width="1" stroke-dasharray="3,3"/>
+  <text x="460" y="375" class="label" style="font-size:9px;fill:#6868a0">副本入口</text>
+  
+  <line x1="550" y1="300" x2="760" y2="180" stroke="#888" stroke-width="1" stroke-dasharray="3,3"/>
+  <text x="650" y="240" class="label" style="font-size:9px;fill:#888">信标通讯</text>
+  
+  <line x1="500" y1="350" x2="740" y2="410" stroke="#ff4757" stroke-width="1" stroke-dasharray="3,3"/>
+  <text x="620" y="390" class="label" style="font-size:9px;fill:#ff4757">卷三·征讨</text>
+  
+  <!-- 平行世界标注 -->
+  <text x="50" y="570" class="label" style="font-size:10px;fill:#888">平行世界：地球（已被永夜本源毁灭，玩家记忆是协议模拟）</text>
+</svg>
+</div>
+</div>
+
+<div class="card">
+<h2>避难所系统详解</h2>
+<div class="info-grid">
+<div class="info-item">
+<h4>404号避难所（主角主场）</h4>
+<p><strong>编号含义：</strong>三重——①避难所编号Not Found（协议找不到）②主脑序号403任失败+主角第404任 ③Not Found=403任没找到出路</p>
+<p><strong>特殊属性：</strong>初代主脑隐藏的测试舱，唯一不受消散规则完全约束的避难所</p>
+<p><strong>当前状态：</strong>第6章·已升级训练室+资源采集点+属性检测系统</p>
+<p><strong>已知设施：</strong>主控室、休息区、训练室、资源采集点、档案库、副本入口×4（白/灰/黑/血雾）</p>
+</div>
+<div class="info-item">
+<h4>403号避难所（苏鸢）</h4>
+<p><strong>主脑：</strong>苏鸢（外表25岁，实际存在时间远超普通主脑）</p>
+<p><strong>真实身份：</strong>协议监察者——任务确保消散规则执行</p>
+<p><strong>与404关系：</strong>观察者→动摇者→暗中保护者→背叛协议（卷八）</p>
+<p><strong>登场：</strong>卷一第22章，卷三荒原并肩作战暧昧升温</p>
+</div>
+<div class="info-item">
+<h4>其他避难所</h4>
+<p><strong>小型避难所群：</strong>卷三外交对象，主角声望传播</p>
+<p><strong>七主脑议会：</strong>卷四召开，404被质疑"对继承者太好"</p>
+<p><strong>信标系统：</strong>避难所间通讯工具，404号已300年未收发</p>
+<p><strong>探针：</strong>第1任主脑300年前发出，第6章到达404号</p>
+</div>
+<div class="info-item">
+<h4>永夜荒原（外部世界）</h4>
+<p><strong>地理：</strong>灰白色雾覆盖的废土，破碎建筑残骸</p>
+<p><strong>生物：</strong>诡物（人形/非人形，青灰色皮肤，空洞眼眶）</p>
+<p><strong>势力：</strong>流浪者营地、小型避难所、诡物巢穴、永夜本源</p>
+<p><strong>天气：</strong>永夜（无日照），风声如叹息</p>
+</div>
+</div>
+</div>
+
+<div class="card">
+<h2>副本系统 · 四级难度</h2>
+<table>
+<tr><th>难度</th><th>颜色</th><th>对应继承者等级</th><th>规则复杂度</th><th>首次开启</th><th>关键产出</th></tr>
+<tr><td><span class="badge badge-white">白雾级</span></td><td>白色</td><td>入门·D-C评级</td><td>低（基础战斗规则）</td><td>第1章</td><td>培养资源、基础建造图纸</td></tr>
+<tr><td><span class="badge badge-gray">灰雾级</span></td><td>灰色</td><td>进阶·B评级</td><td>中（规则博弈开始）</td><td>卷一第29-36章</td><td>协议碎片线索、连副本机制</td></tr>
+<tr><td><span class="badge badge-black">黑雾级</span></td><td>黑色</td><td>高级·A评级</td><td>高（禁忌级规则）</td><td>卷四第133章</td><td>协议碎片×3、陈默觉醒深化</td></tr>
+<tr><td><span class="badge badge-blood">血雾级</span></td><td>血色</td><td>主脑权限</td><td>禁忌（规则可被修改）</td><td>卷八第281章</td><td>协议完整文本、F001全揭</td></tr>
+</table>
+<div class="note"><strong>升级路径：</strong>灰雾级需培养3名白雾级继承者+10副本规则解析+绑定深度2.0+。当前陈默绑定深度1.5（第5章），距离灰雾级还有差距。</div>
+</div>
+
+<div class="card">
+<h2>核心规则体系</h2>
+<div class="info-grid">
+<div class="info-item">
+<h4>永夜协议</h4>
+<p>初代主脑为对抗永夜本源而签。核心规则：主脑意识与避难所核心绑定，必须培养继承者才能卸任。</p>
+<p><strong>死局：</strong>不培养=崩溃=立刻消散；培养成功=继位=消散</p>
+<p><strong>制定者：</strong>成谜（F001，第290章全揭）</p>
+</div>
+<div class="info-item">
+<h4>消散规则</h4>
+<p>主脑意识消散=续永夜协议的命。不是设计而是代价。</p>
+<p><strong>403任失败定义：</strong>消散了但继承者也没能成功继位（两败俱伤）</p>
+<p><strong>破局关键：</strong>消散规则可被"真心"打破（F002第350章全揭）</p>
+</div>
+<div class="info-item">
+<h4>继承者试炼</h4>
+<p>玩家意识=被永夜协议捕获的已灭亡文明残片（地球记忆是模拟）。</p>
+<p><strong>双向不知情：</strong>玩家不知继承代价是主脑消散；主脑不知哪个玩家能继位</p>
+<p><strong>死后重生：</strong>继承者特权，每次重生绑定深度+1</p>
+</div>
+<div class="info-item">
+<h4>意识传承四级</h4>
+<p><span class="badge badge-white">白雾</span>表层操作 → <span class="badge badge-gray">灰雾</span>建筑控制 → <span class="badge badge-black">黑雾</span>规则修改 → <span class="badge badge-blood">血雾</span>主脑权限</p>
+<p>每次死后重生绑定深度+1，身体逐渐变成避难所的一部分</p>
+</div>
+</div>
+</div>
+</div>
+
+<!-- ========== 大事件时间线 ========== -->
+<div id="timeline" class="section">
+<div class="card">
+<h2>十卷四百章 · 大事件趋势</h2>
+<div class="note"><strong>阅读说明：</strong>🔴=高潮/钩子 🟡=伏笔节点 🔵=常规事件。颜色节点表示关键转折点。</div>
+
+<div class="timeline">
+<!-- 卷一 -->
+<div class="timeline-item climax">
+<span class="timeline-vol">卷一 · 404号避难所（1-40章）</span>
+<h3>被动接受期：建立避难所+首批继承者+觉醒者伏笔</h3>
+</div>
+<div class="timeline-item hook">
+<span class="timeline-chapter">第1-3章</span> 黄金三章
+<p>穿越觉醒+悲壮感前置→继承者培养系统激活→首批3名候选人→首杀爽点→F004提前埋设（主脑不开心）</p>
+</div>
+<div class="timeline-item">
+<span class="timeline-chapter">第4-6章</span> 避难所升级+世界观扩展
+<p>避难所首次升级+属性检测→强行推送机制揭示→别的避难所信标→<strong>第6章重大转折：第1任探针到达</strong></p>
+</div>
+<div class="timeline-item foreshadow">
+<span class="timeline-chapter">第7-15章</span> 首批候选人集齐
+<p>玩家整活名场面→白雾副本首通→避难所扩建→第15章5人小队集齐（战狂+肝帝加入）</p>
+</div>
+<div class="timeline-item">
+<span class="timeline-chapter">第16-28章</span> 外部接触+苏鸢登场
+<p>流浪者营地交易→提及"主脑继承者宿命"→<strong>第22章苏鸢登场</strong>→智斗苏鸢→第25章单独对话暧昧伏笔</p>
+</div>
+<div class="timeline-item foreshadow">
+<span class="timeline-chapter">第29-36章</span> 灰雾副本初探
+<p>首个灰雾副本→规则复杂度提升→<strong>第35章F004半揭</strong>（陈默发现绑定深度增加=身体变成避难所）→协议碎片线索</p>
+</div>
+<div class="timeline-item hook">
+<span class="timeline-chapter">第37-40章</span> 卷一末·觉醒者危机
+<p>陈默副本内笔记被发现→半觉醒迹象→<strong>卷末钩子：陈默留下"继承试炼的代价是什么"</strong></p>
+</div>
+
+<!-- 卷二 -->
+<div class="timeline-item climax">
+<span class="timeline-vol">卷二 · 继承者初潮（41-80章）</span>
+<h3>候选人规模扩张+灰雾副本群+第四天灾之名初显</h3>
+</div>
+<div class="timeline-item">
+<span class="timeline-chapter">第41-52章</span> 候选人涌入30人
+<p>小队建制→避难所升级小镇→5人小队弧线展开→整活担当独立高光</p>
+</div>
+<div class="timeline-item">
+<span class="timeline-chapter">第53-64章</span> 灰雾副本群
+<p>苏鸢再次登场→暧昧升级→5人小队协作通关震惊全场</p>
+</div>
+<div class="timeline-item foreshadow">
+<span class="timeline-chapter">第65-72章</span> 连副本危机
+<p>陈默既视感爆发→规则loophole通关→<strong>F004深化</strong></p>
+</div>
+<div class="timeline-item hook">
+<span class="timeline-chapter">第73-80章</span> 卷二末·遭遇战
+<p>诡物将领试探→第四天灾之名初显→<strong>卷末发现"历任继承者名单"</strong></p>
+</div>
+
+<!-- 卷三 -->
+<div class="timeline-item climax">
+<span class="timeline-vol">卷三 · 永夜荒原（81-120章）</span>
+<h3>主动出击+三方势力+永夜本源线索</h3>
+</div>
+<div class="timeline-item">
+<span class="timeline-chapter">第81-92章</span> 荒原征讨
+<p>玩家军团出城→碾压低级诡物→流浪者势力接触</p>
+</div>
+<div class="timeline-item foreshadow">
+<span class="timeline-chapter">第93-112章</span> 外交+遗迹
+<p>小型避难所联盟→<strong>第105章F005深化</strong>（遗迹刻"另一个失败的你"）→古代科技残片</p>
+</div>
+<div class="timeline-item hook">
+<span class="timeline-chapter">第113-120章</span> 卷三末·团灭危机
+<p>诡物领主登场→首次大规模团灭→苏鸢被迫相救→<strong>"你不是普通的主脑——你对自己的继承者太好了"</strong></p>
+</div>
+
+<!-- 卷四 -->
+<div class="timeline-item climax">
+<span class="timeline-vol">卷四 · 主脑议会（121-160章）</span>
+<h3>七主脑议会+政治博弈+身份半揭</h3>
+</div>
+<div class="timeline-item hook">
+<span class="timeline-chapter">第121-132章</span> 主脑议会
+<p>404被质疑"软弱"→<strong>反手亮数据全场沉默</strong>→苏鸢暗中相助</p>
+</div>
+<div class="timeline-item foreshadow">
+<span class="timeline-chapter">第133-152章</span> 黑雾副本+身份半揭
+<p>首个黑雾副本→集体团灭→<strong>第145章F003半揭</strong>（主角是预留变量）→协议碎片第1块</p>
+</div>
+<div class="timeline-item hook">
+<span class="timeline-chapter">第153-160章</span> 卷四末·议会破裂
+<p>部分主脑联合打压404→<strong>F002半揭</strong>（404是异常避难所）→协议启动预警程序</p>
+</div>
+
+<!-- 卷五 -->
+<div class="timeline-item climax">
+<span class="timeline-vol">卷五 · 黑雾深渊（161-200章）</span>
+<h3>高难度副本时代+陈默对峙主角</h3>
+</div>
+<div class="timeline-item foreshadow">
+<span class="timeline-chapter">第161-184章</span> 黑雾副本群+F001半揭
+<p>规则复杂度飙升→多次集体团灭→<strong>第180章F001半揭</strong>（协议残页）→陈默发现名单消失</p>
+</div>
+<div class="timeline-item hook">
+<span class="timeline-chapter">第185-200章</span> 陈默对峙
+<p>首次正面对质"代价是什么"→主角部分坦白→陈默暂不揭穿→<strong>卷末发现"主脑消散记录"</strong></p>
+</div>
+
+<!-- 卷六 -->
+<div class="timeline-item climax">
+<span class="timeline-vol">卷六 · 觉醒者阵营（201-240章）</span>
+<h3>F004全揭+玩家分裂+抹杀程序预警</h3>
+</div>
+<div class="timeline-item foreshadow">
+<span class="timeline-chapter">第201-212章</span> F004全揭
+<p><strong>第205章陈默完全觉醒</strong>→发现继承者继位=主脑消散→选择站主角寻找破局</p>
+</div>
+<div class="timeline-item hook">
+<span class="timeline-chapter">第213-240章</span> 阵营分裂+抹杀预警
+<p>继位派vs拒位派→协议抹杀程序预警→<strong>卷末诡物王趁机攻城</strong></p>
+</div>
+
+<!-- 卷七 -->
+<div class="timeline-item climax">
+<span class="timeline-vol">卷七 · 诡物王攻城（241-280章）</span>
+<h3>大规模攻城战+第四天灾坐实+苏鸢公开</h3>
+</div>
+<div class="timeline-item hook">
+<span class="timeline-chapter">第241-272章</span> 攻城战
+<p>诡物王率大军→玩家军团全面动员→苏鸢率403支援→暧昧公开化</p>
+</div>
+<div class="timeline-item foreshadow">
+<span class="timeline-chapter">第273-280章</span> 卷七末
+<p>诡物王退兵→<strong>"本源不会放过你"</strong>→获得关键协议碎片→指向血雾禁忌副本</p>
+</div>
+
+<!-- 卷八 -->
+<div class="timeline-item climax">
+<span class="timeline-vol">卷八 · 协议真相（281-320章）</span>
+<h3>三大真相全揭+永夜本源初现</h3>
+</div>
+<div class="timeline-item foreshadow">
+<span class="timeline-chapter">第281-300章</span> F001+F003全揭
+<p><strong>第290章F001全揭</strong>（协议真相）→<strong>第300章F003全揭</strong>（主角是初代主脑碎片转世）</p>
+</div>
+<div class="timeline-item hook">
+<span class="timeline-chapter">第301-320章</span> 卷八末
+<p>真相消化→继位派与拒位派和解→<strong>第315章永夜本源初现端倪</strong>→"你终于发现了"</p>
+</div>
+
+<!-- 卷九 -->
+<div class="timeline-item climax">
+<span class="timeline-vol">卷九 · 永夜本源（321-360章）</span>
+<h3>本源现身+悲剧镜像+F002全揭</h3>
+</div>
+<div class="timeline-item foreshadow">
+<span class="timeline-chapter">第321-350章</span> F005半揭+F002全揭
+<p><strong>第330章F005半揭</strong>（本源=平行世界失败主脑）→共情升华→<strong>第350章F002全揭</strong>（消散规则可被真心打破）</p>
+</div>
+<div class="timeline-item hook">
+<span class="timeline-chapter">第351-360章</span> 卷九末
+<p>主角利用404漏洞打脸协议→谈判破裂→决战在即</p>
+</div>
+
+<!-- 卷十 -->
+<div class="timeline-item climax">
+<span class="timeline-vol">卷十 · 永夜黎明（361-400章）</span>
+<h3>最终决战+消散规则打破+黎明降临</h3>
+</div>
+<div class="timeline-item foreshadow">
+<span class="timeline-chapter">第361-380章</span> 决战+F005全揭
+<p>第四天灾反客为主→<strong>第380章F005全揭</strong>（本源悲剧收场）→主角获得协议控制权</p>
+</div>
+<div class="timeline-item hook">
+<span class="timeline-chapter">第381-400章</span> 终章
+<p>消散规则打破→永夜退去→黎明降临→主角不消散，与继承者共同守护→<strong>全书完</strong></p>
+</div>
+</div>
+</div>
+</div>
+
+<!-- ========== 伏笔追踪 ========== -->
+<div id="foreshadow" class="section">
+<div class="card">
+<h2>五条长线伏笔 · 跨10卷400章</h2>
+<div class="note"><strong>原则：</strong>每章有小披露（钩子级），每卷有中披露（半揭级），每3卷有大披露（全揭级）。绿色=埋设，黄色=半揭，红色=全揭，青色=小线索。</div>
+
+<div class="foreshadow-track f001">
+<div class="foreshadow-header">
+<span class="foreshadow-title">F001 · 协议制定者身份 + 消散规则为何存在</span>
+<span class="foreshadow-status"><span class="badge badge-danger">未埋设</span> → 第290章全揭</span>
+</div>
+<p>协议是初代主脑为对抗永夜本源而签，消散规则是"保持主脑动力"的残酷机制。制定者身份成谜。</p>
+<div class="foreshadow-timeline">
+<span class="foreshadow-node plant">第1章·埋设（协议文本闪过制定者数据抹除）</span>
+<span class="foreshadow-node half">第180章·半揭（黑雾副本群找到协议残页）</span>
+<span class="foreshadow-node small">第230章·小线索（制定者签名残片）</span>
+<span class="foreshadow-node full">第290章·全揭（血雾禁忌副本·协议完整文本）</span>
+</div>
+</div>
+
+<div class="foreshadow-track f002">
+<div class="foreshadow-header">
+<span class="foreshadow-title">F002 · 404之谜（404任循环+三重含义+为何异常）</span>
+<span class="foreshadow-status"><span class="badge badge-success">已半揭</span> → 第350章全揭</span>
+</div>
+<p>404是初代主脑隐藏的测试舱。403任全部两败俱伤失败。主角是唯一可能打破循环的"预留变量"。404是唯一不受协议完全约束的避难所。</p>
+<div class="foreshadow-timeline">
+<span class="foreshadow-node plant">第1章·埋设（403任消散+"终于"）</span>
+<span class="foreshadow-node plant">第1章·深化（遗言递减+四零四炸毛跑开）</span>
+<span class="foreshadow-node plant">第2章·深化（遗言碎片"别…继承者…太…"）</span>
+<span class="foreshadow-node half">第3章·半揭（"第1任也说过"→循环远超403任）</span>
+<span class="foreshadow-node small">第6章·深化（第1任探针到达+"停止培养继承者"）</span>
+<span class="foreshadow-node half">第160章·半揭（404是异常避难所·403任都失败）</span>
+<span class="foreshadow-node small">第240章·小线索（404系统异常表现）</span>
+<span class="foreshadow-node full">第350章·全揭（消散规则可被"真心"打破）</span>
+</div>
+</div>
+
+<div class="foreshadow-track f003">
+<div class="foreshadow-header">
+<span class="foreshadow-title">F003 · 主角是初代主脑意识碎片转世（变量标记）</span>
+<span class="foreshadow-status"><span class="badge badge-success">已半揭</span> → 第300章全揭</span>
+</div>
+<p>主角是初代主脑在403任失败后才投入的"后手"——唯一可能打破循环的"预留变量"。因为403任都是普通意识，按协议执行所以全部失败。</p>
+<div class="foreshadow-timeline">
+<span class="foreshadow-node plant">第1章·埋设（系统闪过"变量标记"0.3秒消失）</span>
+<span class="foreshadow-node half">第1章·半揭（四零四绿眼睛闪了一下）</span>
+<span class="foreshadow-node small">第2章·铺垫（第三行乱码加密暗示协议核心）</span>
+<span class="foreshadow-node small">第6章·铺垫（双线信息同日到达·暗示陆夜=第1任等待的人）</span>
+<span class="foreshadow-node half">第150章·半揭（发现自己可能是预留变量）</span>
+<span class="foreshadow-node small">第250章·小线索（血雾副本回忆碎片）</span>
+<span class="foreshadow-node full">第300章·全揭（初代主脑意识碎片转世真相）</span>
+</div>
+</div>
+
+<div class="foreshadow-track f004">
+<div class="foreshadow-header">
+<span class="foreshadow-title">F004 · 觉醒者（玩家会发现继承试炼的真正代价吗）</span>
+<span class="foreshadow-status"><span class="badge badge-success">已半揭深化</span> → 第205章全揭</span>
+</div>
+<p>陈默从首杀时注意到"主脑不开心"，到发现绑定深度增加=身体变成避难所，到发现历任继承者名单消失，到完全觉醒发现继承者继位=主脑消散。</p>
+<div class="foreshadow-timeline">
+<span class="foreshadow-node plant">第1章·间接埋设（诡物不攻击陈默·403任从未出现）</span>
+<span class="foreshadow-node half">第2章·半揭（诡物"认主"+绑定深度异常）</span>
+<span class="foreshadow-node plant">第3章·正式埋设（诡物说"继承者"·陈默记录"主脑不开心"）</span>
+<span class="foreshadow-node half">第3章·半揭深化（"第1任也说过"→系统性现象）</span>
+<span class="foreshadow-node small">第4章·深化（诡物说"合格"+陈默记录"替代品"）</span>
+<span class="foreshadow-node small">第5章·深化（评估等级递进：合格→可以）</span>
+<span class="foreshadow-node small">第6章·深化（继承者笔记残页："不要相信评估"）</span>
+<span class="foreshadow-node half">第35章·半揭（绑定深度增加=身体变成避难所）</span>
+<span class="foreshadow-node small">第80章·深化（发现历任继承者名单）</span>
+<span class="foreshadow-node small">第190章·深化（名单上的名字都消失了）</span>
+<span class="foreshadow-node full">第205章·全揭（陈默完全觉醒·继承者继位=主脑消散）</span>
+</div>
+</div>
+
+<div class="foreshadow-track f005">
+<div class="foreshadow-header">
+<span class="foreshadow-title">F005 · 永夜本源（诡物从何而来+本源为何失败）</span>
+<span class="foreshadow-status"><span class="badge badge-danger">未埋设</span> → 第380章全揭</span>
+</div>
+<p>永夜本源是平行世界失败的避难所主脑——一个"拒绝培养继承者导致避难所崩塌"的失败案例。与陆夜形成镜像对照。</p>
+<div class="foreshadow-timeline">
+<span class="foreshadow-node small">第6章·间接铺垫（诡物非生物特征·第1任警告"他们不是你以为的东西"）</span>
+<span class="foreshadow-node small">第105章·深化（遗迹刻"另一个失败的你"）</span>
+<span class="foreshadow-node small">第275章·侧面铺垫（诡物王"本源不会放过你"）</span>
+<span class="foreshadow-node half">第330章·半揭（本源现身·平行世界失败主脑）</span>
+<span class="foreshadow-node full">第380章·全揭（"拒绝传承"的失败主脑·共情升华）</span>
+</div>
+</div>
+</div>
+</div>
+
+<!-- ========== 势力关系 ========== -->
+<div id="faction" class="section">
+<div class="card">
+<h2>势力关系图</h2>
+
+<div class="faction-card" style="border-color: #2ed573;">
+<h3>404号避难所（主角阵营）</h3>
+<p><strong>领袖：</strong>陆夜（第404任主脑）+ 四零四（系统精灵）</p>
+<p><strong>成员：</strong>首批5名继承者候选人（陈默/李大锤/周老师/赵铁柱/林小满）+ 后续扩张至30人</p>
+<p><strong>核心优势：</strong>404不受协议完全约束 + 主角是预留变量 + 继承者存活率最高</p>
+<p><strong>发展阶段：</strong>卷一建立 → 卷二扩张 → 卷三外交 → 卷四被质疑 → 卷六阵营分裂 → 卷十打破规则</p>
+<div class="faction-relations">
+<div class="relation-item ally">403号·苏鸢：观察者→暗中保护→伴侣</div>
+<div class="relation-item ally">小型避难所群：卷三建立联盟</div>
+<div class="relation-item neutral">流浪者营地：交易关系</div>
+<div class="relation-item enemy">诡物/诡物王：永恒敌对</div>
+<div class="relation-item enemy">永夜本源：最终BOSS</div>
+<div class="relation-item enemy">部分主脑（卷四议会）：质疑打压</div>
+</div>
+</div>
+
+<div class="faction-card" style="border-color: #4ecdc4;">
+<h3>403号避难所（苏鸢）</h3>
+<p><strong>领袖：</strong>苏鸢（403号主脑·协议监察者）</p>
+<p><strong>真实身份：</strong>协议监察者——任务确保消散规则执行，观察各避难所主脑是否"按协议行事"</p>
+<p><strong>弧线：</strong>冷眼观察 → 动摇（卷三荒原并肩） → 暗中保护（卷六） → 背叛协议（卷八）</p>
+<div class="faction-relations">
+<div class="relation-item ally">陆夜/404：对手→伴侣</div>
+<div class="relation-item enemy">协议规则：最终背叛对象</div>
+<div class="relation-item neutral">其他主脑：表面同僚</div>
+</div>
+</div>
+
+<div class="faction-card" style="border-color: #ff4757;">
+<h3>永夜本源（最终反派）</h3>
+<p><strong>身份：</strong>平行世界失败的避难所主脑——"拒绝培养继承者导致避难所崩塌"的失败案例</p>
+<p><strong>本质：</strong>不是纯粹恶，而是"害怕消散而拒绝传承"的失败者执念。与陆夜形成镜像对照</p>
+<p><strong>能力：</strong>永夜诡物操控 + 规则侵蚀 + 平行世界记忆 + 消散免疫</p>
+<p><strong>弧线：</strong>卷三侧面铺垫 → 卷七诡物王攻城间接对抗 → 卷九现身 → 卷十先打败再说服</p>
+<div class="faction-relations">
+<div class="relation-item enemy">陆夜/404：镜像对手</div>
+<div class="relation-item ally">诡物网络：控制所有诡物</div>
+<div class="relation-item enemy">所有避难所：侵蚀对象</div>
+</div>
+</div>
+
+<div class="faction-card" style="border-color: #888;">
+<h3>其他势力</h3>
+<div class="info-grid">
+<div class="info-item">
+<h4>七主脑议会</h4>
+<p>卷四召开。404被质疑"对继承者太好"。主角亮数据全场沉默。议会破裂后部分主脑联合打压404。</p>
+</div>
+<div class="info-item">
+<h4>流浪者营地</h4>
+<p>永夜荒原中的散落人类。卷一交易关系，提及"主脑继承者宿命"。卷三主角声望传播。</p>
+</div>
+<div class="info-item">
+<h4>小型避难所群</h4>
+<p>卷三外交对象。主角与2个小型避难所建立联盟，资源互换。</p>
+</div>
+<div class="info-item">
+<h4>诡物王</h4>
+<p>卷六末攻城，卷七正面战场。战败时喃喃"本源不会放过你"——永夜本源的侧面铺垫。</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- ========== 角色弧线 ========== -->
+<div id="arc" class="section">
+<div class="card">
+<h2>主角弧线 · 陆夜（第404任主脑）</h2>
+<div class="note"><strong>核心弧线：</strong>创伤后应对机制（用数据压抑恐惧）→ 理性盔甲出现裂缝 → 主动反抗 → 打破规则。悲壮感四阶段递进。</div>
+<div class="arc-chart">
+<div class="arc-stage">
+<div class="arc-stage-num">1</div>
+<div class="arc-stage-content">
+<div class="arc-stage-title">被动接受期（卷1-2）· 悲壮:爽感=3:7</div>
+<div class="arc-stage-desc">机械执行培养任务，用数据理性压抑情感。口头禅"根据协议"。避免与玩家建立情感连接。但第6章第1任探针动摇了他。</div>
+<div class="arc-stage-trigger">触发：第1章消散仪式+发现死局 → 第6章第1任警告"停止培养继承者"</div>
+</div>
+</div>
+<div class="arc-stage">
+<div class="arc-stage-num">2</div>
+<div class="arc-stage-content">
+<div class="arc-stage-title">动摇期（卷3-4）· 悲壮:爽感=4:6</div>
+<div class="arc-stage-desc">陈默的觉醒迹象和苏鸢的暗中保护让他动摇——也许403任失败不是因为他们不够强，而是因为他们没有真心。</div>
+<div class="arc-stage-trigger">触发：卷三荒原并肩作战+陈默留笔记 → 卷四被质疑"对继承者太好"→ F003半揭自己是预留变量</div>
+</div>
+</div>
+<div class="arc-stage">
+<div class="arc-stage-num">3</div>
+<div class="arc-stage-content">
+<div class="arc-stage-title">主动反抗期（卷5-7）· 悲壮:爽感=3:7</div>
+<div class="arc-stage-desc">开始利用404的异常属性和规则漏洞，在死局中寻找操作空间。对玩家不再压抑情感，但仍在寻找"不消散"的方法。悲壮感转化为"智斗爽感"。</div>
+<div class="arc-stage-trigger">触发：卷五黑雾副本群+发现自己可能是预留变量 → 卷六陈默觉醒选择站他 → 卷七诡物王攻城</div>
+</div>
+</div>
+<div class="arc-stage">
+<div class="arc-stage-num">4</div>
+<div class="arc-stage-content">
+<div class="arc-stage-title">打破规则期（卷8-10）· 悲壮:爽感=2:8</div>
+<div class="arc-stage-desc">确认自己是初代主脑碎片转世，决定用"真心"打破消散规则。最终决战中不消散，与继承者们共同守护。悲壮感被"打破命运"的逆袭爽感取代。</div>
+<div class="arc-stage-trigger">触发：卷八协议真相全揭+F003全揭 → 卷九F002全揭（消散规则可被真心打破）→ 卷十最终决战</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="card">
+<h2>关键角色弧线</h2>
+<div class="info-grid">
+<div class="info-item">
+<h4>陈默（觉醒者·F004核心）</h4>
+<p><strong>卷1-2：</strong>游戏心态→首杀后开始记录异常</p>
+<p><strong>卷3-4：</strong>怀疑期→发现副本设计像"考验"</p>
+<p><strong>卷5-6：</strong>半觉醒→完全觉醒（第205章F004全揭）→选择站主角</p>
+<p><strong>卷7-10：</strong>从"被培养者"变为"并肩战友"→共同打破规则</p>
+</div>
+<div class="info-item">
+<h4>苏鸢（协议监察者→背叛者）</h4>
+<p><strong>卷1-2：</strong>观察者，冷眼旁观</p>
+<p><strong>卷3-4：</strong>动摇者，身份半揭</p>
+<p><strong>卷5-7：</strong>暗中保护者，暧昧公开化</p>
+<p><strong>卷8-10：</strong>背叛者，与陆夜并肩打破规则</p>
+</div>
+<div class="info-item">
+<h4>永夜本源（悲剧镜像）</h4>
+<p><strong>卷1-5：</strong>侧面铺垫，不直接出场</p>
+<p><strong>卷6-8：</strong>幕后操控，通过诡物王间接对抗</p>
+<p><strong>卷9：</strong>正面对决，先武力碾压再揭示悲剧背景</p>
+<p><strong>卷10：</strong>被说服后打破执念，消散时释然</p>
+</div>
+<div class="info-item">
+<h4>四零四（系统精灵）</h4>
+<p><strong>核心：</strong>403次目击死亡的创伤后防御</p>
+<p><strong>弧线：</strong>毒舌吐槽（防御）→ 差点投入感情 → 再次警告自己别关心 → 最终真心帮助陆夜</p>
+<p><strong>关键：</strong>"又来一个"=急诊室护士疲倦 → "像极了第1任"=暗示曾经在乎过第1任</p>
+</div>
+</div>
+</div>
+</div>
+
+<!-- ========== 生产进度 ========== -->
+<div id="progress" class="section">
+<div class="card">
+<h2>生产进度总览</h2>
+<table>
+<tr><th>章节</th><th>标题</th><th>字数</th><th>技术分</th><th>追读指数</th><th>弃书率</th><th>状态</th></tr>
+<tr><td>第1章</td><td>第404任</td><td>3026</td><td>8.86</td><td>8.40</td><td>11%</td><td><span class="badge badge-success">FINALIZED</span></td></tr>
+<tr><td>第2章</td><td>认主</td><td>3056</td><td>8.86</td><td>8.65</td><td>9%</td><td><span class="badge badge-success">FINALIZED</span></td></tr>
+<tr><td>第3章</td><td>首杀</td><td>3116</td><td>9.29</td><td>9.10</td><td>8%</td><td><span class="badge badge-success">FINALIZED</span></td></tr>
+<tr><td>第4章</td><td>第二天</td><td>3218</td><td>8.57</td><td>7.85</td><td>14%</td><td><span class="badge badge-success">DONE</span></td></tr>
+<tr><td>第5章</td><td>不速之客</td><td>2463</td><td>8.86</td><td>8.15</td><td>12%</td><td><span class="badge badge-success">DONE</span></td></tr>
+<tr><td>第6章</td><td>信</td><td>2386</td><td>9.0</td><td>8.55</td><td>10%</td><td><span class="badge badge-success">DONE</span></td></tr>
+<tr><td>第7章</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td><span class="badge badge-danger">PENDING</span></td></tr>
+</table>
+<div class="note"><strong>质量趋势：</strong>技术分 8.86→8.86→9.29→8.57→8.86→9.0（第6章重大转折回升）。追读指数 8.40→8.65→9.10→7.85→8.15→8.55（三连升）。卷一进度：6/40章（15%）。</div>
+</div>
+
+<div class="card">
+<h2>十卷规划</h2>
+<div class="volume-grid">
+<div class="volume-card current">
+<h4>卷一 · 404号避难所（1-40章）</h4>
+<div class="volume-meta">主题：被动接受 | 悲壮:爽感=3:7 | 当前进度：6/40</div>
+<ul class="volume-events">
+<li>黄金三章（消散仪式+首杀+F004埋设）</li>
+<li>避难所升级+世界观扩展</li>
+<li>5人小队集齐（第15章）</li>
+<li>苏鸢登场（第22章）</li>
+<li>灰雾副本初探+F004半揭（第35章）</li>
+<li>觉醒者危机（第40章）</li>
+</ul>
+<div class="progress-bar"><div class="progress-fill" style="width:15%"></div></div>
+</div>
+<div class="volume-card">
+<h4>卷二 · 继承者初潮（41-80章）</h4>
+<div class="volume-meta">主题：规模扩张 | 第四天灾之名初显</div>
+<ul class="volume-events">
+<li>候选人涌入30人</li>
+<li>灰雾副本群+苏鸢暧昧升级</li>
+<li>连副本危机+陈默既视感</li>
+<li>诡物将领遭遇战</li>
+</ul>
+</div>
+<div class="volume-card">
+<h4>卷三 · 永夜荒原（81-120章）</h4>
+<div class="volume-meta">主题：主动出击 | 三方势力交织</div>
+<ul class="volume-events">
+<li>荒原征讨+流浪者接触</li>
+<li>小型避难所外交</li>
+<li>F005深化（第105章遗迹）</li>
+<li>团灭危机+苏鸢"你对继承者太好了"</li>
+</ul>
+</div>
+<div class="volume-card">
+<h4>卷四 · 主脑议会（121-160章）</h4>
+<div class="volume-meta">主题：政治博弈 | 身份半揭</div>
+<ul class="volume-events">
+<li>七主脑议会+亮数据打脸</li>
+<li>黑雾副本初探</li>
+<li>F003半揭（第150章·预留变量）</li>
+<li>议会破裂+F002半揭</li>
+</ul>
+</div>
+<div class="volume-card">
+<h4>卷五 · 黑雾深渊（161-200章）</h4>
+<div class="volume-meta">主题：高难度时代 | 陈默对峙</div>
+<ul class="volume-events">
+<li>黑雾副本群+多次团灭</li>
+<li>F001半揭（第180章·协议残页）</li>
+<li>陈默发现名单消失</li>
+<li>陈默与主角对峙</li>
+</ul>
+</div>
+<div class="volume-card">
+<h4>卷六 · 觉醒者阵营（201-240章）</h4>
+<div class="volume-meta">主题：F004全揭 | 阵营分裂</div>
+<ul class="volume-events">
+<li>F004全揭（第205章·陈默完全觉醒）</li>
+<li>继位派vs拒位派</li>
+<li>协议抹杀程序预警</li>
+<li>诡物王攻城（卷末）</li>
+</ul>
+</div>
+<div class="volume-card">
+<h4>卷七 · 诡物王攻城（241-280章）</h4>
+<div class="volume-meta">主题：大规模战争 | 暧昧公开</div>
+<ul class="volume-events">
+<li>诡物王率军攻城</li>
+<li>第四天灾之名坐实</li>
+<li>苏鸢率403支援</li>
+<li>诡物王"本源不会放过你"</li>
+</ul>
+</div>
+<div class="volume-card">
+<h4>卷八 · 协议真相（281-320章）</h4>
+<div class="volume-meta">主题：三大真相全揭</div>
+<ul class="volume-events">
+<li>F001全揭（第290章·协议真相）</li>
+<li>F003全揭（第300章·主角身份）</li>
+<li>继位派与拒位派和解</li>
+<li>永夜本源初现端倪（第315章）</li>
+</ul>
+</div>
+<div class="volume-card">
+<h4>卷九 · 永夜本源（321-360章）</h4>
+<div class="volume-meta">主题：本源现身 | 悲剧镜像</div>
+<ul class="volume-events">
+<li>F005半揭（第330章·本源现身）</li>
+<li>本源悲剧背景揭示</li>
+<li>F002全揭（第350章·消散规则可打破）</li>
+<li>谈判破裂，决战在即</li>
+</ul>
+</div>
+<div class="volume-card">
+<h4>卷十 · 永夜黎明（361-400章）</h4>
+<div class="volume-meta">主题：最终决战 | 黎明降临</div>
+<ul class="volume-events">
+<li>第四天灾反客为主</li>
+<li>F005全揭（第380章·本源悲剧收场）</li>
+<li>消散规则打破</li>
+<li>主角不消散，全书完</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+
+<script>
+function showSection(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  event.target.classList.add('active');
+}
+</script>
+</body>
+</html>

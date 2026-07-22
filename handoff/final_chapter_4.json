@@ -1,0 +1,21 @@
+{
+  "card_type": "final",
+  "from_agent": "final-reviewer",
+  "to_agent": "memory-manager",
+  "timestamp": "2026-07-21T05:15:30.609996+00:00",
+  "content": {
+    "chapter_num": 4,
+    "title": "标记",
+    "verdict": "approved",
+    "final_text": "[见 chapters/chapter_4.txt 和 output/chapter_004.txt]",
+    "word_count": 4012,
+    "quality_scores": {
+      "technical_score": 9.5,
+      "reader_score": 8.9,
+      "ai_score": 1.5
+    },
+    "review_summary": "第4章《标记》通过终审。进化观察法首次详细展示（三条路线+三个阶段），暗点标记半揭（F003推进），蜜獾对标记的敌意反应（恨不是怕）为后续遗产来源伏笔铺垫。周宇灰鳞蜥进化分叉断裂为Ch5打脸蓄力。沈老师异常加深（F005强化）。detail-reviewer v1.2捕获1处MAJOR（余光与专注设定矛盾）已修复。de-ai消除3处AI痕迹。",
+    "adaptations": [],
+    "ready_to_publish": true
+  }
+}

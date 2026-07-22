@@ -1,0 +1,84 @@
+{
+  "snapshot_date": "2026-07-22",
+  "agents": [
+    {
+      "name": "chapter-writer",
+      "version": "1.9",
+      "rule_sections": 17,
+      "key_upgrades": ["v1.5龙空8条", "v1.6开篇沉浸6条", "v1.7吸引力放大6条", "v1.8角色形象渐入5条", "v1.9剧情微观结构5条+合并4项"],
+      "total_rules": 40
+    },
+    {
+      "name": "quality-reviewer",
+      "version": "1.4",
+      "rule_sections": 8,
+      "key_upgrades": ["v1.2龙空10维度", "v1.3加权评分(吸引力20%)+期待感4子维度", "v1.4期待感双要素公式+长篇不崩四防线"],
+      "total_rules": 24
+    },
+    {
+      "name": "character-designer",
+      "version": "1.4",
+      "rule_sections": 12,
+      "key_upgrades": ["v1.2龙空7条", "v1.3三维度反差化+性格对应故事", "v1.4主角4型模板+反派4型+Show vs Tell"],
+      "total_rules": 20
+    },
+    {
+      "name": "plot-architect",
+      "version": "1.4",
+      "rule_sections": 14,
+      "key_upgrades": ["v1.2龙空10条", "v1.3串糖葫芦+性格对应故事+简介写作", "v1.4剧情结构8条(矛盾五来源/高潮铺垫链/世界观5问/体系三原则/金手指四象限/故事延长五法/开篇三问/低武加点)"],
+      "total_rules": 24
+    },
+    {
+      "name": "title-reviewer",
+      "version": "1.1",
+      "rule_sections": 2,
+      "key_upgrades": ["v1.1简介5维度审核"],
+      "total_rules": 11
+    },
+    {
+      "name": "detail-reviewer",
+      "version": "1.3",
+      "rule_sections": 4,
+      "key_upgrades": ["v1.1对话自洽", "v1.2行为/数字/术语", "v1.3隐喻/重复/指代"],
+      "total_rules": 12
+    },
+    {
+      "name": "de-ai-processor",
+      "version": "1.1",
+      "rule_sections": 1,
+      "key_upgrades": ["v1.1 Show vs Tell检测(Tell式角色塑造识别)"],
+      "total_rules": 6
+    },
+    {
+      "name": "fanqie-adapter",
+      "version": "1.0",
+      "rule_sections": 1,
+      "key_upgrades": [],
+      "total_rules": 5
+    }
+  ],
+  "cross_references": [
+    "chapter-writer规则3(节奏对比) ↔ quality-reviewer维度2(节奏)",
+    "chapter-writer规则7(装逼明暗线) ↔ plot-architect规则3(第六幕余波) ↔ quality-reviewer维度10(装逼场景)",
+    "chapter-writer规则十六(角色形象渐入) ↔ character-designer三维度反差化框架(外貌反差)",
+    "character-designer personality_extreme.story_driver ↔ plot-architect character_personality_requirements ↔ quality-reviewer character_consistency",
+    "plot-architect synopsis字段 ↔ title-reviewer简介5维度审核",
+    "chapter-writer十七(剧情微观结构-动作反应双循环) ↔ plot-architect剧情结构设计法则(矛盾五来源) [v1.9/v1.4新增]",
+    "chapter-writer十七(剧情微观结构-预期值管理) ↔ quality-reviewer期待感双要素公式 [v1.9/v1.4新增]",
+    "chapter-writer十七(剧情微观结构-热血四要素) ↔ quality-reviewer龙空维度10(装逼场景检查) [v1.9新增]",
+    "character-designer Show vs Tell规则 ↔ de-ai-processor十三(Tell式角色塑造检测) [v1.4/v1.1新增]",
+    "character-designer主角4型模板 ↔ plot-architect金手指四象限设计法(类型匹配爽感路径) [v1.4新增]",
+    "plot-architect反派三级体系 ↔ character-designer反派4型分类法 [v1.4新增]",
+    "plot-architect高潮铺垫链 ↔ chapter-writer十一(伏笔半揭) ↔ quality-reviewer期待感持续性检测 [v1.4/v1.9/v1.4新增]"
+  ],
+  "data_sources_learned": [
+    "龙空论坛21篇精华帖（画面感/爽文认知/商业化/结构/角色/节奏/书名/伏笔/金手指/运营）",
+    "《灵境行者》《夜无疆》《剑烛大荒》《星河之主》四本白金作品前三章对比",
+    "龙空论坛期待感专题（辉妈小课堂+快乐星猫）+番茄读者群体特征",
+    "阅文编辑武行《开书六步法》+阅文编辑橡皮《人物塑造三技巧》+阅文《简介该这么写》",
+    "实际写作中暴露的问题（模式化/角色单薄/术语可读性/跨文件冲突/形象缺失/吸引力不足）",
+    "阅文作家专栏全量分析46专栏628篇文章（期待感分析/剧情微观结构/金手指设计/角色设计/长篇质控/Show vs Tell/矛盾层次/高潮铺垫/世界观设计/体系设计/故事延长/开篇技巧）"
+  ],
+  "total_rules_estimated": 142
+}

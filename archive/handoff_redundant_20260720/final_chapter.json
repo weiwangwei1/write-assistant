@@ -1,0 +1,61 @@
+{
+  "card_type": "final",
+  "timestamp": "2026-07-20T10:00:00Z",
+  "from_agent": "fanqie-adapter",
+  "to_agent": "memory-manager",
+  "status": "ready",
+  "content": {
+    "chapter_num": 1,
+    "title": "第404任",
+    "final_text_ref": "output/chapter_001.txt",
+    "word_count": 2542,
+    "adaptations": [
+      {
+        "type": "sensitive_filter",
+        "description": "敏感词检查通过。无血腥暴力（消散为光点非血腥）、无色情、无政治敏感、无违法犯罪、无封建迷信（题材为末世无限流）、无脏话粗口。'死局/消散/死了'为剧情术语，非敏感词。"
+      },
+      {
+        "type": "shuang_enhancement",
+        "description": "爽点表达平台化（非补充爽点）。第1章为设定铺垫章，quality-reviewer评估爽点密度7分。已通过的爽点表达优化：1)403任遗言递减（长→对不起→为什么→……→终于）保持信息炸弹冲击力；2)诡物不攻击陈默的反转悬念保持戛然而止效果；3)死局告知的三段式递进保持节奏。无需额外修改。"
+      },
+      {
+        "type": "pacing_adjustment",
+        "description": "节奏检查通过。开头'十分钟前他还在改代码'直接抓人（10字内进入冲突），全章短段落（≤4行）手机友好，无超200字纯环境描写，对话占比约52%在50-60%区间。无需调整。"
+      },
+      {
+        "type": "chapter_hook",
+        "description": "章末钩子检查通过。'调出第403任主脑的完整遗言档案。'+'黑猫僵住了。'为反差钩+动作未完成钩，具体可感，与下一章衔接合理。保留不修改。"
+      },
+      {
+        "type": "style_unification",
+        "description": "风格统一检查通过。fast-paced模板：短句为主（超短句占比约18%）、节奏快、爽点密集（信息炸弹替代）。叙述视角一致（第三人称限知视角，陆夜主线+陈默副线）。无需调整。"
+      },
+      {
+        "type": "format_adjustment",
+        "description": "排版格式调整：1)段落长度全部≤4行，手机友好；2)对话已独立成段；3)关键句加粗标注3处（上传平台时手动加粗）：①'终于。'（消散仪式核心句）②'【终于】'（403任遗言信息炸弹）③'黑猫僵住了。'（章末钩子）；4)场景分隔使用'——'符号；5)无首行缩进，段落间空行。"
+      }
+    ],
+    "compliance_check": {
+      "political": "通过。无真实政治人物/事件",
+      "violence": "通过。消散描写为光点流走，非血腥",
+      "sexual": "通过。无色情内容",
+      "illegal": "通过。无违法犯罪描写",
+      "superstition": "通过。题材为末世无限流，非封建迷信",
+      "discrimination": "通过。无民族/宗教歧视",
+      "minor_protection": "通过。无未成年人不当内容"
+    },
+    "word_count_check": {
+      "current": 2542,
+      "min_required": 2500,
+      "max_required": 3000,
+      "status": "通过。在前10章算法打标签期目标范围内"
+    },
+    "bold_sentences": [
+      {"text": "终于。", "location": "Beat1·消散仪式", "reason": "消散仪式核心句，第403任最后遗言"},
+      {"text": "【终于】", "location": "Beat3·档案库", "reason": "403任遗言信息炸弹，与Beat1呼应"},
+      {"text": "黑猫僵住了。", "location": "Beat6·章末钩子", "reason": "章末断章钩，戛然而止"}
+    ],
+    "ready_to_publish": true,
+    "publish_notes": "终稿已通过全部适配检查。上传番茄平台时需手动加粗3处关键句。章节标题建议保持'第404任'——简洁有悬念，符合番茄风格。"
+  }
+}

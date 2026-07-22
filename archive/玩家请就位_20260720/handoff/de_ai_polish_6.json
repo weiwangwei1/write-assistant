@@ -1,0 +1,38 @@
+{
+  "card_type": "de_ai_polish",
+  "timestamp": "2026-07-20T03:14:45.447276",
+  "from_agent": "de-ai-processor",
+  "to_agent": "fanqie-adapter",
+  "status": "ready",
+  "content": {
+    "chapter_num": 6,
+    "title": "信",
+    "word_count": 2386,
+    "ai_score": 2.0,
+    "ai_traces": [
+      {
+        "type": "word_repetition",
+        "word": "副本",
+        "count": 13,
+        "note": "语境必要"
+      },
+      {
+        "type": "word_repetition",
+        "word": "继承者",
+        "count": 12,
+        "note": "语境必要"
+      },
+      {
+        "type": "emotion_telling",
+        "words": [
+          "觉得"
+        ]
+      }
+    ],
+    "changes_made": [],
+    "stats": {
+      "total_changes": 0,
+      "reason": "AI score 2.0 ≤ 2.0"
+    }
+  }
+}
