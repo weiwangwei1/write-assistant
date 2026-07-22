@@ -1,24 +1,17 @@
 {
-  "task_id": "outline_init_001",
-  "timestamp": "2026-07-22T15:40:00Z",
+  "novel_title": "待定（由 title-reviewer 审核确认）",
   "phase": "init",
-  "request": "新建小说《他从门后来》总大纲",
-  "novel_title": "他从门后来",
-  "genre": "都市悬疑/民俗恐怖",
-  "total_chapters": 300,
-  "total_volumes": 10,
-  "volume_plan": "每卷30章，共10卷",
-  "key_constraints": [
-    "核心设定一句话说清：爷爷留了扇旧门，门后有人来了",
-    "金手指=门权（遗产继承），象限B，爽感路径A级",
-    "Tone=灵境行者式（轻松幽默+暗线悬疑）",
-    "参考诡舍（副本制）+他从地狱来（人性深度）",
-    "低武世界观：门权是唯一超自然力量",
-    "反派三级体系：来客(喽啰)→先生(隐藏)→师伯(终极)",
-    "前3章专有名词≤3个/章",
-    "每章3000字，每句单独一行，生成TXT"
-  ],
-  "assigned_to": "plot-architect",
-  "next_agent": "character-designer",
-  "status": "in_progress"
+  "current_chapter": 0,
+  "completed_chapters": [],
+  "daily_target": 2,
+  "daily_completed": 0,
+  "current_date": "2026-07-23",
+  "init_progress": {
+    "topic_screening": "done",
+    "plot_architect": "done",
+    "next_step": "skeptic"
+  },
+  "rewrite_count": {},
+  "errors": [],
+  "last_updated": "2026-07-23T12:00:00Z"
 }

@@ -1,0 +1,12 @@
+{
+  "task_name": "（待配置）",
+  "task_description": "（待配置）",
+  "status": "pending",
+  "created_at": null,
+  "last_run": null,
+  "last_run_result": null,
+  "current_step": 0,
+  "total_steps": 0,
+  "stop_reason": null,
+  "steps": []
+}

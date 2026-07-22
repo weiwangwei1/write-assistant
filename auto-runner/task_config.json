@@ -1,0 +1,18 @@
+{
+  "task_name": "（待用户配置）",
+  "task_description": "（待用户配置）",
+  "workspace": "d:\\personFile\\write-assistant",
+  "steps": [
+    {
+      "id": 0,
+      "name": "（示例步骤）",
+      "agent": "topic-screener",
+      "instruction": "读取 config/novel_config.json 中的核心概念，按 .trae/skills/topic-screener/SKILL.md 的规范执行6维预筛，输出到 handoff/topic_screening.json",
+      "input_files": ["config/novel_config.json"],
+      "output_files": ["handoff/topic_screening.json"],
+      "pass_criteria": "输出文件存在且 verdict 字段为 pass 或 pass_with_note",
+      "max_retries": 2
+    }
+  ],
+  "_comment": "此文件为模板，实际步骤由用户确认任务后填充"
+}
