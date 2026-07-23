@@ -1,10 +1,10 @@
 {
   "novel_title": "有龙则灵",
   "phase": "chapter_production",
-  "current_chapter": 7,
-  "completed_chapters": [1, 2, 3, 4, 5, 6],
+  "current_chapter": 8,
+  "completed_chapters": [1, 2, 3, 4, 5, 6, 7],
   "daily_target": 2,
-  "daily_completed": 6,
+  "daily_completed": 7,
   "current_date": "2026-07-24",
   "init_progress": {
     "topic_screening": "done",
@@ -18,37 +18,48 @@
     "chapter_2": "done",
     "chapter_3": "done",
     "chapter_4": {
+      "note": "原Ch4拆分，前半保留为Ch4(三文赌局)",
       "write": "done",
       "detail_review": "done (9.45)",
       "quality_review": "done (9.51)",
       "de_ai": "done (ai_score 3.0→1.3)",
-      "final_review": "done (9.58, approved)"
+      "final_review": "done (9.58, approved)",
+      "split": "Ch4拆分: 买刀+怼蓝袍子部分保留为Ch4, 霍东来+镇巷令部分拆为新Ch5"
     },
     "chapter_5": {
+      "note": "原Ch4后半拆出为新Ch5(镇巷令)",
+      "write": "done (从Ch4拆分)",
+      "detail_review": "pending (新拆出章节需重新审核)",
+      "split_origin": "原Ch4 L255-end"
+    },
+    "chapter_6": {
+      "note": "原Ch5(供簿)",
       "write": "done",
       "detail_review": "done (9.55, 2 critical fixed: 庚申→庚午 timeline)",
       "quality_review": "done (9.53, 追读指数8.50, passed)",
       "de_ai": "done (ai_score 2.5→1.2, 3 changes)",
       "final_review": "done (9.59, approved)"
     },
-    "chapter_6": {
+    "chapter_7": {
+      "note": "原Ch6(灯市)",
       "write": "done (初稿完成, ~2500字, 6-beat结构)",
       "detail_review": "done (9.55, 1 critical fixed: 老灯口袋过渡段)",
       "quality_review": "done (9.50, 追读指数8.93, passed)",
       "de_ai": "done (ai_score 1.1→0.8, 2 changes)",
       "final_review": "done (9.58, approved)"
     },
-    "chapter_7": {
+    "chapter_8": {
+      "note": "原Ch7(夹层)",
       "write": "done (初稿完成, ~2500字, 6-beat结构, 捡漏beat)",
       "detail_review": "done (9.55, 2 critical fixed: 时间线矛盾+泥灯年代错误, 2 major fixed: 符号重复+缺少长段)",
       "quality_review": "done (9.51, 追读8.59, 弃书率11.4%, 期待感双高型, 25项量化24pass)",
       "de_ai": "done (ai_score 0.81→0.75, 2处微调: de_density+character_telling)",
-      "style_rewrite": "done (3段体验模式改写: 开篇呼吸感+反思段镜头链+结尾情绪克制. 7条文笔质感法则已注入3个技能文件)",
-      "ch1_6_retro_rewrite": "done (18段回溯改写: Ch1-6每章3段体验模式, 全部同步到全局文件)"
+      "style_rewrite": "done (3段体验模式改写+质检修复10处)",
+      "ch1_6_retro_rewrite": "done (18段回溯改写+10处质检修复, 全部同步到全局文件)"
     },
-    "next_step": "final-reviewer Ch7"
+    "next_step": "final-reviewer Ch8"
   },
   "rewrite_count": {},
   "errors": [],
-  "last_updated": "2026-07-24T15:40:00+08:00"
+  "last_updated": "2026-07-24T16:30:00+08:00"
 }

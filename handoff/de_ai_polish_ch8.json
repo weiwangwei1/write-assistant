@@ -1,0 +1,53 @@
+{
+  "card_type": "de_ai_polish",
+  "timestamp": "2026-07-24T15:30:00+08:00",
+  "from_agent": "de-ai-processor",
+  "to_agent": "final-reviewer",
+  "status": "ready",
+  "content": {
+    "chapter_num": 7,
+    "title": "夹层",
+    "word_count": 2750,
+    "ai_score_before": 0.81,
+    "ai_score_after": 0.75,
+    "changes_made": [
+      {
+        "category": "de_density",
+        "location": "第12行",
+        "original": "泥灯安安静静地蹲在桌面上",
+        "polished": "泥灯安安静静蹲在桌面上",
+        "reason": "删除冗余'地'字——AABB叠词后接动词不需'地'连接"
+      },
+      {
+        "category": "character_telling",
+        "location": "第162行",
+        "original": "许愿小心翼翼地把布展开",
+        "polished": "许愿屏住呼吸，把布展开",
+        "reason": "'小心翼翼'是性格标签直说→改为具体生理动作'屏住呼吸'展示紧张感"
+      }
+    ],
+    "stats": {
+      "total_changes": 2,
+      "by_category": {
+        "de_density": 1,
+        "character_telling": 1
+      }
+    },
+    "detection_summary": {
+      "sentence_uniformity": "pass - 句式长短交替好，有碎片句和长段对比",
+      "de_density": "pass - 1.67次/100字，远低于5次阈值",
+      "emotion_telling": "pass - 0处情绪直说",
+      "formal_transition": "pass - 仅用'但'做自然转折，无'然而/因此/于是'",
+      "word_repetition": "pass - '庚午年'等重复为刻意强调",
+      "dialogue_written": "pass - 老灯对话极简口语化（'不问'/'能供'），许愿对话自然",
+      "four_char_idiom": "pass - 0处四字词组",
+      "precise_number": "pass - 数字均为剧情需要（价格/年代/位置）",
+      "paragraph_uniformity": "pass - 长短段悬殊，有1字成段也有200字长段",
+      "over_connection": "pass - 意合为主，靠动作自然过渡",
+      "summary_ending": "pass - 以疑问结尾，无总结句",
+      "over_describe": "pass - 每场景1-2个感官细节",
+      "character_telling": "pass - 角色通过行为展示（'掏钱拿货走人'展示果断）"
+    },
+    "note": "本章AI痕迹极低（0.81→0.75），写作时已充分应用去AI化技巧。仅2处微调。"
+  }
+}
