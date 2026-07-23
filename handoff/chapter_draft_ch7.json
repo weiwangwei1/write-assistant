@@ -1,0 +1,98 @@
+{
+  "card_type": "draft",
+  "timestamp": "2026-07-24T14:00:00+08:00",
+  "from_agent": "chapter-writer",
+  "to_agent": "detail-reviewer",
+  "content": {
+    "chapter_num": 7,
+    "title": "夹层",
+    "word_count": 2500,
+    "plot_summary": "许愿回到铺子发现泥灯底符号与供簿封面一致，老灯拒绝回答。次日再赴灯市口为大供日寻找供品，盲眼老人以一字'嗯'确认。鳞纹'认'热引导许愿在第三排发现铜祭器，黄纸条标注'庚午年秋'。许愿三十文买下铜祭器，回铺后发现敲击声闷——空心。找到暗扣打开夹层，发现暗红旧布上绣有角纹。老灯以第三种声音说'它们是老夫的'。三样庚午年之物齐聚供桌，许愿追问六十年前真相未果。",
+    "key_events": [
+      "泥灯底符号与供簿封面完全一致——爷爷与灯市口的关联浮现",
+      "老灯拒绝回答符号问题（'不问'）",
+      "盲眼老人以一字'嗯'确认许愿身份",
+      "鳞纹'认'热引导发现铜祭器（庚午年秋）",
+      "铜祭器夹层中发现角纹旧布",
+      "老灯第三种声音出现：'它们是老夫的'",
+      "三样庚午年之物齐聚，60年谜团加深"
+    ],
+    "beat_breakdown": {
+      "beat_1": "回归——光点飞回桌底，老灯'舒服'的低哼（承接Ch6结尾）",
+      "beat_2": "符号比对——泥灯底符号=供簿封面，老灯'不问'（信息悬念加深）",
+      "beat_3": "再赴灯市口——大供日寻供品，盲眼老人'嗯'（身份确认线推进）",
+      "beat_4": "捡漏——鳞纹'认'热，铜祭器庚午年秋，三十文买入（爽点：捡漏）",
+      "beat_5": "发现夹层——空心声→暗扣→夹层→角纹旧布（核心beat，捡漏高潮）",
+      "beat_6": "老灯第三种声音——'它们是老夫的'+许愿追问（悬念钩子）"
+    },
+    "opening_type": "动作开头（'许愿推开后门的时候，口袋里的光点已经自己飞了出去。'）",
+    "ending_type": "期待感（'爷爷。你到底在找什么？'）",
+    "opening_diversity_check": "Ch6=氛围开头 → Ch7=动作开头 ✓（不重复）",
+    "ending_diversity_check": "Ch6=信息揭示 → Ch7=期待感 ✓（不重复）",
+    "naming_check": {
+      "new_concepts_this_chapter": 0,
+      "note": "角纹为龙纹五系之一，已在Ch1-3展示，本章为首次'出现实物'而非新概念命名。夹层/暗扣为日常用语非设定概念。",
+      "vol1_total_used": 3,
+      "vol1_budget": 5,
+      "remaining_budget": 2
+    },
+    "foreshadowing": {
+      "planted": [
+        {
+          "id": "F011",
+          "content": "泥灯底符号=供簿封面符号（圆圈内一盏灯，灯芯向左歪）——爷爷与灯市口的关联",
+          "reveal_target": "Vol2 爷爷线",
+          "explicitness": "半显（符号比对明确展示，但关联未解释）"
+        },
+        {
+          "id": "F012",
+          "content": "老灯第三种声音——占有式'它们是老夫的'——老灯记忆碎片与身份线索",
+          "reveal_target": "Vol4-5 老灯暗线",
+          "explicitness": "半隐（声音变化明显但含义未解释）"
+        },
+        {
+          "id": "F013",
+          "content": "盲眼老人'嗯'——对许愿身份的确认式回应",
+          "reveal_target": "Vol2 灯市线",
+          "explicitness": "隐（单字回应，读者可能忽略）"
+        }
+      ],
+      "advanced": [
+        "F006（庚午年谜团）——从'泥灯来自庚午年'升级为'三样东西全来自庚午年'",
+        "F008（老灯与灯市口的关系）——老灯对灯市口'歇'+盲眼老人'嗯'，关联加深"
+      ],
+      "information_gap_tracking": {
+        "gap": "许愿对盲眼老人隐瞒供簿信息（Ch6建立）",
+        "status": "本章未推进解决，盲眼老人仅以'嗯'回应",
+        "deadline": "Ch9前需给出内心挣扎/寻找告知时机/告知/被暴露之一",
+        "remaining_chapters": 2
+      }
+    },
+    "active_initiative_check": {
+      "has_active_initiative": true,
+      "description": "许愿主动再赴灯市口寻找供品（主动行动），主动检查铜祭器发现夹层（主动探索）",
+      "beat_count": 2
+    },
+    "escalation_check": {
+      "has_concrete_escalation": true,
+      "description": "鳞纹独立使用——许愿无需老灯跟随，靠掌心鳞纹'认'热独立捡漏（Ch5被动感知→Ch7主动利用）"
+    },
+    "rhythm_check": {
+      "has_long_paragraph": false,
+      "note": "本章以短句为主，节奏紧凑。需在detail-reviewer中检查是否需要补充≥200字长段做节奏对比。",
+      "longest_paragraph_chars": 80
+    },
+    "character_detail_check": {
+      "xu_yuan": "主动探索者形象——不再等老灯指引，独立用鳞纹捡漏。算账习惯延续（三十文不还价，快买快走）",
+      "lao_deng": "三种声音体系建立——闷（舒适）、清醒（判断）、第三种（占有/记忆碎片）。'不问'=回避，'能供'=判断，'它们是老夫的'=记忆涌现",
+      "blind_elder": "一字'嗯'——极简但有力的存在感，与Ch6的沉默形成递进"
+    },
+    "tanghulu_unit": {
+      "unit_id": 2,
+      "unit_title": "灯市淘宝",
+      "unit_chapters": "6-12",
+      "ch7_beat": "捡漏beat(发现夹层祭器)",
+      "next_ch_beat": "Ch8: 开奖beat(大供得角纹)"
+    }
+  }
+}

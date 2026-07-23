@@ -1,0 +1,69 @@
+{
+  "card_type": "de_ai_polish",
+  "timestamp": "2026-07-24T10:30:00Z",
+  "from_agent": "de-ai-processor",
+  "to_agent": "final-reviewer",
+  "status": "ready",
+  "content": {
+    "chapter_num": 4,
+    "title": "三文赌局",
+    "word_count": 2985,
+    "ai_score_before": 3.0,
+    "ai_score_after": 1.3,
+    "changes_made": [
+      {
+        "category": "emotion_telling",
+        "location": "第91行",
+        "original": "但左手不自觉攥了一下拳",
+        "polished": "但左手攥了一下拳",
+        "reason": "删除'不自觉'——动作本身已暗示无意识，'不自觉'是情绪直说"
+      },
+      {
+        "category": "four_char_idiom",
+        "location": "第105行",
+        "original": "不急不缓，隔着十几步。",
+        "polished": "隔着十几步。",
+        "reason": "删除四字词组'不急不缓'——距离已暗示节奏，冗余"
+      },
+      {
+        "category": "four_char_idiom",
+        "location": "第171行",
+        "original": "语气不紧不慢",
+        "polished": "语气平平的",
+        "reason": "四字词组→口语化表达，更符合网文叙述腔调"
+      },
+      {
+        "category": "precise_number",
+        "location": "第373行",
+        "original": "只剩一种灰扑扑的疲惫",
+        "polished": "只剩灰扑扑的疲惫",
+        "reason": "删除多余量词'一种'——AI习惯性添加分类词，人类口语省略"
+      },
+      {
+        "category": "formal_transition",
+        "location": "第441行",
+        "original": "走到肩膀停住了——然后折回来",
+        "polished": "走到肩膀停住了——折回来",
+        "reason": "删除转折词'然后'——破折号已表转折，中文意合无需显式连接"
+      },
+      {
+        "category": "word_repetition",
+        "location": "第471行",
+        "original": "跟他掌心的鳞纹同频了",
+        "polished": "跟他掌心的鳞纹对上了",
+        "reason": "'同频'为现代技术词汇，不符合玄幻世界观语境；改为口语'对上了'"
+      }
+    ],
+    "stats": {
+      "total_changes": 6,
+      "by_category": {
+        "emotion_telling": 1,
+        "four_char_idiom": 2,
+        "precise_number": 1,
+        "formal_transition": 1,
+        "word_repetition": 1
+      }
+    },
+    "notes": "第4章整体AI痕迹较低（before 3.0/10），作者文风已具备较好的口语感和碎片化表达。主要问题集中在少量四字词组和个别现代技术词汇。对话口语化程度高，角色语言指纹清晰（霍东来的圆滑市侩、蓝袍子的公事公办、许愿的痞气精明）。段落节奏长短交替自然，无需大改。"
+  }
+}

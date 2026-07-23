@@ -1,0 +1,66 @@
+{
+  "card_type": "de_ai_polish",
+  "timestamp": "2026-07-24T11:35:00+08:00",
+  "from_agent": "de-ai-processor",
+  "to_agent": "final-reviewer",
+  "status": "ready",
+  "content": {
+    "chapter_num": 5,
+    "title": "供簿",
+    "word_count_before": 2870,
+    "word_count_after": 2845,
+    "word_count_delta": -25,
+    "word_count_delta_percent": "-0.87%",
+    "ai_score_before": 2.5,
+    "ai_score_after": 1.2,
+    "ai_score_target": 2.0,
+    "ai_score_passed": true,
+    "changes_made": [
+      {
+        "category": "precise_number",
+        "location": "第15行",
+        "original": "不是昨晚那种极轻的颤——是一种均匀的、持续的、像心跳一样的颤。",
+        "polished": "不是昨晚那种极轻的颤——是均匀的、持续的、像心跳一样的颤。",
+        "reason": "删除不必要分类词'一种'——中文口语中'是均匀的'已足够，'一种'是AI常见的冗余分类倾向"
+      },
+      {
+        "category": "word_repetition",
+        "location": "第121行",
+        "original": "每一笔都是三文五文的旧物，每一笔都记了纹路和品级。",
+        "polished": "每一笔都是三文五文的旧物，记了纹路和品级。",
+        "reason": "'每一笔'500字内重复2次，第二次省略主语——上文已建立'每一笔'语境，下文直接承接更自然"
+      },
+      {
+        "category": "summary_ending",
+        "location": "第351行",
+        "original": "许愿明白了。\n\n又一份供品。",
+        "polished": "又一份供品。",
+        "reason": "'许愿明白了'是Tell式总结——直接告诉读者角色理解了。删除后'又一份供品'独立成句，读者通过许愿的内心独白（将旧灯与供品机制关联）自行感知他已理解，Show代替Tell"
+      }
+    ],
+    "stats": {
+      "total_changes": 3,
+      "by_category": {
+        "precise_number": 1,
+        "word_repetition": 1,
+        "summary_ending": 1
+      }
+    },
+    "scan_summary": {
+      "sentence_uniformity": "通过：长短句交替良好，碎片句（'裂缝宽了。''粗糙。''半个字。''装睡。'）与长段（供簿记录描述）形成节奏对比",
+      "de_density": "通过：'的'字密度约3次/100字，在合理范围内",
+      "emotion_telling": "通过：无'感到/觉得/不禁/忍不住'等情绪直说关键词，情绪均通过动作暗示（'手停了''攥紧了供簿''手指收紧了'）",
+      "formal_transition": "通过：无'然而/不过/因此/于是/然后'等书面转折词，全部用语义自然衔接",
+      "word_repetition": "已修复1处（'每一笔'重复），其余无近距离重复",
+      "dialogue_written": "通过：许愿短句惜字（'嗯''又？''行'），老灯碎片式（'他的东西。''没走。只是出不来了。'），陈婶市井口语（'你爷爷嘴严''说不上来'）——遮住名字可分辨",
+      "four_char_idiom": "通过：全章零四字成语，均用具体动作/感官替代",
+      "paragraph_uniformity": "通过：段落长短悬殊（1字段到200字段），呼吸感强",
+      "precise_number": "已修复1处（'一种'），其余数字（六十年/一千四百多笔/二十年/七息）均为剧情必要或带'多'字模糊化",
+      "over_connection": "通过：句子间靠语义衔接，无过度连接词",
+      "summary_ending": "已修复1处（'许愿明白了'），其余无'他意识到/这说明'等总结句",
+      "over_describe": "通过：每场景1-2种感官，无面面俱到",
+      "character_telling": "通过：全章Show无Tell——爷爷性格通过笔迹特征（'撇往上翘像鱼尾巴'）和供簿记录展示，非旁白标签"
+    },
+    "chapter_highlight": "本章AI痕迹极低（before仅2.5），是5章中AI感最低的章节。'像鱼的尾巴'笔迹比喻、'不是弹回来的——是被轻轻推回来的'拟人化描写、老灯'装睡→含糊→清醒'三阶段语言变化，均为高度人类化写作。3处修复均为micro-level优化。"
+  }
+}

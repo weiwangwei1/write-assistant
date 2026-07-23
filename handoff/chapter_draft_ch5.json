@@ -1,0 +1,40 @@
+{
+  "card_type": "draft",
+  "timestamp": "2026-07-24T11:20:00+08:00",
+  "from_agent": "chapter-writer",
+  "to_agent": "detail-reviewer",
+  "status": "ready",
+  "content": {
+    "chapter_num": 5,
+    "title": "供簿",
+    "beat_sheet": {
+      "beats": [
+        {"beat": 1, "scene": "供桌前（许愿独处）", "action": "许愿一夜未睡，发现裂缝变宽，龙鳞如心跳般每七息一颤", "purpose": "悬念开头+承接Ch4", "word_budget": 400},
+        {"beat": 2, "scene": "供桌前（许愿独处）", "action": "刷开刻痕发现'守'字，主动出击去库房找答案", "purpose": "主动出击+铺垫", "word_budget": 350},
+        {"beat": 3, "scene": "库房暗格（许愿独处）", "action": "发现暗格中的供簿，翻开看爷爷六十年手记", "purpose": "信息释放+核心beat", "word_budget": 600},
+        {"beat": 4, "scene": "供桌前（许愿+老灯）", "action": "供簿上供桌被拒绝推回，老灯说'他自己收走了'", "purpose": "反预期+伏笔", "word_budget": 400},
+        {"beat": 5, "scene": "铺门口（许愿+陈婶）", "action": "陈婶送早饭，透露爷爷每年冬至在供桌前坐一夜，半夜有人对话", "purpose": "社交确认+外部视角", "word_budget": 450},
+        {"beat": 6, "scene": "供桌前（许愿+老灯）", "action": "供簿涂掉处揭示'灯守龙'三字，老灯清醒说'答案在底下'，要求带一盏旧灯", "purpose": "信息揭示+钩子+期待感", "word_budget": 400}
+      ],
+      "shuang_points": ["供簿暗格发现——六十年手记的悬念快感", "'灯守龙'三字揭示——认知翻转的智力快感"],
+      "foreshadowing": [
+        {"id": "F003", "action": "埋设", "location": "beat 1", "detail": "裂缝变宽——供桌在变化"},
+        {"id": "F004", "action": "半揭", "location": "beat 3", "detail": "供簿最后三页：'灯弱了''它替我挡了一次'——爷爷与供桌的关系"},
+        {"id": "F005", "action": "半揭", "location": "beat 6", "detail": "'灯守龙'三字——暗示老灯身份，但主角未完全理解"},
+        {"id": "F006", "action": "埋设", "location": "beat 6", "detail": "老灯要求带旧灯——暗示火种回收暗线"}
+      ],
+      "hook": "对话结尾+期待感——老灯要求带旧灯，许愿推门出发去灯市口",
+      "estimated_word_count": 2850
+    },
+    "word_count": 2870,
+    "chapter_ending_imagery": "晨光照在怀里的供簿上，桌底叹息如久候得偿",
+    "key_events": [
+      "许愿发现供桌裂缝变宽，龙鳞如心跳每七息一颤",
+      "在库房暗格中发现爷爷的供簿（六十年献祭手记）",
+      "供簿上供桌被拒绝——老灯说'他自己收走了'",
+      "陈婶透露爷爷每年冬至在供桌前坐一夜，半夜有人对话",
+      "供簿涂掉处揭示'灯守龙'三字——灯在守龙，非人在守灯",
+      "老灯要求许愿从灯市口带一盏旧灯回来"
+    ]
+  }
+}
