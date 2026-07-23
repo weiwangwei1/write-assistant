@@ -1,0 +1,65 @@
+{
+  "updated": "2026-07-19",
+  "quarter": "Q3_2026",
+  "version": "v1.0",
+  "description": "网络梗/流行语库，供 chapter-writer 调用、quality-reviewer 审核时效性。每季度更新。",
+  "memes": {
+    "2026_opening": {
+      "label": "2026开年热梗",
+      "items": [
+        {"meme": "爱你老己", "usage": "温柔自愈，可用于角色自我和解", "example_scene": "主角受伤后自嘲"},
+        {"meme": "入魅", "usage": "彻底入魅了，可用于角色对某事物着迷", "example_scene": "主角发现规则漏洞时"},
+        {"meme": "地球online 2.0", "usage": "自嘲现实如游戏，可用于副本吐槽", "example_scene": "主角进入副本时的吐槽"}
+      ]
+    },
+    "2025_top10_language": {
+      "label": "2025年度十大流行语（国家语言资源版）",
+      "items": [
+        {"meme": "班味", "usage": "疲惫丧感，可用于角色状态描写", "example_scene": "队友连续副本后的疲惫"},
+        {"meme": "活人感", "usage": "真实感，可用于'这楼里就你有活人感'", "example_scene": "生死错位的吐槽"},
+        {"meme": "赛博对账", "usage": "网络核对，可用于信息推理", "example_scene": "主角核对线索时"},
+        {"meme": "XX基础&XX不基础", "usage": "'活命基础，优雅不基础'", "example_scene": "主角吐槽副本生存"},
+        {"meme": "从从容容/游刃有余/匆匆忙忙/连滚带爬", "usage": "人生状态光谱，可用于角色群像", "example_scene": "多角色应对危机的对比"},
+        {"meme": "韧性", "usage": "恢复力，可用于角色成长", "example_scene": "主角受伤后恢复"},
+        {"meme": "数字游民", "usage": "远程工作者，可用于角色背景", "example_scene": "队友身份设定"},
+        {"meme": "谷子", "usage": "二次元周边，可用于角色爱好（反差萌）", "example_scene": "硬汉队友私下收集谷子"}
+      ]
+    },
+    "2025_top10_internet": {
+      "label": "2025年度十大网络流行语",
+      "items": [
+        {"meme": "DeepSeek", "usage": "科技锐度，可用于智斗推理", "example_scene": "主角深度分析时"},
+        {"meme": "敬自己一杯", "usage": "生活温情，可用于角色独处", "example_scene": "副本结束后的放松"},
+        {"meme": "助我破鼎", "usage": "奋斗姿态，可用于燃点台词", "example_scene": "主角破局前的决心"},
+        {"meme": "千百次练习只为这一刻", "usage": "高燃台词，可用于破局瞬间", "example_scene": "主角执行布局时"},
+        {"meme": "情绪价值", "usage": "情感满足，可用于角色互动", "example_scene": "队友互相打气"},
+        {"meme": "如何呢又能怎", "usage": "自嘲躺平，可用于缓冲推理段", "example_scene": "队友听不懂推理时的吐槽"},
+        {"meme": "村咖", "usage": "田园诗意，可用于日常反差", "example_scene": "副本间的休整时光"},
+        {"meme": "来财", "usage": "发财，可用于贪婪型角色", "example_scene": "队友看到奖励时"},
+        {"meme": "浪浪山小妖怪", "usage": "小人物奋斗，可用于主角自嘲", "example_scene": "主角面对强敌时"}
+      ]
+    }
+  },
+  "usage_rules": {
+    "max_per_chapter": 3,
+    "max_age_months": 12,
+    "serious_scene_ban": true,
+    "serious_scene_definition": "破局高潮、情感高潮、角色死亡、重要真相揭露",
+    "must_serve_plot_or_character": true,
+    "ban_list": [
+      "收水电费找死人（民间笑话变体，偏旧）",
+      "YYDS（2021年，过时）",
+      "绝绝子（2021年，过时）",
+      "栓Q（2022年，过时）"
+    ]
+  },
+  "update_schedule": {
+    "frequency": "quarterly",
+    "next_update": "2026-10-01",
+    "sources": [
+      "国家语言资源监测与研究中心年度十大流行语",
+      "人民日报年度十大网络流行语",
+      "知乎/微博/小红书热榜"
+    ]
+  }
+}

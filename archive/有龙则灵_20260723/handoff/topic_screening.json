@@ -1,0 +1,39 @@
+{
+  "card_type": "topic_screening",
+  "timestamp": "2026-07-23T19:00:00Z",
+  "from_agent": "topic-screener",
+  "to_agent": "plot-architect",
+  "status": "pass",
+  "concept": "把东西摆上供桌献祭给一条沉睡的古龙，破铜烂铁也能换回可以镶进身体的龙纹。祖传供桌+守灯人传承，遗产继承式。明基调轻松幽默，献祭返利1步S级爽感。",
+  "dimensions": [
+    { "name": "题材耐久度", "score": "pass", "detail": "场景≥15种：吹灯巷/灯市/神殿开坛日/鬼市/界门猎场/位面碎片/灯下黑/万界关市等；情感基调4种：爽/笑/燃/暖" },
+    { "name": "爽感路径", "score": "pass", "detail": "S级1步：献祭→返利得龙纹，即时正反馈" },
+    { "name": "暗基调补偿", "score": "pass", "detail": "明基调，灯熄龙囚只做悬念背景板，无需补偿检测" },
+    { "name": "认知门槛", "score": "pass", "detail": "前3章核心概念=献祭返利+龙纹镶嵌，共2个。前30章新造名词≤5个" },
+    { "name": "模式匹配", "score": "pass", "detail": "不匹配任何失败模式；匹配成功模式1：简单设定+强即时反馈" },
+    { "name": "平台匹配", "score": "pass", "detail": "玄幻升级·位面流·轻松，番茄主流类目；神明规则博弈当红" }
+  ],
+  "combination_risks": [],
+  "pattern_match": {
+    "matched_failure": null,
+    "matched_success": "简单设定+强即时反馈",
+    "novelty_assessment": "创新点：献祭五规（挑食机制创造捡漏/鉴宝/探险场景）+老灯人格化+位面暗线后置升级线"
+  },
+  "user_preference_calibration": {
+    "dark_tone_history": 4,
+    "dark_tone_warning": false,
+    "note": "明基调主题，无暗基调风险。书名《有龙则灵》取自刘禹锡《陋室铭》，典故+网感双关"
+  },
+  "verdict": "pass",
+  "adjustment_suggestions": [],
+  "next_action": "进入 plot-architect",
+  "core_commitments": [
+    "爽感路径保持1步（献祭→返利得龙纹）",
+    "前3章只释放2个核心概念（献祭返利+龙纹镶嵌）",
+    "明基调——灯熄龙囚只做悬念背景板",
+    "金手指=祖传供桌+守灯人传承，遗产继承式",
+    "前30章新造专有名词≤5个",
+    "势力仅三家（神殿/世家/公会）",
+    "取罪恶之城机制（献祭返利/构装→龙纹/位面战争→界门/宏大世界观），删红线项（悲剧美学/名词海/血统宿命）"
+  ]
+}

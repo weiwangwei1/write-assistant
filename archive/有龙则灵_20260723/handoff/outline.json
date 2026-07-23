@@ -1,0 +1,17 @@
+{
+  "card_type": "outline",
+  "timestamp": "2026-07-23T19:30:00Z",
+  "from_agent": "plot-architect",
+  "to_agent": "title-reviewer",
+  "status": "ready",
+  "outline_ref": "memory/outline.json",
+  "content": {
+    "title": "有龙则灵",
+    "genre": "玄幻/位面流/轻松",
+    "total_chapters": 330,
+    "total_volumes": 6,
+    "main_plot_line": "许愿从吹灯巷祭品铺小东家起步，以祖传供桌的公正返利为根基，在神殿/世家/公会的夹缝中崛起，逐步揭开长明灯熄灭的真相",
+    "key_roles_needed": ["许愿(主角)", "老灯(古龙)", "豆灯(萌宠)", "温故(终极反派)", "霍东来(隐藏反派)", "封九霄(灰色角色)"],
+    "note": "大纲已就绪，请先进行书名审核(title-reviewer)，然后质疑迭代(skeptic)、验收定稿(outline-editor)、角色设计(character-designer)，最终完成黄金三章撰写"
+  }
+}

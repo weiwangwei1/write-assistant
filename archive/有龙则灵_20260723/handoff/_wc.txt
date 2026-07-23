@@ -1,0 +1,10 @@
+chapter_001.txt: 2760
+chapter_002.txt: 3565
+chapter_003.txt: 2550
+chapter_004.txt: 2489
+chapter_005.txt: 2013
+chapter_006.txt: 2551
+chapter_007.txt: 2524
+chapter_008.txt: 2066
+chapter_009.txt: 2489
+chapter_010.txt: 2891

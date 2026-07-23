@@ -1,0 +1,58 @@
+{
+  "title": "有龙则灵",
+  "genre": "玄幻/位面流/轻松",
+  "author": "AI写作团队",
+  "total_chapters": 330,
+  "total_volumes": 6,
+  "daily_target_chapters": 2,
+  "daily_target_words": 8000,
+  "chapter_word_count": 3000,
+  "platform": "fanqie",
+  "style": "快节奏爽文/轻松幽默",
+  "framework_version": "1.0",
+  "project_status": "init",
+  "topic_screening": {
+    "verdict": "pass",
+    "confidence": "高",
+    "core_commitments": [
+      "爽感路径保持1步（献祭→返利得龙纹，读者即时获得正反馈）",
+      "前3章只释放2个核心概念（献祭返利+龙纹镶嵌），不引入第三概念",
+      "明基调——灯熄龙囚只做悬念背景板，每章保留非压抑情绪释放点（老灯毒舌/豆灯奶凶/老街烟火）",
+      "金手指=祖传供桌+守灯人传承，遗产继承式意外获得，非天生外挂",
+      "前30章新造专有名词≤5个（千灯城/吹灯巷/神殿/界门/长明灯）",
+      "势力仅三家（神殿/世家/公会），全程不开第四家"
+    ]
+  },
+  "volume_plan": [
+    { "vol": 1, "title": "吹灯巷的供桌", "chapters": "1-30", "summary": "觉醒立足老街，清算喽啰。许愿继承供桌，献祭返利得龙纹，掀翻霍家清街人马，建立供桌公道的名声" },
+    { "vol": 2, "title": "灯市的规矩", "chapters": "31-70", "summary": "捡漏扬名，公会博弈，温故'赏识'。灯市淘宝大供，角纹觉醒，拒绝公会招揽" },
+    { "vol": 3, "title": "界门猎场", "chapters": "71-110", "summary": "联合散户斗霍氏垄断。界门猎场位面碎片探索，灯下黑封印爪痕伏笔" },
+    { "vol": 4, "title": "灯下黑", "chapters": "111-160", "summary": "探索灯座，祭坛初开，跨界小远征。Q4禁区兑现，爷爷与温故同祭残影" },
+    { "vol": 5, "title": "上一次献祭", "chapters": "161-220", "summary": "二十年前真相，温故揭面，决战。私改祭品、囚龙篡火真相全揭，爷爷未死" },
+    { "vol": 6, "title": "万界来朝", "chapters": "221-330", "summary": "祭坛修复，万界来朝，老灯因果。暖收：灵的不是龙，是人间烟火" }
+  ],
+  "core_setting": {
+    "one_liner": "把东西摆上供桌献祭给一条沉睡的古龙，破铜烂铁也能换回可以镶进身体的龙纹",
+    "golden_finger": "祖传供桌+守灯人传承契约",
+    "shuang_path": "S级1步：献祭→返利",
+    "world_view": "长明界——太古有一盏长明灯照亮万界，守灯的是一条古龙。后来灯熄龙囚诸神分火，从此世人献祭不再公道",
+    "power_system": "龙纹五系：鳞(防御)、爪(攻击)、角(元素)、须(感知)、睛(精神)，九品至一品，纹王可敌百不敌军阵",
+    "sacrifice_rules": "五规：挑食(看来历不看市价)、消化期(成长节奏阀)、防伪(赝品吐出+毒舌)、手气(初一十五大供爆大奖)、喂养(龙纹可升品成本递增)"
+  },
+  "imagery_tracker": {
+    "tracked_imagery": []
+  },
+  "human_checkpoint": {
+    "outline_finalized": true,
+    "character_cards": true,
+    "golden_chapters": true,
+    "volume_climax": true,
+    "foreshadowing_reveal": true
+  },
+  "production_schedule": {
+    "start_date": "2026-07-23",
+    "daily_chapters": 2,
+    "planned_total_days": 165,
+    "actual_chapters_done": 0
+  }
+}
