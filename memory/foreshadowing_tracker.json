@@ -1,243 +1,262 @@
 {
-  "project": "他从门后来",
-  "last_updated_chapter": 3,
-  "last_updated_at": "2026-07-23T09:00:00Z",
+  "project": "有龙则灵",
+  "last_updated_chapter": 10,
+  "last_updated_at": "2026-07-24T22:00:00+08:00",
   "foreshadowings": [
     {
       "id": "F001",
-      "title": "门簿规矩——爷爷守门四十年的完整规则体系",
+      "title": "泥灯符号=供簿符号——同一出处的印记",
       "plan_from_outline": {
-        "plant_chapter": 1,
-        "small_clue_chapter": 5,
-        "half_reveal_chapter": 30,
-        "full_reveal_chapter": 60
+        "plant_chapter": 6,
+        "small_clue_chapter": 7,
+        "half_reveal_chapter": 9,
+        "full_reveal_chapter": 65
       },
       "actual_progress": [
-        {
-          "chapter": 1,
-          "action": "planted",
-          "detail": "门簿37页记录+来客说'你爷爷没教过你规矩'",
-          "status": "completed"
-        },
-        {
-          "chapter": 2,
-          "action": "deepened",
-          "detail": "翻门簿发现'又印了'记录11次，爷爷40年堵漏真相浮出——门的影响蔓延到水管阀门，爷爷每天检查擦印",
-          "status": "completed"
-        }
+        { "chapter": 6, "action": "planted", "detail": "供簿封面符号(圆圈+灯芯左歪)+泥灯底部同一符号发现", "status": "completed" },
+        { "chapter": 7, "action": "deepened", "detail": "盲眼老人给出泥灯，灯底符号与供簿封面一模一样", "status": "completed" },
+        { "chapter": 9, "action": "half_reveal", "detail": "许愿主动比对确认'同一个符号。同一只手画的'——从符号一致升级为同一出处", "status": "completed" },
+        { "chapter": 10, "action": "deepened", "detail": "盲眼老人确认符号'不是我画的，也不是你爷爷画的'，'画这个记的人六十年前就不在了'——符号来源指向更早的第三者", "status": "completed" }
+      ],
+      "current_status": "half_revealed",
+      "next_milestone": {
+        "chapter": 65,
+        "action": "full_reveal",
+        "detail": "符号背后的完整真相——守灯人传承印记"
+      },
+      "overdue": false,
+      "chapters_since_last_action": 0
+    },
+    {
+      "id": "F002",
+      "title": "60年谜团——庚午年发生了什么",
+      "plan_from_outline": {
+        "plant_chapter": 6,
+        "small_clue_chapter": 7,
+        "half_reveal_chapter": 30,
+        "full_reveal_chapter": 65
+      },
+      "actual_progress": [
+        { "chapter": 6, "action": "planted", "detail": "供簿记录从庚午年正月到下一个庚午年，整60年1440笔。最后三页字迹颤抖+涂掉的内容+灯守龙揭示", "status": "completed" },
+        { "chapter": 7, "action": "small_clue", "detail": "盲眼老人'上一次有灯回来找灯是六十年前''那盏灯没回来，是被带走的'", "status": "completed" },
+        { "chapter": 9, "action": "teased", "detail": "盲眼老人大供日到来，60年谜团即将触碰", "status": "completed" },
+        { "chapter": 10, "action": "progressed", "detail": "盲眼老人揭示'画这个记的人六十年前就不在了'+许愿推理供簿第一笔记录庚午年正月初一=整六十年=六十年前——爷爷是接手的人不是发现的人。60年谜团从'被带走的灯'升级为'守灯人传承链'", "status": "completed" }
+      ],
+      "current_status": "progressing",
+      "next_milestone": {
+        "chapter": 30,
+        "action": "half_reveal",
+        "detail": "庚午年真相半揭——爷爷与温故的关系"
+      },
+      "overdue": false,
+      "chapters_since_last_action": 0
+    },
+    {
+      "id": "F003",
+      "title": "供桌渐进变化——裂缝扩大+龙鳞进化",
+      "plan_from_outline": {
+        "plant_chapter": 3,
+        "small_clue_chapter": 6,
+        "half_reveal_chapter": 26,
+        "full_reveal_chapter": 110
+      },
+      "actual_progress": [
+        { "chapter": 3, "action": "planted", "detail": "供桌裂缝首次出现，渗暗金光", "status": "completed" },
+        { "chapter": 6, "action": "progressed", "detail": "裂缝从细纹扩大到能塞指甲盖，刻痕'守'字发现，龙鳞开始颤(每7息一次像心跳)", "status": "completed" },
+        { "chapter": 8, "action": "progressed", "detail": "裂缝到指甲盖宽，龙鳞持续颤", "status": "completed" },
+        { "chapter": 9, "action": "progressed", "detail": "裂缝宽了一倍，龙鳞从'颤'升级为'跳'(像心脏跳)，新增光晕(暗金色极薄像鳞片在呼吸)，老灯说'它也吃饱了'", "status": "completed" }
+      ],
+      "current_status": "progressing",
+      "next_milestone": {
+        "chapter": 26,
+        "action": "half_reveal",
+        "detail": "供桌变化的本质揭示——囚具还是成长体？"
+      },
+      "overdue": false,
+      "chapters_since_last_action": 0
+    },
+    {
+      "id": "F004",
+      "title": "老灯声音进化——从闷到第四种",
+      "plan_from_outline": {
+        "plant_chapter": 6,
+        "small_clue_chapter": 8,
+        "half_reveal_chapter": 30,
+        "full_reveal_chapter": 300
+      },
+      "actual_progress": [
+        { "chapter": 6, "action": "planted", "detail": "老灯两种声音：闷(犯困)和清醒(罕见)", "status": "completed" },
+        { "chapter": 8, "action": "small_clue", "detail": "第三种声音出现——占有欲'它们是老夫的'", "status": "completed" },
+        { "chapter": 9, "action": "deepened", "detail": "第四种声音出现——盲眼老人到来时的警觉/恐惧'来了'。加上得意(角纹获得时)。声音类型已达4种", "status": "completed" }
+      ],
+      "current_status": "small_clue",
+      "next_milestone": {
+        "chapter": 30,
+        "action": "half_reveal",
+        "detail": "老灯对盲眼老人的认知——暗示老灯的过去"
+      },
+      "overdue": false,
+      "chapters_since_last_action": 0
+    },
+    {
+      "id": "F005",
+      "title": "爷爷困于供桌——许慎独未死",
+      "plan_from_outline": {
+        "plant_chapter": 6,
+        "small_clue_chapter": 8,
+        "half_reveal_chapter": 65,
+        "full_reveal_chapter": 161
+      },
+      "actual_progress": [
+        { "chapter": 6, "action": "planted", "detail": "老灯说'他还在里头''没走，只是出不来了'。供簿被供桌推回——'他的东西，他自己收走了'", "status": "completed" },
+        { "chapter": 6, "action": "deepened", "detail": "陈婶证词：爷爷冬至夜在供桌前坐整夜+半夜与人对话+失踪前半年不再说话", "status": "completed" },
+        { "chapter": 8, "action": "progressed", "detail": "夹层祭器'被供桌收回去了'——暗示爷爷仍在主动收东西", "status": "completed" }
       ],
       "current_status": "planted",
       "next_milestone": {
-        "chapter": 5,
-        "action": "small_clue",
-        "detail": "门簿中某条记录的异常暗示规则细节"
+        "chapter": 65,
+        "action": "half_reveal",
+        "detail": "爷爷供簿绝笔+旧合影碎片"
       },
       "overdue": false,
       "chapters_since_last_action": 1
     },
     {
-      "id": "F002",
-      "title": "门后来客——门后世界的存在与来客类型",
+      "id": "F006",
+      "title": "长明灯+火种——老灯的真实目的",
       "plan_from_outline": {
-        "plant_chapter": 1,
-        "small_clue_chapter": 3,
+        "plant_chapter": 3,
+        "small_clue_chapter": 30,
+        "half_reveal_chapter": 110,
+        "full_reveal_chapter": 300
+      },
+      "actual_progress": [
+        { "chapter": 3, "action": "planted", "detail": "老灯梦中呓语'还差三个……火种还差三个'", "status": "completed" },
+        { "chapter": 10, "action": "teased", "detail": "盲眼老人说'灯市口那盏青灯烧了三百年，油快见底了''你要是有旧灯油——来历深的——给它续上'——长明灯火种线首次被外部角色激活，暗示'旧灯油'与火种的关联", "status": "completed" }
+      ],
+      "current_status": "small_clue",
+      "next_milestone": {
+        "chapter": 30,
+        "action": "half_reveal",
+        "detail": "缴获异界鳞片——老灯失态(火种碎片暗示)"
+      },
+      "overdue": false,
+      "chapters_since_last_action": 0
+    },
+    {
+      "id": "F007",
+      "title": "庚午年连接——三件物品同年的巧合",
+      "plan_from_outline": {
+        "plant_chapter": 4,
+        "small_clue_chapter": 6,
+        "half_reveal_chapter": 65,
+        "full_reveal_chapter": 190
+      },
+      "actual_progress": [
+        { "chapter": 4, "action": "planted", "detail": "墨盒'庚午年春'+短刀'庚午年封'——同年物品", "status": "completed" },
+        { "chapter": 6, "action": "deepened", "detail": "供簿记录从'庚午年正月初一'开始——三件物品均指向庚午年", "status": "completed" }
+      ],
+      "current_status": "planted",
+      "next_milestone": {
+        "chapter": 65,
+        "action": "half_reveal",
+        "detail": "庚午年与爷爷/温故的关系"
+      },
+      "overdue": false,
+      "chapters_since_last_action": 3
+    },
+    {
+      "id": "F008",
+      "title": "盲眼老人身份——灯市口守灯人？",
+      "plan_from_outline": {
+        "plant_chapter": 7,
+        "small_clue_chapter": 9,
         "half_reveal_chapter": 20,
         "full_reveal_chapter": 50
       },
       "actual_progress": [
-        {
-          "chapter": 1,
-          "action": "planted",
-          "detail": "灰白来客被拽出+被门吸回+'他从门后来'",
-          "status": "completed"
-        },
-        {
-          "chapter": 2,
-          "action": "deepened",
-          "detail": "窥探能力觉醒，看到来客执念残影：一个男人反复敲门等待，永远在等一扇不会开的门。来客被'印'在门连接的所有物件上",
-          "status": "completed"
-        },
-        {
-          "chapter": 3,
-          "action": "small_clue",
-          "detail": "不同类型来客出现——黑色无五官蜡团，走管道网络而非敲门。黑色线状物在管道中穿行像蛇。来客类型多样化，暗示门后世界多样性",
-          "status": "completed"
-        }
+        { "chapter": 7, "action": "planted", "detail": "盲眼老人出场：四指/擦灯碗/灯不卖等/六十年前/泥灯比灯市口还老/'那盏灯没回来是被带走的'", "status": "completed" },
+        { "chapter": 9, "action": "small_clue", "detail": "盲眼老人大供日来到许记祭品铺门前——'像一根钉子钉进了地里'。老灯第四种声音(警觉)", "status": "completed" },
+        { "chapter": 10, "action": "deepened", "detail": "盲眼老人进入铺子看供桌('宽了''它还醒着''醒着就好')，揭示与爷爷的关系('你爷爷当年也是先看到了记才问的我')，说'画记的人六十年前就不在了'，临走提'灯油快没了'——身份从'灯市口神秘人'升级为'与守灯人传承相关的知情者'", "status": "completed" }
       ],
-      "current_status": "small_clue",
+      "current_status": "deepening",
       "next_milestone": {
         "chapter": 20,
         "action": "half_reveal",
-        "detail": "来客类型的系统化揭示"
+        "detail": "盲眼老人身份半揭——与守灯人传承的关系"
       },
       "overdue": false,
       "chapters_since_last_action": 0
     },
     {
       "id": "F009",
-      "title": "门债——守门人的绑定代价+门息报酬系统",
+      "title": "铜祭器夹层——角纹的容器",
       "plan_from_outline": {
-        "plant_chapter": 2,
-        "small_clue_chapter": 5,
-        "half_reveal_chapter": 15,
-        "full_reveal_chapter": 40
+        "plant_chapter": 8,
+        "small_clue_chapter": 9,
+        "half_reveal_chapter": 14,
+        "full_reveal_chapter": 30
       },
       "actual_progress": [
-        {
-          "chapter": 1,
-          "action": "planted",
-          "detail": "门债概念脑内浮现+掌心灰纹+不能离开门太久",
-          "status": "completed"
-        },
-        {
-          "chapter": 2,
-          "action": "progressed",
-          "detail": "门债规则初步摸清：3步安全距离，4步以上灰纹发烫提醒。灰纹可压制'印'3秒后反弹更清晰。记账APP记录门债数据",
-          "status": "completed"
-        },
-        {
-          "chapter": 3,
-          "action": "deepened",
-          "detail": "门息系统引入——送回来客本体→门给门息（泥土味+老木头香）→灰纹充电→感知精度提升（模糊→精确三步外）。爷爷40年不只是在堵漏，在积累门息。门权升级链确立：送回→门息→感知增强→更多来客",
-          "status": "completed"
-        }
+        { "chapter": 8, "action": "planted", "detail": "铜祭器夹层发现角纹旧布+老灯认领'它们是老夫的'", "status": "completed" },
+        { "chapter": 9, "action": "resolved", "detail": "角纹布上供→化为光→角纹落许愿后背。铜祭器作为角纹容器功能完成", "status": "completed" }
       ],
-      "current_status": "planted",
-      "next_milestone": {
-        "chapter": 5,
-        "action": "small_clue",
-        "detail": "门息/门债规则的具体测试"
-      },
+      "current_status": "resolved",
+      "next_milestone": null,
       "overdue": false,
       "chapters_since_last_action": 0
     },
     {
-      "id": "F011",
-      "title": "先生伪装——宋叔是门后来者",
+      "id": "F010",
+      "title": "灯守龙——不是人守灯，是灯守龙",
       "plan_from_outline": {
-        "plant_chapter": 1,
-        "small_clue_chapter": 20,
-        "half_reveal_chapter": 50,
-        "full_reveal_chapter": 99
-      },
-      "actual_progress": [
-        {
-          "chapter": 1,
-          "action": "planted",
-          "detail": "宋叔目光停在旧门上+'这门还是老样子'+提到爷爷半夜自言自语",
-          "status": "completed"
-        },
-        {
-          "chapter": 2,
-          "action": "deepened",
-          "detail": "宋叔三异常暴露：看水（像在确认水还是不是水）/尝水（先尝后喝）/问门（你动过没有）。提到爷爷'交代我照顾你'但不提门。脚步声跟昨晚一样轻",
-          "status": "completed"
-        }
-      ],
-      "current_status": "planted",
-      "next_milestone": {
-        "chapter": 20,
-        "action": "small_clue",
-        "detail": "先生月底面色发灰的首次暗示"
-      },
-      "overdue": false,
-      "chapters_since_last_action": 1
-    },
-    {
-      "id": "F012",
-      "title": "门后找出口——门后存在在找别的出口",
-      "plan_from_outline": {
-        "plant_chapter": 2,
+        "plant_chapter": 6,
         "small_clue_chapter": 8,
-        "half_reveal_chapter": 25,
-        "full_reveal_chapter": 55
+        "half_reveal_chapter": 30,
+        "full_reveal_chapter": 190
       },
       "actual_progress": [
-        {
-          "chapter": 2,
-          "action": "planted",
-          "detail": "结尾林深感知到门后有东西在动，不是等着开门的安静，是在找别的出口。门簿记录间隔越来越短——裂缝在变大",
-          "status": "completed"
-        },
-        {
-          "chapter": 3,
-          "action": "progressed",
-          "detail": "来客通过管道网络找到了门以外的出口——管子就是出口。黑色手印从阀门向水管爬，黑色线状物在管道中穿行朝301移动。从'在找'升级为'已找到'",
-          "status": "completed"
-        }
+        { "chapter": 6, "action": "planted", "detail": "供簿涂掉的内容在裂缝光下显现：'灯守龙'——不是'守灯龙'是'灯守龙'。灯在守龙，不是人在守灯", "status": "completed" },
+        { "chapter": 6, "action": "deepened", "detail": "老灯清醒确认'你看到了''答案不在簿子里，在底下'", "status": "completed" }
       ],
       "current_status": "planted",
       "next_milestone": {
-        "chapter": 8,
-        "action": "small_clue",
-        "detail": "门后存在通过其他渠道渗透的迹象（非管道、非门）"
-      },
-      "overdue": false,
-      "chapters_since_last_action": 0
-    },
-    {
-      "id": "F013",
-      "title": "沈鹿铺垫——隔壁301搬来个姑娘",
-      "plan_from_outline": {
-        "plant_chapter": 2,
-        "small_clue_chapter": 3,
-        "half_reveal_chapter": 10,
-        "full_reveal_chapter": 30
-      },
-      "actual_progress": [
-        {
-          "chapter": 2,
-          "action": "planted",
-          "detail": "宋叔离开时随口提到'隔壁301搬来个姑娘，昨天到的，挺安静'。林深思考：是随口说的还是在告诉我什么？",
-          "status": "completed"
-        },
-        {
-          "chapter": 3,
-          "action": "small_clue",
-          "detail": "沈鹿首次正式出场——殡仪馆化妆师，带卤肉饭上门。能看到灰纹和旧门异常颜色（暗示感知能力）。从昨晚起301也有管道异响。与林深产生直接交集",
-          "status": "completed"
-        }
-      ],
-      "current_status": "small_clue",
-      "next_milestone": {
-        "chapter": 10,
+        "chapter": 30,
         "action": "half_reveal",
-        "detail": "沈鹿标记能力/感知能力的系统揭示"
+        "detail": "灯守龙含义半揭——供桌是囚具"
       },
       "overdue": false,
-      "chapters_since_last_action": 0
+      "chapters_since_last_action": 3
+    }
+  ],
+  "information_gaps": [
+    {
+      "id": "IG001",
+      "title": "许愿/盲眼老人——供簿信息差",
+      "planted_chapter": 6,
+      "detail": "许愿知道供簿内容(Ch6发现)，盲眼老人不知道许愿已发现。盲眼老人Ch9末到来",
+      "deadline": "Ch11（3章窗口从Ch9算起，Ch10已部分处理）",
+      "status": "partially_resolved",
+      "resolution_options": ["许愿主动告知", "盲眼老人发现供簿", "许愿内心挣扎后隐瞒", "被动暴露"],
+      "chapters_remaining": 1,
+      "ch10_action": "许愿说漏嘴提到供簿('跟供簿封面上一样')，老人追问'你看了？'，许愿回答'翻了几页'(实际从头翻到尾)。信息差部分暴露——老人知道许愿有供簿且看过，但不知许愿已读完全部内容。许愿主动隐瞒了阅读深度。",
+      "alert": "Ch11须完全解决——老人是否知道许愿读完全部？许愿是否会坦白？"
     },
     {
-      "id": "F014",
-      "title": "沈鹿标记——来客碰了一下就标记了她",
-      "plan_from_outline": {
-        "plant_chapter": 3,
-        "small_clue_chapter": 5,
-        "half_reveal_chapter": 10,
-        "full_reveal_chapter": 30
-      },
-      "actual_progress": [
-        {
-          "chapter": 3,
-          "action": "planted",
-          "detail": "来客退回前碰了沈鹿左臂一下，留下灰色手形印记（与阀门上的一模一样）。灰纹在掌心跳了——门在说'又一个'。林深看到但没告诉沈鹿，谎称'不会'。信息差三层结构建立（读者知/林深知/沈鹿不知）",
-          "status": "completed"
-        }
-      ],
-      "current_status": "planted",
-      "next_milestone": {
-        "chapter": 5,
-        "action": "small_clue",
-        "detail": "沈鹿标记的进一步反应/扩散迹象"
-      },
-      "overdue": false,
-      "chapters_since_last_action": 0
+      "id": "IG002",
+      "title": "许愿/老灯——爷爷在供桌里的具体状态",
+      "planted_chapter": 6,
+      "detail": "老灯知道爷爷困在供桌里(Ch6'他还在里头')，许愿只知'他在里头'但不知具体怎么救/为什么困住",
+      "deadline": "长期线，Vol2+逐步揭示",
+      "status": "active",
+      "chapters_remaining": null,
+      "alert": false
     }
   ],
   "overdue_alerts": [],
   "density_check": {
     "chapters_since_last_foreshadowing_action": 0,
     "alert": false,
-    "note": "Ch3 deepened 4 foreshadowings (F002 small_clue + F009 deepened + F012 progressed + F013 small_clue) + planted 1 new (F014 Shen Lu marked). All 7 foreshadowings active. Density optimal. F002 and F013 reached small_clue milestone."
+    "note": "Ch10激活4条伏笔(F001 deepened + F002 progressed + F006 teased从6章休眠中激活 + F008 deepened)。共10条伏笔线活跃(9活跃+1已解决)。IG001部分解决(许愿说漏嘴提到供簿但隐瞒阅读深度，Ch11须完全解决)。F006(长明灯/火种)通过盲眼老人'灯油'台词成功激活，解除6章休眠警报。"
   }
 }

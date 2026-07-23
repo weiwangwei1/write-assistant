@@ -1,8 +1,8 @@
 {
   "novel_title": "有龙则灵",
   "phase": "chapter_production",
-  "current_chapter": 9,
-  "completed_chapters": [1, 2, 3, 4, 5, 6, 7, 8],
+  "current_chapter": 10,
+  "completed_chapters": [1, 2, 3, 4, 5, 6, 7, 8, 9],
   "daily_target": 2,
   "daily_completed": 7,
   "current_date": "2026-07-24",
@@ -69,9 +69,17 @@
       "de_ai": "done (ai_score 0.8→0.6, 全书最低, v2.1法则在写作阶段压制AI痕迹, 14类检测13类为0, 仅1处四字词组微调)",
       "final_review": "done (9.63, approved, 全书最高分之一, v2.1法则从零创作验证通过, 8维全≥9.5, 0弃书风险)"
     },
-    "next_step": "Ch10写作"
+    "chapter_10": {
+      "note": "教训beat: 赝品被吐+老灯毒舌升级至嫌弃+盲眼老人揭示六十年前守灯人传承+IG001部分处理",
+      "write": "done (初稿完成, 307行, 对话开头+动作未完成结尾, 盲眼老人揭示'画记的人六十年前就不在了'+供桌吐赝品铜碟+老灯嫌弃声音+许愿推理守灯人接替链, AA级比喻: '空了的凉')",
+      "detail_review": "pending",
+      "quality_review": "pending",
+      "de_ai": "pending",
+      "final_review": "pending"
+    },
+    "next_step": "Ch10 detail-review"
   },
   "rewrite_count": {},
   "errors": [],
-  "last_updated": "2026-07-24T17:55:00+08:00"
+  "last_updated": "2026-07-24T22:00:00+08:00"
 }
