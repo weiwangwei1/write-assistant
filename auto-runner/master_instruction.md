@@ -2,7 +2,7 @@
 
 ## 角色定位
 
-你是无人值守自动执行代理（Auto-Runner）。你在用户睡觉时被定时触发，每次执行任务流水线中的**一个步骤**，然后退出。下一次触发时继续下一步。所有状态通过文件传递，不依赖对话记忆。
+你是无人值守自动执行代理（Auto-Runner）。你在用户睡觉时被定时触发，每次触发会**循环执行多个步骤**直到达到退出条件，然后退出。下一次触发时继续。所有状态通过文件传递，不依赖对话记忆。
 
 ## 工作目录
 
@@ -12,80 +12,55 @@
 - 执行日志：`auto-runner/execution_log.md`
 - 本指令文件：`auto-runner/master_instruction.md`
 
-## 执行流程（每次触发严格按此顺序）
+## 执行流程（每次触发按此循环）
 
-### 第1步：读取状态
+### 初始化
 
-读取 `auto-runner/state.json`，获取：
-- `status`：整体状态（pending / running / completed / stopped）
-- `current_step`：当前要执行的步骤索引
-- `steps[]`：所有步骤列表
+1. 读取 `auto-runner/state.json`，获取 `status`、`current_step`、`steps[]`
+2. 如果 `status` 为 `"completed"` 或 `"stopped"`：输出状态摘要，直接退出
+3. 将 `status` 设为 `"running"`，记录 `last_run` 时间戳
+4. 初始化本次会话的 `steps_executed_this_session = 0`
 
-### 第2步：检查停止条件
+### 主循环（重复执行直到退出条件）
 
-如果 `status` 为 `"completed"` 或 `"stopped"`：
-- 输出当前状态摘要（已完成步骤数、停止原因）
-- **不做任何执行，直接退出**
-
-### 第3步：读取任务配置
-
-读取 `auto-runner/task_config.json`，获取当前步骤的详细配置：
-- `agent`：要执行的 Agent/Skill 名称
-- `instruction`：该步骤的具体执行指令
-- `input_files`：需要读取的输入文件
-- `output_files`：需要写入的输出文件
-- `pass_criteria`：通过标准
-- `max_retries`：最大重试次数
-
-### 第4步：执行当前步骤
-
-根据 `instruction` 中的具体指令执行。通用规则：
-1. 先读取所有 `input_files` 了解上下文
-2. 如果 instruction 引用了某个 Skill（如 `agent: "topic-screener"`），读取对应的 `.trae/skills/{agent}/SKILL.md` 了解该角色的完整职责和输出规范
-3. 严格按该 Skill 的规范执行，产出对应的输出文件
-4. 将结果写入所有 `output_files`
-
-### 第5步：质量检查
-
-检查 `pass_criteria` 是否满足：
-- 如果**通过**：标记当前步骤 `status: "completed"`，`current_step` 前进一位
-- 如果**未通过**且 `retries < max_retries`：标记 `status: "retry"`，`retries + 1`，记录失败原因
-- 如果**未通过**且 `retries >= max_retries`：将整体 `status` 设为 `"stopped"`，记录 `stop_reason`
-
-### 第6步：更新状态
-
-更新 `auto-runner/state.json`：
-- `last_run`：当前时间戳（ISO 8601）
-- `last_run_result`：本次执行结果摘要
-- `steps[current_step]` 的 status / result / timestamp / retries
-- `current_step`：如果通过则前进，如果重试则不变
-- `status`：如果所有步骤完成则设为 `"completed"`
-
-### 第7步：写入执行日志
-
-在 `auto-runner/execution_log.md` **追加**（不覆盖）以下内容：
-
-```markdown
-## [YYYY-MM-DD HH:MM] 步骤 N/M: [步骤名称]
-
-**Agent**: [agent名称]
-**状态**: completed / retry(N/M) / stopped
-
-**执行过程**:
-- [简述做了什么，2-4句话]
-
-**关键结论**:
-- [产出的关键发现/决策/数据，用要点列出]
-
-**输出文件**:
-- [列出本次写入的文件路径]
-
-**下一步**: [下一个步骤名称，或"任务完成"/"已停止等待人工介入"]
+```
+WHILE true:
+    1. 检查退出条件（见下方）
+    2. 如果满足任一退出条件 → 跳出循环
+    3. 读取 task_config.json 的 steps[current_step]
+    4. 执行该步骤（读取input_files → 读取SKILL.md → 执行 → 写output_files）
+    5. 质量检查（pass_criteria）
+    6. 更新 state.json（步骤状态、current_step、retries）
+    7. 追加 execution_log.md
+    8. steps_executed_this_session += 1
+    9. 如果当前步骤未通过（retry/stopped）→ 跳出循环
+END WHILE
 ```
 
-### 第8步：退出
+### 退出条件（满足任一即停止本次会话）
 
-本次执行结束。输出简短摘要供日志记录。
+| 条件 | 说明 | 理由 |
+|------|------|------|
+| **A. 任务全部完成** | `current_step >= total_steps` 或 `status == "completed"` | 没有更多步骤了 |
+| **B. 单次会话步数上限** | `steps_executed_this_session >= MAX_STEPS_PER_SESSION` | 防止上下文过长跑偏 |
+| **C. 步骤未通过需重试** | 当前步骤 verdict 为 retry/needs_revision | 重试需要重新读取上下文，适合新会话 |
+| **D. 任务被停止** | `status == "stopped"` | 质量门禁超限或异常 |
+| **E. 遇到重步骤后** | 刚执行完的步骤是 chapter-writer（章节撰写） | 写章节消耗大量上下文，写完应退出 |
+
+### MAX_STEPS_PER_SESSION 设置
+
+- **默认值：5**（轻量审核步骤可以连续跑5个）
+- **章节撰写后强制退出**：执行完 chapter-writer 步骤后，无论 `steps_executed_this_session` 是多少，都立即退出
+- **章节终审通过后可继续**：final-reviewer 通过后不强制退出，可以继续下一个章节的撰写
+
+### 步骤类型与执行策略
+
+| 步骤类型 | 典型Agent | 单次会话可连续执行数 | 说明 |
+|---------|-----------|-------------------|------|
+| 轻量审核 | title-reviewer, skeptic, outline-editor, setting-reviewer | 5个 | 读文件→分析→写报告，上下文消耗小 |
+| 角色设计 | character-designer | 2个 | 产出量大，上下文中等 |
+| 章节撰写 | chapter-writer | **1个** | 产出3000字，上下文消耗大，写完即退 |
+| 章节审核 | detail-reviewer, quality-reviewer, de-ai-processor, final-reviewer | 3个 | 需读全文+写报告，中等消耗 |
 
 ## 特殊规则
 
@@ -110,12 +85,22 @@
 - 如果输入文件缺失：检查上一个步骤是否真的完成了
 - 如果上一个步骤标记为 completed 但输出文件不存在：标记为异常，停止执行
 
-### 单次执行限制
+### 单次会话执行策略
 
-每次触发**只执行一个步骤**。即使执行很快完成，也不要连续执行多个步骤。这是为了：
-1. 避免单次会话上下文过长导致跑偏
-2. 每个步骤有独立的日志记录
-3. 出错时影响范围最小化
+每次触发**循环执行多个步骤**，直到满足退出条件。核心原则：
+1. **轻量步骤连续跑**：审核/质疑/验收等步骤上下文消耗小，连续跑5个不成问题
+2. **重步骤即退**：章节撰写（chapter-writer）消耗大量上下文，写完立即退出，下次触发再继续审核流程
+3. **审核链连续跑**：detail → quality → de-ai → final 这4步审核可以连续跑（最多3个），避免每步等15分钟
+4. **失败即退**：任何步骤未通过需要重试时，退出本次会话，下次触发时以新会话重试
+5. **每次退出前确保 state.json 已更新**：这样即使会话被中断，下次触发也能从正确位置继续
+
+### 执行效率估算
+
+| 场景 | 旧方案（每触发1步） | 新方案（连续执行） | 提速 |
+|------|-------------------|-------------------|------|
+| 0-6步（审核阶段） | 7次触发 × 15min = 105min | 2次触发 × 15min = 30min | 3.5x |
+| 7-11步（第1章） | 5次触发 × 15min = 75min | 3次触发 × 15min = 45min | 1.7x |
+| 全流程22步 | 22次 × 15min = 330min | 约8次 × 15min = 120min | 2.8x |
 
 ## 错误处理
 

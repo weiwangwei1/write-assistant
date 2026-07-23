@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>《有龙则灵》选题与机制综合文档</title>
+<style>
+:root {
+  --bg: #fafaf8;
+  --bg2: #f0efe9;
+  --bg3: #e8e7e0;
+  --ink: #1a1a1a;
+  --muted: #6b6b6b;
+  --rule: #d4d3cd;
+  --accent: #b5452a;
+  --accent2: #3a6b5e;
+  --accent3: #8b6914;
+  --danger: #8b1a1a;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 15px; line-height: 1.75; color: var(--ink); background: var(--bg);
+  max-width: 960px; margin: 0 auto; padding: 2.5rem 1.5rem 4rem;
+}
+
+h1 { font-size: 1.8rem; font-weight: 700; margin-bottom: 0.4rem; letter-spacing: -0.02em; }
+h2 { font-size: 1.3rem; font-weight: 700; margin: 2.5rem 0 1rem; padding-bottom: 0.4rem; border-bottom: 2px solid var(--accent); }
+h3 { font-size: 1.05rem; font-weight: 700; margin: 1.5rem 0 0.6rem; color: var(--accent2); }
+h4 { font-size: 0.95rem; font-weight: 700; margin: 1rem 0 0.4rem; color: var(--accent3); }
+
+.subtitle { font-size: 0.95rem; color: var(--muted); margin-bottom: 1.5rem; }
+.section-intro { color: var(--muted); font-size: 0.9rem; margin-bottom: 0.8rem; }
+
+p { margin-bottom: 0.8rem; }
+strong { color: var(--ink); }
+mark.key { background: none; color: var(--accent); font-weight: 600; }
+code { background: var(--bg3); padding: 1px 5px; border-radius: 3px; font-size: 0.85em; font-family: 'Consolas', monospace; }
+
+/* Tables */
+.table-wrap { overflow-x: auto; overflow-y: auto; max-height: 600px; margin: 0.8rem 0 1.2rem; border-radius: 6px; border: 1px solid var(--rule); }
+table { width: 100%; border-collapse: collapse; font-size: 0.85rem; min-width: 600px; }
+thead th { background: var(--accent2); color: #fff; padding: 0.5rem 0.7rem; text-align: left; font-weight: 600; font-size: 0.82rem; white-space: nowrap; position: sticky; top: 0; z-index: 1; }
+tbody td { padding: 0.5rem 0.7rem; border-bottom: 1px solid var(--rule); vertical-align: top; }
+tbody tr:nth-child(even) { background: var(--bg2); }
+tbody tr:hover { background: rgba(58, 107, 94, 0.06); }
+
+/* Cards */
+.info-card { background: var(--bg2); border-radius: 6px; padding: 1rem 1.2rem; margin: 0.8rem 0; border: 1px solid var(--rule); }
+.info-card h4 { margin: 0 0 0.3rem; }
+
+/* Callout */
+.callout { background: rgba(181, 69, 42, 0.06); border-left: 4px solid var(--accent); padding: 0.8rem 1rem; margin: 1rem 0; border-radius: 0 6px 6px 0; font-size: 0.9rem; }
+.callout strong { color: var(--accent); }
+.callout.green { background: rgba(58, 107, 94, 0.06); border-left-color: var(--accent2); }
+.callout.green strong { color: var(--accent2); }
+.callout.warn { background: rgba(139, 26, 26, 0.05); border-left-color: var(--danger); }
+.callout.warn strong { color: var(--danger); }
+
+/* Badges */
+.badge { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 0.75rem; font-weight: 700; margin-right: 0.3rem; }
+.badge.pass { background: rgba(58, 107, 94, 0.15); color: var(--accent2); }
+.badge.adjust { background: rgba(181, 69, 42, 0.12); color: var(--accent); }
+.badge.reject { background: rgba(139, 26, 26, 0.15); color: var(--danger); }
+.badge.gold { background: rgba(139, 105, 20, 0.15); color: var(--accent3); }
+
+/* Lists */
+ol, ul { padding-left: 1.5rem; margin-bottom: 0.8rem; }
+li { margin-bottom: 0.3rem; font-size: 0.9rem; }
+
+/* Risk colors */
+.risk-fatal { color: var(--danger); font-weight: 700; }
+.risk-high { color: var(--accent); font-weight: 600; }
+.risk-safe { color: var(--accent2); font-weight: 600; }
+
+/* Grid */
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 0.8rem 0; }
+
+/* TOC */
+.toc { background: var(--bg2); border: 1px solid var(--rule); border-radius: 6px; padding: 1rem 1.2rem; margin-bottom: 2rem; }
+.toc h3 { margin: 0 0 0.5rem; color: var(--ink); font-size: 0.9rem; }
+.toc ol { margin: 0; }
+.toc li { font-size: 0.85rem; }
+.toc a { color: var(--accent2); text-decoration: none; }
+.toc a:hover { text-decoration: underline; }
+
+/* Synopsis block */
+.synopsis { background: var(--bg2); border: 1px solid var(--rule); border-radius: 6px; padding: 1.2rem 1.4rem; margin: 1rem 0; font-size: 0.95rem; }
+.synopsis p { margin-bottom: 0.7rem; }
+.synopsis p:last-child { margin-bottom: 0; }
+
+footer { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--rule); color: var(--muted); font-size: 0.8rem; }
+
+@media (max-width: 768px) {
+  body { padding: 1.5rem 1rem; }
+  .two-col { grid-template-columns: 1fr; }
+  h1 { font-size: 1.4rem; }
+  table { min-width: 400px; }
+}
+</style>
+</head>
+<body>
+
+<h1>《有龙则灵》选题与机制综合文档</h1>
+<p class="subtitle">基于《写作框架选题基准》v1.0 全流程产出 · 参考《罪恶之城》核心卖点的现代化重构<br>设计原则：<strong>取其机制，换其基调</strong></p>
+
+<div class="toc">
+  <h3>目录</h3>
+  <ol>
+    <li><a href="#s1">选题总卡</a></li>
+    <li><a href="#s2">设计思路：《罪恶之城》基因拆解</a></li>
+    <li><a href="#s3">六维预筛与选题决策</a></li>
+    <li><a href="#s4">世界观：架空宇宙·长明界</a></li>
+    <li><a href="#s5">体系设计：龙纹五系</a></li>
+    <li><a href="#s6">金手指机制：献祭五规</a></li>
+    <li><a href="#s7">角色与反派三级体系</a></li>
+    <li><a href="#s8">分卷大纲与串糖葫芦结构</a></li>
+    <li><a href="#s9">合规自查（爽感／开篇三问／暗线）</a></li>
+    <li><a href="#s10">风险审计与对策</a></li>
+    <li><a href="#s11">简介与标签</a></li>
+    <li><a href="#s12">流水线状态与下一步</a></li>
+  </ol>
+</div>
+
+<!-- ============================================ -->
+<h2 id="s1">一、选题总卡</h2>
+
+<div class="table-wrap">
+<table>
+  <tbody>
+    <tr><td><strong>书名</strong></td><td><strong>有龙则灵</strong>（备选：《供桌上的诸天》《老街龙龛》）</td></tr>
+    <tr><td><strong>一句话设定</strong></td><td><mark class="key">把东西摆上供桌献祭给一条沉睡的古龙，破铜烂铁也能换回可以镶进身体的龙纹。</mark></td></tr>
+    <tr><td><strong>番茄分类</strong></td><td>玄幻升级 · 位面流 · 轻松 · 无CP（暂定）</td></tr>
+    <tr><td><strong>主题基调</strong></td><td>明基调（爽／笑／燃／暖轮换），暗线仅作悬念背景板</td></tr>
+    <tr><td><strong>金手指</strong></td><td>祖传供桌＋守灯人传承契约（遗产继承式意外获得，非天生外挂）</td></tr>
+    <tr><td><strong>爽感路径</strong></td><td>献祭→返利，1步直达，S级</td></tr>
+    <tr><td><strong>核心概念</strong></td><td>前3章仅2个：献祭返利／龙纹镶嵌</td></tr>
+    <tr><td><strong>目标体量</strong></td><td>6卷约330章／100万字+</td></tr>
+    <tr><td><strong>书名出处</strong></td><td>刘禹锡《陋室铭》"水不在深，有龙则灵"；双关"有龙就灵验，献祭必灵"——典故✓网感✓</td></tr>
+    <tr><td><strong>主题句</strong></td><td>灵的不是龙，是人间烟火（卷六收束）</td></tr>
+  </tbody>
+</table>
+</div>
+
+<!-- ============================================ -->
+<h2 id="s2">二、设计思路：《罪恶之城》基因拆解</h2>
+<p class="section-intro">《罪恶之城》整体不可照搬——悲剧美学撞暗基调红线、名词海撞认知门槛红线、血统宿命撞天生外挂红线。真正可继承的是四个机制级卖点。拆机制、换基调、去名词，是本次选题的总方法。</p>
+
+<h3>2.1 基因拆解与现代化映射</h3>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>罪恶之城基因</th><th>原文形态</th><th>为什么是卖点</th><th>《有龙则灵》的翻译</th></tr></thead>
+  <tbody>
+    <tr><td><strong>献祭老龙</strong></td><td>永恒龙殿全民献祭，老龙按"公正"规则回礼，李察首祭即得母巢</td><td>仪式感＋等价交换＋每次献祭都是开奖</td><td><strong>献祭返利</strong>：摆上桌→即时返利，1步S级爽点；神殿"十献一返"反衬供桌公道</td></tr>
+    <tr><td><strong>构装师</strong></td><td>魔纹构装镶进身体，可设计、可交易、可升阶</td><td>技术流主角＋可视化装备系统＋交易生态</td><td><strong>龙纹五系</strong>：镶嵌＝装备栏，纹位策略＝Build纵深</td></tr>
+    <tr><td><strong>位面战争</strong></td><td>贵族私有界门，位面远征，积分兑换</td><td>种田＋战争＋经营，地图天然≥10种</td><td><strong>世家界门·开界掠火</strong>：祭品＝军火，后置释放不压开局门槛</td></tr>
+    <tr><td><strong>宏大世界观</strong></td><td>诺兰德位面海、强者体系</td><td>层级感、纵深</td><td><strong>长明界</strong>：一盏灯照亮万界，用世界观5问节奏披露</td></tr>
+    <tr><td>隐藏彩蛋·老龙的暗线</td><td>老龙借献祭另有所图</td><td>终极反转素材</td><td>老灯收集有来历之物＝赎回长明灯火种（Q5暗线）</td></tr>
+    <tr><td>喜剧传统</td><td>苏海伦"吸血的财迷"</td><td>情绪调剂</td><td><strong>老灯</strong>＝傲娇毒舌财迷，情绪释放点本体</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h3>2.2 明确删除项（撞红线部分）</h3>
+<div class="callout warn">
+  <ul style="margin-top:0.2rem;">
+    <li><strong>悲剧美学</strong>——撞"暗基调"硬性否决项，删除；灯熄龙囚只做悬念背景板，不做情绪基调</li>
+    <li><strong>名词海</strong>——撞"认知门槛≤2"红线，删除；世界真名卷四后揭，前30章新造专有名词≤5个</li>
+    <li><strong>血统宿命</strong>——撞"非天生外挂"红线，删除；许家只是"守灯人"传承（祖师爷与龙立约），遗产继承式</li>
+  </ul>
+</div>
+
+<h3>2.3 潮流依据（2025—2026）</h3>
+<ul>
+  <li>番茄2025年度爆款《游戏入侵》《诸神愚戏》《我不是戏神》验证的方向：<strong>游戏现实主义</strong>——机制映射世界、规则清晰、机制对抗</li>
+  <li>Z世代偏爱规则博弈与确定性机制；"无CP"成为热门标签</li>
+  <li>返利／交易型金手指为长红赛道；框架6.3"数值对抗→机制对抗"与之同向</li>
+</ul>
+
+<!-- ============================================ -->
+<h2 id="s3">三、六维预筛与选题决策</h2>
+
+<h3>3.1 候选主题对比（四进一）</h3>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>候选</th><th>一句话设定</th><th>爽感</th><th>门槛</th><th>判定</th></tr></thead>
+  <tbody>
+    <tr><td><strong>《有龙则灵》</strong><br>献祭返利流</td><td>献祭古龙，返利可镶嵌的龙纹</td><td><span class="badge pass">S</span></td><td>2</td><td><span class="badge pass">pass·主推</span></td></tr>
+    <tr><td>《天下第一关》<br>诸天经营流</td><td>祖宅有座关，万界行商过关交税</td><td>A</td><td>2</td><td><span class="badge gold">pass_with_note</span>（姊妹选题保留）</td></tr>
+    <tr><td>《画龙点睛》<br>都市高武流</td><td>唯一能定制妖纹的刺青师</td><td>A</td><td>2</td><td><span class="badge adjust">adjust</span>（红海需微创新）</td></tr>
+    <tr><td>《满级构装师》<br>游戏入侵流</td><td>父亲的游戏遗产成了真的</td><td>A</td><td>2</td><td><span class="badge adjust">adjust</span>（赛道撞车风险最高）</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h3>3.2 《有龙则灵》六维预筛结果</h3>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>维度</th><th>结果</th><th>依据</th></tr></thead>
+  <tbody>
+    <tr><td>1. 题材耐久度</td><td><span class="badge pass">pass</span></td><td>场景≥15种：吹灯巷／灯市／神殿开坛日／鬼市／界门猎场／位面碎片／灯下黑／万界关市…；情感基调4种：爽／笑／燃／暖</td></tr>
+    <tr><td>2. 爽感路径</td><td><span class="badge pass">S级</span></td><td>献祭→返利，1步直达</td></tr>
+    <tr><td>3. 暗基调补偿</td><td><span class="badge pass">跳过</span></td><td>明基调，无需补偿检测</td></tr>
+    <tr><td>4. 认知门槛</td><td><span class="badge pass">pass</span></td><td>前3章核心概念＝献祭返利＋龙纹，共2个</td></tr>
+    <tr><td>5. 模式匹配</td><td><span class="badge pass">pass</span></td><td>不匹配任一失败模式；组合风险矩阵无"致命"组合</td></tr>
+    <tr><td>6. 平台匹配</td><td><span class="badge pass">pass</span></td><td>玄幻升级·位面流，番茄主流类目；神明规则博弈当红</td></tr>
+  </tbody>
+</table>
+</div>
+
+<!-- ============================================ -->
+<h2 id="s4">四、世界观：架空宇宙·长明界</h2>
+
+<h3>4.1 世界总纲（一句话讲清）</h3>
+<div class="callout">
+  太古有一盏<strong>长明灯</strong>，照亮万界，守灯的是一条古龙。后来灯熄、龙囚、诸神分火——从此世人献祭，不再公道。
+</div>
+
+<div class="two-col">
+  <div class="info-card">
+    <h4>表层世界（前3章读者可见）</h4>
+    <ul>
+      <li>修行唯一路径：<strong>献祭</strong>。有来历之物献上神殿祭坛，神明降"纹"</li>
+      <li>神殿心黑：<strong>十献一返</strong>，降纹全看神明心情（世界观级黑色幽默）</li>
+      <li>世家掌<strong>界门</strong>，开界战争掠夺异方位面古物火种——<strong>祭品＝军火与硬通货</strong></li>
+      <li>纹师公会：技术中立阶层</li>
+    </ul>
+  </div>
+  <div class="info-card">
+    <h4>真相层（暗线，前3章不提）</h4>
+    <ul>
+      <li>老灯＝守灯古龙，被诸神联手掀下神位，装睡于一户人家的供桌底下</li>
+      <li>它专收"有来历"的旧物——都是当年<strong>灯火的碎片</strong>，要一件件赎回来</li>
+      <li>二十年前"上一次献祭"：温故私换祭品、借诸神之手囚龙篡火；爷爷许慎独未死，困于位面夹缝</li>
+    </ul>
+  </div>
+</div>
+
+<h3>4.2 势力结构（仅三家，不开第四家）</h3>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>势力</th><th>定位</th><th>代表角色</th></tr></thead>
+  <tbody>
+    <tr><td><strong>神殿</strong></td><td>献祭祭路垄断者，官方权威</td><td>温故（退隐老司祭／大善人）</td></tr>
+    <tr><td><strong>世家</strong></td><td>界门武力，开界掠火</td><td>霍东来（霍家家主）</td></tr>
+    <tr><td><strong>公会</strong></td><td>纹师技术阶层，灰色中立</td><td>封九霄（千灯分会会长）</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h3>4.3 地图设计（终极地图原则✓）</h3>
+<p><strong>千灯城</strong>＝终极地图：主位面边陲老城，传说太古灯焰曾落于此。许记祭品铺开在吹灯巷口，后院供桌＝长明灯旧坛一角。<strong>换地图只换小地图</strong>：灯市／鬼市／界门猎场（位面碎片）／神殿分坛／供桌后的"灯下黑"（灯座内部，典故：灯下黑）。</p>
+
+<h3>4.4 世界观5问</h3>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>问题</th><th>内容</th><th>披露节奏</th></tr></thead>
+  <tbody>
+    <tr><td>Q1 核心矛盾</td><td>献祭不公：神殿十献一返，万民敢怒不敢言</td><td>前3章展示（黑色幽默）</td></tr>
+    <tr><td>Q2 主角位置</td><td>吹灯巷祭品铺小东家，可调资源＝一屋子旧货＋一条挑食古龙</td><td>前3章展示</td></tr>
+    <tr><td>Q3 驱动力</td><td>献祭—纹体系；五系源自古龙之身的暗示</td><td>前3章暗示</td></tr>
+    <tr><td>Q4 禁区</td><td>供桌后的"灯下黑"；界门后的位面</td><td>前3章不提</td></tr>
+    <tr><td>Q5 暗线</td><td>长明灯／守灯龙／诸神分火／上一次献祭／爷爷未死</td><td>按暗线节奏表揭示</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h3>4.5 认知门槛三锁（防"名词海"）</h3>
+<ol>
+  <li>世界真名"长明界"卷四后才揭；前30章新造专有名词≤5个（千灯城／吹灯巷／神殿／界门／长明灯）</li>
+  <li>势力仅三家，全程不开第四家</li>
+  <li>架空代入慢半拍→补偿在语言层不在设定层：贫嘴、毒舌、烟火气先行，"人不熟世界，先熟人"</li>
+</ol>
+
+<!-- ============================================ -->
+<h2 id="s5">五、体系设计：龙纹五系</h2>
+
+<h3>5.1 五系（三原则自查✓）</h3>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>系</th><th>功能</th><th>定位</th></tr></thead>
+  <tbody>
+    <tr><td><strong>鳞</strong></td><td>防御、体质</td><td>肉盾</td></tr>
+    <tr><td><strong>爪</strong></td><td>攻击、力量</td><td>输出</td></tr>
+    <tr><td><strong>角</strong></td><td>属性、元素</td><td>法师</td></tr>
+    <tr><td><strong>须</strong></td><td>感知、身法、辅助</td><td>机动</td></tr>
+    <tr><td><strong>睛</strong></td><td>精神、瞳术、威压</td><td>控制</td></tr>
+  </tbody>
+</table>
+</div>
+<ul>
+  <li><strong>内涵性</strong>✓：取龙身五处；世界观咬合升级——五系本就是古龙身上的规矩，神殿降的纹全是二手货，供桌是原厂</li>
+  <li><strong>通用性</strong>✓：天下纹师通用，非主角专属</li>
+  <li><strong>主流性</strong>✓：镶嵌＝装备栏，读者秒懂</li>
+</ul>
+
+<h3>5.2 品级·纹位·低武天花板</h3>
+<ul>
+  <li><strong>品级</strong>：纹分九品至一品，一品之上传说有"神纹"；纹者同步九品至一品，一品称"纹王"（单一阶梯，不另造术语）</li>
+  <li><strong>纹位</strong>：人身十二纹位，每纹占1—3位——镶A不能镶B（加点选择成本✓）</li>
+  <li><strong>剥纹</strong>：如剥皮、费钱费命（洗点机制✓）</li>
+  <li><strong>低武天花板</strong>：纹王可敌百，不敌界门军阵与制度——组织永远压个体✓</li>
+</ul>
+
+<h3>5.3 渐进释放节奏</h3>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>章节</th><th>释放概念</th></tr></thead>
+  <tbody>
+    <tr><td>1—3章</td><td>献祭返利／龙纹（仅此2个）</td></tr>
+    <tr><td>4—6章</td><td>五系分类</td></tr>
+    <tr><td>7—9章</td><td>品级</td></tr>
+    <tr><td>13章+</td><td>纹位、剥纹</td></tr>
+    <tr><td>31章+</td><td>界门、位面（轻落地，"传说"口吻）</td></tr>
+  </tbody>
+</table>
+</div>
+
+<!-- ============================================ -->
+<h2 id="s6">六、金手指机制：献祭五规</h2>
+<p class="section-intro">金手指＝祖传供桌＋守灯人传承契约。四象限定位：<strong>象限B（简单执行＋深度收益）</strong>——执行是"摆上桌"，深度在"来历学"与纹位Build。全部限制与世界观同源（限制必须与世界观挂钩✓）。</p>
+
+<div class="table-wrap">
+<table>
+  <thead><tr><th>规则</th><th>内容</th><th>功能</th></tr></thead>
+  <tbody>
+    <tr><td><strong>一·挑食</strong></td><td>返利看祭品的"来历与故事"，不看市价；来历＝灯火的油，因果越重火越旺</td><td>机制对抗发动机：驱动捡漏／鉴宝／探险，而非无脑返利</td></tr>
+    <tr><td><strong>二·消化期</strong></td><td>老灯吃完就睡，随它恢复越来越短</td><td>成长节奏阀，防爽点通胀</td></tr>
+    <tr><td><strong>三·防伪</strong></td><td>赝品当场吐出＋毒舌羞辱</td><td>喜剧点；防投机</td></tr>
+    <tr><td><strong>四·手气</strong></td><td>返利有浮动，逢初一十五"大供"必爆大奖</td><td>开奖感＋章节仪式感</td></tr>
+    <tr><td><strong>五·喂养</strong></td><td>龙纹可用祭品喂养升品，成本递增（添灯油，焰大费油）</td><td>长期养成线，防战力膨胀</td></tr>
+  </tbody>
+</table>
+</div>
+
+<div class="callout green">
+  <strong>与框架对齐：</strong>核心要素简单（摆上桌）✓；信息挂属性（挑食规则＝任务指南）✓；机制对抗而非数值碾压（来历学／纹位策略）✓；前期适度、随成长解锁（消化期缩短／大供频率提升）✓。
+</div>
+
+<!-- ============================================ -->
+<h2 id="s7">七、角色与反派三级体系</h2>
+
+<h3>7.1 主要角色（外貌气质速描）</h3>
+<div class="two-col">
+  <div class="info-card">
+    <h4>许愿（主角）</h4>
+    <p>二十出头，眉眼清瘦，总像没睡醒，笑起来带点痞；袖口常年沾着香灰。嘴贫手稳，算账快，认死理——"公道"二字是家学。名字即梗：向许愿许愿。</p>
+  </div>
+  <div class="info-card">
+    <h4>老灯（古龙）</h4>
+    <p>人前只有供桌底下两点金瞳和一声嗤笑；声线苍老却中气十足。傲娇毒舌财迷，记账比谁都精，一谈"从前"就装睡。自称尊号里有个"烛"字，许愿嫌拗口，喊它老灯。</p>
+  </div>
+  <div class="info-card">
+    <h4>豆灯（萌宠）</h4>
+    <p>战争之种孵出的灯芯火苗精，巴掌大，顶着一粒豆大的光。奶凶，管老灯叫"老东西"，管许愿叫"许愿的"。闻到"来历"就两眼放光——寻宝雷达；后期觉醒"撒豆成兵"。</p>
+  </div>
+  <div class="info-card">
+    <h4>温故（终极反派）</h4>
+    <p>鹤发童颜，笑容温润，常年一身洗旧素袍，见谁都先拱手。千灯城人人念他的好。温故知新——他最擅长翻旧账。</p>
+  </div>
+</div>
+
+<h3>7.2 反派三级体系（禁止跳级✓）</h3>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>级别</th><th>角色</th><th>登场</th><th>功能</th></tr></thead>
+  <tbody>
+    <tr><td>喽啰级</td><td>霍家清街人马／公会纹材稽查／鬼市贩子"鬼脸"</td><td>1—25章</td><td>短期爽点＋测实力</td></tr>
+    <tr><td>隐藏级</td><td>霍家家主霍东来（垄断界门猎场）；公会分会长封九霄（灰色）</td><td>20—70章渐露</td><td>中期悬念＋成长目标</td></tr>
+    <tr><td>终极级</td><td><strong>温故</strong>——神殿退隐老司祭、万人敬仰的大善人、爷爷的"老朋友"</td><td><strong>38章登场即"贵人"</strong>（伪装好人✓），190—200章揭面</td><td>终极反转＋全书对手</td></tr>
+  </tbody>
+</table>
+</div>
+
+<!-- ============================================ -->
+<h2 id="s8">八、分卷大纲与串糖葫芦结构</h2>
+
+<h3>8.1 全书分卷总览（6卷约330章）</h3>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>卷</th><th>章节</th><th>主线</th><th>新小地图</th><th>暗线推进</th><th>卷末高潮</th></tr></thead>
+  <tbody>
+    <tr><td>一《吹灯巷的供桌》</td><td>1—30</td><td>觉醒立足老街，清算喽啰</td><td>灯市、鬼市</td><td>异界鳞片现世</td><td>C级悬念：鳞片来历</td></tr>
+    <tr><td>二《灯市的规矩》</td><td>31—70</td><td>捡漏扬名，公会博弈，温故"赏识"</td><td>神殿开坛、评级场</td><td>爷爷《供簿》绝笔＋旧合影碎片</td><td>暗线升温</td></tr>
+    <tr><td>三《界门猎场》</td><td>71—110</td><td>联合散户斗霍氏垄断</td><td>界门猎场（位面碎片）</td><td>灯下黑封印爪痕是"人"留的</td><td><strong>C级</strong>：猎场围杀→借势反杀，轰开灯下黑</td></tr>
+    <tr><td>四《灯下黑》</td><td>111—160</td><td>探索灯座，祭坛初开，跨界小远征</td><td>灯下黑、位面碎片</td><td>祭坛残影：年轻的爷爷与温故同祭</td><td>Q4禁区兑现</td></tr>
+    <tr><td>五《上一次献祭》</td><td>161—220</td><td>二十年前真相，温故揭面，决战</td><td>位面夹缝</td><td>全揭：私改祭品、囚龙篡火；爷爷未死</td><td>揭面大战</td></tr>
+    <tr><td>六《万界来朝》</td><td>221—330</td><td>祭坛修复，万界来朝，老灯因果</td><td>万界关市</td><td>老灯败因：输给诸神联手的"规矩"</td><td>暖收：灵的不是龙，是人间烟火</td></tr>
+  </tbody>
+</table>
+</div>
+<p>升级：战斗≈2:1每卷✓；豆灯卷四觉醒"撒豆成兵"雏形，位面战争基因卷四预演、卷六全开——<strong>四基因分卷释放，不在开局压门槛</strong>。</p>
+
+<h3>8.2 第一卷山楂结构（1—30章，五颗山楂）</h3>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>山楂</th><th>章节</th><th>矛盾来源</th><th>糖衣</th><th>核心事件</th></tr></thead>
+  <tbody>
+    <tr><td>1·供桌觉醒</td><td>1—5</td><td>利益（清街）</td><td>开奖＋打脸</td><td>瓦当换鳞→掀翻霍家清街人马→测规则→小吏服软供出霍家</td></tr>
+    <tr><td>2·灯市淘宝</td><td>6—12</td><td>利益（捡漏）</td><td>捡漏</td><td>夹层祭器大供→雷属角纹→赝品教训（规则三）→反杀黑店→名声初显</td></tr>
+    <tr><td>3·拒绝公会</td><td>13—18</td><td>尊严</td><td>尊严</td><td>拒招揽→封口令→鳞爪角Build小成立威→用公会规矩反制稽查</td></tr>
+    <tr><td>4·鬼市大供</td><td>19—25</td><td>利益＋环境</td><td>开奖＋萌宠</td><td>争镇墓兽结怨鬼脸→十五大供→战争之种→豆灯出世→寻宝雷达</td></tr>
+    <tr><td>5·喽啰清算</td><td>26—30</td><td>利益＋立场</td><td>清算＋悬念</td><td>霍氏收购→断供→截断赝品财路→三连打脸→缴获箱底惊现异界鳞片</td></tr>
+  </tbody>
+</table>
+</div>
+<ul>
+  <li><strong>糖衣轮换</strong>：打脸→捡漏→尊严→开奖→清算，无连续3颗同类型✓</li>
+  <li><strong>山楂间距</strong>：高能单元后留1—2章日常过渡（第12、18、24章），均埋钩✓</li>
+  <li><strong>竹签</strong>：每颗山楂吃完，霍家／暗线主线各推进一格✓</li>
+</ul>
+
+<h3>8.3 黄金三章</h3>
+<ol>
+  <li><strong>第1章</strong>：初一上供（许家家规），缺角龙纹瓦当换龙鳞纹；章尾霍家清街人马砸门（前100字能力展示✓；能力展示→日常被打断→冲突升级✓）</li>
+  <li><strong>第2章</strong>：单手掀翻；顺笔带神殿"开坛日"——百姓排队献祭、十献一返的荒诞场面（世界观展示＋笑料＋反衬供桌公道，不加概念）</li>
+  <li><strong>第3章</strong>：测规则——无来历的鲜果被拒收，太爷爷旧怀表换龙爪纹；老灯梦中第一声呓语</li>
+</ol>
+
+<h3>8.4 故事延长五法部署</h3>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>方法</th><th>部署</th><th>频率</th></tr></thead>
+  <tbody>
+    <tr><td>新地图</td><td>灯下黑偏殿／位面碎片／万界关市（只换小地图）</td><td>每30—50章</td></tr>
+    <tr><td>支线</td><td>老街邻里／武馆散户／公会年轻纹师</td><td>每10—15章</td></tr>
+    <tr><td>波折</td><td>祭品被截／赝品局／稽查找茬</td><td>每5—8章</td></tr>
+    <tr><td>细节展开</td><td>大供仪式／Build组合战</td><td>按需</td></tr>
+    <tr><td>配角视角</td><td>老灯"从前"片段（只言片语，不说透）</td><td>每20—30章</td></tr>
+  </tbody>
+</table>
+</div>
+
+<!-- ============================================ -->
+<h2 id="s9">九、合规自查</h2>
+
+<h3>9.1 前10章爽感路径（硬约束：≤2步）</h3>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>章</th><th>爽点</th><th>步数</th><th>级</th></tr></thead>
+  <tbody>
+    <tr><td>1</td><td>献祭→得鳞纹</td><td>1</td><td><span class="badge pass">S</span></td></tr>
+    <tr><td>2</td><td>掀翻清街人马</td><td>1</td><td><span class="badge pass">S</span></td></tr>
+    <tr><td>3</td><td>怀表→爪纹</td><td>1</td><td><span class="badge pass">S</span></td></tr>
+    <tr><td>4</td><td>破纹者报复</td><td>1</td><td><span class="badge pass">S</span></td></tr>
+    <tr><td>5</td><td>小吏服软</td><td>2</td><td><span class="badge pass">A</span></td></tr>
+    <tr><td>6—8</td><td>捡漏→大供→角纹</td><td>2</td><td><span class="badge pass">A</span></td></tr>
+    <tr><td>9</td><td>赝品喜剧（波折章，非爽点章）</td><td>—</td><td>—</td></tr>
+    <tr><td>10</td><td>设局打脸黑店</td><td>2</td><td><span class="badge pass">A</span></td></tr>
+  </tbody>
+</table>
+</div>
+<p>前10章无B级以下✓；全书C级（4步+）仅2个（卷一末悬念钩、卷三末围杀反杀），均安排在卷末✓；每卷A级以上爽点≥60%（设计目标）✓。</p>
+
+<h3>9.2 开篇三问</h3>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>问题</th><th>答案</th></tr></thead>
+  <tbody>
+    <tr><td>Q1 读者第一眼看到什么？</td><td>瓦当上供、掌心生鳞（100字内核心能力展示）</td></tr>
+    <tr><td>Q2 第1章后最想知道什么？</td><td>下一供能换什么？老灯长什么样？</td></tr>
+    <tr><td>Q3 第3章后为什么不弃？</td><td>①返利开奖感；②人龙相声＋纹位Build策略感（≥2个理由✓）</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h3>9.3 暗线揭示节奏表</h3>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>章</th><th>揭示</th></tr></thead>
+  <tbody>
+    <tr><td>30</td><td>缴获箱底惊现异界鳞片，老灯失态</td></tr>
+    <tr><td>65—70</td><td>《供簿》绝笔＋温故与爷爷旧合影碎片</td></tr>
+    <tr><td>110</td><td>灯下黑封印爪痕是"人"留下的</td></tr>
+    <tr><td>155—160</td><td>祭坛残影：年轻的爷爷与温故同祭</td></tr>
+    <tr><td>190—200</td><td>真相：温故私改祭品、囚龙窃力；爷爷被困位面夹缝未死</td></tr>
+    <tr><td>300+</td><td>老灯真名与当年败因：它收有来历之物，为重聚长明灯火种</td></tr>
+  </tbody>
+</table>
+</div>
+
+<!-- ============================================ -->
+<h2 id="s10">十、风险审计与对策</h2>
+
+<div class="table-wrap">
+<table>
+  <thead><tr><th>风险</th><th>等级</th><th>对策</th></tr></thead>
+  <tbody>
+    <tr><td>架空比都市代入慢半拍</td><td class="risk-high">中</td><td>补偿在语言层不在设定层：贫嘴、毒舌、烟火气先行，"人不熟世界，先熟人"</td></tr>
+    <tr><td>架空宇宙"名词海"死法</td><td class="risk-high">中</td><td>三锁：真名卷四后揭／前30章新名词≤5／势力仅三家</td></tr>
+    <tr><td>"献祭返利是换皮返利流"质疑</td><td class="risk-high">中</td><td>差异点：挑食机制（来历≠市价，创造捡漏／鉴宝／探险场景）＋老灯人格化＋位面暗线后置升级线</td></tr>
+    <tr><td>50万字后腻味</td><td class="risk-safe">低</td><td>第1章赌注一间祭品铺→第330章赌注万界商路主权（数量级✓）；开奖、捡漏、Build、相声、暗线五发动机轮换</td></tr>
+    <tr><td>暗基调回潮</td><td class="risk-safe">低</td><td>灯熄龙囚只做悬念背景板；每章保留非压抑情绪释放点（老灯毒舌／豆灯奶凶／老街烟火）</td></tr>
+    <tr><td>主题漂移</td><td class="risk-safe">低</td><td>核心承诺＝"献祭返利得龙纹"，全流程锚定；skeptic第1轮专查</td></tr>
+  </tbody>
+</table>
+</div>
+
+<!-- ============================================ -->
+<h2 id="s11">十一、简介与标签</h2>
+
+<div class="synopsis">
+  <p><strong>给老龙上供，它返利了我一身龙纹。</strong></p>
+  <p>这世道，献祭是唯一的活路——可惜神殿心黑，十献一返。我守着爷爷留下的祭品铺，守着一张通古龙的旧供桌：瓦当换龙鳞，怀表换龙爪，别人的传家宝，都是我的军粮。</p>
+  <p>老龙很挑食，还很毒舌："赝品也敢上桌？吐你一脸。"</p>
+  <p>直到那天，供品里混进了一枚灯灭之前的火种……</p>
+  <p>【标签】玄幻／位面／轻松／无CP</p>
+</div>
+<ul>
+  <li>首句14字概括核心设定＋萌点✓；末句悬念✓；标签行✓；与主线一致（黄金三章全部兑现）✓</li>
+  <li>书名策略："名字调侃，内容严谨"——《有龙则灵》以典故行调侃之实，正文以献祭五规行严谨之实</li>
+</ul>
+
+<!-- ============================================ -->
+<h2 id="s12">十二、流水线状态与下一步</h2>
+
+<div class="table-wrap">
+<table>
+  <thead><tr><th>步骤</th><th>技能</th><th>状态</th><th>备注</th></tr></thead>
+  <tbody>
+    <tr><td>1. 预筛</td><td>topic-screener</td><td><span class="badge pass">已通过</span></td><td>六维全pass，无致命组合</td></tr>
+    <tr><td>2. 大纲设计</td><td>plot-architect</td><td><span class="badge pass">已通过</span></td><td>爽感≤2步／100字进冲突／开篇三问已答</td></tr>
+    <tr><td>3. 书名审核</td><td>title-reviewer</td><td><span class="badge gold">待进行</span></td><td>《有龙则灵》6维审核＋备选对比</td></tr>
+    <tr><td>4. 质疑迭代</td><td>skeptic</td><td><span class="badge gold">建议下一步</span></td><td>架空世界刚换血，重点第3轮"世界观严谨"压力测试</td></tr>
+    <tr><td>5. 验收定稿</td><td>outline-editor</td><td>待进行</td><td>6维度总分≥8.5＋无一票否决</td></tr>
+    <tr><td>6—7. 人工检查点／角色设计</td><td>—</td><td>待进行</td><td>—</td></tr>
+  </tbody>
+</table>
+</div>
+
+<div class="callout green">
+  <strong>核心承诺锚定：</strong>一句话设定＝"献祭古龙，返利龙纹"。全流程任何环节与此本质偏离即触发漂移检测，重新预筛。
+</div>
+
+<footer>
+  <p>《有龙则灵》选题与机制综合文档 v1.0 · 依据《写作框架选题基准》v1.0 全流程产出<br>参考基因：《罪恶之城》（烟雨江南）· 潮流依据：2025—2026番茄小说年度观察与网络文学关键词<br>生成时间：2026-07-23</p>
+</footer>
+
+</body>
+</html>

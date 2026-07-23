@@ -1,18 +1,227 @@
 {
-  "task_name": "（待用户配置）",
-  "task_description": "（待用户配置）",
+  "task_name": "有龙则灵·黄金三章全自动撰写",
+  "task_description": "从title-reviewer开始，经skeptic质疑、outline-editor验收、character-designer角色设计、setting-reviewer设定审核，完成3章黄金章节的撰写和审核全流程",
   "workspace": "d:\\personFile\\write-assistant",
   "steps": [
     {
       "id": 0,
-      "name": "（示例步骤）",
-      "agent": "topic-screener",
-      "instruction": "读取 config/novel_config.json 中的核心概念，按 .trae/skills/topic-screener/SKILL.md 的规范执行6维预筛，输出到 handoff/topic_screening.json",
-      "input_files": ["config/novel_config.json"],
-      "output_files": ["handoff/topic_screening.json"],
-      "pass_criteria": "输出文件存在且 verdict 字段为 pass 或 pass_with_note",
+      "name": "书名与简介审核",
+      "agent": "title-reviewer",
+      "instruction": "读取 .trae/skills/title-reviewer/SKILL.md 了解审核规范。读取 memory/outline.json 获取书名《有龙则灵》及备选名（供桌上的诸天/老街龙龛）、简介、标签。按title-reviewer的6维书名审核+5维简介审核执行。输出到 handoff/title_review.json。审核书名是否满足：文化内涵/故事感/避免俗气动物名/网感吸引点击。审核简介首句是否15字内概括核心设定、是否与黄金三章一致。",
+      "input_files": ["memory/outline.json", "config/novel_config.json", ".trae/skills/title-reviewer/SKILL.md"],
+      "output_files": ["handoff/title_review.json"],
+      "pass_criteria": "输出文件存在且含 verdict 字段（pass/pass_with_note/adjust），含书名6维评分和简介5维评分",
       "max_retries": 2
+    },
+    {
+      "id": 1,
+      "name": "质疑迭代第1轮-主题执行可行性",
+      "agent": "skeptic",
+      "instruction": "读取 .trae/skills/skeptic/SKILL.md 了解质疑规范。读取 memory/outline.json 和 handoff/topic_screening.json。执行skeptic第1轮质疑：检查大纲是否兑现预筛承诺（爽感路径1步/前3章仅2概念/明基调/遗产继承式金手指/名词≤5个/势力3家）。检查是否有主题漂移。输出到 handoff/skeptic_review.json，标注round=1。",
+      "input_files": ["memory/outline.json", "handoff/topic_screening.json", ".trae/skills/skeptic/SKILL.md"],
+      "output_files": ["handoff/skeptic_review.json"],
+      "pass_criteria": "输出文件存在且含 round=1，含verdict（pass/needs_revision），含issues列表",
+      "max_retries": 2
+    },
+    {
+      "id": 2,
+      "name": "质疑迭代第2轮-世界观严谨性",
+      "agent": "skeptic",
+      "instruction": "读取 .trae/skills/skeptic/SKILL.md。读取 memory/outline.json 和 handoff/skeptic_review.json（第1轮结果）。执行skeptic第2轮质疑：压力测试世界观严谨性——长明灯/守灯龙/诸神分火体系是否自洽？献祭五规是否有漏洞？龙纹五系品级纹位是否合理？势力三家是否够用？前3章世界观信息量是否适中？如有问题给出修改建议。输出到 handoff/skeptic_review.json（追加round=2）。",
+      "input_files": ["memory/outline.json", "handoff/skeptic_review.json", ".trae/skills/skeptic/SKILL.md"],
+      "output_files": ["handoff/skeptic_review.json"],
+      "pass_criteria": "输出文件含 round=2，含verdict和issues",
+      "max_retries": 2
+    },
+    {
+      "id": 3,
+      "name": "质疑迭代第3轮-爽感路径与节奏",
+      "agent": "skeptic",
+      "instruction": "读取 .trae/skills/skeptic/SKILL.md。读取 memory/outline.json 和 handoff/skeptic_review.json。执行skeptic第3轮：检查前10章爽感路径是否≤2步、黄金三章是否S级1步、串糖葫芦5颗山楂糖衣是否轮换、节奏起伏是否合理。检查开篇三问答案是否具体可执行。输出到 handoff/skeptic_review.json（追加round=3）。",
+      "input_files": ["memory/outline.json", "handoff/skeptic_review.json", ".trae/skills/skeptic/SKILL.md"],
+      "output_files": ["handoff/skeptic_review.json"],
+      "pass_criteria": "输出文件含 round=3，含verdict和issues",
+      "max_retries": 2
+    },
+    {
+      "id": 4,
+      "name": "大纲验收定稿",
+      "agent": "outline-editor",
+      "instruction": "读取 .trae/skills/outline-editor/SKILL.md 了解验收规范。读取 memory/outline.json 和 handoff/skeptic_review.json（3轮质疑结果）。按outline-editor的6维度评分执行：商业性25%(含题材耐久度子维度)/结构20%/节奏20%/伏笔15%/角色10%/平台10%。检查一票否决项（商业方向错误/结构断裂/爽感路径违规）。如评分≥8.5且无一票否决则通过。如有must_fix则修改memory/outline.json。输出到 handoff/outline_review.json。",
+      "input_files": ["memory/outline.json", "handoff/skeptic_review.json", ".trae/skills/outline-editor/SKILL.md"],
+      "output_files": ["handoff/outline_review.json"],
+      "pass_criteria": "输出文件存在且含6维度评分、总分≥8.5、verdict=pass",
+      "max_retries": 2
+    },
+    {
+      "id": 5,
+      "name": "角色设计",
+      "agent": "character-designer",
+      "instruction": "读取 .trae/skills/character-designer/SKILL.md 了解角色设计规范。读取 memory/outline.json 获取角色需求。设计6个关键角色卡：许愿(主角)、老灯(古龙)、豆灯(萌宠)、温故(终极反派)、霍东来(隐藏反派)、封九霄(灰色角色)。每个角色必须含：外貌+气质描写(立体形象)、性格极致特征、反差设计、独立目标(非纯工具人)、story_driver。注意角色形象渐入法则：主角前3章视觉锚点(Ch1轮廓/Ch2动态反差/Ch3外部视角)。输出到 memory/characters.json 和 handoff/characters.json。",
+      "input_files": ["memory/outline.json", ".trae/skills/character-designer/SKILL.md"],
+      "output_files": ["memory/characters.json", "handoff/characters.json"],
+      "pass_criteria": "输出文件存在且含6个角色卡，每个角色含appearance+temperament+personality_extreme+story_driver",
+      "max_retries": 2
+    },
+    {
+      "id": 6,
+      "name": "设定审核",
+      "agent": "setting-reviewer",
+      "instruction": "读取 .trae/skills/setting-reviewer/SKILL.md 了解审核规范。读取 memory/outline.json 获取世界观设定（长明界/献祭五规/龙纹五系/势力三家）。按setting-reviewer的6维度审核执行：机制完整性/设定自洽/世界合理性/体系丰富度/冲突平衡/扩展性。输出到 handoff/setting_review.json。",
+      "input_files": ["memory/outline.json", ".trae/skills/setting-reviewer/SKILL.md"],
+      "output_files": ["handoff/setting_review.json"],
+      "pass_criteria": "输出文件存在且含6维度评分、verdict=pass或pass_with_note",
+      "max_retries": 2
+    },
+    {
+      "id": 7,
+      "name": "第1章撰写",
+      "agent": "chapter-writer",
+      "instruction": "读取 .trae/skills/chapter-writer/SKILL.md 了解写作规范。读取 memory/outline.json 的 golden_three_chapters.chapter_1、memory/characters.json、memory/outline.json 的 tanghulu_vol1[0]。撰写第1章（约3000字）：初一上供，缺角龙纹瓦当换龙鳞纹，前100字展示核心能力，章末霍家清街人马砸门。每句话单独一行。必须遵守：开头多样化(动作/感官开头，非地点+时间)、结尾多样化(悬念钩子)、节奏变化(至少1个≥200字长段)、角色形象渐入(Ch1视觉锚点-轮廓)、术语可读性(前5章不出现未解释术语)、吸引力放大法则六要素。输出到 handoff/chapter_draft_ch1.json 和 output/chapter_001.txt。",
+      "input_files": ["memory/outline.json", "memory/characters.json", ".trae/skills/chapter-writer/SKILL.md"],
+      "output_files": ["handoff/chapter_draft_ch1.json", "output/chapter_001.txt"],
+      "pass_criteria": "输出文件存在，chapter_001.txt字数≥2700，前100字含核心能力展示，章末含冲突钩子",
+      "max_retries": 2
+    },
+    {
+      "id": 8,
+      "name": "第1章细节审核",
+      "agent": "detail-reviewer",
+      "instruction": "读取 .trae/skills/detail-reviewer/SKILL.md 了解审核规范。读取 output/chapter_001.txt。逐句/逐梗/逐伏笔微观打磨：检查开头结尾是否模式化、节奏是否有长段对比、角色形象是否有视觉锚点、Show vs Tell、吸引力六要素是否齐全、主动出击法则、概念命名节奏(新命名≤2个)、结尾钩子强度(≥B级含感官细节)。输出到 handoff/detail_review_ch1.json。",
+      "input_files": ["output/chapter_001.txt", ".trae/skills/detail-reviewer/SKILL.md"],
+      "output_files": ["handoff/detail_review_ch1.json"],
+      "pass_criteria": "输出文件存在且含逐项检查结果和修改建议",
+      "max_retries": 2
+    },
+    {
+      "id": 9,
+      "name": "第1章质量审核",
+      "agent": "quality-reviewer",
+      "instruction": "读取 .trae/skills/quality-reviewer/SKILL.md 了解审核规范。读取 output/chapter_001.txt 和 handoff/detail_review_ch1.json。按quality-reviewer的8维评分执行（含吸引力提权+期待感评估+龙空读者画像）。技术分≥9.5则通过，否则退回chapter-writer修订。输出到 handoff/quality_review_ch1.json。",
+      "input_files": ["output/chapter_001.txt", "handoff/detail_review_ch1.json", ".trae/skills/quality-reviewer/SKILL.md"],
+      "output_files": ["handoff/quality_review_ch1.json"],
+      "pass_criteria": "输出文件存在且含8维评分、技术分≥9.5、verdict=pass",
+      "max_retries": 3
+    },
+    {
+      "id": 10,
+      "name": "第1章去AI化",
+      "agent": "de-ai-processor",
+      "instruction": "读取 .trae/skills/de-ai-processor/SKILL.md 了解去AI化规范。读取 output/chapter_001.txt 和 handoff/quality_review_ch1.json。检测并消除AI写作痕迹：Show vs Tell检测、模式化用词、重复句式、情感扁平化。人性化语言，确保读起来像人类网文作者写的。输出到 handoff/de_ai_polish_ch1.json 和更新 output/chapter_001.txt。",
+      "input_files": ["output/chapter_001.txt", "handoff/quality_review_ch1.json", ".trae/skills/de-ai-processor/SKILL.md"],
+      "output_files": ["handoff/de_ai_polish_ch1.json", "output/chapter_001.txt"],
+      "pass_criteria": "输出文件存在且含修改记录，chapter_001.txt已更新",
+      "max_retries": 2
+    },
+    {
+      "id": 11,
+      "name": "第1章终审",
+      "agent": "final-reviewer",
+      "instruction": "读取 .trae/skills/final-reviewer/SKILL.md 了解终审规范。读取 output/chapter_001.txt。多维度终审打分，均分≥9.5才放行。输出到 handoff/final_review_ch1.json。如不达标，标注退回原因（退回de-ai或chapter-writer）。",
+      "input_files": ["output/chapter_001.txt", ".trae/skills/final-reviewer/SKILL.md"],
+      "output_files": ["handoff/final_review_ch1.json"],
+      "pass_criteria": "输出文件存在且含终审评分、均分≥9.5、verdict=pass",
+      "max_retries": 3
+    },
+    {
+      "id": 12,
+      "name": "第2章撰写",
+      "agent": "chapter-writer",
+      "instruction": "读取 .trae/skills/chapter-writer/SKILL.md。读取 memory/outline.json 的 golden_three_chapters.chapter_2、memory/characters.json、output/chapter_001.txt(衔接)。撰写第2章（约3000字）：单手掀翻清街人马，神殿开坛日十献一返荒诞场面（世界观展示+笑料+反衬供桌公道，不加概念）。开头方式必须与第1章不同。每句话单独一行。输出到 handoff/chapter_draft_ch2.json 和 output/chapter_002.txt。",
+      "input_files": ["memory/outline.json", "memory/characters.json", "output/chapter_001.txt", ".trae/skills/chapter-writer/SKILL.md"],
+      "output_files": ["handoff/chapter_draft_ch2.json", "output/chapter_002.txt"],
+      "pass_criteria": "输出文件存在，字数≥2700，开头方式与第1章不同，含神殿开坛日世界观展示",
+      "max_retries": 2
+    },
+    {
+      "id": 13,
+      "name": "第2章细节审核",
+      "agent": "detail-reviewer",
+      "instruction": "读取 .trae/skills/detail-reviewer/SKILL.md。读取 output/chapter_002.txt。执行与第1章相同的微观打磨。额外检查：开头是否与第1章用不同方式、结尾类型是否轮换、角色形象Ch2动态反差。输出到 handoff/detail_review_ch2.json。",
+      "input_files": ["output/chapter_002.txt", ".trae/skills/detail-reviewer/SKILL.md"],
+      "output_files": ["handoff/detail_review_ch2.json"],
+      "pass_criteria": "输出文件存在且含逐项检查结果",
+      "max_retries": 2
+    },
+    {
+      "id": 14,
+      "name": "第2章质量审核",
+      "agent": "quality-reviewer",
+      "instruction": "读取 .trae/skills/quality-reviewer/SKILL.md。读取 output/chapter_002.txt 和 handoff/detail_review_ch2.json。8维评分，技术分≥9.5则通过。输出到 handoff/quality_review_ch2.json。",
+      "input_files": ["output/chapter_002.txt", "handoff/detail_review_ch2.json", ".trae/skills/quality-reviewer/SKILL.md"],
+      "output_files": ["handoff/quality_review_ch2.json"],
+      "pass_criteria": "输出文件存在且含8维评分、技术分≥9.5、verdict=pass",
+      "max_retries": 3
+    },
+    {
+      "id": 15,
+      "name": "第2章去AI化",
+      "agent": "de-ai-processor",
+      "instruction": "读取 .trae/skills/de-ai-processor/SKILL.md。读取 output/chapter_002.txt。去AI化处理。输出到 handoff/de_ai_polish_ch2.json 和更新 output/chapter_002.txt。",
+      "input_files": ["output/chapter_002.txt", ".trae/skills/de-ai-processor/SKILL.md"],
+      "output_files": ["handoff/de_ai_polish_ch2.json", "output/chapter_002.txt"],
+      "pass_criteria": "输出文件存在且含修改记录，chapter_002.txt已更新",
+      "max_retries": 2
+    },
+    {
+      "id": 16,
+      "name": "第2章终审",
+      "agent": "final-reviewer",
+      "instruction": "读取 .trae/skills/final-reviewer/SKILL.md。读取 output/chapter_002.txt。终审打分，均分≥9.5放行。输出到 handoff/final_review_ch2.json。",
+      "input_files": ["output/chapter_002.txt", ".trae/skills/final-reviewer/SKILL.md"],
+      "output_files": ["handoff/final_review_ch2.json"],
+      "pass_criteria": "输出文件存在且含终审评分、均分≥9.5、verdict=pass",
+      "max_retries": 3
+    },
+    {
+      "id": 17,
+      "name": "第3章撰写",
+      "agent": "chapter-writer",
+      "instruction": "读取 .trae/skills/chapter-writer/SKILL.md。读取 memory/outline.json 的 golden_three_chapters.chapter_3、memory/characters.json、output/chapter_002.txt(衔接)。撰写第3章（约3000字）：测规则——无来历鲜果被拒收，太爷爷旧怀表换龙爪纹；老灯梦中第一声呓语（暗线启动）。开头方式必须与第1、2章都不同。每句话单独一行。输出到 handoff/chapter_draft_ch3.json 和 output/chapter_003.txt。",
+      "input_files": ["memory/outline.json", "memory/characters.json", "output/chapter_002.txt", ".trae/skills/chapter-writer/SKILL.md"],
+      "output_files": ["handoff/chapter_draft_ch3.json", "output/chapter_003.txt"],
+      "pass_criteria": "输出文件存在，字数≥2700，开头方式与前2章不同，含规则测试和老灯呓语暗线",
+      "max_retries": 2
+    },
+    {
+      "id": 18,
+      "name": "第3章细节审核",
+      "agent": "detail-reviewer",
+      "instruction": "读取 .trae/skills/detail-reviewer/SKILL.md。读取 output/chapter_003.txt。执行微观打磨。额外检查：开头是否与第1、2章用不同方式、结尾类型是否轮换、角色形象Ch3外部视角、暗线伏笔是否自然。输出到 handoff/detail_review_ch3.json。",
+      "input_files": ["output/chapter_003.txt", ".trae/skills/detail-reviewer/SKILL.md"],
+      "output_files": ["handoff/detail_review_ch3.json"],
+      "pass_criteria": "输出文件存在且含逐项检查结果",
+      "max_retries": 2
+    },
+    {
+      "id": 19,
+      "name": "第3章质量审核",
+      "agent": "quality-reviewer",
+      "instruction": "读取 .trae/skills/quality-reviewer/SKILL.md。读取 output/chapter_003.txt 和 handoff/detail_review_ch3.json。8维评分，技术分≥9.5则通过。输出到 handoff/quality_review_ch3.json。",
+      "input_files": ["output/chapter_003.txt", "handoff/detail_review_ch3.json", ".trae/skills/quality-reviewer/SKILL.md"],
+      "output_files": ["handoff/quality_review_ch3.json"],
+      "pass_criteria": "输出文件存在且含8维评分、技术分≥9.5、verdict=pass",
+      "max_retries": 3
+    },
+    {
+      "id": 20,
+      "name": "第3章去AI化",
+      "agent": "de-ai-processor",
+      "instruction": "读取 .trae/skills/de-ai-processor/SKILL.md。读取 output/chapter_003.txt。去AI化处理。输出到 handoff/de_ai_polish_ch3.json 和更新 output/chapter_003.txt。",
+      "input_files": ["output/chapter_003.txt", ".trae/skills/de-ai-processor/SKILL.md"],
+      "output_files": ["handoff/de_ai_polish_ch3.json", "output/chapter_003.txt"],
+      "pass_criteria": "输出文件存在且含修改记录，chapter_003.txt已更新",
+      "max_retries": 2
+    },
+    {
+      "id": 21,
+      "name": "第3章终审",
+      "agent": "final-reviewer",
+      "instruction": "读取 .trae/skills/final-reviewer/SKILL.md。读取 output/chapter_003.txt。终审打分，均分≥9.5放行。输出到 handoff/final_review_ch3.json。",
+      "input_files": ["output/chapter_003.txt", ".trae/skills/final-reviewer/SKILL.md"],
+      "output_files": ["handoff/final_review_ch3.json"],
+      "pass_criteria": "输出文件存在且含终审评分、均分≥9.5、verdict=pass",
+      "max_retries": 3
     }
-  ],
-  "_comment": "此文件为模板，实际步骤由用户确认任务后填充"
+  ]
 }

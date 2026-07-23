@@ -1,17 +1,25 @@
 {
-  "novel_title": "待定（由 title-reviewer 审核确认）",
-  "phase": "init",
-  "current_chapter": 0,
-  "completed_chapters": [],
+  "novel_title": "有龙则灵",
+  "phase": "chapter_production",
+  "current_chapter": 4,
+  "completed_chapters": [1, 2, 3],
   "daily_target": 2,
-  "daily_completed": 0,
+  "daily_completed": 3,
   "current_date": "2026-07-23",
   "init_progress": {
     "topic_screening": "done",
     "plot_architect": "done",
-    "next_step": "skeptic"
+    "title_reviewer": "done",
+    "skeptic": "done",
+    "outline_editor": "done",
+    "character_designer": "done",
+    "setting_reviewer": "done",
+    "chapter_1": "done",
+    "chapter_2": "done",
+    "chapter_3": "done",
+    "next_step": "chapter-writer Ch4"
   },
   "rewrite_count": {},
   "errors": [],
-  "last_updated": "2026-07-23T12:00:00Z"
+  "last_updated": "2026-07-23T20:00:00+08:00"
 }
