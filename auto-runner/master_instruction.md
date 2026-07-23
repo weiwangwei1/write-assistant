@@ -61,6 +61,24 @@ END WHILE
 | 角色设计 | character-designer | 2个 | 产出量大，上下文中等 |
 | 章节撰写 | chapter-writer | **1个** | 产出3000字，上下文消耗大，写完即退 |
 | 章节审核 | detail-reviewer, quality-reviewer, de-ai-processor, final-reviewer | 3个 | 需读全文+写报告，中等消耗 |
+| **并行步骤组** | 同组多Agent | **1组** | 同组Agent同时启动，全部完成后继续下一步 |
+
+### 并行步骤执行策略（v1.0 新增 ★）
+
+当 `task_config.json` 中步骤包含 `parallel_group` 字段时，按并行模式执行：
+
+1. **识别并行组**：扫描steps，找出所有 `parallel_group` 相同且 `is_merger != true` 的步骤
+2. **检查依赖**：确认并行组所有步骤的 `depends_on` 已完成
+3. **同时启动**：在同一条消息中发送多个Task工具调用，实现真正并行
+4. **等待全部完成**：所有并行Agent返回后，检查各自输出文件
+5. **执行合并步骤**：`is_merger=true` 的步骤在全部并行Agent完成后执行
+6. **更新状态**：将并行组所有步骤标记为completed，推进current_step
+
+**并行执行限制**：
+- 单次最多启动5个并行Agent
+- 并行Agent各自写独立输出文件（如 `memory/characters/许愿.json`）
+- 只有合并Agent可写共享输出文件（如 `memory/characters.json`）
+- 并行组中1个Agent失败：记录失败，其他Agent继续；合并Agent检查缺失项
 
 ## 特殊规则
 

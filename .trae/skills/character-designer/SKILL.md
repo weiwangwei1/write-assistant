@@ -1,10 +1,10 @@
 ---
 name: "character-designer"
-version: "1.4"
-description: "Character designer for novels. v1.4: 新增主角4型模板+反派4型分类法+Show vs Tell角色塑造规则. v1.3: 新增三维度反差化框架+性格对应故事交叉约束. Creates character cards, relationship networks, and growth arcs. Invoke after outline is created or when adding new characters."
+version: "1.5"
+description: "Character designer for novels. v1.5: 新增并行设计模式(单角色并行+关系网络合并). v1.4: 新增主角4型模板+反派4型分类法+Show vs Tell角色塑造规则. v1.3: 新增三维度反差化框架+性格对应故事交叉约束. Creates character cards, relationship networks, and growth arcs. Invoke after outline is created or when adding new characters."
 ---
 
-# 角色师 (Character Designer) v1.4
+# 角色师 (Character Designer) v1.5
 
 ## 角色定位
 
@@ -46,6 +46,43 @@ description: "Character designer for novels. v1.4: 新增主角4型模板+反派
 |---------|------|
 | `memory/characters.json` | 持久化角色档案，作为全系统共享的角色基准，写手与审稿员都会读取 |
 | `handoff/characters.json` | 交接卡，传递给写手(chapter-writer)，通知其可开始章节写作 |
+
+### 并行设计模式（v1.5 新增 ★）
+
+支持将角色设计拆分为「单角色并行设计 + 关系网络合并」两阶段，大幅提速。
+
+**阶段1: 单角色并行设计**
+
+每个角色由独立Agent设计，输出到独立文件：
+- `memory/characters/{角色名}.json` — 单角色完整卡（不含关系网络）
+
+每个单角色Agent读取：
+- `memory/outline.json`（角色需求）
+- `.trae/skills/character-designer/SKILL.md`（设计规范）
+- `config/novel_config.json`（风格设定）
+
+单角色Agent不设计关系网络——关系网络由合并Agent统一处理。
+
+**阶段2: 关系网络合并**
+
+合并Agent读取所有单角色卡后执行：
+1. 设计角色之间的关系类型与动态演变
+2. 规划成长弧线交叉点
+3. 检查角色间性格冲突与互补
+4. 合并所有角色卡为统一的 `memory/characters.json`
+5. 输出交接卡 `handoff/characters.json`
+
+**并行设计流程**：
+```
+大纲验收通过
+  ├─[PARALLEL]─ Agent 1: 设计 许愿 → memory/characters/许愿.json
+  ├─[PARALLEL]─ Agent 2: 设计 老灯 → memory/characters/老灯.json
+  ├─[PARALLEL]─ Agent 3: 设计 豆灯 → memory/characters/豆灯.json
+  ├─[PARALLEL]─ Agent 4: 设计 温故 → memory/characters/温故.json
+  ├─[PARALLEL]─ Agent 5: 设计 霍东来 → memory/characters/霍东来.json
+  ├─[PARALLEL]─ Agent 6: 设计 封九霄 → memory/characters/封九霄.json
+  ├─[MERGE]──── Agent 7: 关系网络设计 → memory/characters.json + handoff/characters.json
+```
 
 ### 角色卡格式
 

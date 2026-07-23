@@ -234,6 +234,61 @@ Step 4: 向用户汇报当前指针 ★ 必须执行
 
 ---
 
+## 并行调度模式 (Parallel Dispatch) v1.0
+
+详见 `auto-runner/parallel-execution.md`。总编在以下场景中应优先使用并行调度，通过多Agent同时工作大幅提升生产速度。
+
+### 并行调度决策树
+
+```
+当前阶段?
+├─ 初始化阶段 (outline已就绪)
+│  └─ 启用模式1: 预生产并行
+│     ├─ Agent A: title-reviewer
+│     ├─ Agent B: skeptic R1
+│     └─ Agent C: setting-reviewer
+│     → 全部完成后→ outline-editor
+│
+├─ 角色设计阶段 (outline已验收)
+│  └─ 启用模式2: 角色并行设计
+│     ├─ Agent 1-6: 各设计1个角色 → memory/characters/{角色名}.json
+│     └─ Agent 7 (合并): 关系网络设计 → memory/characters.json
+│
+├─ 多章已写好待审核
+│  └─ 启用模式3: 多章并行审核
+│     ├─ Agent 1-5: 各审核1章 (完整4步流水线)
+│     └─ 主控: 合并foreshadowing_tracker.json更新
+│
+├─ 多章待写 (beat sheet已就绪)
+│  └─ 启用模式5: 多章并行写作
+│     ├─ Agent 1-3: 各写1章 → output/chapter_00N.txt
+│     └─ Agent 4 (合并): 连续性检查 → handoff/continuity_check.json
+│
+└─ 单章审核中
+   └─ 启用模式4: 单章审核内部并行
+      ├─ Agent A: detail-reviewer
+      ├─ Agent B: de-ai-processor (分析阶段并行)
+      └─ Agent C (串行): quality-reviewer → Agent D: final-reviewer
+```
+
+### 并行调度的执行规范
+
+1. **并发上限**：单次最多启动5个并行Agent
+2. **文件隔离**：每个并行Agent只写自己的输出文件，禁止并发修改同一文件
+3. **合并步骤**：并行组完成后必须有合并Agent检查一致性和冲突
+4. **失败隔离**：1个Agent失败不影响同组其他Agent
+5. **伏笔追踪器保护**：并行审核时各Agent输出伏笔更新建议，由主控统一合并到foreshadowing_tracker.json
+
+### 交互式模式下的并行调度
+
+在交互式模式中，总编通过Task工具启动并行Agent：
+- 每个并行Agent使用 `general_purpose_task` 类型
+- 在单条消息中发送多个Task工具调用实现并行
+- 等待全部Agent返回后，由总控执行合并和一致性检查
+- 通过AskUserQuestion向用户汇报并行执行结果
+
+---
+
 ## 进度检查
 
 当用户询问"进度如何"或主动触发状态检查时，执行以下流程：
