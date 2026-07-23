@@ -1,7 +1,7 @@
 {
   "project": "有龙则灵",
   "last_updated_chapter": 10,
-  "last_updated_at": "2026-07-24T22:00:00+08:00",
+  "last_updated_at": "2026-07-24T23:30:00+08:00",
   "foreshadowings": [
     {
       "id": "F001",
@@ -61,7 +61,8 @@
         "full_reveal_chapter": 110
       },
       "actual_progress": [
-        { "chapter": 3, "action": "planted", "detail": "供桌裂缝首次出现，渗暗金光", "status": "completed" },
+        { "chapter": 3, "action": "planted", "detail": "供桌裂缝首次出现，渗暗金光。原文：'桌面中央有一条细裂纹，他一直当它是老裂缝。裂缝里，渗出一丝暗金色的光。'", "status": "completed" },
+        { "chapter": 5, "action": "progressed", "detail": "裂缝宽了一丝，龙鳞首次发现——从木纹里拱出来的暗金色鳞片，'像鳞是根，桌是长在根上面的枝'。鳞纹+爪纹双纹共振往裂缝涌", "status": "completed" },
         { "chapter": 6, "action": "progressed", "detail": "裂缝从细纹扩大到能塞指甲盖，刻痕'守'字发现，龙鳞开始颤(每7息一次像心跳)", "status": "completed" },
         { "chapter": 8, "action": "progressed", "detail": "裂缝到指甲盖宽，龙鳞持续颤", "status": "completed" },
         { "chapter": 9, "action": "progressed", "detail": "裂缝宽了一倍，龙鳞从'颤'升级为'跳'(像心脏跳)，新增光晕(暗金色极薄像鳞片在呼吸)，老灯说'它也吃饱了'", "status": "completed" }
@@ -79,13 +80,15 @@
       "id": "F004",
       "title": "老灯声音进化——从闷到第四种",
       "plan_from_outline": {
-        "plant_chapter": 6,
+        "plant_chapter": 5,
         "small_clue_chapter": 8,
         "half_reveal_chapter": 30,
         "full_reveal_chapter": 300
       },
       "actual_progress": [
-        { "chapter": 6, "action": "planted", "detail": "老灯两种声音：闷(犯困)和清醒(罕见)", "status": "completed" },
+        { "chapter": 2, "action": "teased", "detail": "老灯展露威压——光弯曲/空气黏稠/心跳被拽慢，非语言本能反应(护短)。声音进化链的'零号节点'，后续声音进化的前置铺垫", "status": "completed" },
+        { "chapter": 5, "action": "planted", "detail": "老灯清醒声音首次出现——'不沙哑了——是清醒的，低沉的，像远处滚来的闷雷'。声音进化链起点：Ch2威压(本能非语言)→Ch5清醒声音(首次有声)", "status": "completed" },
+        { "chapter": 6, "action": "deepened", "detail": "老灯两种声音：闷(犯困)和清醒(罕见)", "status": "completed" },
         { "chapter": 8, "action": "small_clue", "detail": "第三种声音出现——占有欲'它们是老夫的'", "status": "completed" },
         { "chapter": 9, "action": "deepened", "detail": "第四种声音出现——盲眼老人到来时的警觉/恐惧'来了'。加上得意(角纹获得时)。声音类型已达4种", "status": "completed" }
       ],
@@ -102,17 +105,19 @@
       "id": "F005",
       "title": "爷爷困于供桌——许慎独未死",
       "plan_from_outline": {
-        "plant_chapter": 6,
-        "small_clue_chapter": 8,
+        "plant_chapter": 1,
+        "small_clue_chapter": 5,
         "half_reveal_chapter": 65,
         "full_reveal_chapter": 161
       },
       "actual_progress": [
-        { "chapter": 6, "action": "planted", "detail": "老灯说'他还在里头''没走，只是出不来了'。供簿被供桌推回——'他的东西，他自己收走了'", "status": "completed" },
+        { "chapter": 1, "action": "planted", "detail": "账册最后一页'供桌认主，守灯人血脉。慎独留。'+爷爷突然失踪暗示'头天晚上还说要教认纹路，第二天人没了'——守灯人概念首次出现+爷爷失踪与供桌关联暗示", "status": "completed" },
+        { "chapter": 5, "action": "progressed", "detail": "老灯清醒状态下首次揭示爷爷命运——'不是失踪的''被供桌收回去了'。半揭手法——给出去向但留更大悬念", "status": "completed" },
+        { "chapter": 6, "action": "deepened", "detail": "老灯说'他还在里头''没走，只是出不来了'。供簿被供桌推回——'他的东西，他自己收走了'", "status": "completed" },
         { "chapter": 6, "action": "deepened", "detail": "陈婶证词：爷爷冬至夜在供桌前坐整夜+半夜与人对话+失踪前半年不再说话", "status": "completed" },
         { "chapter": 8, "action": "progressed", "detail": "夹层祭器'被供桌收回去了'——暗示爷爷仍在主动收东西", "status": "completed" }
       ],
-      "current_status": "planted",
+      "current_status": "progressing",
       "next_milestone": {
         "chapter": 65,
         "action": "half_reveal",
@@ -125,13 +130,14 @@
       "id": "F006",
       "title": "长明灯+火种——老灯的真实目的",
       "plan_from_outline": {
-        "plant_chapter": 3,
-        "small_clue_chapter": 30,
+        "plant_chapter": 1,
+        "small_clue_chapter": 3,
         "half_reveal_chapter": 110,
         "full_reveal_chapter": 300
       },
       "actual_progress": [
-        { "chapter": 3, "action": "planted", "detail": "老灯梦中呓语'还差三个……火种还差三个'", "status": "completed" },
+        { "chapter": 1, "action": "planted", "detail": "老灯双关台词'没刻完的才叫不甘心。刻完了，那是手艺。没刻完，那是命。'——表面评瓦当，暗喻老灯自身被囚处境和未完成的使命(重聚火种)", "status": "completed" },
+        { "chapter": 3, "action": "deepened", "detail": "老灯梦中呓语'还差三个……火种还差三个''长明灯'——从Ch1的隐性双关升级为梦话泄露暗线核心概念", "status": "completed" },
         { "chapter": 10, "action": "teased", "detail": "盲眼老人说'灯市口那盏青灯烧了三百年，油快见底了''你要是有旧灯油——来历深的——给它续上'——长明灯火种线首次被外部角色激活，暗示'旧灯油'与火种的关联", "status": "completed" }
       ],
       "current_status": "small_clue",
@@ -148,15 +154,16 @@
       "title": "庚午年连接——三件物品同年的巧合",
       "plan_from_outline": {
         "plant_chapter": 4,
-        "small_clue_chapter": 6,
+        "small_clue_chapter": 5,
         "half_reveal_chapter": 65,
         "full_reveal_chapter": 190
       },
       "actual_progress": [
-        { "chapter": 4, "action": "planted", "detail": "墨盒'庚午年春'+短刀'庚午年封'——同年物品", "status": "completed" },
+        { "chapter": 4, "action": "planted", "detail": "墨盒'庚午年春'(Ch3已有，Ch4背景回顾)+短刀布条下露出'镇'字(半字暗示)——同年物品的线索开始浮现", "status": "completed" },
+        { "chapter": 5, "action": "progressed", "detail": "供桌揭示短刀全文'镇巷十三号，庚午年封'。许愿确认与墨盒同年。老灯确认'庚午年=上一次献祭的年份'", "status": "completed" },
         { "chapter": 6, "action": "deepened", "detail": "供簿记录从'庚午年正月初一'开始——三件物品均指向庚午年", "status": "completed" }
       ],
-      "current_status": "planted",
+      "current_status": "progressing",
       "next_milestone": {
         "chapter": 65,
         "action": "half_reveal",
@@ -210,16 +217,17 @@
       "id": "F010",
       "title": "灯守龙——不是人守灯，是灯守龙",
       "plan_from_outline": {
-        "plant_chapter": 6,
-        "small_clue_chapter": 8,
+        "plant_chapter": 1,
+        "small_clue_chapter": 6,
         "half_reveal_chapter": 30,
         "full_reveal_chapter": 190
       },
       "actual_progress": [
-        { "chapter": 6, "action": "planted", "detail": "供簿涂掉的内容在裂缝光下显现：'灯守龙'——不是'守灯龙'是'灯守龙'。灯在守龙，不是人在守灯", "status": "completed" },
+        { "chapter": 1, "action": "planted", "detail": "老灯身份暗示——'活了不知道多少年的东西'，暗示老灯的远古身份。老灯暗线(灯守龙/声音进化)的前置暗示", "status": "completed" },
+        { "chapter": 6, "action": "deepened", "detail": "供簿涂掉的内容在裂缝光下显现：'灯守龙'——不是'守灯龙'是'灯守龙'。灯在守龙，不是人在守灯", "status": "completed" },
         { "chapter": 6, "action": "deepened", "detail": "老灯清醒确认'你看到了''答案不在簿子里，在底下'", "status": "completed" }
       ],
-      "current_status": "planted",
+      "current_status": "deepening",
       "next_milestone": {
         "chapter": 30,
         "action": "half_reveal",
@@ -227,6 +235,273 @@
       },
       "overdue": false,
       "chapters_since_last_action": 3
+    },
+    {
+      "id": "F011",
+      "title": "纹位Build策略——纹位选择与组合",
+      "plan_from_outline": {
+        "plant_chapter": 1,
+        "small_clue_chapter": 3,
+        "half_reveal_chapter": 30,
+        "full_reveal_chapter": 110
+      },
+      "actual_progress": [
+        { "chapter": 1, "action": "planted", "detail": "纹位选择首次展示——鳞纹选择掌心'打架要用手'，暗示纹位可搭配组合。原文行171-179", "status": "completed" },
+        { "chapter": 3, "action": "deepened", "detail": "鳞纹+爪纹共振发现组合——'鳞纹覆盖掌面，爪纹从指节间探出。防御和攻击同时存在，像盾牌后面伸出一只爪子'。爪纹与鳞纹'像在拔河'暗示纹位间存在互动/张力关系(行203)", "status": "completed" },
+        { "chapter": 5, "action": "progressed", "detail": "鳞纹+爪纹双纹同时共振首次激活——双纹往裂缝涌", "status": "completed" },
+        { "chapter": 9, "action": "progressed", "detail": "三纹组合(鳞防/爪攻/角火)——角纹落后背，老灯总结'鳞防身，爪伤人。角——角是龙喷火用的'。纹位Build策略从二纹升级为三纹", "status": "completed" }
+      ],
+      "current_status": "progressing",
+      "next_milestone": {
+        "chapter": 30,
+        "action": "half_reveal",
+        "detail": "纹位Build深度机制揭示——纹位间博弈关系的本质"
+      },
+      "overdue": false,
+      "chapters_since_last_action": 0
+    },
+    {
+      "id": "F012",
+      "title": "龙纹体系——鳞纹之外的更多龙纹系",
+      "plan_from_outline": {
+        "plant_chapter": 1,
+        "small_clue_chapter": 3,
+        "half_reveal_chapter": 30,
+        "full_reveal_chapter": 190
+      },
+      "actual_progress": [
+        { "chapter": 1, "action": "planted", "detail": "鳞纹之外还有更多——老灯'还能换别的吗？'后沉默装睡，暗示鳞纹之外还有更多龙纹系(爪/角/须/睛)。原文行269-273", "status": "completed" },
+        { "chapter": 3, "action": "deepened", "detail": "爪纹获得——鳞纹之外第二种龙纹系首次出现。'三趾，弯曲如钩'", "status": "completed" },
+        { "chapter": 9, "action": "deepened", "detail": "角纹获得——第三种龙纹系出现。'角纹刚落，不稳。三天'。龙纹体系扩展至鳞/爪/角三系", "status": "completed" }
+      ],
+      "current_status": "deepening",
+      "next_milestone": {
+        "chapter": 30,
+        "action": "half_reveal",
+        "detail": "龙纹体系全貌半揭——须/睛等剩余纹系引入"
+      },
+      "overdue": false,
+      "chapters_since_last_action": 0
+    },
+    {
+      "id": "F013",
+      "title": "来历记忆能力——碰物闪回来历画面",
+      "plan_from_outline": {
+        "plant_chapter": 1,
+        "small_clue_chapter": 3,
+        "half_reveal_chapter": 30,
+        "full_reveal_chapter": 110
+      },
+      "actual_progress": [
+        { "chapter": 1, "action": "planted", "detail": "来历记忆能力首次展示——掌心鳞纹碰瓦当闪过窑工刻龙纹画面。golden_finger规则(来历感知)的伏笔。原文行207-223", "status": "completed" },
+        { "chapter": 3, "action": "deepened", "detail": "碰物品感知来历能力系统化展示——鲜果(无来历)弹回→铜板(三代人)返碎屑→烟杆(二十多年)→墨盒(更深)→怀表(太爷爷)。来历越深返利越多", "status": "completed" },
+        { "chapter": 10, "action": "progressed", "detail": "来历记忆能力升级为鉴定功能——帮赵婶鉴定铜碟，鳞纹碰物'没有热。没有认'判定赝品。从自用鉴定扩展为对外公道服务", "status": "completed" }
+      ],
+      "current_status": "progressing",
+      "next_milestone": {
+        "chapter": 30,
+        "action": "half_reveal",
+        "detail": "来历记忆能力的深层机制——为何鳞纹能感知来历"
+      },
+      "overdue": false,
+      "chapters_since_last_action": 0
+    },
+    {
+      "id": "F014",
+      "title": "公会暗线——'公会'耳语首次种子",
+      "plan_from_outline": {
+        "plant_chapter": 2,
+        "small_clue_chapter": 4,
+        "half_reveal_chapter": 15,
+        "full_reveal_chapter": 50
+      },
+      "actual_progress": [
+        { "chapter": 2, "action": "planted", "detail": "'公会'耳语——'夜风从窗缝里灌进来，捎了一个词……公会……'。公会暗线的首次种子。原文行460-462", "status": "completed" },
+        { "chapter": 4, "action": "deepened", "detail": "公会蓝袍子(纹材稽查员)出场+纹材稽查制度展示+封九霄之名首次提及。公会从耳语升级为面对面对峙", "status": "completed" },
+        { "chapter": 5, "action": "deepened", "detail": "霍东来透露公会封九霄想见许愿+镇巷令引入。公会暗线从稽查升级为政治施压", "status": "completed" }
+      ],
+      "current_status": "deepening",
+      "next_milestone": {
+        "chapter": 13,
+        "action": "half_reveal",
+        "detail": "公会正式介入——封九霄与许愿正面对决(大纲Ch13-18)"
+      },
+      "overdue": false,
+      "chapters_since_last_action": 4
+    },
+    {
+      "id": "F015",
+      "title": "鳞纹'被打生长'机制——能力体系特殊规则",
+      "plan_from_outline": {
+        "plant_chapter": 2,
+        "small_clue_chapter": null,
+        "half_reveal_chapter": null,
+        "full_reveal_chapter": null
+      },
+      "actual_progress": [
+        { "chapter": 2, "action": "planted", "detail": "鳞纹'被打生长'机制引入——'被打了一棍子之后才有的''被打了几下，它就长了几下。亏了。''按住就停，松手就长'。引入golden_finger.rules中未定义的新机制(龙纹受物理打击后生长)。原文行392-434", "status": "completed" }
+      ],
+      "current_status": "planted",
+      "next_milestone": {
+        "chapter": null,
+        "action": "clarify",
+        "detail": "后续章节补老灯解释以明确机制性质(如'头回挨打才算开张，往后得靠喂')。经Ch3-9(7章)验证确认为一次性激活事件，所有龙纹获得均通过献祭返利，此机制零次复现，存在轻微悬置"
+      },
+      "overdue": false,
+      "chapters_since_last_action": 7,
+      "note": "经Ch3-9全面验证，所有龙纹获得均通过献祭返利(Ch1瓦当→鳞纹/Ch3铜板→爪纹碎片/Ch3墨盒→爪纹碎片/Ch3怀表→完整爪纹/Ch9角纹布→角纹)，'被打生长'机制零次复现。几乎可确认为一次性激活事件(初次受击刺激鳞纹初始扩展)，后续生长回归正常机制。但文本从未明确解释此机制，存在轻微悬置。"
+    },
+    {
+      "id": "F016",
+      "title": "品级体系——九品制首次引入",
+      "plan_from_outline": {
+        "plant_chapter": 2,
+        "small_clue_chapter": 9,
+        "half_reveal_chapter": 31,
+        "full_reveal_chapter": 70
+      },
+      "actual_progress": [
+        { "chapter": 2, "action": "planted", "detail": "品级体系首次以数字形式出现——霍东来识别'至少六品。你爷爷藏了二十年'。九品制首次引入，符合Vol1 staging规则(仅提数字不展开品阶名)。原文行321", "status": "completed" },
+        { "chapter": 9, "action": "deepened", "detail": "角纹获得时老灯说'角纹刚落，不稳。三天'——'不稳'暗示新纹需养护才能达到稳定品级，间接印证品级体系存在(纹路有从'不稳'到'稳定'的品级进阶过程)", "status": "completed" }
+      ],
+      "current_status": "deepening",
+      "next_milestone": {
+        "chapter": 31,
+        "action": "half_reveal",
+        "detail": "Vol2(Ch31-70)正式引入品阶概念——九品制品阶名展开"
+      },
+      "overdue": false,
+      "chapters_since_last_action": 0
+    },
+    {
+      "id": "F017",
+      "title": "老灯认霍东来——霍东来与供桌/老灯的过去关系",
+      "plan_from_outline": {
+        "plant_chapter": 5,
+        "small_clue_chapter": 70,
+        "half_reveal_chapter": 70,
+        "full_reveal_chapter": 100
+      },
+      "actual_progress": [
+        { "chapter": 5, "action": "planted", "detail": "霍东来临走时说'老灯认我。你爷爷在的时候，老灯也认我。'——暗示霍东来与老灯/供桌有更深层的过去关系。可能与outline中霍东来'投靠温故'(Ch70+)的长线相关。原文L133", "status": "completed" }
+      ],
+      "current_status": "planted",
+      "next_milestone": {
+        "chapter": 70,
+        "action": "half_reveal",
+        "detail": "霍东来与老灯/供桌的过去关系揭示——与投靠温故线的关联"
+      },
+      "overdue": false,
+      "chapters_since_last_action": 4
+    },
+    {
+      "id": "F018",
+      "title": "爪纹远距离感应——纹路与远方某物的共振",
+      "plan_from_outline": {
+        "plant_chapter": 3,
+        "small_clue_chapter": null,
+        "half_reveal_chapter": null,
+        "full_reveal_chapter": null
+      },
+      "actual_progress": [
+        { "chapter": 3, "action": "planted", "detail": "爪纹灼热'像隔着很远很远的路，有人在另一头碰了一下同一根弦'——暗示爪纹(攻击系)与远方某物/某人有感应。紧接裂缝暗金光出现，可能暗示爪纹与供桌深处之物(龙鳞/老灯本体)存在共振。原文行263", "status": "completed" }
+      ],
+      "current_status": "planted",
+      "next_milestone": {
+        "chapter": null,
+        "action": "observe",
+        "detail": "观察后续章节是否出现类似的'远距离感应'描写，以确认此伏笔的走向。目前隐含在F003(裂缝)和F006(火种)的推进中"
+      },
+      "overdue": false,
+      "chapters_since_last_action": 6
+    },
+    {
+      "id": "F019",
+      "title": "封九霄之名——首次提名",
+      "plan_from_outline": {
+        "plant_chapter": 4,
+        "small_clue_chapter": 5,
+        "half_reveal_chapter": 20,
+        "full_reveal_chapter": 50
+      },
+      "actual_progress": [
+        { "chapter": 4, "action": "planted", "detail": "蓝袍子(纹材稽查员)说出'封九霄'之名——后续重要角色封九霄的首次命名出场(虽未实际登场)。大纲中封九霄定位为'灰色角色(公会纹材稽查)'，planned首次浮现ch15，实际ch4即被提名。原文第181行", "status": "completed" },
+        { "chapter": 5, "action": "deepened", "detail": "霍东来确认'公会封分会长想见你'——封九霄从名字升级为有明确意图的势力代表", "status": "completed" }
+      ],
+      "current_status": "deepening",
+      "next_milestone": {
+        "chapter": 13,
+        "action": "half_reveal",
+        "detail": "封九霄正式登场——与许愿的首次正面交锋(大纲Ch13-18)"
+      },
+      "overdue": false,
+      "chapters_since_last_action": 4
+    },
+    {
+      "id": "F020",
+      "title": "爷爷与公会的往来",
+      "plan_from_outline": {
+        "plant_chapter": 4,
+        "small_clue_chapter": 6,
+        "half_reveal_chapter": 65,
+        "full_reveal_chapter": 161
+      },
+      "actual_progress": [
+        { "chapter": 4, "action": "planted", "detail": "蓝袍子透露'你爷爷许慎独在的时候，跟公会有过往来'——爷爷暗线的重要分支(爷爷与公会关系)。大纲sub_plot_lines'爷爷线'中未明确包含公会维度。原文第171行", "status": "completed" },
+        { "chapter": 5, "action": "deepened", "detail": "霍东来补充'公会每半年看一趟供桌'+'你爷爷在的时候，供桌公道，我没法插手'——爷爷与公会关系深化", "status": "completed" }
+      ],
+      "current_status": "deepening",
+      "next_milestone": {
+        "chapter": 65,
+        "action": "half_reveal",
+        "detail": "爷爷与公会往来的真相——供簿中的公会相关记录"
+      },
+      "overdue": false,
+      "chapters_since_last_action": 4
+    },
+    {
+      "id": "F021",
+      "title": "'找人不是找东西'——许愿的主动寻找意图",
+      "plan_from_outline": {
+        "plant_chapter": 4,
+        "small_clue_chapter": null,
+        "half_reveal_chapter": null,
+        "full_reveal_chapter": null
+      },
+      "actual_progress": [
+        { "chapter": 4, "action": "planted", "detail": "许愿'今天他有新目标。不是找东西。是找人。'——暗示许愿在主动寻找某人。但章中许愿并未找到此人，而是被公会稽查员找到。此'找人'意图在Ch5-Ch10中未被回收或解释。原文第19-21行", "status": "completed" }
+      ],
+      "current_status": "planted",
+      "next_milestone": {
+        "chapter": null,
+        "action": "clarify",
+        "detail": "需确认'找人'指谁——若指寻找爷爷线索则合理(Ch4全章都在间接找爷爷的痕迹)，若另有所指则需在后续章节回收。此钩子目前悬置"
+      },
+      "overdue": false,
+      "chapters_since_last_action": 5,
+      "note": "Ch4审核报告标记为major级问题——钩子跑偏/未兑现。许愿到底想找谁？是爷爷？还是其他人？此钩子在Ch5-Ch10后续章节中未被回收或解释，需在后续章节中明确。"
+    },
+    {
+      "id": "F022",
+      "title": "镇巷令背面空白——需封分会长亲手刻字",
+      "plan_from_outline": {
+        "plant_chapter": 5,
+        "small_clue_chapter": 13,
+        "half_reveal_chapter": 18,
+        "full_reveal_chapter": 50
+      },
+      "actual_progress": [
+        { "chapter": 5, "action": "planted", "detail": "镇巷令'背面空着'，'背面的字，得公会的封分会长亲手刻'。许愿鳞纹发热'像在说，这木牌不是空的。只是看不见。'——镇巷令背面的空白+鳞纹反应暗示背面有看不见的内容，可能是公会/封九霄线的伏笔。原文L75-77, L149-151", "status": "completed" }
+      ],
+      "current_status": "planted",
+      "next_milestone": {
+        "chapter": 13,
+        "action": "half_reveal",
+        "detail": "大纲Ch13-18(拒绝公会)中可能回收此细节——封九霄刻字或镇巷令背面内容揭示"
+      },
+      "overdue": false,
+      "chapters_since_last_action": 4,
+      "note": "镇巷令更偏plot device而非长线伏笔，但鳞纹对空白木牌的反应暗示有超自然内容。如果后续Ch13-18中会回收此细节则追踪，否则可作为plot device不追踪。"
     }
   ],
   "information_gaps": [
@@ -257,6 +532,6 @@
   "density_check": {
     "chapters_since_last_foreshadowing_action": 0,
     "alert": false,
-    "note": "Ch10激活4条伏笔(F001 deepened + F002 progressed + F006 teased从6章休眠中激活 + F008 deepened)。共10条伏笔线活跃(9活跃+1已解决)。IG001部分解决(许愿说漏嘴提到供簿但隐瞒阅读深度，Ch11须完全解决)。F006(长明灯/火种)通过盲眼老人'灯油'台词成功激活，解除6章休眠警报。"
+    "note": "Ch10激活4条伏笔(F001 deepened + F002 progressed + F006 teased从6章休眠中激活 + F008 deepened)。本次更新基于5个并行审核Agent(Ch1/Ch2/Ch3/Ch4/Ch5)的报告，系统补全Ch1-Ch5的伏笔缺漏记录：新增12条伏笔(F011-F022)，修正6条已有伏笔(F003/F004/F005/F006/F007/F010)的plant_chapter和actual_progress。共22条伏笔线(21活跃+1已解决F009)。Ch1伏笔从0条追踪补全至7条(守灯人血脉+爷爷失踪暗示→F005, 老灯双关台词→F006, 纹位Build→F011, 鳞纹之外还有更多→F012, 来历记忆→F013, 老灯身份暗示→F010)。Ch2伏笔从0条追踪补全至3条新伏笔(F014公会耳语/F015被打生长/F016品级体系)+F004补录Ch2前置铺垫。Ch5伏笔从0条追踪补全至4条已有伏笔的Ch5记录(F003龙鳞首次发现/F004清醒声音首次出现/F005被供桌收回去了首次揭示/F007短刀庚午年全文)。Ch3补充2条(F018爪纹远距离感应+纹位Build深化F011)。Ch4补充3条(F019封九霄之名/F020爷爷与公会往来/F021找人钩子)+F007记录修正(ISS-009)。Ch5补充2条(F017老灯认霍东来/F022镇巷令背面空白)。"
   }
 }
