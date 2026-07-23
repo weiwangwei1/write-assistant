@@ -1,10 +1,12 @@
 ---
 name: "memory-manager"
-version: "1.0"
-description: "Memory manager for novel writing system. Manages hierarchical storage, generates summaries, maintains sliding window context. Invoke after chapter is finalized or when updating memory."
+version: "1.2"
+description: "Memory manager for novel writing system. v1.2: 新增目标闭环追踪(goal_tracker.json)+主线进度条/反派梯子追踪+悬念活跃窗口维护——基于Ch4-10第三方评审(目标断头/火种断更/悬念过载). v1.1: 新增章节级大纲漂移记录(drift_log)+终审后强制入库定位(硬门禁下游). Manages hierarchical storage, generates summaries, maintains sliding window context. Invoke MANDATORILY after final-reviewer approves each chapter — next chapter must not start until memory is committed."
 ---
 
-# 记忆管家 (Memory Manager)
+# 记忆管家 (Memory Manager) v1.2
+
+> **流水线城市（v1.1 起强制）**：final-reviewer 终审通过后，memory-manager 是**不可跳过的强制步骤**。chief-editor 在其入库完成前不得启动下一章（硬门禁，见 chief-editor v1.1）。数据教训：Ch4–Ch10 连续跳过记忆入库，导致 session_pointer 停留在旧项目、章节摘要欠账 7 章，chapter-writer 跨章事实表失去数据源——跨章 critical 错误（Ch6-8 年代/人名/位置硬伤）均发生在欠账区间。
 
 ## 角色定位
 
@@ -69,6 +71,7 @@ description: "Memory manager for novel writing system. Manages hierarchical stor
 | `memory/volume_summaries/vol_XX.json` | 卷宗摘要 | 卷宗最后一章入库时 |
 | `memory/foreshadowing_tracker.json` | 伏笔状态追踪表 | 每章终稿入库时更新 |
 | `memory/session_pointer.json` | L5 会话恢复指针 | 每章终稿入库时更新 |
+| `memory/goal_tracker.json` | 目标闭环+主线进度条+反派梯子追踪表（v1.2 新增） | 每章终稿入库时更新 |
 | `memory/consistency_check/consistency_{N}.json` | 一致性自检报告 | 每10章触发 |
 | `memory/decision_log.jsonl` | 写作决策日志（追加） | 关键决策发生时 |
 | `logs/writing_log.jsonl` | 写作日志（追加写入） | 每章终稿入库时 |
@@ -382,6 +385,98 @@ description: "Memory manager for novel writing system. Manages hierarchical stor
 
 ---
 
+## 目标闭环追踪 + 主线进度条 + 悬念活跃窗口（v1.2 新增）
+
+维护 `memory/goal_tracker.json`，解决 Ch4-10 第三方评审发现的三大失控：**目标断头**（镇巷令建立后4章无进展）、**主线断更**（火种收集进度无人追踪）、**悬念过载**（同时活跃悬念>3条读者记不住）。本文件是 chapter-writer 写作前的必读输入，也是 quality-reviewer 目标断头检测、longline-guardian 主线监控的数据源。
+
+### goal_tracker.json 格式
+
+```json
+{
+  "card_type": "goal_tracker",
+  "last_updated_chapter": 10,
+  "goals": [
+    {
+      "id": "G001",
+      "title": "镇巷令公会报备",
+      "type": "task",
+      "established_chapter": 7,
+      "expected_close_chapter": 12,
+      "status": "active",
+      "progress_log": [
+        {"chapter": 7, "action": "established", "detail": "许愿获得镇巷令，决定去公会报备"}
+      ],
+      "chapters_since_progress": 3,
+      "alert": null
+    }
+  ],
+  "main_quest_progress": {
+    "id": "MQ001",
+    "title": "火种收集",
+    "total_stages": 3,
+    "completed_stages": 0,
+    "current_chapter": 10,
+    "stage_log": [],
+    "health": "on_track",
+    "stalled_chapters": 0
+  },
+  "villain_ladder": [
+    {
+      "tier": "明线小boss",
+      "name": "霍东来",
+      "planned_window": "Ch26-30",
+      "status": "not_started",
+      "first_appear_chapter": null,
+      "cleared_chapter": null
+    }
+  ],
+  "suspense_window": {
+    "max_active": 3,
+    "active": [
+      {"id": "S001", "title": "爷爷下落", "opened_chapter": 1, "type": "main"},
+      {"id": "S002", "title": "盲眼老人身份", "opened_chapter": 9, "type": "character"}
+    ],
+    "overflow_alerts": []
+  }
+}
+```
+
+### 字段说明
+
+| 区块 | 字段 | 说明 |
+|------|------|------|
+| goals | `type` | `task`（具体任务，如公会报备）/ `quest`（阶段性追求，如查清60年谜团）/ `promise`（对他人的承诺） |
+| goals | `status` | `active`（进行中）/ `closed`（已闭环）/ `abandoned`（确认放弃，需记录理由） |
+| goals | `chapters_since_progress` | 自上次 progress_log 新增以来的章节数；**≥4 即触发目标断头预警**（写入 alert 字段） |
+| main_quest_progress | `health` | `on_track`（正常）/ `stalled`（连续5章无 stage_log 新增） |
+| villain_ladder | `status` | `not_started` / `foreshadowed`（已铺垫）/ `active`（已登场施压）/ `cleared`（已清算） |
+| suspense_window | `max_active` | 固定为 3；新开第4条悬念前必须闭环1条，否则写入 overflow_alerts |
+
+### 更新规则（每章入库时执行）
+
+1. **目标闭环追踪（F1）**：扫描本章 key_events 与 detail_review 报告——
+   - 本章是否推进了某个 active 目标？是则追加 progress_log 并将 chapters_since_progress 归零
+   - 本章是否闭环了某个目标？是则 status 改 closed，记录 close_chapter
+   - 本章是否新建立了目标（角色明确说"我要去/我要查/我答应"）？是则新增 goals 条目，并从 outline.json 推断 expected_close_chapter
+   - 对所有 active 目标 chapters_since_progress +1；**≥4 时写入 alert："high——目标建立后4章无进展"**，供 quality-reviewer 消费
+2. **主线进度条（F5）**：对照 outline.json 的主线阶段定义，本章是否完成一个 stage？是则 completed_stages+1 并追加 stage_log；否则 stalled_chapters+1，**≥5 时 health 改 stalled**
+3. **反派梯子（F5）**：本章反派是否首次铺垫/登场/被清算？更新对应 tier 的 status 与章节号；对照 planned_window，若已到窗口期仍未 foreshadowed，写入预警供 longline-guardian 消费
+4. **悬念活跃窗口（F4）**：
+   - 本章新开的悬念（章末钩子中明确提出的未解问题）入窗，记录 opened_chapter
+   - 本章闭环的悬念（主动解答，非读者自行遗忘）出窗，标记 `closed_actively: true`
+   - **入窗前检查：若 active 已达 3 条，本章不得再开新悬念**——如终稿确已开出，写入 overflow_alerts（severity=high）供 quality-reviewer 扣分、chapter-writer 下一章优先闭环
+
+### 下游消费方
+
+| 消费方 | 消费内容 | 用途 |
+|--------|---------|------|
+| chapter-writer v2.3 | active goals + suspense_window.active + alert | 写作前确认本章要推进哪个目标、能否开新悬念 |
+| quality-reviewer v1.7 | goals 的 alert + suspense_window.overflow_alerts | 目标断头检测（F1）、悬念限流检测（F4） |
+| longline-guardian v1.1 | main_quest_progress.health + villain_ladder | 主线进度条监控、反派梯子启动监控（F5） |
+| chief-editor v1.2 | 文件存在性 + last_updated_chapter | 记忆入库硬门禁验证 |
+
+---
+
 ## L5 会话恢复指针
 
 维护 `memory/session_pointer.json`，这是解决上下文压缩/跨会话记忆丢失的核心机制。借鉴 context-recovery skill 的"当前任务指针"理念，针对小说写作场景定制。新对话开局只需读取此文件（~500 tokens），即可恢复"写到哪了、角色什么状态、伏笔到哪了、上次做了什么、下一步做什么"。
@@ -562,6 +657,36 @@ Step 4: 向用户汇报
 
 ---
 
+## 大纲漂移记录（v1.1 新增）
+
+**数据依据**：Ch9 实际写了大纲 Ch8 的开奖beat、Ch10 写了大纲外内容（盲眼老人来访），大纲"黑店反杀"beat 长期未兑现——框架在大纲阶段有 skeptic 漂移检测，但章节执行层此前无任何漂移记录，导致大纲与实际产出悄然脱节。
+
+### 记录规则
+
+每章终稿入库时，必须对照 `memory/outline.json` 中本章所属单元的 `beat_breakdown`，将**实际产出 beat** 与**大纲计划 beat** 逐项比对，在 `memory/session_pointer.json` 新增 `outline_drift_log` 字段追加一条记录：
+
+```json
+{
+  "chapter": 10,
+  "planned_beat": "反转beat(黑店设局→主角用规则反杀)",
+  "actual_beat": "信息beat(盲眼老人进铺看供桌+60年谜团推进)",
+  "drift_type": "替换 | 提前 | 延后 | 新增 | 无漂移",
+  "decision": "accept | make_up_later",
+  "make_up_plan": "若 decision=make_up_later：被挤占的原计划beat安排到哪章兑现",
+  "decided_by": "chief-editor（或用户）"
+}
+```
+
+### 处置规则
+
+1. **无漂移**：`drift_type=无漂移`，仅留记录
+2. **有漂移**：必须做出二选一决策，不允许"先记着以后再说"：
+   - **accept**：大纲该 beat 正式作废或改写，同步更新 outline.json 的 beat_breakdown
+   - **make_up_later**：在 `make_up_plan` 中写明原计划beat移到哪一章兑现，并加入 session_pointer 的 `open_decisions` 跟踪至兑现
+3. **连续漂移预警**：同一单元内连续≥2章漂移时，在 session_pointer 添加预警，提示 chief-editor 考虑是否大纲已脱离实际，需要 plot-architect 修订单元规划
+
+---
+
 ## 上下文注入接口
 
 记忆管家提供上下文注入接口，供写手在生成新章节前调用，组装所需的上下文信息。
@@ -718,6 +843,13 @@ Step 4: 向用户汇报
    ├─ 逾期(>30章未动作)或跳级的伏笔加入 overdue_alerts
    └─ 连续5章无伏笔动作时预警"伏笔密度过低"
 
+5.5 更新目标闭环追踪 ★（v1.2新增）
+   ├─ 扫描 key_events 与 detail_review，识别目标的新建/推进/闭环
+   ├─ 更新 memory/goal_tracker.json 的 goals（chapters_since_progress 全部+1，≥4 写入目标断头 alert）
+   ├─ 更新 main_quest_progress（本章完成 stage 则归零 stalled_chapters，否则+1，≥5 改 health=stalled）
+   ├─ 更新 villain_ladder（铺垫/登场/清算状态流转，到窗口期未铺垫写预警）
+   └─ 维护 suspense_window（新悬念入窗/闭环悬念出窗，active>3 写入 overflow_alerts）
+
 6. 检查是否需要卷宗摘要
    ├─ 从 outline.json 读取卷宗划分
    ├─ 判断 chapter_num 是否为某卷最后一章
@@ -737,6 +869,13 @@ Step 4: 向用户汇报
    ├─ 如是，执行6维度一致性自检（角色/设定/伏笔/时间线/角色状态/世界观规则）
    ├─ 生成 memory/consistency_check/consistency_{N}.json
    └─ overall_status=failed 时在交接卡中标记 critical，通知总编暂停生产
+
+8.5 记录大纲漂移 ★（v1.1新增）
+   ├─ 对照 outline.json 本章所属单元的 beat_breakdown
+   ├─ 比对实际beat vs 计划beat，判定 drift_type
+   ├─ 有漂移时记录 decision(accept/make_up_later) 与 make_up_plan
+   ├─ 追加至 session_pointer.json 的 outline_drift_log
+   └─ 同单元连续≥2章漂移时添加预警
 
 9. 记录写作决策日志 ★
    ├─ 检查本章生产过程中是否有值得记录的决策
@@ -776,3 +915,4 @@ Step 4: 向用户汇报
 15. **章末意象追踪**：每章入库时，从交接卡读取 `chapter_ending_imagery` 字段，更新 `config/novel_config.json` 的 `imagery_tracker.tracked_imagery`。同一意象连续3章使用时在 session_pointer 的 `pending_decisions` 中添加预警。
 16. **产能进度更新**：每章入库时，更新 `config/novel_config.json` 的 `production_schedule.actual_chapters_done`，计算偏差天数。偏差>3天时在 session_pointer 的 `pending_decisions` 中添加预警。
 17. **memes_used 记录**：每章入库时，从交接卡读取 `memes_used` 字段，记录到 chapter_summary 中。便于 detail-reviewer 审核梗时效性时引用。
+18. **goal_tracker 不可跳过**：goal_tracker.json 与 session_pointer.json 同为硬门禁验证项（见 chief-editor v1.2）。目标的新建/推进/闭环判定必须基于正文实际内容，不得仅凭大纲推断——目标断头预警（chapters_since_progress≥4）是 quality-reviewer v1.7 的扣分依据，漏记等于放过断头的目标。

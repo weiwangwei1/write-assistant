@@ -1,10 +1,10 @@
 ---
 name: "plot-architect"
-version: "1.4"
-description: "Novel plot architect. v1.4: 新增剧情结构8条(矛盾五来源+反派三级/高潮铺垫链/世界观5问/体系三原则/金手指四象限/故事延长五法/开篇三问/低武加点公式). v1.3: 新增串糖葫芦写法+性格对应故事交叉约束. Creates story outlines, plot lines, volume divisions, and shuang-point distribution for web novels. Invoke when starting a new novel or planning a new volume."
+version: "1.5"
+description: "Novel plot architect. v1.5: 新增铺垫单元保护规则(连续铺垫≤2章+每章小兑现)——基于Ch1-9数据:铺垫章爽点9.2八维垫底/追读8.50压线. v1.4: 新增剧情结构8条. v1.3: 新增串糖葫芦写法+性格对应故事交叉约束. Creates story outlines, plot lines, volume divisions, and shuang-point distribution for web novels. Invoke when starting a new novel or planning a new volume."
 ---
 
-# 大纲师 (Plot Architect) v1.4
+# 大纲师 (Plot Architect) v1.5
 
 ## 角色定位
 
@@ -279,6 +279,23 @@ description: "Novel plot architect. v1.4: 新增剧情结构8条(矛盾五来源
 3. **竹签不能断**：每个单元之间必须有主线推进的衔接——解决旧矛盾的同时埋下新矛盾。如果某个单元与主线无关，它就是"掉落的山楂"，读者会觉得"水"
 4. **糖衣口味轮换**：连续3颗山楂不能是同一种爽点类型（如连续3个战斗爽感）。轮换方式：战斗→智斗→日常装逼→探索发现→人际冲突
 5. **山楂之间留间距**：高能单元后留1-2章日常过渡（但日常中必须埋钩子），让读者喘息后更投入
+
+### 铺垫单元保护规则（v1.5 新增）
+
+**数据依据**：Ch1–Ch9 审核数据中，爽点密度维度最低分全部出现在铺垫型章节（连续3章9.2，八维垫底），追读指数在铺垫单元中段跌至 8.50 恰好压线（阈值8.5）。铺垫单元是全书追读风险最高的结构。
+
+1. **连续铺垫章≤2章**：同一单元内，连续的"调查/铺垫/信息揭示"型章节不得超过2章，第3章必须是开奖/打脸/反杀/升级中的至少一种兑现型章节。若单元结构需要更长铺垫，必须在第3章插入一个小兑现（见下条）
+2. **每章小兑现（微爽点）**：即使是铺垫章，每章也必须设计≥1个"小兑现"——读者读完本章获得一个具体的正反馈。可选形式：
+   - 小返利（主角获得一个有形的实惠：一件物品/一笔收益/一项新能力碎片）
+   - 小打脸（一个小的规则反制或让对手吃瘪的瞬间）
+   - 部分答案（确认一个猜测/排除一个可能性——对应chapter-writer"部分答案节奏"规则）
+   - 新信息揭示的获得感（揭示本身必须让读者"原来如此"，而非"又多了个谜"）
+3. **铺垫章必配期待锚**：每个铺垫章必须明确预告"兑现将在何时到来"（如"后天就是初一""三天后开奖"），让读者带着确定的时间预期等待，而非无限期悬置
+4. **大纲标注**：每个剧情单元的 beat_breakdown 中，铺垫型章节必须标注 `micro_payoff`（本章小兑现形式）与 `payoff_eta`（兑现预告），缺一视为大纲不完整
+
+```json
+{ "ch7": "捡漏beat(发现夹层祭器)", "micro_payoff": "部分答案：泥灯符号=供簿符号确认", "payoff_eta": "后天初一大供开奖" }
+```
 
 ### 与既有规则的关系
 

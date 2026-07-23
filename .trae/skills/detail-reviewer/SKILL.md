@@ -1,10 +1,10 @@
 ---
 name: "detail-reviewer"
-version: "1.4"
-description: "细节控审核员，逐句/逐梗/逐伏笔微观打磨每一章。v1.4: 新增文笔质感审核层(句子呼吸/比喻精度/情绪克制/对话潜台词/叙事细节/段落建筑/体验密度). Invoke after chapter-writer generates draft and before quality-reviewer macro review, or when user wants sentence-level polish of any chapter."
+version: "1.6"
+description: "细节控审核员，逐句/逐梗/逐伏笔微观打磨每一章。v1.6: 新增暗线节奏守门层(伏笔揭示提前量判定:提前>30章或跳级=critical)——基于Ch4-10第三方评审:暗线透支(爷爷下落等暗线远早于大纲计划揭示). v1.5: 新增跨章事实表核验层(专名回查/年代数字显式验算/已知信息防重发现)——基于Ch1-9数据:5个critical全部为跨章一致性错误. v1.4: 新增文笔质感审核层. Invoke after chapter-writer generates draft and before quality-reviewer macro review, or when user wants sentence-level polish of any chapter."
 ---
 
-# 细节控审核员 (Detail Reviewer) v1.4
+# 细节控审核员 (Detail Reviewer) v1.6
 
 ## 角色定位
 
@@ -62,8 +62,9 @@ fanqie-adapter 番茄平台适配
 | 文件路径 | 说明 | 必需 |
 |---------|------|------|
 | 当前章节草稿 | chapter-writer 产出的章节文本 | 是 |
-| `memory/outline.json` | 大纲（核对伏笔/设定一致性） | 是 |
+| `memory/outline.json` | 大纲（核对伏笔/设定一致性；foreshadowing_plan 是暗线节奏守门的计划基线） | 是 |
 | `memory/characters.json` | 角色卡（核对语言指纹/人设一致性） | 是 |
+| `memory/foreshadowing_tracker.json` | 伏笔状态追踪表（v1.6 新增：暗线节奏守门读取 current_status 判定是否跳级/提前） | 是（第2章起） |
 | `config/novel_config.json` | 写作规则（梗规则/结构规则） | 是 |
 | `config/meme_library.json` | 梗库（核对梗时效性/用法） | 是 |
 | 前1-2章已定稿内容 | 上下文连贯性核对 | 是 |
@@ -132,7 +133,9 @@ fanqie-adapter 番茄平台适配
     "terminology_check": "术语命名规范检查结果（v1.2新增）：正式术语首次展示是否使用、术语是否跨章一致、俗称与术语是否区分",
     "metaphor_consistency": "跨章隐喻意象一致性检查结果（v1.3新增）：本章比喻/隐喻意象是否与核心隐喻体系一致、是否引入异质隐喻",
     "scene_repetition": "同场景逐字重复检查结果（v1.3新增）：同场景内是否有逐字或近似句子重复（决策句/感叹句/动作描写）",
-    "reference_ambiguity": "术语指代歧义检查结果（v1.3新增）：同一术语是否被用于指代不同对象/现象、物理特征术语是否被复用于感知体验"
+    "reference_ambiguity": "术语指代歧义检查结果（v1.3新增）：同一术语是否被用于指代不同对象/现象、物理特征术语是否被复用于感知体验",
+    "cross_chapter_facts": "跨章事实表核验结果（v1.5新增）：专名回查/数字显式验算过程/同章时间自洽/位置状态接续/已知信息防重发现",
+    "foreshadowing_pacing": "暗线节奏守门结果（v1.6新增）：本章每条伏笔动作的计划vs实际对照（提前量判定/跳级检测/全揭复核）"
   },
   "summary": {
     "total_issues": 0,
@@ -146,7 +149,7 @@ fanqie-adapter 番茄平台适配
 
 ---
 
-## 四层审核方法论
+## 七层审核方法论
 
 ### 第1层：逐句审核 (sentence_level)
 
@@ -302,6 +305,52 @@ fanqie-adapter 番茄平台适配
 - ✅ "他伸手。手指碰到表壳的时候缩了一下。然后还是拿起来了。" → 无意义行为+生理反应传递情绪，克制到位
 - ✅ "你恨我吗？""不恨。""那就好。""我只是不记得你了。" → B类对话，说的≠想的
 
+### 第6层：跨章事实表核验 (cross_chapter_facts_check)（v1.5 新增 ★）
+
+**数据依据**：Ch1–Ch9 共 5 个 critical 全部为本层拦截目标（4个年代/数字硬伤+1个角色位置跨章矛盾）。chapter-writer v2.2 起会在交接卡 `beat_sheet.cross_chapter_facts` 中提交事实表，本层负责**独立核验**——不轻信写手自报，逐项回查原文。
+
+**审核清单**：
+
+- [ ] **专名回查**：提取本章全部人名/地名/组织名/物品名，逐个与 `memory/chapter_summaries/`、角色卡、前1-2章全文比对写法。任何人名一物二名/二人一名→critical（教训：Ch3 王婶/陈婶混用）
+- [ ] **年代/数字显式验算**：提取本章全部年份、干支、年龄、时长、数量，**每个数字必须亲手重算算式**（如干支纪年差值、初一十五月相间隔、N年前=N减算），不接受正文的结论，要看算式是否成立。验算不成立→critical（教训：Ch6 庚申→庚午实为10年误写60年；Ch8 泥灯300+年误写60年）
+- [ ] **同章时间自洽**：本章内所有相对时间表述（"后天初一""明天初一""三日后"）互相对照，并与上一章结尾时间锚点对照，任何矛盾→critical（教训：Ch8 同章"后天初一"与"明天初一"并存）
+- [ ] **位置/状态接续**：本章开头每个角色/关键物品的位置与状态，与上一章结尾逐一比对，无过渡的移动→critical（教训：Ch7 老灯从"留在供桌"到"在口袋里"无过渡）
+- [ ] **已知信息防重发现**：本章出现的"新发现/新推理"，逐条与 `memory/chapter_summaries/` 和前章全文比对——前文已揭示的信息只能被"引用/深化"，被当作新发现重演→major（教训：Ch8 重演 Ch6 已完成的符号比对）
+- [ ] **事实表完整性**：若交接卡缺少 `cross_chapter_facts` 字段或明显漏项（本章涉及的数字未列入），标记并要求写手补表
+
+**审核方法**：先独立从正文提取事实清单，再与写手的 cross_chapter_facts 对照——写手漏报的项往往是错误高发区。所有数字验算过程写入报告 `consistency_check.cross_chapter_facts`，便于 quality-reviewer 复核。
+
+**critical 判定补充（v1.5 新增第8条）**：
+8. 跨章事实硬伤：年代/数字验算不成立、同章时间矛盾、人名混用、角色/物品位置跨章断裂、已知信息当新发现重演（v1.5 新增 ★）
+
+### 第7层：暗线节奏守门 (foreshadowing_pacing_gate)（v1.6 新增 ★）
+
+**数据依据**：Ch4-10 第三方评审判定"暗线透支"——爷爷下落等长线暗线的揭示节奏远早于大纲计划，导致后期无牌可打。第3层逐伏笔审核只管"埋得好不好"，本层管"揭得是不是时候"。
+
+**审核方法**：
+
+1. 从 `memory/outline.json` 的 `foreshadowing_plan` 读取每条伏笔的计划节点（plant_chapter / small_clue_chapter / half_reveal_chapter / full_reveal_chapter）
+2. 从 `memory/foreshadowing_tracker.json` 读取每条伏笔的 current_status（已推进到哪个阶段）
+3. 提取本章实际发生的伏笔动作（埋设/小线索/半揭/全揭），逐条对照计划：
+
+**判罚标准**：
+
+| 情形 | 判定 | 严重度 |
+|------|------|--------|
+| 本章动作符合计划节点（±5章内） | 节奏正常 | pass |
+| 揭示动作（半揭/全揭）早于计划 6-15章 | 轻微提前，提示写手后续放慢 | minor |
+| 揭示动作早于计划 16-30章 | 明显提前，暗线有透支风险 | major |
+| 揭示动作早于计划 >30章 | **暗线透支**——后期将无牌可打 | critical |
+| 跳级揭示（planted 直接 half/full_reveal，跳过中间阶段，且大纲未明确允许） | 节奏崩塌 | critical |
+| 埋设动作晚于计划 >10章 | 埋设延迟，提示总编排期 | minor |
+
+4. **全揭复核**：本章若发生全揭（full_reveal），额外检查——该伏笔的全部前置阶段（small_clue/half_reveal）是否已在 tracker 中有记录？全揭后是否仍有至少1条同级悬念在场维持读者驱动力？前置阶段缺失或全揭后悬念真空 → major
+
+**判罚补充（v1.6 新增第9条）**：
+9. 暗线节奏失控：揭示动作早于大纲计划>30章、跳级揭示（v1.6 新增 ★）
+
+**审核输出**：本章每条伏笔动作的"计划vs实际"对照写入报告 `consistency_check.foreshadowing_pacing`，格式："{F001} 计划half_reveal=Ch65，实际Ch10推进至half_reveal，提前55章→critical"。major/critical 判罚需同步建议——是"回退本章揭示幅度"还是"接受漂移并通知 memory-manager 更新计划基线"（后者仅限一次，同一伏笔不得二次调基线）。
+
 ---
 
 ## 一致性检查 (consistency_check)
@@ -398,6 +447,20 @@ fanqie-adapter 番茄平台适配
    ├─ 叙事细节检测（描述性vs叙事性+关键物件检查）
    ├─ 段落建筑检测（信息模式vs体验模式+章末钩子检查）
    └─ 体验密度检测（3-4段体验模式分布检查）
+
+5.6 第6层 跨章事实表核验 ★（v1.5新增）
+   ├─ 专名回查（人名/地名/物品名逐个比对前文）
+   ├─ 年代/数字显式验算（亲手重算算式，不轻信正文结论）
+   ├─ 同章时间自洽（相对时间表述互相对照）
+   ├─ 位置/状态接续（与上一章结尾逐一比对）
+   ├─ 已知信息防重发现（前文已揭示信息不得当新发现重演）
+   └─ 事实表完整性（交接卡cross_chapter_facts字段缺漏检查）
+
+5.7 第7层 暗线节奏守门 ★（v1.6新增）
+   ├─ 读取 outline.foreshadowing_plan 计划节点 + foreshadowing_tracker 当前状态
+   ├─ 提取本章实际伏笔动作，逐条对照计划（提前量判定：>30章=critical/16-30=major/6-15=minor）
+   ├─ 跳级检测（planted→half/full_reveal 跳阶段=critical）
+   └─ 全揭复核（前置阶段是否齐全/全揭后悬念是否真空）
 
 6. 一致性检查
    ├─ 角色语言指纹

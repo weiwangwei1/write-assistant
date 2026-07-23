@@ -1,7 +1,7 @@
 ---
 name: "longline-guardian"
-version: "1.0"
-description: "长线一致性守护者，专注跨章/跨卷的长线质量守护。跟踪400章长线伏笔回收、角色发展弧光、世界观一致性。每10章一次全局审查，确保100万字不崩盘。Invoke every 10 chapters or at volume boundaries."
+version: "1.1"
+description: "长线一致性守护者，专注跨章/跨卷的长线质量守护。v1.1: 新增第6守护维度(主线进度监控:main_quest_progress停滞检测+反派梯子启动监控)——基于Ch4-10第三方评审:主线断更(火种进度无人追踪)/反派登场节奏失控. 跟踪400章长线伏笔回收、角色发展弧光、世界观一致性。每10章一次全局审查，确保100万字不崩盘。Invoke every 10 chapters or at volume boundaries."
 ---
 
 # 长线一致性守护者 (Longline Guardian)
@@ -67,6 +67,7 @@ description: "长线一致性守护者，专注跨章/跨卷的长线质量守�
 | `memory/outline.json` | 全局大纲（伏笔计划/角色发展/卷宗规划） | 是 |
 | `memory/characters.json` | 角色卡（含current_state历史） | 是 |
 | `memory/foreshadowing_tracker.json` | 伏笔追踪表 | 是 |
+| `memory/goal_tracker.json` | 目标闭环+主线进度条+反派梯子追踪表（v1.1 新增：主线进度监控的数据源） | 是 |
 | `memory/chapter_summaries/` | 全部章节摘要 | 是 |
 | `memory/volume_summaries/` | 卷宗摘要（如已生成） | 否 |
 | `memory/session_pointer.json` | 会话指针（质量趋势/进度） | 是 |
@@ -129,7 +130,7 @@ description: "长线一致性守护者，专注跨章/跨卷的长线质量守�
 
 ---
 
-## 五大守护维度
+## 六大守护维度
 
 ### 1. 长线伏笔追踪 (foreshadowing_tracking)
 
@@ -253,6 +254,33 @@ description: "长线一致性守护者，专注跨章/跨卷的长线质量守�
 | warning | 悬念揭示节奏偏离或悬念层次单一 |
 | critical | 悬念真空或回收草率 |
 
+### 6. 主线进度监控 (main_quest_tracking)（v1.1 新增）
+
+**核心问题**：主线（如"火种收集"）是否持续推进？反派梯子是否按计划逐级启动？——Ch4-10 第三方评审判定"主线断更"：火种收集进度无人追踪，读者忘了主角到底要干什么。
+
+**检查内容**：
+
+| 检查项 | 方法 | 预警阈值 |
+|--------|------|---------|
+| 主线进度条停滞 | 读取 goal_tracker.main_quest_progress：health 是否为 stalled（stalled_chapters≥5） | stalled = warning；stalled_chapters≥10 = critical |
+| 主线占比 | 统计最近10章中推进主线的章节占比（stage_log 或 progress_log 涉及主线的章数/10） | 占比<30% = warning；<20% = critical |
+| 反派梯子启动 | 读取 goal_tracker.villain_ladder：当前章节是否已到某 tier 的 planned_window 起点但仍 not_started | 到窗口期未铺垫 = warning；超过窗口期10章仍未铺垫 = critical |
+| 反派层级断层 | 检查反派梯子状态流转是否跳级（如喽啰未清算直接跳到隐藏级） | 跳级 = warning |
+| 目标断头汇总 | 统计 goal_tracker.goals 中带 alert（chapters_since_progress≥4）的目标数量 | ≥1个 = warning；≥3个 = critical |
+
+**主线健康度**：
+
+| 状态 | 标准 |
+|------|------|
+| healthy | 主线每卷有明确推进，反派按计划登场，无断头目标 |
+| warning | 主线停滞5-9章，或反派到窗口期未铺垫，或1-2个目标断头 |
+| critical | 主线停滞≥10章/主线占比<20%，或反派超窗口期10章未铺垫，或≥3个目标断头 |
+
+**输出**：
+- main_quest_status：进度条快照（completed_stages/total_stages + stalled_chapters）
+- villain_ladder_status：各级反派状态与窗口期对照
+- stalled_goals：断头目标清单（含建议在最近哪章安排推进）
+
 ---
 
 ## 审查触发机制
@@ -295,7 +323,7 @@ Ch80入库（卷二最后一章）→ longline-guardian 卷二审查（Ch41-80�
    ├─ 写作日志（质量分数趋势）
    └─ 决策日志
 
-2. 五维审查
+2. 六维审查
    ├─ 长线伏笔追踪
    │   ├─ 对比每条伏笔的 actual_progress 与 plan_from_outline
    │   ├─ 计算逾期程度
@@ -316,11 +344,16 @@ Ch80入库（卷二最后一章）→ longline-guardian 卷二审查（Ch41-80�
    │   ├─ 爽点密度趋势
    │   ├─ 钩子类型分布
    │   └─ 读者疲劳风险评估
-   └─ 长线悬念
-       ├─ 主线悬念揭示进度
-       ├─ 套环式悬念检查
-       ├─ 信息差调控评估
-       └─ 悬念回收满足感
+   ├─ 长线悬念
+   │   ├─ 主线悬念揭示进度
+   │   ├─ 套环式悬念检查
+   │   ├─ 信息差调控评估
+   │   └─ 悬念回收满足感
+   └─ 主线进度监控 ★（v1.1新增）
+       ├─ 主线进度条停滞检测（goal_tracker.main_quest_progress）
+       ├─ 主线占比统计（最近10章推进主线章数占比）
+       ├─ 反派梯子启动监控（planned_window vs status）
+       └─ 目标断头汇总（带alert目标数量统计）
 
 3. 生成预警
    ├─ critical级预警 → 立即通知chief-editor暂停生产
@@ -350,6 +383,9 @@ Ch80入库（卷二最后一章）→ longline-guardian 卷二审查（Ch41-80�
 | 核心设定矛盾 | 修正设定或正文 | plot-architect |
 | 悬念回收草率 | 补充回收内容 | chapter-writer |
 | 主角连续3章不出场 | 调整后续章节安排 | chief-editor |
+| 主线停滞≥10章或占比<20%（v1.1新增） | 暂停生产，调度 plot-architect 重新排布主线节点 | plot-architect |
+| 反派超窗口期10章未铺垫（v1.1新增） | 调度 plot-architect 在最近3章内安排反派铺垫 | plot-architect |
+| ≥3个目标同时断头（v1.1新增） | 暂停生产，调度 plot-architect 清理/合并目标线 | plot-architect |
 
 ### warning级预警
 
@@ -362,12 +398,15 @@ Ch80入库（卷二最后一章）→ longline-guardian 卷二审查（Ch41-80�
 | 张弛比失衡 | 调整后续章节节奏 | chapter-writer |
 | 爽点密度下降 | 后续章节增加爽点 | chapter-writer |
 | 钩子类型单一 | 轮换钩子类型 | chapter-writer |
+| 主线停滞5-9章（v1.1新增） | 后续3章内安排主线推进beat | chapter-writer |
+| 反派到窗口期未铺垫（v1.1新增） | 后续5章内安排反派铺垫 | chapter-writer |
+| 1-2个目标断头（v1.1新增） | 下一章优先推进断头目标 | chapter-writer |
 
 ---
 
 ## 卷末审查附加内容
 
-卷末审查除了五维审查外，还需额外执行：
+卷末审查除了六维审查外，还需额外执行：
 
 ### 1. 卷宗完整性检查
 - 本卷所有大纲规划的剧情节点是否全部覆盖？
@@ -397,7 +436,7 @@ Ch80入库（卷二最后一章）→ longline-guardian 卷二审查（Ch41-80�
 |------|------------------------|------------------------|
 | 触发频率 | 每10章 | 每10章 + 卷末 |
 | 检查范围 | 最近10章 | 全部已写章节 |
-| 检查深度 | 6维度一致性 | 5维度长线趋势 |
+| 检查深度 | 6维度一致性 | 6维度长线趋势 |
 | 输出 | consistency_check报告 | longline_review报告 + 预警 |
 | 主动性 | 被动记录 | 主动预警 |
 | 视角 | "有没有矛盾" | "方向对不对、会不会崩" |

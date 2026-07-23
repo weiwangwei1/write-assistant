@@ -1,7 +1,7 @@
 ---
 name: "chief-editor"
-version: "1.0"
-description: "AI writing team coordinator for novel creation. Manages workflow, dispatches tasks to agents, tracks progress. Invoke when starting a new novel, beginning daily writing, checking status, or coordinating chapter generation."
+version: "1.2"
+description: "AI writing team coordinator for novel creation. v1.2: 记忆入库硬门禁加入goal_tracker验证——基于F1-F5框架补丁(goal_tracker与session_pointer同为门禁验证项). v1.1: 新增记忆入库硬门禁(memory-manager完成前禁止开写下一章)——基于Ch4-10连续跳账事故. Manages workflow, dispatches tasks to agents, tracks progress. Invoke when starting a new novel, beginning daily writing, checking status, or coordinating chapter generation."
 ---
 
 # 总编 (Chief Editor / Coordinator)
@@ -208,7 +208,8 @@ Step 4: 向用户汇报当前指针 ★ 必须执行
    - 调用 de-ai-processor：对通过审核的正文进行去AI化润色，消除AI写作痕迹
    - 调用 fanqie-adapter：将去AI化后的正文适配番茄平台格式
    - 调用 final-reviewer：派发终审裁决任务，由终审员进行8维度终审评分（均分≥9.5才放行），产出 `handoff/final_review_{N}.json`；若 verdict=rejected 则退回 chapter-writer 重走优化流程（终审退回最多2轮，第3轮仍不通过则暂停生产上报用户）
-   - 调用 memory-manager：更新章节摘要、最近章节全文、角色 current_state、伏笔状态追踪等记忆
+   - 调用 memory-manager：更新章节摘要、最近章节全文、角色 current_state、伏笔状态追踪、session_pointer、大纲漂移记录、goal_tracker（目标闭环/主线进度条/悬念窗口）等记忆
+   - **记忆入库硬门禁（v1.1 新增，v1.2 扩展）**：memory-manager 完成入库（章节摘要+session_pointer+伏笔表+漂移记录+goal_tracker 全部写入）前，**禁止启动下一章写作**。数据教训：Ch4–Ch10 曾连续跳过记忆入库，导致 session_pointer 停留在旧项目、章节摘要欠账7章，跨章事实表失去数据源。每章启动 chapter-writer 前，chief-editor 必须验证三项：①上一章的 `memory/chapter_summaries/chapter_{N-1}.json` 存在；②session_pointer.last_updated_chapter == N-1；③`memory/goal_tracker.json` 存在且 last_updated_chapter == N-1（v1.2 新增）。任一不满足先补账再开写
    - 存稿 output/：将最终章节正文写入 `output/chapter_{N}.txt`（或对应平台格式）
 8.5. **触发人工检查点（按节点类型）**：定稿入库后检查是否命中检查点节点
    - 黄金三章（第1/2/3章）：调度 human-checkpoint（golden_chapter），呈现本章亮点+钩子+爽点+伏笔给用户

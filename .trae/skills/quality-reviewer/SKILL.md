@@ -1,10 +1,19 @@
 ---
 name: "quality-reviewer"
-version: "1.5"
-description: "Quality reviewer for novel chapters. v1.5: 新增读者反馈驱动检测5项(主动出击/升级感具象化/角色间信息差时效/概念命名节奏/结尾钩子强度). v1.4: 新增期待感双要素公式+长篇不崩四防线检测. v1.3: 加权评分体系+吸引力提权+期待感评估维度+龙空读者画像更新。Invoke after chapter draft is generated or when reviewing content quality."
+version: "1.7"
+description: "Quality reviewer for novel chapters. v1.7: 新增配比监控检测(爽点类型核验揭示≠爽/3章滚动S-A硬指标/悬念限流≤3/目标断头≥4章报警)——基于Ch4-10第三方评审:爽点断顿/悬念过载/目标断头. v1.6: 新增铺垫单元保护检测(连续铺垫≤2章/每章小兑现/期待锚)——基于Ch1-9数据:铺垫章爽点9.2垫底/追读8.50压线. v1.5: 新增读者反馈驱动检测5项. v1.4: 新增期待感双要素公式+长篇不崩四防线检测. v1.3: 加权评分体系+吸引力提权+期待感评估维度+龙空读者画像更新。Invoke after chapter draft is generated or when reviewing content quality."
 ---
 
-# 质量审稿员 (Quality Reviewer) v1.5
+# 质量审稿员 (Quality Reviewer) v1.7
+
+## v1.7 变更说明（2026-07-23）
+
+**数据来源**：Ch4-10 第三方评审（爽点断顿：7章S级爽点仅2个；悬念过载：同时活跃悬念>3条；目标断头：镇巷令建立后4章无进展）
+
+**核心变更**：
+1. **爽点定义收紧**：评审时以 chapter-writer v2.3 的 shuang_type 标注为准——reveal（纯信息揭示）不计入爽点数量，"以为写够了爽点但实际全是揭示"的章节直接判 shuang_density ≤8.5
+2. **3章滚动硬指标**：任意连续3章必须含≥1个 S/A 级爽点，违反即标记 high
+3. **配比监控检测4项**：爽点类型核验/3章滚动S/A硬指标/悬念限流/目标断头，全部以 memory/goal_tracker.json 为数据源
 
 ## v1.5 变更说明（2026-07-23）
 
@@ -55,6 +64,7 @@ description: "Quality reviewer for novel chapters. v1.5: 新增读者反馈驱�
 | `memory/characters.json` | 角色卡，包含角色设定、性格、能力、关系网络及 current_state | 是 |
 | `memory/chapter_summaries/chapter_*.json` | 前文章节摘要，用于核对连续性和伏笔 | 是 |
 | `memory/recent_chapters/` | 最近 3 章全文，用于细粒度核对上下文衔接 | 否（首章时无） |
+| `memory/goal_tracker.json` | 目标闭环+主线进度条+悬念活跃窗口（v1.7 新增）：配比监控检测的数据源 | 是（第2章起） |
 
 ### 输入交接卡格式 (chapter_draft.json)
 
@@ -267,6 +277,7 @@ description: "Quality reviewer for novel chapters. v1.5: 新增读者反馈驱�
 - 是否存在连续超过1500字无收获感的段落（严重扣分）
 - 爽点是否遵循七步闭环（压抑→打压→隐忍→爆发→打脸→回报→新钩）
 - 情绪波动是否有高低起伏
+- **爽点类型核验（v1.7 新增）**：核对交接卡 beat_sheet 中每个爽点 beat 的 shuang_type 标注——shuang_type=reveal 的 beat 不计入本章爽点数量；本章 S/A/B/C 级爽点合计为 0 时直接判 shuang_density ≤8.5；标注 S/A 级但正文实际只是信息揭示（主角无实质收益/情绪回报）的，按 reveal 降级处理并标记"爽点虚标"
 
 ### 6. 节奏控制 (pacing_control)
 
@@ -630,6 +641,27 @@ description: "Quality reviewer for novel chapters. v1.5: 新增读者反馈驱�
 | **概念命名节奏** | 本章新命名的设定概念是否≤2个？是否存在一章内连续命名多个概念？ | 新命名概念>2个标记 medium，直接判 attractiveness ≤6 |
 | **结尾钩子强度** | 章末主钩子是否≥B级（具体信息揭示+悬念指向）？是否包含≥1个具体感官细节？是否为纯抽象设问（C级，禁止作为主钩子）？ | 主钩子为C级标记 medium，直接判 chapter_hook ≤5 |
 
+### 铺垫单元保护检测（v1.6 新增，基于 Ch1–Ch9 生产数据）
+
+**数据依据**：爽点密度维度最低分全部出现在铺垫型章节（连续3章9.2，八维垫底），追读指数在铺垫单元中段跌至 8.50 恰好压线。本检测是 plot-architect v1.5 铺垫单元保护规则的审核镜像。
+
+| 检测项 | 检查内容 | 不达标处理 |
+|--------|---------|-----------|
+| **连续铺垫上限** | 读取 `memory/chapter_summaries/` 判定本章及前2章的章节类型。若本章是连续第3章"调查/铺垫/信息揭示"型章节，且本章仍无开奖/打脸/反杀/升级兑现 | 标记 high，直接判 shuang_density ≤8.5 并要求 chapter-writer 加入兑现beat |
+| **铺垫章小兑现** | 若本章为铺垫型章节，是否含≥1个"小兑现"（小返利/小打脸/部分答案/有获得感的信息揭示）？"部分答案"必须是确认或排除，不能只是"又多了个谜" | 无小兑现标记 medium，直接判 shuang_density ≤9.0 |
+| **期待锚** | 铺垫章是否给出明确的兑现时间预期（如"后天初一""三天后开奖"）？ | 无期待锚标记 low，在追读指数评估中扣 0.2 |
+
+### 配比监控检测（v1.7 新增，基于 Ch4–Ch10 第三方评审）
+
+**数据依据**：Ch4-10 第三方评审判定三大失控——爽点断顿（7章S级爽点仅2个，多处把信息揭示误记为爽点）、悬念过载（同时活跃悬念>3条读者记不住）、目标断头（镇巷令建立后4章无进展）。本检测以 `memory/goal_tracker.json` 和交接卡 beat_sheet 的 shuang_type 标注为数据源，是 chapter-writer v2.3 法则二十三/二十四的审核镜像。
+
+| 检测项 | 检查内容 | 不达标处理 |
+|--------|---------|-----------|
+| **爽点类型核验（揭示≠爽）** | 核对 beat_sheet 中爽点 beat 的 shuang_type 标注是否与正文相符：标注S/A/B/C但正文仅为信息揭示（主角无实质收益、无情绪回报）→ 判"爽点虚标"；本章 S/A/B/C 合计=0（全是reveal/na）→ 本章无真实爽点 | 爽点虚标每处标记 medium 并降级统计；本章无真实爽点标记 high，直接判 shuang_density ≤8.5 |
+| **3章滚动S/A硬指标** | 回看本章及前2章交接卡的 shuang_type 记录：任意连续3章是否含≥1个 S/A 级爽点？ | 连续3章无S/A级爽点标记 high，直接判 shuang_density ≤8.5 并要求 chapter-writer 补设计S/A级beat或拆章 |
+| **悬念限流** | 读取 goal_tracker.suspense_window：本章入库后 active 是否≤3条？overflow_alerts 是否非空？本章是否在窗口已满时新开悬念且未闭环置换？ | active>3 或存在 overflow_alerts 标记 high，直接判 chapter_hook ≤8.0 并要求下一章优先闭环旧悬念 |
+| **目标断头** | 读取 goal_tracker.goals：是否有 active 目标 chapters_since_progress≥4（带 alert）？本章是否推进了至少1个 active 目标（或交接卡说明纯过渡章理由）？ | 存在断头目标标记 high，直接判 plot_consistency ≤8.0；连续2章无任何目标推进且本章第3章仍无推进标记 critical，直接判 plot_consistency ≤7.5 |
+
 ---
 
 ## 评分规则
@@ -740,14 +772,15 @@ total_score = attractiveness × 0.20      # 吸引力（20%）——读者留存
    ├─ memory/outline.json → 获取本章对应的大纲规划
    ├─ memory/characters.json → 获取角色设定与当前状态
    ├─ memory/chapter_summaries/chapter_*.json → 获取前文摘要
-   └─ memory/recent_chapters/ → 获取最近3章全文（如有）
+   ├─ memory/recent_chapters/ → 获取最近3章全文（如有）
+   └─ memory/goal_tracker.json → 获取目标断头alert/悬念窗口状态（v1.7 新增）
 
 3. 逐维度评审（8维度加权评分）
    ├─ 对照大纲检查情节一致性
    ├─ 对照角色卡检查角色一致性
    ├─ 检查事件因果和时间线逻辑
    ├─ 评估文笔质量（流畅度、描写、对话）
-   ├─ 评估爽点密度和分布
+   ├─ 评估爽点密度和分布（含 shuang_type 标注核验）
    ├─ 评估叙事节奏
    ├─ 评估章末钩子有效性
    └─ 评估吸引力（开头抓人/角色魅力/剧情紧凑/爽感直接/术语可读/结尾多样/期待感4子维度）
@@ -759,6 +792,12 @@ total_score = attractiveness × 0.20      # 吸引力（20%）——读者留存
    ├─ 钩子收放对应：制造a→满足a是否一一对应？
    ├─ 代入感过渡：核心期待→代入期待是否过渡？
    └─ 近期待密度/远期待提醒：节奏是否合理？
+
+3.6 配比监控检测（v1.7 新增）
+   ├─ 爽点类型核验：beat_sheet 的 shuang_type 标注与正文是否相符（揭示≠爽）
+   ├─ 3章滚动S/A硬指标：本章及前2章是否含≥1个S/A级爽点
+   ├─ 悬念限流：suspense_window.active≤3、overflow_alerts 为空
+   └─ 目标断头：active 目标 chapters_since_progress<4、本章推进≥1个目标
 
 4. 读者画像评审（市场视角）
    ├─ 切换为6个读者画像视角逐一模拟阅读反应
