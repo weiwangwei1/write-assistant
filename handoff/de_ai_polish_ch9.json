@@ -1,0 +1,48 @@
+{
+  "card_type": "de_ai_polish",
+  "timestamp": "2026-07-24T19:30:00+08:00",
+  "from_agent": "de-ai-processor",
+  "to_agent": "fanqie-adapter",
+  "status": "ready",
+  "content": {
+    "chapter_num": 9,
+    "title": "角纹",
+    "ai_score_before": 0.8,
+    "ai_score_after": 0.6,
+    "changes_made": [
+      {
+        "category": "four_char_idiom",
+        "location": "第77行",
+        "original": "取而代之的是一种从未有过的感觉——他感觉到了后背。",
+        "polished": "换了一种从没有过的感觉——他感觉到了后背。",
+        "reason": "'取而代之'略书面化，改为口语化'换了'。保留破折号节奏和后半句不动"
+      }
+    ],
+    "stats": {
+      "total_changes": 1,
+      "by_category": {
+        "sentence_uniformity": 0,
+        "de_density": 0,
+        "emotion_telling": 0,
+        "formal_transition": 0,
+        "word_repetition": 0,
+        "dialogue_written": 0,
+        "four_char_idiom": 1,
+        "precise_number": 0,
+        "paragraph_uniformity": 0,
+        "over_connection": 0,
+        "summary_ending": 0,
+        "over_describe": 0,
+        "character_telling": 0,
+        "logic_chain": 0
+      }
+    },
+    "v2_1_impact": "本章为首 个从零使用v2.1文笔质感法则的章节，AI痕迹在写作阶段即被大幅压制。14类AI检测中13类为0处，仅1处四字词组微调。v2.1法则中情绪克制法（三阶梯）消除了全部情绪直说，句子呼吸法消除了句式工整，段落建筑法消除了逻辑链症。de-ai步骤压力为全书最小",
+    "deliberate_patterns_preserved": [
+      "'不是A，不是B。是C。'排除法句式（4处）——判定为刻意递进结构（L65烫→烧 / L85闷→笑 / L89嘲讽→得意 / L259闷→第四种），非AI重复",
+      "'认'概念重复（L47+L249）——判定为刻意平行（鳞纹认角纹布/角纹认盲眼老人），非AI重复",
+      "'烫'多频使用——判定为角纹落位核心体感词，每次服务不同纹路/不同感受层级",
+      "'闷'多频使用——判定为老灯角色语音标签，与后续声音类型对比构成递进"
+    ]
+  }
+}

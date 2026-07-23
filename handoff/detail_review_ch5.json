@@ -1,0 +1,174 @@
+{
+  "card_type": "detail_review",
+  "timestamp": "2026-07-24T17:15:00+08:00",
+  "from_agent": "detail-reviewer",
+  "to_agent": "chapter-writer",
+  "chapter_num": 5,
+  "chapter_title": "镇巷令",
+  "overall_verdict": "polished",
+  "split_validation": {
+    "original_chapter": 4,
+    "split_reason": "原Ch4内容过密，拆分为Ch4(三文赌局)+Ch5(镇巷令)",
+    "standalone_assessment": {
+      "opening_works": true,
+      "opening_note": "霍东来坐在柜台前的矮凳上——直接进入场景，承接Ch4结尾'许愿点头，推开铺门'",
+      "ending_works": true,
+      "ending_note": "'被供桌收回去了'+龙鳞颤抖——A级章末钩子，信息揭示型",
+      "arc_complete": true,
+      "arc_note": "霍东来赔礼→镇巷令→供桌激活→龙鳞发现→爷爷真相，完整独立弧光",
+      "word_count_estimate": "~2200字",
+      "pacing_standalone": "良好——信息释放节奏均匀，无拖沓"
+    }
+  },
+  "sentence_level": [
+    {
+      "location": "L81-85",
+      "original": "轻。/比公会的腰牌还轻。/轻得不像有分量的东西。",
+      "issue": "三个连续'轻'字递进，第三句'轻得不像有分量的东西'略显同义反复（轻=没有分量）",
+      "severity": "minor",
+      "suggestion": "第三句可改为更具象的比喻，如'轻得像块空心木头'或'轻得像捏着一片叶子'",
+      "revised": "轻得像捏着一片叶子。"
+    },
+    {
+      "location": "L87",
+      "original": "但他知道——这块牌子的分量不在木头上。",
+      "issue": "略偏'tell'，'分量不在木头上'是常见表达，可更含蓄",
+      "severity": "minor",
+      "suggestion": "可改为通过许愿的物理反应暗示，如'许愿把木牌翻了两面。手指停在那片空白上。'",
+      "revised": "许愿把木牌翻了两面。手指停在那片空白上。"
+    }
+  ],
+  "meme_level": [],
+  "foreshadowing_level": [
+    {
+      "foreshadowing_id": "F-镇巷令",
+      "location": "L67-77",
+      "issue": "镇巷令引入自然，通过霍东来赔礼方式给出，不生硬",
+      "severity": "pass",
+      "suggestion": "无需修改"
+    },
+    {
+      "foreshadowing_id": "F-庚午年链",
+      "location": "L171-173",
+      "issue": "庚午年线索串联（墨盒春→短刀封→供簿正月）节奏良好，读者能跟上推理链",
+      "severity": "pass",
+      "suggestion": "无需修改"
+    },
+    {
+      "foreshadowing_id": "F-龙鳞",
+      "location": "L193-199",
+      "issue": "裂缝中龙鳞的揭示是本章高潮，'从木纹里拱出来的，像鳞是根，桌是长在根上面的枝'——意象精准，暗示供桌与龙的共生关系",
+      "severity": "pass",
+      "suggestion": "无需修改"
+    },
+    {
+      "foreshadowing_id": "F-爷爷命运",
+      "location": "L235-249",
+      "issue": "'不是失踪的'→'被供桌收回去了'——半揭手法到位，给出了信息但留下了更大悬念（供桌怎么收回人？爷爷是死是活？）",
+      "severity": "pass",
+      "suggestion": "无需修改"
+    },
+    {
+      "foreshadowing_id": "F-老灯认霍东来",
+      "location": "L133",
+      "issue": "'老灯认我'——埋设较隐晦，读者第一遍可能忽略。但作为长线伏笔合适，不需加重",
+      "severity": "pass",
+      "suggestion": "无需修改"
+    }
+  ],
+  "logic_level": [
+    {
+      "location": "L103-104",
+      "issue": "霍东来透露'吹灯巷三十七户，有一半从我手里拿纹材'——与角色卡中霍东来'垄断纹材供应'背景一致",
+      "severity": "pass",
+      "suggestion": "无需修改"
+    },
+    {
+      "location": "L109",
+      "issue": "'供桌吐了你的玉'——需与Ch2原文核对，确认供桌吐出的是否为玉制品。若Ch2原文未明确为玉，需统一",
+      "severity": "minor",
+      "suggestion": "核查Ch2原文，若非玉则改为'供桌吐了你的东西'"
+    },
+    {
+      "location": "L235-249",
+      "issue": "'被供桌收回去了'——老灯用词隐晦，与大纲'爷爷被困位面夹缝'不矛盾。供桌作为温故特制囚具，'收回'可能是供桌的某种功能表现。逻辑自洽",
+      "severity": "pass",
+      "suggestion": "无需修改"
+    }
+  ],
+  "consistency_check": {
+    "character_voice": "通过：霍东来语气从殷勤到疲惫到哲学化（'公会是秤'），符合精明商人+好面子的复合人设。许愿直接追问、不绕弯，符合'公道极致化'性格。老灯三种声音层次（闷→清醒→第三种）与Ch8一致",
+    "setting_consistency": "通过：供桌返利机制（短刀上供→暗金光纹亮→揭示隐藏文字）与前章一致。鳞纹+爪纹同时发光是新发展，但符合大纲'纹位Build策略'伏笔",
+    "timeline_check": "通过：本章发生在Ch4同日午后（L263'外面的日头偏了'），时间线连续",
+    "previous_chapter_continuity": "通过：承接Ch4结尾'许愿点头，推开铺门'→Ch5开头'霍东来坐在柜台前的矮凳上'。短刀、蓝袍子、封九霄三条线索均延续",
+    "dialogue_logic": "通过：霍东来'你爷爷嘴严比你严'与后续'我只知道公会每隔半年派人来看供桌'不矛盾——他知道存在关联但不知细节。追问链一致",
+    "behavior_consistency": "通过：霍东来从殷勤→严肃→哲学化的转变有桥接（许愿的直接追问触发）。许愿从警惕→观察→震撼的过渡由供桌激活事件驱动。老灯沉默→清醒→沉默由庚午年触发",
+    "number_plausibility": "通过：三十七户（小巷合理）、二十年（42岁合理）、半年一次（巡查频率合理）、六十年前（甲子循环合理）",
+    "terminology_check": "通过：鳞纹/爪纹跨章一致。镇巷令作为新术语通过场景自然引入，不需独立命名",
+    "metaphor_consistency": "通过：本章比喻（秤/根与枝/冬天的铁）不与核心隐喻体系冲突。本作无严格核心隐喻体系，比喻自由度较高",
+    "scene_repetition": "通过：无同场景逐字重复",
+    "reference_ambiguity": "通过：'纹'在上下文中均有限定词（鳞纹/爪纹），无指代歧义"
+  },
+  "texture_level": {
+    "breathing_check": "合格：全章节奏变化良好。短句（'轻。'/'是认出了什么的热。'）与长句交替，未发现≥3句连续匀速段",
+    "metaphor_precision": {
+      "grade": "B+",
+      "飘比喻": [],
+      "a_level": ["像鳞是根，桌是长在根上面的枝", "像攥过一块冬天的铁", "公会不是坑。公会是秤"],
+      "aa_level": [],
+      "note": "无比喻飘忽问题，但缺少AA级比喻。考虑到本章从Ch4拆分、非原始style rewrite目标章，可接受"
+    },
+    "emotion_restraint": {
+      "grade": "A",
+      "key_emotion_points": [
+        {
+          "location": "L251-257",
+          "point": "得知爷爷命运后的情绪",
+          "handling": "物理反应（'凉下去，像攥过一块冬天的铁'）+无意义行为（'站起来。走到窗边，又走回来'）+环境收束（'裂缝里的光灭了'）",
+          "verdict": "pass——情绪克制到位，无直接命名"
+        }
+      ],
+      "emotion_words_found": []
+    },
+    "dialogue_subtext": {
+      "grade": "A-",
+      "key_dialogue": "霍东来/许愿对话段（L89-127）",
+      "b_class_ratio": "~60%",
+      "note": "霍东来'替自己办事'/'公会是秤'/'老灯认我'均为B类（潜台词丰富）。许愿偏A类（直接追问），符合角色性格"
+    },
+    "narrative_detail": {
+      "grade": "A",
+      "key_objects": [
+        {"object": "镇巷令", "descriptive": "木牌，比腰牌大一圈，正面刻'镇巷'，背面空", "narrative": "有此牌不用交例钱，背面得封分会长刻", "verdict": "pass"},
+        {"object": "短刀", "descriptive": "锈迹斑斑", "narrative": "供桌揭示'镇巷十三号，庚午年封'", "verdict": "pass"},
+        {"object": "龙鳞", "descriptive": "暗金色，从木纹里拱出来", "narrative": "鳞是根，桌是枝——暗示共生关系", "verdict": "pass"}
+      ]
+    },
+    "paragraph_architecture": {
+      "experience_mode_count": 2,
+      "experience_mode_locations": ["L203-211（抠毛刺/刮/按住——无意义行为序列）", "L251-267（凉/站起来走/环境——情绪收束）"],
+      "information_mode_ratio": "~80%",
+      "ending_mode": "体验模式",
+      "verdict": "minor——体验模式2段（推荐3-4段），中段供桌激活场景可增加1段体验模式"
+    },
+    "experience_density": {
+      "grade": "B+",
+      "count": 2,
+      "recommended": "3-4",
+      "gap": "中段（L175-199，双纹共振+龙鳞发现）可用体验模式强化，建议在L199龙鳞揭示后插入1段许愿的镜头链反应"
+    }
+  },
+  "summary": {
+    "total_issues": 4,
+    "critical_count": 0,
+    "major_count": 0,
+    "minor_count": 4,
+    "polish_priority": [
+      "1. L81-85: '轻得不像有分量的东西'→改为'轻得像捏着一片叶子'（具象化）",
+      "2. L87: '分量不在木头上'→改为物理反应暗示（'手指停在空白上'）",
+      "3. L109: 核查Ch2原文'供桌吐了你的玉'中的'玉'是否准确",
+      "4. 中段可补1段体验模式（龙鳞发现后许愿的反应）"
+    ],
+    "note": "本章从原Ch4拆分，内容已通过原Ch4的detail review(9.45)。拆分后作为独立章节验证：开头/结尾/弧光均完整，无critical/major问题。4个minor问题均为优化级别，不影响进入quality-reviewer"
+  }
+}
