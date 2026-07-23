@@ -72,12 +72,12 @@
     "chapter_10": {
       "note": "教训beat: 赝品被吐+老灯毒舌升级至嫌弃+盲眼老人揭示六十年前守灯人传承+IG001部分处理",
       "write": "done (初稿完成, 307行, 对话开头+动作未完成结尾, 盲眼老人揭示'画记的人六十年前就不在了'+供桌吐赝品铜碟+老灯嫌弃声音+许愿推理守灯人接替链, AA级比喻: '空了的凉')",
-      "detail_review": "pending",
+      "detail_review": "done (polished, 0 critical, 0 major, 6 minor已修复: 盲眼'看'→'朝方向'+手停了重复删除+心跳套路替换+嗤之以鼻改嫌弃+不是是句式精简2处+老灯说冗余删除, v2.1法则7项全pass)",
       "quality_review": "pending",
       "de_ai": "pending",
       "final_review": "pending"
     },
-    "next_step": "Ch10 detail-review"
+    "next_step": "Ch10 quality-review"
   },
   "rewrite_count": {},
   "errors": [],
