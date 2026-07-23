@@ -1,0 +1,176 @@
+{
+  "card_type": "goal_tracker",
+  "last_updated_chapter": 10,
+  "last_updated_at": "2026-07-25T01:00:00+08:00",
+  "goals": [
+    {
+      "id": "G001",
+      "title": "镇巷令公会线——见封九霄报备",
+      "type": "task",
+      "established_chapter": 5,
+      "expected_close_chapter": 18,
+      "status": "active",
+      "progress_log": [
+        { "chapter": 5, "action": "established", "detail": "霍东来透露'公会封分会长想见你'+镇巷令入手（背面空白，需封分会长亲手刻字）" }
+      ],
+      "chapters_since_progress": 5,
+      "alert": "断头预警——建立后5章无进展（≥4阈值）。注：大纲规划公会单元在Ch13-18，属计划内休眠，但读者视角已5章未见此线。建议Ch11-12插入1个桥接beat（如公会眼线盯梢/镇巷令异常发热）维持目标存在感，避免Ch13封九霄登场时读者已遗忘。"
+    },
+    {
+      "id": "G002",
+      "title": "青灯续油——寻找来历深的旧灯油",
+      "type": "task",
+      "established_chapter": 10,
+      "expected_close_chapter": 30,
+      "status": "active",
+      "progress_log": [
+        { "chapter": 10, "action": "established", "detail": "盲眼老人临走揭示'灯市口那盏青灯烧了三百年，油快见底了''你要是有旧灯油——来历深的——给它续上'。长明灯火种线首次被外部角色激活（F006）" }
+      ],
+      "chapters_since_progress": 0,
+      "alert": null
+    },
+    {
+      "id": "G003",
+      "title": "角纹稳定期养护（3天）",
+      "type": "task",
+      "established_chapter": 9,
+      "expected_close_chapter": 12,
+      "status": "active",
+      "progress_log": [
+        { "chapter": 9, "action": "established", "detail": "老灯'角纹刚落，不稳。三天'——3天稳定期开始" },
+        { "chapter": 10, "action": "progressed", "detail": "稳定期第1天（角纹落后背第2日计数起点）" }
+      ],
+      "chapters_since_progress": 0,
+      "alert": null,
+      "note": "Ch11=第2天，Ch12=第3天。稳定期结束前角纹火系能力应受限使用，chapter-writer须遵守此约束。"
+    },
+    {
+      "id": "G004",
+      "title": "黑店反杀beat补回（大纲漂移欠账OD001）",
+      "type": "beat_debt",
+      "established_chapter": 10,
+      "expected_close_chapter": 12,
+      "status": "active",
+      "progress_log": [
+        { "chapter": 10, "action": "established", "detail": "原计划Ch10反转beat（黑店设局→主角用规则反杀）被盲眼老人信息beat替换，drift决策=make_up_later，移至Ch11-12兑现。形式待定：外部势力（霍家残党/公会稽查/新威胁）试图强行夺取或利用供桌，许愿利用规则反制" }
+      ],
+      "chapters_since_progress": 0,
+      "alert": "Ch12硬截止——若Ch12仍未兑现，灯市淘宝单元（unit2 Ch6-12）将缺'反转beat'收尾，单元完整性与climax'反杀黑店'承诺双双落空。"
+    }
+  ],
+  "main_quest_progress": {
+    "id": "MQ001",
+    "title": "火种收集——长明灯复燃（还差三个）",
+    "total_stages": 3,
+    "completed_stages": 0,
+    "current_chapter": 10,
+    "stage_log": [
+      { "chapter": 3, "event": "目标建立——老灯梦呓'还差三个……火种还差三个''长明灯'" },
+      { "chapter": 10, "event": "首次外部激活——盲眼老人揭示青灯油尽+旧灯油线索（火种线与灯油关联首次显化）" }
+    ],
+    "health": "on_track",
+    "stalled_chapters": 0,
+    "note": "Vol1大纲计划首个火种碎片暗示在Ch30（缴获异界鳞片→老灯失态）。当前0/3进度符合大纲节奏，Ch10灯油线索为计划外提前激活（正向漂移）。主线占比：Ch1-10中3章涉及火种线（Ch1双关/Ch3梦呓/Ch10灯油）=30%，处于健康线。"
+  },
+  "villain_ladder": [
+    {
+      "tier": "minion",
+      "name": "霍家清街人马",
+      "planned_window": "Ch26-30清算",
+      "status": "engaged",
+      "first_appear_chapter": 1,
+      "cleared_chapter": null,
+      "note": "Ch1砸门/Ch2被供桌规则打脸服软，未清算。清算单元在unit5（Ch26-30）。"
+    },
+    {
+      "tier": "minion",
+      "name": "公会纹材稽查（蓝袍子）",
+      "planned_window": "Ch13-18反制",
+      "status": "engaged",
+      "first_appear_chapter": 4,
+      "cleared_chapter": null,
+      "note": "Ch4正面对峙（稽查制度展示+封九霄之名首次提及）。大纲unit3'用规矩反制稽查'。"
+    },
+    {
+      "tier": "minion",
+      "name": "鬼市贩子鬼脸",
+      "planned_window": "Ch19-25",
+      "status": "not_started",
+      "first_appear_chapter": null,
+      "cleared_chapter": null,
+      "note": "大纲unit4'争镇墓兽结怨鬼脸'，Ch19初探鬼市登场。"
+    },
+    {
+      "tier": "hidden",
+      "name": "霍东来（霍家家主）",
+      "planned_window": "Ch20-70渐露",
+      "status": "active",
+      "first_appear_chapter": 5,
+      "cleared_chapter": null,
+      "note": "Ch5正面对话（'老灯认我'+透露封九霄意图+F017伏笔埋设）。垄断界门猎场，Ch70+投靠温故线。"
+    },
+    {
+      "tier": "hidden",
+      "name": "封九霄（公会分会长，灰色）",
+      "planned_window": "Ch13-18登场",
+      "status": "teased",
+      "first_appear_chapter": null,
+      "cleared_chapter": null,
+      "note": "Ch4名字首提（蓝袍子之口），Ch5意图明确（'想见你'）。人未登场，Ch13-18正式登场与许愿正面交锋。"
+    },
+    {
+      "tier": "ultimate",
+      "name": "温故（神殿退隐老司祭）",
+      "planned_window": "Ch38登场（伪装好人）/Ch190-200揭面",
+      "status": "not_started",
+      "first_appear_chapter": null,
+      "cleared_chapter": null,
+      "note": "终极反派。信任微裂痕4节点已规划（Ch55-60/85-90/120-125/155-160）。"
+    }
+  ],
+  "suspense_window": {
+    "max_active": 3,
+    "active": [
+      {
+        "id": "S001",
+        "title": "爷爷下落与状态——'他还在里头'，如何救/为何困",
+        "opened_chapter": 1,
+        "type": "main",
+        "linked_foreshadowing": "F005",
+        "last_action_chapter": 8
+      },
+      {
+        "id": "S002",
+        "title": "60年庚午年谜团——守灯人传承链，爷爷是接手的人",
+        "opened_chapter": 6,
+        "type": "main",
+        "linked_foreshadowing": "F002/F007",
+        "last_action_chapter": 10
+      },
+      {
+        "id": "S003",
+        "title": "盲眼老人身份——与守灯人传承的关系",
+        "opened_chapter": 7,
+        "type": "character",
+        "linked_foreshadowing": "F008",
+        "last_action_chapter": 10
+      },
+      {
+        "id": "S004",
+        "title": "IG001——老人是否知道许愿已读完全部供簿",
+        "opened_chapter": 10,
+        "type": "information_gap",
+        "linked_foreshadowing": "IG001",
+        "last_action_chapter": 10,
+        "deadline": 11
+      }
+    ],
+    "overflow_alerts": [
+      {
+        "severity": "warning",
+        "detail": "active=4 > max_active=3，超限1条。S004（IG001）Ch11为3章窗口硬截止，闭环后自然回落至3条。Ch11禁止新开悬念，优先闭环S004。"
+      }
+    ]
+  },
+  "notes": "初始化版本——基于outline.json + foreshadowing_tracker.json + session_pointer.json三方交叉核对，覆盖Ch1-10现状。关键发现：G001断头预警（5章无进展，计划内休眠但需桥接）、悬念窗口超限1条（IG001须Ch11闭环）、G004黑店反杀欠账（Ch12硬截止）。火种主线健康（Ch10刚激活，0/3符合大纲节奏）。"
+}
