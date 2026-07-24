@@ -66,14 +66,14 @@
 
 实施Skill: memory-manager v1.5
 
-### 优化5: 审核步骤合并
+### 优化5: 审核步骤合并 ✅ 已实施
 | 项目 | 优化前 | 优化后 |
 |------|--------|--------|
-| 审核步骤 | quality(8维) → final(8维) | unified_review(10维) |
+| 审核步骤 | quality(8维) → final(8维) | unified_review(12维) |
 | 中间文件 | 2个(quality+final) | 1个(unified_review) |
 | 每章节省 | ~20KB + 1次读写 | - |
 
-实施方式: 创建unified-review模式，quality-reviewer和final-reviewer的评分维度合并为10维（去重后），单个审核步骤产出统一评分+放行判定
+实施方式: 创建 `auto-runner/unified_review_spec.md` 规范文件，定义12维统一评分（8技术维+4补充维），权重等价转换（技术维×0.6，补充维×0.4），评分公式 `unified_score = technical_score×0.6 + supplementary_score×0.4` 与传统 `final_score` 完全等价。Ch12等价性验证通过：unified_score(9.51) == final_score(9.51)。样例文件：`handoff/chapters/unified_review_ch012.json`。task_config模板已更新支持unified模式配置。
 
 ## 目录结构优化
 

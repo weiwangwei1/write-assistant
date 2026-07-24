@@ -1,227 +1,637 @@
-{
-  "task_name": "有龙则灵·黄金三章全自动撰写",
-  "task_description": "从title-reviewer开始，经skeptic质疑、outline-editor验收、character-designer角色设计、setting-reviewer设定审核，完成3章黄金章节的撰写和审核全流程",
-  "workspace": "d:\\personFile\\write-assistant",
-  "steps": [
-    {
-      "id": 0,
-      "name": "书名与简介审核",
-      "agent": "title-reviewer",
-      "instruction": "读取 .trae/skills/title-reviewer/SKILL.md 了解审核规范。读取 memory/outline.json 获取书名《有龙则灵》及备选名（供桌上的诸天/老街龙龛）、简介、标签。按title-reviewer的6维书名审核+5维简介审核执行。输出到 handoff/title_review.json。审核书名是否满足：文化内涵/故事感/避免俗气动物名/网感吸引点击。审核简介首句是否15字内概括核心设定、是否与黄金三章一致。",
-      "input_files": ["memory/outline.json", "config/novel_config.json", ".trae/skills/title-reviewer/SKILL.md"],
-      "output_files": ["handoff/title_review.json"],
-      "pass_criteria": "输出文件存在且含 verdict 字段（pass/pass_with_note/adjust），含书名6维评分和简介5维评分",
-      "max_retries": 2
-    },
-    {
-      "id": 1,
-      "name": "质疑迭代第1轮-主题执行可行性",
-      "agent": "skeptic",
-      "instruction": "读取 .trae/skills/skeptic/SKILL.md 了解质疑规范。读取 memory/outline.json 和 handoff/topic_screening.json。执行skeptic第1轮质疑：检查大纲是否兑现预筛承诺（爽感路径1步/前3章仅2概念/明基调/遗产继承式金手指/名词≤5个/势力3家）。检查是否有主题漂移。输出到 handoff/skeptic_review.json，标注round=1。",
-      "input_files": ["memory/outline.json", "handoff/topic_screening.json", ".trae/skills/skeptic/SKILL.md"],
-      "output_files": ["handoff/skeptic_review.json"],
-      "pass_criteria": "输出文件存在且含 round=1，含verdict（pass/needs_revision），含issues列表",
-      "max_retries": 2
-    },
-    {
-      "id": 2,
-      "name": "质疑迭代第2轮-世界观严谨性",
-      "agent": "skeptic",
-      "instruction": "读取 .trae/skills/skeptic/SKILL.md。读取 memory/outline.json 和 handoff/skeptic_review.json（第1轮结果）。执行skeptic第2轮质疑：压力测试世界观严谨性——长明灯/守灯龙/诸神分火体系是否自洽？献祭五规是否有漏洞？龙纹五系品级纹位是否合理？势力三家是否够用？前3章世界观信息量是否适中？如有问题给出修改建议。输出到 handoff/skeptic_review.json（追加round=2）。",
-      "input_files": ["memory/outline.json", "handoff/skeptic_review.json", ".trae/skills/skeptic/SKILL.md"],
-      "output_files": ["handoff/skeptic_review.json"],
-      "pass_criteria": "输出文件含 round=2，含verdict和issues",
-      "max_retries": 2
-    },
-    {
-      "id": 3,
-      "name": "质疑迭代第3轮-爽感路径与节奏",
-      "agent": "skeptic",
-      "instruction": "读取 .trae/skills/skeptic/SKILL.md。读取 memory/outline.json 和 handoff/skeptic_review.json。执行skeptic第3轮：检查前10章爽感路径是否≤2步、黄金三章是否S级1步、串糖葫芦5颗山楂糖衣是否轮换、节奏起伏是否合理。检查开篇三问答案是否具体可执行。输出到 handoff/skeptic_review.json（追加round=3）。",
-      "input_files": ["memory/outline.json", "handoff/skeptic_review.json", ".trae/skills/skeptic/SKILL.md"],
-      "output_files": ["handoff/skeptic_review.json"],
-      "pass_criteria": "输出文件含 round=3，含verdict和issues",
-      "max_retries": 2
-    },
-    {
-      "id": 4,
-      "name": "大纲验收定稿",
-      "agent": "outline-editor",
-      "instruction": "读取 .trae/skills/outline-editor/SKILL.md 了解验收规范。读取 memory/outline.json 和 handoff/skeptic_review.json（3轮质疑结果）。按outline-editor的6维度评分执行：商业性25%(含题材耐久度子维度)/结构20%/节奏20%/伏笔15%/角色10%/平台10%。检查一票否决项（商业方向错误/结构断裂/爽感路径违规）。如评分≥8.5且无一票否决则通过。如有must_fix则修改memory/outline.json。输出到 handoff/outline_review.json。",
-      "input_files": ["memory/outline.json", "handoff/skeptic_review.json", ".trae/skills/outline-editor/SKILL.md"],
-      "output_files": ["handoff/outline_review.json"],
-      "pass_criteria": "输出文件存在且含6维度评分、总分≥8.5、verdict=pass",
-      "max_retries": 2
-    },
-    {
-      "id": 5,
-      "name": "角色设计",
-      "agent": "character-designer",
-      "instruction": "读取 .trae/skills/character-designer/SKILL.md 了解角色设计规范。读取 memory/outline.json 获取角色需求。设计6个关键角色卡：许愿(主角)、老灯(古龙)、豆灯(萌宠)、温故(终极反派)、霍东来(隐藏反派)、封九霄(灰色角色)。每个角色必须含：外貌+气质描写(立体形象)、性格极致特征、反差设计、独立目标(非纯工具人)、story_driver。注意角色形象渐入法则：主角前3章视觉锚点(Ch1轮廓/Ch2动态反差/Ch3外部视角)。输出到 memory/characters.json 和 handoff/characters.json。",
-      "input_files": ["memory/outline.json", ".trae/skills/character-designer/SKILL.md"],
-      "output_files": ["memory/characters.json", "handoff/characters.json"],
-      "pass_criteria": "输出文件存在且含6个角色卡，每个角色含appearance+temperament+personality_extreme+story_driver",
-      "max_retries": 2
-    },
-    {
-      "id": 6,
-      "name": "设定审核",
-      "agent": "setting-reviewer",
-      "instruction": "读取 .trae/skills/setting-reviewer/SKILL.md 了解审核规范。读取 memory/outline.json 获取世界观设定（长明界/献祭五规/龙纹五系/势力三家）。按setting-reviewer的6维度审核执行：机制完整性/设定自洽/世界合理性/体系丰富度/冲突平衡/扩展性。输出到 handoff/setting_review.json。",
-      "input_files": ["memory/outline.json", ".trae/skills/setting-reviewer/SKILL.md"],
-      "output_files": ["handoff/setting_review.json"],
-      "pass_criteria": "输出文件存在且含6维度评分、verdict=pass或pass_with_note",
-      "max_retries": 2
-    },
-    {
-      "id": 7,
-      "name": "第1章撰写",
-      "agent": "chapter-writer",
-      "instruction": "读取 .trae/skills/chapter-writer/SKILL.md 了解写作规范。读取 memory/outline.json 的 golden_three_chapters.chapter_1、memory/characters.json、memory/outline.json 的 tanghulu_vol1[0]。撰写第1章（约3000字）：初一上供，缺角龙纹瓦当换龙鳞纹，前100字展示核心能力，章末霍家清街人马砸门。每句话单独一行。必须遵守：开头多样化(动作/感官开头，非地点+时间)、结尾多样化(悬念钩子)、节奏变化(至少1个≥200字长段)、角色形象渐入(Ch1视觉锚点-轮廓)、术语可读性(前5章不出现未解释术语)、吸引力放大法则六要素。输出到 handoff/chapter_draft_ch1.json 和 output/chapter_001.txt。",
-      "input_files": ["memory/outline.json", "memory/characters.json", ".trae/skills/chapter-writer/SKILL.md"],
-      "output_files": ["handoff/chapter_draft_ch1.json", "output/chapter_001.txt"],
-      "pass_criteria": "输出文件存在，chapter_001.txt字数≥2700，前100字含核心能力展示，章末含冲突钩子",
-      "max_retries": 2
-    },
-    {
-      "id": 8,
-      "name": "第1章细节审核",
-      "agent": "detail-reviewer",
-      "instruction": "读取 .trae/skills/detail-reviewer/SKILL.md 了解审核规范。读取 output/chapter_001.txt。逐句/逐梗/逐伏笔微观打磨：检查开头结尾是否模式化、节奏是否有长段对比、角色形象是否有视觉锚点、Show vs Tell、吸引力六要素是否齐全、主动出击法则、概念命名节奏(新命名≤2个)、结尾钩子强度(≥B级含感官细节)。输出到 handoff/detail_review_ch1.json。",
-      "input_files": ["output/chapter_001.txt", ".trae/skills/detail-reviewer/SKILL.md"],
-      "output_files": ["handoff/detail_review_ch1.json"],
-      "pass_criteria": "输出文件存在且含逐项检查结果和修改建议",
-      "max_retries": 2
-    },
-    {
-      "id": 9,
-      "name": "第1章质量审核",
-      "agent": "quality-reviewer",
-      "instruction": "读取 .trae/skills/quality-reviewer/SKILL.md 了解审核规范。读取 output/chapter_001.txt 和 handoff/detail_review_ch1.json。按quality-reviewer的8维评分执行（含吸引力提权+期待感评估+龙空读者画像）。技术分≥9.5则通过，否则退回chapter-writer修订。输出到 handoff/quality_review_ch1.json。",
-      "input_files": ["output/chapter_001.txt", "handoff/detail_review_ch1.json", ".trae/skills/quality-reviewer/SKILL.md"],
-      "output_files": ["handoff/quality_review_ch1.json"],
-      "pass_criteria": "输出文件存在且含8维评分、技术分≥9.5、verdict=pass",
-      "max_retries": 3
-    },
-    {
-      "id": 10,
-      "name": "第1章去AI化",
-      "agent": "de-ai-processor",
-      "instruction": "读取 .trae/skills/de-ai-processor/SKILL.md 了解去AI化规范。读取 output/chapter_001.txt 和 handoff/quality_review_ch1.json。检测并消除AI写作痕迹：Show vs Tell检测、模式化用词、重复句式、情感扁平化。人性化语言，确保读起来像人类网文作者写的。输出到 handoff/de_ai_polish_ch1.json 和更新 output/chapter_001.txt。",
-      "input_files": ["output/chapter_001.txt", "handoff/quality_review_ch1.json", ".trae/skills/de-ai-processor/SKILL.md"],
-      "output_files": ["handoff/de_ai_polish_ch1.json", "output/chapter_001.txt"],
-      "pass_criteria": "输出文件存在且含修改记录，chapter_001.txt已更新",
-      "max_retries": 2
-    },
-    {
-      "id": 11,
-      "name": "第1章终审",
-      "agent": "final-reviewer",
-      "instruction": "读取 .trae/skills/final-reviewer/SKILL.md 了解终审规范。读取 output/chapter_001.txt。多维度终审打分，均分≥9.5才放行。输出到 handoff/final_review_ch1.json。如不达标，标注退回原因（退回de-ai或chapter-writer）。",
-      "input_files": ["output/chapter_001.txt", ".trae/skills/final-reviewer/SKILL.md"],
-      "output_files": ["handoff/final_review_ch1.json"],
-      "pass_criteria": "输出文件存在且含终审评分、均分≥9.5、verdict=pass",
-      "max_retries": 3
-    },
-    {
-      "id": 12,
-      "name": "第2章撰写",
-      "agent": "chapter-writer",
-      "instruction": "读取 .trae/skills/chapter-writer/SKILL.md。读取 memory/outline.json 的 golden_three_chapters.chapter_2、memory/characters.json、output/chapter_001.txt(衔接)。撰写第2章（约3000字）：单手掀翻清街人马，神殿开坛日十献一返荒诞场面（世界观展示+笑料+反衬供桌公道，不加概念）。开头方式必须与第1章不同。每句话单独一行。输出到 handoff/chapter_draft_ch2.json 和 output/chapter_002.txt。",
-      "input_files": ["memory/outline.json", "memory/characters.json", "output/chapter_001.txt", ".trae/skills/chapter-writer/SKILL.md"],
-      "output_files": ["handoff/chapter_draft_ch2.json", "output/chapter_002.txt"],
-      "pass_criteria": "输出文件存在，字数≥2700，开头方式与第1章不同，含神殿开坛日世界观展示",
-      "max_retries": 2
-    },
-    {
-      "id": 13,
-      "name": "第2章细节审核",
-      "agent": "detail-reviewer",
-      "instruction": "读取 .trae/skills/detail-reviewer/SKILL.md。读取 output/chapter_002.txt。执行与第1章相同的微观打磨。额外检查：开头是否与第1章用不同方式、结尾类型是否轮换、角色形象Ch2动态反差。输出到 handoff/detail_review_ch2.json。",
-      "input_files": ["output/chapter_002.txt", ".trae/skills/detail-reviewer/SKILL.md"],
-      "output_files": ["handoff/detail_review_ch2.json"],
-      "pass_criteria": "输出文件存在且含逐项检查结果",
-      "max_retries": 2
-    },
-    {
-      "id": 14,
-      "name": "第2章质量审核",
-      "agent": "quality-reviewer",
-      "instruction": "读取 .trae/skills/quality-reviewer/SKILL.md。读取 output/chapter_002.txt 和 handoff/detail_review_ch2.json。8维评分，技术分≥9.5则通过。输出到 handoff/quality_review_ch2.json。",
-      "input_files": ["output/chapter_002.txt", "handoff/detail_review_ch2.json", ".trae/skills/quality-reviewer/SKILL.md"],
-      "output_files": ["handoff/quality_review_ch2.json"],
-      "pass_criteria": "输出文件存在且含8维评分、技术分≥9.5、verdict=pass",
-      "max_retries": 3
-    },
-    {
-      "id": 15,
-      "name": "第2章去AI化",
-      "agent": "de-ai-processor",
-      "instruction": "读取 .trae/skills/de-ai-processor/SKILL.md。读取 output/chapter_002.txt。去AI化处理。输出到 handoff/de_ai_polish_ch2.json 和更新 output/chapter_002.txt。",
-      "input_files": ["output/chapter_002.txt", ".trae/skills/de-ai-processor/SKILL.md"],
-      "output_files": ["handoff/de_ai_polish_ch2.json", "output/chapter_002.txt"],
-      "pass_criteria": "输出文件存在且含修改记录，chapter_002.txt已更新",
-      "max_retries": 2
-    },
-    {
-      "id": 16,
-      "name": "第2章终审",
-      "agent": "final-reviewer",
-      "instruction": "读取 .trae/skills/final-reviewer/SKILL.md。读取 output/chapter_002.txt。终审打分，均分≥9.5放行。输出到 handoff/final_review_ch2.json。",
-      "input_files": ["output/chapter_002.txt", ".trae/skills/final-reviewer/SKILL.md"],
-      "output_files": ["handoff/final_review_ch2.json"],
-      "pass_criteria": "输出文件存在且含终审评分、均分≥9.5、verdict=pass",
-      "max_retries": 3
-    },
-    {
-      "id": 17,
-      "name": "第3章撰写",
-      "agent": "chapter-writer",
-      "instruction": "读取 .trae/skills/chapter-writer/SKILL.md。读取 memory/outline.json 的 golden_three_chapters.chapter_3、memory/characters.json、output/chapter_002.txt(衔接)。撰写第3章（约3000字）：测规则——无来历鲜果被拒收，太爷爷旧怀表换龙爪纹；老灯梦中第一声呓语（暗线启动）。开头方式必须与第1、2章都不同。每句话单独一行。输出到 handoff/chapter_draft_ch3.json 和 output/chapter_003.txt。",
-      "input_files": ["memory/outline.json", "memory/characters.json", "output/chapter_002.txt", ".trae/skills/chapter-writer/SKILL.md"],
-      "output_files": ["handoff/chapter_draft_ch3.json", "output/chapter_003.txt"],
-      "pass_criteria": "输出文件存在，字数≥2700，开头方式与前2章不同，含规则测试和老灯呓语暗线",
-      "max_retries": 2
-    },
-    {
-      "id": 18,
-      "name": "第3章细节审核",
-      "agent": "detail-reviewer",
-      "instruction": "读取 .trae/skills/detail-reviewer/SKILL.md。读取 output/chapter_003.txt。执行微观打磨。额外检查：开头是否与第1、2章用不同方式、结尾类型是否轮换、角色形象Ch3外部视角、暗线伏笔是否自然。输出到 handoff/detail_review_ch3.json。",
-      "input_files": ["output/chapter_003.txt", ".trae/skills/detail-reviewer/SKILL.md"],
-      "output_files": ["handoff/detail_review_ch3.json"],
-      "pass_criteria": "输出文件存在且含逐项检查结果",
-      "max_retries": 2
-    },
-    {
-      "id": 19,
-      "name": "第3章质量审核",
-      "agent": "quality-reviewer",
-      "instruction": "读取 .trae/skills/quality-reviewer/SKILL.md。读取 output/chapter_003.txt 和 handoff/detail_review_ch3.json。8维评分，技术分≥9.5则通过。输出到 handoff/quality_review_ch3.json。",
-      "input_files": ["output/chapter_003.txt", "handoff/detail_review_ch3.json", ".trae/skills/quality-reviewer/SKILL.md"],
-      "output_files": ["handoff/quality_review_ch3.json"],
-      "pass_criteria": "输出文件存在且含8维评分、技术分≥9.5、verdict=pass",
-      "max_retries": 3
-    },
-    {
-      "id": 20,
-      "name": "第3章去AI化",
-      "agent": "de-ai-processor",
-      "instruction": "读取 .trae/skills/de-ai-processor/SKILL.md。读取 output/chapter_003.txt。去AI化处理。输出到 handoff/de_ai_polish_ch3.json 和更新 output/chapter_003.txt。",
-      "input_files": ["output/chapter_003.txt", ".trae/skills/de-ai-processor/SKILL.md"],
-      "output_files": ["handoff/de_ai_polish_ch3.json", "output/chapter_003.txt"],
-      "pass_criteria": "输出文件存在且含修改记录，chapter_003.txt已更新",
-      "max_retries": 2
-    },
-    {
-      "id": 21,
-      "name": "第3章终审",
-      "agent": "final-reviewer",
-      "instruction": "读取 .trae/skills/final-reviewer/SKILL.md。读取 output/chapter_003.txt。终审打分，均分≥9.5放行。输出到 handoff/final_review_ch3.json。",
-      "input_files": ["output/chapter_003.txt", ".trae/skills/final-reviewer/SKILL.md"],
-      "output_files": ["handoff/final_review_ch3.json"],
-      "pass_criteria": "输出文件存在且含终审评分、均分≥9.5、verdict=pass",
-      "max_retries": 3
-    }
-  ]
+﻿{
+    "parallel_groups_summary":  {
+                                    "review_ch17":  {
+                                                        "type":  "mode7",
+                                                        "steps":  [
+                                                                      "Ch17 Detail Review (parallel)",
+                                                                      "Ch17 De-AI Analysis (parallel)"
+                                                                  ]
+                                                    },
+                                    "pipeline_16_17":  {
+                                                           "type":  "mode8",
+                                                           "steps":  [
+                                                                         "Ch16 Unified Review (parallel w/ Ch17 write)",
+                                                                         "Ch17 Write (parallel w/ Ch16 review)"
+                                                                     ]
+                                                       },
+                                    "review_ch15":  {
+                                                        "type":  "mode7",
+                                                        "steps":  [
+                                                                      "Ch15 Detail Review (parallel)",
+                                                                      "Ch15 De-AI Analysis (parallel)"
+                                                                  ]
+                                                    },
+                                    "review_ch16":  {
+                                                        "type":  "mode7",
+                                                        "steps":  [
+                                                                      "Ch16 Detail Review (parallel)",
+                                                                      "Ch16 De-AI Analysis (parallel)"
+                                                                  ]
+                                                    },
+                                    "pipeline_14_15":  {
+                                                           "type":  "mode8",
+                                                           "steps":  [
+                                                                         "Ch14 Unified Review (parallel w/ Ch15 write)",
+                                                                         "Ch15 Write (parallel w/ Ch14 review)"
+                                                                     ]
+                                                       },
+                                    "review_ch14":  {
+                                                        "type":  "mode7",
+                                                        "steps":  [
+                                                                      "Ch14 Detail Review (parallel)",
+                                                                      "Ch14 De-AI Analysis (parallel)"
+                                                                  ]
+                                                    },
+                                    "pipeline_15_16":  {
+                                                           "type":  "mode8",
+                                                           "steps":  [
+                                                                         "Ch15 Unified Review (parallel w/ Ch16 write)",
+                                                                         "Ch16 Write (parallel w/ Ch15 review)"
+                                                                     ]
+                                                       }
+                                },
+    "task_description":  "Auto-generated. Unified review mode. 6 steps/chapter: write -\u003e (detail+deai parallel -\u003e merge) -\u003e unified_review -\u003e memory_commit. Pipeline: Ch(N) review parallel with Ch(N+1) write. Total 24 steps, covering Ch14-Ch17 (4 chapters).",
+    "review_mode":  "unified",
+    "generated_by":  "generate_task_config.ps1 v1.0",
+    "generated_at":  "2026-07-24T19:27:28.0901547+08:00",
+    "steps":  [
+                  {
+                      "id":  0,
+                      "instruction":  "Read .trae/skills/chapter-writer/SKILL.md. Read memory/outline.json (tanghulu_vol1[2]) for Ch14 beats. Core: 鉴定开张(收费验来历)→托儿拿赝品砸场→当众连破三赝(老灯毒舌全开喜剧高峰)→聚宝阁反扑被反制. Read output/chapter_013.txt for continuity. Write ~2800 words, one sentence per line. Opening: sensory. Ending: action_unfinished. Follow all writing rules.",
+                      "input_files":  [
+                                          "memory/outline.json",
+                                          "memory/characters.json",
+                                          "memory/goal_tracker.json",
+                                          "output/chapter_013.txt",
+                                          ".trae/skills/chapter-writer/SKILL.md"
+                                      ],
+                      "output_files":  [
+                                           "output/chapter_014.txt",
+                                           "handoff/chapters/draft_ch014.json"
+                                       ],
+                      "pass_criteria":  "chapter_014.txt exists, wordcount\u003e=2500, opening=sensory",
+                      "agent":  "chapter-writer",
+                      "name":  "Ch14 Write",
+                      "max_retries":  2,
+                      "parallel_group":  null,
+                      "depends_on":  [
+
+                                     ]
+                  },
+                  {
+                      "id":  1,
+                      "instruction":  "Analyze Ch14 (analysis mode, do NOT edit text). Read output/chapter_014.txt and output/chapter_013.txt for continuity.. Check: opening/ending variety, rhythm, character anchors, Show vs Tell, attraction elements, hook strength(\u003e=B), cross-chapter facts, darkline pacing. Output to handoff/chapters/detail_review_ch014.json.",
+                      "parallel_index":  0,
+                      "input_files":  [
+                                          "output/chapter_014.txt",
+                                          "output/chapter_013.txt",
+                                          "memory/outline.json",
+                                          "memory/characters.json",
+                                          "memory/foreshadowing_tracker.json",
+                                          ".trae/skills/detail-reviewer/SKILL.md"
+                                      ],
+                      "output_files":  [
+                                           "handoff/chapters/detail_review_ch014.json"
+                                       ],
+                      "pass_criteria":  "Output contains graded issues (critical/major/minor) and cross-chapter variety check",
+                      "agent":  "detail-reviewer",
+                      "name":  "Ch14 Detail Review (parallel)",
+                      "max_retries":  2,
+                      "parallel_group":  "review_ch14",
+                      "depends_on":  [
+                                         0
+                                     ],
+                      "parallel_total":  2
+                  },
+                  {
+                      "id":  2,
+                      "instruction":  "Analyze Ch14 (analysis_mode=true, do NOT edit). Read output/chapter_014.txt. Detect 14 AI patterns: Show vs Tell, formulaic words, repetition, flat emotion, logic chains, emotion-telling, meaningless actions. Output to handoff/chapters/de_ai_analysis_ch014.json.",
+                      "parallel_index":  1,
+                      "input_files":  [
+                                          "output/chapter_014.txt",
+                                          ".trae/skills/de-ai-processor/SKILL.md"
+                                      ],
+                      "output_files":  [
+                                           "handoff/chapters/de_ai_analysis_ch014.json"
+                                       ],
+                      "pass_criteria":  "Output contains ai_score(\u003c=2.0 pass) and detection details",
+                      "agent":  "de-ai-processor",
+                      "name":  "Ch14 De-AI Analysis (parallel)",
+                      "max_retries":  2,
+                      "parallel_group":  "review_ch14",
+                      "depends_on":  [
+                                         0
+                                     ],
+                      "parallel_total":  2
+                  },
+                  {
+                      "id":  3,
+                      "instruction":  "Merge: Read handoff/chapters/detail_review_ch014.json and handoff/chapters/de_ai_analysis_ch014.json. Apply conflict rules: same-loc diff-cause -\u003e take higher severity; same-loc conflict -\u003e detail priority; one-sided -\u003e keep. Fix critical first, then major. Apply to output/chapter_014.txt. Output to handoff/chapters/merged_review_ch014.json.",
+                      "is_merger":  true,
+                      "input_files":  [
+                                          "output/chapter_014.txt",
+                                          "handoff/chapters/detail_review_ch014.json",
+                                          "handoff/chapters/de_ai_analysis_ch014.json"
+                                      ],
+                      "output_files":  [
+                                           "output/chapter_014.txt",
+                                           "handoff/chapters/merged_review_ch014.json"
+                                       ],
+                      "pass_criteria":  "All critical fixed, major handled, chapter_014.txt updated, merged_review has conflict resolutions",
+                      "agent":  "chapter-writer",
+                      "name":  "Ch14 Merge (merger)",
+                      "max_retries":  2,
+                      "parallel_group":  "review_ch14",
+                      "depends_on":  [
+                                         1,
+                                         2
+                                     ]
+                  },
+                  {
+                      "id":  4,
+                      "instruction":  "Unified review mode for Ch14. Read auto-runner/unified_review_spec.md for 12-dimension spec. Execute 8 technical + 4 supplementary dimensions + monitoring + cross-check in one step. unified_score = technical_score x 0.6 + supplementary_score x 0.4. \u003e= 9.5 = approved. This step runs in parallel with Ch15 write.",
+                      "parallel_index":  0,
+                      "input_files":  [
+                                          "output/chapter_014.txt",
+                                          "memory/outline.json",
+                                          "memory/characters.json",
+                                          "memory/goal_tracker.json",
+                                          "memory/foreshadowing_tracker.json",
+                                          "config/novel_config.json",
+                                          "handoff/chapters/merged_review_ch014.json",
+                                          "auto-runner/unified_review_spec.md"
+                                      ],
+                      "output_files":  [
+                                           "handoff/chapters/unified_review_ch014.json"
+                                       ],
+                      "pass_criteria":  "Output has 12-dimension scores + unified_score + verdict. unified_score \u003e= 9.5 = approved",
+                      "agent":  "quality-reviewer",
+                      "name":  "Ch14 Unified Review (parallel w/ Ch15 write)",
+                      "max_retries":  3,
+                      "parallel_group":  "pipeline_14_15",
+                      "depends_on":  [
+                                         3
+                                     ],
+                      "parallel_total":  2
+                  },
+                  {
+                      "id":  5,
+                      "instruction":  "Read .trae/skills/memory-manager/SKILL.md. Commit Ch14: 1) Generate chapter summary 2) Update goal_tracker 3) Update session_pointer 4) Append to full-text file 5) Update character states 6) Log.",
+                      "input_files":  [
+                                          "output/chapter_014.txt",
+                                          "handoff/chapters/unified_review_ch014.json",
+                                          "memory/goal_tracker.json",
+                                          "memory/session_pointer.json",
+                                          ".trae/skills/memory-manager/SKILL.md"
+                                      ],
+                      "output_files":  [
+                                           "memory/chapter_summaries/chapter_014.json",
+                                           "memory/goal_tracker.json",
+                                           "memory/session_pointer.json"
+                                       ],
+                      "pass_criteria":  "Chapter summary generated, goal_tracker updated, session_pointer updated",
+                      "agent":  "memory-manager",
+                      "name":  "Ch14 Memory Commit",
+                      "max_retries":  2,
+                      "parallel_group":  null,
+                      "depends_on":  [
+                                         4
+                                     ]
+                  },
+                  {
+                      "id":  6,
+                      "instruction":  "Read .trae/skills/chapter-writer/SKILL.md. Read memory/outline.json (tanghulu_vol1[2]) for Ch15 beats. Core: 鉴定开张(收费验来历)→托儿拿赝品砸场→当众连破三赝(老灯毒舌全开喜剧高峰)→聚宝阁反扑被反制. Read output/chapter_014.txt for continuity. Write ~2800 words, one sentence per line. Opening: dialogue. Ending: info_reveal. Follow all writing rules. This step runs in parallel with Ch14 review.",
+                      "parallel_index":  1,
+                      "input_files":  [
+                                          "memory/outline.json",
+                                          "memory/characters.json",
+                                          "memory/goal_tracker.json",
+                                          "output/chapter_014.txt",
+                                          ".trae/skills/chapter-writer/SKILL.md"
+                                      ],
+                      "output_files":  [
+                                           "output/chapter_015.txt",
+                                           "handoff/chapters/draft_ch015.json"
+                                       ],
+                      "pass_criteria":  "chapter_015.txt exists, wordcount\u003e=2500, opening=dialogue (differs from prev)",
+                      "agent":  "chapter-writer",
+                      "name":  "Ch15 Write (parallel w/ Ch14 review)",
+                      "max_retries":  2,
+                      "parallel_group":  "pipeline_14_15",
+                      "depends_on":  [
+                                         3
+                                     ],
+                      "parallel_total":  2
+                  },
+                  {
+                      "id":  7,
+                      "instruction":  "Analyze Ch15 (analysis mode, do NOT edit text). Read output/chapter_015.txt and output/chapter_014.txt for continuity.. Check: opening/ending variety, rhythm, character anchors, Show vs Tell, attraction elements, hook strength(\u003e=B), cross-chapter facts, darkline pacing. Output to handoff/chapters/detail_review_ch015.json.",
+                      "parallel_index":  0,
+                      "input_files":  [
+                                          "output/chapter_015.txt",
+                                          "output/chapter_014.txt",
+                                          "memory/outline.json",
+                                          "memory/characters.json",
+                                          "memory/foreshadowing_tracker.json",
+                                          ".trae/skills/detail-reviewer/SKILL.md"
+                                      ],
+                      "output_files":  [
+                                           "handoff/chapters/detail_review_ch015.json"
+                                       ],
+                      "pass_criteria":  "Output contains graded issues (critical/major/minor) and cross-chapter variety check",
+                      "agent":  "detail-reviewer",
+                      "name":  "Ch15 Detail Review (parallel)",
+                      "max_retries":  2,
+                      "parallel_group":  "review_ch15",
+                      "depends_on":  [
+                                         6
+                                     ],
+                      "parallel_total":  2
+                  },
+                  {
+                      "id":  8,
+                      "instruction":  "Analyze Ch15 (analysis_mode=true, do NOT edit). Read output/chapter_015.txt. Detect 14 AI patterns: Show vs Tell, formulaic words, repetition, flat emotion, logic chains, emotion-telling, meaningless actions. Output to handoff/chapters/de_ai_analysis_ch015.json.",
+                      "parallel_index":  1,
+                      "input_files":  [
+                                          "output/chapter_015.txt",
+                                          ".trae/skills/de-ai-processor/SKILL.md"
+                                      ],
+                      "output_files":  [
+                                           "handoff/chapters/de_ai_analysis_ch015.json"
+                                       ],
+                      "pass_criteria":  "Output contains ai_score(\u003c=2.0 pass) and detection details",
+                      "agent":  "de-ai-processor",
+                      "name":  "Ch15 De-AI Analysis (parallel)",
+                      "max_retries":  2,
+                      "parallel_group":  "review_ch15",
+                      "depends_on":  [
+                                         6
+                                     ],
+                      "parallel_total":  2
+                  },
+                  {
+                      "id":  9,
+                      "instruction":  "Merge: Read handoff/chapters/detail_review_ch015.json and handoff/chapters/de_ai_analysis_ch015.json. Apply conflict rules: same-loc diff-cause -\u003e take higher severity; same-loc conflict -\u003e detail priority; one-sided -\u003e keep. Fix critical first, then major. Apply to output/chapter_015.txt. Output to handoff/chapters/merged_review_ch015.json.",
+                      "is_merger":  true,
+                      "input_files":  [
+                                          "output/chapter_015.txt",
+                                          "handoff/chapters/detail_review_ch015.json",
+                                          "handoff/chapters/de_ai_analysis_ch015.json"
+                                      ],
+                      "output_files":  [
+                                           "output/chapter_015.txt",
+                                           "handoff/chapters/merged_review_ch015.json"
+                                       ],
+                      "pass_criteria":  "All critical fixed, major handled, chapter_015.txt updated, merged_review has conflict resolutions",
+                      "agent":  "chapter-writer",
+                      "name":  "Ch15 Merge (merger)",
+                      "max_retries":  2,
+                      "parallel_group":  "review_ch15",
+                      "depends_on":  [
+                                         7,
+                                         8
+                                     ]
+                  },
+                  {
+                      "id":  10,
+                      "instruction":  "Unified review mode for Ch15. Read auto-runner/unified_review_spec.md for 12-dimension spec. Execute 8 technical + 4 supplementary dimensions + monitoring + cross-check in one step. unified_score = technical_score x 0.6 + supplementary_score x 0.4. \u003e= 9.5 = approved. This step runs in parallel with Ch16 write.",
+                      "parallel_index":  0,
+                      "input_files":  [
+                                          "output/chapter_015.txt",
+                                          "memory/outline.json",
+                                          "memory/characters.json",
+                                          "memory/goal_tracker.json",
+                                          "memory/foreshadowing_tracker.json",
+                                          "config/novel_config.json",
+                                          "handoff/chapters/merged_review_ch015.json",
+                                          "auto-runner/unified_review_spec.md"
+                                      ],
+                      "output_files":  [
+                                           "handoff/chapters/unified_review_ch015.json"
+                                       ],
+                      "pass_criteria":  "Output has 12-dimension scores + unified_score + verdict. unified_score \u003e= 9.5 = approved",
+                      "agent":  "quality-reviewer",
+                      "name":  "Ch15 Unified Review (parallel w/ Ch16 write)",
+                      "max_retries":  3,
+                      "parallel_group":  "pipeline_15_16",
+                      "depends_on":  [
+                                         9
+                                     ],
+                      "parallel_total":  2
+                  },
+                  {
+                      "id":  11,
+                      "instruction":  "Read .trae/skills/memory-manager/SKILL.md. Commit Ch15: 1) Generate chapter summary 2) Update goal_tracker 3) Update session_pointer 4) Append to full-text file 5) Update character states 6) Log.",
+                      "input_files":  [
+                                          "output/chapter_015.txt",
+                                          "handoff/chapters/unified_review_ch015.json",
+                                          "memory/goal_tracker.json",
+                                          "memory/session_pointer.json",
+                                          ".trae/skills/memory-manager/SKILL.md"
+                                      ],
+                      "output_files":  [
+                                           "memory/chapter_summaries/chapter_015.json",
+                                           "memory/goal_tracker.json",
+                                           "memory/session_pointer.json"
+                                       ],
+                      "pass_criteria":  "Chapter summary generated, goal_tracker updated, session_pointer updated",
+                      "agent":  "memory-manager",
+                      "name":  "Ch15 Memory Commit",
+                      "max_retries":  2,
+                      "parallel_group":  null,
+                      "depends_on":  [
+                                         10
+                                     ]
+                  },
+                  {
+                      "id":  12,
+                      "instruction":  "Read .trae/skills/chapter-writer/SKILL.md. Read memory/outline.json (tanghulu_vol1[2]) for Ch16 beats. Core: 鉴定开张(收费验来历)→托儿拿赝品砸场→当众连破三赝(老灯毒舌全开喜剧高峰)→聚宝阁反扑被反制. Read output/chapter_015.txt for continuity. Write ~2800 words, one sentence per line. Opening: scene_action. Ending: dialogue_ending. Follow all writing rules. This step runs in parallel with Ch15 review.",
+                      "parallel_index":  1,
+                      "input_files":  [
+                                          "memory/outline.json",
+                                          "memory/characters.json",
+                                          "memory/goal_tracker.json",
+                                          "output/chapter_015.txt",
+                                          ".trae/skills/chapter-writer/SKILL.md"
+                                      ],
+                      "output_files":  [
+                                           "output/chapter_016.txt",
+                                           "handoff/chapters/draft_ch016.json"
+                                       ],
+                      "pass_criteria":  "chapter_016.txt exists, wordcount\u003e=2500, opening=scene_action (differs from prev)",
+                      "agent":  "chapter-writer",
+                      "name":  "Ch16 Write (parallel w/ Ch15 review)",
+                      "max_retries":  2,
+                      "parallel_group":  "pipeline_15_16",
+                      "depends_on":  [
+                                         9
+                                     ],
+                      "parallel_total":  2
+                  },
+                  {
+                      "id":  13,
+                      "instruction":  "Analyze Ch16 (analysis mode, do NOT edit text). Read output/chapter_016.txt and output/chapter_015.txt for continuity.. Check: opening/ending variety, rhythm, character anchors, Show vs Tell, attraction elements, hook strength(\u003e=B), cross-chapter facts, darkline pacing. Output to handoff/chapters/detail_review_ch016.json.",
+                      "parallel_index":  0,
+                      "input_files":  [
+                                          "output/chapter_016.txt",
+                                          "output/chapter_015.txt",
+                                          "memory/outline.json",
+                                          "memory/characters.json",
+                                          "memory/foreshadowing_tracker.json",
+                                          ".trae/skills/detail-reviewer/SKILL.md"
+                                      ],
+                      "output_files":  [
+                                           "handoff/chapters/detail_review_ch016.json"
+                                       ],
+                      "pass_criteria":  "Output contains graded issues (critical/major/minor) and cross-chapter variety check",
+                      "agent":  "detail-reviewer",
+                      "name":  "Ch16 Detail Review (parallel)",
+                      "max_retries":  2,
+                      "parallel_group":  "review_ch16",
+                      "depends_on":  [
+                                         12
+                                     ],
+                      "parallel_total":  2
+                  },
+                  {
+                      "id":  14,
+                      "instruction":  "Analyze Ch16 (analysis_mode=true, do NOT edit). Read output/chapter_016.txt. Detect 14 AI patterns: Show vs Tell, formulaic words, repetition, flat emotion, logic chains, emotion-telling, meaningless actions. Output to handoff/chapters/de_ai_analysis_ch016.json.",
+                      "parallel_index":  1,
+                      "input_files":  [
+                                          "output/chapter_016.txt",
+                                          ".trae/skills/de-ai-processor/SKILL.md"
+                                      ],
+                      "output_files":  [
+                                           "handoff/chapters/de_ai_analysis_ch016.json"
+                                       ],
+                      "pass_criteria":  "Output contains ai_score(\u003c=2.0 pass) and detection details",
+                      "agent":  "de-ai-processor",
+                      "name":  "Ch16 De-AI Analysis (parallel)",
+                      "max_retries":  2,
+                      "parallel_group":  "review_ch16",
+                      "depends_on":  [
+                                         12
+                                     ],
+                      "parallel_total":  2
+                  },
+                  {
+                      "id":  15,
+                      "instruction":  "Merge: Read handoff/chapters/detail_review_ch016.json and handoff/chapters/de_ai_analysis_ch016.json. Apply conflict rules: same-loc diff-cause -\u003e take higher severity; same-loc conflict -\u003e detail priority; one-sided -\u003e keep. Fix critical first, then major. Apply to output/chapter_016.txt. Output to handoff/chapters/merged_review_ch016.json.",
+                      "is_merger":  true,
+                      "input_files":  [
+                                          "output/chapter_016.txt",
+                                          "handoff/chapters/detail_review_ch016.json",
+                                          "handoff/chapters/de_ai_analysis_ch016.json"
+                                      ],
+                      "output_files":  [
+                                           "output/chapter_016.txt",
+                                           "handoff/chapters/merged_review_ch016.json"
+                                       ],
+                      "pass_criteria":  "All critical fixed, major handled, chapter_016.txt updated, merged_review has conflict resolutions",
+                      "agent":  "chapter-writer",
+                      "name":  "Ch16 Merge (merger)",
+                      "max_retries":  2,
+                      "parallel_group":  "review_ch16",
+                      "depends_on":  [
+                                         13,
+                                         14
+                                     ]
+                  },
+                  {
+                      "id":  16,
+                      "instruction":  "Unified review mode for Ch16. Read auto-runner/unified_review_spec.md for 12-dimension spec. Execute 8 technical + 4 supplementary dimensions + monitoring + cross-check in one step. unified_score = technical_score x 0.6 + supplementary_score x 0.4. \u003e= 9.5 = approved. This step runs in parallel with Ch17 write.",
+                      "parallel_index":  0,
+                      "input_files":  [
+                                          "output/chapter_016.txt",
+                                          "memory/outline.json",
+                                          "memory/characters.json",
+                                          "memory/goal_tracker.json",
+                                          "memory/foreshadowing_tracker.json",
+                                          "config/novel_config.json",
+                                          "handoff/chapters/merged_review_ch016.json",
+                                          "auto-runner/unified_review_spec.md"
+                                      ],
+                      "output_files":  [
+                                           "handoff/chapters/unified_review_ch016.json"
+                                       ],
+                      "pass_criteria":  "Output has 12-dimension scores + unified_score + verdict. unified_score \u003e= 9.5 = approved",
+                      "agent":  "quality-reviewer",
+                      "name":  "Ch16 Unified Review (parallel w/ Ch17 write)",
+                      "max_retries":  3,
+                      "parallel_group":  "pipeline_16_17",
+                      "depends_on":  [
+                                         15
+                                     ],
+                      "parallel_total":  2
+                  },
+                  {
+                      "id":  17,
+                      "instruction":  "Read .trae/skills/memory-manager/SKILL.md. Commit Ch16: 1) Generate chapter summary 2) Update goal_tracker 3) Update session_pointer 4) Append to full-text file 5) Update character states 6) Log.",
+                      "input_files":  [
+                                          "output/chapter_016.txt",
+                                          "handoff/chapters/unified_review_ch016.json",
+                                          "memory/goal_tracker.json",
+                                          "memory/session_pointer.json",
+                                          ".trae/skills/memory-manager/SKILL.md"
+                                      ],
+                      "output_files":  [
+                                           "memory/chapter_summaries/chapter_016.json",
+                                           "memory/goal_tracker.json",
+                                           "memory/session_pointer.json"
+                                       ],
+                      "pass_criteria":  "Chapter summary generated, goal_tracker updated, session_pointer updated",
+                      "agent":  "memory-manager",
+                      "name":  "Ch16 Memory Commit",
+                      "max_retries":  2,
+                      "parallel_group":  null,
+                      "depends_on":  [
+                                         16
+                                     ]
+                  },
+                  {
+                      "id":  18,
+                      "instruction":  "Read .trae/skills/chapter-writer/SKILL.md. Read memory/outline.json (tanghulu_vol1[2]) for Ch17 beats. Core: 鉴定开张(收费验来历)→托儿拿赝品砸场→当众连破三赝(老灯毒舌全开喜剧高峰)→聚宝阁反扑被反制. Read output/chapter_016.txt for continuity. Write ~2800 words, one sentence per line. Opening: suspense. Ending: scene_description. Follow all writing rules. This step runs in parallel with Ch16 review.",
+                      "parallel_index":  1,
+                      "input_files":  [
+                                          "memory/outline.json",
+                                          "memory/characters.json",
+                                          "memory/goal_tracker.json",
+                                          "output/chapter_016.txt",
+                                          ".trae/skills/chapter-writer/SKILL.md"
+                                      ],
+                      "output_files":  [
+                                           "output/chapter_017.txt",
+                                           "handoff/chapters/draft_ch017.json"
+                                       ],
+                      "pass_criteria":  "chapter_017.txt exists, wordcount\u003e=2500, opening=suspense (differs from prev)",
+                      "agent":  "chapter-writer",
+                      "name":  "Ch17 Write (parallel w/ Ch16 review)",
+                      "max_retries":  2,
+                      "parallel_group":  "pipeline_16_17",
+                      "depends_on":  [
+                                         15
+                                     ],
+                      "parallel_total":  2
+                  },
+                  {
+                      "id":  19,
+                      "instruction":  "Analyze Ch17 (analysis mode, do NOT edit text). Read output/chapter_017.txt and output/chapter_016.txt for continuity.. Check: opening/ending variety, rhythm, character anchors, Show vs Tell, attraction elements, hook strength(\u003e=B), cross-chapter facts, darkline pacing. Output to handoff/chapters/detail_review_ch017.json.",
+                      "parallel_index":  0,
+                      "input_files":  [
+                                          "output/chapter_017.txt",
+                                          "output/chapter_016.txt",
+                                          "memory/outline.json",
+                                          "memory/characters.json",
+                                          "memory/foreshadowing_tracker.json",
+                                          ".trae/skills/detail-reviewer/SKILL.md"
+                                      ],
+                      "output_files":  [
+                                           "handoff/chapters/detail_review_ch017.json"
+                                       ],
+                      "pass_criteria":  "Output contains graded issues (critical/major/minor) and cross-chapter variety check",
+                      "agent":  "detail-reviewer",
+                      "name":  "Ch17 Detail Review (parallel)",
+                      "max_retries":  2,
+                      "parallel_group":  "review_ch17",
+                      "depends_on":  [
+                                         18
+                                     ],
+                      "parallel_total":  2
+                  },
+                  {
+                      "id":  20,
+                      "instruction":  "Analyze Ch17 (analysis_mode=true, do NOT edit). Read output/chapter_017.txt. Detect 14 AI patterns: Show vs Tell, formulaic words, repetition, flat emotion, logic chains, emotion-telling, meaningless actions. Output to handoff/chapters/de_ai_analysis_ch017.json.",
+                      "parallel_index":  1,
+                      "input_files":  [
+                                          "output/chapter_017.txt",
+                                          ".trae/skills/de-ai-processor/SKILL.md"
+                                      ],
+                      "output_files":  [
+                                           "handoff/chapters/de_ai_analysis_ch017.json"
+                                       ],
+                      "pass_criteria":  "Output contains ai_score(\u003c=2.0 pass) and detection details",
+                      "agent":  "de-ai-processor",
+                      "name":  "Ch17 De-AI Analysis (parallel)",
+                      "max_retries":  2,
+                      "parallel_group":  "review_ch17",
+                      "depends_on":  [
+                                         18
+                                     ],
+                      "parallel_total":  2
+                  },
+                  {
+                      "id":  21,
+                      "instruction":  "Merge: Read handoff/chapters/detail_review_ch017.json and handoff/chapters/de_ai_analysis_ch017.json. Apply conflict rules: same-loc diff-cause -\u003e take higher severity; same-loc conflict -\u003e detail priority; one-sided -\u003e keep. Fix critical first, then major. Apply to output/chapter_017.txt. Output to handoff/chapters/merged_review_ch017.json.",
+                      "is_merger":  true,
+                      "input_files":  [
+                                          "output/chapter_017.txt",
+                                          "handoff/chapters/detail_review_ch017.json",
+                                          "handoff/chapters/de_ai_analysis_ch017.json"
+                                      ],
+                      "output_files":  [
+                                           "output/chapter_017.txt",
+                                           "handoff/chapters/merged_review_ch017.json"
+                                       ],
+                      "pass_criteria":  "All critical fixed, major handled, chapter_017.txt updated, merged_review has conflict resolutions",
+                      "agent":  "chapter-writer",
+                      "name":  "Ch17 Merge (merger)",
+                      "max_retries":  2,
+                      "parallel_group":  "review_ch17",
+                      "depends_on":  [
+                                         19,
+                                         20
+                                     ]
+                  },
+                  {
+                      "id":  22,
+                      "instruction":  "Unified review mode for Ch17. Read auto-runner/unified_review_spec.md for 12-dimension spec. Execute 8 technical + 4 supplementary dimensions + monitoring + cross-check in one step. unified_score = technical_score x 0.6 + supplementary_score x 0.4. \u003e= 9.5 = approved.",
+                      "input_files":  [
+                                          "output/chapter_017.txt",
+                                          "memory/outline.json",
+                                          "memory/characters.json",
+                                          "memory/goal_tracker.json",
+                                          "memory/foreshadowing_tracker.json",
+                                          "config/novel_config.json",
+                                          "handoff/chapters/merged_review_ch017.json",
+                                          "auto-runner/unified_review_spec.md"
+                                      ],
+                      "output_files":  [
+                                           "handoff/chapters/unified_review_ch017.json"
+                                       ],
+                      "pass_criteria":  "Output has 12-dimension scores + unified_score + verdict. unified_score \u003e= 9.5 = approved",
+                      "agent":  "quality-reviewer",
+                      "name":  "Ch17 Unified Review",
+                      "max_retries":  3,
+                      "parallel_group":  null,
+                      "depends_on":  [
+                                         21
+                                     ]
+                  },
+                  {
+                      "id":  23,
+                      "instruction":  "Read .trae/skills/memory-manager/SKILL.md. Commit Ch17: 1) Generate chapter summary 2) Update goal_tracker 3) Update session_pointer 4) Append to full-text file 5) Update character states 6) Log.",
+                      "input_files":  [
+                                          "output/chapter_017.txt",
+                                          "handoff/chapters/unified_review_ch017.json",
+                                          "memory/goal_tracker.json",
+                                          "memory/session_pointer.json",
+                                          ".trae/skills/memory-manager/SKILL.md"
+                                      ],
+                      "output_files":  [
+                                           "memory/chapter_summaries/chapter_017.json",
+                                           "memory/goal_tracker.json",
+                                           "memory/session_pointer.json"
+                                       ],
+                      "pass_criteria":  "Chapter summary generated, goal_tracker updated, session_pointer updated",
+                      "agent":  "memory-manager",
+                      "name":  "Ch17 Memory Commit",
+                      "max_retries":  2,
+                      "parallel_group":  null,
+                      "depends_on":  [
+                                         22
+                                     ]
+                  }
+              ],
+    "task_name":  "有龙则灵 Ch14-17 Parallel Production",
+    "workspace":  "d:\\personFile\\write-assistant"
 }

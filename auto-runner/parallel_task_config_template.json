@@ -21,8 +21,28 @@
     "parallel_modes": {
       "mode_1_pre_production": "预生产并行：title-reviewer + skeptic R1 + setting-reviewer 三步并行(parallel_group=pre_production)。三者互不依赖，可同时启动。skeptic R2/R3依赖R1结果须串行，outline-editor等待全部完成后执行。",
       "mode_2_char_design": "角色并行设计：6个角色各1个Agent并行(parallel_group=char_design)，每个Agent只设计自己的角色卡。关系网络设计is_merger=true等待6个角色卡全部完成后，合并设计关系网络。",
-      "mode_7_intra_review": "单章审核内部并行：detail-reviewer + de-ai-processor(分析模式)并行(parallel_group=review_ch{N})，两者各出修改建议不改正文。合并步骤is_merger=true读取两份建议，解决冲突后统一应用到正文。之后quality和final串行执行。",
-      "mode_8_pipeline": "流水线并行：Ch{N+1}写作与Ch{N}终审并行(parallel_group=pipeline_{N}_{N+1})。Ch{N+1}写作依赖Ch{N}的quality通过（正文已打磨），与Ch{N}终审同时执行，利用审核时间写下一章。"
+      "mode_7_intra_review": "单章审核内部并行：detail-reviewer + de-ai-processor(分析模式)并行(parallel_group=review_ch{N})，两者各出修改建议不改正文。合并步骤is_merger=true读取两份建议，解决冲突后统一应用到正文。之后unified_review(或quality+final)执行。",
+      "mode_8_pipeline": "流水线并行：Ch{N+1}写作与Ch{N}统一审稿并行(parallel_group=pipeline_{N}_{N+1})。Ch{N+1}写作依赖Ch{N}的merged_review完成（正文已打磨），与Ch{N}统一审稿同时执行，利用审核时间写下一章。"
+    },
+    "unified_review_mode": {
+      "description": "统一审核模式：将quality-reviewer(8维技术分)+final-reviewer(4维补充分)合并为单步unified_review，12维一次评完。详见auto-runner/unified_review_spec.md。",
+      "benefits": "每章减少1步骤+1文件，300章规模节省300步+300文件+~6MB",
+      "scoring_formula": "unified_score = technical_score×0.6 + supplementary_score×0.4（与传统final_score完全等价）",
+      "equivalence_verified": "Ch12验证通过：unified_score(9.51) == final_score(9.51)",
+      "usage": "将传统2步(id:quality+id:final)替换为1步(id:unified)，参考下方unified_review_alternative_steps",
+      "backward_compatible": "传统2步模式仍可用，unified为可选加速模式"
+    },
+    "unified_review_alternative_steps": {
+      "replaces": "步骤18(Ch1宏观评分)+步骤19(Ch1终审) → 合并为1步",
+      "example": {
+        "id": 18, "name": "Ch1统一审稿", "agent": "quality-reviewer",
+        "instruction": "以统一审核模式(unified_review)评审第1章。读取auto-runner/unified_review_spec.md了解12维评分规范。同时执行8维技术评分+4维补充评分+监控检测+交叉终检，一步产出unified_review_ch001.json。unified_score=technical_score×0.6+supplementary_score×0.4，≥9.5为approved。",
+        "input_files": ["output/chapter_001.txt", "memory/outline.json", "memory/characters.json", "memory/goal_tracker.json", "memory/foreshadowing_tracker.json", "config/novel_config.json", "handoff/chapters/merged_review_ch001.json", "auto-runner/unified_review_spec.md"],
+        "output_files": ["handoff/chapters/unified_review_ch001.json"],
+        "pass_criteria": "输出文件含12维评分+unified_score+verdict，unified_score≥9.5为approved",
+        "max_retries": 3, "parallel_group": "pipeline_1_2", "parallel_index": 0, "parallel_total": 2, "depends_on": [17]
+      },
+      "note": "使用unified模式时，pipeline组的parallel_total从2变2（unified+Ch2写作），但步骤总数-1/章"
     },
     "flow_overview": "预生产(3步并行) → skeptic R2/R3(串行) → outline-editor → 角色设计(6+1并行) → Ch1写作 → Ch1审核(2+1并行合并) → Ch1 quality → [Ch1 final ∥ Ch2写作](pipeline_1_2) → Ch2审核(2+1并行合并) → Ch2 quality → [Ch2 final ∥ Ch3写作](pipeline_2_3) → Ch3审核(2+1并行合并) → Ch3 quality → Ch3 final",
     "parallel_group_summary": {

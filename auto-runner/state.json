@@ -1,35 +1,381 @@
-{
-  "task_name": "有龙则灵·黄金三章全自动撰写",
-  "task_description": "从title-reviewer开始，经skeptic质疑、outline-editor验收、character-designer角色设计、setting-reviewer设定审核，完成3章黄金章节的撰写和审核全流程。共22步。",
-  "status": "completed",
-  "created_at": "2026-07-23T19:30:00+08:00",
-  "last_run": "2026-07-24T03:25:00+08:00",
-  "last_run_result": "步骤21 final-reviewer第3章终审完成，verdict=approved，均分9.54≥9.5✓。八维度全部≥9.5，无一票否决，无high级弃书风险。交叉终检4项全通过。商业评估：留存高/追读强/爽点达标/平台契合高。前序Agent报告全部验证通过。第3章可放行发布。全流程22步全部完成，任务状态设为completed。",
-  "current_step": 22,
-  "total_steps": 22,
-  "stop_reason": null,
-  "steps": [
-    { "id": 0, "name": "书名与简介审核", "agent": "title-reviewer", "status": "completed", "retries": 0, "result": "书名《有龙则灵》8.0分通过。verdict=pass。", "timestamp": "2026-07-23T20:05:00+08:00", "auto_approved": false },
-    { "id": 1, "name": "质疑迭代第1轮-主题执行可行性", "agent": "skeptic", "status": "completed", "retries": 0, "result": "skeptic第1轮完成（verdict=needs_revision）。4个challenge: C1-C4。", "timestamp": "2026-07-23T20:25:00+08:00", "auto_approved": false },
-    { "id": 2, "name": "质疑迭代第2轮-世界观严谨性", "agent": "skeptic", "status": "completed", "retries": 0, "result": "skeptic第2轮完成（verdict=needs_revision）。5个challenge: C5-C9。地基级2个。", "timestamp": "2026-07-23T21:05:00+08:00", "auto_approved": false },
-    { "id": 3, "name": "质疑迭代第3轮-爽感路径与节奏", "agent": "skeptic", "status": "completed", "retries": 0, "result": "skeptic第3轮完成（verdict=needs_revision）。4个challenge: C10-C13。累计13个。", "timestamp": "2026-07-23T21:15:00+08:00", "auto_approved": false },
-    { "id": 4, "name": "大纲验收定稿", "agent": "outline-editor", "status": "completed", "retries": 0, "result": "outline-editor验收通过（总分9.2，conditional pass，无一票否决）。13个challenge全部处理。大纲v3已写入。", "timestamp": "2026-07-23T21:35:00+08:00", "auto_approved": false },
-    { "id": 5, "name": "角色设计", "agent": "character-designer", "status": "completed", "retries": 0, "result": "character-designer角色设计完成。6个角色卡含v1.4全字段+visual_progression。verdict=pass。", "timestamp": "2026-07-23T21:45:00+08:00", "auto_approved": false },
-    { "id": 6, "name": "设定审核", "agent": "setting-reviewer", "status": "completed", "retries": 0, "result": "setting-reviewer设定审核通过（总分9.3，conditional pass，无一票否决）。", "timestamp": "2026-07-23T22:00:00+08:00", "auto_approved": false },
-    { "id": 7, "name": "第1章撰写", "agent": "chapter-writer", "status": "completed", "retries": 0, "result": "第1章《掌心生鳞》撰写完成。2728字，动作+感官开头，B级结尾钩子。", "timestamp": "2026-07-23T22:15:00+08:00", "auto_approved": false },
-    { "id": 8, "name": "第1章细节审核", "agent": "detail-reviewer", "status": "completed", "retries": 0, "result": "detail-reviewer第1章细节审核完成。verdict=polished，0个critical/major，6个minor。", "timestamp": "2026-07-23T22:30:00+08:00", "auto_approved": false },
-    { "id": 9, "name": "第1章质量审核", "agent": "quality-reviewer", "status": "completed", "retries": 0, "result": "quality-reviewer第1章质量审核通过。技术分9.52≥9.5✓，追读指数8.64≥8.5✓。verdict=pass。", "timestamp": "2026-07-23T22:45:00+08:00", "auto_approved": false },
-    { "id": 10, "name": "第1章去AI化", "agent": "de-ai-processor", "status": "completed", "retries": 0, "result": "de-ai-processor第1章去AI化完成。13项检测全通过，ai_score 2.5→0.8。8处修改。", "timestamp": "2026-07-23T23:00:00+08:00", "auto_approved": false },
-    { "id": 11, "name": "第1章终审", "agent": "final-reviewer", "status": "completed", "retries": 0, "result": "final-reviewer第1章终审通过。verdict=approved，均分9.56≥9.5✓。八维度全部≥9.5，无一票否决，无high级弃书风险。交叉终检4项全通过。商业评估：留存高/追读强/爽点达标/平台契合高。第1章可放行发布。", "timestamp": "2026-07-23T23:15:00+08:00", "auto_approved": false },
-    { "id": 12, "name": "第2章撰写", "agent": "chapter-writer", "status": "completed", "retries": 1, "result": "第2章《来客不善》重写完成(revision 2)。2950字。修复3个major+6个minor+1个比喻+1个角色特质。新增供桌吐玉规则打脸+陈婶老周头议论认主。pass_criteria满足。", "timestamp": "2026-07-24T00:35:00+08:00", "auto_approved": false },
-    { "id": 13, "name": "第2章细节审核", "agent": "detail-reviewer", "status": "completed", "retries": 0, "result": "detail-reviewer第2章（重写版）细节审核完成。verdict=polished，0个critical/major，9个minor。一致性检查11项全通过。九大框架规则全✓。", "timestamp": "2026-07-24T01:05:00+08:00", "auto_approved": false },
-    { "id": 14, "name": "第2章质量审核", "agent": "quality-reviewer", "status": "completed", "retries": 0, "result": "quality-reviewer第2章质量审核通过。技术分9.51≥9.5✓，追读指数9.52≥8.5✓。verdict=pass。六画像全部追读，综合弃书率4.8%，无市场风险。期待感双高型。v1.5读者反馈5项全✓。", "timestamp": "2026-07-24T01:20:00+08:00", "auto_approved": false },
-    { "id": 15, "name": "第2章去AI化", "agent": "de-ai-processor", "status": "completed", "retries": 0, "result": "de-ai-processor第2章去AI化完成。6处修复，ai_score 1.44→1.06。13类检测4类检出已修复+9类未检出。Show vs Tell通过。字数2950→3010(+2.0%)。", "timestamp": "2026-07-24T01:35:00+08:00", "auto_approved": false },
-    { "id": 16, "name": "第2章终审", "agent": "final-reviewer", "status": "completed", "retries": 0, "result": "final-reviewer第2章终审通过。verdict=approved，均分9.54≥9.5✓。八维度全部≥9.5，无一票否决，无high级弃书风险。交叉终检4项全通过。商业评估：留存高/追读强/爽点达标/平台契合高。第2章可放行发布。", "timestamp": "2026-07-24T01:50:00+08:00", "auto_approved": false },
-    { "id": 17, "name": "第3章撰写", "agent": "chapter-writer", "status": "completed", "retries": 0, "result": "第3章《来路不明》撰写完成。2980字。8个beat：规则测试→顿悟'拒收=免费鉴定'→旧货市场淘宝→墨盒返爪纹→太爷爷怀表返完整龙爪纹→纹位Build策略发现→老灯呓语→供桌裂缝渗暗金光。氛围开头，留白反转结尾。策略/发现型爽感(S级1步)。3个主动出击beat。升级具象化：鳞纹→爪纹→纹位Build。pass_criteria满足。", "timestamp": "2026-07-24T02:10:00+08:00", "auto_approved": false },
-    { "id": 18, "name": "第3章细节审核", "agent": "detail-reviewer", "status": "completed", "retries": 0, "result": "detail-reviewer第3章细节审核完成。verdict=polished，2个major已现场修复（王婶→陈婶跨章人名一致性/慎独→太爷爷字号传承澄清），7个minor不阻塞。一致性检查11项全通过。九大框架规则全✓（外部视角plan偏离为非阻塞项）。", "timestamp": "2026-07-24T02:35:00+08:00", "auto_approved": false },
-    { "id": 19, "name": "第3章质量审核", "agent": "quality-reviewer", "status": "completed", "retries": 0, "result": "quality-reviewer第3章质量审核通过。技术分9.51≥9.5✓，追读指数9.0≥8.5✓。verdict=pass。八维度全部≥9.5（吸引力9.5/爽点9.5/节奏9.5/钩子9.6/文笔9.5/角色9.5/情节9.5/逻辑9.5）。六画像全部追读，综合弃书率6.5%，无市场风险。期待感双高型。v1.5读者反馈5项全✓。黄金三章三种爽感类型完美轮换（获宝→打脸→策略）。", "timestamp": "2026-07-24T02:50:00+08:00", "auto_approved": false },
-    { "id": 20, "name": "第3章去AI化", "agent": "de-ai-processor", "status": "completed", "retries": 0, "result": "de-ai-processor第3章去AI化完成。4处修复（2处'然后'过度连接删除+2处'精算脑子'标签Tell修复），ai_score 1.13→0.88，远低于2.0目标。13类检测仅4类检出已修复+9类未检出。章节本就具有强人类写作特征。字数偏差0%（2987字）。不修改剧情/角色/结构。", "timestamp": "2026-07-24T03:05:00+08:00", "auto_approved": false },
-    { "id": 21, "name": "第3章终审", "agent": "final-reviewer", "status": "completed", "retries": 0, "result": "final-reviewer第3章终审通过。verdict=approved，均分9.54≥9.5✓。八维度全部≥9.5（故事吸引力9.6/逻辑自洽性9.6/语言质感9.5/角色立体度9.5/平台适配度9.5/商业潜力9.6/读者体验9.5/跨章一致性9.5），无一票否决，无high级弃书风险。交叉终检4项全通过（对话自洽/术语一致/跨章连续/伏笔状态）。商业评估：留存高/追读强/爽点达标/平台契合高。前序Agent报告全部验证通过。第3章可放行发布。黄金三章全流程22步完成。", "timestamp": "2026-07-24T03:25:00+08:00", "auto_approved": false }
-  ]
+﻿{
+    "task_name":  "有龙则灵 Ch14-17 Parallel Production",
+    "current_step":  0,
+    "task_description":  "Auto-generated. Unified review mode. 6 steps/chapter: write -\u003e (detail+deai parallel -\u003e merge) -\u003e unified_review -\u003e memory_commit. Pipeline: Ch(N) review parallel with Ch(N+1) write. Total 24 steps, covering Ch14-Ch17 (4 chapters).",
+    "last_run":  null,
+    "steps":  [
+                  {
+                      "id":  0,
+                      "auto_approved":  false,
+                      "timestamp":  null,
+                      "result":  null,
+                      "name":  "Ch14 Write",
+                      "status":  "pending",
+                      "retries":  0,
+                      "agent":  "chapter-writer"
+                  },
+                  {
+                      "id":  1,
+                      "auto_approved":  false,
+                      "timestamp":  null,
+                      "result":  null,
+                      "name":  "Ch14 Detail Review (parallel)",
+                      "status":  "pending",
+                      "retries":  0,
+                      "agent":  "detail-reviewer"
+                  },
+                  {
+                      "id":  2,
+                      "auto_approved":  false,
+                      "timestamp":  null,
+                      "result":  null,
+                      "name":  "Ch14 De-AI Analysis (parallel)",
+                      "status":  "pending",
+                      "retries":  0,
+                      "agent":  "de-ai-processor"
+                  },
+                  {
+                      "id":  3,
+                      "auto_approved":  false,
+                      "timestamp":  null,
+                      "result":  null,
+                      "name":  "Ch14 Merge (merger)",
+                      "status":  "pending",
+                      "retries":  0,
+                      "agent":  "chapter-writer"
+                  },
+                  {
+                      "id":  4,
+                      "auto_approved":  false,
+                      "timestamp":  null,
+                      "result":  null,
+                      "name":  "Ch14 Unified Review (parallel w/ Ch15 write)",
+                      "status":  "pending",
+                      "retries":  0,
+                      "agent":  "quality-reviewer"
+                  },
+                  {
+                      "id":  5,
+                      "auto_approved":  false,
+                      "timestamp":  null,
+                      "result":  null,
+                      "name":  "Ch14 Memory Commit",
+                      "status":  "pending",
+                      "retries":  0,
+                      "agent":  "memory-manager"
+                  },
+                  {
+                      "id":  6,
+                      "auto_approved":  false,
+                      "timestamp":  null,
+                      "result":  null,
+                      "name":  "Ch15 Write (parallel w/ Ch14 review)",
+                      "status":  "pending",
+                      "retries":  0,
+                      "agent":  "chapter-writer"
+                  },
+                  {
+                      "id":  7,
+                      "auto_approved":  false,
+                      "timestamp":  null,
+                      "result":  null,
+                      "name":  "Ch15 Detail Review (parallel)",
+                      "status":  "pending",
+                      "retries":  0,
+                      "agent":  "detail-reviewer"
+                  },
+                  {
+                      "id":  8,
+                      "auto_approved":  false,
+                      "timestamp":  null,
+                      "result":  null,
+                      "name":  "Ch15 De-AI Analysis (parallel)",
+                      "status":  "pending",
+                      "retries":  0,
+                      "agent":  "de-ai-processor"
+                  },
+                  {
+                      "id":  9,
+                      "auto_approved":  false,
+                      "timestamp":  null,
+                      "result":  null,
+                      "name":  "Ch15 Merge (merger)",
+                      "status":  "pending",
+                      "retries":  0,
+                      "agent":  "chapter-writer"
+                  },
+                  {
+                      "id":  10,
+                      "auto_approved":  false,
+                      "timestamp":  null,
+                      "result":  null,
+                      "name":  "Ch15 Unified Review (parallel w/ Ch16 write)",
+                      "status":  "pending",
+                      "retries":  0,
+                      "agent":  "quality-reviewer"
+                  },
+                  {
+                      "id":  11,
+                      "auto_approved":  false,
+                      "timestamp":  null,
+                      "result":  null,
+                      "name":  "Ch15 Memory Commit",
+                      "status":  "pending",
+                      "retries":  0,
+                      "agent":  "memory-manager"
+                  },
+                  {
+                      "id":  12,
+                      "auto_approved":  false,
+                      "timestamp":  null,
+                      "result":  null,
+                      "name":  "Ch16 Write (parallel w/ Ch15 review)",
+                      "status":  "pending",
+                      "retries":  0,
+                      "agent":  "chapter-writer"
+                  },
+                  {
+                      "id":  13,
+                      "auto_approved":  false,
+                      "timestamp":  null,
+                      "result":  null,
+                      "name":  "Ch16 Detail Review (parallel)",
+                      "status":  "pending",
+                      "retries":  0,
+                      "agent":  "detail-reviewer"
+                  },
+                  {
+                      "id":  14,
+                      "auto_approved":  false,
+                      "timestamp":  null,
+                      "result":  null,
+                      "name":  "Ch16 De-AI Analysis (parallel)",
+                      "status":  "pending",
+                      "retries":  0,
+                      "agent":  "de-ai-processor"
+                  },
+                  {
+                      "id":  15,
+                      "auto_approved":  false,
+                      "timestamp":  null,
+                      "result":  null,
+                      "name":  "Ch16 Merge (merger)",
+                      "status":  "pending",
+                      "retries":  0,
+                      "agent":  "chapter-writer"
+                  },
+                  {
+                      "id":  16,
+                      "auto_approved":  false,
+                      "timestamp":  null,
+                      "result":  null,
+                      "name":  "Ch16 Unified Review (parallel w/ Ch17 write)",
+                      "status":  "pending",
+                      "retries":  0,
+                      "agent":  "quality-reviewer"
+                  },
+                  {
+                      "id":  17,
+                      "auto_approved":  false,
+                      "timestamp":  null,
+                      "result":  null,
+                      "name":  "Ch16 Memory Commit",
+                      "status":  "pending",
+                      "retries":  0,
+                      "agent":  "memory-manager"
+                  },
+                  {
+                      "id":  18,
+                      "auto_approved":  false,
+                      "timestamp":  null,
+                      "result":  null,
+                      "name":  "Ch17 Write (parallel w/ Ch16 review)",
+                      "status":  "pending",
+                      "retries":  0,
+                      "agent":  "chapter-writer"
+                  },
+                  {
+                      "id":  19,
+                      "auto_approved":  false,
+                      "timestamp":  null,
+                      "result":  null,
+                      "name":  "Ch17 Detail Review (parallel)",
+                      "status":  "pending",
+                      "retries":  0,
+                      "agent":  "detail-reviewer"
+                  },
+                  {
+                      "id":  20,
+                      "auto_approved":  false,
+                      "timestamp":  null,
+                      "result":  null,
+                      "name":  "Ch17 De-AI Analysis (parallel)",
+                      "status":  "pending",
+                      "retries":  0,
+                      "agent":  "de-ai-processor"
+                  },
+                  {
+                      "id":  21,
+                      "auto_approved":  false,
+                      "timestamp":  null,
+                      "result":  null,
+                      "name":  "Ch17 Merge (merger)",
+                      "status":  "pending",
+                      "retries":  0,
+                      "agent":  "chapter-writer"
+                  },
+                  {
+                      "id":  22,
+                      "auto_approved":  false,
+                      "timestamp":  null,
+                      "result":  null,
+                      "name":  "Ch17 Unified Review",
+                      "status":  "pending",
+                      "retries":  0,
+                      "agent":  "quality-reviewer"
+                  },
+                  {
+                      "id":  23,
+                      "auto_approved":  false,
+                      "timestamp":  null,
+                      "result":  null,
+                      "name":  "Ch17 Memory Commit",
+                      "status":  "pending",
+                      "retries":  0,
+                      "agent":  "memory-manager"
+                  }
+              ],
+    "created_at":  "2026-07-24T19:27:28.1187975+08:00",
+    "stop_reason":  null,
+    "total_steps":  24,
+    "parallel_groups":  [
+                            {
+                                "merger_ready":  false,
+                                "merger_step_id":  21,
+                                "merger_executed":  false,
+                                "completed_agents":  [
+
+                                                     ],
+                                "pending_agents":  [
+                                                       "Ch17 Detail Review (parallel)",
+                                                       "Ch17 De-AI Analysis (parallel)"
+                                                   ],
+                                "group_id":  "review_ch17",
+                                "failed_agents":  [
+
+                                                  ],
+                                "status":  "pending",
+                                "parallel_total":  2
+                            },
+                            {
+                                "merger_ready":  false,
+                                "merger_step_id":  null,
+                                "merger_executed":  false,
+                                "completed_agents":  [
+
+                                                     ],
+                                "pending_agents":  [
+                                                       "Ch16 Unified Review (parallel w/ Ch17 write)",
+                                                       "Ch17 Write (parallel w/ Ch16 review)"
+                                                   ],
+                                "group_id":  "pipeline_16_17",
+                                "failed_agents":  [
+
+                                                  ],
+                                "status":  "pending",
+                                "parallel_total":  2
+                            },
+                            {
+                                "merger_ready":  false,
+                                "merger_step_id":  9,
+                                "merger_executed":  false,
+                                "completed_agents":  [
+
+                                                     ],
+                                "pending_agents":  [
+                                                       "Ch15 Detail Review (parallel)",
+                                                       "Ch15 De-AI Analysis (parallel)"
+                                                   ],
+                                "group_id":  "review_ch15",
+                                "failed_agents":  [
+
+                                                  ],
+                                "status":  "pending",
+                                "parallel_total":  2
+                            },
+                            {
+                                "merger_ready":  false,
+                                "merger_step_id":  15,
+                                "merger_executed":  false,
+                                "completed_agents":  [
+
+                                                     ],
+                                "pending_agents":  [
+                                                       "Ch16 Detail Review (parallel)",
+                                                       "Ch16 De-AI Analysis (parallel)"
+                                                   ],
+                                "group_id":  "review_ch16",
+                                "failed_agents":  [
+
+                                                  ],
+                                "status":  "pending",
+                                "parallel_total":  2
+                            },
+                            {
+                                "merger_ready":  false,
+                                "merger_step_id":  null,
+                                "merger_executed":  false,
+                                "completed_agents":  [
+
+                                                     ],
+                                "pending_agents":  [
+                                                       "Ch14 Unified Review (parallel w/ Ch15 write)",
+                                                       "Ch15 Write (parallel w/ Ch14 review)"
+                                                   ],
+                                "group_id":  "pipeline_14_15",
+                                "failed_agents":  [
+
+                                                  ],
+                                "status":  "pending",
+                                "parallel_total":  2
+                            },
+                            {
+                                "merger_ready":  false,
+                                "merger_step_id":  3,
+                                "merger_executed":  false,
+                                "completed_agents":  [
+
+                                                     ],
+                                "pending_agents":  [
+                                                       "Ch14 Detail Review (parallel)",
+                                                       "Ch14 De-AI Analysis (parallel)"
+                                                   ],
+                                "group_id":  "review_ch14",
+                                "failed_agents":  [
+
+                                                  ],
+                                "status":  "pending",
+                                "parallel_total":  2
+                            },
+                            {
+                                "merger_ready":  false,
+                                "merger_step_id":  null,
+                                "merger_executed":  false,
+                                "completed_agents":  [
+
+                                                     ],
+                                "pending_agents":  [
+                                                       "Ch15 Unified Review (parallel w/ Ch16 write)",
+                                                       "Ch16 Write (parallel w/ Ch15 review)"
+                                                   ],
+                                "group_id":  "pipeline_15_16",
+                                "failed_agents":  [
+
+                                                  ],
+                                "status":  "pending",
+                                "parallel_total":  2
+                            }
+                        ],
+    "status":  "pending",
+    "last_run_result":  null
 }

@@ -1,4 +1,11 @@
-# 无人值守自动执行代理指令 v2.0
+# 无人值守自动执行代理指令 v2.1
+
+## v2.1变更摘要
+
+- **新增State自动同步协议**：每步完成后强制同步state.json，解决"步骤完成但状态滞后"问题（v2.0实战验证中发现）
+- **新增State恢复机制**：会话启动时自动检测并修复"running但实际已完成"的步骤
+- **新增输出文件验证**：标记步骤completed前必须验证output_files全部存在
+- **新增并行组实时追踪**：并行Agent逐个返回时即时更新parallel_groups，不等整组完成
 
 ## v2.0变更摘要
 
@@ -21,12 +28,22 @@
 
 ## 执行流程（每次触发按此循环）
 
-### 初始化
+### 初始化（含v2.1 State恢复机制）
 
 1. 读取 `auto-runner/state.json`，获取 `status`、`current_step`、`steps[]`、`parallel_groups`
 2. 如果 `status` 为 `"completed"` 或 `"stopped"`：输出状态摘要，直接退出
-3. 将 `status` 设为 `"running"`，记录 `last_run` 时间戳
-4. 初始化本次会话的 `steps_executed_this_session = 0`
+3. **State恢复检测（v2.1新增）**：
+   - 扫描所有 `status == "running"` 的步骤
+   - 对每个running步骤，检查其 `output_files` 是否全部存在
+   - 若输出文件全部存在 → 标记为 `completed`，记录 `result: "recovered: output files verified"`
+   - 若输出文件缺失 → 标记为 `retry`，记录 `stop_reason: "previous run interrupted, output missing"`
+   - 更新 state.json 后重新读取
+4. **并行组状态恢复（v2.1新增）**：
+   - 对每个 `status == "in_progress"` 的并行组，检查 `pending_agents` 中每个Agent的输出文件
+   - 输出文件存在的Agent从 `pending_agents` 移至 `completed_agents`
+   - 若 `pending_agents` 为空且 `merger_ready == false` → 设置 `merger_ready = true`
+5. 将 `status` 设为 `"running"`，记录 `last_run` 时间戳
+6. 初始化本次会话的 `steps_executed_this_session = 0`
 
 ### 主循环（重复执行直到退出条件）
 
@@ -40,10 +57,20 @@ WHILE true:
        - 若否：按单步骤执行
     5. 执行该步骤（读取input_files → 读取SKILL.md → 执行 → 写output_files）
     6. 质量检查（pass_criteria）
-    7. 更新 state.json（步骤状态、current_step、retries、parallel_groups）
-    8. 追加 execution_log.md
-    9. steps_executed_this_session += 1（并行组按规则计数）
-    10. 如果当前步骤未通过（retry/stopped）→ 跳出循环
+    7. **State同步协议 v2.1（强制执行，不可跳过）**：
+       a. **输出文件验证**：检查该步骤的 output_files 是否全部存在
+          - 全部存在 → 继续步骤b
+          - 任一缺失 → 标记步骤为 retry，记录 stop_reason，跳出循环
+       b. **更新步骤状态**：将 steps[id].status 设为 completed/retry
+       c. **记录结果**：写入 steps[id].result（摘要）和 steps[id].timestamp（当前时间）
+       d. **推进游标**：若 completed → current_step = id + 1；若 retry → 不推进
+       e. **更新并行组**（若该步骤属于并行组）：
+          - 将Agent名从 parallel_groups[group].pending_agents 移至 completed_agents/failed_agents
+          - 若 pending_agents 为空 → 设置 merger_ready = true
+       f. **立即写入 state.json**：不等会话结束，当场写入文件
+       g. **追加 execution_log.md**：记录步骤名/Agent/状态/结果摘要/时间戳
+    8. steps_executed_this_session += 1（并行组按规则计数）
+    9. 如果当前步骤未通过（retry/stopped）→ 跳出循环
 END WHILE
 ```
 
@@ -151,13 +178,37 @@ state.json 新增 `parallel_groups` 字段：
 2. 在 execution_log.md 中标注 `[AUTO-APPROVED]`
 3. 将该步骤的 `auto_approved: true` 写入 state.json
 
+### 统一审核模式 (Unified Review Mode) v1.0
+
+将传统2步审核（quality-reviewer 8维 → final-reviewer 4维+引用）合并为单步统一审核。
+
+**规范文件**：`auto-runner/unified_review_spec.md`
+
+**评分公式**（与传统模式完全等价）：
+```
+unified_score = technical_score × 0.6 + supplementary_score × 0.4
+```
+
+**12维一次评完**：
+- 8技术维（attraction/shuang/rhythm/hook/character/plot/logic/writing）→ technical_score
+- 4补充维（commercial/abandon_risk/platform/cross_chapter）→ supplementary_score
+
+**等价性验证**：Ch12实测 unified_score(9.51) == final_score(9.51) ✓
+
+**task_config配置**：步骤的 `agent` 设为 `quality-reviewer`，`instruction` 中注明"以统一审核模式(unified_review)评审"，`output_files` 为 `handoff/chapters/unified_review_ch{NNN}.json`
+
+**向后兼容**：传统2步模式仍可用。在task_config中使用2步（quality→final）或1步（unified）由配置者选择。
+
+**收益**：每章减少1步骤+1文件，300章规模节省300步+300文件+~6MB
+
 ### 质量门禁自动重试
 
-当质量审核（quality-reviewer / final-reviewer）未达标时：
+当质量审核（quality-reviewer / final-reviewer / unified_review）未达标时：
 1. 第1次未达标：自动退回 chapter-writer 修订，附上审核反馈
 2. 第2次未达标：自动退回 detail-reviewer 精修，附上审核反馈
 3. 第3次仍未达标：停止执行，记录 `stop_reason: "质量门禁3次未通过"`
 4. 每次重试都要在 execution_log.md 记录分数变化
+5. 统一审核模式下，unified_score < 9.5 触发重试，与传统模式 final_score < 9.5 等价
 
 ### 步骤依赖检查
 
@@ -173,7 +224,69 @@ state.json 新增 `parallel_groups` 字段：
 3. **审核链连续跑**：detail → quality → de-ai → final 这4步审核可以连续跑（最多3个），避免每步等15分钟
 4. **并行组整组跑**：识别到并行组时，同组 Agent 同时启动，合并后整组退出（退出条件 F）
 5. **失败即退**：任何步骤未通过需要重试时，退出本次会话，下次触发时以新会话重试
-6. **每次退出前确保 state.json 已更新**：这样即使会话被中断，下次触发也能从正确位置继续
+6. **每步同步（v2.1）**：state.json 在每步完成后立即写入，不再等到会话退出前才更新——即使会话被中断，下次触发也能从正确位置继续
+
+### State同步协议 v2.1
+
+#### 核心问题（v2.0实战验证发现）
+
+v2.0中state.json更新发生在主循环步骤7，但实际执行时存在以下问题：
+- Agent返回后未立即写入state.json，而是继续执行下一步
+- 若会话在多步执行中途被中断，state.json仍停留在旧状态
+- 并行组中个别Agent返回后未即时更新parallel_groups
+- 导致Ch12-13验证中步骤7-12完成但state.json显示pending
+
+#### 同步规则
+
+| 时机 | 同步动作 | v2.0 | v2.1 |
+|------|---------|------|------|
+| 单步完成后 | 写入step状态+result+timestamp | 可选 | **强制** |
+| 并行Agent返回 | 更新parallel_groups的pending/completed | 整组完成后 | **逐个返回时** |
+| 合并步骤完成后 | 设置merger_executed=true，推进current_step | 有时遗忘 | **强制** |
+| 会话退出前 | 最终state.json写入 | 有时遗漏 | **每步已同步，退出时无需额外操作** |
+
+#### 输出文件验证清单
+
+标记步骤为completed前，必须验证以下条件：
+
+```
+FOR EACH step.output_files:
+    IF file_exists(file_path):
+        IF file_size(file_path) > 0:
+            CONTINUE  # 文件存在且非空
+        ELSE:
+            MARK step as retry
+            LOG "output file empty: {file_path}"
+            BREAK
+    ELSE:
+        MARK step as retry
+        LOG "output file missing: {file_path}"
+        BREAK
+IF ALL files verified:
+    MARK step as completed
+    WRITE state.json immediately
+```
+
+#### State恢复机制
+
+会话启动时（初始化阶段），自动检测并修复不一致状态：
+
+1. **running步骤恢复**：
+   - 扫描 `steps[]` 中所有 `status == "running"` 的步骤
+   - 对每个running步骤，验证其 `output_files`
+   - 文件全存在 → 修复为 `completed`（记录 `"recovered"` 标记）
+   - 文件缺失 → 修复为 `pending`（重新执行）
+
+2. **并行组恢复**：
+   - 扫描 `parallel_groups[]` 中所有 `status == "in_progress"` 的组
+   - 对 `pending_agents` 中每个Agent对应的步骤，验证输出文件
+   - 文件存在 → 从pending移至completed
+   - 全部完成 → 设置 `merger_ready = true`
+
+3. **current_step修正**：
+   - 找到第一个 `status != "completed"` 的步骤ID
+   - 将 `current_step` 设为该ID
+   - 确保不会跳过未完成的步骤
 
 ### 执行效率估算
 

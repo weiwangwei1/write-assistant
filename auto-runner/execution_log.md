@@ -1665,3 +1665,62 @@ Ch2追读指数(9.52)显著高于Ch1(8.64)，原因：Ch2有更密集的爽点(6
 - 各阶段审核报告（detail/quality/de_ai/final × 3章）
 
 **任务状态**: ✅ **completed** — 黄金三章全流程22步全部完成，三章均通过终审可放行发布。
+
+---
+
+# 并行调度引擎v2.0实战验证日志
+
+任务名称：有龙则灵·Ch12-13并行生产验证
+任务描述：实战验证并行调度引擎v2.0。覆盖模式7(单章审核内部并行)+模式8(流水线写作审核)。
+启动时间：2026-07-25 08:10 (Asia/Shanghai)
+时区：Asia/Shanghai
+
+## 并行验证总览（13步，已完成Step 0-6）
+
+| Step | 名称 | Agent | 模式 | 状态 | 关键结果 |
+|------|------|-------|------|------|---------|
+| 0 | Ch12撰写 | chapter-writer | 串行 | ✅completed | 3024字《验桌》，感官开头，S级钩子 |
+| 1 | Ch12细节审核（并行） | detail-reviewer | **模式7并行** | ✅completed | 1 critical+2 major+6 minor |
+| 2 | Ch12去AI味分析（并行） | de-ai-processor | **模式7并行** | ✅completed | ai_score=1.2 pass，4/14类检出 |
+| 3 | Ch12修改合并（合并） | chapter-writer | **模式7合并** | ✅completed | 7处修复，1条冲突裁决(detail优先) |
+| 4 | Ch12宏观评分 | quality-reviewer | 串行 | ✅completed | 9.42(悬念限流)，实际9.59 |
+| 5 | Ch12终审（并行） | final-reviewer | **模式8并行** | ✅completed | **9.51 approved!** |
+| 6 | Ch13撰写（并行） | chapter-writer | **模式8并行** | ✅completed | 3088字《驻店》，M1挂起 |
+| 7 | Ch12记忆入库 | memory-manager | 串行 | ⏳pending | — |
+| 8-12 | Ch13审核链 | 多Agent | 模式7+串行 | ⏳pending | — |
+
+## 模式7验证结果（review_ch012并行组）
+
+**并行Agent**: detail-reviewer + de-ai-processor
+**启动方式**: 同一条消息中发送2个Task工具调用
+**输出隔离**: detail→detail_review_ch012.json, deai→de_ai_analysis_ch012.json（无冲突）
+**合并步骤**: chapter-writer读取两份报告，按冲突规则合并（detail优先），统一修改正文
+
+**互补价值验证**: 两个Agent独立发现同一问题区域（212-220行纪霜衡内心独白）：
+- detail角度: Show vs Tell fail（major）
+- de-ai角度: 段落逻辑链medium + Show vs Tell low
+- 合并裁决: 同句不同因→取severity更高的detail改法（Show化），吸收de-ai打碎逻辑链建议
+
+**结论**: ✅ 模式7并行验证通过。两Agent同时启动、独立输出、合并步骤正确裁决。
+
+## 模式8验证结果（pipeline_12_13并行组）
+
+**并行Agent**: final-reviewer(Ch12终审) + chapter-writer(Ch13撰写)
+**启动方式**: 同一条消息中发送2个Task工具调用
+**依赖关系**: Ch13写作依赖Ch12的quality通过(step 4)，不依赖Ch12终审(step 5)
+**输出隔离**: final→final_review_ch012.json, writer→chapter_013.txt+draft_ch013.json（无冲突）
+
+**流水线效果**: Ch12终审与Ch13撰写同时进行，Ch13无需等待Ch12终审完成
+**Ch12终审**: final_score=9.51（9.42×0.6+9.64×0.4），verdict=approved
+**Ch13撰写**: 3088字《驻店》，M1爷爷旧案挂起(active 4/3→3/3)，G004角纹闭环
+
+**结论**: ✅ 模式8流水线验证通过。终审与写作并行，节省等待时间。
+
+## v2.0落地检查清单
+
+- [x] task_config.json包含parallel_group字段（3个并行组，7个并行步骤）
+- [x] state.json包含parallel_groups数组（3组，含运行态追踪）
+- [x] master_instruction.md包含并行调度协议（六步调度流程）
+- [x] 至少1个模式已在实际执行中使用（模式7+模式8均已实战验证）
+
+**全部4项通过，v2.0并行调度引擎落地验证完成。**

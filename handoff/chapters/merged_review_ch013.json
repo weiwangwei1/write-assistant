@@ -1,0 +1,139 @@
+{
+  "card_type": "merged_review",
+  "chapter": 13,
+  "chapter_title": "驻店",
+  "merger_strategy": "detail优先+de-ai备选",
+  "sources": {
+    "detail_review": "d:\\personFile\\write-assistant\\handoff\\chapters\\detail_review_ch013.json",
+    "de_ai_analysis": "d:\\personFile\\write-assistant\\handoff\\chapters\\de_ai_analysis_ch013.json"
+  },
+  "total_issues_merged": 10,
+  "critical_fixed": 0,
+  "major_fixed": 1,
+  "minor_fixed": 8,
+  "conflict_resolutions": [
+    {
+      "location": "line59-83 / line65-83",
+      "detail_issue": "约350字信息模式长段偏Tell，建议精简公会评论两句为一句",
+      "deai_issue": "政论铺垫段使用解释链结构，建议保留公会秤/木牌账其一避免连续两轮比喻总结",
+      "resolution": "同句不同因，合为一条。取detail精简方案（将'公会从来不给谁撑腰'与'公会只做一件事：把人放上秤'合并为一句），同时满足de-ai减少解释感堆叠的要求。detail优先（内容正确性>语言自然度）。",
+      "applied": "合并为'可公会从来不给谁撑腰——只把人放上秤，称完了再决定往哪边沉。'"
+    },
+    {
+      "location": "line167 纪霜衡的监管很认真",
+      "detail_position": "check4判定为可接受的Show性Tell（有具体行为支撑），未列为issue",
+      "deai_position": "low级Tell式性格概括，建议删除首句直接从行为开篇",
+      "resolution": "仅de-ai提出修改建议（detail未发issue），属'仅一方有'保留单方建议。删除Tell首句，直接以'每天辰时到，戌时走'行为开篇。",
+      "applied": "删除'纪霜衡的监管很认真。'一句及空行"
+    },
+    {
+      "location": "line265 不烫，但踏实",
+      "detail_position": "未检出（认可触觉比喻Show到位）",
+      "deai_position": "medium级情绪直说，但因比喻包裹充分建议保留",
+      "resolution": "de-ai自身建议保留，跳过不修改。",
+      "applied": "skipped"
+    }
+  ],
+  "applied_changes": [
+    {
+      "location": "line267（原）",
+      "original": "\"三天。\"他说。\"稳了。\"",
+      "modified": "\"六天。\"他说。\"稳了。\"",
+      "source": "detail",
+      "severity": "major",
+      "category": "数字合理性/语义歧义",
+      "rationale": "ch9初一角纹养纹第1天→ch13驻店第3天=初六（养纹第6天），'三天'三种解读均不自洽。改为'六天'直接对应养纹第6天，消除歧义，无连锁修改。"
+    },
+    {
+      "location": "line167（原）",
+      "original": "纪霜衡的监管很认真。\n\n每天辰时到，戌时走。",
+      "modified": "每天辰时到，戌时走。",
+      "source": "deai",
+      "severity": "minor",
+      "category": "Show vs Tell/性格标签Tell",
+      "rationale": "'监管很认真'为旁白定性Tell，紧随其后已有具体行为展示（辰时到戌时走/供桌震/裂缝光纹/上供时辰全记），删除首句让读者从记录内容自行感知认真。"
+    },
+    {
+      "location": "line75-77（原）",
+      "original": "可公会从来不给谁撑腰。\n\n公会只做一件事：把人放上秤，称完了再决定往哪边沉。",
+      "modified": "可公会从来不给谁撑腰——只把人放上秤，称完了再决定往哪边沉。",
+      "source": "both",
+      "severity": "minor",
+      "category": "信息模式长段/逻辑链解释感",
+      "rationale": "detail与de-ai同句不同因合并。精简连续两轮叙述者评论为一句，减少解释感堆叠，破折号衔接保持口语节奏。"
+    },
+    {
+      "location": "line193（原）",
+      "original": "她没反驳。不是不会——是老灯这话堵得太死，她找不到一个能用规矩接住的词。神殿的规矩里没有\"公道\"这个字，只有\"合规\"和\"不合规\"。\n\n她端起保温壶，喝了口水。",
+      "modified": "她没反驳。端起保温壶，喝了口水。",
+      "source": "detail",
+      "severity": "minor",
+      "category": "视点跳跃/Show vs Tell",
+      "rationale": "从许愿近距POV跳入纪霜衡内心推理属叙述者代思考。前文已有物理Show铺垫（把笔搁下/端保温壶/握壶手指收紧），删除内心解释让读者通过物理行为自行推断被噎状态。公道vs合规主题对照后移至监管期对话。"
+    },
+    {
+      "location": "line311（原）",
+      "original": "供桌在这儿，人在在这儿。",
+      "modified": "供桌在这儿，人在，就在这儿。",
+      "source": "detail",
+      "severity": "minor",
+      "category": "语法/断句",
+      "rationale": "'人在在这儿'无标点断句需二次parse。加逗点断为'人在，就在这儿'，节奏更利落，语义更清晰，保留口语力量。"
+    },
+    {
+      "location": "line287（原）",
+      "original": "\"比她师父认得清。\"",
+      "modified": "\"比她师父认得还清。\"",
+      "source": "detail",
+      "severity": "minor",
+      "category": "跨章逐字重复",
+      "rationale": "与ch12 line354完全逐字重复。加'还'字表递进——ch12为初评，ch13为驻店观察后的深化评价，保持暗线暗示但避免逐字重复。"
+    },
+    {
+      "location": "line71（原）",
+      "original": "像被两股绳子同时拽着，哪头都不敢松。",
+      "modified": "像被两股绳子同时拽着，哪头都松不开手。",
+      "source": "deai",
+      "severity": "minor",
+      "category": "情绪直说（第一阶梯）",
+      "rationale": "'不敢松'直接命名恐惧/畏缩情绪。改为'松不开手'用动作替代，与'两股绳子拽着'的物理意象一致。"
+    },
+    {
+      "location": "line171-173（原）",
+      "original": "许愿头两天还觉得别扭。铺子里多了双眼睛，像吃饭的时候有人盯着你的碗。他擦供桌时总觉得后背发凉，不是角纹的凉，是被人盯着的凉。\n\n第三天不别扭了。",
+      "modified": "许愿头两天擦供桌时总多擦两遍。铺子里多了双眼睛，像吃饭的时候有人盯着你的碗。后背发凉，不是角纹的凉，是被人盯着的凉。\n\n第三天习惯了。",
+      "source": "deai",
+      "severity": "minor",
+      "category": "情绪直说（第一阶梯）",
+      "rationale": "'觉得别扭'/'不别扭了'直接命名情绪且重复使用标签。改为'擦供桌时总多擦两遍'（第三阶梯无意义行为）展示别扭感，'第三天习惯了'替换'不别扭了'消除标签重复。"
+    },
+    {
+      "location": "line319（原）",
+      "original": "门外站着一个不认识的中年人，怀里捧着一只锦盒，脸上带着欲言又止的为难。",
+      "modified": "门外站着一个不认识的中年人，怀里捧着一只锦盒，嘴唇动了动，又合上，把锦盒往胸前搂了搂。",
+      "source": "deai",
+      "severity": "minor",
+      "category": "情绪直说（第一阶梯）",
+      "rationale": "'欲言又止的为难'直接命名陌生人情绪。改为'嘴唇动了动，又合上，把锦盒往胸前搂了搂'用动作展示犹豫与护物心理，且锦盒搂胸为后续鉴定生意伏笔加分。"
+    }
+  ],
+  "skipped_issues": [
+    {
+      "location": "line265（原）",
+      "issue": "'不烫，但踏实'——de-ai检出第一阶梯情绪直说（'踏实'直接命名情绪）",
+      "reason": "de-ai自身判定'因比喻包裹充分（像捂了一夜的手炉），可保留'。'踏实'嵌入触觉比喻中接近第二阶梯，且为角纹转温的情绪落点，删除会削弱收束力。跳过不修改。",
+      "source": "deai",
+      "severity": "minor"
+    }
+  ],
+  "merge_notes": {
+    "detail_issues_total": 5,
+    "deai_detections_total": 3,
+    "deai_emotion_locations": 5,
+    "overlap_merged": 1,
+    "unique_after_merge": 10,
+    "applied_count": 9,
+    "skipped_count": 1,
+    "line_shift_note": "因删除line167一句+空行及合并line75-77两句，修改后行号较原始审核报告前移2-4行。本JSON中location均标注原始行号以便与审核报告对照。"
+  }
+}

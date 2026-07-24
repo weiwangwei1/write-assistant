@@ -2,8 +2,8 @@
   "card_type": "goal_tracker",
   "novel_title": "有龙则灵",
   "outline_version": "v4.3",
-  "last_updated_chapter": 10,
-  "last_updated": "2026-07-24T20:15:00+08:00",
+  "last_updated_chapter": 12,
+  "last_updated": "2026-07-25T09:20:00+08:00",
   "goals": [
     {
       "id": "G001",
@@ -11,15 +11,18 @@
       "type": "task",
       "established_chapter": 4,
       "expected_close_chapter": 12,
-      "status": "active_suspended",
+      "status": "closed",
+      "closed_chapter": 11,
       "progress_log": [
         {"chapter": 4, "action": "established", "detail": "蓝袍子传话'封分会长想见你'+爷爷与公会有往来"},
         {"chapter": 5, "action": "developed", "detail": "霍东来交镇巷令——背面空白须封九霄亲手刻字方生效，生效后例钱免"},
-        {"chapter": 8, "action": "actively_suspended", "detail": "E1-4主动延后：'公会的秤先不碰。等攒够本钱，摸清水深水浅，再蹚'（断头→主动挂起，读者心智保留）"}
+        {"chapter": 8, "action": "actively_suspended", "detail": "E1-4主动延后：'公会的秤先不碰。等攒够本钱，摸清水深水浅，再蹚'（断头→主动挂起，读者心智保留）"},
+        {"chapter": 11, "action": "closed", "detail": "封九霄亲自登门，指腹在镇巷令背面刻字'免'——'例钱到此为止。公会不站队。只称量。'镇巷令刻字闭环"},
+        {"chapter": 12, "action": "confirmed", "detail": "ch12确认生效：纪霜衡撕封条重开铺子=公会'善意'对照神殿'恶意'讽刺对照，例钱免确认落地"}
       ],
-      "chapters_since_progress": 2,
+      "chapters_since_progress": 0,
       "alert": null,
-      "close_plan": "大纲tanghulu unit1（ch11-13）：公会刻字兑现=断头线闭环，例钱免，公会'善意'对照神殿'恶意'"
+      "close_plan": "已完成。ch11封九霄刻字'免'闭环，ch12确认生效"
     },
     {
       "id": "G002",
@@ -32,7 +35,7 @@
         {"chapter": 6, "action": "established", "detail": "老灯'给我带盏灯。旧灯。有人用过的。来历深的'"},
         {"chapter": 7, "action": "closed", "detail": "泥灯（三百年）白拿走，符号同源=供簿封面"}
       ],
-      "chapters_since_progress": 3,
+      "chapters_since_progress": 5,
       "alert": null
     },
     {
@@ -45,7 +48,8 @@
       "progress_log": [
         {"chapter": 3, "action": "established", "detail": "老灯梦话泄露火种线"},
         {"chapter": 7, "action": "linked", "detail": "泥灯入手（老灯'想要'）+青灯意象"},
-        {"chapter": 10, "action": "keep_warm", "detail": "青灯灯油委托（G005）+E2-5'青灯烧了三百年的又是什么'挂钩"}
+        {"chapter": 10, "action": "keep_warm", "detail": "青灯灯油委托（G005）+E2-5'青灯烧了三百年的又是什么'挂钩"},
+        {"chapter": 12, "action": "keep_warm", "detail": "旧牌龙爪纹火色'还没灭'=火种碎片附着师父遗物暗示，火种线保温beat到位"}
       ],
       "chapters_since_progress": 0,
       "alert": null,
@@ -56,14 +60,16 @@
       "title": "角纹养纹三天",
       "type": "task",
       "established_chapter": 9,
-      "expected_close_chapter": 12,
+      "expected_close_chapter": 13,
       "status": "active",
       "progress_log": [
-        {"chapter": 9, "action": "established", "detail": "喷火首秀后老灯明示'角纹要养三天方稳，今天这口算送你看的'"}
+        {"chapter": 9, "action": "established", "detail": "喷火首秀后老灯明示'角纹要养三天方稳，今天这口算送你看的'"},
+        {"chapter": 11, "action": "maintained", "detail": "养纹第三天，角纹不可用=拘传死局压力来源之一（能力限制已锁死）"},
+        {"chapter": 12, "action": "maintained", "detail": "养纹第三天持续——'后背的角纹是凉的。养纹第三天，还没稳。能用的是掌心这一片鳞，也只剩这一片。死局就压在这上头。'ch13将闭环（养纹期满角纹可用）"}
       ],
-      "chapters_since_progress": 1,
+      "chapters_since_progress": 0,
       "alert": null,
-      "note": "ch11-12死局中角纹不可用=死局压力来源之一（能力限制已锁死）"
+      "note": "ch11-12死局中角纹不可用=死局压力来源之一（能力限制已锁死）。ch13养纹期满将闭环"
     },
     {
       "id": "G005",
@@ -75,9 +81,23 @@
       "progress_log": [
         {"chapter": 10, "action": "established", "detail": "老人'灯油快没了。灯市口那盏青灯。烧了三百年。你要是有旧灯油——来历深的——给它续上'"}
       ],
-      "chapters_since_progress": 0,
+      "chapters_since_progress": 2,
       "alert": null,
       "close_plan": "大纲ch19-25：豆灯出世对青灯起反应→青灯=引灯指向火种一，灯油线归位火种主线"
+    },
+    {
+      "id": "G006",
+      "title": "龙纹曝光后的应对（从暗转明）",
+      "type": "quest",
+      "established_chapter": 12,
+      "expected_close_chapter": 25,
+      "status": "active",
+      "progress_log": [
+        {"chapter": 12, "action": "established", "detail": "许愿掌心鳞纹当众曝光——疤脸铁棍砸下被弹飞，围观者惊呼'鳞纹！是龙纹！许家那小子身上有龙纹'。龙纹从暗转明，身份暴露将引来各方关注"}
+      ],
+      "chapters_since_progress": 0,
+      "alert": null,
+      "note": "ch12新增目标。龙纹曝光=许愿身份从'落魄小东家'转'有龙纹的人'，将影响霍家/公会/神殿/聚宝阁各方态度。大纲vol1 ch14-30鉴定生意线与龙纹曝光直接关联"
     }
   ],
   "main_quest_progress": {
@@ -85,26 +105,27 @@
     "title": "火种收集（三火归位→长明重燃）",
     "total_stages": 3,
     "completed_stages": 0,
-    "current_chapter": 10,
+    "current_chapter": 12,
     "stage_log": [],
     "warm_beats": [
       {"chapter": 3, "beat": "梦话立标"},
       {"chapter": 7, "beat": "泥灯入手+青灯意象"},
-      {"chapter": 10, "beat": "青灯灯油委托+火种挂钩"}
+      {"chapter": 10, "beat": "青灯灯油委托+火种挂钩"},
+      {"chapter": 12, "beat": "旧牌龙爪纹火色'还没灭'=火种碎片附着师父遗物暗示"}
     ],
     "health": "stalled_with_plan",
-    "stalled_chapters": 7,
-    "recovery_plan": "longline_review_10 warning已受理：①ch11-15安插1次≤100字保温beat（老灯梦话重提'还差三个'或供簿夹页）；②ch19-20豆灯出世对青灯起反应=正式归位；③~86火种一入手=stage1完成"
+    "stalled_chapters": 9,
+    "recovery_plan": "longline_review_10 warning已受理：①ch11-15安插1次≤100字保温beat（ch12已执行：旧牌火色'还没灭'）✓；②ch19-20豆灯出世对青灯起反应=正式归位；③~86火种一入手=stage1完成"
   },
   "villain_ladder": [
     {
       "tier": "喽啰",
       "name": "疤脸打手",
       "planned_window": "ch1-25零星打脸，ch11-12全胜债清",
-      "status": "active",
+      "status": "cleared",
       "first_appear_chapter": 2,
-      "cleared_chapter": null,
-      "note": "B2复仇债待ch11-12清算（大纲排定）"
+      "cleared_chapter": 12,
+      "note": "B2复仇债ch12全胜清算完成（铁棍被弹+虎口再裂+'又掉了'二次回调+被差役带走）"
     },
     {
       "tier": "明线小boss",
@@ -122,7 +143,7 @@
       "status": "foreshadowed",
       "first_appear_chapter": null,
       "cleared_chapter": null,
-      "note": "ch10'供桌能鉴宝'传闻炸街+铜碟防伪公开演示=聚宝阁线铺垫已点火"
+      "note": "ch10'供桌能鉴宝'传闻炸街+铜碟防伪公开演示=聚宝阁线铺垫已点火。ch12龙纹曝光+鉴定能力当众展示=聚宝阁线铺垫加深"
     },
     {
       "tier": "隐藏boss",
@@ -145,21 +166,26 @@
     "max_active": 3,
     "rule": "活跃=本章文本实际触碰/提醒读者；闭环一条才开新一条",
     "active": [
-      {"id": "M3", "title": "火种进度（青灯灯油）", "opened_chapter": 3, "last_touched": 10, "type": "main"},
+      {"id": "M3", "title": "火种进度（青灯灯油+旧牌火色）", "opened_chapter": 3, "last_touched": 12, "type": "main"},
       {"id": "M4", "title": "上一任是谁（接替链/庚午年）", "opened_chapter": 4, "last_touched": 10, "type": "main"},
-      {"id": "M5", "title": "盲眼老人身份（烟散之诡）", "opened_chapter": 7, "last_touched": 10, "type": "character"}
+      {"id": "M5", "title": "盲眼老人身份（烟散之诡）", "opened_chapter": 7, "last_touched": 10, "type": "character"},
+      {"id": "M6", "title": "龙纹曝光后果（许愿身份从暗转明后各方反应）", "opened_chapter": 12, "last_touched": 12, "type": "plot"}
     ],
     "suspended": [
-      {"id": "M1", "title": "爷爷与供桌真相", "suspended_at": 6, "reason": "第一层答案已给（被收回去了/还在里头），暂不进窗"},
-      {"id": "M2", "title": "公会/封九霄（镇巷令+老灯认我）", "suspended_at": 8, "reason": "E1-4/E2-1双重主动挂起，ch11-12出窗闭环"}
+      {"id": "M1", "title": "爷爷渎神旧案（拘传改监管观察，正式挂起）", "suspended_at": 12, "reason": "ch11拘传令翻出旧案时M1被激活（4/3超限），ch12拘传改监管观察后正式挂起。旧案仍在但即时危机解除，纪霜衡驻店观察=调查转入长期", "previously_suspended_at": 6, "reactivated_at": 11},
+      {"id": "M2", "title": "公会/封九霄（镇巷令+老灯认我）", "suspended_at": 8, "reason": "E1-4/E2-1双重主动挂起，ch11封九霄刻字兑现闭环。M2已关闭", "closed_at": 11, "closed_reason": "封九霄亲自登门刻字'免'，镇巷令兑现，例钱免确认"}
     ],
-    "overflow_alerts": [],
-    "ch11_constraint": "窗口已满（3/3）——ch11若要开新悬念，必须先闭环/挂起一条（建议M5随老人线暂退或M2出窗即闭环）"
+    "overflow_alerts": [
+      {"severity": "high", "chapter": 12, "detail": "悬念活跃窗口4/4超限（M3/M4/M5/M6）。M1已挂起但M6龙纹曝光线新增。ch13须闭环或挂起至少1条（建议M5老人线暂退或M4上一任线暂挂）。终审override条件OC001要求ch12-13闭环至少1条"}
+    ],
+    "ch11_constraint_resolved": "ch11 M2闭环（封九霄刻字）+ M1激活（旧案翻出）=窗口从3/3→4/3超限→ch12 M1挂起但M6新增=维持4/4超限",
+    "ch13_constraint": "窗口超限（4/4）——ch13必须闭环或挂起至少1条悬念。终审override OC001 due_chapter=13"
   },
   "shuang_rolling_window": {
     "rule": "每3章≥1个S/A级爽点",
-    "last_check": "ch8-10: A-,S,A 达标",
+    "last_check": "ch10-12: A,B,A 达标（Ch10A级/Ch11 B级/Ch12 A级死局翻盘）",
     "full_record": "见handoff/chapter_review.json hard_metric_1_shuang",
-    "all_windows_pass": true
+    "all_windows_pass": true,
+    "note": "ch12为A级死局翻盘（策略型：用对手的规矩反杀+B级打脸回调：物理挡棍+'又掉了'）"
   }
 }

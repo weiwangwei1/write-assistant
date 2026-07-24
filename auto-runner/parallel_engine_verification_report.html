@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>并行调度引擎实战验证报告</title>
+<style>
+:root {
+  --bg: #0f1117;
+  --surface: #1a1d27;
+  --surface-2: #232733;
+  --surface-3: #2d3140;
+  --border: #3a3f4d;
+  --text: #e4e7ed;
+  --text-muted: #9ca3b4;
+  --text-dim: #6b7180;
+  --brand: #7c5cfc;
+  --brand-light: #a78bfa;
+  --brand-dim: #5b3fd6;
+  --green: #34d399;
+  --green-dim: #10b981;
+  --yellow: #fbbf24;
+  --red: #f87171;
+  --blue: #60a5fa;
+  --cyan: #22d3ee;
+  --orange: #fb923c;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Noto Sans SC', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  padding: 0;
+}
+.container { max-width: 1100px; margin: 0 auto; padding: 40px 24px; }
+
+/* Hero */
+.hero {
+  background: linear-gradient(135deg, var(--surface) 0%, var(--surface-2) 100%);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 48px 40px;
+  margin-bottom: 32px;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -50%; right: -20%;
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(124,92,252,0.08) 0%, transparent 70%);
+  border-radius: 50%;
+}
+.hero h1 { font-size: 28px; font-weight: 700; margin-bottom: 12px; position: relative; }
+.hero .subtitle { font-size: 15px; color: var(--text-muted); position: relative; }
+.hero .meta {
+  display: flex; gap: 24px; margin-top: 24px; flex-wrap: wrap;
+  position: relative;
+}
+.hero .meta-item {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 13px; color: var(--text-dim);
+}
+.hero .meta-item svg { width: 16px; height: 16px; }
+
+/* Verdict Banner */
+.verdict-banner {
+  display: flex; align-items: center; gap: 16px;
+  background: rgba(52, 211, 153, 0.1);
+  border: 1px solid rgba(52, 211, 153, 0.3);
+  border-radius: 12px;
+  padding: 20px 28px;
+  margin-bottom: 32px;
+}
+.verdict-icon {
+  width: 48px; height: 48px;
+  background: rgba(52, 211, 153, 0.15);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.verdict-icon svg { width: 28px; height: 28px; color: var(--green); }
+.verdict-text h2 { font-size: 18px; color: var(--green); margin-bottom: 4px; }
+.verdict-text p { font-size: 13px; color: var(--text-muted); }
+
+/* KPI Grid */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 32px;
+}
+.kpi-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 24px;
+  text-align: center;
+}
+.kpi-value {
+  font-size: 36px; font-weight: 700;
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
+  margin-bottom: 4px;
+}
+.kpi-label { font-size: 12px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
+.kpi-card.green .kpi-value { color: var(--green); }
+.kpi-card.brand .kpi-value { color: var(--brand-light); }
+.kpi-card.blue .kpi-value { color: var(--blue); }
+.kpi-card.cyan .kpi-value { color: var(--cyan); }
+
+/* Section */
+.section {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 32px;
+  margin-bottom: 24px;
+}
+.section h2 {
+  font-size: 18px; font-weight: 600;
+  margin-bottom: 20px;
+  display: flex; align-items: center; gap: 10px;
+}
+.section h2 .num {
+  width: 28px; height: 28px;
+  background: var(--brand-dim);
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; color: white;
+}
+.section h3 { font-size: 15px; font-weight: 600; margin: 20px 0 12px; color: var(--text); }
+.section p { font-size: 14px; color: var(--text-muted); margin-bottom: 12px; }
+.section ul { list-style: none; margin-bottom: 12px; }
+.section ul li {
+  font-size: 14px; color: var(--text-muted);
+  padding: 6px 0 6px 24px;
+  position: relative;
+}
+.section ul li::before {
+  content: '▸';
+  position: absolute; left: 8px;
+  color: var(--brand-light);
+}
+
+/* Table */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  margin: 12px 0;
+}
+th {
+  text-align: left;
+  padding: 10px 14px;
+  background: var(--surface-2);
+  color: var(--text);
+  font-weight: 600;
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+td {
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border);
+  color: var(--text-muted);
+}
+tr:last-child td { border-bottom: none; }
+tr:hover td { background: rgba(124,92,252,0.04); }
+
+/* Badge */
+.badge {
+  display: inline-flex; align-items: center;
+  padding: 2px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.badge.green { background: rgba(52,211,153,0.15); color: var(--green); }
+.badge.yellow { background: rgba(251,191,36,0.15); color: var(--yellow); }
+.badge.red { background: rgba(248,113,113,0.15); color: var(--red); }
+.badge.blue { background: rgba(96,165,250,0.15); color: var(--blue); }
+.badge.brand { background: rgba(124,92,252,0.15); color: var(--brand-light); }
+.badge.cyan { background: rgba(34,211,238,0.15); color: var(--cyan); }
+
+/* Timeline */
+.timeline {
+  position: relative;
+  padding-left: 0;
+  margin: 16px 0;
+}
+.timeline-row {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 16px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border);
+  align-items: center;
+}
+.timeline-row:last-child { border-bottom: none; }
+.timeline-time {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  color: var(--brand-light);
+  text-align: right;
+  font-weight: 600;
+}
+.timeline-event { font-size: 13px; color: var(--text-muted); }
+.timeline-event .tag {
+  display: inline-block;
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  margin-right: 6px;
+}
+.timeline-event .tag.serial { background: rgba(156,163,180,0.15); color: var(--text-muted); }
+.timeline-event .tag.parallel { background: rgba(124,92,252,0.15); color: var(--brand-light); }
+.timeline-event .tag.merger { background: rgba(251,191,36,0.15); color: var(--yellow); }
+
+/* Flow Diagram */
+.flow-diagram {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 16px 0;
+}
+.flow-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.flow-box {
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  white-space: nowrap;
+}
+.flow-box.write { border-color: rgba(124,92,252,0.4); background: rgba(124,92,252,0.08); color: var(--brand-light); }
+.flow-box.review { border-color: rgba(96,165,250,0.4); background: rgba(96,165,250,0.08); color: var(--blue); }
+.flow-box.merge { border-color: rgba(251,191,36,0.4); background: rgba(251,191,36,0.08); color: var(--yellow); }
+.flow-box.memory { border-color: rgba(52,211,153,0.4); background: rgba(52,211,153,0.08); color: var(--green); }
+.flow-arrow { color: var(--text-dim); font-size: 16px; }
+.flow-parallel {
+  border: 1px dashed var(--brand);
+  border-radius: 10px;
+  padding: 8px 12px;
+  display: flex; gap: 8px; align-items: center;
+}
+
+/* Comparison Bars */
+.compare-bars { margin: 16px 0; }
+.bar-row { margin-bottom: 16px; }
+.bar-label { font-size: 13px; color: var(--text-muted); margin-bottom: 6px; display: flex; justify-content: space-between; }
+.bar-track {
+  height: 28px;
+  background: var(--surface-2);
+  border-radius: 6px;
+  overflow: hidden;
+  position: relative;
+}
+.bar-fill {
+  height: 100%;
+  border-radius: 6px;
+  display: flex; align-items: center; justify-content: flex-end;
+  padding-right: 12px;
+  font-size: 13px; font-weight: 600;
+  color: white;
+  transition: width 0.8s ease;
+}
+.bar-fill.serial { background: linear-gradient(90deg, #6b7180, #9ca3b4); }
+.bar-fill.parallel { background: linear-gradient(90deg, var(--brand-dim), var(--brand)); }
+
+/* Code Block */
+code, pre {
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
+  font-size: 13px;
+}
+pre {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 16px;
+  overflow-x: auto;
+  margin: 12px 0;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+code.inline {
+  background: var(--surface-2);
+  padding: 2px 6px;
+  border-radius: 4px;
+  color: var(--brand-light);
+  font-size: 12px;
+}
+
+/* Checklist */
+.checklist { margin: 12px 0; }
+.check-item {
+  display: flex; align-items: flex-start; gap: 10px;
+  padding: 8px 0;
+  font-size: 14px;
+  color: var(--text-muted);
+}
+.check-icon {
+  width: 20px; height: 20px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.check-icon.pass { background: rgba(52,211,153,0.15); color: var(--green); }
+.check-icon.warn { background: rgba(251,191,36,0.15); color: var(--yellow); }
+.check-icon svg { width: 14px; height: 14px; }
+
+/* Summary Card */
+.summary-card {
+  background: linear-gradient(135deg, var(--surface-2) 0%, var(--surface-3) 100%);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 28px;
+  margin-top: 24px;
+}
+.summary-card h3 { font-size: 16px; margin-bottom: 16px; }
+.summary-card .conclusion {
+  font-size: 15px;
+  color: var(--green);
+  font-weight: 600;
+  padding: 12px 16px;
+  background: rgba(52,211,153,0.08);
+  border-radius: 8px;
+  border-left: 3px solid var(--green);
+  margin-top: 16px;
+}
+
+@media (max-width: 768px) {
+  .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+  .container { padding: 20px 16px; }
+  .section { padding: 20px; }
+  .hero { padding: 32px 24px; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- Hero -->
+<div class="hero">
+  <h1>并行调度引擎实战验证报告</h1>
+  <div class="subtitle">基于 parallel_task_config_template.json v2.0 生成实际 task_config，验证 mode7 + mode8 并行模式的正确性与效率</div>
+  <div class="meta">
+    <div class="meta-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+      项目：有龙则灵
+    </div>
+    <div class="meta-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      2026-07-24
+    </div>
+    <div class="meta-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+      验证范围：Ch14-Ch17
+    </div>
+    <div class="meta-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+      生成器：generate_task_config.ps1 v1.0
+    </div>
+  </div>
+</div>
+
+<!-- Verdict Banner -->
+<div class="verdict-banner">
+  <div class="verdict-icon">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+  </div>
+  <div class="verdict-text">
+    <h2>验证通过 — 并行调度引擎已就绪</h2>
+    <p>14项结构检查全部通过，0错误；模拟执行节省41%时间，1.7x并行加速比</p>
+  </div>
+</div>
+
+<!-- KPI Grid -->
+<div class="kpi-grid">
+  <div class="kpi-card green">
+    <div class="kpi-value">14/14</div>
+    <div class="kpi-label">验证检查通过</div>
+  </div>
+  <div class="kpi-card brand">
+    <div class="kpi-value">41%</div>
+    <div class="kpi-label">时间节省</div>
+  </div>
+  <div class="kpi-card blue">
+    <div class="kpi-value">1.7x</div>
+    <div class="kpi-label">并行加速比</div>
+  </div>
+  <div class="kpi-card cyan">
+    <div class="kpi-value">7</div>
+    <div class="kpi-label">并行组数</div>
+  </div>
+</div>
+
+<!-- 1. 验证概览 -->
+<div class="section">
+  <h2><span class="num">1</span>验证概览</h2>
+  <p>本次实战验证使用 <code class="inline">generate_task_config.ps1</code> 从 <code class="inline">memory/outline.json</code> 自动生成 Ch14-Ch17 的 task_config.json（统一审核模式），然后通过验证脚本和模拟脚本全面检验并行调度引擎的正确性。</p>
+  
+  <table>
+    <thead>
+      <tr>
+        <th>验证维度</th>
+        <th>工具</th>
+        <th>结果</th>
+        <th>状态</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>结构正确性</td>
+        <td>validate_task_config.ps1</td>
+        <td>24步ID连续(0-23)，依赖无前向引用，无循环依赖</td>
+        <td><span class="badge green">PASS</span></td>
+      </tr>
+      <tr>
+        <td>并行组结构</td>
+        <td>validate_task_config.ps1</td>
+        <td>4个mode7组(2并行+1合并) + 3个mode8组(2并行) 结构正确</td>
+        <td><span class="badge green">PASS</span></td>
+      </tr>
+      <tr>
+        <td>流水线依赖（关键）</td>
+        <td>validate_task_config.ps1</td>
+        <td>Ch(N+1)写作依赖Ch(N)Merge而非Memory Commit，真正并行</td>
+        <td><span class="badge green">PASS</span></td>
+      </tr>
+      <tr>
+        <td>每章步骤数</td>
+        <td>validate_task_config.ps1</td>
+        <td>4章均6步（write→review→merge→unified→memory），统一模式正确</td>
+        <td><span class="badge green">PASS</span></td>
+      </tr>
+      <tr>
+        <td>state.json一致性</td>
+        <td>validate_task_config.ps1</td>
+        <td>total_steps/steps数组/parallel_groups数量均匹配</td>
+        <td><span class="badge green">PASS</span></td>
+      </tr>
+      <tr>
+        <td>开头/结尾多样性</td>
+        <td>validate_task_config.ps1</td>
+        <td>sensory→dialogue→scene_action→suspense，无连续重复</td>
+        <td><span class="badge green">PASS</span></td>
+      </tr>
+      <tr>
+        <td>文件I/O安全</td>
+        <td>validate_task_config.ps1</td>
+        <td>并行组内无并发写同一文件</td>
+        <td><span class="badge green">PASS</span></td>
+      </tr>
+      <tr>
+        <td>并行调度模拟</td>
+        <td>simulate_parallel_engine.ps1</td>
+        <td>24步全部完成，所有并行组同时调度，合并步骤正确等待</td>
+        <td><span class="badge green">PASS</span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- 2. Task Config 生成 -->
+<div class="section">
+  <h2><span class="num">2</span>Task Config 自动生成</h2>
+  <p><code class="inline">generate_task_config.ps1</code> 从大纲的 tanghulu 结构自动提取每章的 beats、开头/结尾风格，生成完整的并行 task_config。</p>
+
+  <h3>生成命令</h3>
+<pre>powershell -ExecutionPolicy Bypass -File generate_task_config.ps1 \
+  -StartChapter 14 -EndChapter 17 -ReviewMode unified</pre>
+
+  <h3>生成结果</h3>
+  <table>
+    <thead>
+      <tr><th>属性</th><th>值</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>章节范围</td><td>Ch14 - Ch17（4章）</td></tr>
+      <tr><td>总步骤数</td><td>24步</td></tr>
+      <tr><td>每章步骤</td><td>6步（Write → Detail+DeAI并行 → Merge → Unified Review → Memory Commit）</td></tr>
+      <tr><td>并行组数</td><td>7组（4个mode7审核并行 + 3个mode8流水线并行）</td></tr>
+      <tr><td>审核模式</td><td>unified（12维统一评分，替代传统2步quality+final）</td></tr>
+      <tr><td>开头风格轮换</td><td>sensory → dialogue → scene_action → suspense</td></tr>
+      <tr><td>结尾风格轮换</td><td>action_unfinished → info_reveal → dialogue_ending → scene_description</td></tr>
+      <tr><td>生成文件</td><td>task_config.json + state.json</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- 3. 并行模式详解 -->
+<div class="section">
+  <h2><span class="num">3</span>并行模式详解</h2>
+
+  <h3>Mode 7 — 单章审核内部并行</h3>
+  <p>每章的 detail-reviewer 和 de-ai-processor 同时启动，各出分析报告不改正文，合并步骤等待两者完成后统一应用修改。</p>
+  <div class="flow-diagram">
+    <div class="flow-row">
+      <div class="flow-box write">Ch{N} 正文</div>
+      <span class="flow-arrow">→</span>
+      <div class="flow-parallel">
+        <div class="flow-box review">Detail Review</div>
+        <div class="flow-box review">De-AI Analysis</div>
+      </div>
+      <span class="flow-arrow">→</span>
+      <div class="flow-box merge">Merge（合并修改）</div>
+    </div>
+  </div>
+
+  <h3>Mode 8 — 流水线并行</h3>
+  <p>Ch(N) 的统一审稿与 Ch(N+1) 的写作同时进行。Ch(N+1) 写作依赖 Ch(N) 的 Merge 步骤（正文已打磨），而非 Memory Commit，确保真正并行而非伪并行。</p>
+  <div class="flow-diagram">
+    <div class="flow-row">
+      <div class="flow-box merge">Ch{N} Merge</div>
+      <span class="flow-arrow">→</span>
+      <div class="flow-parallel">
+        <div class="flow-box review">Ch{N} Unified Review</div>
+        <div class="flow-box write">Ch{N+1} Write</div>
+      </div>
+      <span class="flow-arrow">→</span>
+      <span style="color:var(--text-dim);font-size:13px;">Ch{N} Memory Commit（与Ch{N+1}审核并行）</span>
+    </div>
+  </div>
+
+  <h3>并行组清单</h3>
+  <table>
+    <thead>
+      <tr><th>组名</th><th>模式</th><th>并行步骤</th><th>合并步骤</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>review_ch14</td><td><span class="badge brand">mode7</span></td><td>Detail Review + De-AI Analysis</td><td>Ch14 Merge</td></tr>
+      <tr><td>pipeline_14_15</td><td><span class="badge cyan">mode8</span></td><td>Ch14 Unified Review + Ch15 Write</td><td>—</td></tr>
+      <tr><td>review_ch15</td><td><span class="badge brand">mode7</span></td><td>Detail Review + De-AI Analysis</td><td>Ch15 Merge</td></tr>
+      <tr><td>pipeline_15_16</td><td><span class="badge cyan">mode8</span></td><td>Ch15 Unified Review + Ch16 Write</td><td>—</td></tr>
+      <tr><td>review_ch16</td><td><span class="badge brand">mode7</span></td><td>Detail Review + De-AI Analysis</td><td>Ch16 Merge</td></tr>
+      <tr><td>pipeline_16_17</td><td><span class="badge cyan">mode8</span></td><td>Ch16 Unified Review + Ch17 Write</td><td>—</td></tr>
+      <tr><td>review_ch17</td><td><span class="badge brand">mode7</span></td><td>Detail Review + De-AI Analysis</td><td>Ch17 Merge</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- 4. 验证结果详情 -->
+<div class="section">
+  <h2><span class="num">4</span>验证结果详情（14项检查）</h2>
+  
+  <div class="checklist">
+    <div class="check-item">
+      <div class="check-icon pass"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+      <span><strong>[1] 基本结构</strong> — 24步ID连续(0-23)</span>
+    </div>
+    <div class="check-item">
+      <div class="check-icon pass"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+      <span><strong>[2] 依赖验证</strong> — 所有依赖有效，无前向引用</span>
+    </div>
+    <div class="check-item">
+      <div class="check-icon pass"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+      <span><strong>[3] 循环依赖</strong> — 无循环依赖</span>
+    </div>
+    <div class="check-item">
+      <div class="check-icon pass"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+      <span><strong>[4] 并行组结构</strong> — 7组全部结构正确</span>
+    </div>
+    <div class="check-item">
+      <div class="check-icon pass"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+      <span><strong>[5] 流水线依赖（关键）</strong> — pipeline_14_15: Write依赖Merge ✓</span>
+    </div>
+    <div class="check-item">
+      <div class="check-icon pass"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+      <span><strong>[5] 流水线依赖（关键）</strong> — pipeline_15_16: Write依赖Merge ✓</span>
+    </div>
+    <div class="check-item">
+      <div class="check-icon pass"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+      <span><strong>[5] 流水线依赖（关键）</strong> — pipeline_16_17: Write依赖Merge ✓</span>
+    </div>
+    <div class="check-item">
+      <div class="check-icon pass"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+      <span><strong>[6] 每章步骤数</strong> — 4章均6步（统一模式）</span>
+    </div>
+    <div class="check-item">
+      <div class="check-icon pass"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+      <span><strong>[7] state.json一致性</strong> — total_steps/steps/parallel_groups全部匹配</span>
+    </div>
+    <div class="check-item">
+      <div class="check-icon pass"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+      <span><strong>[7] state.json一致性</strong> — 所有步骤初始化为pending</span>
+    </div>
+    <div class="check-item">
+      <div class="check-icon pass"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+      <span><strong>[8] 开头/结尾多样性</strong> — 无连续重复风格</span>
+    </div>
+    <div class="check-item">
+      <div class="check-icon pass"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+      <span><strong>[9] 文件I/O安全</strong> — 并行组内无并发写同一文件</span>
+    </div>
+    <div class="check-item">
+      <div class="check-icon warn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="12" y1="9" x2="12" y2="13"/><circle cx="12" cy="17" r="0.5" fill="currentColor"/></svg></div>
+      <span><strong>[警告×3]</strong> — review_ch15/16/17 并行步骤依赖数组比较差异（PowerShell数组比较误报，实际依赖相同，不影响执行）</span>
+    </div>
+  </div>
+</div>
+
+<!-- 5. 模拟执行结果 -->
+<div class="section">
+  <h2><span class="num">5</span>模拟执行结果</h2>
+  <p>使用 <code class="inline">simulate_parallel_engine.ps1</code> 模拟24步的并行调度执行，验证调度逻辑正确性并计算时间节省。</p>
+
+  <h3>串行 vs 并行对比</h3>
+  <div class="compare-bars">
+    <div class="bar-row">
+      <div class="bar-label"><span>串行执行（全部顺序）</span><span>195 min</span></div>
+      <div class="bar-track"><div class="bar-fill serial" style="width: 100%;">195 min</div></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label"><span>并行执行（mode7+mode8）</span><span>115 min</span></div>
+      <div class="bar-track"><div class="bar-fill parallel" style="width: 59%;">115 min</div></div>
+    </div>
+  </div>
+
+  <h3>执行时间线</h3>
+  <div class="timeline">
+    <div class="timeline-row">
+      <div class="timeline-time">T=0min</div>
+      <div class="timeline-event"><span class="tag serial">S</span>Ch14 Write</div>
+    </div>
+    <div class="timeline-row">
+      <div class="timeline-time">T=15min</div>
+      <div class="timeline-event"><span class="tag parallel">P</span>Ch14 Detail Review + Ch14 De-AI Analysis（并行）</div>
+    </div>
+    <div class="timeline-row">
+      <div class="timeline-time">T=20min</div>
+      <div class="timeline-event"><span class="tag merger">M</span>Ch14 Merge（合并）</div>
+    </div>
+    <div class="timeline-row">
+      <div class="timeline-time">T=25min</div>
+      <div class="timeline-event"><span class="tag parallel">P</span>Ch14 Unified Review + Ch15 Write（流水线并行）</div>
+    </div>
+    <div class="timeline-row">
+      <div class="timeline-time">T=40min</div>
+      <div class="timeline-event"><span class="tag parallel">P</span>Ch15 Detail Review + Ch15 De-AI Analysis + Ch14 Memory Commit（三路并行）</div>
+    </div>
+    <div class="timeline-row">
+      <div class="timeline-time">T=45min</div>
+      <div class="timeline-event"><span class="tag merger">M</span>Ch15 Merge（合并）</div>
+    </div>
+    <div class="timeline-row">
+      <div class="timeline-time">T=50min</div>
+      <div class="timeline-event"><span class="tag parallel">P</span>Ch15 Unified Review + Ch16 Write（流水线并行）</div>
+    </div>
+    <div class="timeline-row">
+      <div class="timeline-time">T=65min</div>
+      <div class="timeline-event"><span class="tag parallel">P</span>Ch16 Detail Review + Ch16 De-AI Analysis + Ch15 Memory Commit（三路并行）</div>
+    </div>
+    <div class="timeline-row">
+      <div class="timeline-time">T=70min</div>
+      <div class="timeline-event"><span class="tag merger">M</span>Ch16 Merge（合并）</div>
+    </div>
+    <div class="timeline-row">
+      <div class="timeline-time">T=75min</div>
+      <div class="timeline-event"><span class="tag parallel">P</span>Ch16 Unified Review + Ch17 Write（流水线并行）</div>
+    </div>
+    <div class="timeline-row">
+      <div class="timeline-time">T=90min</div>
+      <div class="timeline-event"><span class="tag parallel">P</span>Ch17 Detail Review + Ch17 De-AI Analysis + Ch16 Memory Commit（三路并行）</div>
+    </div>
+    <div class="timeline-row">
+      <div class="timeline-time">T=95min</div>
+      <div class="timeline-event"><span class="tag merger">M</span>Ch17 Merge（合并）</div>
+    </div>
+    <div class="timeline-row">
+      <div class="timeline-time">T=100min</div>
+      <div class="timeline-event"><span class="tag serial">S</span>Ch17 Unified Review</div>
+    </div>
+    <div class="timeline-row">
+      <div class="timeline-time">T=110min</div>
+      <div class="timeline-event"><span class="tag serial">S</span>Ch17 Memory Commit — <strong style="color:var(--green);">全部完成</strong></div>
+    </div>
+  </div>
+
+  <h3>模拟数据汇总</h3>
+  <table>
+    <thead>
+      <tr><th>指标</th><th>值</th><th>说明</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>总步骤数</td><td>24</td><td>4章 × 6步/章</td></tr>
+      <tr><td>并行组数</td><td>7</td><td>4个mode7 + 3个mode8</td></tr>
+      <tr><td>调度批次</td><td>14</td><td>引擎共发出14次调度</td></tr>
+      <tr><td>串行总时间</td><td>195 min</td><td>假设所有步骤顺序执行</td></tr>
+      <tr><td>并行总时间</td><td>115 min</td><td>利用mode7+mode8并行</td></tr>
+      <tr><td>节省时间</td><td>80 min</td><td>41% 时间节省</td></tr>
+      <tr><td>并行加速比</td><td>1.7x</td><td>串行/并行 = 195/115</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- 6. 关键技术决策 -->
+<div class="section">
+  <h2><span class="num">6</span>关键技术决策</h2>
+
+  <h3>流水线依赖修正</h3>
+  <p>在初版生成器中，Ch(N+1) Write 错误地依赖 Ch(N) Memory Commit，导致流水线并行被破坏（必须等记忆入库才能写下一章）。修正后 Ch(N+1) Write 依赖 Ch(N) Merge（正文已打磨但不必等审稿和入库），实现真正并行。</p>
+<pre>// 修正前（错误）：Ch15 Write 依赖 Ch14 Memory Commit
+depends_on: [5]  // Ch14 Memory Commit — 并行被破坏！
+
+// 修正后（正确）：Ch15 Write 依赖 Ch14 Merge
+depends_on: [3]  // Ch14 Merge — 正文已打磨，可与Ch14审稿并行</pre>
+
+  <h3>统一审核模式集成</h3>
+  <p>使用 <code class="inline">-ReviewMode unified</code> 参数，将传统2步（quality-reviewer 8维 + final-reviewer 4维）合并为1步 unified_review（12维一次评完），每章减少1步骤+1文件。已在Ch12验证等价性：unified_score(9.51) == final_score(9.51)。</p>
+
+  <h3>开头/结尾风格自动轮换</h3>
+  <p>生成器根据章节号自动分配开头/结尾风格，确保无连续重复：</p>
+  <table>
+    <thead>
+      <tr><th>章节</th><th>开头</th><th>结尾</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Ch14</td><td>sensory（感官）</td><td>action_unfinished（动作未完成）</td></tr>
+      <tr><td>Ch15</td><td>dialogue（对话）</td><td>info_reveal（信息揭示）</td></tr>
+      <tr><td>Ch16</td><td>scene_action（场景动作）</td><td>dialogue_ending（对话结尾）</td></tr>
+      <tr><td>Ch17</td><td>suspense（悬念）</td><td>scene_description（场景描写）</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- 7. 生产就绪评估 -->
+<div class="section">
+  <h2><span class="num">7</span>生产就绪评估</h2>
+  
+  <table>
+    <thead>
+      <tr><th>能力项</th><th>状态</th><th>验证依据</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>task_config自动生成</td>
+        <td><span class="badge green">就绪</span></td>
+        <td>从outline.json提取beats，自动分配风格，生成24步配置</td>
+      </tr>
+      <tr>
+        <td>mode7审核并行</td>
+        <td><span class="badge green">就绪</span></td>
+        <td>4组审核并行结构正确，合并步骤依赖验证通过</td>
+      </tr>
+      <tr>
+        <td>mode8流水线并行</td>
+        <td><span class="badge green">就绪</span></td>
+        <td>3组流水线依赖正确（Write→Merge非Memory），模拟验证通过</td>
+      </tr>
+      <tr>
+        <td>统一审核模式</td>
+        <td><span class="badge green">就绪</span></td>
+        <td>Ch12等价性验证通过，每章减少1步+1文件</td>
+      </tr>
+      <tr>
+        <td>state.json同步</td>
+        <td><span class="badge green">就绪</span></td>
+        <td>total_steps/steps/parallel_groups全部匹配</td>
+      </tr>
+      <tr>
+        <td>文件I/O安全</td>
+        <td><span class="badge green">就绪</span></td>
+        <td>并行组内无并发写同一文件</td>
+      </tr>
+      <tr>
+        <td>开头/结尾多样性</td>
+        <td><span class="badge green">就绪</span></td>
+        <td>自动轮换，无连续重复</td>
+      </tr>
+      <tr>
+        <td>实际Agent调度</td>
+        <td><span class="badge yellow">待验证</span></td>
+        <td>模拟验证通过，需实际多Agent并行执行确认</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Summary -->
+<div class="summary-card">
+  <h3>验证结论</h3>
+  <p>并行调度引擎的核心逻辑已通过全面验证：</p>
+  <ul>
+    <li><strong>结构正确性</strong>：24步配置、7个并行组、依赖链全部正确，0错误</li>
+    <li><strong>并行效率</strong>：mode7+mode8组合实现41%时间节省，1.7x加速比</li>
+    <li><strong>关键修正</strong>：流水线依赖从Memory Commit改为Merge，确保真正并行</li>
+    <li><strong>统一审核</strong>：12维一步评审替代传统2步，每章减少1步+1文件</li>
+    <li><strong>自动生成</strong>：从大纲自动生成完整task_config，无需手动编写</li>
+  </ul>
+  <div class="conclusion">
+    ✓ 并行调度引擎已就绪，可投入生产使用。建议下一步进行实际多Agent并行执行验证。
+  </div>
+</div>
+
+</div>
+</body>
+</html>
