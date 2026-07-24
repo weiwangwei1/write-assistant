@@ -1,17 +1,23 @@
 {
   "card_type": "outline",
-  "timestamp": "2026-07-23T19:30:00Z",
+  "timestamp": "2026-07-24T12:00:00+08:00",
   "from_agent": "plot-architect",
-  "to_agent": "title-reviewer",
+  "to_agent": "skeptic",
   "status": "ready",
   "outline_ref": "memory/outline.json",
+  "outline_version": "v4.1",
   "content": {
     "title": "有龙则灵",
     "genre": "玄幻/位面流/轻松",
     "total_chapters": 330,
     "total_volumes": 6,
-    "main_plot_line": "许愿从吹灯巷祭品铺小东家起步，以祖传供桌的公正返利为根基，在神殿/世家/公会的夹缝中崛起，逐步揭开长明灯熄灭的真相",
-    "key_roles_needed": ["许愿(主角)", "老灯(古龙)", "豆灯(萌宠)", "温故(终极反派)", "霍东来(隐藏反派)", "封九霄(灰色角色)"],
-    "note": "大纲已就绪，请先进行书名审核(title-reviewer)，然后质疑迭代(skeptic)、验收定稿(outline-editor)、角色设计(character-designer)，最终完成黄金三章撰写"
+    "main_plot_line": "许愿从吹灯巷祭品铺小东家起步，被神殿巡查使误认为偷祭品的贼，一边自证清白一边以祖传供桌的公正返利为根基，在神殿/世家/公会的夹缝中崛起，逐步揭开长明灯熄灭、老龙被囚、诸神分火的真相，最终修复祭坛、恢复献祭公道、万界来朝",
+    "key_changes_from_v4": [
+      "C4修复：新增protagonist_uniqueness_vol1，前30章独特性=判断力+学习力（6个milestone逐章映射），非供桌功能",
+      "C5修复：新增why_wengu_allows_return，温故不在乎龙纹返利(要火种碎片)，补充温故盲区+dramatic_irony",
+      "C9修复：Ch1新增small_face_slap(供桌认主小打脸)，纪霜衡碰供桌无反应→'我说了是我家的'，即时正反馈"
+    ],
+    "key_roles_needed": ["许愿(主角)", "老龙(沉默古龙)", "纪霜衡(女主/巡查使)", "豆灯(萌宠)", "老周(导师/牺牲角色)", "温故(终极反派)", "霍东来(隐藏反派)", "封九霄(灰色角色)"],
+    "note": "大纲v4.1已就绪，修复skeptic 3轮质疑的3个high级问题。请skeptic重审v4.1确认修复是否到位，然后进入outline-editor验收"
   }
 }

@@ -1,0 +1,21 @@
+{
+  "card_type": "characters",
+  "timestamp": "2026-07-23T17:21:29.197520+00:00",
+  "from_agent": "character-designer",
+  "to_agent": "chapter-writer",
+  "status": "ready",
+  "characters_ref": "memory/characters.json",
+  "content": {
+    "main_characters": [
+      "许愿",
+      "老龙",
+      "豆灯",
+      "纪霜衡",
+      "温故",
+      "霍东来",
+      "封九霄",
+      "老周"
+    ],
+    "note": "角色卡与关系网已就绪，可开始第1章写作"
+  }
+}

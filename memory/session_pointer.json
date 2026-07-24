@@ -1,0 +1,59 @@
+{
+  "card_type": "session_pointer",
+  "last_updated": "2026-07-24T20:30:00+08:00",
+  "last_updated_chapter": 10,
+  "project_status": {
+    "novel_title": "有龙则灵",
+    "outline_version": "v4.3（定稿）",
+    "current_phase": "chapter_loop",
+    "current_volume": 1,
+    "current_chapter": 11,
+    "total_chapters": 300,
+    "completed_chapters": 10,
+    "overall_progress": "3.3%",
+    "phase_note": "设计流程全部走完：topic-screener→plot-architect(v4.3定稿9.55)→skeptic(6质疑闭环)→outline-editor(9.55)→character-designer(8卡+设定9.54)→chapter-writer(ch1-10定稿)→detail/quality复审(10章均分9.49，黄金三章9.53)→longline-guardian(ch10全局审查)→memory-manager(ch1-10入库完成)"
+  },
+  "recent_milestone": {
+    "type": "first_ten_chapters_complete",
+    "chapter": 10,
+    "summary": "手稿ch1-10正典修订完成并全部入库。E1微修订4处（瓦当沉入/账册'传承'/组合数模糊化/公会主动延后）+E2修订6处（悬念挂起/ch7ch8爽点补强/离桌规则/ch10独白收敛/ch4标题）。双硬指标全达标"
+  },
+  "character_quick_state": [
+    {"name": "许愿", "location": "吹灯巷祭品铺", "emotion": "意识到'桌子等了我很多年'，青灯灯油压心里", "power": "鳞纹+完整爪纹+角纹(养纹中ch11-12不可用)", "last_chapter": 10},
+    {"name": "老灯", "location": "供桌下", "emotion": "嫌弃纵容渐显，话题开放度stage1(失态前兆)", "power": "威压(透支型)/来历鉴定/公道返利", "last_chapter": 10},
+    {"name": "纪霜衡", "location": "神殿", "emotion": "按规矩办的平静", "power": "未登场", "last_chapter": 0, "note": "ch11携拘传令登门"},
+    {"name": "霍东来", "location": "霍家外院纹材铺", "emotion": "持仓待涨的耐心", "power": "灰色知情人", "last_chapter": 5},
+    {"name": "封九霄", "location": "公会千灯分会", "emotion": "稳里添兴味", "power": "未露面", "last_chapter": 8, "note": "ch11-12刻字兑现"},
+    {"name": "盲眼老人", "location": "灯市口", "emotion": "交完委托'人如烟散'", "power": "掌灯人(接替链活档案)", "last_chapter": 10}
+  ],
+  "foreshadowing_quick_status": [
+    {"id": "F001 守灯人传承", "status": "planted(ch1)", "next": "ch11旧案翻出半揭"},
+    {"id": "F003 火种进度", "status": "planted+warming(ch10青灯)", "next": "ch19-20豆灯归位；ch11-15需保温beat"},
+    {"id": "F004 爷爷下落", "status": "layer1已揭(ch5-6)", "next": "ch22-25旧案三漏洞"},
+    {"id": "F005 符号同源", "status": "half_revealed(ch10)", "next": "Vol2供簿溯源"},
+    {"id": "F006 上一任/接替链", "status": "active(ch10问句化)", "next": "与旧案线交汇"},
+    {"id": "B2 疤脸债", "status": "awaiting_clearance", "next": "ch11-12全胜清算"}
+  ],
+  "goal_quick_status": {
+    "active": ["G001镇巷令刻字(挂起中,ch11-12闭环)", "G003火种(长线)", "G004养纹三天(ch11-12到期)", "G005青灯灯油(ch10新建)"],
+    "suspense_window": "满窗3/3（M3火种/M4上一任/M5老人）——ch11开新悬念前须先闭环一条"
+  },
+  "last_session_summary": "ch1-10定稿入库完成。第三方评审(index-review.html)建议全量采纳：v4.2大纲融合手稿正典+skeptic优化为v4.3（传承契约替代血脉天赋/老灯毒舌保留+三不答/原罪开局ch11-13/双硬指标）。章节修订E1×4+E2×6解决目标断头/爽点断顿/悬念过载。10章均分9.49，黄金三章9.53。longline-guardian ch10审查=warning级1项（火种保温间隔），已受理排期",
+  "next_action": "ch11开写（大纲tanghulu unit1'仙子局面'）：纪霜衡携拘传令登门翻出旧案——封铺收桌带人死局。写作前必读：①goal_tracker（G001闭环/G004养纹限制/悬念满窗约束）②章末钩子轮换（ch10为场景描写尾，ch11须换型）③开头方式轮换（ch10为对话开头）④每章≥1非压抑情绪释放点（老灯毒舌/纪霜衡'严肃被噎'）⑤ch11-15安排火种保温beat≤100字",
+  "quality_trend": {
+    "golden_three_avg": 9.53,
+    "last_10_avg": 9.49,
+    "trend": "stable_high",
+    "weakest_chapters": "ch4(9.4)/ch8(9.3)——结构性蓄力章，由ch2/ch3/ch9平衡，符合串糖葫芦节奏",
+    "note": "技术分≥9.5硬门槛：黄金三章达标；10章均分9.49为四舍五入临界，后续单章须保9.5+拉高均值"
+  },
+  "key_decisions_log": [
+    "v4.3融合定稿：手稿ch1-10为正典（大纲服从手稿）+第三方评审全量修订+skeptic 6质疑闭环",
+    "金手指：血脉天赋→守灯人传承契约（三层绑定：许家血脉入场券+供簿双凭证+老灯认人公章）",
+    "老灯：沉默化→毒舌财迷+三不答（说不清/不敢说/不愿说，沉默不是人设是创伤）",
+    "开局：误会开局→仙子式原罪开局（ch11-13死局三支柱：死局/原罪/信息差）",
+    "双硬指标：每3章≥1 S/A爽点+活跃悬念≤3条（闭环才开新）",
+    "悬念治理：主线合并（10条→5条池M1-M5）+主动挂起机制（E1-4/E2-1）"
+  ],
+  "open_decisions": []
+}

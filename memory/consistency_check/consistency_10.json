@@ -1,0 +1,70 @@
+{
+  "card_type": "consistency_check",
+  "novel_title": "有龙则灵",
+  "check_chapter": 10,
+  "check_range": "ch1-ch10",
+  "check_date": "2026-07-24T20:25:00+08:00",
+  "trigger": "每10章自动自检（memory-manager硬规则）",
+  "overall_status": "healthy",
+  "dimensions": {
+    "character_setting_consistency": {
+      "status": "pass",
+      "checks": [
+        {"item": "许愿年龄", "result": "ch1'十七岁还没长开' ↔ 角色卡17岁 ✓"},
+        {"item": "爷爷失踪时间", "result": "ch1'半年前人没了'/ch2'走了半年'/ch6陈婶'失踪前半年听不到' 三处互扣 ✓"},
+        {"item": "血脉残留", "result": "全文grep'血脉'零匹配——A2勘误彻底，守灯人=传承契约职务 ✓"},
+        {"item": "老灯人设", "result": "毒舌(ch1'又是破烂'/ch10'你当我是什么')+三不答(ch8'不问'/ch10'别问了')+财迷(ch2'亏了')+离桌代价(ch7'省着烧')全部落地，与角色卡v4.3一致 ✓"},
+        {"item": "霍东来转向", "result": "ch2施压→ch5赔礼服软，'老灯认我'与角色卡灰色知情人定位一致 ✓"}
+      ]
+    },
+    "worldview_rule_consistency": {
+      "status": "pass",
+      "checks": [
+        {"item": "献祭六规-归宿(消耗制)", "result": "瓦当/铜板/烟杆/墨盒/怀表/短刀/角纹布全部沉入供桌；三类边界清晰：无来历弹(鲜果)/假来历弹(碎玉/铜碟)/认约物推回(供簿) ✓"},
+        {"item": "同源共振", "result": "鳞纹只对强因果之物发烫（庚午年铜祭器ch8'认的热'）；锈墨盒ch3鳞纹无反应须供桌终审=捡漏保风险 ✓"},
+        {"item": "装睡条款", "result": "ch2威压→ch3迷糊加重，出手必透支规则落地 ✓"},
+        {"item": "锁监听边界", "result": "ch5'上一次献祭'可提（非三类核心秘密实质泄露）/ch8'不问'/ch10'别问了'，供桌裂缝渗光=边界试探意象，skeptic C4闭环 ✓"},
+        {"item": "能力升级具象化", "result": "ch1鳞纹(挡一下)→ch2挨打生长→ch3爪纹(攻防组合)→ch9角纹(喷火+三天养纹限制)：前10章3次'之前做不到现在能了'，符合每3-4章1次条款 ✓"}
+      ]
+    },
+    "foreshadowing_consistency": {
+      "status": "pass",
+      "checks": [
+        {"item": "符号同源链", "result": "供簿封面(ch6)=泥灯底(ch7)=同一只手(ch8确认)→画手六十年前不在(ch10)：四次触碰无矛盾 ✓"},
+        {"item": "庚午年物件链", "result": "墨盒'赠慎独兄庚午年春'(ch4)→短刀'镇巷十三号庚午年封'(ch4)→'上一次献祭的年份'(ch5)→铜祭器'庚午年秋李某供用'(ch8)：年份笔法一致 ✓"},
+        {"item": "爷爷下落分层", "result": "ch5'被供桌收回去了'→ch6'还在里头，出不来'→'灯守龙'：路线B第一层表象答案，未透支中层(旧案)/深层(守火) ✓"},
+        {"item": "火种进度", "result": "ch3梦话立标→ch7泥灯'想要'→ch10青灯灯油：体系内关联成立；stalled 7章已有归位计划(ch19-20豆灯) ⚠ warning级，见goal_tracker"}
+      ]
+    },
+    "timeline_consistency": {
+      "status": "pass",
+      "checks": [
+        {"item": "大供日历法", "result": "ch1初一大供→ch2初二例钱→ch8'明天初一大供'→ch9初一大供：时间线连贯（ch3-7约两周） ✓"},
+        {"item": "消化期规则", "result": "基准7天/大供3天：ch1瓦当(初一)→ch3集中测试→ch5短刀→ch9角纹布(初一大供)，间隔与消化期不冲突 ✓"}
+      ]
+    },
+    "suspense_throttle": {
+      "status": "pass",
+      "checks": [
+        {"item": "活跃悬念≤3", "result": "ch1-ch10逐章窗口全达标（见goal_tracker.suspense_window），ch10末窗口=M3/M4/M5满窗 ✓"},
+        {"item": "挂起机制", "result": "E2-1'老灯认我'压柜底+E1-4公会主动延后：两处挂起均有文本锚点，非遗忘 ✓"}
+      ]
+    },
+    "shuang_density": {
+      "status": "pass",
+      "checks": [
+        {"item": "3章滚动窗口", "result": "8个窗口全达标（E2-2/E2-4补强后ch5-7/ch6-8窗口修复） ✓"},
+        {"item": "黄金三章", "result": "均分9.53≥9.5 ✓"}
+      ]
+    }
+  },
+  "issues_found": [
+    {
+      "severity": "warning",
+      "item": "火种主线保温间隔",
+      "detail": "ch3立标后ch4-9六章仅靠意象关联，ch10才落委托beat。虽已达标不构成critical，但ch11-15须按longline建议安插1次保温beat",
+      "assigned_to": "chapter-writer（ch11-15执行）"
+    }
+  ],
+  "next_check_chapter": 20
+}

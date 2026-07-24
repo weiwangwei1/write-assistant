@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>《有龙则灵》设计与大纲综合文档 v4.2</title>
+<style>
+:root {
+  --bg: #fafaf8; --bg2: #f0efe9; --bg3: #e8e7e0;
+  --ink: #1a1a1a; --muted: #6b6b6b; --rule: #d4d3cd;
+  --accent: #b5452a; --accent2: #3a6b5e; --accent3: #8b6914; --danger: #8b1a1a;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 15px; line-height: 1.75; color: var(--ink); background: var(--bg); max-width: 960px; margin: 0 auto; padding: 2.5rem 1.5rem 4rem; }
+h1 { font-size: 1.8rem; font-weight: 700; margin-bottom: 0.4rem; letter-spacing: -0.02em; }
+h2 { font-size: 1.3rem; font-weight: 700; margin: 2.5rem 0 1rem; padding-bottom: 0.4rem; border-bottom: 2px solid var(--accent); }
+h3 { font-size: 1.05rem; font-weight: 700; margin: 1.5rem 0 0.6rem; color: var(--accent2); }
+h4 { font-size: 0.95rem; font-weight: 700; margin: 1rem 0 0.4rem; color: var(--accent3); }
+.subtitle { font-size: 0.95rem; color: var(--muted); margin-bottom: 1.5rem; }
+.section-intro { color: var(--muted); font-size: 0.9rem; margin-bottom: 0.8rem; }
+p { margin-bottom: 0.8rem; }
+mark.key { background: none; color: var(--accent); font-weight: 600; }
+code { background: var(--bg3); padding: 1px 5px; border-radius: 3px; font-size: 0.85em; font-family: 'Consolas', monospace; }
+.table-wrap { overflow-x: auto; overflow-y: auto; max-height: 640px; margin: 0.8rem 0 1.2rem; border-radius: 6px; border: 1px solid var(--rule); }
+table { width: 100%; border-collapse: collapse; font-size: 0.85rem; min-width: 600px; }
+thead th { background: var(--accent2); color: #fff; padding: 0.5rem 0.7rem; text-align: left; font-weight: 600; font-size: 0.82rem; white-space: nowrap; position: sticky; top: 0; z-index: 1; }
+tbody td { padding: 0.5rem 0.7rem; border-bottom: 1px solid var(--rule); vertical-align: top; }
+tbody tr:nth-child(even) { background: var(--bg2); }
+.info-card { background: var(--bg2); border-radius: 6px; padding: 1rem 1.2rem; margin: 0.8rem 0; border: 1px solid var(--rule); }
+.info-card h4 { margin: 0 0 0.3rem; }
+.callout { background: rgba(181, 69, 42, 0.06); border-left: 4px solid var(--accent); padding: 0.8rem 1rem; margin: 1rem 0; border-radius: 0 6px 6px 0; font-size: 0.9rem; }
+.callout strong { color: var(--accent); }
+.callout.green { background: rgba(58, 107, 94, 0.06); border-left-color: var(--accent2); }
+.callout.green strong { color: var(--accent2); }
+.callout.warn { background: rgba(139, 26, 26, 0.05); border-left-color: var(--danger); }
+.callout.warn strong { color: var(--danger); }
+.badge { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 0.75rem; font-weight: 700; margin-right: 0.3rem; }
+.badge.pass { background: rgba(58, 107, 94, 0.15); color: var(--accent2); }
+.badge.adjust { background: rgba(181, 69, 42, 0.12); color: var(--accent); }
+.badge.gold { background: rgba(139, 105, 20, 0.15); color: var(--accent3); }
+ol, ul { padding-left: 1.5rem; margin-bottom: 0.8rem; }
+li { margin-bottom: 0.3rem; font-size: 0.9rem; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 0.8rem 0; }
+.toc { background: var(--bg2); border: 1px solid var(--rule); border-radius: 6px; padding: 1rem 1.2rem; margin-bottom: 2rem; }
+.toc h3 { margin: 0 0 0.5rem; color: var(--ink); font-size: 0.9rem; }
+.toc ol { margin: 0; }
+.toc li { font-size: 0.85rem; }
+.toc a { color: var(--accent2); text-decoration: none; }
+.synopsis { background: var(--bg2); border: 1px solid var(--rule); border-radius: 6px; padding: 1.2rem 1.4rem; margin: 1rem 0; font-size: 0.95rem; }
+.synopsis p { margin-bottom: 0.7rem; }
+.synopsis p:last-child { margin-bottom: 0; }
+footer { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--rule); color: var(--muted); font-size: 0.8rem; }
+@media (max-width: 768px) { body { padding: 1.5rem 1rem; } .two-col { grid-template-columns: 1fr; } h1 { font-size: 1.4rem; } table { min-width: 400px; } }
+</style>
+</head>
+<body>
+
+<h1>《有龙则灵》设计与大纲综合文档 v4.2</h1>
+<p class="subtitle">基于《写作框架选题基准》v1.0 · 参考《罪恶之城》机制基因 · 参考《仙子，请听我解释》开局张力模型<br>本版性质：v4.1第三方评审后的全量修订版＋手稿第1—10章正典缝合 · <strong>验收定稿候选</strong></p>
+
+<div class="toc">
+  <h3>目录</h3>
+  <ol>
+    <li><a href="#p1">第一部分：修改说明（v4.1→v4.2）</a></li>
+    <li><a href="#s1">选题总卡</a></li>
+    <li><a href="#s2">主角背景：仙子式原罪开局</a></li>
+    <li><a href="#s3">世界观：长明界（契约版·枷锁版）</a></li>
+    <li><a href="#s4">体系：龙纹五系＋献祭六规</a></li>
+    <li><a href="#s5">角色卡</a></li>
+    <li><a href="#s6">反派四级体系</a></li>
+    <li><a href="#s7">火种主线</a></li>
+    <li><a href="#s8">分卷大纲（全书300章）</a></li>
+    <li><a href="#s9">爽感路径自查</a></li>
+    <li><a href="#s10">暗线与答案分层</a></li>
+    <li><a href="#s11">框架合规自查</a></li>
+    <li><a href="#s12">风险与对策</a></li>
+    <li><a href="#s13">简介与标签</a></li>
+    <li><a href="#s14">流水线状态</a></li>
+  </ol>
+</div>
+
+<!-- ============================================ -->
+<h2 id="p1">第一部分：修改说明（v4.1→v4.2）</h2>
+
+<h3>1.1 修订总览</h3>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>#</th><th>v4.1的问题</th><th>v4.2方案</th><th>依据</th></tr></thead>
+  <tbody>
+    <tr><td>1</td><td><strong>守灯人血脉天赋</strong>——撞框架"非天生外挂"红线；"天生看见来历记忆"拆毁捡漏风险引擎</td><td><strong>回滚为传承契约</strong>：守灯人＝职务（祖师爷与龙立约），供桌认"约"不认"血"；主角独特性＝铭纹师（后天手艺）＋同源共振＋判断力</td><td>框架1.2硬性约束；手稿本无血脉（鉴定靠鳞纹＋供桌＋脑子）；v1.1同源共振锁定</td></tr>
+    <tr><td>2</td><td><strong>供桌＝温故囚具</strong>——时间线硬伤：囚具仅20年历史 vs 许家世代守灯60年+ vs 手稿"鳞是根，桌是枝"</td><td><strong>降级为枷锁</strong>：供桌＝长明灯旧坛（古已有之）；温故二十年前在旧坛上<strong>加锁</strong>——囚龙、改公道为十献一返。锁锁不住桌认的人</td><td>手稿ch5意象；供簿六十年；守灯人接替链</td></tr>
+    <tr><td>3</td><td><strong>老龙沉默化</strong>（前30章≤10句）——废弃手稿验证过的最大喜剧引擎，前22章情绪释放点悬空</td><td><strong>保留毒舌＋"三不答"</strong>：啥都聊，过去／身份／火种一问就装睡；"声音进化五阶段"改"<strong>话题开放度进化</strong>"</td><td>手稿ch1—10实际写法（"看到了就别问"）；简介卖点句"毒舌"</td></tr>
+    <tr><td>4</td><td><strong>与手稿10章断层</strong>（老龙人设／开局结构／霍东来三处硬冲突）</td><td><strong>选项C缝合</strong>：手稿1—10为正典；纪霜衡ch11循传闻携拘传令登场；霍东来定型"灰色知情人"；卷一boss改聚宝阁</td><td>手稿评审；ch10"巷子里都传遍了"是现成衔接口</td></tr>
+    <tr><td>5</td><td><strong>开局张力不足</strong>（用户新需求：参考《仙子，请听我解释》）</td><td><strong>仙子式原罪开局</strong>：爷爷旧案"渎神窃坛"（秘密档案）；ch11—13拘传死局三件套——详见1.2专题</td><td>用户指定；v4.1误会开局升级</td></tr>
+    <tr><td>6</td><td><strong>Vol5+Vol6占170/330章＝51%</strong>，后重前轻</td><td><strong>全书压回300章</strong>：Vol5 161—230（70章）／Vol6 231—300（70章）</td><td>v4.1 must_fix #1</td></tr>
+    <tr><td>7</td><td><strong>祭品归宿始终未定义</strong>（A1旧账：手稿ch1瓦当留 vs ch3物品沉入）</td><td><strong>六规补归宿条款＝消耗制</strong>：祭品沉入供桌；ch1瓦当修订为一同沉入，窑工幻象前移至献祭前擦拭时触发</td><td>手稿实际走消耗路线（4处沉入＋ch9化在光里）</td></tr>
+    <tr><td>8</td><td>空壳局依赖"空壳"规则，与消耗制冲突</td><td>聚宝阁线改为<strong>赝品局</strong>——防伪规则ch10已公开点火（赵婶铜碟），无缝衔接</td><td>归宿条款连锁调整</td></tr>
+    <tr><td>9</td><td>手稿ch4—10爽点断顿、悬念过载的教训</td><td>立两条硬指标：<strong>每3章≥1个S/A级爽点；同时活跃悬念≤3条，闭环一条才开新一条</strong></td><td>框架山楂结构；手稿评审</td></tr>
+    <tr><td>10</td><td>封九霄／镇巷令断头线（手稿最严重单点bug）</td><td><strong>ch11立即兑现</strong>：刻字＋例钱免</td><td>手稿评审①</td></tr>
+    <tr><td>11</td><td>老周ch28牺牲在手稿中无铺垫</td><td>ch14／18／25三节点铺垫；碎纹石前置——其子当年十献一返只换得一枚碎纹</td><td>v4.1死亡设计；主题具象化</td></tr>
+    <tr><td>12</td><td>Vol2—6仅有summary</td><td>补齐单元级beats（见8.2—8.6）</td><td>v4.1 must_fix #2</td></tr>
+    <tr><td>13</td><td>简介"沉默"替换"毒舌"＝卖点降级</td><td>恢复毒舌句，新增旧案＋巡查使钩："<strong>那罪名，有七成是真的</strong>"</td><td>仙子钩子</td></tr>
+    <tr><td>14</td><td>书名《以旧换龙》8.0分vs用户保留《有龙则灵》</td><td>尊重保留主标；番茄副标候选：《开局被仙子拘传》《我靠献祭养古龙》</td><td>用户选择；平台导流惯例</td></tr>
+    <tr><td>15</td><td>章字数3000偏长</td><td>2500—2800字／章</td><td>v4.1建议；番茄碎片阅读</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h3>1.2 专题："仙子式原罪"背景设计</h3>
+<p class="section-intro">参考《仙子，请听我解释》，但只借张力模型，不借设定——无穿越、无游戏、无"原主"。原罪来自爷爷，死局来自神殿，武器来自供桌。</p>
+
+<div class="two-col">
+  <div class="info-card">
+    <h4>《仙子》张力模型拆解</h4>
+    <ul>
+      <li><strong>死局开局</strong>：睁眼即面对能秒杀自己的强者</li>
+      <li><strong>身份原罪</strong>：罪名自带，解释像狡辩</li>
+      <li><strong>信息差为武器</strong>：唯一的武器是脑子和信息</li>
+      <li><strong>行动证明</strong>：误会不会因解释解开，只会因行动扭转</li>
+      <li><strong>核心配方</strong>：罪名半真半假——解释不清，是因为真相本身带罪</li>
+    </ul>
+  </div>
+  <div class="info-card">
+    <h4>《有龙则灵》本地化</h4>
+    <ul>
+      <li><strong>死局</strong>→拘传令：封铺、收桌、带人——桌被收＝一切归零</li>
+      <li><strong>原罪</strong>→爷爷旧案"渎神窃坛"，<strong>七成属实</strong>：确实窃了火（为守火）；确实私设了祭坛（旧坛）</li>
+      <li><strong>信息差</strong>→许愿知供桌公道与老灯；纪霜衡掌神殿档案；互不知底牌</li>
+      <li><strong>行动证明</strong>→当众验桌：她随身的师父遗物上供，公道返利直击其信念裂缝</li>
+      <li><strong>配方落地</strong>→"他解释不清，因为那三成隐情，才是公道"</li>
+    </ul>
+  </div>
+</div>
+
+<h4>三处落点</h4>
+<ol>
+  <li><strong>背景暗压回填（手稿正文零改动）</strong>：旧案设为<strong>秘密档案</strong>——温故不愿声张（窃火案公开＝暴露献祭体系可被窃），街坊不知，只有神殿与霍东来层级隐约知情。手稿中霍东来欺压的底气、稽查ch4的跟踪、封九霄"想见你"、"吹灯巷的水比你深"，全部获得第二层含义。手稿修订时可选增补：ch1瓦当上供前加两三句神殿告示栏旧案背景（建议项，非必须）。</li>
+  <li><strong>ch11—13拘传局面（正戏）</strong>：纪霜衡循"供桌鉴宝"传闻＋匿名举报（聚宝阁递刀）携拘传令登门。详见8.1单元一。</li>
+  <li><strong>简介钩子</strong>：末段"那罪名，有七成是真的"（见13）。</li>
+</ol>
+
+<h3>1.3 手稿缝合清单（正典确认）</h3>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>手稿既有（ch1—10）</th><th>v4.2处置</th></tr></thead>
+  <tbody>
+    <tr><td>献祭瓦当得鳞／挡棍／测规则／捡漏爪纹／怀表完整爪纹</td><td>正典。唯一修订：瓦当归宿（沉入），幻象前移</td></tr>
+    <tr><td>霍东来登门→赔罪→"老灯认我"→透露公会情报</td><td>正典。定型"灰色知情人"：爷爷时代旧人网络一员，递刀与试探并存</td></tr>
+    <tr><td>镇巷令＋封九霄"想见你"</td><td>正典。ch11兑现刻字，闭环断头线</td></tr>
+    <tr><td>供簿（六十年1400笔）／"灯守龙"／"被供桌收回去了"</td><td>正典。接入答案分层（见10）：此为表层答案</td></tr>
+    <tr><td>泥灯（三百年+，符号＝供簿封面）／盲眼老人（四指）／青灯（灯油将尽）</td><td>正典。接入火种体系：青灯＝引灯（灯油燃尽前指向火种一）；泥灯＝上代守灯人信物（Vol4作火种容器）；盲眼老人＝守灯人接替链活档案</td></tr>
+    <tr><td>角纹大供（ch9）／赵婶铜碟（ch10）／"火种还差三个"梦话（ch3）</td><td>正典。传闻引擎即巡查使登场引信；梦话即火种进度条起点</td></tr>
+    <tr><td>守灯人血脉（ch1账册残词）</td><td>修订为"守灯人传承"（一处文字修订）</td></tr>
+  </tbody>
+</table>
+</div>
+
+<!-- ============================================ -->
+<h2 id="s1">第二部分：完整大纲 v4.2 · 选题总卡</h2>
+
+<div class="table-wrap">
+<table>
+  <tbody>
+    <tr><td><strong>书名</strong></td><td><strong>有龙则灵</strong>（番茄副标候选：《开局被仙子拘传》《我靠献祭养古龙》）</td></tr>
+    <tr><td><strong>一句话设定</strong></td><td><mark class="key">把东西摆上供桌献祭给一条沉睡的古龙，破铜烂铁也能换回可以镶进身体的龙纹。</mark></td></tr>
+    <tr><td><strong>开局钩子</strong></td><td><mark class="key">主角背着爷爷"渎神窃坛"的旧案——罪名七成是真的，他解释不清。</mark></td></tr>
+    <tr><td><strong>分类</strong></td><td>玄幻升级 · 位面流 · 轻松 · 单女主（决策项，见12风险）</td></tr>
+    <tr><td><strong>基调</strong></td><td>明（爽／笑／燃／暖轮换）；暗线仅作悬念背景板</td></tr>
+    <tr><td><strong>金手指</strong></td><td>祖传供桌（长明灯旧坛）＋守灯人<strong>传承契约</strong>（非血脉）＋铭纹师手艺（后天）</td></tr>
+    <tr><td><strong>爽感路径</strong></td><td>献祭→返利，1步直达，S级</td></tr>
+    <tr><td><strong>硬指标</strong></td><td>每3章≥1个S/A级爽点；同时活跃悬念≤3条，闭环一条才开新一条</td></tr>
+    <tr><td><strong>体量</strong></td><td>6卷300章／约90万字；章字数2500—2800</td></tr>
+    <tr><td><strong>主题句</strong></td><td>灵的不是龙，是人间烟火（卷六收束）</td></tr>
+  </tbody>
+</table>
+</div>
+
+<!-- ============================================ -->
+<h2 id="s2">主角背景：仙子式原罪开局</h2>
+
+<div class="callout">
+  <strong>背景正文：</strong>二十年前，神殿主祭温故主持"上一次献祭"，私改祭品、加锁囚龙、窃取火种。守灯人许慎独察觉，携一枚火种跃入位面夹缝守火失踪。温故反手定性：许慎独"监守自盗、渎神窃坛"，秘密除名，档案封存。罪名落在许家——<strong>许愿开局即"渎神者之孙"</strong>。罪名七成属实：爷爷确实"窃"了火（为守），确实"私设"了祭坛（供桌即旧坛）。他解释不清，因为那三成隐情，才是公道。
+</div>
+
+<ul>
+  <li><strong>为什么是"秘密档案"</strong>：窃火案公开＝向世人暴露献祭体系可以被窃，温故必须压。所以街坊不知、许愿只知"爷爷失踪"，只有神殿档案与霍东来层级隐约耳闻——手稿ch1—10全部兼容。</li>
+  <li><strong>张力三支柱</strong>：①死局——拘传令可封铺收桌，桌失则一切归零；②原罪——罪名七成属实，辩无可辩；③信息差——许愿握供桌公道与老灯，纪霜衡握神殿档案，互不知底牌。</li>
+  <li><strong>成长弧</strong>：保铺子（Vol1）→讨公道（老周之死点燃）→翻旧案（与纪霜衡并线）→守火救爷爷（Vol5）→重燃长明（Vol6）。</li>
+  <li><strong>与"血脉"的本质区别</strong>：原罪是<strong>负债</strong>不是外挂——它给主角的是麻烦、动机与立场，不是能力。能力全部来自后天（供桌契约＋铭纹手艺＋判断力）。</li>
+</ul>
+
+<!-- ============================================ -->
+<h2 id="s3">世界观：长明界（契约版·枷锁版）</h2>
+
+<h3>3.1 总纲</h3>
+<div class="callout">
+  太古有一盏<strong>长明灯</strong>，照亮万界，守灯的是一条古龙。后来灯熄、龙囚、诸神分火——从此世人献祭，不再公道。
+</div>
+
+<div class="two-col">
+  <div class="info-card">
+    <h4>表层世界（前3章可见）</h4>
+    <ul>
+      <li>修行唯一路径：<strong>献祭</strong>。有来历之物献上神殿祭坛，神明降"纹"</li>
+      <li>神殿心黑：<strong>十献一返</strong>，降纹全看神明心情（世界观级黑色幽默）</li>
+      <li>世家掌<strong>界门</strong>，开界战争掠夺异方位面古物火种——祭品＝军火与硬通货</li>
+      <li>纹师公会：技术中立阶层（"公会是秤"）</li>
+    </ul>
+  </div>
+  <div class="info-card">
+    <h4>真相层（暗线，前3章不提）</h4>
+    <ul>
+      <li>供桌＝<strong>长明灯旧坛</strong>（古已有之，认守灯人传承为钥）</li>
+      <li>温故二十年前在旧坛上<strong>加锁</strong>：囚龙、把公道古礼改成十献一返——<strong>锁锁不住桌认的人</strong>，此即温故盲区、"养蚌取珠"反讽的来源</li>
+      <li>老灯＝守灯古龙，被锁在自家旧坛，装睡</li>
+      <li>多纪元暗示（Vol4揭）：长明灯不是第一次灭</li>
+    </ul>
+  </div>
+</div>
+
+<h3>3.2 势力（仅三家）与地图</h3>
+<p>神殿（祭路垄断·温故）｜世家（界门武力·霍镇山）｜公会（纹师技术·封九霄，灰色）。<strong>千灯城＝终极地图</strong>；换图只换小地图：灯市／鬼市／界门猎场（位面碎片）／神殿分坛／供桌后的"灯下黑"。</p>
+
+<h3>3.3 认知门槛三锁（沿用）</h3>
+<ol>
+  <li>世界真名"长明界"卷四后揭；前30章新造专有名词≤5个（千灯城／吹灯巷／神殿／界门／长明灯）</li>
+  <li>势力仅三家，全程不开第四家</li>
+  <li>架空代入补偿在语言层：贫嘴、毒舌、烟火气先行</li>
+</ol>
+
+<!-- ============================================ -->
+<h2 id="s4">体系：龙纹五系＋献祭六规</h2>
+
+<h3>4.1 龙纹五系（不变）</h3>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>系</th><th>功能</th><th>定位</th></tr></thead>
+  <tbody>
+    <tr><td><strong>鳞</strong></td><td>防御、体质</td><td>肉盾（ch1已得）</td></tr>
+    <tr><td><strong>爪</strong></td><td>攻击、力量</td><td>输出（ch3已得）</td></tr>
+    <tr><td><strong>角</strong></td><td>属性、元素</td><td>法师（ch9已得·雷／喷火，三日后稳定）</td></tr>
+    <tr><td><strong>须</strong></td><td>感知、身法、辅助</td><td>机动（Vol2获取）</td></tr>
+    <tr><td><strong>睛</strong></td><td>精神、瞳术、威压</td><td>控制（Vol3—4获取）</td></tr>
+  </tbody>
+</table>
+</div>
+<ul>
+  <li>品级：九品至一品，一品称"纹王"；<strong>高品低量</strong>——外人见"六品"是质，实仅一片鳞的量</li>
+  <li>纹位：十二纹位，每纹占1—3位；剥纹如剥皮（洗点✓）；低武天花板：纹王可敌百，不敌界门军阵</li>
+  <li>五系源自古龙之身——神殿降的纹全是二手货，供桌是原厂（体系即世界观）</li>
+  <li>铭纹师（后天职业线）：鉴定／修复／<strong>套装共振</strong>——爷爷没来得及教（"明儿教你认供桌上的纹路"），许愿靠供簿＋盲眼老人＋实战自学</li>
+</ul>
+
+<h3>4.2 献祭六规</h3>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>规则</th><th>内容</th><th>功能</th></tr></thead>
+  <tbody>
+    <tr><td><strong>一·挑食</strong></td><td>返利看祭品来历不看市价；来历＝灯火的油</td><td>机制对抗发动机</td></tr>
+    <tr><td><strong>二·归宿</strong>（v4.2锁定）</td><td><strong>消耗制</strong>：祭品沉入供桌，物化灯火；来历越重，"沉"得越慢（手稿既有描写）</td><td>统一手稿矛盾；ch1瓦当修订为同沉，幻象前移</td></tr>
+    <tr><td><strong>三·消化期</strong></td><td>基准7天／次，大供（初一十五）可缩短至3天；随老灯恢复渐短</td><td>节奏阀</td></tr>
+    <tr><td><strong>四·防伪</strong></td><td>赝品当场吐出＋毒舌羞辱；部分真品（来历不足）降级返利</td><td>喜剧点；聚宝阁赝品局的规则支点</td></tr>
+    <tr><td><strong>五·手气</strong></td><td>返利有浮动，大供必爆大奖</td><td>开奖感＋仪式感</td></tr>
+    <tr><td><strong>六·喂养</strong></td><td>龙纹可用祭品喂养升品，成本递增</td><td>长期养成线，防膨胀</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h3>4.3 三条附则</h3>
+<ul>
+  <li><strong>装睡条款</strong>：老灯出手必透支，动真格一次沉睡加深一层——主角的仗永远自己打（ch2威压→ch3迷糊，手稿自带佐证）</li>
+  <li><strong>同源共振</strong>：鳞纹只对强因果之物发烫（爷爷遗物、来历极重者）；锈垢弱来历须供桌终审——捡漏保留风险</li>
+  <li><strong>高品低量</strong>：龙纹质高量微，功能锁死"挡一下、攻一下"</li>
+</ul>
+
+<!-- ============================================ -->
+<h2 id="s5">角色卡</h2>
+
+<div class="two-col">
+  <div class="info-card">
+    <h4>许愿（主角）</h4>
+    <p>十七岁，眉眼清瘦，总像没睡醒，笑起来带点痞；袖口常年沾香灰；敲桌沿打看不见的算盘是签名动作。嘴贫手稳，算账快，认死理。<strong>背景</strong>：许家最后一代守灯人（传承契约）＋"渎神者之孙"。<strong>弧</strong>：保铺子→讨公道→翻旧案→守火→重燃。</p>
+  </div>
+  <div class="info-card">
+    <h4>老灯（古龙）</h4>
+    <p>供桌下两点金瞳，声线苍老中气十足；毒舌财迷，记账比谁都精。<strong>三不答</strong>：过去／身份／火种，一问就装睡——三层动机：说不清（沉睡记忆残缺）／不敢说（温故的锁会察觉）／不愿说（愧疚：爷爷是替它守火）。<strong>话题开放度进化</strong>：毒舌家常（Vol1）→失态（Vol1末）→半句主动（Vol2）→指引（Vol3+）→真名（Vol6）。</p>
+  </div>
+  <div class="info-card">
+    <h4>纪霜衡（女主·神殿巡查使）</h4>
+    <p>寒门出身，靠实绩升巡查使；随身旧牌＝师父遗物（来历极重，ch12验桌道具）。体制内改革者：<strong>她查神殿为什么不公道，许愿查供桌为什么公道——同一个公道的两条腿</strong>。弧：执法者→怀疑者→共谋者→改革者。关系：对立（11—25）→观察（26—50）→合作（Vol2）→并肩（Vol3+）；感情线理性先行，战友情为主，Vol4—5升温。</p>
+  </div>
+  <div class="info-card">
+    <h4>豆灯（萌宠，ch19—20出世）</h4>
+    <p>战争之种孵出的灯芯火苗精，巴掌大，顶一粒豆大的光。奶凶，管老灯叫"老东西"。寻宝雷达（闻来历）；对泥灯／青灯起反应——火种线归位钥匙；Vol4觉醒"撒豆成兵"雏形。</p>
+  </div>
+  <div class="info-card">
+    <h4>霍东来（灰色知情人）</h4>
+    <p>霍家外院纹材铺东主，弥勒佛笑脸＋修得齐齐整整的指甲。爷爷时代旧人网络一员——"老灯认我"不是虚言。功能：递刀／试探／情报贩子；半敌半友，风往哪吹看他自己的账。</p>
+  </div>
+  <div class="info-card">
+    <h4>封九霄（灰色骑墙者）</h4>
+    <p>公会千灯分会长。"公会是秤"——不站队，只称量利益。镇巷令的刻字人。恶是"冷漠的恶"，与霍东来"逐利的恶"区分。</p>
+  </div>
+  <div class="info-card">
+    <h4>霍镇山（隐藏级）</h4>
+    <p>霍家本家家主，掌界门猎场——火种二的豢养者（当矿脉核心）。卷二末闻名，卷三登场，卷四覆灭。</p>
+  </div>
+  <div class="info-card">
+    <h4>温故（终极反派）</h4>
+    <p>神殿退隐老司祭／大善人／旧案主审／窃火真凶。鹤发童颜，见谁都先拱手。伪装三件套：摸桌角接缝（检查锁）／"你爷爷最后想通了"／看鳞纹目光停留过长。38章登场即"贵人"，卷五揭面。</p>
+  </div>
+  <div class="info-card">
+    <h4>老周（情感锚点）</h4>
+    <p>杂货铺老头，剥花生。十献一返的受害者：其子当年倾家荡产献祭，只换得一枚碎纹，郁郁而终。ch14／18／25铺垫，ch28牺牲，碎纹石托孤："替我讨个公道。"——主角从自保到守护的转折点。</p>
+  </div>
+  <div class="info-card">
+    <h4>盲眼老人（活档案）</h4>
+    <p>灯市口卖灯人，四根手指，"灯不卖，等"。上代守灯人的同辈，守灯人接替链的活档案；青灯的看守者。"认得是见过，想要是需要。"</p>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<h2 id="s6">反派四级体系（禁止跳级✓）</h2>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>级别</th><th>角色</th><th>登场</th><th>清算</th></tr></thead>
+  <tbody>
+    <tr><td>喽啰级</td><td>疤脸打手／公会稽查／鬼市鬼脸／聚宝阁托儿</td><td>1—25章</td><td>零星打脸；疤脸ch12当众全胜（B2债清）</td></tr>
+    <tr><td>明线小boss</td><td><strong>聚宝阁</strong>（赝品链黑商）＋霍东来（灰色，半敌半友）</td><td>10—30章</td><td>卷一末总清算（26—30）</td></tr>
+    <tr><td>隐藏级</td><td><strong>霍镇山</strong>——本家家主，掌界门猎场</td><td>卷二末闻名，卷三登场</td><td>卷三—卷四覆灭</td></tr>
+    <tr><td>终极级</td><td><strong>温故</strong>——伪装好人✓</td><td>38章"贵人"</td><td>卷五（190—200）揭面，215章决战</td></tr>
+  </tbody>
+</table>
+</div>
+
+<!-- ============================================ -->
+<h2 id="s7">火种主线（量化进度条）</h2>
+<p>长明灯焰碎散诸天，爷爷一生找回大半，老灯梦呓"还差三个"。</p>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>火种</th><th>所在</th><th>卷</th><th>意义</th></tr></thead>
+  <tbody>
+    <tr><td><strong>火种一</strong></td><td>神殿分坛——温故当年私换的祭品，被供作"圣物"</td><td>卷二定位→卷三夺回（约100章）</td><td>打神殿的脸；温故面具第一道缝</td></tr>
+    <tr><td><strong>火种二</strong></td><td>界门猎场——霍家本家当矿脉核心豢养</td><td>卷四（约160章）</td><td>位面战争战利品；霍镇山覆灭</td></tr>
+    <tr><td><strong>火种三</strong></td><td><strong>在爷爷身上</strong>——他当年带火跳入位面夹缝，守火未死</td><td>卷五（约210章）</td><td>爷爷失踪真相＝守火；救回，三火归位</td></tr>
+  </tbody>
+</table>
+</div>
+<p>接引件：ch3梦话（进度条立起）→ch19—20豆灯对青灯起反应→青灯＝引灯，灯油燃尽前指向火种一方位→三火归位→约300章长明重燃。</p>
+
+<!-- ============================================ -->
+<h2 id="s8">分卷大纲（全书6卷300章）</h2>
+
+<h3>8.1 卷一《吹灯巷的供桌》（1—30章）</h3>
+<p class="section-intro">第1—10章手稿已定稿（正典）。以下为ch11—30五个新单元，按"每3章≥1个S/A爽点＋悬念限流"硬指标排布。</p>
+
+<div class="table-wrap">
+<table>
+  <thead><tr><th>单元</th><th>章节</th><th>矛盾来源</th><th>糖衣</th><th>核心事件</th></tr></thead>
+  <tbody>
+    <tr><td><strong>一·仙子局面</strong><br>（仙子式开局正戏）</td><td>11—13</td><td>立场（原罪）</td><td>死局＋打脸＋全胜</td><td><strong>ch11</strong>：传闻发酵；公会刻字兑现（断头线闭环）；纪霜衡携<strong>拘传令</strong>登门——封铺、收桌、带人，旧案被翻出。<strong>ch12</strong>："仙子，请听我解释"——不逃不辩，按规矩验：她随身的师父遗物上供桌，公道返利当场演示，直击其信念裂缝；疤脸趁乱砸场，许愿<strong>当众全胜</strong>（B2债清＋护桌动机＋龙纹曝光三合一）。<strong>ch13</strong>：拘传改"<strong>监管观察</strong>"，她驻店盯桌（强制共处）；镇巷令生效例钱免——公会的"善意"与神殿的"恶意"讽刺对照</td></tr>
+    <tr><td><strong>二·鉴定生意</strong></td><td>14—17</td><td>利益</td><td>神豪＋打脸</td><td>鉴定生意开张（收费验来历）→触碰聚宝阁赝品链→托儿拿赝品砸场→当众连破三赝（老灯毒舌全开，喜剧高峰）；纪霜衡全程旁观，报告在"罪证／证人"间摇摆；<strong>老周铺垫①</strong>（ch14：碎纹石来历初提）</td></tr>
+    <tr><td><strong>三·鬼市大供</strong></td><td>18—21</td><td>利益＋环境</td><td>开奖＋萌宠</td><td>鬼市争镇墓兽→十五大供→战争之种→<strong>豆灯出世</strong>（对泥灯／青灯起反应：青灯＝引灯，灯油燃尽前指向火种一——火种线归位）；鬼脸背后＝聚宝阁上线＝本家暗线；纪霜衡随行见识位面黑市；<strong>老周铺垫②</strong>（ch18）</td></tr>
+    <tr><td><strong>四·旧案初翻</strong></td><td>22—25</td><td>立场</td><td>悬念＋温情</td><td>纪霜衡调档许家旧案，发现三漏洞（罪名无物证／主审官温故／证物"失踪"）——她开始怀疑卷宗而非许愿；霍东来递刀（聚宝阁赝品实证，灰色本色）；<strong>老周铺垫③</strong>（ch25：其子十献一返只换一枚碎纹，郁郁而终）；案卷签章"温故"二字特写</td></tr>
+    <tr><td><strong>五·卷一清算</strong></td><td>26—30</td><td>利益＋立场</td><td>清算＋燃＋悬念</td><td>聚宝阁总清算：散户联盟＋公会骑墙默许＋巡查使"监管"身份反成护身符（<strong>规矩保护了被规矩追查的人</strong>）；<strong>ch28老周之死</strong>（聚宝阁狗急跳墙，本家借刀），碎纹石托孤"替我讨个公道"——卷一从"保铺子"升维"讨公道"；卷末三钩：①本家霍镇山＋"温故"之名第一次被念出 ②青灯指向（火种一＝神殿分坛） ③老灯第一次主动提"二十年前"半句，装睡</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h3>8.2 卷二《灯市的规矩》（31—70章）</h3>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>单元</th><th>章节</th><th>核心beats</th></tr></thead>
+  <tbody>
+    <tr><td>一</td><td>31—37</td><td>监管日常化（喜剧搭档期）；鉴定生意升级，<strong>套装共振</strong>首现（铭纹师线启动）；温故38章登场：慈善场合"赏识"，伪装三件套首秀</td></tr>
+    <tr><td>二</td><td>38—44</td><td>温故收编试探vs许愿应对；老灯警告"那个人身上的火味不对"；霍东来递刀（情报有价）</td></tr>
+    <tr><td>三</td><td>45—51</td><td>《供簿》全本解读→"火的味道"溯源→分坛坐标；须纹获取（五系第四）</td></tr>
+    <tr><td>四</td><td>52—58</td><td>评级场打脸（尊严单元）；纪霜衡查案突破：案卷三漏洞逐一坐实，与许愿"并案"</td></tr>
+    <tr><td>五</td><td>59—70</td><td>分坛外围侦察；卷末：《供簿》绝笔＋旧合影碎片＋火种一坐标确认＋温故第一次单独"品茶"（棋逢对手首局）</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h3>8.3 卷三《界门猎场》（71—110章）</h3>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>单元</th><th>章节</th><th>核心beats</th></tr></thead>
+  <tbody>
+    <tr><td>一</td><td>71—78</td><td>夺火种一计划；纪霜衡身份冲突顶点（神殿徽章vs亲眼所见的公道）</td></tr>
+    <tr><td>二</td><td>79—86</td><td>分坛夺火（打神殿的脸）；<strong>火种一入手（约100章提前至86）</strong>；温故面具第一道缝</td></tr>
+    <tr><td>三</td><td>87—94</td><td>霍镇山登场；界门猎场冲突升级；散户联盟成军</td></tr>
+    <tr><td>四</td><td>95—102</td><td>猎场深处；<strong>位面时间差初现</strong>（护栏：时差≤10:1，且消耗灯油——与火种体系挂钩，防滥用）；火种二线索</td></tr>
+    <tr><td>五</td><td>103—110</td><td><strong>C级</strong>：猎场围杀→借地势＋凶兽王之势反杀；轰开"灯下黑"门缝；老灯失态（话题开放度跳档）</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h3>8.4 卷四《灯下黑》（111—160章）</h3>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>单元</th><th>章节</th><th>核心beats</th></tr></thead>
+  <tbody>
+    <tr><td>一</td><td>111—118</td><td>灯座探索：灯下黑内部＝旧坛真容；<strong>多纪元暗示</strong>（长明灯不是第一次灭）</td></tr>
+    <tr><td>二</td><td>119—128</td><td>祭坛初开；跨界小远征（位面碎片）；睛纹获取（五系齐）</td></tr>
+    <tr><td>三</td><td>129—138</td><td>豆灯觉醒<strong>撒豆成兵</strong>雏形（点豆成灯兵，时限短，喜剧＋战术）</td></tr>
+    <tr><td>四</td><td>139—150</td><td><strong>火种二</strong>＝霍家猎场矿核；远征夺火；<strong>霍镇山覆灭</strong></td></tr>
+    <tr><td>五</td><td>151—160</td><td>祭坛残影：年轻的爷爷与温故同祭；温故"关怀"变味（读者先于主角起疑）；感情线理性→并肩</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h3>8.5 卷五《上一次献祭》（161—230章，70章）</h3>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>单元</th><th>章节</th><th>核心beats</th></tr></thead>
+  <tbody>
+    <tr><td>一</td><td>161—175</td><td>旧案全面重查：许愿与纪霜衡双线并案；神殿腐化层浮出</td></tr>
+    <tr><td>二</td><td>176—190</td><td>真相拼合：私改祭品／加锁囚龙／窃火／栽赃；老灯"三不答"逐层解锁（说不清→不敢说→不愿说）</td></tr>
+    <tr><td>三</td><td>191—200</td><td><strong>温故揭面</strong>：伪装剥落全场景——三件套伏笔全部反转回收</td></tr>
+    <tr><td>四</td><td>201—215</td><td>决战：许愿＋纪霜衡＋公会正义派＋散户联盟 vs 温故＋神殿腐化层＋霍氏残部</td></tr>
+    <tr><td>五</td><td>216—230</td><td>位面夹缝救爷爷（<strong>火种三＝爷爷守火</strong>）；三火归位；爷爷与老灯重逢（暖·燃）；温故败亡前留最后一句话（卷六引子）</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h3>8.6 卷六《万界来朝》（231—300章，70章）</h3>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>单元</th><th>章节</th><th>核心beats</th></tr></thead>
+  <tbody>
+    <tr><td>一</td><td>231—245</td><td>祭坛修复；长明重燃仪式（全书最大开奖）</td></tr>
+    <tr><td>二</td><td>246—260</td><td>万界来朝：公道献祭重开商路，千灯城成关市；<strong>老灯真名揭</strong></td></tr>
+    <tr><td>三</td><td>261—280</td><td>当年分火者（诸神）的反应；位面战争终局：以商路代战争</td></tr>
+    <tr><td>四</td><td>281—300</td><td>老灯败因全揭：输给诸神联手的"规矩"→新规矩建立；感情线收束；暖收——<strong>灵的不是龙，是人间烟火</strong></td></tr>
+  </tbody>
+</table>
+</div>
+
+<!-- ============================================ -->
+<h2 id="s9">爽感路径自查</h2>
+
+<h3>9.1 ch11—20爽感表（示范）</h3>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>章</th><th>爽点</th><th>步数</th><th>级</th></tr></thead>
+  <tbody>
+    <tr><td>11</td><td>刻字打脸公会小吏＋拘传令死局（压）</td><td>2</td><td><span class="badge pass">A</span></td></tr>
+    <tr><td>12</td><td>当众验桌＋疤脸全胜</td><td>1</td><td><span class="badge pass">S</span></td></tr>
+    <tr><td>13</td><td>拘传改监管（官面反杀）</td><td>2</td><td><span class="badge pass">A</span></td></tr>
+    <tr><td>14</td><td>鉴定开张捡漏</td><td>2</td><td><span class="badge pass">A</span></td></tr>
+    <tr><td>15—16</td><td>连破三赝（打脸高峰）</td><td>2</td><td><span class="badge pass">A</span></td></tr>
+    <tr><td>17</td><td>聚宝阁反扑被反制</td><td>2</td><td><span class="badge pass">A</span></td></tr>
+    <tr><td>18</td><td>鬼市捡漏</td><td>2</td><td><span class="badge pass">A</span></td></tr>
+    <tr><td>19—20</td><td>大供开奖→战争之种→豆灯出世</td><td>1</td><td><span class="badge pass">S</span></td></tr>
+  </tbody>
+</table>
+</div>
+<p>硬指标：每3章≥1个S/A（全程）；每卷A级以上爽点占比≥60%；C级（4步+）全书仅2个（卷一末三钩、卷三末围杀反杀），均在卷末✓。</p>
+
+<h3>9.2 悬念限流表（ch11—30）</h3>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>时段</th><th>活跃悬念（≤3条）</th><th>闭环／新开</th></tr></thead>
+  <tbody>
+    <tr><td>11—13</td><td>拘传令（新开·紧急）／旧案（新开）／火种（背景）</td><td>镇巷令闭环；拘传令半闭环（改监管）</td></tr>
+    <tr><td>14—17</td><td>聚宝阁赝品链／旧案／火种</td><td>赝品局闭环（连破三赝）</td></tr>
+    <tr><td>18—21</td><td>火种（青灯指向）／旧案／聚宝阁背后</td><td>火种线归位（阶段性闭环＋新坐标）</td></tr>
+    <tr><td>22—25</td><td>旧案三漏洞／聚宝阁背后／火种</td><td>—</td></tr>
+    <tr><td>26—30</td><td>卷一清算／本家＋温故（新开）／火种</td><td>聚宝阁闭环；卷末三钩为下一周期开线</td></tr>
+  </tbody>
+</table>
+</div>
+
+<!-- ============================================ -->
+<h2 id="s10">暗线与答案分层</h2>
+
+<h3>10.1 爷爷下落·三层答案</h3>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>层</th><th>答案</th><th>揭示时机</th></tr></thead>
+  <tbody>
+    <tr><td>表层</td><td>"被供桌收回去了"（老灯的说法，它也只知其然）</td><td>手稿ch5—6（已播）</td></tr>
+    <tr><td>中层</td><td>旧案真相：被栽赃"渎神窃坛"，秘密除名</td><td>卷二—卷三（纪霜衡并案）</td></tr>
+    <tr><td>深层</td><td>守火：携火种三跃入位面夹缝，未死</td><td>卷五（190—230）</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h3>10.2 老灯"三不答"动机三层</h3>
+<p>说不清（沉睡记忆残缺）→不敢说（温故的锁会察觉）→不愿说（愧疚：爷爷是替它守火）——卷五逐层解锁。"沉默"不是人设，是创伤。</p>
+
+<h3>10.3 火种进度与揭示节奏</h3>
+<p>ch3梦话→ch19—20青灯指向→卷二末坐标→约86章火种一→约150章火种二→约216—230火种三→约245章长明重燃→300章真名与败因。</p>
+
+<!-- ============================================ -->
+<h2 id="s11">框架合规自查</h2>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>硬约束</th><th>v4.2状态</th></tr></thead>
+  <tbody>
+    <tr><td>一句话核心设定</td><td><span class="badge pass">✓</span> 献祭古龙返利龙纹（未漂移）</td></tr>
+    <tr><td>明基调优先</td><td><span class="badge pass">✓</span> 明；老周之死按"燃＞哀"设计，不触暗基调</td></tr>
+    <tr><td>非天生外挂</td><td><span class="badge pass">✓</span> 血脉已回滚为传承契约；原罪＝负债非外挂</td></tr>
+    <tr><td>爽感路径≤2步</td><td><span class="badge pass">✓</span> 见9.1；S级占比达标</td></tr>
+    <tr><td>前3章核心概念≤2</td><td><span class="badge pass">✓</span> 献祭返利／龙纹（手稿已验证）</td></tr>
+    <tr><td>书名典故＋网感</td><td><span class="badge pass">✓</span> 《有龙则灵》＋番茄副标</td></tr>
+    <tr><td>场景≥10种／基调≥3种</td><td><span class="badge pass">✓</span> ≥15场景；爽笑燃暖</td></tr>
+    <tr><td>反派不跳级</td><td><span class="badge pass">✓</span> 四级梯；终极反派伪装好人</td></tr>
+    <tr><td>金手指限制与世界观挂钩</td><td><span class="badge pass">✓</span> 六规＋三附则全部同源</td></tr>
+    <tr><td>升级：战斗≈2:1／张弛交替／终极地图</td><td><span class="badge pass">✓</span> 卷级排布合规；千灯城＝终极地图</td></tr>
+    <tr><td>爽点密度／悬念限流（新增）</td><td><span class="badge pass">✓</span> 每3章≥1个S/A；活跃悬念≤3条</td></tr>
+    <tr><td>单女主（标签变更）</td><td><span class="badge gold">决策确认项</span> 原为"无CP（暂定）"，见12风险</td></tr>
+  </tbody>
+</table>
+</div>
+
+<!-- ============================================ -->
+<h2 id="s12">风险与对策</h2>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>风险</th><th>等级</th><th>对策</th></tr></thead>
+  <tbody>
+    <tr><td>单女主＋误会开局偏女频审美</td><td>中</td><td>误会不会因解释拖、只因行动解（ch12当众验桌）；战友情占比≥70%，Vol4—5才升温；对立期≤15章</td></tr>
+    <tr><td>"碰瓷《仙子》"质疑</td><td>中</td><td>只借张力模型不借设定：无穿越／无游戏／无原主，原罪来自爷爷旧案；书名不碰瓷</td></tr>
+    <tr><td>旧案暗压与手稿街坊温情的兼容</td><td>低</td><td>旧案＝秘密档案（温故必须压案）——街坊不知，手稿零冲突</td></tr>
+    <tr><td>老周之死触暗基调</td><td>低</td><td>三节点铺垫；处理为燃＞哀（碎纹石托孤）；死后紧跟清算爽点</td></tr>
+    <tr><td>前20章喜剧引擎（豆灯ch19才出世）</td><td>低</td><td>老灯毒舌保留（v4.1沉默化已否决）＋纪霜衡"严肃被噎"反差＋老街烟火</td></tr>
+    <tr><td>火种进度条与多线并行的认知压力</td><td>低</td><td>悬念限流≤3条；进度条只在单元首尾点名</td></tr>
+    <tr><td>主题漂移</td><td>低</td><td>核心承诺锚定"献祭返利得龙纹"；本版即按手稿评审教训增设双硬指标</td></tr>
+  </tbody>
+</table>
+</div>
+
+<!-- ============================================ -->
+<h2 id="s13">简介与标签</h2>
+
+<div class="synopsis">
+  <p><strong>给老龙上供，它返利了我一身龙纹。</strong></p>
+  <p>这世道，献祭是唯一的活路——可惜神殿心黑，十献一返。我守着爷爷留下的祭品铺，守着一张通古龙的旧供桌：瓦当换龙鳞，怀表换龙爪，别人的传家宝，都是我的军粮。</p>
+  <p>老龙很挑食，还很毒舌："赝品也敢上桌？吐你一脸。"</p>
+  <p>直到神殿巡查使带着拘传令上门，翻出我爷爷二十年前那桩旧案。</p>
+  <p>"许慎独之孙？"她按着刀，"你最好解释清楚。"</p>
+  <p>解释不清。因为那罪名，有七成是真的。</p>
+  <p>【标签】玄幻／位面／轻松／单女主</p>
+</div>
+
+<!-- ============================================ -->
+<h2 id="s14">流水线状态</h2>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>步骤</th><th>状态</th><th>备注</th></tr></thead>
+  <tbody>
+    <tr><td>1. 预筛（topic-screener）</td><td><span class="badge pass">通过</span></td><td>六维全pass，无致命组合</td></tr>
+    <tr><td>2. 大纲设计（plot-architect）</td><td><span class="badge pass">通过·v4.2</span></td><td>本版即验收定稿候选</td></tr>
+    <tr><td>3. 书名审核（title-reviewer）</td><td><span class="badge pass">通过</span></td><td>保留《有龙则灵》＋番茄副标候选</td></tr>
+    <tr><td>4. 质疑迭代（skeptic）</td><td><span class="badge pass">通过</span></td><td>手稿评审（A/B/C类）＋v4.1第三方评审，全部闭环</td></tr>
+    <tr><td>5. 验收定稿（outline-editor）</td><td><span class="badge gold">提交本版</span></td><td>待确认：单女主决策项</td></tr>
+    <tr><td>6—7. 人工检查点／角色设计</td><td>待进行</td><td>—</td></tr>
+    <tr><td>写作执行</td><td>ch11待开写</td><td>手稿修订项：瓦当归宿／账册"传承"／组合数模糊化（3处小修）</td></tr>
+  </tbody>
+</table>
+</div>
+
+<div class="callout green">
+  <strong>核心承诺锚定：</strong>一句话设定＝"献祭古龙，返利龙纹"；开局钩子＝"罪名七成是真的"。任何环节与此本质偏离即触发漂移检测，重新预筛。
+</div>
+
+<footer>
+  <p>《有龙则灵》设计与大纲综合文档 v4.2 · 依据《写作框架选题基准》v1.0 全流程产出<br>参考：《罪恶之城》（机制基因）·《仙子，请听我解释》（开局张力模型）· 手稿第1—10章（正典）<br>版本历史：v1.0选题与机制（2026-07-23）→ v1.1大纲v2手稿反哺 → v4.2全量修订＋仙子式原罪开局（2026-07-23）</p>
+</footer>
+
+</body>
+</html>

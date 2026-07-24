@@ -1,0 +1,192 @@
+{
+  "card_type": "foreshadowing_tracker",
+  "novel_title": "有龙则灵",
+  "outline_version": "v4.3",
+  "last_updated_chapter": 10,
+  "last_updated": "2026-07-24T20:10:00+08:00",
+  "foreshadowings": [
+    {
+      "id": "F001",
+      "title": "守灯人传承（许家立约人身份）",
+      "plan_from_outline": {
+        "plant_chapter": 1,
+        "half_reveal_chapter": "11-13（旧案翻出，传承=罪名核心）",
+        "full_reveal_chapter": "Vol5（191-230 传承契约全貌+爷爷守火）"
+      },
+      "actual_progress": [
+        {"chapter": 1, "action": "planted", "detail": "账册末页抖字'供桌认主，守灯人传承。慎独留。'（E1-2：血脉→传承）", "status": "completed"}
+      ],
+      "current_status": "planted",
+      "next_milestone": {"chapter": 11, "action": "half_reveal", "detail": "纪霜衡拘传令翻出'渎神窃坛'旧案，守灯人身份被迫摆上台面"},
+      "overdue": false,
+      "chapters_since_last_action": 9
+    },
+    {
+      "id": "F002",
+      "title": "灯守龙（世界级前提反转：不是人守灯，是灯在守龙）",
+      "plan_from_outline": {
+        "plant_chapter": 6,
+        "half_reveal_chapter": "Vol4（111-160 灯下黑=旧坛真容）",
+        "full_reveal_chapter": "Vol6（281-300 老灯真名与败因全揭）"
+      },
+      "actual_progress": [
+        {"chapter": 6, "action": "planted", "detail": "借裂缝光透视供簿涂墨，显出三字'灯守龙'；老灯'看到了就别问。答案不在簿子里。在底下。'", "status": "completed"}
+      ],
+      "current_status": "planted",
+      "next_milestone": {"chapter": 111, "action": "half_reveal", "detail": "灯下黑探索=旧坛真容，多纪元暗示"},
+      "overdue": false,
+      "chapters_since_last_action": 4
+    },
+    {
+      "id": "F003",
+      "title": "火种进度条（还差三个/三枚未归火种）",
+      "plan_from_outline": {
+        "plant_chapter": 3,
+        "keep_warm": "ch10（青灯灯油挂钩）+ch11-15保温beat（longline建议）",
+        "key_nodes": "ch19-20豆灯对青灯起反应（青灯=引灯指向火种一）→~86火种一入手→~150火种二→216-230火种三（爷爷）",
+        "full_reveal_chapter": "~245 长明重燃"
+      },
+      "actual_progress": [
+        {"chapter": 3, "action": "planted", "detail": "老灯梦话'还差三个……火种还差三个……长明灯'", "status": "completed"},
+        {"chapter": 7, "action": "linked", "detail": "泥灯（三百年）入手，老灯罕见失控'想要'；章末青灯意象", "status": "completed"},
+        {"chapter": 10, "action": "keep_warm", "detail": "老人委托'青灯灯油快没了，续上'（G005建立）；E2-5'青灯烧了三百年的又是什么'挂钩火种体系", "status": "completed"}
+      ],
+      "current_status": "planted_warming",
+      "next_milestone": {"chapter": 19, "action": "progress", "detail": "豆灯出世对泥灯/青灯起反应，火种线归位"},
+      "overdue": false,
+      "chapters_since_last_action": 0,
+      "health_note": "ch3-ch9停滞7章仅靠氛围关联，ch10保温已落地；longline_review_10建议ch11-15再安插1次≤100字保温beat"
+    },
+    {
+      "id": "F004",
+      "title": "爷爷下落（三层答案：被收回去→被栽赃→守火未死）",
+      "plan_from_outline": {
+        "layer1": "ch5-6 表层'被供桌收回去了/还在里头，出不来'（路线B答案分层）",
+        "layer2": "Vol2-3 中层'被栽赃渎神窃坛秘密除名'（纪霜衡并案）",
+        "layer3": "Vol5 216-230 深层'携火种三跃入位面夹缝守火未死'"
+      },
+      "actual_progress": [
+        {"chapter": 1, "action": "planted", "detail": "爷爷半年前失踪，头天晚上还说'明儿教你认供桌上的纹路'", "status": "completed"},
+        {"chapter": 5, "action": "layer1_revealed", "detail": "老灯清醒声'你爷爷不是失踪的。他是被供桌收回去了'", "status": "completed"},
+        {"chapter": 6, "action": "layer1_deepened", "detail": "'他还在里头。没走。只是出不来了'+陈婶证言（失踪前半年听不到爷爷跟人说话）", "status": "completed"}
+      ],
+      "current_status": "layer1_revealed",
+      "next_milestone": {"chapter": 22, "action": "layer2_start", "detail": "旧案三漏洞浮出（罪名无物证/主审官温故/证物失踪）"},
+      "overdue": false,
+      "chapters_since_last_action": 4
+    },
+    {
+      "id": "F005",
+      "title": "符号同源（泥灯底=供簿封面：圆圈内一盏灯）",
+      "plan_from_outline": {
+        "plant_chapter": "6-8",
+        "half_reveal_chapter": "ch10（画手六十年前就不在了）",
+        "full_reveal_chapter": "Vol2（供簿溯源/接替链）"
+      },
+      "actual_progress": [
+        {"chapter": 6, "action": "planted", "detail": "供簿封面：圆圈内一盏灯", "status": "completed"},
+        {"chapter": 7, "action": "linked", "detail": "泥灯灯底印记与供簿封面一模一样", "status": "completed"},
+        {"chapter": 8, "action": "confirmed", "detail": "比对确认'同一只手画的'；问老灯被'不问'挡回", "status": "completed"},
+        {"chapter": 10, "action": "half_revealed", "detail": "老人揭'画这个记的人，六十年前就不在了'（非老人非爷爷）", "status": "completed"}
+      ],
+      "current_status": "half_revealed",
+      "next_milestone": {"chapter": 45, "action": "full_reveal", "detail": "供簿全本解读溯源（Vol2 unit3）"},
+      "overdue": false,
+      "chapters_since_last_action": 0
+    },
+    {
+      "id": "F006",
+      "title": "上一任守灯人/接替链（六十年前庚午年）",
+      "plan_from_outline": {
+        "plant_chapter": "4（庚午年墨盒'赠慎独兄'）",
+        "develop": "ch8三物串联+ch10问句化",
+        "reveal": "Vol2供簿溯源+Vol5上一次献祭全貌"
+      },
+      "actual_progress": [
+        {"chapter": 4, "action": "planted", "detail": "墨盒磨字'赠慎独兄，庚午年春'+短刀'镇巷十三号，庚午年封'", "status": "completed"},
+        {"chapter": 5, "action": "developed", "detail": "老灯'庚午年……那是上一次献祭的年份'", "status": "completed"},
+        {"chapter": 8, "action": "developed", "detail": "铜祭器'庚午年秋，李某供用'+角纹布夹层；老灯第三种声音'它们是老夫的'", "status": "completed"},
+        {"chapter": 10, "action": "developed", "detail": "E2-5问句化收敛：'爷爷不是头一个守这张桌子的人，那在他之前的那一位——是谁？'", "status": "completed"}
+      ],
+      "current_status": "active_developing",
+      "next_milestone": {"chapter": 22, "action": "link", "detail": "旧案三漏洞+'温故'签章特写，庚午年线与旧案线交汇"},
+      "overdue": false,
+      "chapters_since_last_action": 0
+    },
+    {
+      "id": "F007",
+      "title": "供桌苏醒/进化（桌底存在+裂缝+龙鳞）",
+      "plan_from_outline": {
+        "plant_chapter": 1,
+        "develop": "ch3裂缝渗光→ch5裂缝见龙鳞（鳞是根桌是枝）→ch9供桌进化（裂缝倍宽/龙鳞带晕'跳'）",
+        "reveal": "Vol4灯下黑=旧坛真容"
+      },
+      "actual_progress": [
+        {"chapter": 1, "action": "planted", "detail": "半年没动静的旧桌子头一回醒了", "status": "completed"},
+        {"chapter": 3, "action": "developed", "detail": "章末裂缝渗暗金光'有什么东西，醒了'", "status": "completed"},
+        {"chapter": 5, "action": "developed", "detail": "裂缝拓宽见龙鳞'像鳞是根、桌是枝'", "status": "completed"},
+        {"chapter": 9, "action": "developed", "detail": "角纹大供后供桌进化：裂缝宽一倍+龙鳞带晕+颤改'跳'——'它也吃饱了'", "status": "completed"}
+      ],
+      "current_status": "active_developing",
+      "next_milestone": {"chapter": 30, "action": "nudge", "detail": "卷末老灯第一次主动提'二十年前'半句（话题开放度stage2失态）"},
+      "overdue": false,
+      "chapters_since_last_action": 1
+    },
+    {
+      "id": "F008",
+      "title": "老灯认我（霍东来旧识之谜）",
+      "plan_from_outline": {
+        "plant_chapter": 5,
+        "status_note": "E2-1主动挂起（悬念限流）",
+        "reveal": "Vol2-3霍东来'存货出清'线（灰色知情人终局）"
+      },
+      "actual_progress": [
+        {"chapter": 5, "action": "planted_suspended", "detail": "霍东来'老灯认我。你爷爷在的时候，老灯也认我'；许愿归档'先压进柜底'（E2-1）", "status": "suspended"}
+      ],
+      "current_status": "suspended",
+      "next_milestone": {"chapter": 40, "action": "resume", "detail": "Vol2霍东来递刀/情报有价线重启"},
+      "overdue": false,
+      "chapters_since_last_action": 5,
+      "suspend_reason": "悬念限流（同时活跃≤3条）"
+    },
+    {
+      "id": "F009",
+      "title": "盲眼老人身份（四根手指/灯市口掌灯人/烟散之诡）",
+      "plan_from_outline": {
+        "plant_chapter": 7,
+        "reveal": "上代守灯人的同辈，守灯人接替链活档案，青灯看守者（Vol2-3渐揭）"
+      },
+      "actual_progress": [
+        {"chapter": 7, "action": "planted", "detail": "'它回来了。六十年。上一次有灯回来找灯，是六十年前'+'认得是见过，想要是需要'", "status": "completed"},
+        {"chapter": 9, "action": "developed", "detail": "携未点的灯碗走进巷子，老灯第四种声音'来了'", "status": "completed"},
+        {"chapter": 10, "action": "developed", "detail": "验桌'宽了''醒着就好'+揭秘画手+灯油委托后'人如烟散'", "status": "completed"}
+      ],
+      "current_status": "active_developing",
+      "next_milestone": {"chapter": 19, "action": "link", "detail": "豆灯对青灯起反应时老人线归位"},
+      "overdue": false,
+      "chapters_since_last_action": 0
+    },
+    {
+      "id": "B2",
+      "title": "疤脸复仇债（tier1喽啰打脸未清）",
+      "plan_from_outline": {
+        "plant_chapter": 2,
+        "clearance_chapter": "11-12（趁乱砸场，许愿当众全胜，三合一：债清+护桌动机+龙纹曝光）"
+      },
+      "actual_progress": [
+        {"chapter": 2, "action": "planted", "detail": "疤脸抡棍被鳞纹弹开，虎口裂血，棍被许愿递还'掉了'", "status": "completed"}
+      ],
+      "current_status": "awaiting_clearance",
+      "next_milestone": {"chapter": 11, "action": "clearance", "detail": "拘传令死局中疤脸趁乱砸场，许愿当众全胜"},
+      "overdue": false,
+      "chapters_since_last_action": 8,
+      "alert": "info——已8章未推进，但大纲排定ch11-12清算，属计划内"
+    }
+  ],
+  "density_check": {
+    "last_5_chapters_with_action": [6, 7, 8, 9, 10],
+    "consecutive_no_action": 0,
+    "status": "healthy"
+  },
+  "overdue_alerts": []
+}

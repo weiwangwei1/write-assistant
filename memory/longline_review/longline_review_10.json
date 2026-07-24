@@ -1,0 +1,130 @@
+{
+  "card_type": "longline_review",
+  "timestamp": "2026-07-24T19:30:00+08:00",
+  "review_chapter": 10,
+  "review_range": "第1-10章",
+  "review_type": "periodic",
+  "overall_status": "warning",
+  "dimensions": [
+    {
+      "dimension": "长线伏笔追踪",
+      "status": "healthy",
+      "findings": [
+        "爷爷下落(M1)：ch5'被供桌收回去了'+ch6'他还在里头'=路线B第一层表象答案，按计划揭示；卷五核弹(守火真相,~190章)未动，库存安全",
+        "灯守龙(M1)：ch6前提反转揭示=v4.3采纳的核心设定资产，已落",
+        "符号画手/上一任(M4)：ch7泥灯底→ch8三物串联→ch10问句化('那在他之前的那一位——是谁？')，节奏正常，E2-5防透支",
+        "盲眼老人(M5)：ch7登场→ch10对话，活跃且克制('画记的人六十年前就不在了')",
+        "供簿：v2计划65-70章→手稿ch6提前，路线B已收编为卷一资产，无浪费",
+        "活跃主线5条(M1-M5)，远低于15条上限"
+      ],
+      "overdue_foreshadowings": [],
+      "upcoming_milestones": [
+        "ch11-12：公会之行兑现(M2闭环，封九霄+镇巷令刻字)——最高优先级",
+        "ch11：疤脸复仇战(偿还B2的债，主角无外援全胜)",
+        "ch11前后：角纹三天养纹到期(ch9设定)，喷火能力正式可用",
+        "ch13-15：鉴定生意开张+聚宝阁空壳局(A1规则落地)"
+      ]
+    },
+    {
+      "dimension": "角色发展弧光",
+      "status": "healthy",
+      "findings": [
+        "许愿：觉醒(ch1)→立威(ch2)→试探(ch3-4)→蓄势(ch5-8)→升级(ch9)曲线符合大纲；性格一致(算账型/嘴比脑子快/三分痞)；3次具象升级(鳞/爪/角)节奏合规",
+        "老灯：四种声音体系(闷/清醒/得意/第四种)稳定输出；三不答执行一致(ch8'不问'/ch10'别问了')；E2-3离桌代价补立后规则闭环",
+        "霍东来：ch2反派→ch5灰色知情人转向，v4.3路线B第5条已定型；ch5'替自己办事'自白补足动机铺垫",
+        "盲眼老人：两章建立金句人设('灯不卖，等'/'认得是见过，想要是需要')，稳定",
+        "街坊群像(陈婶/老周/赵婶)：各有功能且有记忆点，赵婶铜碟=传闻引擎载体",
+        "主角出场率10/10"
+      ]
+    },
+    {
+      "dimension": "世界观一致性",
+      "status": "healthy",
+      "findings": [
+        "消耗制/弹回三类边界全文统一(沉入/弹回/推回各归其类)",
+        "术语：'血脉'零残留(grep验证)；'守灯人传承'统一",
+        "庚午年时间线：墨盒(春)/短刀(封)/铜祭器(秋)/供簿(正月初一)全部指向六十年前同一庚午年，互扣",
+        "大供日规矩(ch9)、离桌省灯油(E2-3)、角纹三天养纹(ch9)——规则网络自洽可推演"
+      ]
+    },
+    {
+      "dimension": "节奏曲线管理",
+      "status": "warning",
+      "findings": [
+        "爽点3章滚动窗口修订后全达标(chapter_review.json)",
+        "ch5-8为全书最静区段(情感核心供簿/灯守龙+三物串联)，E2-2/E2-4补强后含获得型爽点支撑；属有意蓄势且ch9爆发兑现，但后续卷一后段(ch11-25)须按大纲高密度排爽平衡",
+        "张弛比：高能章(ch2/3/9/10)vs缓冲章≈4:6，缓冲章中5章含小爽点，实际体感约5:5偏静——卷一后段目标6:4偏动",
+        "钩子类型无连续重复；开头/结尾多样化达标"
+      ]
+    },
+    {
+      "dimension": "长线悬念管理",
+      "status": "healthy",
+      "findings": [
+        "答案分层执行中：ch5第一层表象答案+ch10问句化收敛，未透支卷五核弹",
+        "套环有效：ch6灯守龙揭示→ch7盲眼老人新悬念登场，无真空",
+        "信息差：读者知=主角知(同步探索)，无长期失衡",
+        "本章触碰口径下各章活跃悬念≤3(chapter_review.json)"
+      ]
+    },
+    {
+      "dimension": "主线进度监控",
+      "status": "warning",
+      "findings": [
+        "火种进度条：ch3'还差三个'planted→ch10零实质推进，stalled_chapters=7(≥5阈值触发warning)；E2-5'青灯烧了三百年的又是什么'已挂钩保温，大纲排ch19-25豆灯线归位",
+        "主线占比：宽口径(ch3/7/9/10涉及火种体系)4/10=40%达标；窄口径(进度条直接推进)2/10=20%压线",
+        "反派梯子：tier1疤脸(ch2登场,ch11复仇窗口pending_ontime)/tier2霍东来(已转灰色)/tier3封九霄(ch11-12窗口ontime)/tier4聚宝阁(ch10传闻引擎=铺垫开始ontime)——无断层无逾期",
+        "目标断头：0个alert(公会之行ch8主动挂起+ch11排期；磨墨盒ch4闭环；老灯委托旧灯ch7闭环)"
+      ]
+    }
+  ],
+  "alerts": [
+    {
+      "severity": "warning",
+      "dimension": "主线进度",
+      "description": "火种进度条ch3-ch10停滞7章(第三方'火种断更'遗留)；虽已挂钩青灯保温且大纲排ch19-25归位，但ch11-18间隔8章无火种节点，读者可能再次遗忘进度条",
+      "affected_chapters": [4, 5, 6, 7, 8, 9, 10],
+      "suggestion": "ch11-15间安插1次火种温度保持beat(≤100字)：老灯大供后梦话重提'还差三个'，或许愿整理供簿时发现爷爷某页夹着的火种记载——只保温不推进，推进留给豆灯线",
+      "target_agent": "chapter-writer"
+    },
+    {
+      "severity": "info",
+      "dimension": "节奏",
+      "description": "ch5-8低能缓冲带为有意蓄势(情感资产集中区)，E2补强后达标；卷一后段(ch11-25)需按大纲高密度爽点(复仇战/公会翻盘/鉴定生意/拒招揽)把全书体感张弛比拉回6:4偏动",
+      "affected_chapters": [5, 6, 7, 8],
+      "suggestion": "ch11疤脸复仇战(S级)+ch12公会文斗(A级)双连排，开门即高能",
+      "target_agent": "plot-architect"
+    }
+  ],
+  "character_arc_check": {
+    "protagonist": {"status": "on_track", "deviation": "none"},
+    "key_characters": [
+      {"name": "老灯", "status": "on_track", "note": "四种声音+三不答体系稳定"},
+      {"name": "霍东来", "status": "on_track", "note": "灰色知情人定型完成"},
+      {"name": "盲眼老人", "status": "on_track", "note": "金句人设两章立住"},
+      {"name": "纪霜衡", "status": "pending", "note": "ch11登场，未启动"}
+    ]
+  },
+  "worldview_check": {
+    "status": "consistent",
+    "deviations": []
+  },
+  "pacing_curve": {
+    "tension_levels": ["中(ch1)", "高(ch2)", "中高(ch3)", "中(ch4)", "中低(ch5)", "低(ch6)", "低(ch7)", "低(ch8)", "高(ch9)", "中高(ch10)"],
+    "shuang_density_trend": "stable_after_E2_fix",
+    "zhang_chi_ratio": "4:6(体感5:5)，卷一后段目标6:4"
+  },
+  "main_quest_status": {
+    "progress_bar": "火种：0/3实质推进(ch3立标)，温度保持中",
+    "stalled_chapters": 7,
+    "next_node": "ch19-25豆灯线(大纲v4.3)"
+  },
+  "villain_ladder_status": {
+    "tier1_喽啰": {"name": "疤脸打手", "status": "pending_ontime", "window": "ch11复仇战"},
+    "tier2_地头": {"name": "霍东来", "status": "converted", "note": "灰色知情人"},
+    "tier3_公会": {"name": "封九霄", "status": "pending_ontime", "window": "ch11-12"},
+    "tier4_商会": {"name": "聚宝阁", "status": "seeding_ontime", "note": "ch10传闻引擎点火"}
+  },
+  "stalled_goals": [],
+  "summary": "长线审查结论：warning(轻度)。六维中四维healthy；两处warning均为趋势性而非崩坏性——①火种进度条停滞7章(已保温+有排期，建议ch11-15加1次温度保持beat)；②ch5-8低能蓄势带(E2补强后达标，卷一后段须高密度排爽平衡)。伏笔零逾期零跳级，角色弧光全部on_track，世界观零矛盾，反派梯子四级全部ontime，目标断头0个。可继续生产ch11，无需回退修正。"
+}
