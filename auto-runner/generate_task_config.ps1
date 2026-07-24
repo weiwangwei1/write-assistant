@@ -171,7 +171,7 @@ for ($i = 0; $i -lt $totalChapters; $i++) {
         $reviewInstr = "Read auto-runner/context_cache.json (reference cached summary for quality-reviewer) OR Read .trae/skills/quality-reviewer/SKILL.md if cache miss. Unified review+merge mode for Ch$chNum. Read auto-runner/unified_review_spec.md for 12-dimension spec. PHASE 1 (Merge): Read handoff/chapters/detail_review_ch$ch3.json and handoff/chapters/de_ai_analysis_ch$ch3.json. Apply conflict rules: same-loc diff-cause -> take higher severity; same-loc conflict -> detail priority; one-sided -> keep. Fix critical first, then major. Apply to output/chapter_$ch3.txt. Output merged_review to handoff/chapters/merged_review_ch$ch3.json. PHASE 2 (Review): Based on the MERGED text, execute 8 technical + 4 supplementary dimensions + monitoring + cross-check. unified_score = technical_score x 0.6 + supplementary_score x 0.4. >= 9.5 = approved."
         $reviewInputs = @("output/chapter_$ch3.txt", "memory/outline.json", "memory/characters.json", "memory/goal_tracker.json", "memory/foreshadowing_tracker.json", "config/novel_config.json", "handoff/chapters/detail_review_ch$ch3.json", "handoff/chapters/de_ai_analysis_ch$ch3.json", "auto-runner/unified_review_spec.md")
         $reviewOutputs = @("output/chapter_$ch3.txt", "handoff/chapters/merged_review_ch$ch3.json", "handoff/chapters/unified_review_ch$ch3.json")
-        $reviewPass = "All critical fixed, 12-dimension scores + unified_score + verdict present, unified_score >= 9.5 = approved"
+        $reviewPass = "All critical fixed, 12-dimension scores + unified_score + verdict + critical_count present, critical_count=0 = approved (v3.0: problem-list gate, not score gate)"
 
         if ($isLast) {
             $reviewStep = @{

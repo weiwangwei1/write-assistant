@@ -19,7 +19,7 @@ v2.0 将 Merge 步骤整合到 Unified Review 中，每章从6步减少到5步�
 1. **评分公式不变**：unified_score = technical_score×0.6 + supplementary_score×0.4
 2. **维度全覆盖**：12维一次评完（8技术维+4补充维），无遗漏
 3. **权重等价转换**：技术维权重×0.6，补充维权重×0.4，总权重=1.0
-4. **裁决标准不变**：unified_score ≥ 9.5 为 approved
+4. **裁决标准（v3.0修订）**：不再以 unified_score ≥ 9.5 为通过条件，改为 **问题清单制**——critical 清零即过（approved），critical 未清零即退回（rework）。分数保留为参考维度但不作为门禁条件。设计依据：LLM 自评分数通胀严重（实测 9.3-9.6 无区分度），问题清单比分数更可执行
 5. **向后兼容**：传统2步模式（quality→final）仍可用，unified为可选加速模式
 
 ---
@@ -412,7 +412,7 @@ unified_score = technical_score × 0.6 + supplementary_score × 0.4
       "handoff/chapters/merged_review_ch{NNN}.json",
       "handoff/chapters/unified_review_ch{NNN}.json"
     ],
-    "pass_criteria": "输出3个文件：修订后正文 output/chapter_{NNN}.txt + merged_review合并清单 + unified_review评分。unified_review含merge_phase字段+12维评分+unified_score+verdict，unified_score≥9.5为approved",
+    "pass_criteria": "输出3个文件：修订后正文 output/chapter_{NNN}.txt + merged_review合并清单 + unified_review评分。unified_review含merge_phase字段+12维评分+unified_score+verdict+critical_count，critical_count=0为approved（v3.0问题清单制门禁）",
     "max_retries": 3
   }
 ]
@@ -424,13 +424,16 @@ unified_score = technical_score × 0.6 + supplementary_score × 0.4
 
 ---
 
-## 质量门禁自动重试规则
+## 质量门禁自动重试规则（v3.0修订：问题清单制）
 
 | 未通过次数 | 处理方式 |
 |-----------|---------|
-| 第1次 unified_score < 9.5 | 自动退回 chapter-writer 修订，附上unified_review反馈 |
-| 第2次 unified_score < 9.5 | 自动退回 detail-reviewer 精修，附上unified_review反馈 |
-| 第3次 unified_score < 9.5 | 停止执行，记录 stop_reason: "质量门禁3次未通过" |
+| 第1次 critical 未清零 | 自动退回 chapter-writer 修订，附上问题清单（critical issues） |
+| 第2次 critical 未清零 | 自动退回 detail-reviewer 精修，附上问题清单 |
+| 第3次 critical 未清零 | 停止执行，记录 stop_reason: "质量门禁3次未通过（critical未清零）" |
+
+> 注：major 问题不拦截流水线，但计入 chapter_health 指标；minor 仅提醒。
+> unified_score 仍计算并记录，但仅作为参考趋势数据，不作为通过/退回的门禁条件。
 
 ---
 
