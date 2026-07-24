@@ -4,7 +4,9 @@
     "simile_max_per_chapter": 6,
     "not_a_is_b_max_per_chapter": 1,
     "dialogue_ratio_min": 0.25,
-    "dialogue_ratio_max": 0.40
+    "dialogue_ratio_max": 0.40,
+    "dash_max_per_1000": 1.0,
+    "ellipsis_max_per_1000": 1.5
   },
   "disabled_rules": [],
   "disabled_reason": {},
@@ -15,5 +17,18 @@
     {"word": "命运丝线", "severity": "critical", "reason": "类型通货意象（西幻腔调陷阱）"},
     {"word": "古老的符文", "severity": "critical", "reason": "类型通货意象"}
   ],
-  "note": "烟雨江南方向更克制：比喻上限收紧至6、不是A是B收紧至1。'极短独立句收束'是该风格签名，但受通用碎段率约束——签名手法允许存在，不许泛滥。"
+  "fingerprint_ref": {
+    "source": "《罪恶之城》《狩魔手记》《永夜君王》三本全本（1015万字）",
+    "confidence": "high",
+    "key_metrics": {
+      "sent_len_mean": 27.78,
+      "short_sent_ratio": 0.082,
+      "dialogue_ratio": 0.274,
+      "dash_per_1000": 0.008,
+      "ellipsis_per_1000": 0.646,
+      "comma_period_ratio": 2.157
+    },
+    "note": "破折号上限设1.0/千字（原作0.008，几乎不用）；省略号上限1.5/千字（原作0.646）。阈值比原作略宽松，给创作留余量。"
+  },
+  "note": "烟雨江南方向更克制：比喻上限收紧至6、不是A是B收紧至1、破折号上限1.0/千字（原作几乎不用破折号）。'极短独立句收束'是该风格签名，但原作短句占比仅8.2%——签名手法允许存在，不许泛滥。"
 }

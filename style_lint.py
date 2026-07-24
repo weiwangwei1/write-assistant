@@ -37,6 +37,9 @@ DEFAULT_CONFIG = {
     # 四、对话占比（H9）
     "dialogue_ratio_min": 0.35,
     "dialogue_ratio_max": 0.60,
+    # 四b、标点指纹（风格包可覆盖；默认宽松，风格包按原作指纹收紧）
+    "dash_max_per_1000": 20.0,        # 破折号"——"每千字上限
+    "ellipsis_max_per_1000": 5.0,     # 省略号"……"每千字上限
     # 五、警告级
     "emotion_telling_words": ["不敢", "害怕", "悲伤", "震撼", "激动"],
     "four_char_cliches": ["不急不缓", "不紧不慢", "取而代之", "不约而同", "悄无声息"],
@@ -152,6 +155,17 @@ def lint_chapter(ch, cfg, disabled, custom_bans):
         add("dialogue_ratio", "minor", 0, "", f"对话占比{dr*100:.0f}% < 下限{cfg['dialogue_ratio_min']*100:.0f}%")
     elif dr > cfg["dialogue_ratio_max"]:
         add("dialogue_ratio", "minor", 0, "", f"对话占比{dr*100:.0f}% > 上限{cfg['dialogue_ratio_max']*100:.0f}%")
+
+    # 标点指纹（破折号/省略号频率，风格包按原作指纹收紧）
+    total_chars = max(1, sum(han_len(p) for p in ch.paras))
+    dash_cnt = ch.text.count("——") + ch.text.count("—")
+    dash_per_1k = round(dash_cnt / total_chars * 1000, 3)
+    if dash_per_1k > cfg["dash_max_per_1000"]:
+        add("dash_overuse", "critical", 0, "", f"破折号{dash_per_1k}/千字 > 上限{cfg['dash_max_per_1000']}")
+    ellipsis_cnt = ch.text.count("……")
+    ellipsis_per_1k = round(ellipsis_cnt / total_chars * 1000, 3)
+    if ellipsis_per_1k > cfg["ellipsis_max_per_1000"]:
+        add("ellipsis_overuse", "minor", 0, "", f"省略号{ellipsis_per_1k}/千字 > 上限{cfg['ellipsis_max_per_1000']}")
 
     for w in cfg["emotion_telling_words"]:
         n = ch.text.count(w)

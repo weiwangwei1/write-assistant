@@ -1,19 +1,68 @@
 {
   "card_type": "style_fingerprint_baseline",
-  "status": "pending",
-  "confidence": "none",
-  "note": "烟雨江南原作未入库。蒸馏期请执行：python style_fingerprint.py build 罪恶之城.txt 狩魔手记.txt 永夜君王.txt --author 烟雨江南 --out fingerprint.json",
-  "declared_targets": {
-    "dialogue_ratio": [
-      0.25,
-      0.35
-    ],
-    "chapter_words": [
-      3000,
-      5000
-    ],
-    "note": "来自SKILL.md声明值，非实测指纹"
+  "status": "ready",
+  "confidence": "high",
+  "note": "",
+  "metrics": {
+    "author": "烟雨江南",
+    "source": ".trae/skills/writer-styles/yanyujiangnan/reference/原作_utf8/《罪恶之城》（校对版全本）作者：烟雨江南.txt;.trae/skills/writer-styles/yanyujiangnan/reference/原作_utf8/《狩魔手记》（校对版全本）作者：烟雨江南.txt;.trae/skills/writer-styles/yanyujiangnan/reference/原作_utf8/《永夜君王》（校对版全本）作者：烟雨江南.txt",
+    "sample_chars": 10155416,
+    "sample_sents": 365613,
+    "sample_paras": 177726,
+    "func_words_per_1000": {
+      "的": 38.355,
+      "了": 15.257,
+      "在": 11.549,
+      "是": 17.158,
+      "不": 14.25,
+      "他": 6.893,
+      "她": 2.22,
+      "我": 4.33,
+      "你": 3.331,
+      "也": 5.143,
+      "都": 4.642,
+      "就": 7.747,
+      "又": 1.634,
+      "还": 3.323,
+      "与": 0.842,
+      "和": 3.598,
+      "或": 0.614,
+      "着": 5.361,
+      "过": 4.414,
+      "把": 1.795,
+      "被": 1.79,
+      "向": 2.078,
+      "从": 2.006,
+      "但": 2.033,
+      "而": 4.314,
+      "却": 1.75,
+      "只": 3.083,
+      "已": 3.04,
+      "曾": 0.233,
+      "将": 1.73
+    },
+    "sent_len_mean": 27.78,
+    "sent_len_stdev": 15.26,
+    "short_sent_ratio": 0.0821,
+    "long_sent_ratio": 0.183,
+    "para_len_mean": 57.14,
+    "short_para_ratio": 0.1103,
+    "dialogue_ratio": 0.2744,
+    "comma_period_ratio": 2.157,
+    "dash_per_1000": 0.008,
+    "ellipsis_per_1000": 0.646
   },
-  "metrics": null,
-  "tolerance": {}
+  "tolerance": {
+    "func_words_cosine": 0.08,
+    "sent_len_mean": 0.25,
+    "sent_len_stdev": 0.35,
+    "short_sent_ratio": 0.35,
+    "long_sent_ratio": 0.5,
+    "para_len_mean": 0.35,
+    "short_para_ratio": 0.35,
+    "dialogue_ratio": 0.4,
+    "comma_period_ratio": 0.35,
+    "dash_per_1000": 0.6,
+    "ellipsis_per_1000": 0.6
+  }
 }
