@@ -189,20 +189,20 @@ svg text{font-family:'Noto Sans SC','Microsoft YaHei',sans-serif}
                  "review_mode":  "unified",
                  "workspace":  "d:\\personFile\\write-assistant",
                  "created_at":  "2026-07-24T19:27:28.1187975+08:00",
-                 "last_run":  null,
-                 "overall_status":  "pending",
-                 "current_step":  0,
+                 "last_run":  "2026-07-24T22:32:48+08:00",
+                 "overall_status":  "running",
+                 "current_step":  6,
                  "stop_reason":  null,
-                 "generated_at":  "2026-07-24 19:49:20 +08:00",
-                 "has_real_timestamps":  false
+                 "generated_at":  "2026-07-24 22:35:25 +08:00",
+                 "has_real_timestamps":  true
              },
     "kpis":  {
                  "total":  24,
-                 "completed":  0,
+                 "completed":  6,
                  "running":  0,
-                 "pending":  24,
+                 "pending":  18,
                  "failed":  0,
-                 "progress_pct":  0,
+                 "progress_pct":  25,
                  "parallel_groups":  7,
                  "savings_pct":  41.7,
                  "critical_path":  14
@@ -212,18 +212,18 @@ svg text{font-family:'Noto Sans SC','Microsoft YaHei',sans-serif}
                       "id":  0,
                       "name":  "Ch14 Write",
                       "agent":  "chapter-writer",
-                      "status":  "pending",
+                      "status":  "completed",
                       "retries":  0,
                       "is_merger":  false,
                       "parallel_group":  null,
                       "depends_on":  [
 
                                      ],
-                      "timestamp":  null,
+                      "timestamp":  "2026-07-24T21:40:27+08:00",
                       "started_at":  null,
                       "completed_at":  null,
                       "error":  null,
-                      "result":  null,
+                      "result":  "Ch14 written: 3337 chars, 484 lines, sensory opening, action_unfinished ending",
                       "instruction":  "Read .trae/skills/chapter-writer/SKILL.md. Read memory/outline.json (tanghulu_vol1[2]) for Ch14 beats. Core: 鉴定开张(收费验来历)→托儿拿赝品砸场→当众连破三赝(老灯毒舌全开喜剧高峰)→聚宝阁反扑被反制. Read output/chapter_013.txt for continuity. Write ~2800 words, one sentence per line. Opening: sensory. Ending: action_unfinished. Follow all writing rules.",
                       "pass_criteria":  "chapter_014.txt exists, wordcount\u003e=2500, opening=sensory"
                   },
@@ -231,18 +231,18 @@ svg text{font-family:'Noto Sans SC','Microsoft YaHei',sans-serif}
                       "id":  1,
                       "name":  "Ch14 Detail Review (parallel)",
                       "agent":  "detail-reviewer",
-                      "status":  "pending",
+                      "status":  "completed",
                       "retries":  0,
                       "is_merger":  false,
                       "parallel_group":  "review_ch14",
                       "depends_on":  [
                                          0
                                      ],
-                      "timestamp":  null,
+                      "timestamp":  "2026-07-24T21:53:36+08:00",
                       "started_at":  null,
                       "completed_at":  null,
                       "error":  null,
-                      "result":  null,
+                      "result":  "Detail review completed: 0 critical, 1 major, 7 minor. Verdict: needs_revision",
                       "instruction":  "Analyze Ch14 (analysis mode, do NOT edit text). Read output/chapter_014.txt and output/chapter_013.txt for continuity.. Check: opening/ending variety, rhythm, character anchors, Show vs Tell, attraction elements, hook strength(\u003e=B), cross-chapter facts, darkline pacing. Output to handoff/chapters/detail_review_ch014.json.",
                       "pass_criteria":  "Output contains graded issues (critical/major/minor) and cross-chapter variety check"
                   },
@@ -250,18 +250,18 @@ svg text{font-family:'Noto Sans SC','Microsoft YaHei',sans-serif}
                       "id":  2,
                       "name":  "Ch14 De-AI Analysis (parallel)",
                       "agent":  "de-ai-processor",
-                      "status":  "pending",
+                      "status":  "completed",
                       "retries":  0,
                       "is_merger":  false,
                       "parallel_group":  "review_ch14",
                       "depends_on":  [
                                          0
                                      ],
-                      "timestamp":  null,
+                      "timestamp":  "2026-07-24T21:53:36+08:00",
                       "started_at":  null,
                       "completed_at":  null,
                       "error":  null,
-                      "result":  null,
+                      "result":  "De-AI analysis completed: ai_score=1.5 (pass). 9 detections (3 medium, 6 low)",
                       "instruction":  "Analyze Ch14 (analysis_mode=true, do NOT edit). Read output/chapter_014.txt. Detect 14 AI patterns: Show vs Tell, formulaic words, repetition, flat emotion, logic chains, emotion-telling, meaningless actions. Output to handoff/chapters/de_ai_analysis_ch014.json.",
                       "pass_criteria":  "Output contains ai_score(\u003c=2.0 pass) and detection details"
                   },
@@ -269,7 +269,7 @@ svg text{font-family:'Noto Sans SC','Microsoft YaHei',sans-serif}
                       "id":  3,
                       "name":  "Ch14 Merge (merger)",
                       "agent":  "chapter-writer",
-                      "status":  "pending",
+                      "status":  "completed",
                       "retries":  0,
                       "is_merger":  true,
                       "parallel_group":  "review_ch14",
@@ -277,11 +277,11 @@ svg text{font-family:'Noto Sans SC','Microsoft YaHei',sans-serif}
                                          1,
                                          2
                                      ],
-                      "timestamp":  null,
+                      "timestamp":  "2026-07-24T21:58:48+08:00",
                       "started_at":  null,
                       "completed_at":  null,
                       "error":  null,
-                      "result":  null,
+                      "result":  "Merge completed: 2 fixes applied (1 major + 1 medium), 2 conflicts resolved, 11 minor skipped. 3198 chars.",
                       "instruction":  "Merge: Read handoff/chapters/detail_review_ch014.json and handoff/chapters/de_ai_analysis_ch014.json. Apply conflict rules: same-loc diff-cause -\u003e take higher severity; same-loc conflict -\u003e detail priority; one-sided -\u003e keep. Fix critical first, then major. Apply to output/chapter_014.txt. Output to handoff/chapters/merged_review_ch014.json.",
                       "pass_criteria":  "All critical fixed, major handled, chapter_014.txt updated, merged_review has conflict resolutions"
                   },
@@ -289,18 +289,18 @@ svg text{font-family:'Noto Sans SC','Microsoft YaHei',sans-serif}
                       "id":  4,
                       "name":  "Ch14 Unified Review (parallel w/ Ch15 write)",
                       "agent":  "quality-reviewer",
-                      "status":  "pending",
+                      "status":  "completed",
                       "retries":  0,
                       "is_merger":  false,
                       "parallel_group":  "pipeline_14_15",
                       "depends_on":  [
                                          3
                                      ],
-                      "timestamp":  null,
+                      "timestamp":  "2026-07-24T22:06:04+08:00",
                       "started_at":  null,
                       "completed_at":  null,
                       "error":  null,
-                      "result":  null,
+                      "result":  "Unified review completed: unified_score=9.51 (approved). technical=9.47, supplementary=9.59",
                       "instruction":  "Unified review mode for Ch14. Read auto-runner/unified_review_spec.md for 12-dimension spec. Execute 8 technical + 4 supplementary dimensions + monitoring + cross-check in one step. unified_score = technical_score x 0.6 + supplementary_score x 0.4. \u003e= 9.5 = approved. This step runs in parallel with Ch15 write.",
                       "pass_criteria":  "Output has 12-dimension scores + unified_score + verdict. unified_score \u003e= 9.5 = approved"
                   },
@@ -308,18 +308,18 @@ svg text{font-family:'Noto Sans SC','Microsoft YaHei',sans-serif}
                       "id":  5,
                       "name":  "Ch14 Memory Commit",
                       "agent":  "memory-manager",
-                      "status":  "pending",
+                      "status":  "completed",
                       "retries":  0,
                       "is_merger":  false,
                       "parallel_group":  null,
                       "depends_on":  [
                                          4
                                      ],
-                      "timestamp":  null,
+                      "timestamp":  "2026-07-24T22:32:48+08:00",
                       "started_at":  null,
                       "completed_at":  null,
                       "error":  null,
-                      "result":  null,
+                      "result":  "Memory commit completed: chapter_014.json created, goal_tracker/session_pointer/foreshadowing_tracker updated, full-text appended",
                       "instruction":  "Read .trae/skills/memory-manager/SKILL.md. Commit Ch14: 1) Generate chapter summary 2) Update goal_tracker 3) Update session_pointer 4) Append to full-text file 5) Update character states 6) Log.",
                       "pass_criteria":  "Chapter summary generated, goal_tracker updated, session_pointer updated"
                   },
@@ -772,11 +772,11 @@ svg text{font-family:'Noto Sans SC','Microsoft YaHei',sans-serif}
                             {
                                 "group_id":  "review_ch14",
                                 "mode":  "mode7",
-                                "status":  "pending",
+                                "status":  "completed",
                                 "parallel_total":  2,
                                 "merger_step_id":  3,
-                                "merger_ready":  false,
-                                "merger_executed":  false,
+                                "merger_ready":  true,
+                                "merger_executed":  true,
                                 "parallel_step_ids":  [
                                                           1,
                                                           2
@@ -792,11 +792,11 @@ svg text{font-family:'Noto Sans SC','Microsoft YaHei',sans-serif}
                                                           "Ch14 Merge (merger)"
                                                       ],
                                 "completed_agents":  [
-
+                                                         "Ch14 Detail Review (parallel)",
+                                                         "Ch14 De-AI Analysis (parallel)"
                                                      ],
                                 "pending_agents":  [
-                                                       "Ch14 Detail Review (parallel)",
-                                                       "Ch14 De-AI Analysis (parallel)"
+
                                                    ],
                                 "failed_agents":  [
 

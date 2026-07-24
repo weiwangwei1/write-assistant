@@ -1,6 +1,6 @@
 <#
 .SYNOPSIS
-  State.json validator and repair script (v2.1)
+  State.json validator and repair script (v2.4)
 #>
 
 param(
@@ -70,7 +70,7 @@ function Test-AllFilesExist {
 }
 
 Write-Host ""
-Write-Host "=== State Validator v2.1 ===" -ForegroundColor Cyan
+Write-Host "=== State Validator v2.4 ===" -ForegroundColor Cyan
 Write-Host "Workspace: $workspace"
 Write-Host "State file: $statePath"
 Write-Host "Dry run: $($DryRun.IsPresent)"
@@ -110,7 +110,7 @@ foreach ($step in $runningSteps) {
 
 # 2. Verify completed steps
 Write-Host ""
-Write-Host "[2/4] Verifying completed steps outputs..." -ForegroundColor Yellow
+Write-Host "[2/6] Verifying completed steps outputs..." -ForegroundColor Yellow
 $completedSteps = @($state.steps | Where-Object { $_.status -eq "completed" })
 foreach ($step in $completedSteps) {
     $outputFiles = Get-StepOutputFiles -stepId $step.id -config $taskConfig
@@ -158,7 +158,7 @@ if ($firstIncomplete) {
 
 # 4. Fix parallel groups
 Write-Host ""
-Write-Host "[4/4] Fixing parallel_groups..." -ForegroundColor Yellow
+Write-Host "[4/6] Fixing parallel_groups..." -ForegroundColor Yellow
 if ($state.parallel_groups -and $state.parallel_groups.Count -gt 0) {
     foreach ($group in $state.parallel_groups) {
         $groupSteps = @()
@@ -196,6 +196,70 @@ if ($state.parallel_groups -and $state.parallel_groups.Count -gt 0) {
         } else {
             Write-Host "  Group '$($group.group_id)': state correct" -ForegroundColor DarkGray
         }
+    }
+} else {
+    Write-Host "  No parallel groups" -ForegroundColor DarkGray
+}
+
+# 5. Archive intermediate review files (v2.4 - Optimization C)
+Write-Host ""
+Write-Host "[5/6] Archiving intermediate review files..." -ForegroundColor Yellow
+$chaptersDir = Join-Path $workspace "handoff\chapters"
+$archiveBase = Join-Path $workspace "handoff\archive"
+$archivedCount = 0
+if (FastFileExists $chaptersDir) {
+    $mergedFiles = Get-ChildItem $chaptersDir -Filter "merged_review_ch*.json" -ErrorAction SilentlyContinue
+    foreach ($mergedFile in $mergedFiles) {
+        if ($mergedFile.Name -match "merged_review_ch(\d+)\.json") {
+            $chNum = $Matches[1]
+            $detailFile = Join-Path $chaptersDir "detail_review_ch$chNum.json"
+            $deaiFile = Join-Path $chaptersDir "de_ai_analysis_ch$chNum.json"
+            $archiveDir = Join-Path $archiveBase "ch$chNum"
+            foreach ($srcFile in @($detailFile, $deaiFile)) {
+                if (FastFileExists $srcFile) {
+                    if (-not (Test-Path $archiveDir)) {
+                        New-Item -ItemType Directory -Path $archiveDir -Force | Out-Null
+                    }
+                    $destFile = Join-Path $archiveDir (Split-Path $srcFile -Leaf)
+                    $fileName = Split-Path $srcFile -Leaf
+                    if (-not $DryRun) {
+                        Move-Item -Path $srcFile -Destination $destFile -Force
+                        $archivedCount++
+                        Write-Host "  Archived: $fileName -> handoff/archive/ch$chNum/" -ForegroundColor Green
+                    }
+                    $details.Add("Archived $fileName for ch$chNum") | Out-Null
+                }
+            }
+        }
+    }
+    if ($archivedCount -eq 0 -and $DryRun) {
+        Write-Host "  No files to archive (or dry run)" -ForegroundColor DarkGray
+    } elseif ($archivedCount -eq 0) {
+        Write-Host "  No intermediate files to archive" -ForegroundColor DarkGray
+    }
+} else {
+    Write-Host "  No handoff/chapters/ directory" -ForegroundColor DarkGray
+}
+
+# 6. Clean up completed parallel groups (v2.4 - Optimization F)
+Write-Host ""
+Write-Host "[6/6] Cleaning up completed parallel groups..." -ForegroundColor Yellow
+if ($state.parallel_groups -and $state.parallel_groups.Count -gt 0) {
+    $completedGroups = @($state.parallel_groups | Where-Object { $_.status -eq "completed" -and $_.merger_executed -eq $true })
+    if ($completedGroups.Count -gt 0) {
+        $issuesFound++
+        Write-Host "  Found $($completedGroups.Count) completed groups to clean up" -ForegroundColor Green
+        foreach ($group in $completedGroups) {
+            Write-Host "  Removing group: $($group.group_id) (status=completed, merger_executed=true)" -ForegroundColor Green
+            $details.Add("Cleaned up completed group: $($group.group_id)") | Out-Null
+        }
+        if (-not $DryRun) {
+            $remainingGroups = @($state.parallel_groups | Where-Object { -not ($_.status -eq "completed" -and $_.merger_executed -eq $true) })
+            $state.parallel_groups = $remainingGroups
+            $issuesFixed++
+        }
+    } else {
+        Write-Host "  No completed groups to clean up" -ForegroundColor DarkGray
     }
 } else {
     Write-Host "  No parallel groups" -ForegroundColor DarkGray

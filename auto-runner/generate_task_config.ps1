@@ -100,14 +100,14 @@ for ($i = 0; $i -lt $totalChapters; $i++) {
     $endStyle = $endingStyles[$endIdx]
 
     # --- Step A: Write ---
-    $writeInstr = "Read .trae/skills/chapter-writer/SKILL.md. Read memory/outline.json ($unitRef) for Ch$chNum beats. Core: $beats."
+    $writeInstr = "Read auto-runner/context_cache.json (reference cached summary for chapter-writer) OR Read .trae/skills/chapter-writer/SKILL.md if cache miss. Read memory/outline.json ($unitRef) for Ch$chNum beats. Core: $beats."
     if ($hasPrev) { $writeInstr += " Read output/chapter_$prevCh3.txt for continuity." }
     $writeInstr += " Write ~2800 words, one sentence per line. Opening: $openStyle. Ending: $endStyle. Follow all writing rules."
 
     $writeInputs = @("memory/outline.json", "memory/characters.json", "memory/goal_tracker.json", ".trae/skills/chapter-writer/SKILL.md")
     if ($hasPrev) { $writeInputs = @("memory/outline.json", "memory/characters.json", "memory/goal_tracker.json", "output/chapter_$prevCh3.txt", ".trae/skills/chapter-writer/SKILL.md") }
 
-    $writeOutputs = @("output/chapter_$ch3.txt", "handoff/chapters/draft_ch$ch3.json")
+    $writeOutputs = @("output/chapter_$ch3.txt")
 
     if ($isFirst) {
         $writeStep = @{
@@ -134,7 +134,7 @@ for ($i = 0; $i -lt $totalChapters; $i++) {
 
     # --- Step B: Detail Review (parallel) ---
     $reviewGroup = "review_ch$chNum"
-    $detailInstr = "Analyze Ch$chNum (analysis mode, do NOT edit text). Read output/chapter_$ch3.txt"
+    $detailInstr = "Read auto-runner/context_cache.json (reference cached summary for detail-reviewer) OR Read .trae/skills/detail-reviewer/SKILL.md if cache miss. Analyze Ch$chNum (analysis mode, do NOT edit text). Read output/chapter_$ch3.txt"
     if ($hasPrev) { $detailInstr += " and output/chapter_$prevCh3.txt for continuity." }
     $detailInstr += ". Check: opening/ending variety, rhythm, character anchors, Show vs Tell, attraction elements, hook strength(>=B), cross-chapter facts, darkline pacing. Output to handoff/chapters/detail_review_ch$ch3.json."
 
@@ -155,7 +155,7 @@ for ($i = 0; $i -lt $totalChapters; $i++) {
     # --- Step C: De-AI Analysis (parallel) ---
     $deaiStep = @{
         id = $stepId; name = "Ch$chNum De-AI Analysis (parallel)"; agent = "de-ai-processor"
-        instruction = "Analyze Ch$chNum (analysis_mode=true, do NOT edit). Read output/chapter_$ch3.txt. Detect 14 AI patterns: Show vs Tell, formulaic words, repetition, flat emotion, logic chains, emotion-telling, meaningless actions. Output to handoff/chapters/de_ai_analysis_ch$ch3.json."
+        instruction = "Read auto-runner/context_cache.json (reference cached summary for de-ai-processor) OR Read .trae/skills/de-ai-processor/SKILL.md if cache miss. Analyze Ch$chNum (analysis_mode=true, do NOT edit). Read output/chapter_$ch3.txt. Detect 14 AI patterns: Show vs Tell, formulaic words, repetition, flat emotion, logic chains, emotion-telling, meaningless actions. Output to handoff/chapters/de_ai_analysis_ch$ch3.json."
         input_files = @("output/chapter_$ch3.txt", ".trae/skills/de-ai-processor/SKILL.md")
         output_files = @("handoff/chapters/de_ai_analysis_ch$ch3.json")
         pass_criteria = "Output contains ai_score(<=2.0 pass) and detection details"
@@ -181,7 +181,7 @@ for ($i = 0; $i -lt $totalChapters; $i++) {
 
     # --- Step E: Review (unified or traditional) ---
     if ($ReviewMode -eq "unified") {
-        $reviewInstr = "Unified review mode for Ch$chNum. Read auto-runner/unified_review_spec.md for 12-dimension spec. Execute 8 technical + 4 supplementary dimensions + monitoring + cross-check in one step. unified_score = technical_score x 0.6 + supplementary_score x 0.4. >= 9.5 = approved."
+        $reviewInstr = "Read auto-runner/context_cache.json (reference cached summary for quality-reviewer) OR Read .trae/skills/quality-reviewer/SKILL.md if cache miss. Unified review mode for Ch$chNum. Read auto-runner/unified_review_spec.md for 12-dimension spec. Execute 8 technical + 4 supplementary dimensions + monitoring + cross-check in one step. unified_score = technical_score x 0.6 + supplementary_score x 0.4. >= 9.5 = approved."
         $reviewInputs = @("output/chapter_$ch3.txt", "memory/outline.json", "memory/characters.json", "memory/goal_tracker.json", "memory/foreshadowing_tracker.json", "config/novel_config.json", "handoff/chapters/merged_review_ch$ch3.json", "auto-runner/unified_review_spec.md")
         $reviewOutputs = @("handoff/chapters/unified_review_ch$ch3.json")
         $reviewPass = "Output has 12-dimension scores + unified_score + verdict. unified_score >= 9.5 = approved"
@@ -210,7 +210,7 @@ for ($i = 0; $i -lt $totalChapters; $i++) {
         $reviewId = $stepId
         $stepId++
     } else {
-        $qInstr = "Quality review Ch$chNum. Read output/chapter_$ch3.txt. Score 8 dimensions (attraction/shuang/rhythm/hook/character/plot/logic/writing). technical_score >= 9.5 = pass. Output to handoff/chapters/quality_review_ch$ch3.json."
+        $qInstr = "Read auto-runner/context_cache.json (reference cached summary for quality-reviewer) OR Read .trae/skills/quality-reviewer/SKILL.md if cache miss. Quality review Ch$chNum. Read output/chapter_$ch3.txt. Score 8 dimensions (attraction/shuang/rhythm/hook/character/plot/logic/writing). technical_score >= 9.5 = pass. Output to handoff/chapters/quality_review_ch$ch3.json."
         $qInputs = @("output/chapter_$ch3.txt", "memory/outline.json", "memory/characters.json", "memory/goal_tracker.json", "handoff/chapters/merged_review_ch$ch3.json", ".trae/skills/quality-reviewer/SKILL.md")
         $qStep = @{
             id = $stepId; name = "Ch$chNum Quality Review"; agent = "quality-reviewer"
@@ -223,7 +223,7 @@ for ($i = 0; $i -lt $totalChapters; $i++) {
         $qId = $stepId
         $stepId++
 
-        $fInstr = "Final review Ch$chNum. Reference quality technical_score x 0.6 + supplementary 4-dim x 0.4 = final_score. >= 9.5 = approved."
+        $fInstr = "Read auto-runner/context_cache.json (reference cached summary for final-reviewer) OR Read .trae/skills/final-reviewer/SKILL.md if cache miss. Final review Ch$chNum. Reference quality technical_score x 0.6 + supplementary 4-dim x 0.4 = final_score. >= 9.5 = approved."
         $fInputs = @("output/chapter_$ch3.txt", "handoff/chapters/quality_review_ch$ch3.json", "memory/foreshadowing_tracker.json", ".trae/skills/final-reviewer/SKILL.md")
         $fOutputs = @("handoff/chapters/final_review_ch$ch3.json")
         $fPass = "Output has final_score >= 9.5, verdict = approved"
@@ -260,7 +260,7 @@ for ($i = 0; $i -lt $totalChapters; $i++) {
     }
     $memStep = @{
         id = $stepId; name = "Ch$chNum Memory Commit"; agent = "memory-manager"
-        instruction = "Read .trae/skills/memory-manager/SKILL.md. Commit Ch${chNum}: 1) Generate chapter summary 2) Update goal_tracker 3) Update session_pointer 4) Append to full-text file 5) Update character states 6) Log."
+        instruction = "Read auto-runner/context_cache.json (reference cached summary for memory-manager) OR Read .trae/skills/memory-manager/SKILL.md if cache miss. Commit Ch${chNum}: 1) Generate chapter summary 2) Update goal_tracker 3) Update session_pointer 4) Append to full-text file 5) Update character states 6) Log."
         input_files = $memInputs
         output_files = @("memory/chapter_summaries/chapter_$ch3.json", "memory/goal_tracker.json", "memory/session_pointer.json")
         pass_criteria = "Chapter summary generated, goal_tracker updated, session_pointer updated"

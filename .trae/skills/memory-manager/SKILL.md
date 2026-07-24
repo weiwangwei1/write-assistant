@@ -1,10 +1,10 @@
 ---
 name: "memory-manager"
-version: "1.5"
-description: "Memory manager for novel writing system. v1.5: 文件I/O优化——recent_chapters改为按需读取output/(不维护副本)+全文文件改为追加模式(非全量重建)+characters.json改为索引指针(独立卡为唯一源). v1.4: 新增终审条件验证(步骤1.5)+override条件追踪(session_pointer.pending_override_conditions). v1.3: 新增全局全文文件维护(output/{novel_title}_全文.txt重建模式)——每章入库时重建连贯性阅读全文，含动态进度头部. v1.2: 新增目标闭环追踪(goal_tracker.json)+主线进度条/反派梯子追踪+悬念活跃窗口维护——基于Ch4-10第三方评审(目标断头/火种断更/悬念过载). v1.1: 新增章节级大纲漂移记录(drift_log)+终审后强制入库定位(硬门禁下游). Manages hierarchical storage, generates summaries, maintains sliding window context. Invoke MANDATORILY after final-reviewer approves each chapter — next chapter must not start until memory is committed."
+version: "1.6"
+description: "Memory manager for novel writing system. v1.6: 全文文件追加优化——header信息分离到独立文件(output/{novel_title}_全文_header.txt)，正文文件纯追加不重写，每次入库仅重写~200字header+追加~3KB正文. v1.5: 文件I/O优化——recent_chapters改为按需读取output/(不维护副本)+全文文件改为追加模式(非全量重建)+characters.json改为索引指针(独立卡为唯一源). v1.4: 新增终审条件验证(步骤1.5)+override条件追踪(session_pointer.pending_override_conditions). v1.3: 新增全局全文文件维护(output/{novel_title}_全文.txt重建模式)——每章入库时重建连贯性阅读全文，含动态进度头部. v1.2: 新增目标闭环追踪(goal_tracker.json)+主线进度条/反派梯子追踪+悬念活跃窗口维护——基于Ch4-10第三方评审(目标断头/火种断更/悬念过载). v1.1: 新增章节级大纲漂移记录(drift_log)+终审后强制入库定位(硬门禁下游). Manages hierarchical storage, generates summaries, maintains sliding window context. Invoke MANDATORILY after final-reviewer approves each chapter — next chapter must not start until memory is committed."
 ---
 
-# 记忆管家 (Memory Manager) v1.5
+# 记忆管家 (Memory Manager) v1.6
 
 > **流水线城市（v1.1 起强制）**：final-reviewer 终审通过后，memory-manager 是**不可跳过的强制步骤**。chief-editor 在其入库完成前不得启动下一章（硬门禁，见 chief-editor v1.1）。数据教训：Ch4–Ch10 连续跳过记忆入库，导致 session_pointer 停留在旧项目、章节摘要欠账 7 章，chapter-writer 跨章事实表失去数据源——跨章 critical 错误（Ch6-8 年代/人名/位置硬伤）均发生在欠账区间。
 
@@ -72,7 +72,8 @@ description: "Memory manager for novel writing system. v1.5: 文件I/O优化—�
 | `memory/foreshadowing_tracker.json` | 伏笔状态追踪表 | 每章终稿入库时更新 |
 | `memory/session_pointer.json` | L5 会话恢复指针 | 每章终稿入库时更新 |
 | `memory/goal_tracker.json` | 目标闭环+主线进度条+反派梯子追踪表（v1.2 新增） | 每章终稿入库时更新 |
-| `output/{novel_title}_全文.txt` | 全章全文合集（v1.5优化：改为追加模式，仅追加本章正文，不再全量重建） | 每章终稿入库时重建 |
+| `output/{novel_title}_全文.txt` | 全章正文合集（v2.4优化：追加模式，仅追加本章正文，不重写） | 每章终稿入库时追加 |
+| `output/{novel_title}_全文_header.txt` | 全文头部元信息（v2.4新增：独立存储书名/进度/更新时间，每次入库仅重写此~200字文件） | 每章终稿入库时更新 |
 | `memory/consistency_check/consistency_{N}.json` | 一致性自检报告 | 每10章触发 |
 | `memory/decision_log.jsonl` | 写作决策日志（追加） | 关键决策发生时 |
 | `logs/writing_log.jsonl` | 写作日志（追加写入） | 每章终稿入库时 |
@@ -263,17 +264,20 @@ description: "Memory manager for novel writing system. v1.5: 文件I/O优化—�
 
 ---
 
-## 全局全文文件维护（v1.3 新增）
+## 全局全文文件维护（v1.3 新增，v2.4 追加优化）
 
 维护 `output/{novel_title}_全文.txt`，将所有已定稿章节汇总为单个文件，方便连贯性阅读和通篇审阅。
 
 ### 文件路径
 
-- **路径**：`output/{novel_title}_全文.txt`（novel_title 从 `config/novel_config.json` 的 title 字段读取）
-- **生成方式**：重建模式——每次入库时从 `output/` 目录读取所有 `chapter_*.txt`，按章节号排序后重新拼接
+- **正文文件**：`output/{novel_title}_全文.txt`（novel_title 从 `config/novel_config.json` 的 title 字段读取）
+- **头部文件**：`output/{novel_title}_全文_header.txt`（v2.4新增，独立存储动态头部信息）
+- **生成方式**：追加模式——首次创建时写入标题+简介到header文件，正文文件仅追加本章内容，不再全量重写
 - **触发时机**：每章终稿入库时（工作流程 Step 3.5）
 
 ### 文件格式
+
+#### header文件格式（output/{novel_title}_全文_header.txt）
 
 ```
 {novel_title}
@@ -285,8 +289,11 @@ description: "Memory manager for novel writing system. v1.5: 文件I/O优化—�
 更新时间：{YYYY-MM-DD HH:mm}
 当前进度：Ch1-{N}全部完成
 ——————————————————————————
+```
 
+#### 正文文件格式（output/{novel_title}_全文.txt）
 
+```
 第1章 {title}
 
 {chapter_001 全文}
@@ -299,20 +306,22 @@ description: "Memory manager for novel writing system. v1.5: 文件I/O优化—�
 ...
 ```
 
-### 重建规则
+### 追加规则（v2.4 优化）
 
-1. **读取所有章节**：扫描 `output/` 目录下所有 `chapter_*.txt` 文件，按章节号升序排列
-2. **读取配置**：从 `config/novel_config.json` 读取 title、author、platform、genre
-3. **组装头部**：书名 + 分隔线 + 元信息（含更新时间、当前进度 Ch1-N）+ 分隔线
-4. **逐章拼接**：按章节号顺序，每章格式为 `\n\n第N章 {title}\n\n{正文}\n`
-5. **整体写入**：将完整内容覆盖写入 `output/{novel_title}_全文.txt`（非追加）
-6. **章节标题来源**：从对应 `memory/chapter_summaries/chapter_XXX.json` 的 title 字段读取；如摘要不存在，用 `第N章` 占位
+1. **首次创建**（第1章入库时）：
+   - 写入 header 文件：书名 + 分隔线 + 元信息（含更新时间、当前进度 Ch1-1）+ 分隔线
+   - 创建正文文件，写入第1章标题+正文
+2. **后续每章入库**：
+   - **更新 header 文件**：仅重写 header 文件（~200字，O(1)操作），刷新"更新时间"和"当前进度 Ch1-N"
+   - **追加正文文件**：在正文文件末尾追加 `\n\n第N章 {title}\n\n{正文}\n`（O(1)追加，不重写已有内容）
+3. **章节标题来源**：从对应 `memory/chapter_summaries/chapter_XXX.json` 的 title 字段读取；如摘要不存在，用 `第N章` 占位
+4. **章节重写场景**：如 `output/chapter_N.txt` 被重写（quality退回后修改），需删除正文文件并从 output/ 重建（此场景罕见，不影响整体性能）
 
 ### 设计理由
 
-- **重建而非追加**：章节重写场景下 `output/chapter_N.txt` 已更新，重建可自动同步，无需额外去重逻辑
-- **动态进度头部**：每次重建刷新"更新时间"和"当前进度"，方便快速确认最新状态
-- **与 output/ 目录一致性**：全文文件是 output/ 目录的只读投影，不独立存储内容
+- **追加而非重建（v2.4优化）**：将动态头部信息（书名/进度/更新时间）分离到独立 header 文件，正文文件只追加不重写。300章时每次入库从 O(N) 重写150KB+ 降至 O(1) 追加~3KB + O(1) 重写~200字 header
+- **header 独立存储**：每次入库只需更新 ~200 字的 header 文件（含最新进度），无需读取/重写整个正文文件
+- **与 output/ 目录一致性**：正文文件是 output/ 目录的只读投影，不独立存储内容
 
 ---
 
@@ -903,12 +912,13 @@ Step 4: 向用户汇报
    ├─ 检查文件数量
    └─ 如超过3个，删除最旧章节文件
 
-3.5 重建全局全文文件 ★（v1.3新增）
-   ├─ 读取 output/ 目录所有 chapter_*.txt（按章节号排序）
+3.5 追加全局全文文件 ★（v1.3新增，v2.4追加优化）
    ├─ 读取 config/novel_config.json 获取书名、作者、平台、类型
-   ├─ 读取各章 chapter_summaries 获取章节标题
-   ├─ 重建全文文件：头部元信息（含更新时间、当前进度Ch1-N）+ 逐章正文
-   └─ 覆盖写入 output/{novel_title}_全文.txt
+   ├─ 读取本章 chapter_summaries 获取章节标题
+   ├─ 更新 header 文件：重写 output/{novel_title}_全文_header.txt（~200字，含更新时间、当前进度Ch1-N）
+   └─ 追加正文文件：在 output/{novel_title}_全文.txt 末尾追加本章标题+正文（O(1)追加，不重写已有内容）
+   ├─ 首次创建时（第1章）：先写header文件，再创建正文文件写入第1章
+   └─ 章节重写场景：删除正文文件后从 output/ 重建（罕见场景）
 
 4. 更新角色状态
    ├─ 识别本章出场的角色
@@ -1002,7 +1012,7 @@ Step 4: 向用户汇报
 16. **产能进度更新**：每章入库时，更新 `config/novel_config.json` 的 `production_schedule.actual_chapters_done`，计算偏差天数。偏差>3天时在 session_pointer 的 `pending_decisions` 中添加预警。
 17. **memes_used 记录**：每章入库时，从交接卡读取 `memes_used` 字段，记录到 chapter_summary 中。便于 detail-reviewer 审核梗时效性时引用。
 18. **goal_tracker 不可跳过**：goal_tracker.json 与 session_pointer.json 同为硬门禁验证项（见 chief-editor v1.2）。目标的新建/推进/闭环判定必须基于正文实际内容，不得仅凭大纲推断——目标断头预警（chapters_since_progress≥4）是 quality-reviewer v1.7 的扣分依据，漏记等于放过断头的目标。
-19. **全局全文文件用重建模式**（v1.3新增）：`output/{novel_title}_全文.txt` 每章入库时从 `output/` 目录所有章节文件重新拼接（覆盖写入，非追加），确保与 `output/chapter_*.txt` 完全一致，自动处理重写场景。文件头部含动态进度信息（更新时间、当前进度 Ch1-N），每次重建时刷新。章节标题从 `memory/chapter_summaries/chapter_XXX.json` 的 title 字段读取。
+19. **全局全文文件用追加模式+独立header**（v1.3新增，v2.4优化）：`output/{novel_title}_全文.txt` 每章入库时仅追加本章标题+正文（O(1)追加，不重写已有内容）。动态头部信息（书名/进度/更新时间）分离到 `output/{novel_title}_全文_header.txt`，每次入库仅重写此~200字文件。章节重写场景（罕见）需删除正文文件后从 output/ 重建。章节标题从 `memory/chapter_summaries/chapter_XXX.json` 的 title 字段读取。
 20. **终审条件验证不可跳过**（v1.4新增）：步骤1.5的终审条件验证是入库前的强制检查。final-reviewer 给出的 conditions 中，管理项（角色卡同步/伏笔补登等）必须由 chapter-writer 在修订阶段执行（见 chapter-writer v2.4 修订同步要求），memory-manager 验证 `revision_sync` 字段。跨章条件（如"ch12-13闭环悬念"）记入 `pending_override_conditions` 追踪至到期。数据教训：Ch11 终审发现 R005/R023 两项管理项未执行，根因是修订与记忆更新脱节。
 21. **override条件到期提醒**（v1.4新增）：`pending_override_conditions` 中 due_chapter 已到期但 status 仍为 pending 的条件，必须在 next_action 中高亮提醒（"⚠️ OC00X 条件已到期"）。chief-editor 在下一章启动前读取此字段，确保到期条件在本章执行。若到期条件连续2章未执行，升级为 critical 预警上报用户。
 
@@ -1016,11 +1026,12 @@ Step 4: 向用户汇报
 - 实现：session_pointer.json 记录最近3章的章节号，下游按号到 output/ 读取
 - 收益：省22KB冗余存储 + 消除窗口与正本不同步风险
 
-### 优化2: 全文文件追加模式
+### 优化2: 全文文件追加模式 + 独立header（v2.4增强）
 - 旧方案：每章入库时全量重建 output/{novel_title}_全文.txt（330章时约1MB文本全量重写）
-- 新方案：每章入库时仅追加本章正文（约3KB追加 vs 1MB全量重写）
-- 实现：首次创建时写入标题+简介头部，后续每章追加章节标题+正文
-- 收益：入库写入从O(N)降至O(1)，330章时节省约99%写入量
+- v1.5方案：每章入库时仅追加本章正文（约3KB追加 vs 1MB全量重写）
+- v2.4方案：动态头部信息分离到 output/{novel_title}_全文_header.txt，正文文件纯追加不重写，header文件每次仅重写~200字
+- 实现：首次创建时写header文件+正文文件第1章；后续每章追加正文(~3KB) + 重写header(~200字)
+- 收益：入库写入从O(N)降至O(1)，330章时每次仅追加3KB+重写200字，vs旧方案重写1MB节省约99.8%写入量
 
 ### 优化3: characters.json 索引化
 - 旧方案：memory/characters.json 全量包含8个角色卡完整内容（约226KB），与8个独立卡（约158KB）完全重复

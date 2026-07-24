@@ -2,8 +2,9 @@
   "card_type": "foreshadowing_tracker",
   "novel_title": "有龙则灵",
   "outline_version": "v4.3",
-  "last_updated_chapter": 10,
-  "last_updated": "2026-07-24T20:10:00+08:00",
+  "last_updated_chapter": 14,
+  "last_updated": "2026-07-24T17:30:00+08:00",
+  "oc002_status": "completed——ch14入库时执行补登：F-ch11-1/2/3+F-ch12-1/2/3共6条已补登，同时补登F-ch14-1/2/3",
   "foreshadowings": [
     {
       "id": "F001",
@@ -14,12 +15,15 @@
         "full_reveal_chapter": "Vol5（191-230 传承契约全貌+爷爷守火）"
       },
       "actual_progress": [
-        {"chapter": 1, "action": "planted", "detail": "账册末页抖字'供桌认主，守灯人传承。慎独留。'（E1-2：血脉→传承）", "status": "completed"}
+        {"chapter": 1, "action": "planted", "detail": "账册末页抖字'供桌认主，守灯人传承。慎独留。'（E1-2：血脉→传承）", "status": "completed"},
+        {"chapter": 11, "action": "half_revealed", "detail": "纪霜衡拘传令翻出'渎神窃坛'旧案，守灯人身份被迫摆上台面。传承=罪名核心", "status": "completed"},
+        {"chapter": 12, "action": "half_revealed_deepened", "detail": "当众验桌展示公道返利+龙纹当众曝光，守灯人传承能力当众展示。信息差从暗转明", "status": "completed"},
+        {"chapter": 14, "action": "advanced", "detail": "角纹验来历能力展示——温=传物（青白玉佩三代传物），信息差碾压神殿巡查使纪霜衡'隔着衣料什么也看不见'", "status": "completed"}
       ],
-      "current_status": "planted",
-      "next_milestone": {"chapter": 11, "action": "half_reveal", "detail": "纪霜衡拘传令翻出'渎神窃坛'旧案，守灯人身份被迫摆上台面"},
+      "current_status": "half_revealed",
+      "next_milestone": {"chapter": 45, "action": "deepen", "detail": "Vol2供簿溯源深化，传承契约细节渐揭"},
       "overdue": false,
-      "chapters_since_last_action": 9
+      "chapters_since_last_action": 0
     },
     {
       "id": "F002",
@@ -35,7 +39,8 @@
       "current_status": "planted",
       "next_milestone": {"chapter": 111, "action": "half_reveal", "detail": "灯下黑探索=旧坛真容，多纪元暗示"},
       "overdue": false,
-      "chapters_since_last_action": 4
+      "chapters_since_last_action": 8,
+      "alert": "info——已8章未动作，但下个milestone在ch111（Vol4），属计划内长线伏笔"
     },
     {
       "id": "F003",
@@ -49,13 +54,15 @@
       "actual_progress": [
         {"chapter": 3, "action": "planted", "detail": "老灯梦话'还差三个……火种还差三个……长明灯'", "status": "completed"},
         {"chapter": 7, "action": "linked", "detail": "泥灯（三百年）入手，老灯罕见失控'想要'；章末青灯意象", "status": "completed"},
-        {"chapter": 10, "action": "keep_warm", "detail": "老人委托'青灯灯油快没了，续上'（G005建立）；E2-5'青灯烧了三百年的又是什么'挂钩火种体系", "status": "completed"}
+        {"chapter": 10, "action": "keep_warm", "detail": "老人委托'青灯灯油快没了，续上'（G005建立）；E2-5'青灯烧了三百年的又是什么'挂钩火种体系", "status": "completed"},
+        {"chapter": 12, "action": "keep_warm", "detail": "旧牌龙爪纹火色'还没灭'=火种碎片附着师父遗物暗示，火种线保温beat到位", "status": "completed"},
+        {"chapter": 13, "action": "keep_warm", "detail": "旧牌龙爪纹火色callback'火色还没灭'维持火种线读者心智", "status": "completed"}
       ],
       "current_status": "planted_warming",
       "next_milestone": {"chapter": 19, "action": "progress", "detail": "豆灯出世对泥灯/青灯起反应，火种线归位"},
       "overdue": false,
-      "chapters_since_last_action": 0,
-      "health_note": "ch3-ch9停滞7章仅靠氛围关联，ch10保温已落地；longline_review_10建议ch11-15再安插1次≤100字保温beat"
+      "chapters_since_last_action": 1,
+      "health_note": "ch3-ch9停滞7章仅靠氛围关联，ch10-13保温beat持续执行（ch10青灯灯油+ch12旧牌火色+ch13callback）。ch14鉴定生意线未触碰火种线，chapters_since=1在可接受范围"
     },
     {
       "id": "F004",
@@ -68,12 +75,16 @@
       "actual_progress": [
         {"chapter": 1, "action": "planted", "detail": "爷爷半年前失踪，头天晚上还说'明儿教你认供桌上的纹路'", "status": "completed"},
         {"chapter": 5, "action": "layer1_revealed", "detail": "老灯清醒声'你爷爷不是失踪的。他是被供桌收回去了'", "status": "completed"},
-        {"chapter": 6, "action": "layer1_deepened", "detail": "'他还在里头。没走。只是出不来了'+陈婶证言（失踪前半年听不到爷爷跟人说话）", "status": "completed"}
+        {"chapter": 6, "action": "layer1_deepened", "detail": "'他还在里头。没走。只是出不来了'+陈婶证言（失踪前半年听不到爷爷跟人说话）", "status": "completed"},
+        {"chapter": 11, "action": "layer2_foreshadowed", "detail": "纪霜衡拘传令翻出'渎神窃坛'旧案——爷爷被栽赃罪名首次浮出水面", "status": "completed"},
+        {"chapter": 12, "action": "layer2_maintained", "detail": "旧案在验桌场被提及，纪霜衡查案转监管观察", "status": "completed"},
+        {"chapter": 13, "action": "layer2_suspended", "detail": "纪霜衡'旧案暂缓。先查供桌'——旧案调查转入长期挂起，layer2暂不推进", "status": "completed"}
       ],
-      "current_status": "layer1_revealed",
+      "current_status": "layer1_revealed_layer2_foreshadowed",
       "next_milestone": {"chapter": 22, "action": "layer2_start", "detail": "旧案三漏洞浮出（罪名无物证/主审官温故/证物失踪）"},
       "overdue": false,
-      "chapters_since_last_action": 4
+      "chapters_since_last_action": 1,
+      "note": "ch13旧案暂缓=layer2主动挂起（纪霜衡查案转监管观察），旧案真相留至Vol2-3 ch22-25调档重启"
     },
     {
       "id": "F005",
@@ -92,7 +103,7 @@
       "current_status": "half_revealed",
       "next_milestone": {"chapter": 45, "action": "full_reveal", "detail": "供簿全本解读溯源（Vol2 unit3）"},
       "overdue": false,
-      "chapters_since_last_action": 0
+      "chapters_since_last_action": 4
     },
     {
       "id": "F006",
@@ -111,7 +122,8 @@
       "current_status": "active_developing",
       "next_milestone": {"chapter": 22, "action": "link", "detail": "旧案三漏洞+'温故'签章特写，庚午年线与旧案线交汇"},
       "overdue": false,
-      "chapters_since_last_action": 0
+      "chapters_since_last_action": 4,
+      "alert": "info——已4章未动作（ch10→ch14），下个milestone在ch22，建议ch15-17安插≤100字保温beat"
     },
     {
       "id": "F007",
@@ -125,12 +137,14 @@
         {"chapter": 1, "action": "planted", "detail": "半年没动静的旧桌子头一回醒了", "status": "completed"},
         {"chapter": 3, "action": "developed", "detail": "章末裂缝渗暗金光'有什么东西，醒了'", "status": "completed"},
         {"chapter": 5, "action": "developed", "detail": "裂缝拓宽见龙鳞'像鳞是根、桌是枝'", "status": "completed"},
-        {"chapter": 9, "action": "developed", "detail": "角纹大供后供桌进化：裂缝宽一倍+龙鳞带晕+颤改'跳'——'它也吃饱了'", "status": "completed"}
+        {"chapter": 9, "action": "developed", "detail": "角纹大供后供桌进化：裂缝宽一倍+龙鳞带晕+颤改'跳'——'它也吃饱了'", "status": "completed"},
+        {"chapter": 12, "action": "developed", "detail": "当众验桌时光纹顺畅外淌+完整五爪龙爪纹（旧牌返利），供桌进化延续", "status": "completed"},
+        {"chapter": 14, "action": "developed", "detail": "验来历时光纹'像水找到了该走的道'顺畅外淌+供桌震'像一口钟被人远远敲了一记'。验来历=鉴定非献祭，供桌验物能力展示", "status": "completed"}
       ],
       "current_status": "active_developing",
       "next_milestone": {"chapter": 30, "action": "nudge", "detail": "卷末老灯第一次主动提'二十年前'半句（话题开放度stage2失态）"},
       "overdue": false,
-      "chapters_since_last_action": 1
+      "chapters_since_last_action": 0
     },
     {
       "id": "F008",
@@ -146,7 +160,7 @@
       "current_status": "suspended",
       "next_milestone": {"chapter": 40, "action": "resume", "detail": "Vol2霍东来递刀/情报有价线重启"},
       "overdue": false,
-      "chapters_since_last_action": 5,
+      "chapters_since_last_action": 9,
       "suspend_reason": "悬念限流（同时活跃≤3条）"
     },
     {
@@ -164,7 +178,8 @@
       "current_status": "active_developing",
       "next_milestone": {"chapter": 19, "action": "link", "detail": "豆灯对青灯起反应时老人线归位"},
       "overdue": false,
-      "chapters_since_last_action": 0
+      "chapters_since_last_action": 4,
+      "alert": "info——已4章未动作（ch10→ch14），下个milestone在ch19。建议ch15-17安插≤100字保温beat（如许愿路过灯市口瞥见老人）"
     },
     {
       "id": "B2",
@@ -174,19 +189,188 @@
         "clearance_chapter": "11-12（趁乱砸场，许愿当众全胜，三合一：债清+护桌动机+龙纹曝光）"
       },
       "actual_progress": [
-        {"chapter": 2, "action": "planted", "detail": "疤脸抡棍被鳞纹弹开，虎口裂血，棍被许愿递还'掉了'", "status": "completed"}
+        {"chapter": 2, "action": "planted", "detail": "疤脸抡棍被鳞纹弹开，虎口裂血，棍被许愿递还'掉了'", "status": "completed"},
+        {"chapter": 12, "action": "cleared", "detail": "疤脸趁乱砸场，铁棍被掌心鳞纹弹飞全胜清算。虎口再裂+'又掉了'二次回调+被差役带走。B2债清完成", "status": "completed"}
       ],
-      "current_status": "awaiting_clearance",
-      "next_milestone": {"chapter": 11, "action": "clearance", "detail": "拘传令死局中疤脸趁乱砸场，许愿当众全胜"},
+      "current_status": "closed",
+      "next_milestone": null,
       "overdue": false,
-      "chapters_since_last_action": 8,
-      "alert": "info——已8章未推进，但大纲排定ch11-12清算，属计划内"
+      "chapters_since_last_action": 2,
+      "close_note": "ch12全胜清算完成。反派梯子喽啰层cleared_chapter=12"
+    },
+    {
+      "id": "F-ch11-1",
+      "title": "半截灯旧纸（灯芯断在半截/断口烧的/灯碗底圆圈空）",
+      "plan_from_outline": {
+        "plant_chapter": 11,
+        "status_note": "ch11入库跳过，ch14入库时补登（OC002）",
+        "reveal": "长明灯意象？灯碗底圆圈空=符号同源(F005)延伸？"
+      },
+      "actual_progress": [
+        {"chapter": 11, "action": "planted", "detail": "拘传令封铺时供桌上一盏半截灯——灯芯断在半截、断口是烧的、灯碗底画了个圆圈但中间是空的（长明灯意象？）", "status": "completed"}
+      ],
+      "current_status": "planted",
+      "next_milestone": {"chapter": 45, "action": "develop", "detail": "Vol2供簿溯源时半截灯意象与符号同源线交汇"},
+      "overdue": false,
+      "chapters_since_last_action": 3,
+      "note": "ch11入库跳过，ch14入库时补登（OC002执行）。灯碗底圆圈空可能与F005符号同源（圆圈内一盏灯）关联"
+    },
+    {
+      "id": "F-ch11-2",
+      "title": "封九霄'你爷爷当年也该来走这一步'",
+      "plan_from_outline": {
+        "plant_chapter": 11,
+        "status_note": "ch11入库跳过，ch14入库时补登（OC002）",
+        "reveal": "爷爷与公会旧缘——爷爷当年为何没来走这一步？"
+      },
+      "actual_progress": [
+        {"chapter": 11, "action": "planted", "detail": "封九霄刻字'免'后说'你爷爷当年也该来走这一步。没来。'——暗示爷爷与公会有旧缘但未兑现", "status": "completed"}
+      ],
+      "current_status": "planted",
+      "next_milestone": {"chapter": 22, "action": "link", "detail": "旧案三漏洞调档时爷爷与公会旧缘线交汇"},
+      "overdue": false,
+      "chapters_since_last_action": 3,
+      "note": "ch11入库跳过，ch14入库时补登（OC002执行）。与F004爷爷下落+M4上一任守灯人线关联"
+    },
+    {
+      "id": "F-ch11-3",
+      "title": "老灯'别让他们收走'（老灯对供桌被收的态度）",
+      "plan_from_outline": {
+        "plant_chapter": 11,
+        "status_note": "ch11入库跳过，ch14入库时补登（OC002）",
+        "reveal": "老灯对供桌被收的态度=不舍/恐惧？老灯与供桌的深层绑定关系"
+      },
+      "actual_progress": [
+        {"chapter": 11, "action": "planted", "detail": "纪霜衡封铺收桌时老灯声音急切'别让他们收走'——老灯对供桌被收的态度首次暴露（不舍/恐惧？）", "status": "completed"}
+      ],
+      "current_status": "planted",
+      "next_milestone": {"chapter": 30, "action": "nudge", "detail": "卷末老灯话题开放度stage2失态时与供桌绑定关系线交汇"},
+      "overdue": false,
+      "chapters_since_last_action": 3,
+      "note": "ch11入库跳过，ch14入库时补登（OC002执行）。与F002灯守龙+老灯创伤线关联"
+    },
+    {
+      "id": "F-ch12-1",
+      "title": "旧牌火色'还没灭'（火种碎片附着师父遗物）",
+      "plan_from_outline": {
+        "plant_chapter": 12,
+        "status_note": "ch11入库跳过，ch14入库时补登（OC002）",
+        "reveal": "火种碎片附着师父遗物暗示→火种线归位"
+      },
+      "actual_progress": [
+        {"chapter": 12, "action": "planted", "detail": "当众验桌后旧牌上新添的龙爪纹'火色……还没灭'——火种碎片附着师父遗物暗示。'像烧到尽头的灯芯，最后那一跳。还没灭。'", "status": "completed"},
+        {"chapter": 13, "action": "keep_warm", "detail": "旧牌龙爪纹火色callback'火色还没灭'维持火种线读者心智", "status": "completed"}
+      ],
+      "current_status": "planted_warming",
+      "next_milestone": {"chapter": 19, "action": "progress", "detail": "豆灯出世对旧牌火色/青灯起反应，火种线归位"},
+      "overdue": false,
+      "chapters_since_last_action": 1,
+      "note": "ch12入库时补登，ch14入库时更新ch13 callback。与F003火种进度线+G003关联"
+    },
+    {
+      "id": "F-ch12-2",
+      "title": "老灯'比她师父认得清'（纪霜衡师父线暗示）",
+      "plan_from_outline": {
+        "plant_chapter": 12,
+        "status_note": "ch11入库跳过，ch14入库时补登（OC002）",
+        "reveal": "纪霜衡师父是谁？师父'认不清'什么？老灯为何评价师父？"
+      },
+      "actual_progress": [
+        {"chapter": 12, "action": "planted", "detail": "当众验桌后老灯评价纪霜衡'比她师父认得清'——暗示纪霜衡师父曾验过桌但'认不清'什么", "status": "completed"},
+        {"chapter": 13, "action": "developed", "detail": "老灯评价递进'比她师父认得还清'（加'还'字递进）", "status": "completed"},
+        {"chapter": 14, "action": "advanced", "detail": "纪霜衡笔录'罪证？'划掉改'证人？'又划掉——信念摇摆深化=师父线影响下的内心投射", "status": "completed"}
+      ],
+      "current_status": "active_developing",
+      "next_milestone": {"chapter": 22, "action": "link", "detail": "旧案三漏洞调档时纪霜衡师父线与旧案/接替链交汇"},
+      "overdue": false,
+      "chapters_since_last_action": 0,
+      "note": "ch12入库时补登，ch14入库时更新ch13-14递进。与F006上一任守灯人线+M4关联——纪霜衡师父可能是上一任守灯人？"
+    },
+    {
+      "id": "F-ch12-3",
+      "title": "纪霜衡师父线（旧牌=师父遗物+师父'认不清'什么）",
+      "plan_from_outline": {
+        "plant_chapter": 12,
+        "status_note": "ch11入库跳过，ch14入库时补登（OC002）",
+        "reveal": "纪霜衡师父身份+旧牌来历+师父与守灯人传承的关系"
+      },
+      "actual_progress": [
+        {"chapter": 12, "action": "planted", "detail": "旧牌=纪霜衡师父遗物+验过几十回桌从没返这么重——师父'认不清'什么？师父为何'认不清'？", "status": "completed"},
+        {"chapter": 14, "action": "advanced", "detail": "纪霜衡笔录'罪证→证人'犹豫=从对立到观察的信念转换，与师父'认不清'形成对照——纪霜衡正在'认清'师父'认不清'的东西", "status": "completed"}
+      ],
+      "current_status": "active_developing",
+      "next_milestone": {"chapter": 22, "action": "link", "detail": "旧案三漏洞调档时纪霜衡师父线与旧案交汇"},
+      "overdue": false,
+      "chapters_since_last_action": 0,
+      "note": "ch12入库时补登，ch14入库时更新。与F-ch12-2老灯评价师父线+M4上一任守灯人线关联"
+    },
+    {
+      "id": "F-ch14-1",
+      "title": "老周碎纹石来历（虎口旧疤+胸口口袋+'碎了的石头'）",
+      "plan_from_outline": {
+        "plant_chapter": 14,
+        "status_note": "对应outline lao_zhou_setup 'ch14铺垫①：碎纹石来历初提'",
+        "reveal": "ch28老周牺牲伏笔前置——碎纹石来历待揭（与守灯人/火种线关联？）"
+      },
+      "actual_progress": [
+        {"chapter": 14, "action": "planted", "detail": "老周来铺子探望，许愿注意到他右手虎口旧疤('老伤')+缩手时另一只手按胸口口袋(鼓着硬物)+'你要是能验出一块碎了的石头有什么来历——'没说完就走了。脊背弯了一下又挺直了", "status": "completed"}
+      ],
+      "current_status": "planted",
+      "next_milestone": {"chapter": 18, "action": "develop", "detail": "老周铺垫②（outline lao_zhou_setup ch18铺垫②）"},
+      "overdue": false,
+      "chapters_since_last_action": 0,
+      "note": "ch14新伏笔。对应outline lao_zhou_setup 'ch14铺垫①'。碎纹石=ch28老周本家借刀牺牲伏笔前置。老周'有些东西……搁着也是搁着'双关（搁口袋/搁心里）"
+    },
+    {
+      "id": "F-ch14-2",
+      "title": "聚宝阁赝品链（赝品不上桌+聚宝阁来人试探）",
+      "plan_from_outline": {
+        "plant_chapter": 14,
+        "status_note": "tanghulu unit2主线，villain ladder卷一小boss首次交锋",
+        "reveal": "ch14-17连破三赝→ch26-30聚宝阁总清算"
+      },
+      "actual_progress": [
+        {"chapter": 14, "action": "planted", "detail": "聚宝阁派人来试探赝品——锦缎袍子+六品鳞纹佩(公会货养三年市价四十两)+讲究锦囊(缎面绣花金丝绳)。老灯判定'赝品不上桌''连赝品都算不上。假都假得不用心'。许愿识破'你是聚宝阁的'(非问句)。聚宝阁来人临走威胁'验到不该验的——'+章末多人脚步暗示反扑", "status": "completed"}
+      ],
+      "current_status": "planted_active",
+      "next_milestone": {"chapter": 15, "action": "develop", "detail": "聚宝阁反扑（章末钩子兑现）→连破三赝路径推进"},
+      "overdue": false,
+      "chapters_since_last_action": 0,
+      "note": "ch14新伏笔。villain ladder聚宝阁从foreshadowed→active(first_appear_chapter=14)。赝品不上桌规则与六规第四条一致。聚宝阁来人身份被许愿识破=信息差打脸"
+    },
+    {
+      "id": "F-ch14-3",
+      "title": "老灯'又来了'聚宝阁旧识暗示",
+      "plan_from_outline": {
+        "plant_chapter": 14,
+        "status_note": "丰富性增补——老灯与聚宝阁旧识关系",
+        "reveal": "老灯与聚宝阁有旧识？'又来了'暗示老灯以前见过聚宝阁的人"
+      },
+      "actual_progress": [
+        {"chapter": 14, "action": "planted", "detail": "聚宝阁来人离开后老灯声音从桌底闷出来'聚宝阁。又来了。'。许愿问'又？'——老灯没接话，竖瞳合上了（装睡回避）。暗示老灯与聚宝阁有旧识，'又'字=以前见过", "status": "completed"}
+      ],
+      "current_status": "planted",
+      "next_milestone": {"chapter": 30, "action": "nudge", "detail": "卷末老灯话题开放度stage2失态时与聚宝阁旧识线交汇"},
+      "overdue": false,
+      "chapters_since_last_action": 0,
+      "note": "ch14新伏笔（丰富性增补）。老灯三不答边界：'又？'后不接话竖瞳合上=装睡回避。与F002灯守龙+老灯创伤线关联"
     }
   ],
   "density_check": {
-    "last_5_chapters_with_action": [6, 7, 8, 9, 10],
+    "last_5_chapters_with_action": [10, 11, 12, 13, 14],
     "consecutive_no_action": 0,
-    "status": "healthy"
+    "status": "healthy",
+    "detail": "ch10(F003/F005/F006/F009保温+half_reveal)+ch11(F001 half_reveal+F004 layer2+F-ch11-1/2/3 planted)+ch12(F001 deepened+F003 keep_warm+F007 developed+B2 cleared+F-ch12-1/2/3 planted)+ch13(F003 keep_warm+F004 suspended+F-ch12-1 callback+F-ch12-2 developed)+ch14(F001 advanced+F007 developed+F-ch12-2/3 advanced+F-ch14-1/2/3 planted)。连续5章有伏笔动作，密度健康"
   },
-  "overdue_alerts": []
+  "overdue_alerts": [],
+  "supplementary_alerts": [
+    {"id": "F002", "chapters_since": 8, "severity": "info", "note": "灯守龙线已8章未动作，但下个milestone在ch111(Vol4)，属计划内长线"},
+    {"id": "F005", "chapters_since": 4, "severity": "info", "note": "符号同源线已4章未动作，下个milestone在ch45(Vol2)，可接受"},
+    {"id": "F006", "chapters_since": 4, "severity": "info", "note": "上一任守灯人线已4章未动作，下个milestone在ch22，建议ch15-17安插≤100字保温beat"},
+    {"id": "F008", "chapters_since": 9, "severity": "info", "note": "老灯认我(霍东来)线suspended，下个milestone在ch40(Vol2)，属计划内挂起"},
+    {"id": "F009", "chapters_since": 4, "severity": "info", "note": "盲眼老人线已4章未动作，下个milestone在ch19，建议ch15-17安插≤100字保温beat"},
+    {"id": "F-ch11-1", "chapters_since": 3, "severity": "info", "note": "半截灯旧纸已3章未动作，下个milestone在ch45(Vol2)，可接受"},
+    {"id": "F-ch11-2", "chapters_since": 3, "severity": "info", "note": "封九霄公会旧缘已3章未动作，下个milestone在ch22，可接受"},
+    {"id": "F-ch11-3", "chapters_since": 3, "severity": "info", "note": "老灯'别让他们收走'已3章未动作，下个milestone在ch30，可接受"}
+  ]
 }

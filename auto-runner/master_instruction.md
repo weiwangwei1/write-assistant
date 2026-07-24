@@ -1,4 +1,12 @@
-# 无人值守自动执行代理指令 v2.3
+# 无人值守自动执行代理指令 v2.4
+
+## v2.4变更摘要
+
+- **消除 draft_ch{N}.json**（优化A）：chapter-writer 步骤不再输出 draft JSON（beat_sheet 元数据已在 outline.json 中，属重复存储），每章节省1文件，300章节省300文件
+- **归档中间审核文件**（优化C）：detail_review + de_ai_analysis 在 merge 后自动移到 `handoff/archive/ch{N}/` 目录，保持 `handoff/chapters/` 只留最新产物；state_validator 新增归档检查步骤
+- **已完成并行组清理**（优化F）：memory commit 后从 state.json 的 parallel_groups 中移除 status=completed 且 merger_executed=true 的组，避免300章累积600+组导致 state.json 膨胀
+- **上下文缓存集成**（优化D）：Agent 指令模板更新为优先引用 `context_cache.json` 缓存摘要（~500字），cache miss 时回退到完整 SKILL.md（~2000-5000字），每步节省~80%上下文
+- **全文文件追加优化**（优化E）：全文文件 header 信息分离到独立文件 `output/{novel_title}_全文_header.txt`，正文文件纯追加不重写，每次入库从 O(N) 重写降至 O(1) 追加
 
 ## v2.3变更摘要
 
@@ -100,6 +108,8 @@ WHILE true:
           - 若 pending_agents 为空 → 设置 merger_ready = true
        f. **立即写入 state.json**：不等会话结束，当场写入文件
        g. **追加 execution_log.md**：记录步骤名/Agent/状态/结果摘要/时间戳
+       h. **中间文件归档**（v2.4新增，仅合并步骤）：若当前步骤是 `is_merger=true` 的合并步骤，且 `merged_review_ch{N}.json` 已生成，将 `detail_review_ch{N}.json` 和 `de_ai_analysis_ch{N}.json` 从 `handoff/chapters/` 移到 `handoff/archive/ch{N}/` 目录
+       i. **并行组清理**（v2.4新增，仅memory commit步骤）：若当前步骤是 memory-manager 步骤（记忆入库），从 state.json 的 `parallel_groups` 数组中移除 `status=completed` 且 `merger_executed=true` 的组，减少 state.json 体积
     8. steps_executed_this_session += 1（并行组按规则计数）
     9. 如果当前步骤未通过（retry/stopped）→ 跳出循环
 END WHILE
@@ -319,6 +329,17 @@ IF ALL files verified:
    - 将 `current_step` 设为该ID
    - 确保不会跳过未完成的步骤
 
+4. **中间审核文件归档检查**（v2.4优化C新增）：
+   - 扫描 `handoff/chapters/` 中的 `merged_review_ch{N}.json` 文件
+   - 对每个已合并的章节，检查 `detail_review_ch{N}.json` 和 `de_ai_analysis_ch{N}.json` 是否仍在 `handoff/chapters/`（非 archive）
+   - 若存在则自动移动到 `handoff/archive/ch{N}/` 目录
+   - 保持 `handoff/chapters/` 只保留最新产物
+
+5. **已完成并行组清理**（v2.4优化F新增）：
+   - 扫描 `parallel_groups[]` 中所有组
+   - 将 `status=completed` 且 `merger_executed=true` 的组从数组中移除
+   - 300章规模避免600+已完成组累积导致 state.json 膨胀
+
 ### 执行效率估算
 
 | 场景 | 旧方案 | 连续执行 v1 | 并行执行 v2 |
@@ -333,10 +354,11 @@ IF ALL files verified:
 
 为配合并行调度引擎，减少文件读写开销与上下文占用：
 
-1. **草稿文件不内嵌全文**：`chapter_draft.json` 只存 beat_sheet 元数据，正文只写 `output/`，避免元数据与正文重复占用
-2. **审核源文件归档**：detail/de-ai 输出被 merged 吸收后移入 `archive/`，保持工作区只留最新产物
+1. **草稿文件完全消除**（v2.4优化A）：chapter-writer 步骤不再输出 `draft_ch{N}.json`（beat_sheet 元数据已在 outline.json 中，属重复存储），正文只写 `output/chapter_NNN.txt`，每章节省1文件
+2. **审核源文件自动归档**（v2.4优化C）：detail_review + de_ai_analysis 被 merged_review 吸收后，自动从 `handoff/chapters/` 移到 `handoff/archive/ch{N}/` 目录，保持工作区只留最新产物（state_validator 在 State恢复后自动执行归档检查）
 3. **角色库索引化**：`characters.json` 改为索引指针（指向 `memory/characters/*.json`），独立角色卡为唯一数据源
 4. **recent_chapters 按需读取**：直接从 `output/` 读取章节，不维护副本，避免多源数据不一致
+5. **全文文件追加+独立header**（v2.4优化E）：全文文件 header 信息（书名/进度/更新时间）分离到 `output/{novel_title}_全文_header.txt`，正文文件 `output/{novel_title}_全文.txt` 纯追加不重写，每次入库仅重写~200字 header + 追加~3KB 正文（vs 旧方案 O(N) 重写全文文件）
 
 ### 上下文优化策略 (Context Optimization) v2.2
 
@@ -351,6 +373,12 @@ IF ALL files verified:
 每个 Skill 的 SKILL.md 首次读取后缓存摘要（前 500 字符 + 规则数量统计），后续步骤引用缓存摘要而非重新读取完整文件（~2000-5000字）。
 
 **缓存验证**：脚本运行时对比每个文件的 `last_modified`，时间一致则 `cache hit`（跳过重新读取），时间变更则 `cache miss`（重新读取并更新缓存）。
+
+**指令模板缓存集成**（v2.4优化D新增）：Agent 指令模板已更新为缓存优先策略——
+- `generate_task_config.ps1` 生成的每个步骤 instruction 均以 `"Read auto-runner/context_cache.json (reference cached summary for {skill}) OR Read .trae/skills/{skill}/SKILL.md if cache miss"` 开头
+- `parallel_task_config_template.json` 的 `_comments` 中新增 `cache_strategy` 字段，说明缓存优先策略
+- Agent 执行时优先读取缓存摘要（~500字），仅在 cache miss 或需要完整规则时回退到完整 SKILL.md（~2000-5000字）
+- 预计每步节省~80%上下文占用（~10000字 → ~2000字），300章规模累计节省显著
 
 #### 文件预读策略
 

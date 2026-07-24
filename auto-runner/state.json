@@ -1,66 +1,66 @@
-﻿{
+{
     "task_name":  "有龙则灵 Ch14-17 Parallel Production",
-    "current_step":  0,
+    "current_step":  6,
     "task_description":  "Auto-generated. Unified review mode. 6 steps/chapter: write -\u003e (detail+deai parallel -\u003e merge) -\u003e unified_review -\u003e memory_commit. Pipeline: Ch(N) review parallel with Ch(N+1) write. Total 24 steps, covering Ch14-Ch17 (4 chapters).",
-    "last_run":  null,
+    "last_run":  "2026-07-24T22:36:10.9592320+08:00",
     "steps":  [
                   {
                       "id":  0,
                       "auto_approved":  false,
-                      "timestamp":  null,
-                      "result":  null,
+                      "timestamp":  "2026-07-24T22:36:10.8388398+08:00",
+                      "result":  "recovered by state_validator",
                       "name":  "Ch14 Write",
-                      "status":  "pending",
+                      "status":  "completed",
                       "retries":  0,
                       "agent":  "chapter-writer"
                   },
                   {
                       "id":  1,
                       "auto_approved":  false,
-                      "timestamp":  null,
-                      "result":  null,
+                      "timestamp":  "2026-07-24T21:53:36+08:00",
+                      "result":  "Detail review completed: 0 critical, 1 major, 7 minor. Verdict: needs_revision",
                       "name":  "Ch14 Detail Review (parallel)",
-                      "status":  "pending",
+                      "status":  "completed",
                       "retries":  0,
                       "agent":  "detail-reviewer"
                   },
                   {
                       "id":  2,
                       "auto_approved":  false,
-                      "timestamp":  null,
-                      "result":  null,
+                      "timestamp":  "2026-07-24T21:53:36+08:00",
+                      "result":  "De-AI analysis completed: ai_score=1.5 (pass). 9 detections (3 medium, 6 low)",
                       "name":  "Ch14 De-AI Analysis (parallel)",
-                      "status":  "pending",
+                      "status":  "completed",
                       "retries":  0,
                       "agent":  "de-ai-processor"
                   },
                   {
                       "id":  3,
                       "auto_approved":  false,
-                      "timestamp":  null,
-                      "result":  null,
+                      "timestamp":  "2026-07-24T22:36:10.8557933+08:00",
+                      "result":  "recovered by state_validator",
                       "name":  "Ch14 Merge (merger)",
-                      "status":  "pending",
+                      "status":  "completed",
                       "retries":  0,
                       "agent":  "chapter-writer"
                   },
                   {
                       "id":  4,
                       "auto_approved":  false,
-                      "timestamp":  null,
-                      "result":  null,
+                      "timestamp":  "2026-07-24T22:06:04+08:00",
+                      "result":  "Unified review completed: unified_score=9.51 (approved). technical=9.47, supplementary=9.59",
                       "name":  "Ch14 Unified Review (parallel w/ Ch15 write)",
-                      "status":  "pending",
+                      "status":  "completed",
                       "retries":  0,
                       "agent":  "quality-reviewer"
                   },
                   {
                       "id":  5,
                       "auto_approved":  false,
-                      "timestamp":  null,
-                      "result":  null,
+                      "timestamp":  "2026-07-24T22:32:48+08:00",
+                      "result":  "Memory commit completed: chapter_014.json created, goal_tracker/session_pointer/foreshadowing_tracker updated, full-text appended",
                       "name":  "Ch14 Memory Commit",
-                      "status":  "pending",
+                      "status":  "completed",
                       "retries":  0,
                       "agent":  "memory-manager"
                   },
@@ -326,10 +326,9 @@
                                 "merger_step_id":  null,
                                 "merger_executed":  false,
                                 "completed_agents":  [
-
+                                                         "Ch14 Unified Review (parallel w/ Ch15 write)"
                                                      ],
                                 "pending_agents":  [
-                                                       "Ch14 Unified Review (parallel w/ Ch15 write)",
                                                        "Ch15 Write (parallel w/ Ch14 review)"
                                                    ],
                                 "group_id":  "pipeline_14_15",
@@ -340,21 +339,21 @@
                                 "parallel_total":  2
                             },
                             {
-                                "merger_ready":  false,
+                                "merger_ready":  true,
                                 "merger_step_id":  3,
                                 "merger_executed":  false,
                                 "completed_agents":  [
-
+                                                         "Ch14 Detail Review (parallel)",
+                                                         "Ch14 De-AI Analysis (parallel)"
                                                      ],
                                 "pending_agents":  [
-                                                       "Ch14 Detail Review (parallel)",
-                                                       "Ch14 De-AI Analysis (parallel)"
+
                                                    ],
                                 "group_id":  "review_ch14",
                                 "failed_agents":  [
 
                                                   ],
-                                "status":  "pending",
+                                "status":  "completed",
                                 "parallel_total":  2
                             },
                             {
@@ -376,6 +375,6 @@
                                 "parallel_total":  2
                             }
                         ],
-    "status":  "pending",
-    "last_run_result":  null
+    "status":  "running",
+    "last_run_result":  "state_validator: fixed 4 issues"
 }
