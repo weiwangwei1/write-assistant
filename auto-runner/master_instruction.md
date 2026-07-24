@@ -1,4 +1,11 @@
-# 无人值守自动执行代理指令 v2.1
+# 无人值守自动执行代理指令 v2.2
+
+## v2.2变更摘要
+
+- **新增上下文优化策略**：引入 Skill 缓存机制与文件预读策略，减少重复文件读取，预计降低 80% 上下文消耗
+- **新增 context_preloader.ps1 脚本**：预读常用文件生成 context_cache.json 缓存清单，基于文件修改时间进行缓存验证（cache hit/miss）
+- **执行流程新增缓存检查步骤**：初始化阶段检查 context_cache.json，每步执行前优先引用缓存摘要而非重新读取完整 SKILL.md
+- **新增上下文优化策略文档**：详见 `auto-runner/context_optimization.md`
 
 ## v2.1变更摘要
 
@@ -44,6 +51,11 @@
    - 若 `pending_agents` 为空且 `merger_ready == false` → 设置 `merger_ready = true`
 5. 将 `status` 设为 `"running"`，记录 `last_run` 时间戳
 6. 初始化本次会话的 `steps_executed_this_session = 0`
+7. **上下文缓存检查（v2.2新增）**：
+   - 检查 `auto-runner/context_cache.json` 是否存在且有效
+   - 若不存在或已过期（文件修改时间变更）：运行 `context_preloader.ps1` 重建缓存
+   - 若缓存有效：后续步骤引用缓存中的 SKILL.md 摘要（~500字），而非重新读取完整文件（~2000-5000字）
+   - 详见"上下文优化策略"章节
 
 ### 主循环（重复执行直到退出条件）
 
@@ -55,7 +67,7 @@ WHILE true:
     4. 判断是否为并行组起点（见"并行调度引擎 v2.0"）
        - 若是：进入并行组执行协议，整组完成后一次性推进 current_step
        - 若否：按单步骤执行
-    5. 执行该步骤（读取input_files → 读取SKILL.md → 执行 → 写output_files）
+    5. 执行该步骤（检查context_cache.json → 读取input_files → 引用SKILL.md缓存摘要或完整读取 → 执行 → 写output_files）
     6. 质量检查（pass_criteria）
     7. **State同步协议 v2.1（强制执行，不可跳过）**：
        a. **输出文件验证**：检查该步骤的 output_files 是否全部存在
@@ -306,6 +318,41 @@ IF ALL files verified:
 2. **审核源文件归档**：detail/de-ai 输出被 merged 吸收后移入 `archive/`，保持工作区只留最新产物
 3. **角色库索引化**：`characters.json` 改为索引指针（指向 `memory/characters/*.json`），独立角色卡为唯一数据源
 4. **recent_chapters 按需读取**：直接从 `output/` 读取章节，不维护副本，避免多源数据不一致
+
+### 上下文优化策略 (Context Optimization) v2.2
+
+为减少自动执行流程中的重复文件读取，降低上下文窗口消耗，引入 Skill 缓存机制与文件预读策略。预计每步节省 ~80% 上下文占用（~10000字 → ~2000字）。
+
+**规范文件**：`auto-runner/context_optimization.md`
+**预加载脚本**：`auto-runner/context_preloader.ps1`
+**缓存文件**：`auto-runner/context_cache.json`
+
+#### Skill 缓存机制
+
+每个 Skill 的 SKILL.md 首次读取后缓存摘要（前 500 字符 + 规则数量统计），后续步骤引用缓存摘要而非重新读取完整文件（~2000-5000字）。
+
+**缓存验证**：脚本运行时对比每个文件的 `last_modified`，时间一致则 `cache hit`（跳过重新读取），时间变更则 `cache miss`（重新读取并更新缓存）。
+
+#### 文件预读策略
+
+| 分类 | 文件 | 预读时机 |
+|------|------|---------|
+| 必读文件 | outline / characters / goal_tracker / session_pointer | 任务启动时预读 |
+| 按需文件 | foreshadowing_tracker / chapter_summaries / recent_chapters | 步骤执行前预读 |
+| 参考文件 | novel_config / unified_review_spec / parallel_task_config_template | 按需引用 |
+
+#### 上下文预算与降级策略
+
+- **每步预算**：无缓存 ~10000-15000 字/步 → 有缓存 ~2000-2500 字/步（节省 ~80%）
+- **降级触发**：已加载内容 > 预算上限 80% 时，从低优先级开始移除全文
+- **优先级**：当前步骤 input_files（P0，不可降级）> SKILL.md 规则（P1，缓存摘要替代）> 上下文文件（P2，key 列表替代）
+- **降级顺序**：参考文件全文 → 按需文件全文 → 必读文件全文 → SKILL.md 全文 → 最终保留 input_files + SKILL.md 缓存摘要
+
+#### 缓存更新协议
+
+- **增量更新（默认）**：对比每个文件的 `last_modified`，仅重新读取变更文件，cache hit 直接复用缓存数据
+- **全量重建**：缓存文件不存在/解析失败/`cache_version` 不匹配时触发，逐个重新读取所有文件
+- **运行方式**：`powershell -ExecutionPolicy Bypass -File context_preloader.ps1`（执行时间 < 3 秒）
 
 ## 错误处理
 

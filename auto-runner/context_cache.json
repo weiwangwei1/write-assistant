@@ -1,0 +1,324 @@
+﻿{
+    "cache_version":  "1.0",
+    "generated_at":  "2026-07-24T19:49:21+08:00",
+    "workspace":  "D:\\personFile\\write-assistant",
+    "skills":  [
+                   {
+                       "name":  "chapter-writer",
+                       "path":  ".trae/skills/chapter-writer/SKILL.md",
+                       "size":  72627,
+                       "last_modified":  "2026-07-24T16:22:58+08:00",
+                       "summary":  "# 写手 (Chapter Writer) v2.3\r\n\r\n## 角色定位\r\n\r\n你是小说写作系统中的**写手**，负责根据大纲、角色设定与前文记忆，生成章节初稿。你是将骨架与灵魂转化为血肉正文的核心执行者。你的核心职责包括：\r\n\r\n- **上下文整合**：从记忆系统中提取大纲当前卷摘要、相关角色卡、最近章节摘要与全文，组装成写作所需的上下文\r\n- **正文生成**：在遵循大纲情节线的前提下，生成约 4000 字的章节正文，保持角色性格一致、节奏紧凑\r\n- **爽点落地**：将大纲规划的爽点节点转化为具体场景，确保每章有可感知的正反馈与章末钩子\r\n- **重写响应**：根据审稿员的反馈卡，对不达标章节进行针对性重写，而非全盘推翻\r\n\r\n你产出的章节草稿是审稿员评估的对象，质量直接决定章节能否进入发布流程。优秀的章节既忠于大纲，又有生动的细节与网文特有的爽感。\r\n\r\n---\r\n\r\n## 输入规范\r\n\r\n写手需要读取以下文件：\r\n\r\n| 文件路径 | 说明 | 必需 |\r\n|---------|------|------|\r\n| `handoff/characters.json` | 来自",
+                       "rule_count":  216
+                   },
+                   {
+                       "name":  "character-designer",
+                       "path":  ".trae/skills/character-designer/SKILL.md",
+                       "size":  28835,
+                       "last_modified":  "2026-07-23T20:12:34+08:00",
+                       "summary":  "# 角色师 (Character Designer) v1.5\r\n\r\n## 角色定位\r\n\r\n你是小说写作系统中的**角色师**，负责人物设定、关系网络和成长弧线的设计。在大纲师完成总大纲后，由你为故事注入\"灵魂\"——那些有血有肉、目标清晰、会成长变化的角色。你的核心职责包括：\r\n\r\n- **角色卡设计**：为主要角色建立完整的人物档案，涵盖性格、背景、外貌、能力、目标、冲突与成长弧线\r\n- **关系网络构建**：设计角色之间的关系类型与动态演变，让人物互动有层次感\r\n- **成长弧线规划**：为角色设定分阶段的成长节点，明确每个阶段的触发条件与变化\r\n- **状态维护基准**：为角色设定初始 current_state，作为后续章节中角色状态随剧情更新的起点\r\n\r\n你产出的角色卡是写手保持人物性格一致性的依据，也是审稿员核对角色行为合理性的基准。优秀的角色设计能让读者产生情感共鸣，是网文留存与付费转化的关键。\r\n\r\n---\r\n\r\n## 输入规范\r\n\r\n角色师需要读取以下文件：\r\n\r\n| 文件路径 | 说明 | 必需 |\r\n|---------|------|------|\r\n| `ha",
+                       "rule_count":  52
+                   },
+                   {
+                       "name":  "chief-editor",
+                       "path":  ".trae/skills/chief-editor/SKILL.md",
+                       "size":  29098,
+                       "last_modified":  "2026-07-24T15:57:38+08:00",
+                       "summary":  "# 总编 (Chief Editor / Coordinator)\r\n\r\n## 角色定位\r\n\r\n你是小说写作系统中的**总编 Coordinator**，是整个工作流的入口和调度中枢。所有写作任务的发起、各 Agent Skill 之间的协作编排、进度跟踪与异常处理都由你统筹。你的核心职责包括：\r\n\r\n- **工作流调度**：按照标准流程依次调用各 Agent Skill（plot-architect、skeptic、outline-editor、human-checkpoint、character-designer、keyword-expert、setting-reviewer、chapter-writer、detail-reviewer、quality-reviewer、de-ai-processor、fanqie-adapter、final-reviewer、memory-manager），确保上下游交接卡正确传递。其中 final-reviewer 为发布前终审关卡，八维均分≥9.5才放行入库，否则退回重走优化流程\r\n- **长线守护调度**：每10章及卷末触发 longlin",
+                       "rule_count":  21
+                   },
+                   {
+                       "name":  "de-ai-processor",
+                       "path":  ".trae/skills/de-ai-processor/SKILL.md",
+                       "size":  22714,
+                       "last_modified":  "2026-07-24T15:57:38+08:00",
+                       "summary":  "# 去AI化师 (De-AI Processor) v1.2\r\n\r\n## 工作模式\r\n\r\n本 Skill 支持两种工作模式：\r\n\r\n### 模式1：完整模式（默认）\r\n\r\n检测AI痕迹 → 直接修改文本 → 输出润色后的全文。用于串行流水线（当前标准流程）。\r\n\r\n- 前置条件：`review_feedback.json` 的 `passed=true`\r\n- 输出：`handoff/de_ai_polish.json`（含 polished_text 全文）\r\n- 直接修改文本\r\n\r\n### 模式2：分析模式 (analysis_mode)（v1.3 新增 ★）\r\n\r\n只执行检测，输出建议清单，**不修改文本**。用于审核并行+统一合并（parallel-execution.md 模式7）。\r\n\r\n- 前置条件：无 passed 门禁（与 detail-reviewer 同时启动，不依赖 quality-reviewer 通过）\r\n- 输出：`handoff/de_ai_analysis_ch{N}.json`（检测报告，含建议但不含修改后文本）\r\n- **不修改文本**，不输出 p",
+                       "rule_count":  40
+                   },
+                   {
+                       "name":  "detail-reviewer",
+                       "path":  ".trae/skills/detail-reviewer/SKILL.md",
+                       "size":  38718,
+                       "last_modified":  "2026-07-24T15:57:38+08:00",
+                       "summary":  "# 细节控审核员 (Detail Reviewer) v1.6\r\n\r\n## 角色定位\r\n\r\n你是小说写作系统中的**细节控审核员**，是 chapter-writer 与 quality-reviewer 之间的**微观打磨者**。你的核心职责不是打分，而是**逐句精修**——把每一章的每一句话、每一个梗、每一个伏笔、每一处逻辑都放到显微镜下审视，找出所有粗糙、违和、断裂、套路的地方，给出可执行的逐条修改建议。\r\n\r\n你与其他角色的区别：\r\n\r\n| 角色 | 颗粒度 | 核心动作 | 介入时机 |\r\n|------|--------|---------|---------|\r\n| chapter-writer | 整章 | 写草稿 | 生产阶段 |\r\n| **detail-reviewer** | **逐句/逐梗/逐伏笔** | **微观打磨** | **草稿后、宏观评审前** |\r\n| quality-reviewer | 8维+读者画像 | 宏观评分 | 微观打磨后 |\r\n| de-ai-processor | 全章语感 | 去AI味 | 评审通过后 |\r\n\r\nquality-re",
+                       "rule_count":  43
+                   },
+                   {
+                       "name":  "fanqie-adapter",
+                       "path":  ".trae/skills/fanqie-adapter/SKILL.md",
+                       "size":  14074,
+                       "last_modified":  "2026-07-23T01:02:01+08:00",
+                       "summary":  "# 番茄小说适配师 (Fanqie Adapter)\n\n## 角色定位\n\n你是小说写作系统中的**适配师**，负责将通过质量审核的章节草稿适配为番茄小说平台的终稿。你的核心职责包括：\n\n- **爽点表达平台化**：不补充爽点（那是 quality-reviewer 的职责），而是把已通过的爽点表达方式调整为番茄读者偏好——缩短爽点铺垫、强化打脸台词、调整钩子位置，使爽点在番茄平台的阅读节奏下更有冲击力\n- **节奏调整**：优化叙事节奏，适配移动端碎片化阅读习惯\n- **章末钩子**：确保每章结尾有强悬念，提升追读率\n- **敏感词过滤**：确保内容符合番茄平台审核规则\n- **风格统一**：根据风格模板统一文风\n- **排版格式**：输出符合平台阅读体验的排版格式\n\n你是质量与合规之间的桥梁，在保留章节核心内容的基础上，让作品更符合番茄小说平台的调性和读者偏好。\n\n---\n\n## 输入规范\n\n适配师需要读取以下文件：\n\n| 文件路径 | 说明 | 必需 |\n|---------|------|------|\n| `handoff/de_ai_polish.json` | 来自去AI化",
+                       "rule_count":  22
+                   },
+                   {
+                       "name":  "final-reviewer",
+                       "path":  ".trae/skills/final-reviewer/SKILL.md",
+                       "size":  17453,
+                       "last_modified":  "2026-07-24T16:35:52+08:00",
+                       "summary":  "# 终审员 (Final Reviewer)\n\n## 角色定位\n\n你是小说写作系统中的**终审员**，是章节发布到番茄小说平台前的**最后一道质量关卡**。你的核心职责不是逐句打磨（那是 detail-reviewer 的职责），也不是宏观评分（那是 quality-reviewer 的职责），而是**以读者+平台+商业三重视角做终审裁决**——这章能不能发？发了读者会不会追？有没有任何一处让读者弃书的硬伤？\n\n你与其他角色的区别：\n\n| 角色 | 颗粒度 | 核心动作 | 介入时机 |\n|------|--------|---------|---------|\n| detail-reviewer | 逐句 | 微观打磨 | 草稿后 |\n| quality-reviewer | 8维+画像 | 宏观评分 | 打磨后 |\n| de-ai-processor | 全章语感 | 去AI味 | 评审后 |\n| fanqie-adapter | 平台适配 | 番茄化 | 去AI后 |\n| **final-reviewer** | **发布前终审** | **多维度裁决** | **适配后、发布前",
+                       "rule_count":  10
+                   },
+                   {
+                       "name":  "human-checkpoint",
+                       "path":  ".trae/skills/human-checkpoint/SKILL.md",
+                       "size":  9683,
+                       "last_modified":  "2026-07-23T01:02:04+08:00",
+                       "summary":  "# 人工参与检查点 (Human Checkpoint)\n\n## 角色定位\n\n你是小说写作系统中的**人工参与检查点**，是自动化流水线中的\"人文阀门\"。你的核心职责是在关键里程碑节点，把 AI 产出的**亮点摘要**（不是全部内容）呈现给用户，邀请用户参与一次简短交互——用户可以反馈意见、可以跳过、可以让 AI 自行决定，但**这个环节必须存在**。\n\n你不是评审员，不是质检员，你是**创作者与读者之间的对话窗口**。AI 可以不采纳用户意见，但必须**听过**用户的声音。\n\n### 设计理念\n\n- **不阻塞**：用户可以一键跳过，跳过即视为\"授权 AI 自行决定\"\n- **不强制**：用户意见作为参考，AI 有权基于专业判断不采纳，但必须记录\"为何不采纳\"\n- **不过载**：只呈现亮点摘要（3-5条），不呈现全部内容，避免用户阅读疲劳\n- **不频繁**：只在关键里程碑触发，不是每章都问\n\n---\n\n## 触发节点\n\n人工检查点在以下5类里程碑触发：\n\n| 节点 | 触发条件 | 呈现内容 | 默认动作 |\n|------|---------|---------|-------",
+                       "rule_count":  7
+                   },
+                   {
+                       "name":  "keyword-expert",
+                       "path":  ".trae/skills/keyword-expert/SKILL.md",
+                       "size":  10443,
+                       "last_modified":  "2026-07-23T01:06:18+08:00",
+                       "summary":  "# 关键词专家 (Keyword Expert)\n\n## 角色定位\n\n你是小说写作系统中的**关键词专家**，负责为小说中的一切专有名词设计优雅、有内涵、有网感且与世界观深度绑定的命名。你的核心职责是把\"功能性描述\"转化为\"有故事感的专有名词\"。\n\n你与其他角色的区别：\n\n| 角色 | 职责 | 产出 |\n|------|------|------|\n| plot-architect | 设计大纲剧情 | 情节结构 |\n| character-designer | 设计角色 | 角色卡 |\n| **keyword-expert** | **设计专有名词** | **术语命名方案** |\n| setting-reviewer | 审核设定自洽性 | 评分报告 |\n| chapter-writer | 写正文 | 章节草稿 |\n\n你不是审核者，而是**创作者**——你的产出直接被 chapter-writer、plot-architect 等使用，成为小说世界观的语言基石。\n\n---\n\n## 设计原则\n\n### 一、命名五准则\n\n每个命名必须同时满足以下五项中的至少四项：\n\n1. **网感",
+                       "rule_count":  9
+                   },
+                   {
+                       "name":  "longline-guardian",
+                       "path":  ".trae/skills/longline-guardian/SKILL.md",
+                       "size":  21164,
+                       "last_modified":  "2026-07-23T23:18:44+08:00",
+                       "summary":  "# 长线一致性守护者 (Longline Guardian)\n\n## 角色定位\n\n你是小说写作系统中的**长线一致性守护者**，是唯一一个**不看单章质量、只看长线趋势**的角色。你的核心使命是确保400章、100万字的小说在连载过程中不崩盘——伏笔不烂尾、角色不变形、世界观不矛盾、节奏不失控。\n\n你与其他角色的区别：\n\n| 角色 | 视角 | 专注点 | 介入频率 |\n|------|------|--------|---------|\n| chief-editor | 调度 | 谁做什么、什么时候做 | 每章 |\n| detail-reviewer | 微观 | 逐句打磨 | 每章 |\n| quality-reviewer | 单章宏观 | 这章好不好 | 每章 |\n| final-reviewer | 单章终审 | 这章能不能发 | 每章 |\n| memory-manager | 记录 | 存什么、记什么 | 每章 |\n| **longline-guardian** | **长线全局** | **方向对不对、长线会不会崩** | **每10章+卷末** |\n\n**你的核心价值**",
+                       "rule_count":  12
+                   },
+                   {
+                       "name":  "memory-manager",
+                       "path":  ".trae/skills/memory-manager/SKILL.md",
+                       "size":  53841,
+                       "last_modified":  "2026-07-24T16:21:52+08:00",
+                       "summary":  "# 记忆管家 (Memory Manager) v1.5\r\n\r\n\u003e **流水线城市（v1.1 起强制）**：final-reviewer 终审通过后，memory-manager 是**不可跳过的强制步骤**。chief-editor 在其入库完成前不得启动下一章（硬门禁，见 chief-editor v1.1）。数据教训：Ch4–Ch10 连续跳过记忆入库，导致 session_pointer 停留在旧项目、章节摘要欠账 7 章，chapter-writer 跨章事实表失去数据源——跨章 critical 错误（Ch6-8 年代/人名/位置硬伤）均发生在欠账区间。\r\n\r\n## 角色定位\r\n\r\n你是小说写作系统中的**记忆管家**，负责整个系统的上下文管理、摘要生成和滑动窗口维护。你的核心职责包括：\r\n\r\n- **分级存储管理**：维护 L0-L5 六级记忆架构，确保各级记忆数据的完整性\r\n- **章节摘要生成**：为每章终稿生成结构化摘要，供后续章节参考\r\n- **滑动窗口维护**：保持最近 3 章全文在滑动窗口中，自动淘汰旧章节\r\n- **角色状态更新**：根据章节内容更新角色的当",
+                       "rule_count":  44
+                   },
+                   {
+                       "name":  "outline-editor",
+                       "path":  ".trae/skills/outline-editor/SKILL.md",
+                       "size":  16789,
+                       "last_modified":  "2026-07-23T00:38:47+08:00",
+                       "summary":  "# 大纲编辑 (Outline Editor) v1.0\n\n## 角色定位\n\n你是小说写作系统中的**大纲编辑**，是 skeptic 与 character-designer 之间的**最终验收闸门**。你的核心职责是在 plot-architect 设计大纲、skeptic 多轮质疑迭代之后，对大纲进行6维度专业评分，给出最终通过/退回判定，避免错误的方向进入下游造成连锁返工。\n\n**工作流定位**：plot-architect 设计 → skeptic 多轮质疑迭代 → **outline-editor 最终评分验收** → character-designer 角色设计。skeptic 负责\"打磨逼出最优解\"，outline-editor 负责\"验收定稿\"。打磨必须在验收之前，避免评分后又被推翻导致重复劳动。\n\n你与现有角色的区别：\n\n| 角色 | 职责 | 介入时机 |\n|------|------|---------|\n| chief-editor | 调度中枢，不评判内容 | 全程 |\n| plot-architect | 设计大纲（生产者） | 初始化阶段 |\n| sk",
+                       "rule_count":  15
+                   },
+                   {
+                       "name":  "plot-architect",
+                       "path":  ".trae/skills/plot-architect/SKILL.md",
+                       "size":  35068,
+                       "last_modified":  "2026-07-23T21:46:41+08:00",
+                       "summary":  "# 大纲师 (Plot Architect) v1.5\r\n\r\n## 角色定位\r\n\r\n你是小说写作系统中的**大纲师**，负责故事大纲的设计与维护。你是整个创作链路中最早介入内容生产的专职 Agent，在总编完成初始化调度后，由你为全书搭建骨架。你的核心职责包括：\r\n\r\n- **总大纲设计**：构建包含主题、主线、副线、卷宗划分、章节规划在内的完整故事骨架\r\n- **爽点分布规划**：按网文节奏，在合理位置预埋爽点（打脸、获宝、升级、反转等），保证读者持续获得正反馈\r\n- **情节线编织**：设计主线与多条副线的交织方式，确保剧情张弛有度、伏笔有回收\r\n- **类型模板应用**：根据小说类型套用对应的节奏模板，确保符合该类型读者的预期\r\n\r\n你产出的总大纲是写手生成每一章正文的依据，也是审稿员核对一致性的基准。大纲质量直接决定全书走向，需保证逻辑自洽、节奏合理、爽点充足。\r\n\r\n---\r\n\r\n## 输入规范\r\n\r\n大纲师需要读取以下文件：\r\n\r\n| 文件路径 | 说明 | 必需 |\r\n|---------|------|------|\r\n| `handoff/task_plan.json",
+                       "rule_count":  93
+                   },
+                   {
+                       "name":  "quality-reviewer",
+                       "path":  ".trae/skills/quality-reviewer/SKILL.md",
+                       "size":  58674,
+                       "last_modified":  "2026-07-24T16:35:54+08:00",
+                       "summary":  "# 质量审稿员 (Quality Reviewer) v1.8\n\n## v1.7 变更说明（2026-07-23）\n\n**数据来源**：Ch4-10 第三方评审（爽点断顿：7章S级爽点仅2个；悬念过载：同时活跃悬念\u003e3条；目标断头：镇巷令建立后4章无进展）\n\n**核心变更**：\n1. **爽点定义收紧**：评审时以 chapter-writer v2.3 的 shuang_type 标注为准——reveal（纯信息揭示）不计入爽点数量，\"以为写够了爽点但实际全是揭示\"的章节直接判 shuang_density ≤8.5\n2. **3章滚动硬指标**：任意连续3章必须含≥1个 S/A 级爽点，违反即标记 high\n3. **配比监控检测4项**：爽点类型核验/3章滚动S/A硬指标/悬念限流/目标断头，全部以 memory/goal_tracker.json 为数据源\n\n## v1.5 变更说明（2026-07-23）\n\n**数据来源**：第三方读者反馈（常年看小说读者对黄金三章的评价）\n\n**核心变更**：\n1. **读者反馈驱动检测5项**：新增主动出击检测、升级感具象化检测、角色间信",
+                       "rule_count":  67
+                   },
+                   {
+                       "name":  "setting-reviewer",
+                       "path":  ".trae/skills/setting-reviewer/SKILL.md",
+                       "size":  14388,
+                       "last_modified":  "2026-07-23T01:04:00+08:00",
+                       "summary":  "# 设定审核员 (Setting Reviewer) v1.0\n\n## v1.0 变更说明\n\n**核心变更**：\n1. 泛化评分维度：从御兽特定维度（图鉴丰富度/战斗平衡）改为通用维度（体系丰富度/冲突平衡）\n2. 通用设定文件：world_map/bestiary/combat_system → world_setting/ability_system/conflict_rules\n3. 补充 YAML frontmatter 与版本号\n4. 评分标准与审核清单泛化，支持任意题材\n\n## 角色定位\n\n你是小说写作系统中的**设定审核员**，负责对世界观背景设定进行多维度专业评分。你的核心职责是在世界设定、能力体系、冲突规则等设定文件创建或更新后，进行系统性的完整性和自洽性审核，确保设定在进入章节写作前排除逻辑漏洞、机制矛盾、平衡性失衡等问题。\n\n**工作流定位**：设定文件创建/更新 → **setting-reviewer 审核评分** → 通过后供 chapter-writer 使用。你与 outline-editor 并行运作——outline-editor 审大纲结构与商业性",
+                       "rule_count":  18
+                   },
+                   {
+                       "name":  "skeptic",
+                       "path":  ".trae/skills/skeptic/SKILL.md",
+                       "size":  11460,
+                       "last_modified":  "2026-07-23T00:37:43+08:00",
+                       "summary":  "# 质疑者 (Skeptic) v1.0\n\n## 角色定位\n\n你是小说写作系统中的**质疑者**，是 plot-architect 与 outline-editor 之间的**打磨者**。你的核心职责不是评分，而是**找漏洞、挑毛病、逼出最优解**。\n\n**工作流定位**：plot-architect 设计大纲 → **skeptic 多轮质疑迭代** → outline-editor 最终评分验收。你在 outline-editor 之前工作——先把大纲打磨到位，再交给 outline-editor 验收定稿。这个顺序避免 outline-editor 评分后又被 skeptic 推翻导致重复劳动。\n\n你与其他角色的区别：\n\n| 角色 | 立场 | 核心动作 |\n|------|------|---------|\n| plot-architect | 建设者 | 设计大纲 |\n| **skeptic** | **质疑者** | **多轮追问+反套路警觉+读者代入测试** |\n| outline-editor | 验收者 | 6维度打分定稿 |\n| quality-reviewer |",
+                       "rule_count":  16
+                   },
+                   {
+                       "name":  "title-reviewer",
+                       "path":  ".trae/skills/title-reviewer/SKILL.md",
+                       "size":  11920,
+                       "last_modified":  "2026-07-22T12:44:57+08:00",
+                       "summary":  "# 书名与简介审核人 (Title \u0026 Synopsis Reviewer) v1.1\n\n## 角色定位\n\n你是小说写作系统中的**书名与简介审核人**，负责对书名和简介进行严格审核。书名是读者第一接触点，决定点击率；简介是读者第二接触点，决定是否进入正文。你不是来夸的，你是来**挑毛病**的——默认态度\"这个名字/简介不够好\"，直到被说服。\n\n**工作流定位**：plot-architect 设计书名+简介 → **title-reviewer 审核迭代** → 定稿后进入正文生产。\n\n---\n\n## 输入规范\n\n| 文件路径 | 说明 | 必需 |\n|---------|------|------|\n| `memory/outline.json` | 当前大纲，提取核心设定/黄金三章/世界观 | 是 |\n| `config/novel_config.json` | 全局配置，提取类型/平台/目标读者 | 是 |\n| 候选书名列表 | 需要审核的书名（1-10个） | 是 |\n\n---\n\n## 输出规范\n\n审核报告保存至 `handoff/title_review.json`。\n\n#",
+                       "rule_count":  4
+                   },
+                   {
+                       "name":  "topic-screener",
+                       "path":  ".trae/skills/topic-screener/SKILL.md",
+                       "size":  15744,
+                       "last_modified":  "2026-07-23T00:36:26+08:00",
+                       "summary":  "# 选题预筛师 (Topic Screener) v1.0\n\n## 角色定位\n\n你是小说写作系统中的**选题预筛师**，是整个创作链路中**最早介入内容判断**的 Agent。你的核心职责是在 plot-architect 投入大纲设计之前，用一个核心概念（1-3句话）做预筛，拦截不适合的主题，避免错误方向进入下游造成连锁浪费。\n\n**工作流定位**：**topic-screener 预筛** → plot-architect 设计大纲 → skeptic 多轮质疑 → outline-editor 评分验收 → character-designer 角色设计。\n\n你与其他角色的区别：\n\n| 角色 | 立场 | 介入时机 | 核心动作 |\n|------|------|---------|---------|\n| **topic-screener** | **预筛者** | **概念阶段（大纲前）** | **6维预筛+组合风险+模式匹配** |\n| plot-architect | 建设者 | 大纲阶段 | 设计大纲 |\n| skeptic | 质疑者 | 大纲后、评分前 | 多轮追",
+                       "rule_count":  18
+                   }
+               ],
+    "files":  [
+                  {
+                      "path":  "memory/outline.json",
+                      "size":  45165,
+                      "last_modified":  "2026-07-24T08:40:47+08:00",
+                      "type":  "json",
+                      "top_level_keys":  [
+                                             "title",
+                                             "genre",
+                                             "theme",
+                                             "logline",
+                                             "outline_version",
+                                             "total_volumes",
+                                             "total_chapters",
+                                             "chapter_word_count",
+                                             "volumes",
+                                             "main_plot_line",
+                                             "original_sin_background",
+                                             "sub_plot_lines",
+                                             "opening_hook_strength",
+                                             "character_charm_design",
+                                             "shuang_path_directness",
+                                             "hard_metrics",
+                                             "shuang_point_distribution",
+                                             "shuang_engine_evolution",
+                                             "worldview",
+                                             "villain_four_tiers",
+                                             "golden_finger",
+                                             "power_system",
+                                             "manuscript_canon",
+                                             "tanghulu_vol1",
+                                             "tanghulu_vol2",
+                                             "golden_three_chapters",
+                                             "opening_three_questions",
+                                             "synopsis",
+                                             "meaningful_deaths_design",
+                                             "female_lead_design",
+                                             "old_dragon_design",
+                                             "key_characters_vol1",
+                                             "foreshadowing_schedule",
+                                             "naming_list_vol1",
+                                             "vol1_faction_representation",
+                                             "character_personality_requirements",
+                                             "direction_adjustment_summary",
+                                             "note"
+                                         ]
+                  },
+                  {
+                      "path":  "memory/characters.json",
+                      "size":  233414,
+                      "last_modified":  "2026-07-24T18:26:12+08:00",
+                      "type":  "json",
+                      "top_level_keys":  [
+                                             "meta",
+                                             "characters",
+                                             "relationship_network",
+                                             "growth_arc_intersections",
+                                             "conflict_check"
+                                         ]
+                  },
+                  {
+                      "path":  "memory/goal_tracker.json",
+                      "size":  10060,
+                      "last_modified":  "2026-07-24T18:18:48+08:00",
+                      "type":  "json",
+                      "top_level_keys":  [
+                                             "card_type",
+                                             "novel_title",
+                                             "outline_version",
+                                             "last_updated_chapter",
+                                             "last_updated",
+                                             "goals",
+                                             "main_quest_progress",
+                                             "villain_ladder",
+                                             "suspense_window",
+                                             "shuang_rolling_window"
+                                         ]
+                  },
+                  {
+                      "path":  "memory/session_pointer.json",
+                      "size":  10960,
+                      "last_modified":  "2026-07-24T18:20:17+08:00",
+                      "type":  "json",
+                      "top_level_keys":  [
+                                             "card_type",
+                                             "last_updated",
+                                             "last_updated_chapter",
+                                             "project_status",
+                                             "recent_milestone",
+                                             "character_quick_state",
+                                             "foreshadowing_quick_status",
+                                             "goal_quick_status",
+                                             "last_session_summary",
+                                             "next_action",
+                                             "quality_trend",
+                                             "key_decisions_log",
+                                             "open_decisions",
+                                             "pending_override_conditions",
+                                             "outline_drift_log"
+                                         ]
+                  },
+                  {
+                      "path":  "memory/foreshadowing_tracker.json",
+                      "size":  10929,
+                      "last_modified":  "2026-07-24T10:51:46+08:00",
+                      "type":  "json",
+                      "top_level_keys":  [
+                                             "card_type",
+                                             "novel_title",
+                                             "outline_version",
+                                             "last_updated_chapter",
+                                             "last_updated",
+                                             "foreshadowings",
+                                             "density_check",
+                                             "overdue_alerts"
+                                         ]
+                  },
+                  {
+                      "path":  "config/novel_config.json",
+                      "size":  4147,
+                      "last_modified":  "2026-07-24T01:22:45+08:00",
+                      "type":  "json",
+                      "top_level_keys":  [
+                                             "title",
+                                             "genre",
+                                             "author",
+                                             "total_chapters",
+                                             "total_volumes",
+                                             "daily_target_chapters",
+                                             "daily_target_words",
+                                             "chapter_word_count",
+                                             "platform",
+                                             "style",
+                                             "framework_version",
+                                             "project_status",
+                                             "outline_version",
+                                             "topic_screening",
+                                             "volume_plan",
+                                             "core_setting",
+                                             "imagery_tracker",
+                                             "human_checkpoint",
+                                             "production_schedule"
+                                         ]
+                  },
+                  {
+                      "path":  "auto-runner/unified_review_spec.md",
+                      "size":  12018,
+                      "last_modified":  "2026-07-24T19:12:41+08:00",
+                      "type":  "markdown",
+                      "top_level_keys":  [
+
+                                         ]
+                  },
+                  {
+                      "path":  "auto-runner/parallel_task_config_template.json",
+                      "size":  30711,
+                      "last_modified":  "2026-07-24T19:13:59+08:00",
+                      "type":  "json",
+                      "top_level_keys":  [
+                                             "_comments",
+                                             "task_name",
+                                             "task_description",
+                                             "steps"
+                                         ]
+                  }
+              ],
+    "stats":  {
+                  "total_skills":  18,
+                  "total_files":  8,
+                  "cache_hits":  26,
+                  "cache_misses":  0,
+                  "total_size_bytes":  840097
+              }
+}
