@@ -848,3 +848,20 @@ total_score = attractiveness × 0.20      # 吸引力（20%）——读者留存
    - 陈默：当前阶段（卷1-2游戏心态期）是否过早完全觉醒？
    - 四零四：是否在"别投入感情"和"差点投入感情"之间保持张力？
 11. **章末意象检查**：核对 chapter_draft 中的 `chapter_ending_imagery`，如同一意象已连续3章使用，在 issues 中标记为 medium 级别，建议更换。
+
+---
+
+## fast_io.ps1 集成（v1.9+）
+执行文件操作时，优先使用 `auto-runner/fast_io.ps1` 中的加速函数：
+
+| 场景 | fast_io 写法 | 加速比 |
+|------|-------------|--------|
+| 读取章节草稿交接卡 | `FastReadJson "handoff/chapter_draft.json"` | 1.91x |
+| 读取全局大纲 | `FastReadJson "memory/outline.json"` | 1.91x |
+| 读取角色卡 | `FastReadJson "memory/characters.json"` | 1.91x |
+| 读取目标追踪表（配比监控数据源） | `FastReadJson "memory/goal_tracker.json"` | 1.91x |
+| 读取伏笔追踪表（长篇防线检测） | `FastReadJson "memory/foreshadowing_tracker.json"` | 1.91x |
+| 批量读取前文章节摘要 | `FastReadJsonBatch "memory/chapter_summaries/"` | 1.24x |
+| 列出最近章节目录 | `FastListFiles "memory/recent_chapters/"` | 3.01x |
+| 批量读取最近3章全文 | `FastReadBatch "memory/recent_chapters/"` | 2.13x |
+| 写入审稿反馈卡 | `FastWriteJson -Path "handoff/review_feedback.json" -Object $feedback` | 1.83x |

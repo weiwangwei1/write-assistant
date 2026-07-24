@@ -389,3 +389,16 @@ total_score = commercial_score×0.25 + structure_score×0.20 + rhythm_score×0.2
 - 0 个 major → passed，进入 chapter-writer
 - 1-2 个 major → revise，退回 character-designer 修改
 - 3+ 个 major → 整体重做，退回 character-designer 重新设计
+
+---
+
+## fast_io.ps1 集成（v1.0+）
+执行文件操作时，优先使用 `auto-runner/fast_io.ps1` 中的加速函数：
+
+| 场景 | fast_io 写法 | 加速比 |
+|------|-------------|--------|
+| 读取持久化大纲 | `FastReadJson "memory/outline.json"` | 1.91x |
+| 读取全局配置 | `FastReadJson "config/novel_config.json"` | 1.91x |
+| 读取交接卡 | `FastReadJson "handoff/outline.json"` | 1.91x |
+| 读取角色卡（兼任角色卡审核） | `FastReadJson "memory/characters.json"` | 1.91x |
+| 写入审核报告 | `FastWriteJson -Path "handoff/outline_review.json" -Object $report` | 1.83x |

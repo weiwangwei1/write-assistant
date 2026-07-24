@@ -263,3 +263,16 @@ description: "关键词专家，专门为小说中的概念、能力、功法、
 4. **不越权改设定**：只负责命名，不修改设定的功能逻辑。如发现设定矛盾，反馈给chief-editor。
 5. **批量命名时保持系统感**：一次命名多个概念时，优先确定构词法模式，再填充具体名称。
 6. **进化链命名递进**：兽类进化链的命名应体现形态递进（如灰鳞蜥→钢鳞龙蜥→裂地龙蜥，"灰→钢→裂"是材质递进）。
+
+---
+
+## fast_io.ps1 集成（v1.0+）
+执行文件操作时，优先使用 `auto-runner/fast_io.ps1` 中的加速函数：
+
+| 场景 | fast_io 写法 | 加速比 |
+|------|-------------|--------|
+| 读取命名请求卡 | `FastReadJson "handoff/naming_request.json"` | 1.91x |
+| 批量读取命名上下文（大纲/冲突规则/能力体系/角色卡） | `FastReadJsonBatch -Paths @("memory/outline.json","memory/conflict_rules.json","memory/ability_system.json","memory/characters.json")` | 1.24x |
+| 读取全局配置 | `FastReadJson "config/novel_config.json"` | 1.91x |
+| 写入命名方案卡 | `FastWriteJson -Path "handoff/naming_solution.json" -Object $solution` | 1.83x |
+| 写入术语巡检报告 | `FastWriteJson -Path "handoff/naming_audit.json" -Object $audit` | 1.83x |

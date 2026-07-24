@@ -587,3 +587,15 @@ title-reviewer 在审核书名时，同步审核简介：
 - 加点必须有"后悔药"机制（洗点/重置），但代价高昂——给读者"如果重新来过"的想象空间
 
 **大纲输出要求**：如果采用加点体系，大纲中必须标注属性框架、升级点数规则和洗点机制。
+
+---
+
+## fast_io.ps1 集成（v1.5+）
+执行文件操作时，优先使用 `auto-runner/fast_io.ps1` 中的加速函数：
+
+| 场景 | fast_io 写法 | 加速比 |
+|------|-------------|--------|
+| 读取任务计划 | `FastReadJson "handoff/task_plan.json"` | 1.91x |
+| 读取全局配置 | `FastReadJson "config/novel_config.json"` | 1.91x |
+| 写入持久化大纲 | `FastWriteJson -Path "memory/outline.json" -Object $outline` | 1.83x |
+| 写入交接卡 | `FastWriteJson -Path "handoff/outline.json" -Object $handoff` | 1.83x |

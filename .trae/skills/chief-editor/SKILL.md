@@ -427,3 +427,22 @@ Step 4: 向用户汇报当前指针 ★ 必须执行
 - **错误隔离**：单章异常不应阻塞已通过章节的存稿与进度推进；错误需记录到 task_plan 的 errors 数组并标注 resolved 状态
 - **不越权撰写**：总编只负责调度与状态管理，不得直接生成正文、大纲或角色设定内容，这些必须委派给对应专职 Agent
 - **一致性自检响应**：当 memory-manager 的 consistency_check 报告 overall_status=failed 时，必须暂停生产，调度 plot-architect 或 character-designer 修正偏离后再恢复
+
+---
+
+## fast_io.ps1 集成（v1.6+）
+执行文件操作时，优先使用 `auto-runner/fast_io.ps1` 中的加速函数：
+
+| 场景 | fast_io 写法 | 加速比 |
+|------|-------------|--------|
+| 读取小说配置 | `FastReadJson "config/novel_config.json"` | 1.91x |
+| 读取任务计划 | `FastReadJson "handoff/task_plan.json"` | 1.91x |
+| 读取会话指针（会话恢复核心） | `FastReadJson "memory/session_pointer.json"` | 1.91x |
+| 批量读取大纲/目标/伏笔追踪（并行评估） | `FastReadJsonBatch "memory/"` | 1.24x |
+| 按行读取写作日志（质量趋势） | `FastReadLines "logs/writing_log.jsonl"` | 3.94x |
+| 列出交接卡目录（进度检查） | `FastListFiles "handoff/"` | 3.01x |
+| 检查交接卡是否已生成 | `FastFileExists "handoff/chapter_draft.json"` | 1.76x |
+| 批量读取质量趋势报告 | `FastReadJsonBatch "logs/quality_trend/"` | 1.24x |
+| 写入任务计划 | `FastWriteJson -Path "handoff/task_plan.json" -Object $plan` | 1.83x |
+| 写入合并审核意见 | `FastWriteJson -Path "handoff/merged_review_{N}.json" -Object $merged` | 1.83x |
+| 写入质量趋势报告 | `FastWriteJson -Path "logs/quality_trend/chapter_{N}.json" -Object $trend` | 1.83x |

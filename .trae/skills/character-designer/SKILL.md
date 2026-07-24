@@ -478,3 +478,19 @@ AI写作最大的角色塑造暴露点：用"告诉"代替"展示"——直接�
 | `show_events` | array | 每个核心性格特质的展示事件列表（触发情境+角色行为+暗示的性格） | 主要角色必需 |
 | `scene_sides` | array | 场景-侧面映射（不同场景展示角色不同侧面） | 主要角色必需 |
 | `show_variants` | object | 每个核心性格特质的≥3种不同展示方式 | 主要角色必需 |
+
+---
+
+## fast_io.ps1 集成（v1.5+）
+执行文件操作时，优先使用 `auto-runner/fast_io.ps1` 中的加速函数：
+
+| 场景 | fast_io 写法 | 加速比 |
+|------|-------------|--------|
+| 读取交接卡（大纲） | `FastReadJson "handoff/outline.json"` | 1.91x |
+| 读取全局配置 | `FastReadJson "config/novel_config.json"` | 1.91x |
+| 读取持久化大纲（并行模式） | `FastReadJson "memory/outline.json"` | 1.91x |
+| 批量读取单角色卡（合并阶段） | `FastReadJsonBatch -Paths @("memory/characters/许愿.json","memory/characters/老灯.json",...)` | 1.24x |
+| 写入单角色卡（并行设计阶段） | `FastWriteJson -Path "memory/characters/{角色名}.json" -Object $card` | 1.83x |
+| 写入合并角色档案 | `FastWriteJson -Path "memory/characters.json" -Object $merged` | 1.83x |
+| 写入交接卡 | `FastWriteJson -Path "handoff/characters.json" -Object $handoff` | 1.83x |
+| 检查角色卡是否已存在 | `FastFileExists "memory/characters/{角色名}.json"` | 1.76x |

@@ -408,3 +408,20 @@ final-reviewer 判定 rejected
 8. **记录完整**：每项评分必须有 findings 支撑，不能凭感觉打分。弃书风险必须标明位置和类型。
 9. **通过不等于完美**：approved 只意味着"可以发了"，不意味着没有优化空间。minor 问题可以在报告中标注但不阻塞。
 10. **与quality-reviewer的区别**：quality-reviewer 在适配前评审，final-reviewer 在适配后终审。quality-reviewer 评的是"草稿好不好"，final-reviewer 评的是"成品能不能发"。
+
+---
+
+## fast_io.ps1 集成（v1.2+）
+执行文件操作时，优先使用 `auto-runner/fast_io.ps1` 中的加速函数：
+
+| 场景 | fast_io 写法 | 加速比 |
+|------|-------------|--------|
+| 读取终稿交接卡 | `FastReadJson "handoff/final_chapter.json"` | 1.91x |
+| 读取大纲（伏笔/剧情核对） | `FastReadJson "memory/outline.json"` | 1.91x |
+| 读取角色卡（人设/语言指纹） | `FastReadJson "memory/characters.json"` | 1.91x |
+| 读取伏笔追踪表 | `FastReadJson "memory/foreshadowing_tracker.json"` | 1.91x |
+| 读取写作配置 | `FastReadJson "config/novel_config.json"` | 1.91x |
+| 批量读取已有章节摘要 | `FastReadJsonBatch "memory/chapter_summaries/"` | 1.24x |
+| 检查前序Agent报告是否存在 | `FastFileExists "handoff/review_feedback_ch{N}.json"` | 1.76x |
+| 批量读取前序Agent报告 | `FastReadJsonBatch "handoff/"` | 1.24x |
+| 写入终审报告 | `FastWriteJson -Path "handoff/final_review_{N}.json" -Object $report` | 1.83x |

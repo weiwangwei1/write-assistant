@@ -352,3 +352,15 @@ total_score = mechanism_completeness×0.20 + setting_consistency×0.20
 4. **不越权改设定**：设定审核员只评审给建议，不直接改写设定。改写由设定创建者执行。
 5. **随剧情更新**：设定是活文档，会随剧情推进逐步补充。每次更新后应重新审核新增部分。
 6. **跨文件交叉验证**：三个设定文件相互引用，审核时必须交叉验证一致性，不能孤立审核单个文件。
+
+---
+
+## fast_io.ps1 集成（v1.0+）
+执行文件操作时，优先使用 `auto-runner/fast_io.ps1` 中的加速函数：
+
+| 场景 | fast_io 写法 | 加速比 |
+|------|-------------|--------|
+| 批量读取设定文件（世界/能力/冲突） | `FastReadJsonBatch -Paths @("memory/world_setting.json","memory/ability_system.json","memory/conflict_rules.json")` | 1.24x |
+| 读取全局大纲（核对一致性） | `FastReadJson "memory/outline.json"` | 1.91x |
+| 读取全局配置 | `FastReadJson "config/novel_config.json"` | 1.91x |
+| 写入审核报告 | `FastWriteJson -Path "handoff/setting_review.json" -Object $report` | 1.83x |

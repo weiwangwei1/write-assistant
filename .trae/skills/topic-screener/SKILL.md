@@ -343,3 +343,13 @@ description: "Topic pre-screener for novel creation. v1.0: 6-dimension pre-scree
 | plot-architect | topic-screener 通过后，plot-architect 开始设计大纲。预筛报告中的"通过条件"作为 plot-architect 的设计约束 |
 | skeptic | 预筛通过后，skeptic 第1轮从"主题吸引力"改为"主题执行可行性"——检查大纲是否兑现预筛承诺。增加"漂移检测"：如果大纲核心设定偏离预筛概念，触发"重新预筛" |
 | outline-editor | commercial_score 新增"题材耐久度"子维度。一票否决项"商业方向错误"参照 topic-screener 维度6的具体判定标准定义 |
+
+---
+
+## fast_io.ps1 集成（v1.0+）
+执行文件操作时，优先使用 `auto-runner/fast_io.ps1` 中的加速函数：
+
+| 场景 | fast_io 写法 | 加速比 |
+|------|-------------|--------|
+| 读取用户偏好与失败记录 | `FastReadFile "project_memory.md"` | 1.80x |
+| 写入预筛报告 | `FastWriteJson -Path "handoff/topic_screening.json" -Object $report` | 1.83x |

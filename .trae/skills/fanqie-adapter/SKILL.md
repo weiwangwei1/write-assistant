@@ -355,3 +355,18 @@ description: "Fanqie novel platform adapter. Injects shuang-points, adjusts paci
 8. **原文优先**：如原稿在某个维度已达标，保留原稿不修改，仅在 adaptations 中记录"检查通过，无需调整"。
 9. **不引入新角色**：适配师不得在章节中引入新角色或新伏笔，这是写手的职责。
 10. **终稿文件编码**：output 目录下的 txt 文件使用 UTF-8 编码，换行符使用 `\n`。
+
+---
+
+## fast_io.ps1 集成（v1.1+）
+执行文件操作时，优先使用 `auto-runner/fast_io.ps1` 中的加速函数：
+
+| 场景 | fast_io 写法 | 加速比 |
+|------|-------------|--------|
+| 读取去AI化后正文 | `FastReadJson "handoff/de_ai_polish.json"` | 1.91x |
+| 读取小说配置（fanqie_config） | `FastReadJson "config/novel_config.json"` | 1.91x |
+| 读取敏感词列表 | `FastReadJson "config/sensitive_words.json"` | 1.91x |
+| 列出最近章节目录 | `FastListFiles "memory/recent_chapters/"` | 3.01x |
+| 批量读取最近章节全文（风格参考） | `FastReadBatch "memory/recent_chapters/"` | 2.13x |
+| 写入终稿交接卡 | `FastWriteJson -Path "handoff/final_chapter.json" -Object $card` | 1.83x |
+| 写入终稿文本文件 | `FastWriteFile -Path "output/chapter_NNN.txt" -Content $finalText` | 1.48x |

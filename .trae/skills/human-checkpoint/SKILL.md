@@ -257,3 +257,16 @@ description: "人工参与检查点，在关键节点把设计或章节亮点呈
 4. **不采纳要说明理由**：如果用户给了意见但AI基于专业判断不采纳，必须记录理由，不能无视。
 5. **亮点不是全部**：永远只呈现3-5条亮点，不呈现全部内容。用户想看全部可以自己打开文件。
 6. **问题要具体**：不要问"你觉得怎么样"这种空泛问题，要问"这个反派的前期可恨行为够不够"这种具体问题。
+
+---
+
+## fast_io.ps1 集成（v1.0+）
+执行文件操作时，优先使用 `auto-runner/fast_io.ps1` 中的加速函数：
+
+| 场景 | fast_io 写法 | 加速比 |
+|------|-------------|--------|
+| 读取检查点配置 | `FastReadJson "config/novel_config.json"` | 1.91x |
+| 读取当前进度 | `FastReadJson "handoff/task_plan.json"` | 1.91x |
+| 读取里程碑产物-大纲/角色卡（JSON） | `FastReadJson "memory/outline.json"` | 1.91x |
+| 读取里程碑产物-章节正文 | `FastReadFile "output/chapter_NNN.txt"` | 1.80x |
+| 写入检查点报告 | `FastWriteJson -Path "handoff/human_checkpoint_{type}_{id}.json" -Object $report` | 1.83x |

@@ -243,3 +243,17 @@ description: "Outline skeptic for novel creation. v1.0: 泛化硬编码例子+�
 4. **反套路不是为反而反**：反套路必须有更好的替代方案，不能为了不同而不同。
 5. **迭代次数有度**：通常3-5轮质疑足够。如果5轮后仍有致命问题，说明核心设定需要重构。
 6. **保留亮点**：即使质疑尖锐，也要明确指出哪些部分站得住脚，避免plot-architect过度修改丢掉好东西。
+
+---
+
+## fast_io.ps1 集成（v1.0+）
+执行文件操作时，优先使用 `auto-runner/fast_io.ps1` 中的加速函数：
+
+| 场景 | fast_io 写法 | 加速比 |
+|------|-------------|--------|
+| 读取大纲 | `FastReadJson "memory/outline.json"` | 1.91x |
+| 读取全局配置 | `FastReadJson "config/novel_config.json"` | 1.91x |
+| 读取最近评审报告 | `FastReadJson "handoff/outline_review.json"` | 1.91x |
+| 读取预筛报告（漂移检测） | `FastReadJson "handoff/topic_screening.json"` | 1.91x |
+| 批量读取多个JSON（优化） | `FastReadJsonBatch -Paths @("memory/outline.json","config/novel_config.json","handoff/outline_review.json")` | 1.24x |
+| 写入质疑报告 | `FastWriteJson -Path "handoff/skeptic_review.json" -Object $review` | 1.83x |

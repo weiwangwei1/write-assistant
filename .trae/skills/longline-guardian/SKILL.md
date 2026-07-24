@@ -458,3 +458,23 @@ Ch80入库（卷二最后一章）→ longline-guardian 卷二审查（Ch41-80�
 8. **卷末审查更严格**：卷末是"体检大查"，比定期审查更全面，必须覆盖卷级完整性/伏笔卷级核对/角色卷级发展/卷间衔接。
 9. **记录审查历史**：每次审查报告保存在 memory/longline_review/ 中，形成审查历史链，便于追踪长线趋势的变化。
 10. **全局术语搜索**：每次审查时全文搜索旧术语（如"线程""双线结构"等已废弃术语），这是你的专属职责——其他角色只检查当章，你检查全局。
+
+---
+
+## fast_io.ps1 集成（v1.2+）
+执行文件操作时，优先使用 `auto-runner/fast_io.ps1` 中的加速函数：
+
+| 场景 | fast_io 写法 | 加速比 |
+|------|-------------|--------|
+| 读取全局大纲 | `FastReadJson "memory/outline.json"` | 1.91x |
+| 读取角色卡（含current_state历史） | `FastReadJson "memory/characters.json"` | 1.91x |
+| 读取伏笔追踪表 | `FastReadJson "memory/foreshadowing_tracker.json"` | 1.91x |
+| 读取目标追踪表（主线进度数据源） | `FastReadJson "memory/goal_tracker.json"` | 1.91x |
+| 读取会话指针（质量趋势/进度） | `FastReadJson "memory/session_pointer.json"` | 1.91x |
+| 批量读取全部章节摘要 | `FastReadJsonBatch "memory/chapter_summaries/"` | 1.24x |
+| 批量读取卷宗摘要 | `FastReadJsonBatch "memory/volume_summaries/"` | 1.24x |
+| 批量读取历史一致性自检报告 | `FastReadJsonBatch "memory/consistency_check/"` | 1.24x |
+| 按行读取写作日志（质量分数趋势） | `FastReadLines "logs/writing_log.jsonl"` | 3.94x |
+| 按行读取决策日志 | `FastReadLines "memory/decision_log.jsonl"` | 3.94x |
+| 创建审查报告目录 | `FastCreateDir "memory/longline_review/"` | — |
+| 写入长线审查报告 | `FastWriteJson -Path "memory/longline_review/longline_review_{N}.json" -Object $report` | 1.83x |

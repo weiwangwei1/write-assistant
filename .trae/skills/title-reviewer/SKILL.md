@@ -331,3 +331,15 @@ description: "书名与简介审核人。v1.1: 扩展简介审核功能（首句
 - 如果简介承诺的元素在黄金三章完全不出现，直接判 promise_fulfillment ≤4
 - 如果简介文风与正文严重不一致，直接判 style_consistency ≤4
 - 如果简介无标签，直接判 tag_accuracy ≤5
+
+---
+
+## fast_io.ps1 集成（v1.1+）
+执行文件操作时，优先使用 `auto-runner/fast_io.ps1` 中的加速函数：
+
+| 场景 | fast_io 写法 | 加速比 |
+|------|-------------|--------|
+| 读取大纲（核心设定/黄金三章/简介） | `FastReadJson "memory/outline.json"` | 1.91x |
+| 读取全局配置（类型/平台/目标读者） | `FastReadJson "config/novel_config.json"` | 1.91x |
+| 批量读取大纲+配置（优化） | `FastReadJsonBatch -Paths @("memory/outline.json","config/novel_config.json")` | 1.24x |
+| 写入审核报告 | `FastWriteJson -Path "handoff/title_review.json" -Object $review` | 1.83x |
