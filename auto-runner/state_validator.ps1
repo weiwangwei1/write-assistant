@@ -1,6 +1,6 @@
 <#
 .SYNOPSIS
-  State.json validator and repair script (v2.4)
+  State.json validator and repair script (v2.5)
 #>
 
 param(
@@ -70,7 +70,7 @@ function Test-AllFilesExist {
 }
 
 Write-Host ""
-Write-Host "=== State Validator v2.4 ===" -ForegroundColor Cyan
+Write-Host "=== State Validator v2.5 ===" -ForegroundColor Cyan
 Write-Host "Workspace: $workspace"
 Write-Host "State file: $statePath"
 Write-Host "Dry run: $($DryRun.IsPresent)"
@@ -78,7 +78,7 @@ Write-Host ""
 
 # 1. Check running steps
 $runningSteps = @($state.steps | Where-Object { $_.status -eq "running" })
-Write-Host "[1/4] Checking running steps ($($runningSteps.Count) found)..." -ForegroundColor Yellow
+Write-Host "[1/8] Checking running steps ($($runningSteps.Count) found)..." -ForegroundColor Yellow
 
 foreach ($step in $runningSteps) {
     $outputFiles = Get-StepOutputFiles -stepId $step.id -config $taskConfig
@@ -126,7 +126,7 @@ foreach ($step in $completedSteps) {
 
 # 3. Fix current_step
 Write-Host ""
-Write-Host "[3/4] Fixing current_step..." -ForegroundColor Yellow
+Write-Host "[3/8] Fixing current_step..." -ForegroundColor Yellow
 $firstIncomplete = $state.steps | Where-Object { $_.status -ne "completed" } | Select-Object -First 1
 if ($firstIncomplete) {
     if ($firstIncomplete.id -ne $state.current_step) {
@@ -158,7 +158,7 @@ if ($firstIncomplete) {
 
 # 4. Fix parallel groups
 Write-Host ""
-Write-Host "[4/6] Fixing parallel_groups..." -ForegroundColor Yellow
+Write-Host "[4/8] Fixing parallel_groups..." -ForegroundColor Yellow
 if ($state.parallel_groups -and $state.parallel_groups.Count -gt 0) {
     foreach ($group in $state.parallel_groups) {
         $groupSteps = @()
@@ -201,34 +201,45 @@ if ($state.parallel_groups -and $state.parallel_groups.Count -gt 0) {
     Write-Host "  No parallel groups" -ForegroundColor DarkGray
 }
 
-# 5. Archive intermediate review files (v2.4 - Optimization C)
+# 5. Archive intermediate review files (v2.5 - Optimization C, updated for unified review)
 Write-Host ""
-Write-Host "[5/6] Archiving intermediate review files..." -ForegroundColor Yellow
+Write-Host "[5/8] Archiving intermediate review files..." -ForegroundColor Yellow
 $chaptersDir = Join-Path $workspace "handoff\chapters"
 $archiveBase = Join-Path $workspace "handoff\archive"
 $archivedCount = 0
 if (FastFileExists $chaptersDir) {
+    # v2.5: trigger on unified_review_ch{N}.json OR merged_review_ch{N}.json
+    # (v2.5 merged Merge into Unified Review, no standalone is_merger step)
+    $triggerChapters = @{}
+    $unifiedFiles = Get-ChildItem $chaptersDir -Filter "unified_review_ch*.json" -ErrorAction SilentlyContinue
+    foreach ($uf in $unifiedFiles) {
+        if ($uf.Name -match 'unified_review_ch(\d+)\.json') {
+            $triggerChapters[$Matches[1]] = $true
+        }
+    }
     $mergedFiles = Get-ChildItem $chaptersDir -Filter "merged_review_ch*.json" -ErrorAction SilentlyContinue
-    foreach ($mergedFile in $mergedFiles) {
-        if ($mergedFile.Name -match "merged_review_ch(\d+)\.json") {
-            $chNum = $Matches[1]
-            $detailFile = Join-Path $chaptersDir "detail_review_ch$chNum.json"
-            $deaiFile = Join-Path $chaptersDir "de_ai_analysis_ch$chNum.json"
-            $archiveDir = Join-Path $archiveBase "ch$chNum"
-            foreach ($srcFile in @($detailFile, $deaiFile)) {
-                if (FastFileExists $srcFile) {
-                    if (-not (Test-Path $archiveDir)) {
-                        New-Item -ItemType Directory -Path $archiveDir -Force | Out-Null
-                    }
-                    $destFile = Join-Path $archiveDir (Split-Path $srcFile -Leaf)
-                    $fileName = Split-Path $srcFile -Leaf
-                    if (-not $DryRun) {
-                        Move-Item -Path $srcFile -Destination $destFile -Force
-                        $archivedCount++
-                        Write-Host "  Archived: $fileName -> handoff/archive/ch$chNum/" -ForegroundColor Green
-                    }
-                    $details.Add("Archived $fileName for ch$chNum") | Out-Null
+    foreach ($mf in $mergedFiles) {
+        if ($mf.Name -match 'merged_review_ch(\d+)\.json') {
+            $triggerChapters[$Matches[1]] = $true
+        }
+    }
+    foreach ($chNum in $triggerChapters.Keys) {
+        $detailFile = Join-Path $chaptersDir "detail_review_ch$chNum.json"
+        $deaiFile = Join-Path $chaptersDir "de_ai_analysis_ch$chNum.json"
+        $archiveDir = Join-Path $archiveBase "ch$chNum"
+        foreach ($srcFile in @($detailFile, $deaiFile)) {
+            if (FastFileExists $srcFile) {
+                if (-not (Test-Path $archiveDir)) {
+                    New-Item -ItemType Directory -Path $archiveDir -Force | Out-Null
                 }
+                $destFile = Join-Path $archiveDir (Split-Path $srcFile -Leaf)
+                $fileName = Split-Path $srcFile -Leaf
+                if (-not $DryRun) {
+                    Move-Item -Path $srcFile -Destination $destFile -Force
+                    $archivedCount++
+                    Write-Host "  Archived: $fileName -> handoff/archive/ch$chNum/" -ForegroundColor Green
+                }
+                $details.Add("Archived $fileName for ch$chNum") | Out-Null
             }
         }
     }
@@ -241,9 +252,9 @@ if (FastFileExists $chaptersDir) {
     Write-Host "  No handoff/chapters/ directory" -ForegroundColor DarkGray
 }
 
-# 6. Clean up completed parallel groups (v2.4 - Optimization F)
+# 6. Clean up completed parallel groups (v2.5 - Optimization F)
 Write-Host ""
-Write-Host "[6/6] Cleaning up completed parallel groups..." -ForegroundColor Yellow
+Write-Host "[6/8] Cleaning up completed parallel groups..." -ForegroundColor Yellow
 if ($state.parallel_groups -and $state.parallel_groups.Count -gt 0) {
     $completedGroups = @($state.parallel_groups | Where-Object { $_.status -eq "completed" -and $_.merger_executed -eq $true })
     if ($completedGroups.Count -gt 0) {
@@ -263,6 +274,84 @@ if ($state.parallel_groups -and $state.parallel_groups.Count -gt 0) {
     }
 } else {
     Write-Host "  No parallel groups" -ForegroundColor DarkGray
+}
+
+# 7. Compact state.json steps array (Optimization G)
+Write-Host ""
+Write-Host "[7/8] Compacting state.json steps array..." -ForegroundColor Yellow
+$gCompletedSteps = @($state.steps | Where-Object { $_.status -eq 'completed' })
+$gCompletedCount = $gCompletedSteps.Count
+if ($gCompletedCount -gt 10) {
+    $gNumToArchive = $gCompletedCount - 10
+    $gStepsToArchive = @($gCompletedSteps[0..($gNumToArchive - 1)])
+    Write-Host "  Found $gCompletedCount completed steps, archiving $gNumToArchive earliest to state_history.json" -ForegroundColor Yellow
+    $historyPath = Join-Path $workspace "auto-runner\state_history.json"
+    $historyArray = @()
+    if (FastFileExists $historyPath) {
+        $existingHistory = FastReadJson $historyPath
+        if ($existingHistory) {
+            $historyArray = @($existingHistory)
+        }
+    }
+    $archiveRecord = [PSCustomObject]@{
+        archived_at = (Get-Date).ToString('o')
+        steps = $gStepsToArchive
+    }
+    $historyArray += $archiveRecord
+    if (-not $DryRun) {
+        FastWriteJson -Path $historyPath -Object $historyArray
+        # Rebuild steps: keep last 10 completed + all non-completed
+        $gKeptCompleted = @($gCompletedSteps[$gNumToArchive..($gCompletedCount - 1)])
+        $gIncompleteSteps = @($state.steps | Where-Object { $_.status -ne 'completed' })
+        $newStepsArray = @()
+        foreach ($s in $gKeptCompleted) { $newStepsArray += $s }
+        foreach ($s in $gIncompleteSteps) { $newStepsArray += $s }
+        $state.steps = $newStepsArray
+        $issuesFixed++
+        Write-Host "  Archived $gNumToArchive steps to state_history.json" -ForegroundColor Green
+        $details.Add("Compacted $gNumToArchive completed steps to state_history.json") | Out-Null
+    }
+} else {
+    Write-Host "  Completed steps count ($gCompletedCount) <= 10, no compaction needed" -ForegroundColor DarkGray
+}
+
+# 8. execution_log.md rotation check (Optimization H)
+Write-Host ""
+Write-Host "[8/8] Checking execution_log.md rotation..." -ForegroundColor Yellow
+$logPath = Join-Path $workspace "auto-runner\execution_log.md"
+if (FastFileExists $logPath) {
+    $logSize = FastFileSize $logPath
+    if ($logSize -gt 51200) {
+        # Determine last processed chapter number from handoff/chapters/
+        $lastChapter = 0
+        if (FastFileExists $chaptersDir) {
+            $chFiles = Get-ChildItem $chaptersDir -Filter '*_ch*.json' -ErrorAction SilentlyContinue
+            foreach ($cf in $chFiles) {
+                if ($cf.Name -match 'ch(\d+)') {
+                    $n = [int]$Matches[1]
+                    if ($n -gt $lastChapter) {
+                        $lastChapter = $n
+                    }
+                }
+            }
+        }
+        $sizeKB = [math]::Round($logSize / 1024, 1)
+        Write-Host "  execution_log.md size: ${sizeKB}KB > 50KB, rotating..." -ForegroundColor Yellow
+        $rotatedName = "execution_log_ch$lastChapter.md"
+        $rotatedPath = Join-Path $workspace "auto-runner\$rotatedName"
+        if (-not $DryRun) {
+            FastMoveFile -Source $logPath -Destination $rotatedPath
+            FastWriteFile -Path $logPath -Content ''
+            $issuesFixed++
+            Write-Host "  Rotated: execution_log.md -> $rotatedName" -ForegroundColor Green
+            $details.Add("Rotated execution_log.md to $rotatedName (size was $logSize bytes)") | Out-Null
+        }
+    } else {
+        $sizeKB = [math]::Round($logSize / 1024, 1)
+        Write-Host "  execution_log.md size: ${sizeKB}KB <= 50KB, no rotation needed" -ForegroundColor DarkGray
+    }
+} else {
+    Write-Host "  execution_log.md not found" -ForegroundColor DarkGray
 }
 
 # Write fixed state

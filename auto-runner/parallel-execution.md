@@ -1,4 +1,4 @@
-# 并行执行框架 (Parallel Execution Framework) v2.0
+# 并行执行框架 (Parallel Execution Framework) v2.5
 
 ## 概述
 
@@ -14,6 +14,13 @@
 - `master_instruction.md` 调度协议：明确的"识别并行组 → 检查依赖 → 同时启动 → 等待完成 → 执行合并 → 更新状态"六步调度流程
 
 **落地验证**：v2.0要求至少1个模式在实际执行中使用，并通过文件末尾的"v2.0落地检查清单"验证。
+
+### v2.5变更说明
+
+**v2.5改进**：将模式7中独立的 merge 合并步骤整合到 Unified Review 中，review_ch{N} 并行组不再有 is_merger 步骤：
+- **review_ch{N} 组**：detail-reviewer + de-ai-processor 并行完成后，不再有独立 merger 步骤，直接进入 unified_review+merge
+- **unified_review+merge 步骤**：读取两份修改建议，先执行 Phase1（合并修改，解决冲突，应用到正文）再执行 Phase2（12维评分）
+- **步骤数减少**：每章再减1步（从6步降至5步），300章规模累计节省300步
 
 ---
 
@@ -50,9 +57,9 @@ topic-screener → plot-architect
   ├─[PARALLEL]─ chapter-writer Ch3 ─┘
   ├─[MERGE]─── continuity-checker (cross-chapter consistency)
   │
-  ├─[PARALLEL]─ review-agent Ch1 ─┐
-  ├─[PARALLEL]─ review-agent Ch2 ─┤ (full pipeline per chapter)
-  ├─[PARALLEL]─ review-agent Ch3 ─┘
+  ├─[PARALLEL]─ review Ch1: detail+de-ai并行 → unified_review+merge ─┐
+  ├─[PARALLEL]─ review Ch2: detail+de-ai并行 → unified_review+merge ─┤ (v2.5: 无独立merge步骤，merge整合到unified_review)
+  ├─[PARALLEL]─ review Ch3: detail+de-ai并行 → unified_review+merge ─┘
 ```
 
 ---
@@ -742,7 +749,7 @@ v1.0的失败处理为"并行组中1个Agent失败不影响其他"，但未定�
 
 ---
 
-## 模式7: 审核并行+统一合并 (Review Parallel + Merge) v1.1
+## 模式7: 审核并行+统一合并 (Review Parallel + Merge) v2.5
 
 ### 适用场景
 
@@ -750,7 +757,7 @@ v1.0的失败处理为"并行组中1个Agent失败不影响其他"，但未定�
 
 ### 核心改造
 
-将 de-ai-processor 拆分为两阶段：**分析阶段**（只检测输出报告）+ **应用阶段**（合并后统一改文本）。
+将 de-ai-processor 拆分为两阶段：**分析阶段**（只检测输出报告）+ **应用阶段**（合并后统一改文本）。v2.5起，合并步骤不再独立存在，而是整合到 unified_review+merge 中：Phase1 合并修改+应用，Phase2 执行12维评分。review_ch{N} 并行组无 is_merger 步骤。
 
 ### 依赖关系
 
@@ -759,6 +766,7 @@ chapter-writer 产出草稿
     ↓
 ┌───────────────────────────────────────────┐
 │  PARALLEL (同时启动，各出意见，不改文本)    │
+│  parallel_group=review_ch{N}              │
 │  Agent A: detail-reviewer (内容分析)      │
 │    → 逐句/逐梗/逐伏笔/逻辑/事实表/暗线      │
 │    → 输出 detail_review.json (建议清单)    │
@@ -767,14 +775,12 @@ chapter-writer 产出草稿
 │    → 14类AI痕迹检测（只检测不修改）         │
 │    → 输出 de_ai_analysis.json (建议清单)   │
 └───────────────────────────────────────────┘
+    ↓ (v2.5: 无独立merger步骤，直接进入unified_review+merge)
+unified_review+merge (20min)
+  ├─ Phase1: 合并两份建议，解决冲突，应用到正文
+  └─ Phase2: 12维评分（8维技术分+4维补充分）
     ↓
-review-merger (5min) → 合并两份建议，解决冲突，输出统一修改清单
-    ↓
-chapter-writer 按统一清单修改 (10min)
-    ↓
-quality-reviewer (15min) → 8维评分
-    ↓
-final-reviewer (15min) → 终审裁决
+unified_score ≥ 9.5 → approved
 ```
 
 ### 合并冲突处理规则
@@ -791,8 +797,8 @@ final-reviewer (15min) → 终审裁决
 ```
 Agent A: detail-reviewer → handoff/detail_review_ch{N}.json (建议清单，不改文本)
 Agent B: de-ai-processor (分析模式) → handoff/de_ai_analysis_ch{N}.json (检测报告，不改文本)
---- MERGE ---
-Agent C (主控/chief-editor): 合并两份建议 → handoff/merged_review_ch{N}.json (统一修改清单)
+--- NO MERGE (v2.5: review_ch{N}组无is_merger步骤) ---
+Agent C: unified_review+merge → 合并两份建议(Phase1) + 12维评分(Phase2) → handoff/unified_review_ch{N}.json
 ```
 
 ### task_config配置示例
@@ -800,41 +806,34 @@ Agent C (主控/chief-editor): 合并两份建议 → handoff/merged_review_ch{N
 [
   {
     "id": 70, "name": "Ch{N}细节审核", "agent": "detail-reviewer",
-    "parallel_group": "merge_review_{N}", "parallel_index": 0, "parallel_total": 2,
+    "parallel_group": "review_ch{N}", "parallel_index": 0, "parallel_total": 2,
     "depends_on": [], "is_merger": false
   },
   {
     "id": 71, "name": "Ch{N}去AI化分析", "agent": "de-ai-processor",
-    "parallel_group": "merge_review_{N}", "parallel_index": 1, "parallel_total": 2,
+    "parallel_group": "review_ch{N}", "parallel_index": 1, "parallel_total": 2,
     "depends_on": [], "is_merger": false
   },
   {
-    "id": 72, "name": "Ch{N}修改合并", "agent": "chief-editor",
-    "parallel_group": "merge_review_{N}", "is_merger": true,
-    "depends_on": [70, 71]
-  },
-  {
-    "id": 73, "name": "Ch{N}质量审核", "agent": "quality-reviewer",
-    "parallel_group": null, "depends_on": [72], "is_merger": false
-  },
-  {
-    "id": 74, "name": "Ch{N}终审", "agent": "final-reviewer",
-    "parallel_group": null, "depends_on": [73], "is_merger": false
+    "id": 72, "name": "Ch{N}统一审稿+合并", "agent": "quality-reviewer",
+    "parallel_group": null, "depends_on": [70, 71], "is_merger": false
   }
 ]
 ```
+注：v2.5起 review_ch{N} 组无 is_merger 步骤，并行完成后直接进入 unified_review+merge（id:72），该步骤同时完成合并修改(Phase1)和12维评分(Phase2)。
 
 ### 预期提速
 
-串行4步×15min = 60min → 并行(detail+de-ai)15min + merger 5min + quality 15min + final 15min = 50min，**提速1.2x**
+串行4步×15min = 60min → 并行(detail+de-ai)15min + unified_review+merge 20min = 35min，**提速1.7x**（v2.5: merger整合到unified_review，省去独立merge步骤+quality+final三步合一）
 
-多章连审时收益更大：3章从210min降到150min，**提速1.4x**
+多章连审时收益更大：3章从180min降到105min，**提速1.7x**
 
 ### 风险控制
 
 - de-ai 分析模式只输出检测报告，不修改文本，避免与 detail-reviewer 的修改冲突
-- 合并步骤必须检查两份报告是否有同一句子的冲突修改建议
-- quality-reviewer 仍需读取 detail_review 确认问题已修复（合并后的修改清单作为参考）
+- review_ch{N} 组无 is_merger 步骤（v2.5），并行完成后直接进入 unified_review+merge
+- unified_review+merge 的 Phase1 必须检查两份报告是否有同一句子的冲突修改建议，解决冲突后应用到正文
+- Phase2 评分基于合并后的正文，12维一次评完，unified_score ≥ 9.5 为 approved
 
 ---
 

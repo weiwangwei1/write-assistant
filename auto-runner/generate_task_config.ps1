@@ -68,7 +68,8 @@ $steps = [System.Collections.ArrayList]::new()
 $stepId = 0
 $chapters = $StartChapter..$EndChapter
 $totalChapters = $chapters.Count
-$prevChapterMergeId = $null
+$prevChapterDetailId = $null
+$prevChapterDeaiId = $null
 
 Write-Host ""
 Write-Host "=== Task Config Generator v1.0 ===" -ForegroundColor Cyan
@@ -126,7 +127,7 @@ for ($i = 0; $i -lt $totalChapters; $i++) {
             input_files = $writeInputs; output_files = $writeOutputs
             pass_criteria = "chapter_$ch3.txt exists, wordcount>=2500, opening=$openStyle (differs from prev)"
             max_retries = 2; parallel_group = $pipelineGroup; parallel_index = 1; parallel_total = 2
-            depends_on = @($prevChapterMergeId)
+            depends_on = @($prevChapterDetailId, $prevChapterDeaiId)
         }
     }
     $null = $steps.Add($writeStep)
@@ -165,59 +166,45 @@ for ($i = 0; $i -lt $totalChapters; $i++) {
     $null = $steps.Add($deaiStep)
     $stepId++
 
-    # --- Step D: Merge (merger step) ---
-    $mergeStep = @{
-        id = $stepId; name = "Ch$chNum Merge (merger)"; agent = "chapter-writer"
-        instruction = "Merge: Read handoff/chapters/detail_review_ch$ch3.json and handoff/chapters/de_ai_analysis_ch$ch3.json. Apply conflict rules: same-loc diff-cause -> take higher severity; same-loc conflict -> detail priority; one-sided -> keep. Fix critical first, then major. Apply to output/chapter_$ch3.txt. Output to handoff/chapters/merged_review_ch$ch3.json."
-        input_files = @("output/chapter_$ch3.txt", "handoff/chapters/detail_review_ch$ch3.json", "handoff/chapters/de_ai_analysis_ch$ch3.json")
-        output_files = @("output/chapter_$ch3.txt", "handoff/chapters/merged_review_ch$ch3.json")
-        pass_criteria = "All critical fixed, major handled, chapter_$ch3.txt updated, merged_review has conflict resolutions"
-        max_retries = 2; parallel_group = $reviewGroup; is_merger = $true
-        depends_on = @(($stepId - 2), ($stepId - 1))
-    }
-    $null = $steps.Add($mergeStep)
-    $mergeId = $stepId
-    $stepId++
-
-    # --- Step E: Review (unified or traditional) ---
+    # --- Step D: Unified Review + Merge (v2.5: Merge integrated into Review) ---
     if ($ReviewMode -eq "unified") {
-        $reviewInstr = "Read auto-runner/context_cache.json (reference cached summary for quality-reviewer) OR Read .trae/skills/quality-reviewer/SKILL.md if cache miss. Unified review mode for Ch$chNum. Read auto-runner/unified_review_spec.md for 12-dimension spec. Execute 8 technical + 4 supplementary dimensions + monitoring + cross-check in one step. unified_score = technical_score x 0.6 + supplementary_score x 0.4. >= 9.5 = approved."
-        $reviewInputs = @("output/chapter_$ch3.txt", "memory/outline.json", "memory/characters.json", "memory/goal_tracker.json", "memory/foreshadowing_tracker.json", "config/novel_config.json", "handoff/chapters/merged_review_ch$ch3.json", "auto-runner/unified_review_spec.md")
-        $reviewOutputs = @("handoff/chapters/unified_review_ch$ch3.json")
-        $reviewPass = "Output has 12-dimension scores + unified_score + verdict. unified_score >= 9.5 = approved"
+        $reviewInstr = "Read auto-runner/context_cache.json (reference cached summary for quality-reviewer) OR Read .trae/skills/quality-reviewer/SKILL.md if cache miss. Unified review+merge mode for Ch$chNum. Read auto-runner/unified_review_spec.md for 12-dimension spec. PHASE 1 (Merge): Read handoff/chapters/detail_review_ch$ch3.json and handoff/chapters/de_ai_analysis_ch$ch3.json. Apply conflict rules: same-loc diff-cause -> take higher severity; same-loc conflict -> detail priority; one-sided -> keep. Fix critical first, then major. Apply to output/chapter_$ch3.txt. Output merged_review to handoff/chapters/merged_review_ch$ch3.json. PHASE 2 (Review): Based on the MERGED text, execute 8 technical + 4 supplementary dimensions + monitoring + cross-check. unified_score = technical_score x 0.6 + supplementary_score x 0.4. >= 9.5 = approved."
+        $reviewInputs = @("output/chapter_$ch3.txt", "memory/outline.json", "memory/characters.json", "memory/goal_tracker.json", "memory/foreshadowing_tracker.json", "config/novel_config.json", "handoff/chapters/detail_review_ch$ch3.json", "handoff/chapters/de_ai_analysis_ch$ch3.json", "auto-runner/unified_review_spec.md")
+        $reviewOutputs = @("output/chapter_$ch3.txt", "handoff/chapters/merged_review_ch$ch3.json", "handoff/chapters/unified_review_ch$ch3.json")
+        $reviewPass = "All critical fixed, 12-dimension scores + unified_score + verdict present, unified_score >= 9.5 = approved"
 
         if ($isLast) {
             $reviewStep = @{
-                id = $stepId; name = "Ch$chNum Unified Review"; agent = "quality-reviewer"
+                id = $stepId; name = "Ch$chNum Unified Review+Merge"; agent = "quality-reviewer"
                 instruction = $reviewInstr
                 input_files = $reviewInputs; output_files = $reviewOutputs
                 pass_criteria = $reviewPass; max_retries = 3; parallel_group = $null
-                depends_on = @($mergeId)
+                depends_on = @(($stepId - 2), ($stepId - 1))
             }
         } else {
             $nextChNum = $chapters[$i + 1]
             $pipelineGroup = "pipeline_${chNum}_$nextChNum"
             $reviewStep = @{
-                id = $stepId; name = "Ch$chNum Unified Review (parallel w/ Ch$nextChNum write)"; agent = "quality-reviewer"
+                id = $stepId; name = "Ch$chNum Unified Review+Merge (parallel w/ Ch$nextChNum write)"; agent = "quality-reviewer"
                 instruction = $reviewInstr + " This step runs in parallel with Ch$nextChNum write."
                 input_files = $reviewInputs; output_files = $reviewOutputs
                 pass_criteria = $reviewPass; max_retries = 3
                 parallel_group = $pipelineGroup; parallel_index = 0; parallel_total = 2
-                depends_on = @($mergeId)
+                depends_on = @(($stepId - 2), ($stepId - 1))
             }
         }
         $null = $steps.Add($reviewStep)
         $reviewId = $stepId
         $stepId++
     } else {
-        $qInstr = "Read auto-runner/context_cache.json (reference cached summary for quality-reviewer) OR Read .trae/skills/quality-reviewer/SKILL.md if cache miss. Quality review Ch$chNum. Read output/chapter_$ch3.txt. Score 8 dimensions (attraction/shuang/rhythm/hook/character/plot/logic/writing). technical_score >= 9.5 = pass. Output to handoff/chapters/quality_review_ch$ch3.json."
-        $qInputs = @("output/chapter_$ch3.txt", "memory/outline.json", "memory/characters.json", "memory/goal_tracker.json", "handoff/chapters/merged_review_ch$ch3.json", ".trae/skills/quality-reviewer/SKILL.md")
+        $qInstr = "Read auto-runner/context_cache.json (reference cached summary for quality-reviewer) OR Read .trae/skills/quality-reviewer/SKILL.md if cache miss. Quality review+merge Ch$chNum. PHASE 1 (Merge): Read handoff/chapters/detail_review_ch$ch3.json and handoff/chapters/de_ai_analysis_ch$ch3.json. Apply conflict rules, fix critical first. Apply to output/chapter_$ch3.txt. Output merged_review to handoff/chapters/merged_review_ch$ch3.json. PHASE 2 (Quality): Score 8 dimensions (attraction/shuang/rhythm/hook/character/plot/logic/writing). technical_score >= 9.5 = pass. Output to handoff/chapters/quality_review_ch$ch3.json."
+        $qInputs = @("output/chapter_$ch3.txt", "memory/outline.json", "memory/characters.json", "memory/goal_tracker.json", "handoff/chapters/detail_review_ch$ch3.json", "handoff/chapters/de_ai_analysis_ch$ch3.json", ".trae/skills/quality-reviewer/SKILL.md")
         $qStep = @{
-            id = $stepId; name = "Ch$chNum Quality Review"; agent = "quality-reviewer"
+            id = $stepId; name = "Ch$chNum Quality Review+Merge"; agent = "quality-reviewer"
             instruction = $qInstr; input_files = $qInputs
-            output_files = @("handoff/chapters/quality_review_ch$ch3.json")
-            pass_criteria = "Output has 8-dim scores, technical_score >= 9.5, verdict = pass"
-            max_retries = 3; parallel_group = $null; depends_on = @($mergeId)
+            output_files = @("output/chapter_$ch3.txt", "handoff/chapters/merged_review_ch$ch3.json", "handoff/chapters/quality_review_ch$ch3.json")
+            pass_criteria = "All critical fixed, output has 8-dim scores, technical_score >= 9.5, verdict = pass"
+            max_retries = 3; parallel_group = $null; depends_on = @(($stepId - 2), ($stepId - 1))
         }
         $null = $steps.Add($qStep)
         $qId = $stepId
@@ -269,7 +256,8 @@ for ($i = 0; $i -lt $totalChapters; $i++) {
     $null = $steps.Add($memStep)
     $stepId++
 
-    $prevChapterMergeId = $mergeId
+    $prevChapterDetailId = $stepId - 4
+    $prevChapterDeaiId = $stepId - 3
     Write-Host "  Ch${chNum}: $unitTitle ($openStyle / $endStyle)" -ForegroundColor Green
 }
 
@@ -289,9 +277,9 @@ foreach ($step in $steps) {
 
 # --- Build task_config ---
 $modeDesc = if ($ReviewMode -eq "unified") {
-    "Unified review mode. 6 steps/chapter: write -> (detail+deai parallel -> merge) -> unified_review -> memory_commit. Pipeline: Ch(N) review parallel with Ch(N+1) write."
+    "Unified review+merge mode (v2.5). 5 steps/chapter: write -> (detail+deai parallel) -> unified_review+merge -> memory_commit. Pipeline: Ch(N) review+merge parallel with Ch(N+1) write."
 } else {
-    "Traditional 2-step review. 7 steps/chapter: write -> (detail+deai parallel -> merge) -> quality -> final -> memory_commit. Pipeline: Ch(N) final parallel with Ch(N+1) write."
+    "Traditional 2-step review+merge (v2.5). 6 steps/chapter: write -> (detail+deai parallel) -> quality+merge -> final -> memory_commit. Pipeline: Ch(N) final parallel with Ch(N+1) write."
 }
 
 $taskConfig = @{
@@ -300,7 +288,7 @@ $taskConfig = @{
     workspace = $Workspace
     review_mode = $ReviewMode
     generated_at = (Get-Date).ToString("o")
-    generated_by = "generate_task_config.ps1 v1.0"
+    generated_by = "generate_task_config.ps1 v2.5"
     steps = $steps
     parallel_groups_summary = $pgSummary
 }
@@ -344,7 +332,7 @@ $state = @{
 FastWriteJson -Path $outputTaskConfig -Object $taskConfig
 FastWriteJson -Path $outputState -Object $state
 
-$stepsPerCh = if ($ReviewMode -eq "unified") { 6 } else { 7 }
+$stepsPerCh = if ($ReviewMode -eq "unified") { 5 } else { 6 }
 Write-Host ""
 Write-Host "=== Generation Complete ===" -ForegroundColor Cyan
 Write-Host "task_config.json: $outputTaskConfig"
@@ -356,6 +344,6 @@ foreach ($key in ($pgSummary.Keys | Sort-Object)) {
     Write-Host "  $key ($($info.type)): $($info.steps -join ' + ')"
 }
 if ($ReviewMode -eq "unified") {
-    Write-Host "Unified mode: 1 step/chapter saved vs traditional"
+    Write-Host "v2.5: Merge integrated into Review (5 steps/ch, -1 vs v2.4)"
 }
 Write-Host ""

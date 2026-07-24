@@ -1,6 +1,11 @@
-# 无人值守自动执行代理指令 v2.4
+# 无人值守自动执行代理指令 v2.5
 
-## v2.4变更摘要
+## v2.5变更摘要
+
+- **合并Merge到Unified Review**（优化B）：将独立的 Merge 步骤（is_merger=true）整合到 Unified Review 中，Agent 先执行 Phase 1 (Merge) 合并修改，再执行 Phase 2 (Review) 12维评分。每章从6步减至5步，300章节省300步+300次agent调用。review_ch{N} 组不再有 merger 步骤
+- **state.json steps数组精简**（优化G）：已完成步骤>10个时，最早步骤归档到 state_history.json，state.json 只保留最近2章+未完成步骤。300章时避免 state.json 超100KB
+- **execution_log.md轮转**（优化H）：日志>50KB时自动轮转为 execution_log_ch{N}.md，主日志保持<50KB
+- **task_config滚动生成**（优化I）：推荐每次只生成2章（当前+下一章），42KB→21KB，支持流水线滚动生成
 
 - **消除 draft_ch{N}.json**（优化A）：chapter-writer 步骤不再输出 draft JSON（beat_sheet 元数据已在 outline.json 中，属重复存储），每章节省1文件，300章节省300文件
 - **归档中间审核文件**（优化C）：detail_review + de_ai_analysis 在 merge 后自动移到 `handoff/archive/ch{N}/` 目录，保持 `handoff/chapters/` 只留最新产物；state_validator 新增归档检查步骤
@@ -108,7 +113,7 @@ WHILE true:
           - 若 pending_agents 为空 → 设置 merger_ready = true
        f. **立即写入 state.json**：不等会话结束，当场写入文件
        g. **追加 execution_log.md**：记录步骤名/Agent/状态/结果摘要/时间戳
-       h. **中间文件归档**（v2.4新增，仅合并步骤）：若当前步骤是 `is_merger=true` 的合并步骤，且 `merged_review_ch{N}.json` 已生成，将 `detail_review_ch{N}.json` 和 `de_ai_analysis_ch{N}.json` 从 `handoff/chapters/` 移到 `handoff/archive/ch{N}/` 目录
+       h. **中间文件归档**（v2.4新增，v2.5更新触发条件）：若当前步骤输出 `unified_review_ch{N}.json` 或 `merged_review_ch{N}.json`，将 `detail_review_ch{N}.json` 和 `de_ai_analysis_ch{N}.json` 从 `handoff/chapters/` 移到 `handoff/archive/ch{N}/` 目录
        i. **并行组清理**（v2.4新增，仅memory commit步骤）：若当前步骤是 memory-manager 步骤（记忆入库），从 state.json 的 `parallel_groups` 数组中移除 `status=completed` 且 `merger_executed=true` 的组，减少 state.json 体积
     8. steps_executed_this_session += 1（并行组按规则计数）
     9. 如果当前步骤未通过（retry/stopped）→ 跳出循环
@@ -162,8 +167,9 @@ END WHILE
 2. 每个 Agent 的指令包含：角色定位 + 输入文件列表 + 输出文件路径 + Skill 引用
 3. 等待全部 Agent 返回
 4. 检查每个 Agent 的输出文件是否存在
-5. 执行 `is_merger = true` 的合并步骤
-6. 更新 state.json：同组所有步骤标记 completed，推进 current_step 到合并步骤 + 1
+5. 若该组有 `is_merger = true` 的合并步骤：执行合并步骤 → 推进 current_step 到合并步骤 + 1
+   若该组无合并步骤（v2.5新增，如 review_ch{N} 组）：同组所有步骤标记 completed → 推进 current_step 到下一个依赖步骤
+6. 更新 state.json
 
 #### 并行组状态管理
 
@@ -219,11 +225,15 @@ state.json 新增 `parallel_groups` 字段：
 2. 在 execution_log.md 中标注 `[AUTO-APPROVED]`
 3. 将该步骤的 `auto_approved: true` 写入 state.json
 
-### 统一审核模式 (Unified Review Mode) v1.0
+### 统一审核模式 (Unified Review Mode) v2.0
 
-将传统2步审核（quality-reviewer 8维 → final-reviewer 4维+引用）合并为单步统一审核。
+将传统2步审核（quality-reviewer 8维 → final-reviewer 4维+引用）合并为单步统一审核。v2.0进一步将 Merge 步骤整合到统一审核中（Phase 1 合并 + Phase 2 评分）。
 
 **规范文件**：`auto-runner/unified_review_spec.md`
+
+**双阶段执行**（v2.0新增）：
+- Phase 1 (Merge)：读取 detail_review + de_ai_analysis，应用冲突规则，修改正文，输出 merged_review
+- Phase 2 (Review)：基于修改后文本执行12维评分
 
 **评分公式**（与传统模式完全等价）：
 ```
@@ -339,6 +349,18 @@ IF ALL files verified:
    - 扫描 `parallel_groups[]` 中所有组
    - 将 `status=completed` 且 `merger_executed=true` 的组从数组中移除
    - 300章规模避免600+已完成组累积导致 state.json 膨胀
+
+6. **state.json steps数组精简**（v2.5优化G新增）：
+   - 检测 state.json 中所有 `status=completed` 的步骤
+   - 若已完成步骤 > 10个（约2章），将最早步骤归档到 `auto-runner/state_history.json`
+   - state.json 的 steps 数组只保留最近10个已完成步骤 + 所有未完成步骤
+   - 300章规模避免 state.json 超100KB
+
+7. **execution_log.md轮转检查**（v2.5优化H新增）：
+   - 检查 `auto-runner/execution_log.md` 文件大小
+   - 若 > 50KB，重命名为 `execution_log_ch{N}.md`（N为最后处理章节号）
+   - 创建新的空 execution_log.md 继续记录
+   - 主日志保持 < 50KB
 
 ### 执行效率估算
 

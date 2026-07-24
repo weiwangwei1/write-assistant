@@ -1,8 +1,18 @@
-# 统一审核规范 (Unified Review Specification) v1.0
+# 统一审核规范 (Unified Review Specification) v2.0
 
 ## 概述
 
 将 quality-reviewer（8维技术分）和 final-reviewer（4维补充分+发布裁决）合并为单步统一审核，减少1步骤+1文件/章。
+
+### v2.0 变更说明
+
+v2.0 将 Merge 步骤整合到 Unified Review 中，每章从6步减少到5步。流程变为：
+- **Phase 1 (Merge)**：先合并 detail_review + de_ai_analysis 修改到正文，输出修订后正文
+- **Phase 2 (Review)**：基于修改后文本进行12维评分
+
+对比 v1.0：
+- v1.0：detail + deai → merge（独立步骤）→ unified_review（5+1=6步）
+- v2.0：detail + deai → unified_review+merge（无独立 merge 步骤，5步）
 
 ### 设计原则
 
@@ -54,20 +64,26 @@
 
 | 文件路径 | 说明 | 必需 |
 |---------|------|------|
-| `output/chapter_{NNN}.txt` | 修订终稿（经merged_review后） | 是 |
+| `output/chapter_{NNN}.txt` | 原始正文（待 Phase 1 合并修订） | 是 |
 | `output/chapter_{NNN-1}.txt` | 前一章（衔接检查） | 是（第2章起） |
 | `memory/outline.json` | 大纲 | 是 |
 | `memory/characters.json` | 角色卡 | 是 |
 | `memory/goal_tracker.json` | 目标+悬念窗口（v1.7监控） | 是（第2章起） |
 | `memory/foreshadowing_tracker.json` | 伏笔追踪表 | 是 |
 | `config/novel_config.json` | 写作规则+平台配置 | 是 |
-| `handoff/chapters/merged_review_ch{NNN}.json` | 合并审核结果（引用修订状态） | 是 |
+| `handoff/chapters/detail_review_ch{NNN}.json` | 细节审核结果（Phase 1 输入） | 是 |
+| `handoff/chapters/de_ai_analysis_ch{NNN}.json` | 去AI化分析结果（Phase 1 输入） | 是 |
+
+> 注：v2.0 起 `handoff/chapters/merged_review_ch{NNN}.json` 由本步骤的 Phase 1 产出，不再是输入文件。
 
 ---
 
 ## 输出规范
 
-输出到 `handoff/chapters/unified_review_ch{NNN}.json`
+本步骤产出以下文件：
+- `output/chapter_{NNN}.txt`：Phase 1 合并修订后的正文（覆盖原始正文）
+- `handoff/chapters/merged_review_ch{NNN}.json`：Phase 1 合并修改清单（记录冲突解决与采纳来源）
+- `handoff/chapters/unified_review_ch{NNN}.json`：Phase 2 统一审核结果（12维评分+裁决）
 
 ### 输出格式
 
@@ -78,6 +94,26 @@
   "chapter_title": "章节标题",
   "review_mode": "unified",
   "review_basis": "quality-reviewer v1.8 + final-reviewer v1.1 merged",
+
+  "merge_phase": {
+    "phase": "Phase 1 (Merge)",
+    "inputs": ["detail_review_ch{NNN}.json", "de_ai_analysis_ch{NNN}.json"],
+    "output_text": "output/chapter_{NNN}.txt",
+    "conflict_resolution": {
+      "same_loc_diff_cause": "take higher severity",
+      "same_loc_conflict": "detail priority",
+      "one_sided": "keep"
+    },
+    "fix_order": ["critical", "major"],
+    "applied_changes": [
+      {"source": "detail_review", "loc": "段X/句Y", "severity": "critical", "action": "修订说明..."},
+      {"source": "de_ai_analysis", "loc": "段Z/句W", "severity": "major", "action": "修订说明..."}
+    ],
+    "conflict_resolved": [
+      {"loc": "段A", "detail_proposal": "...", "deai_proposal": "...", "resolved_by": "detail priority", "reason": "..."}
+    ],
+    "merge_summary": "共应用 N 条修改，其中 critical X 条、major Y 条，冲突解决 Z 处"
+  },
 
   "technical_dimensions": {
     "attraction": {
@@ -218,6 +254,51 @@
 
 ---
 
+## 双阶段执行规范 (v2.0)
+
+v2.0 将原独立的 merge 步骤整合进 unified_review，执行分两个阶段串行完成。
+
+### Phase 1 (Merge)：合并修订
+
+**目标**：将 detail_review 与 de_ai_analysis 两份审核报告中的修改建议合并应用到正文，输出修订后正文与合并清单。
+
+**输入**：
+- `output/chapter_{NNN}.txt`（原始正文）
+- `handoff/chapters/detail_review_ch{NNN}.json`
+- `handoff/chapters/de_ai_analysis_ch{NNN}.json`
+
+**冲突解决规则**：
+
+| 场景 | 规则 |
+|------|------|
+| same-loc diff-cause（同一位置、不同原因的修改） | take higher severity（采纳严重度更高的一方） |
+| same-loc conflict（同一位置、直接冲突的修改） | detail priority（detail-reviewer 优先） |
+| one-sided（仅一方提出修改） | keep（保留并应用该修改） |
+
+**执行顺序**：先修 critical，再修 major。
+
+**输出**：
+- `output/chapter_{NNN}.txt`：修订后正文（覆盖原文件）
+- `handoff/chapters/merged_review_ch{NNN}.json`：合并修改清单，记录每条修改的来源、位置、严重度、冲突解决方式
+
+### Phase 2 (Review)：12维评分
+
+**目标**：基于 Phase 1 修改后的文本进行12维统一评分。
+
+**输入**：
+- `output/chapter_{NNN}.txt`（Phase 1 修订后正文）
+- 其余 memory/config 文件（见「输入规范」）
+
+**执行**：按本规范「12维统一评分表」逐维打分，计算 technical_score、supplementary_score、unified_score，输出裁决。
+
+**输出**：`handoff/chapters/unified_review_ch{NNN}.json`
+
+### 评分客观性保障
+
+Phase 2 评分基于 Phase 1 修改后文本的客观质量，不受 Phase 1 修改来源影响。即：评分对象是「最终呈现给读者的文本质量」，而非「谁的修改被采纳」。无论某处修改来自 detail_review 还是 de_ai_analysis，Phase 2 均以修改后文本的客观质量为唯一评分依据。
+
+---
+
 ## 评分计算公式
 
 ### 技术分（technical_score）
@@ -306,13 +387,13 @@ unified_score = technical_score × 0.6 + supplementary_score × 0.4
 ]
 ```
 
-### 统一审核模式（加速）
+### 统一审核模式（加速，v2.0 双阶段）
 
 ```json
 [
   {
-    "id": 4, "name": "Ch{N}统一审稿", "agent": "quality-reviewer",
-    "instruction": "以统一审核模式(unified_review)评审第{N}章。读取 auto-runner/unified_review_spec.md 了解12维评分规范。同时执行8维技术评分+4维补充评分+监控检测+交叉终检，一步产出unified_review_ch{N}.json。unified_score=technical_score×0.6+supplementary_score×0.4，≥9.5为approved。",
+    "id": 4, "name": "Ch{N}统一审稿(含merge)", "agent": "quality-reviewer",
+    "instruction": "以统一审核模式v2.0(unified_review)评审第{N}章。读取 auto-runner/unified_review_spec.md 了解双阶段执行规范。Phase 1(Merge)：合并 detail_review_ch{N} + de_ai_analysis_ch{N} 修改到正文(冲突规则：same-loc diff-cause→take higher severity；same-loc conflict→detail priority；one-sided→keep，先修critical再修major)，输出修订后正文 output/chapter_{NNN}.txt 与合并清单 merged_review_ch{N}.json。Phase 2(Review)：基于修改后文本进行12维评分(8技术维+4补充维+监控检测+交叉终检)，产出unified_review_ch{N}.json。unified_score=technical_score×0.6+supplementary_score×0.4，≥9.5为approved。",
     "depends_on": [3], "parallel_group": null,
     "input_files": [
       "output/chapter_{NNN}.txt",
@@ -322,19 +403,24 @@ unified_score = technical_score × 0.6 + supplementary_score × 0.4
       "memory/goal_tracker.json",
       "memory/foreshadowing_tracker.json",
       "config/novel_config.json",
-      "handoff/chapters/merged_review_ch{NNN}.json",
+      "handoff/chapters/detail_review_ch{NNN}.json",
+      "handoff/chapters/de_ai_analysis_ch{NNN}.json",
       "auto-runner/unified_review_spec.md"
     ],
-    "output_files": ["handoff/chapters/unified_review_ch{NNN}.json"],
-    "pass_criteria": "输出文件含12维评分+unified_score+verdict，unified_score≥9.5为approved",
+    "output_files": [
+      "output/chapter_{NNN}.txt",
+      "handoff/chapters/merged_review_ch{NNN}.json",
+      "handoff/chapters/unified_review_ch{NNN}.json"
+    ],
+    "pass_criteria": "输出3个文件：修订后正文 output/chapter_{NNN}.txt + merged_review合并清单 + unified_review评分。unified_review含merge_phase字段+12维评分+unified_score+verdict，unified_score≥9.5为approved",
     "max_retries": 3
   }
 ]
 ```
 
-**步骤节省**：2步→1步（-1步/章）
-**文件节省**：2文件→1文件（-1文件/章）
-**300章规模节省**：300步 + 300文件 + ~6MB
+**步骤节省**：3步→1步（-2步/章，含 merge 整合）
+**文件节省**：3文件→2文件（-1文件/章，merged_review 由输入转为本步骤输出）
+**300章规模节省**：600步 + 300文件 + ~6MB
 
 ---
 
@@ -352,20 +438,32 @@ unified_score = technical_score × 0.6 + supplementary_score × 0.4
 
 ### 模式7（单章审核内部并行）+ 统一审核
 
+v2.0 新流程（merge 整合进 unified_review，无独立 merge 步骤）：
 ```
 detail-reviewer ─┐
-                 ├─→ unified_reviewer → memory-manager
+                 ├─→ unified_reviewer(+merge) → memory-manager
 de-ai-processor ─┘
 ```
 
-对比传统流程：
+v1.0 旧流程（独立 merge 步骤）：
+```
+detail-reviewer ─┐
+                 ├─→ merge → unified_reviewer → memory-manager
+de-ai-processor ─┘
+```
+
+对比传统流程（quality→final 两步）：
 ```
 detail-reviewer ─┐
                  ├─→ quality-reviewer → final-reviewer → memory-manager
 de-ai-processor ─┘
 ```
 
-**并行组内步骤数**：4步→3步（-1步）
+**review_ch{N} 组不再有 merger 步骤**：v2.0 中 merge 逻辑内嵌于 unified_reviewer 的 Phase 1。
+**并行组内步骤数**：
+- 传统（quality→final）：4步
+- v1.0（独立 merge）：detail + deai + merge + unified_review = 4步
+- v2.0（merge 整合）：detail + deai + unified_review(+merge) = 3步（-1步）
 **流水线模式效率提升**：Ch(N)统一审稿 ∥ Ch(N+1)写作 的上下文消耗降低
 
 ### 模式8（流水线写作审核）+ 统一审核
