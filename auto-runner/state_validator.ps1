@@ -12,18 +12,20 @@ param(
 $ErrorActionPreference = "Stop"
 $workspace = $PSScriptRoot | Split-Path -Parent
 
+. (Join-Path $PSScriptRoot 'fast_io.ps1')
+
 $statePath = Join-Path $workspace $StateFile
 $configPath = Join-Path $workspace $TaskConfigFile
 
-if (-not (Test-Path $statePath)) {
+if (-not (FastFileExists $statePath)) {
     Write-Host "[ERROR] state.json not found: $statePath" -ForegroundColor Red
     exit 1
 }
 
-$state = Get-Content $statePath -Raw -Encoding UTF8 | ConvertFrom-Json
+$state = FastReadJson $statePath
 $taskConfig = $null
-if (Test-Path $configPath) {
-    $taskConfig = Get-Content $configPath -Raw -Encoding UTF8 | ConvertFrom-Json
+if (FastFileExists $configPath) {
+    $taskConfig = FastReadJson $configPath
 }
 
 $issuesFound = 0
@@ -48,8 +50,8 @@ function Test-AllFilesExist {
     $missing = @()
     foreach ($fp in $filePaths) {
         $full = Join-Path $workspace $fp
-        if (Test-Path $full) {
-            $sz = (Get-Item $full).Length
+        if (FastFileExists $full) {
+            $sz = FastFileSize $full
             if ($sz -eq 0) {
                 $allExist = $false
                 $missing += "$fp (empty)"
@@ -204,7 +206,7 @@ Write-Host ""
 if (-not $DryRun -and $issuesFixed -gt 0) {
     $state.last_run = (Get-Date).ToString("o")
     $state.last_run_result = "state_validator: fixed $issuesFixed issues"
-    $state | ConvertTo-Json -Depth 10 | Set-Content $statePath -Encoding UTF8
+    FastWriteJson -Path $statePath -Object $state
     Write-Host "[OK] state.json updated with $issuesFixed fixes" -ForegroundColor Green
 } elseif ($DryRun) {
     Write-Host "[DRY RUN] $issuesFound issues would be fixed." -ForegroundColor Yellow

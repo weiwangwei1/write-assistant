@@ -26,6 +26,9 @@ param(
 
 $ErrorActionPreference = 'Stop'
 
+# 加载快速文件 I/O 模块
+. (Join-Path $PSScriptRoot 'fast_io.ps1')
+
 # ----------------------------------------------------------------------------
 # 0. 路径与文件检查
 # ----------------------------------------------------------------------------
@@ -37,10 +40,10 @@ $statePath  = Join-Path $Workspace 'state.json'
 $configPath = Join-Path $Workspace 'task_config.json'
 $outputPath = Join-Path $Workspace 'execution_dashboard.html'
 
-if (-not (Test-Path $statePath)) {
+if (-not (FastFileExists $statePath)) {
     throw "找不到 state.json: $statePath"
 }
-if (-not (Test-Path $configPath)) {
+if (-not (FastFileExists $configPath)) {
     throw "找不到 task_config.json: $configPath"
 }
 
@@ -51,11 +54,8 @@ Write-Host "  task_config  -> $configPath"
 # ----------------------------------------------------------------------------
 # 1. 读取并解析 JSON
 # ----------------------------------------------------------------------------
-$stateRaw  = Get-Content $statePath  -Raw -Encoding UTF8
-$configRaw = Get-Content $configPath -Raw -Encoding UTF8
-
-$state  = $stateRaw  | ConvertFrom-Json
-$config = $configRaw | ConvertFrom-Json
+$state  = FastReadJson $statePath
+$config = FastReadJson $configPath
 
 # 辅助函数：安全读取可能不存在的属性
 function Get-Prop {
@@ -716,4 +716,4 @@ $utf8Bom = New-Object System.Text.UTF8Encoding($true)
 [System.IO.File]::WriteAllText($outputPath, $html, $utf8Bom)
 
 Write-Host "[Dashboard] 看板已生成: $outputPath" -ForegroundColor Green
-Write-Host ("[Dashboard] 文件大小: {0:N1} KB" -f ((Get-Item $outputPath).Length / 1KB)) -ForegroundColor Green
+Write-Host ("[Dashboard] 文件大小: {0:N1} KB" -f ((FastFileSize $outputPath) / 1KB)) -ForegroundColor Green

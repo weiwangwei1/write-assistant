@@ -232,15 +232,16 @@ function FastListFiles {
 }
 
 <#
-  快速检查文件是否存在
+  快速检查路径是否存在（文件或目录）
   比 Test-Path 快 ~1.5x（无PSObject包装开销）
+  兼容文件和目录检查，等效于 Test-Path
 #>
 function FastFileExists {
     param(
         [Parameter(Mandatory=$true)]
         [string]$Path
     )
-    return [System.IO.File]::Exists($Path)
+    return ([System.IO.File]::Exists($Path) -or [System.IO.Directory]::Exists($Path))
 }
 
 <#

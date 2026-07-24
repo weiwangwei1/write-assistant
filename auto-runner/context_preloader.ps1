@@ -25,10 +25,13 @@ param(
 
 $ErrorActionPreference = "Stop"
 
+# 加载快速文件 I/O 模块
+. (Join-Path $PSScriptRoot 'fast_io.ps1')
+
 # ============================================================
 #  工作目录验证
 # ============================================================
-if (-not (Test-Path $Workspace)) {
+if (-not (FastFileExists $Workspace)) {
     Write-Host "[ERROR] 工作目录不存在: $Workspace" -ForegroundColor Red
     exit 1
 }
@@ -43,7 +46,7 @@ $stopwatch = [System.Diagnostics.Stopwatch]::StartNew()
 # 获取文件信息（大小 + 最后修改时间），一次 Get-Item 获取全部
 function Get-FileInfo {
     param([string]$Path)
-    $item = Get-Item $Path
+    $item = FastGetFileInfo $Path
     return @{
         Size         = $item.Length
         LastModified = $item.LastWriteTime.ToString("yyyy-MM-ddTHH:mm:sszzz")
@@ -53,7 +56,7 @@ function Get-FileInfo {
 # 提取 SKILL.md 正文（跳过 YAML frontmatter）
 function Get-SkillBody {
     param([string]$Path)
-    $content = Get-Content $Path -Raw -Encoding UTF8
+    $content = FastReadFile $Path
     if (-not $content) { return "" }
     # 跳过 YAML frontmatter（--- ... --- 之间的内容）
     if ($content -match '(?s)^---\r?\n.*?\r?\n---\r?\n?(.*)') {
@@ -97,7 +100,7 @@ function Get-RuleCount {
 function Get-JsonTopKeys {
     param([string]$Path)
     try {
-        $json = Get-Content $Path -Raw -Encoding UTF8 | ConvertFrom-Json
+        $json = FastReadJson $Path
         if ($json -is [System.Array]) {
             # JSON 数组无顶层 key
             return @("__array__")
@@ -123,9 +126,9 @@ function ConvertTo-RelPath {
 #  加载现有缓存（用于缓存验证）
 # ============================================================
 $existingCache = $null
-if (Test-Path $cachePath) {
+if (FastFileExists $cachePath) {
     try {
-        $existingCache = Get-Content $cachePath -Raw -Encoding UTF8 | ConvertFrom-Json
+        $existingCache = FastReadJson $cachePath
     } catch {
         Write-Host "[WARN] 缓存文件解析失败，将全量重建" -ForegroundColor DarkYellow
         $existingCache = $null
@@ -166,11 +169,11 @@ Write-Host ""
 Write-Host "[1/2] 预读 Skill 文件..." -ForegroundColor Yellow
 
 $skillsDir = Join-Path $Workspace ".trae\skills"
-if (Test-Path $skillsDir) {
+if (FastFileExists $skillsDir) {
     $skillDirs = Get-ChildItem $skillsDir -Directory | Sort-Object Name
     foreach ($dir in $skillDirs) {
         $skillFile = Join-Path $dir.FullName "SKILL.md"
-        if (-not (Test-Path $skillFile)) {
+        if (-not (FastFileExists $skillFile)) {
             continue  # 文件不存在时跳过而非报错
         }
 
@@ -227,7 +230,7 @@ $otherFiles = @(
 
 foreach ($relFile in $otherFiles) {
     $fullPath = Join-Path $Workspace ($relFile -replace '/', '\')
-    if (-not (Test-Path $fullPath)) {
+    if (-not (FastFileExists $fullPath)) {
         Write-Host "  skip      : $relFile (文件不存在)" -ForegroundColor DarkGray
         continue  # 文件不存在时跳过而非报错
     }
@@ -292,9 +295,7 @@ $cacheData = [PSCustomObject]@{
 }
 
 # 写入 UTF-8 BOM 编码的 JSON
-$json = $cacheData | ConvertTo-Json -Depth 10
-$utf8Bom = New-Object System.Text.UTF8Encoding($true)
-[System.IO.File]::WriteAllText($cachePath, $json, $utf8Bom)
+FastWriteJson -Path $cachePath -Object $cacheData -Depth 10
 
 $stopwatch.Stop()
 

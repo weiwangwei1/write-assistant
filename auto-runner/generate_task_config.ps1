@@ -28,16 +28,18 @@ param(
 
 $ErrorActionPreference = "Stop"
 
+. (Join-Path $PSScriptRoot 'fast_io.ps1')
+
 $outlinePath = Join-Path $Workspace "memory\outline.json"
 $configPath = Join-Path $Workspace "config\novel_config.json"
 $outputTaskConfig = Join-Path $Workspace "auto-runner\task_config.json"
 $outputState = Join-Path $Workspace "auto-runner\state.json"
 
-if (-not (Test-Path $outlinePath)) {
+if (-not (FastFileExists $outlinePath)) {
     Write-Host "[ERROR] outline.json not found: $outlinePath" -ForegroundColor Red
     exit 1
 }
-$outline = Get-Content $outlinePath -Raw -Encoding UTF8 | ConvertFrom-Json
+$outline = FastReadJson $outlinePath
 $novelTitle = if ($outline.title) { $outline.title } else { "Untitled" }
 
 function Find-TanghuluUnit {
@@ -339,8 +341,8 @@ $state = @{
 }
 
 # --- Write files ---
-$taskConfig | ConvertTo-Json -Depth 10 | Set-Content $outputTaskConfig -Encoding UTF8
-$state | ConvertTo-Json -Depth 10 | Set-Content $outputState -Encoding UTF8
+FastWriteJson -Path $outputTaskConfig -Object $taskConfig
+FastWriteJson -Path $outputState -Object $state
 
 $stepsPerCh = if ($ReviewMode -eq "unified") { 6 } else { 7 }
 Write-Host ""
