@@ -1,0 +1,18 @@
+{
+  "style": "chendong",
+  "overrides": {
+    "simile_max_per_chapter": 12,
+    "short_para_ratio_max": 0.50,
+    "dialogue_ratio_min": 0.25
+  },
+  "disabled_rules": ["four_char"],
+  "disabled_reason": {
+    "four_char": "四字短语堆叠是辰东签名造势手法（岁月如刀斩天骄），通用禁令不适用"
+  },
+  "custom_ban_words": [
+    {"word": "仙器", "severity": "minor", "reason": "命名通货——辰东体系须用'极道帝兵'式专属命名（文化底蕴+视觉冲击+成体系）"},
+    {"word": "法宝", "severity": "minor", "reason": "命名通货"},
+    {"word": "神器", "severity": "minor", "reason": "命名通货"}
+  ],
+  "note": "通用反AI红线（不是A是B/碎段/比喻堆叠/感觉编号）对辰东同样生效——那是AI指纹不是作家签名。判定标准：原作指纹基线中没有的特征一律不放行。"
+}

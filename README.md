@@ -35,6 +35,18 @@ d:\write-assistant\
 └── README.md
 ```
 
+## 作者文风包（writer-styles）
+
+`.trae/skills/writer-styles/` 收录蒸馏的作者文风（原 writeStyle 仓库，已并入本仓库维护）。
+每包三件套：`style_card.md`（决策卡，每章注入）+ `fingerprint.json`（文体指纹基线）+ `lint_overlay.json`（lint覆盖层）。
+已收录：辰东（chendong）、烟雨江南（yanyujiangnan）。
+
+在 `config/novel_config.json` 设 `"style_pack": "yanyujiangnan"` 即可挂载，详见 `.trae/skills/writer-styles/README.md`。
+
+配套脚本：
+- `style_lint.py`：文风硬约束校验（提交前门禁，`--style` 加载覆盖层）
+- `style_fingerprint.py`：文体指纹提取（build）与偏差校验（check）
+
 ## 工作流程
 
 1. **初始化**: 用户配置 → 总编解析 → 大纲师生成大纲 → 质疑者迭代 → 大纲编辑评分 → 人工检查点 → 角色师创建角色卡 → 角色卡审核 → 人工检查点 → 创建世界观设定文件（地图/图鉴/机制）→ 设定审核员评分（循环至9.5）→ 人工检查点 → 进入章节循环

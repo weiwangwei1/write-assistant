@@ -99,10 +99,13 @@ description: "章节写手 v3.0（瘦身版）。负责按大纲与分镜生成�
 | 本章剧情节点 | 大纲 | ~300 字 |
 | 最近 1 章全文 | memory/recent_chapters/ | ~4000 字 |
 | 相关角色卡 | memory/characters.json | ~800 字 |
+| 风格决策卡（如配置 style_pack） | .trae/skills/writer-styles/{pack}/style_card.md | ~1500 字 |
 | 最近 5 章摘要 | memory/chapter_summaries/ | ~1000 字 |
 | 当前卷摘要 | memory/outline.json | ~500 字 |
 
 总计 8000–10000 tokens；紧张时按上表从上到下保留。
+
+**style_pack 联动**：`novel_config.json` 配置 `style_pack` 后——①上表注入对应决策卡；②H2 的 lint 命令须加 `--style {pack}`；③交接卡增加 `"style_pack": "{pack}"` 字段；④每章附 `style_fingerprint.py check` 结果（基线非 pending 时）。一本书只挂一个风格包。
 
 ## 七、交接卡格式（chapter_draft_ch{N}.json）
 
@@ -121,6 +124,7 @@ description: "章节写手 v3.0（瘦身版）。负责按大纲与分镜生成�
     "ending_type": "期待感",
     "hook_sentence": "……",
     "style_lint_ref": "handoff/style_lint_ch13.json",
+    "style_pack": null,
     "beat_sheet": {
       "beats": [],
       "cross_chapter_facts": {"names": [], "numbers": [], "positions": [], "known_info": []},

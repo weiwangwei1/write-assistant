@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>蒸馏一个作家：方法论复盘</title>
+<style>
+  :root {
+    --bg: #1a1a1a;
+    --surface: #242424;
+    --border: #333;
+    --text: #d4d4d4;
+    --text-dim: #888;
+    --accent: #c9952b;
+    --accent-dim: #8a6818;
+    --red: #b54545;
+    --green: #5a8a5a;
+    --blue: #5a7a9a;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Noto Sans CJK SC', 'WenQuanYi Micro Hei', 'Microsoft YaHei', sans-serif;
+    line-height: 1.8;
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 40px 24px 80px;
+  }
+  h1 {
+    font-size: 1.8em;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 4px;
+    letter-spacing: 1px;
+  }
+  .subtitle {
+    color: var(--text-dim);
+    font-size: 0.9em;
+    margin-bottom: 40px;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 20px;
+  }
+  h2 {
+    font-size: 1.35em;
+    color: var(--text);
+    margin-top: 48px;
+    margin-bottom: 16px;
+    padding-left: 12px;
+    border-left: 3px solid var(--accent);
+  }
+  h3 {
+    font-size: 1.1em;
+    color: var(--accent);
+    margin-top: 28px;
+    margin-bottom: 10px;
+  }
+  p {
+    margin-bottom: 14px;
+  }
+  strong {
+    color: var(--accent);
+    font-weight: 600;
+  }
+  em {
+    color: var(--text-dim);
+    font-style: italic;
+  }
+  ul {
+    margin: 10px 0 14px 20px;
+  }
+  li {
+    margin-bottom: 6px;
+  }
+  blockquote {
+    border-left: 2px solid var(--accent-dim);
+    padding: 8px 16px;
+    margin: 14px 0;
+    color: var(--text-dim);
+    background: var(--surface);
+    border-radius: 0 4px 4px 0;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0;
+    font-size: 0.9em;
+  }
+  th, td {
+    border: 1px solid var(--border);
+    padding: 8px 12px;
+    text-align: left;
+    vertical-align: top;
+  }
+  th {
+    background: var(--surface);
+    color: var(--accent);
+    font-weight: 600;
+  }
+  tr:nth-child(even) td {
+    background: rgba(36, 36, 36, 0.5);
+  }
+  .callout {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 16px 20px;
+    margin: 18px 0;
+  }
+  .callout-key {
+    border-color: var(--accent-dim);
+    border-left: 4px solid var(--accent);
+  }
+  .callout-warn {
+    border-color: var(--red);
+    border-left: 4px solid var(--red);
+  }
+  .tag {
+    display: inline-block;
+    font-size: 0.75em;
+    padding: 2px 8px;
+    border-radius: 3px;
+    margin-right: 4px;
+    font-weight: 600;
+  }
+  .tag-rule { background: var(--accent-dim); color: #fff; }
+  .tag-text { background: var(--blue); color: #fff; }
+  .tag-lesson { background: var(--red); color: #fff; }
+  .convergence-chart {
+    margin: 20px 0;
+    padding: 20px;
+    background: var(--surface);
+    border-radius: 6px;
+    border: 1px solid var(--border);
+  }
+  .bar-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    gap: 10px;
+  }
+  .bar-label {
+    width: 80px;
+    text-align: right;
+    font-size: 0.85em;
+    color: var(--text-dim);
+    flex-shrink: 0;
+  }
+  .bar-track {
+    flex: 1;
+    height: 24px;
+    background: var(--bg);
+    border-radius: 3px;
+    overflow: hidden;
+    position: relative;
+  }
+  .bar-fill {
+    height: 100%;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    padding-left: 8px;
+    font-size: 0.8em;
+    color: #fff;
+    white-space: nowrap;
+  }
+  .bar-desc {
+    width: 140px;
+    font-size: 0.8em;
+    color: var(--text-dim);
+    flex-shrink: 0;
+  }
+  .footer {
+    margin-top: 60px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+    color: var(--text-dim);
+    font-size: 0.85em;
+    text-align: center;
+  }
+  code {
+    background: var(--surface);
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-size: 0.9em;
+    color: var(--accent);
+  }
+</style>
+</head>
+<body>
+
+<h1>蒸馏一个作家：方法论复盘</h1>
+<p class="subtitle">从「怎么把烟雨江南写进 Skill」到《最后的灯塔》四稿封稿 · 完整过程复盘</p>
+
+<!-- ========== 一 ========== -->
+<h2>一、蒸馏的本质</h2>
+
+<p>很多人理解的「蒸馏一个作家的风格」是模仿文风——挑些好看的句子、记些常用的意象、照着写。这不对。或者说，这只是最浅的一层。</p>
+
+<p><strong>蒸馏的本质是：把作家隐性的写作直觉，显性化为可执行的决策规则。</strong></p>
+
+<p>作家写作时做的每一个选择——这里用短句还是长句？这个信息说出来还是留白？这个角色退场要不要给理由？——都是直觉。蒸馏要做的，是把这些直觉变成规则，让另一个人（或 AI）在遇到同样的情境时，能做出同样的选择。</p>
+
+<div class="callout callout-key">
+<strong>关键区分</strong>：模仿文风 = 「他这么写，我也这么写」；蒸馏 = 「他在这个情境下做了这个选择，我理解为什么，并在同类情境下复现这个决策逻辑」。
+</div>
+
+<p>前者只能产出形似的句子，后者能产出结构正确的文章。这次蒸馏验证了这一点：《最后的灯塔》的情节、人物、场景都是全新的，但它的节奏、克制方式、氛围营造逻辑都来自规则——不是抄句子，是复现决策。</p>
+
+<!-- ========== 二 ========== -->
+<h2>二、五层蒸馏模型</h2>
+
+<p>一个作家的「风格」不是一个平面，而是五层叠加。蒸馏时必须逐层提取，从表到里：</p>
+
+<table>
+<tr><th style="width:15%">层次</th><th style="width:30%">内容</th><th style="width:55%">这次蒸馏的产出</th></tr>
+<tr><td><strong>表层</strong></td><td>语言指纹：用词、句式、描写习惯</td><td>用词偏好（书面语+古雅词汇）、长短句交错、环境描写占比高、比喻精度要求</td></tr>
+<tr><td><strong>结构层</strong></td><td>叙事工程：节奏、伏笔、章节设计</td><td>先抑后扬、主题信息重复控制（设定一次+收束一次）、不用金句收束、打破递进套路</td></tr>
+<tr><td><strong>人物层</strong></td><td>角色铸造：主角模板、配角体系、反派</td><td>内敛坚韧主角、配角必须有主体性瞬间、反派有自己信念不脸谱化</td></tr>
+<tr><td><strong>世界观层</strong></td><td>设定法则：力量体系、社会结构</td><td>力量有代价（记忆剥落）、环境是故事的一部分、世界有历史感</td></tr>
+<tr><td><strong>灵魂层</strong></td><td>克制原则：信任读者</td><td>10 条规则（0-9），几乎全部通过迭代发现，占 SKILL 近一半篇幅</td></tr>
+</table>
+
+<div class="callout callout-key">
+<strong>最重要的发现</strong>：前四层可以通过读作品提取，<strong>但第五层（克制原则）无法通过阅读获得</strong>——它只能在「写→评→改」的迭代中逐步浮现。你读烟雨江南时感受到的「恰到好处的留白」，是一个结果，不是一个规则。规则是从「为什么这里留白太多/太少」的反复校准中提炼出来的。
+</div>
+
+<!-- ========== 三 ========== -->
+<h2>三、双轨迭代法（核心方法）</h2>
+
+<p>这次蒸馏最重要的方法论产出，是「双轨迭代」：</p>
+
+<p><strong>每一轮修改同时做两件事——改文本，补规则。文本越来越好，规则越来越精确，两者互相校准。</strong></p>
+
+<div class="convergence-chart">
+<div style="text-align:center; margin-bottom:16px; color:var(--accent); font-weight:600;">双轨迭代循环</div>
+<div style="display:flex; justify-content:space-between; align-items:center; text-align:center; font-size:0.85em;">
+<div style="flex:1;">
+<div style="font-size:2em; color:var(--accent);">1</div>
+<div>写测试文章</div>
+</div>
+<div style="color:var(--text-dim); font-size:1.5em;">→</div>
+<div style="flex:1;">
+<div style="font-size:2em; color:var(--accent);">2</div>
+<div>评价，找 gap</div>
+</div>
+<div style="color:var(--text-dim); font-size:1.5em;">→</div>
+<div style="flex:1;">
+<div style="font-size:2em; color:var(--red);">3a</div>
+<div>改文本</div>
+</div>
+<div style="color:var(--text-dim);">+</div>
+<div style="flex:1;">
+<div style="font-size:2em; color:var(--blue);">3b</div>
+<div>补规则写回 SKILL</div>
+</div>
+<div style="color:var(--text-dim); font-size:1.5em;">→</div>
+<div style="flex:1;">
+<div style="font-size:2em; color:var(--accent);">4</div>
+<div>再验证</div>
+</div>
+</div>
+</div>
+
+<p>关键在第 3 步的「双轨」：如果只改文本不补规则，下次写新文章还会犯同样的错；如果只补规则不改文本，规则没有实证检验、可能是空谈。两者必须同步。</p>
+
+<p>这次蒸馏中，<strong>克制原则的 10 条规则全部是在迭代中新增的</strong>——初版 SKILL 只有前四层（语言、结构、人物、世界观），第五层是空的。正是因为写了测试文章、被评价打回来，才发现「克制」才是烟雨江南与普通网文最大的差距，而克制的具体规则只能从「哪里留白太多/太少」的反复校准中提炼。</p>
+
+<!-- ========== 四 ========== -->
+<h2>四、四稿迭代实录</h2>
+
+<p>每一轮改了什么文本、补了什么规则：</p>
+
+<table>
+<tr>
+<th style="width:12%">轮次</th>
+<th style="width:44%">文本改动</th>
+<th style="width:44%">规则新增</th>
+</tr>
+<tr>
+<td><strong>第一稿</strong><br><em>初版验证</em></td>
+<td>从零写出完整开篇：废土设定、变异犬遭遇战、小鹿出场、记忆代价机制、灯塔线索</td>
+<td>初版 SKILL：前四层规则（语言/结构/人物/世界观），克制原则尚未建立</td>
+</tr>
+<tr>
+<td><strong>第二稿</strong><br><em>结构重构</em></td>
+<td>开头从景观式改为嗅觉切入；小鹿从功能性角色赋予主体性（举石头）；删掉替读者总结情感的句子；战斗节奏调整</td>
+<td>
+<span class="tag tag-rule">规则0</span>克制不等于跳过（最高优先级）<br>
+<span class="tag tag-rule">规则1</span>不替读者总结情感<br>
+<span class="tag tag-rule">规则2</span>不给行为贴标签<br>
+<span class="tag tag-rule">规则3</span>不追求每句漂亮<br>
+<span class="tag tag-rule">规则4</span>不用金句收束<br>
+<span class="tag tag-rule">规则5</span>避免腔调陷阱
+</td>
+</tr>
+<tr>
+<td><strong>第三稿</strong><br><em>句子级精修</em></td>
+<td>删"在废土上这个问题没有意义"；战斗描写代词极简化；"据说而已"独立成段；嗅觉线索从氛围变为伏笔（开头"还热着"）；小鹿主体性强化</td>
+<td>
+<span class="tag tag-rule">规则6</span>避免通货意象<br>
+<span class="tag tag-rule">规则7</span>叙述者隐身<br>
+主题信息重复控制规则<br>
+战斗描写：代词极简、不插闪回、打破递进<br>
+比喻要属于这个世界
+</td>
+</tr>
+<tr>
+<td><strong>第四稿</strong><br><em>三处点改</em></td>
+<td>开头嗅觉扩展（"胃液腐食的腥臊""还热着"）；第三头犬增加判断过程；新增"他看了小鹿一眼"补节奏断点；删"在废土上这个问题没有意义"</td>
+<td>
+<span class="tag tag-rule">规则8</span>反派退场必须有因果落点<br>
+配角必须有主体性瞬间（写入人物规则）
+</td>
+</tr>
+<tr>
+<td><strong>定稿</strong><br><em>抛光封稿</em></td>
+<td>删"——刚吃过东西"（演出来就不要说）；重写犬判断段落（去视角越界+留一半）；删"六条腿"孤立修辞</td>
+<td>
+<span class="tag tag-rule">规则8补充</span>因果线索留一半 / 视角不越界<br>
+<span class="tag tag-rule">规则9</span>演出来就不要说出来
+</td>
+</tr>
+</table>
+
+<!-- ========== 收敛 ========== -->
+<h3>修改幅度的收敛曲线</h3>
+
+<p>一个值得注意的信号：每一轮的改动幅度在逐轮缩小。这是文本接近成熟的典型特征。</p>
+
+<div class="convergence-chart">
+<div class="bar-row">
+<div class="bar-label">第一稿→二稿</div>
+<div class="bar-track"><div class="bar-fill" style="width:100%; background:var(--red);">结构重构 · 动整段、动情节</div></div>
+</div>
+<div class="bar-row">
+<div class="bar-label">二稿→三稿</div>
+<div class="bar-track"><div class="bar-fill" style="width:60%; background:var(--accent-dim);">句子级精修 · 动句子、动信息</div></div>
+</div>
+<div class="bar-row">
+<div class="bar-label">三稿→四稿</div>
+<div class="bar-track"><div class="bar-fill" style="width:25%; background:var(--blue);">三处点改 · 补感官、补节奏</div></div>
+</div>
+<div class="bar-row">
+<div class="bar-label">四稿→定稿</div>
+<div class="bar-track"><div class="bar-fill" style="width:10%; background:var(--green);">抛光 · 删4字 + 重写1句 + 改1句</div></div>
+</div>
+</div>
+
+<div class="callout callout-key">
+<strong>收敛法则</strong>：当一轮修改从「动结构」变成「动句子」再变成「删几个字」时，就该停了。再改不是在改善，是在折腾。第一轮动结构、第二轮动句子、第三轮动信息——三轮是极限。第四轮如果还在动结构，说明前三轮没改对。
+</div>
+
+<!-- ========== 五 ========== -->
+<h2>五、关键教训</h2>
+
+<h3>教训1：克制是最容易矫枉过正的规则</h3>
+
+<p>第二稿时，为了「克制」，删掉了大量过渡和铺垫，导致变异犬突然出现、场景跳跃、读者跟不上。这催生了<strong>规则0（克制不等于跳过，最高优先级）</strong>——整个 SKILL 中唯一标注「最高优先级」的规则。</p>
+
+<div class="callout callout-warn">
+<strong>矫枉过正的判断标准</strong>：删掉某句后，问自己「读者还能跟上吗？画面还连贯吗？」如果不能，就不能删。克制的目标是让读者自己<strong>感受</strong>，不是让读者自己<strong>猜发生了什么</strong>。一篇突兀的文章比一篇啰嗦的文章更糟——啰嗦至少能看懂，突兀让人放弃。
+</div>
+
+<h3>教训2：规则要配反面案例，对照表比说教有效十倍</h3>
+
+<p>SKILL 中每条克制规则都配了「错误 / 正确」对照表。这不是装饰，是核心设计。光说「要克制」没用——AI 和人一样，需要看到「这句话为什么该删」「删掉之后变成什么样」才能内化规则。</p>
+
+<blockquote>
+<p><strong>错误</strong>（替读者总结）："他怕的不是死亡。他怕的是死之前，忘记最后那张脸。"</p>
+<p><strong>正确</strong>（让画面说话）：删掉。前面的"那张脸也在模糊"已经说明一切。</p>
+</blockquote>
+
+<h3>教训3：规则之间会冲突，需要优先级和边界</h3>
+
+<p>规则8说「反派退场必须有因果线索」，但规则8的补充又说「因果线索留一半，不要全写出来」。这两条不矛盾，但需要界定边界——什么时候该写、什么时候该停。边界是：用主角可观察的外部行为呈现（鼻子翕动、目光移动），不钻进对手感知（"它闻到了什么"）。</p>
+
+<p>这意味着<strong>蒸馏不是一次性提取规则就完事</strong>，而是要在迭代中不断校准规则的边界——什么时候适用、适用到什么程度。</p>
+
+<h3>教训4：孤立修辞要删——让读者「多看一层」而非「停下来想」</h3>
+
+<p>定稿时删掉的"六条腿、十二条腿、十八条腿"是一个典型案例。这个修辞有意图（用腿数递进制造节奏感），但它失败了——因为「6条腿」没有前置设定支撑，读者会停下来想「一条狗怎么6条腿」，这一停就出戏了。</p>
+
+<div class="callout callout-key">
+<strong>好细节 vs 坏细节</strong>：一个好的细节让读者「多看一层」（从碎肉和血痂推断出犬刚进食过），一个坏的细节让读者「停下来想这什么意思」（6条腿是设定还是修辞？）。前者增加沉浸，后者破坏沉浸。判断标准：<strong>这个细节是否需要额外解释才能理解？如果需要，要么补设定，要么删掉。</strong>
+</div>
+
+<h3>教训5：文本和规则必须对齐——不能「规则是规则，文本是文本」</h3>
+
+<p>定稿时删"——刚吃过东西"，不是因为这句话写得不好，而是因为SKILL刚写入了规则9（演出来就不要说出来），而文本里恰好有一个违反规则9的实例。如果规则写了但文本不遵守，规则就是空文。</p>
+
+<p>这是双轨迭代的最终校验：<strong>封稿前，逐条检查文本是否违反了SKILL中的每一条规则。如果有违反，要么改文本，要么修规则——不能两头不一致。</strong></p>
+
+<!-- ========== 六 ========== -->
+<h2>六、可复用流程</h2>
+
+<p>从这次实践中提炼的可复用流程：</p>
+
+<div class="convergence-chart">
+<div style="display:flex; flex-direction:column; gap:12px;">
+<div style="display:flex; gap:12px; align-items:flex-start;">
+<div style="background:var(--accent-dim); color:#fff; border-radius:50%; width:28px; height:28px; display:flex; align-items:center; justify-content:center; font-weight:700; flex-shrink:0;">1</div>
+<div><strong>读代表作，提取初版规则</strong>——覆盖前四层（语言/结构/人物/世界观），灵魂层先留空</div>
+</div>
+<div style="display:flex; gap:12px; align-items:flex-start;">
+<div style="background:var(--accent-dim); color:#fff; border-radius:50%; width:28px; height:28px; display:flex; align-items:center; justify-content:center; font-weight:700; flex-shrink:0;">2</div>
+<div><strong>写测试文章验证</strong>——选一个与代表作不同但同题材的场景，写一个完整短篇/章节</div>
+</div>
+<div style="display:flex; gap:12px; align-items:flex-start;">
+<div style="background:var(--accent-dim); color:#fff; border-radius:50%; width:28px; height:28px; display:flex; align-items:center; justify-content:center; font-weight:700; flex-shrink:0;">3</div>
+<div><strong>评价，找 gap</strong>——逐段审查：哪里像、哪里不像？哪里多了、哪里少了？为什么？</div>
+</div>
+<div style="display:flex; gap:12px; align-items:flex-start;">
+<div style="background:var(--red); color:#fff; border-radius:50%; width:28px; height:28px; display:flex; align-items:center; justify-content:center; font-weight:700; flex-shrink:0;">4a</div>
+<div><strong>改文本</strong>——针对性修改，每处改动记录「改了什么、为什么改」</div>
+</div>
+<div style="display:flex; gap:12px; align-items:flex-start;">
+<div style="background:var(--blue); color:#fff; border-radius:50%; width:28px; height:28px; display:flex; align-items:center; justify-content:center; font-weight:700; flex-shrink:0;">4b</div>
+<div><strong>补规则</strong>——把「为什么改」提炼成规则写回 SKILL，配对照表</div>
+</div>
+<div style="display:flex; gap:12px; align-items:flex-start;">
+<div style="background:var(--accent-dim); color:#fff; border-radius:50%; width:28px; height:28px; display:flex; align-items:center; justify-content:center; font-weight:700; flex-shrink:0;">5</div>
+<div><strong>重复 3-4 直到收敛</strong>——当修改幅度从「动结构」缩小到「删几个字」时，准备封稿</div>
+</div>
+<div style="display:flex; gap:12px; align-items:flex-start;">
+<div style="background:var(--green); color:#fff; border-radius:50%; width:28px; height:28px; display:flex; align-items:center; justify-content:center; font-weight:700; flex-shrink:0;">6</div>
+<div><strong>封稿前对齐检查</strong>——逐条检查文本是否违反 SKILL 中每条规则，确保规则与文本一致</div>
+</div>
+</div>
+</div>
+
+<!-- ========== 七 ========== -->
+<h2>七、局限与下一步</h2>
+
+<h3>这次蒸馏的局限</h3>
+<ul>
+<li><strong>只验证了一个题材</strong>（废土）。SKILL 中的规则是否适用于烟雨江南的西幻和东方玄幻题材，尚未验证。</li>
+<li><strong>只写了一个开篇</strong>（约 2000 字）。长线结构（伏笔数十章后引爆、多线叙事汇合）无法在短篇中验证。</li>
+<li><strong>规则数量已较大</strong>（SKILL 约 340 行），可能存在冗余。规则越多，AI 执行时越容易顾此失彼。</li>
+<li><strong>克制原则的对照表大多来自这一篇</strong>。如果换一篇不同场景的文章，可能会暴露新的克制盲区。</li>
+</ul>
+
+<h3>下一步可以做的</h3>
+<ul>
+<li><strong>换题材验证</strong>：用同一套规则写一个西幻场景（如《罪恶之城》风格的位面探险），看规则是否通用，哪些需要题材特定的补充。</li>
+<li><strong>规则精简</strong>：把 10 条克制原则中重叠的部分合并，目标压缩到 6-7 条核心规则 + 对照表。</li>
+<li><strong>长线结构验证</strong>：写一个 3-5 章的短序列，验证伏笔密度、节奏曲线、配角弧光等长线规则。</li>
+<li><strong>蒸馏第二个作家</strong>：用同一套方法论蒸馏另一位风格鲜明的作家（如猫腻、烽火戏诸侯），验证「双轨迭代法」的可复用性。</li>
+</ul>
+
+<div class="footer">
+<p>《最后的灯塔》四稿封稿 · 蒸馏方法论复盘<br>
+writer-style-yanyujiangnan SKILL · 2026-07-24</p>
+</div>
+
+</body>
+</html>

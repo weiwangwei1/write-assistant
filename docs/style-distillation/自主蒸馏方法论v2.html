@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>自主蒸馏方法论 v2</title>
+<style>
+  :root {
+    --bg: #1a1a1a;
+    --surface: #242424;
+    --border: #333;
+    --text: #d4d4d4;
+    --text-dim: #888;
+    --accent: #c9952b;
+    --accent-dim: #8a6818;
+    --red: #b54545;
+    --green: #5a8a5a;
+    --blue: #5a7a9a;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Noto Sans CJK SC', 'WenQuanYi Micro Hei', 'Microsoft YaHei', sans-serif;
+    line-height: 1.8;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 40px 24px 80px;
+  }
+  h1 {
+    font-size: 1.8em;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 4px;
+    letter-spacing: 1px;
+  }
+  .subtitle {
+    color: var(--text-dim);
+    font-size: 0.9em;
+    margin-bottom: 36px;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 20px;
+  }
+  h2 {
+    font-size: 1.35em;
+    color: var(--text);
+    margin-top: 44px;
+    margin-bottom: 14px;
+    padding-left: 12px;
+    border-left: 3px solid var(--accent);
+  }
+  h3 {
+    font-size: 1.1em;
+    color: var(--accent);
+    margin-top: 26px;
+    margin-bottom: 10px;
+  }
+  p { margin-bottom: 12px; }
+  strong { color: var(--accent); font-weight: 600; }
+  em { color: var(--text-dim); font-style: italic; }
+  ul { margin: 8px 0 12px 20px; }
+  li { margin-bottom: 5px; }
+  blockquote {
+    border-left: 2px solid var(--accent-dim);
+    padding: 8px 16px;
+    margin: 12px 0;
+    color: var(--text-dim);
+    background: var(--surface);
+    border-radius: 0 4px 4px 0;
+    font-size: 0.9em;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 14px 0;
+    font-size: 0.88em;
+  }
+  th, td {
+    border: 1px solid var(--border);
+    padding: 8px 12px;
+    text-align: left;
+    vertical-align: top;
+  }
+  th {
+    background: var(--surface);
+    color: var(--accent);
+    font-weight: 600;
+  }
+  tr:nth-child(even) td { background: rgba(36, 36, 36, 0.5); }
+  .callout {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 14px 18px;
+    margin: 16px 0;
+  }
+  .callout-key {
+    border-color: var(--accent-dim);
+    border-left: 4px solid var(--accent);
+  }
+  .callout-warn {
+    border-color: var(--red);
+    border-left: 4px solid var(--red);
+  }
+  .callout-new {
+    border-color: var(--green);
+    border-left: 4px solid var(--green);
+  }
+  .tag {
+    display: inline-block;
+    font-size: 0.72em;
+    padding: 2px 8px;
+    border-radius: 3px;
+    margin-right: 4px;
+    font-weight: 600;
+  }
+  .tag-v1 { background: var(--red); color: #fff; }
+  .tag-v2 { background: var(--green); color: #fff; }
+  .tag-research { background: var(--blue); color: #fff; }
+  .compare-table {
+    margin: 20px 0;
+  }
+  .compare-table td:first-child {
+    width: 20%;
+    font-weight: 600;
+    color: var(--accent);
+  }
+  .flow-diagram {
+    margin: 20px 0;
+    padding: 20px;
+    background: var(--surface);
+    border-radius: 6px;
+    border: 1px solid var(--border);
+  }
+  .flow-step {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    margin-bottom: 14px;
+  }
+  .flow-step:last-child { margin-bottom: 0; }
+  .flow-num {
+    background: var(--accent-dim);
+    color: #fff;
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    flex-shrink: 0;
+    font-size: 0.85em;
+  }
+  .flow-num.auto {
+    background: var(--green);
+  }
+  .flow-content { flex: 1; }
+  .flow-content strong { color: var(--text); }
+  .auto-label {
+    display: inline-block;
+    font-size: 0.72em;
+    padding: 1px 6px;
+    border-radius: 3px;
+    background: var(--green);
+    color: #fff;
+    margin-left: 6px;
+    vertical-align: middle;
+  }
+  .v1-label {
+    display: inline-block;
+    font-size: 0.72em;
+    padding: 1px 6px;
+    border-radius: 3px;
+    background: var(--red);
+    color: #fff;
+    margin-left: 6px;
+    vertical-align: middle;
+  }
+  .footer {
+    margin-top: 56px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+    color: var(--text-dim);
+    font-size: 0.85em;
+    text-align: center;
+  }
+  code {
+    background: var(--surface);
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-size: 0.9em;
+    color: var(--accent);
+  }
+  .ref-list {
+    font-size: 0.82em;
+    color: var(--text-dim);
+  }
+  .ref-list li { margin-bottom: 4px; }
+  .ref-list a { color: var(--blue); text-decoration: none; }
+</style>
+</head>
+<body>
+
+<h1>自主蒸馏方法论 v2</h1>
+<p class="subtitle">从「依赖人工反馈」到「AI 自主闭环」· 基于学术研究的改进方案</p>
+
+<!-- ========== 问题分析 ========== -->
+<h2>一、当前方法的瓶颈</h2>
+
+<p>v1 方法（双轨迭代法）验证了「文本和规则同步迭代」的有效性，但有一个根本依赖：<strong>每一轮迭代都需要人工评价来发现 gap</strong>。这导致：</p>
+
+<ul>
+<li><strong>效率低</strong>：每轮迭代需要人介入，无法批量蒸馏多个作家</li>
+<li><strong>主观偏差</strong>：评价质量取决于评价者的文学素养，不同人可能给出矛盾建议</li>
+<li><strong>无法扩展</strong>：如果要蒸馏 10 个作家，需要 10 轮人工反馈循环</li>
+<li><strong>规则不可验证</strong>：提取的规则是否准确反映了作家风格，没有量化校验</li>
+</ul>
+
+<div class="callout callout-key">
+<strong>核心问题</strong>：v1 的循环是「写→<span class="v1-label">人工评</span>→改」，v2 要把中间环节替换为「写→<span class="auto-label">AI自评</span>→改」，实现自主闭环。
+</div>
+
+<!-- ========== 研究基础 ========== -->
+<h2>二、研究基础</h2>
+
+<p>文献检索发现三个可直接用于改进的关键技术：</p>
+
+<h3>1. 计算文体学：量化风格指纹</h3>
+<p><span class="tag tag-research">研究</span>Stamatatos (2009) 的作者归属综述表明，最稳定的风格标记是<strong>功能词频率</strong>（的、了、在、是等）、<strong>字符 n-gram 分布</strong>、<strong>句法模式</strong>——它们反映作者无意识的习惯，不受内容主题影响 [$TRAE_REF](https://onlinelibrary.wiley.com/doi/abs/10.1002/asi.21001)。</p>
+
+<blockquote>
+这意味着：一个作家的风格可以被量化为具体的统计特征，而不仅仅是「感觉」。我们可以在蒸馏前先提取原作的文体学指纹，然后在生成后对比指纹差异，判断风格是否还原。
+</blockquote>
+
+<h3>2. LLM-as-a-Judge：自动化评价</h3>
+<p><span class="tag tag-research">研究</span>Zheng 等 (2023) 证明 GPT-4 评审与人类偏好一致性<strong>超过 80%</strong>，达到人类评审者之间的水平 [$TRAE_REF](https://arxiv.org/abs/2306.05685)。Liu 等 (2023) 的 G-Eval 框架进一步证明，结合思维链的 LLM 评估在主观维度上与人类高度相关 [$TRAE_REF](https://arxiv.org/abs/2303.16634)。</p>
+
+<blockquote>
+这意味着：可以用 AI 评审替代人工评价，前提是设计好结构化的评估 rubric（评分维度+评分标准+示例），并警惕 LLM 对自身生成文本的偏好偏差。
+</blockquote>
+
+<h3>3. RoleLLM 四阶段框架：结构化人设提取</h3>
+<p><span class="tag tag-research">研究</span>Wang 等 (2023) 的 RoleLLM 框架将角色扮演能力提取分为四阶段：画像构建→知识提取→风格模仿→指令微调 [$TRAE_REF](https://arxiv.org/abs/2310.00746)。虽然我们不做微调，但前三阶段的<strong>结构化提取思路</strong>可以直接借鉴——先建画像，再提知识，最后炼风格，而不是一上来就写规则。</p>
+
+<!-- ========== v2 方法 ========== -->
+<h2>三、v2 方法：四阶段自主蒸馏</h2>
+
+<p>基于上述研究，v2 将蒸馏流程重构为四个阶段，其中阶段 2-4 均可自主完成：</p>
+
+<div class="flow-diagram">
+<div style="text-align:center; margin-bottom:16px; color:var(--accent); font-weight:600; font-size:1.1em;">v2 自主蒸馏流程</div>
+
+<div class="flow-step">
+<div class="flow-num" style="background:var(--red);">1</div>
+<div class="flow-content">
+<strong>文体指纹提取</strong> <span class="v1-label">需人工输入</span><br>
+输入作家代表作原文（至少 3 万字），用文体学方法提取量化指纹：功能词频率分布、平均句长与方差、段落长度分布、标点使用模式、高频意象词表、对话占比。输出一份「风格指纹报告」，作为后续生成和评估的<strong>客观基准</strong>。
+<br><em>这一步只需要提供原文，提取过程可自动化。是 v1 完全缺失的环节。</em>
+</div>
+</div>
+
+<div class="flow-step">
+<div class="flow-num auto">2</div>
+<div class="flow-content">
+<strong>结构化规则提取</strong> <span class="auto-label">自主</span><br>
+借鉴 RoleLLM 的三阶段提取思路，分三层提取规则：
+<ul>
+<li><strong>画像层</strong>：作家的题材偏好、调性、母题（对应 v1 的「风格定位」）</li>
+<li><strong>语言层</strong>：从原文中提取用词偏好、句式特征、描写习惯、对话风格（对应 v1 的「语言风格规则」），但每条规则需<strong>附原文证据</strong>——至少 2 个来自代表作的例句</li>
+<li><strong>决策层</strong>：从原文中逆向推断作家的写作决策——「这里为什么用短句」「这里为什么留白」「这里为什么不让角色说话」，提炼为可执行规则（对应 v1 的「克制原则」）</li>
+</ul>
+输出初版 SKILL.md。<br>
+<em>与 v1 的区别：v1 靠读后凭感觉写规则，v2 要求每条规则有原文证据，且决策层通过「逆向推断」而非「正面总结」获得。</em>
+</div>
+</div>
+
+<div class="flow-step">
+<div class="flow-num auto">3</div>
+<div class="flow-content">
+<strong>生成 + AI 自评 + 迭代</strong> <span class="auto-label">自主</span><br>
+<ol>
+<li><strong>生成</strong>：用初版 SKILL 写一篇测试文章（与代表作不同场景）</li>
+<li><strong>自评</strong>：用 LLM-as-a-Judge 方法，按结构化 rubric 评估生成文本与原作的风格一致性</li>
+<li><strong>定位 gap</strong>：从评估结果中提取具体差距（哪个维度不像、哪条规则被违反）</li>
+<li><strong>双轨修正</strong>：改文本 + 补规则写回 SKILL（保留 v1 的双轨迭代核心）</li>
+<li><strong>循环</strong>：直到自评分数收敛（连续两轮分数变化 &lt; 5%）</li>
+</ol>
+输出定稿 SKILL.md + 测试文章。<br>
+<em>与 v1 的区别：评价环节从人工变为 AI 自评，可实现自主闭环。</em>
+</div>
+</div>
+
+<div class="flow-step">
+<div class="flow-num auto">4</div>
+<div class="flow-content">
+<strong>指纹校验</strong> <span class="auto-label">自主</span><br>
+对最终生成的文本提取文体指纹，与阶段 1 的原作指纹对比。如果关键维度（功能词分布、句长分布、对话占比）偏差超过阈值，回到阶段 3 继续迭代。<br>
+<em>这是 v1 完全没有的客观校验环节——用数据而非感觉判断「像不像」。</em>
+</div>
+</div>
+</div>
+
+<!-- ========== 自评 rubric ========== -->
+<h2>四、AI 自评 Rubric 设计</h2>
+
+<p>自评环节是 v2 的核心。基于 LLM-as-a-Judge 研究，设计以下评估 rubric：</p>
+
+<h3>评估维度（6 维，每维 1-5 分）</h3>
+
+<table>
+<tr><th style="width:14%">维度</th><th style="width:30%">评估问题</th><th style="width:56%">评分标准</th></tr>
+<tr>
+<td><strong>语言质感</strong></td>
+<td>用词、句式、意象是否像该作家？</td>
+<td>5=几乎无法区分 / 4=像但有细微差异 / 3=整体像但偶尔出戏 / 2=部分像 / 1=不像</td>
+</tr>
+<tr>
+<td><strong>节奏控制</strong></td>
+<td>长短句交替、快慢节奏、留白是否像？</td>
+<td>5=节奏完全一致 / 4=基本一致 / 3=大致一致但有问题 / 2=偏差明显 / 1=完全不同</td>
+</tr>
+<tr>
+<td><strong>氛围营造</strong></td>
+<td>环境描写、光影、情绪烘托是否像？</td>
+<td>5=氛围一致 / 4=接近 / 3=有氛围但力度不同 / 2=氛围缺失 / 1=无氛围</td>
+</tr>
+<tr>
+<td><strong>人物质感</strong></td>
+<td>角色行为逻辑、对话风格是否像？</td>
+<td>5=人物真实 / 4=基本真实 / 3=偶有违和 / 2=经常违和 / 1=不像该作家笔下人物</td>
+</tr>
+<tr>
+<td><strong>克制程度</strong></td>
+<td>是否信任读者、是否过度解释？</td>
+<td>5=克制精准 / 4=基本精准 / 3=偶有过度解释 / 2=经常解释 / 1=通篇解释</td>
+</tr>
+<tr>
+<td><strong>规则遵守</strong></td>
+<td>SKILL 中的规则是否被违反？</td>
+<td>5=无违反 / 4=1处轻微 / 3=2-3处 / 2=多处违反 / 1=大量违反</td>
+</tr>
+</table>
+
+<div class="callout callout-warn">
+<strong>偏差缓解</strong>：G-Eval 研究指出 LLM 评审存在「对自身生成文本的偏好偏差」[$TRAE_REF](https://arxiv.org/abs/2303.16634)。缓解方法：① 评审时同时给出原作片段作为参照，要求对比而非独立打分；② 评审分两轮——先独立打分，再对照原作校准；③ 设置「反向验证」——让 AI 判断「这段文字是该作家写的还是 AI 模仿的」，如果判断为「该作家写的」才算通过。
+</div>
+
+<!-- ========== 对比 ========== -->
+<h2>五、v1 vs v2 对比</h2>
+
+<table class="compare-table">
+<tr><th style="width:20%">维度</th><th style="width:40%"><span class="tag tag-v1">v1</span> 双轨迭代法</th><th style="width:40%"><span class="tag tag-v2">v2</span> 四阶段自主蒸馏</th></tr>
+<tr>
+<td><strong>风格基准</strong></td>
+<td>无量化基准，靠「感觉」</td>
+<td>文体学指纹（功能词、句长、n-gram）提供客观基准</td>
+</tr>
+<tr>
+<td><strong>规则提取</strong></td>
+<td>读作品后凭感觉写规则</td>
+<td>结构化三层提取，每条规则附原文证据</td>
+</tr>
+<tr>
+<td><strong>评价方式</strong></td>
+<td>人工逐段评价</td>
+<td>6 维 rubric + LLM-as-a-Judge，自主完成</td>
+</tr>
+<tr>
+<td><strong>迭代闭环</strong></td>
+<td>写→人工评→改（需人介入）</td>
+<td>写→AI自评→改→指纹校验（自主闭环）</td>
+</tr>
+<tr>
+<td><strong>收敛判断</strong></td>
+<td>评价者主观判断「差不多了」</td>
+<td>自评分数连续两轮变化 <5% + 指纹偏差低于阈值</td>
+</tr>
+<tr>
+<td><strong>可扩展性</strong></td>
+<td>每个作家需 3-5 轮人工反馈</td>
+<td>可批量蒸馏，人工只需提供原文</td>
+</tr>
+<tr>
+<td><strong>规则可信度</strong></td>
+<td>无法验证规则是否准确</td>
+<td>指纹校验提供量化验证</td>
+</tr>
+<tr>
+<td><strong>决策层规则</strong></td>
+<td>迭代中逐步发现（被动）</td>
+<td>逆向推断（主动提取）</td>
+</tr>
+</table>
+
+<div class="callout callout-key">
+<strong>v2 保留了什么</strong>：双轨迭代的核心（改文本+补规则同步进行）依然保留——这是 v1 验证过的最有效机制。v2 改变的是<strong>评价环节</strong>（人工→AI自评）和<strong>基准建立</strong>（无→文体指纹），以及增加了<strong>客观校验</strong>（指纹对比）。
+</div>
+
+<!-- ========== 关键创新 ========== -->
+<h2>六、三个关键创新</h2>
+
+<h3>创新1：文体指纹作为客观基准</h3>
+<p>v1 完全没有量化基准——「像不像」全靠感觉。v2 引入文体学指纹，至少在以下维度提供可量化的对比：</p>
+<ul>
+<li><strong>功能词频率</strong>：的、了、在、是、他、她、一、不——这些词的使用频率反映作者的无意识习惯</li>
+<li><strong>句长分布</strong>：平均句长、标准差、短句占比——反映节奏特征</li>
+<li><strong>段落长度分布</strong>：反映叙事的呼吸感</li>
+<li><strong>对话占比</strong>：对话 vs 叙述的比例</li>
+<li><strong>标点模式</strong>：逗号/句号比、破折号频率、省略号频率——标点使用是高度个人化的</li>
+</ul>
+
+<h3>创新2：逆向推断决策规则</h3>
+<p>v1 的克制规则是在迭代中被动发现的——写了、被批评了、才知道「这里不该解释」。v2 改为<strong>主动逆向推断</strong>：拿原作的关键段落，问自己「这里作家做了一个什么选择？他选了 A 而不是 B，为什么？」</p>
+
+<blockquote>
+<p><strong>正面总结</strong>（v1）：「烟雨江南善于留白」→ 太抽象，不可执行</p>
+<p><strong>逆向推断</strong>（v2）：「这里角色死了，作家只写了一句'刀插在咽喉里，笑着死的'，没有写临终遗言、没有写旁人反应——他选择了省略情感高潮。为什么？因为死亡的重量不需要被解释，它自己就在那里。」→ 可执行规则：死亡场景不写遗言和旁人反应</p>
+</blockquote>
+
+<h3>创新3：反向验证</h3>
+<p>最终验证不只是打分，还包含一个<strong>图灵测试式验证</strong>：把 AI 生成的文本和作家原文混在一起，让另一个 AI 实例判断「哪段是原作、哪段是模仿」。如果无法区分，蒸馏成功；如果能轻易区分，差距所在就是下一轮迭代的重点。</p>
+
+<!-- ========== 局限 ========== -->
+<h2>七、v2 的局限与风险</h2>
+
+<ul>
+<li><strong>LLM 自评偏差</strong>：LLM-as-a-Judge 研究指出 LLM 倾向于给自身生成文本更高分。需通过对照原作、两轮校准、反向验证来缓解，但无法完全消除</li>
+<li><strong>文体指纹的局限</strong>：功能词频率等统计特征能捕捉「形」，但难以捕捉「神」——一个作家的哲学思辨方式、意象选择的深层逻辑，目前无法量化</li>
+<li><strong>决策规则逆向推断的风险</strong>：推断可能错误——作家选择省略可能不是因为「信任读者」，而是因为版面限制或个人偏好。需要多个证据交叉验证</li>
+<li><strong>自主闭环的可靠性</strong>：如果自评 rubric 本身有偏差，自主迭代可能在错误方向上收敛。建议前 1-2 轮仍有人工抽检</li>
+<li><strong>中文文体学工具不成熟</strong>：英文有 JGAAP 等成熟工具，中文的功能词提取和 n-gram 分析需要自行实现</li>
+</ul>
+
+<!-- ========== 验证计划 ========== -->
+<h2>八、验证计划</h2>
+
+<p>用 v2 方法蒸馏一个新作家，与 v1 方法对比：</p>
+
+<h3>实验设计</h3>
+<table>
+<tr><th style="width:20%">维度</th><th style="width:40%">v1 方法（对照组）</th><th style="width:40%">v2 方法（实验组）</th></tr>
+<tr><td><strong>目标作家</strong></td><td>猫腻（或烽火戏诸侯）</td><td>同一作家</td>
+</tr>
+<tr><td><strong>输入</strong></td><td>代表作名称 + AI 自行搜索阅读</td><td>代表作原文（3万字+）</td>
+</tr>
+<tr><td><strong>流程</strong></td><td>v1 双轨迭代（需人工评价）</td><td>v2 四阶段自主蒸馏</td>
+</tr>
+<tr><td><strong>评估</strong></td><td>人工评价（与之前相同）</td><td>v2 自评 + 人工抽检</td>
+</tr>
+<tr><td><strong>对比指标</strong></td><td colspan="2">① 迭代轮数 ② 最终文本质量（人工盲评打分） ③ 规则数量与质量 ④ 耗时</td>
+</tr>
+</table>
+
+<h3>成功标准</h3>
+<ul>
+<li>v2 自评分数与人工评价的一致性 ≥ 75%（即自评说好的，人工也认为好）</li>
+<li>v2 产出的文本在人工盲评中与 v1 产出的文本质量相当或更好</li>
+<li>v2 的迭代轮数不超过 v1（即没有因为自评质量低而导致更多迭代）</li>
+<li>文体指纹校验能发现 v1 遗漏的问题（如对话占比偏差、句长分布偏差）</li>
+</ul>
+
+<!-- ========== 总结 ========== -->
+<h2>九、总结</h2>
+
+<div class="callout callout-new">
+<strong>v2 的核心改进</strong>：不是抛弃 v1，而是在 v1 的「双轨迭代」骨架上，增加三个新环节——
+<ol>
+<li><strong>前端</strong>加文体指纹提取（建立客观基准）</li>
+<li><strong>中端</strong>把人工评价替换为 AI 自评（实现自主闭环）</li>
+<li><strong>后端</strong>加指纹校验（量化验证风格还原度）</li>
+</ol>
+双轨迭代依然是核心机制，但从一个「需要人盯着」的流程变成了一个「可以自己跑」的流程。
+</div>
+
+<p>v2 的意义不在于让蒸馏结果更好（v1 在有好的评价者时已经能产出高质量结果），而在于<strong>让蒸馏过程可扩展</strong>——一个人可以同时蒸馏多个作家，而不需要每个都投入 3-5 轮深度人工反馈。</p>
+
+<h2>参考文献</h2>
+<ul class="ref-list">
+<li>[1] Stamatatos, E. (2009). A survey of modern authorship attribution methods. JASIST, 60(3), 538-556. <a href="https://onlinelibrary.wiley.com/doi/abs/10.1002/asi.21001">link</a></li>
+<li>[2] Reif, E. et al. (2022). A Recipe for Arbitrary Text Style Transfer with Large Language Models. ACL 2022. <a href="https://aclanthology.org/2022.acl-short.94/">link</a></li>
+<li>[3] Jin, D. et al. (2022). Deep Learning for Text Style Transfer: A Survey. Computational Linguistics. <a href="https://arxiv.org/abs/2011.00416">link</a></li>
+<li>[4] Mukherjee, S. et al. (2024). Are Large Language Models Actually Good at Text Style Transfer? <a href="https://arxiv.org/abs/2406.05885">link</a></li>
+<li>[5] Zheng, L. et al. (2023). Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena. NeurIPS 2023. <a href="https://arxiv.org/abs/2306.05685">link</a></li>
+<li>[6] Liu, Y. et al. (2023). G-Eval: NLG Evaluation using GPT-4 with Better Human Alignment. <a href="https://arxiv.org/abs/2303.16634">link</a></li>
+<li>[7] Shao, Y. et al. (2023). Character-LLM: A Trainable Agent for Role-Playing. EMNLP 2023. <a href="https://arxiv.org/abs/2310.10158">link</a></li>
+<li>[8] Wang, Z.M. et al. (2023). RoleLLM: Benchmarking and Enhancing Role-Playing Abilities of LLMs. <a href="https://arxiv.org/abs/2310.00746">link</a></li>
+</ul>
+
+<div class="footer">
+<p>自主蒸馏方法论 v2 · 基于 LLM-as-a-Judge 和计算文体学研究 · 2026-07-24</p>
+</div>
+
+</body>
+</html>

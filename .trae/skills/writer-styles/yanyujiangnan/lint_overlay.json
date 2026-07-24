@@ -1,0 +1,19 @@
+{
+  "style": "yanyujiangnan",
+  "overrides": {
+    "simile_max_per_chapter": 6,
+    "not_a_is_b_max_per_chapter": 1,
+    "dialogue_ratio_min": 0.25,
+    "dialogue_ratio_max": 0.40
+  },
+  "disabled_rules": [],
+  "disabled_reason": {},
+  "custom_ban_words": [
+    {"word": "毛玻璃", "severity": "critical", "reason": "通货意象（SKILL明令禁止）"},
+    {"word": "隔了一层纱", "severity": "critical", "reason": "通货意象"},
+    {"word": "灰烬如雪", "severity": "critical", "reason": "类型通货意象（废土腔调陷阱）"},
+    {"word": "命运丝线", "severity": "critical", "reason": "类型通货意象（西幻腔调陷阱）"},
+    {"word": "古老的符文", "severity": "critical", "reason": "类型通货意象"}
+  ],
+  "note": "烟雨江南方向更克制：比喻上限收紧至6、不是A是B收紧至1。'极短独立句收束'是该风格签名，但受通用碎段率约束——签名手法允许存在，不许泛滥。"
+}

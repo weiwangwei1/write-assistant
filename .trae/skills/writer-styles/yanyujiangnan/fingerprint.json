@@ -1,0 +1,19 @@
+{
+  "card_type": "style_fingerprint_baseline",
+  "status": "pending",
+  "confidence": "none",
+  "note": "烟雨江南原作未入库。蒸馏期请执行：python style_fingerprint.py build 罪恶之城.txt 狩魔手记.txt 永夜君王.txt --author 烟雨江南 --out fingerprint.json",
+  "declared_targets": {
+    "dialogue_ratio": [
+      0.25,
+      0.35
+    ],
+    "chapter_words": [
+      3000,
+      5000
+    ],
+    "note": "来自SKILL.md声明值，非实测指纹"
+  },
+  "metrics": null,
+  "tolerance": {}
+}
