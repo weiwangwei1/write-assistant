@@ -1,7 +1,7 @@
 ---
 name: "chapter-writer"
-version: "2.3"
-description: "Chapter content writer for novels. v2.3: 新增goal_tracker读取+beat爽点类型标注(揭示≠爽)+悬念预算检查(基于Ch4-10第三方评审:爽点断顿/悬念过载). v2.2: 新增跨章事实表法则+高频AI词禁令+单章密度上限(基于Ch1-9审核数据:5个critical全部为跨章一致性错误). v2.1: 新增文笔质感法则7条. v2.0: 新增读者反馈驱动法则5条. v1.9: 新增剧情微观结构法则5条. v1.8: 新增角色形象渐入法则. v1.7: 新增吸引力放大法则6条. Generates chapter drafts based on outline, characters, and context memory."
+version: "2.4"
+description: "Chapter content writer for novels. v2.4: 新增修订同步要求(角色卡/伏笔表/目标追踪同步)+强化悬念窗口硬拦截(自审第5点)+字数预算中位值指引. v2.3: 新增goal_tracker读取+beat爽点类型标注(揭示≠爽)+悬念预算检查(基于Ch4-10第三方评审:爽点断顿/悬念过载). v2.2: 新增跨章事实表法则+高频AI词禁令+单章密度上限(基于Ch1-9审核数据:5个critical全部为跨章一致性错误). v2.1: 新增文笔质感法则7条. v2.0: 新增读者反馈驱动法则5条. v1.9: 新增剧情微观结构法则5条. v1.8: 新增角色形象渐入法则. v1.7: 新增吸引力放大法则6条. Generates chapter drafts based on outline, characters, and context memory."
 ---
 
 # 写手 (Chapter Writer) v2.3
@@ -87,6 +87,23 @@ description: "Chapter content writer for novels. v2.3: 新增goal_tracker读取+
 }
 ```
 
+### 修订同步要求（v2.4 新增）
+
+当 chapter-writer 执行 merged_review 的修订计划时，凡是涉及以下类型的修订项，**必须同步更新对应记忆文件**，不得留给 memory-manager 事后补登：
+
+| 修订类型 | 需同步更新的文件 | 说明 |
+|---------|----------------|------|
+| 角色卡变更（如角色首次出场/人设弧线调整/外貌补全） | `memory/characters.json` | 修订项中标注 `source: detail-reviewer` 且涉及角色卡 growth_arc/villain_design/appearance 的，必须同步修订角色卡对应字段 |
+| 新增伏笔/半揭动作 | `memory/foreshadowing_tracker.json` | 修订项中标注 `source: detail-reviewer` 且涉及 foreshadowing 的，必须补登 actual_progress 条目 |
+| 目标推进/闭环 | `memory/goal_tracker.json` | 修订项中涉及 goal 推进或闭环的，必须同步更新 goals 的 progress_log |
+
+**数据教训**：Ch11 终审发现 R005（封九霄角色卡同步）和 R023（伏笔补登）两项管理项未执行，导致后续章节可能基于错误人设写作。根因：chapter-writer 修订时只聚焦正文修改，未同步更新记忆文件。
+
+**执行规则**：
+1. 修订完成时，在交接卡中新增 `revision_sync` 字段，记录已同步更新的文件列表
+2. 若 merged_review 中存在上述类型的修订项但未执行同步，视为修订未完成
+3. memory-manager 入库时验证 `revision_sync` 字段，缺项则退回 chapter-writer 补执行
+
 ### 分镜（beat sheet）设计规范
 
 分镜是"大纲→正文"之间的桥梁，避免从大纲几句话直接跳到2500字正文导致节奏失控或偏离大纲。每章必须生成5-8个beat，每个beat明确：
@@ -96,14 +113,18 @@ description: "Chapter content writer for novels. v2.3: 新增goal_tracker读取+
 | `scene` | 场景名（地点+在场人物） |
 | `action` | 本beat的核心动作/事件（一句话） |
 | `purpose` | 本beat的目的：铺垫/爽点/伏笔/钩子/转场 |
-| `word_budget` | 本beat的字数预算（所有beat总和≈章节目标字数） |
+| `word_budget` | 本beat的字数预算（所有beat总和应设定为目标区间中位值：常规章3000-3200字，前10章2800-3000字。预留修订增删空间，避免踩下限导致修订后字数溢出上限） |
 
 分镜设计后，chapter-writer 必须**自审**以下5点：
 1. **beat覆盖大纲**：大纲指定本章推进的剧情节点是否全部落入某个beat？
 2. **节奏合理**：缩段（铺垫）/伸段（爽点）/断章钩的比例是否约60/30/10？
 3. **爽点位置**：爽点是否落在伸段而非缩段？章末钩子是否清晰？
 4. **密度上限**（法则二十二）：beat数/信息量/事件数是否触上限？
-5. **爽点标注与悬念预算**（法则二十三/二十四）：爽点beat是否标注S/A/B/C、reveal是否被误记为爽点、新开悬念是否在窗口余额内、本章是否推进至少1个active目标？
+5. **爽点标注与悬念预算**（法则二十三/二十四，v2.4 强化）：
+   - 爽点beat是否标注S/A/B/C？reveal是否被误记为爽点？
+   - **悬念窗口硬拦截**：写作前必须读取 `memory/goal_tracker.json` 的 `suspense_window`。若 active 已达 3 条（max_active=3），本章**不得开新悬念**——必须在 beat_sheet 中规划闭环至少 1 条悬念后才能开新悬念。超限时在 `goal_tracking.suspense_budget_check` 中显式标注："active=3/3已满，本章规划闭环X条后再开新悬念Y条"
+   - 本章是否推进至少1个active目标？
+   - **自审不通过则不得进入正文生成**——悬念超限且未规划闭环=自审失败，需调整分镜后重新自审
 
 自审通过后才进入正文生成。正文必须严格按照beat_sheet的scene顺序和word_budget执行，不得擅自增减beat或大幅偏离字数预算。
 

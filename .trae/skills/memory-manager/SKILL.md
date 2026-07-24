@@ -1,10 +1,10 @@
 ---
 name: "memory-manager"
-version: "1.2"
-description: "Memory manager for novel writing system. v1.2: 新增目标闭环追踪(goal_tracker.json)+主线进度条/反派梯子追踪+悬念活跃窗口维护——基于Ch4-10第三方评审(目标断头/火种断更/悬念过载). v1.1: 新增章节级大纲漂移记录(drift_log)+终审后强制入库定位(硬门禁下游). Manages hierarchical storage, generates summaries, maintains sliding window context. Invoke MANDATORILY after final-reviewer approves each chapter — next chapter must not start until memory is committed."
+version: "1.4"
+description: "Memory manager for novel writing system. v1.4: 新增终审条件验证(步骤1.5)+override条件追踪(session_pointer.pending_override_conditions). v1.3: 新增全局全文文件维护(output/{novel_title}_全文.txt重建模式)——每章入库时重建连贯性阅读全文，含动态进度头部. v1.2: 新增目标闭环追踪(goal_tracker.json)+主线进度条/反派梯子追踪+悬念活跃窗口维护——基于Ch4-10第三方评审(目标断头/火种断更/悬念过载). v1.1: 新增章节级大纲漂移记录(drift_log)+终审后强制入库定位(硬门禁下游). Manages hierarchical storage, generates summaries, maintains sliding window context. Invoke MANDATORILY after final-reviewer approves each chapter — next chapter must not start until memory is committed."
 ---
 
-# 记忆管家 (Memory Manager) v1.2
+# 记忆管家 (Memory Manager) v1.4
 
 > **流水线城市（v1.1 起强制）**：final-reviewer 终审通过后，memory-manager 是**不可跳过的强制步骤**。chief-editor 在其入库完成前不得启动下一章（硬门禁，见 chief-editor v1.1）。数据教训：Ch4–Ch10 连续跳过记忆入库，导致 session_pointer 停留在旧项目、章节摘要欠账 7 章，chapter-writer 跨章事实表失去数据源——跨章 critical 错误（Ch6-8 年代/人名/位置硬伤）均发生在欠账区间。
 
@@ -72,6 +72,7 @@ description: "Memory manager for novel writing system. v1.2: 新增目标闭环�
 | `memory/foreshadowing_tracker.json` | 伏笔状态追踪表 | 每章终稿入库时更新 |
 | `memory/session_pointer.json` | L5 会话恢复指针 | 每章终稿入库时更新 |
 | `memory/goal_tracker.json` | 目标闭环+主线进度条+反派梯子追踪表（v1.2 新增） | 每章终稿入库时更新 |
+| `output/{novel_title}_全文.txt` | 全章全文合集（连贯性阅读，重建模式）（v1.3 新增） | 每章终稿入库时重建 |
 | `memory/consistency_check/consistency_{N}.json` | 一致性自检报告 | 每10章触发 |
 | `memory/decision_log.jsonl` | 写作决策日志（追加） | 关键决策发生时 |
 | `logs/writing_log.jsonl` | 写作日志（追加写入） | 每章终稿入库时 |
@@ -259,6 +260,59 @@ description: "Memory manager for novel writing system. v1.2: 新增目标闭环�
   chapter_001.txt 和 chapter_002.txt 已被淘汰
   （它们的摘要仍保存在 chapter_summaries/ 中）
 ```
+
+---
+
+## 全局全文文件维护（v1.3 新增）
+
+维护 `output/{novel_title}_全文.txt`，将所有已定稿章节汇总为单个文件，方便连贯性阅读和通篇审阅。
+
+### 文件路径
+
+- **路径**：`output/{novel_title}_全文.txt`（novel_title 从 `config/novel_config.json` 的 title 字段读取）
+- **生成方式**：重建模式——每次入库时从 `output/` 目录读取所有 `chapter_*.txt`，按章节号排序后重新拼接
+- **触发时机**：每章终稿入库时（工作流程 Step 3.5）
+
+### 文件格式
+
+```
+{novel_title}
+
+——————————————————————————
+作者：{author}
+平台：{platform}
+类型：{genre}
+更新时间：{YYYY-MM-DD HH:mm}
+当前进度：Ch1-{N}全部完成
+——————————————————————————
+
+
+第1章 {title}
+
+{chapter_001 全文}
+
+
+第2章 {title}
+
+{chapter_002 全文}
+
+...
+```
+
+### 重建规则
+
+1. **读取所有章节**：扫描 `output/` 目录下所有 `chapter_*.txt` 文件，按章节号升序排列
+2. **读取配置**：从 `config/novel_config.json` 读取 title、author、platform、genre
+3. **组装头部**：书名 + 分隔线 + 元信息（含更新时间、当前进度 Ch1-N）+ 分隔线
+4. **逐章拼接**：按章节号顺序，每章格式为 `\n\n第N章 {title}\n\n{正文}\n`
+5. **整体写入**：将完整内容覆盖写入 `output/{novel_title}_全文.txt`（非追加）
+6. **章节标题来源**：从对应 `memory/chapter_summaries/chapter_XXX.json` 的 title 字段读取；如摘要不存在，用 `第N章` 占位
+
+### 设计理由
+
+- **重建而非追加**：章节重写场景下 `output/chapter_N.txt` 已更新，重建可自动同步，无需额外去重逻辑
+- **动态进度头部**：每次重建刷新"更新时间"和"当前进度"，方便快速确认最新状态
+- **与 output/ 目录一致性**：全文文件是 output/ 目录的只读投影，不独立存储内容
 
 ---
 
@@ -522,6 +576,11 @@ description: "Memory manager for novel writing system. v1.2: 新增目标闭环�
   },
   "open_decisions": [
     {"id": "D012", "topic": "陈默觉醒时机", "status": "pending", "note": "skeptic建议提前到120章，plot-architect认为205章更合理，待用户检查点确认"}
+  ],
+  "pending_override_conditions": [
+    {"id": "OC001", "source_chapter": 11, "condition": "ch12-13必须闭环至少1条悬念窗口", "due_chapter": 13, "status": "pending", "type": "cross_chapter"},
+    {"id": "OC002", "source_chapter": 11, "condition": "确认封九霄角色卡已同步修订（R005）", "due_chapter": 12, "status": "pending", "type": "management"},
+    {"id": "OC003", "source_chapter": 11, "condition": "确认foreshadowing_tracker已补登F-ch11-1/2/3（R023）", "due_chapter": 12, "status": "pending", "type": "management"}
   ]
 }
 ```
@@ -532,6 +591,12 @@ description: "Memory manager for novel writing system. v1.2: 新增目标闭环�
 2. **里程碑触发时更新**：recent_milestone 记录最近一次检查点/卷宗结束/伏笔全揭
 3. **质量趋势分析时更新**：quality_trend 每10章更新
 4. **决策发生时更新**：open_decisions 记录未决决策
+5. **override条件追踪（v1.4 新增）**：pending_override_conditions 每章入库时更新——
+   - 从步骤1.5的终审条件验证获取状态变更
+   - 已执行的条件 status 改为 completed
+   - 检查 due_chapter：当前章节 ≥ due_chapter 且 status 仍为 pending 时，在 next_action 中高亮提醒
+   - 新增本章终审产生的 override 条件（如有）
+   - chief-editor 在下一章启动前读取 pending_override_conditions，确保到期条件在本章执行
 
 ### 新对话开局恢复流程
 
@@ -818,6 +883,14 @@ Step 4: 向用户汇报
    ├─ 获取 chapter_num、title、final_text、word_count
    └─ 确认 ready_to_publish=true
 
+1.5 终审条件验证（v1.4 新增）★
+   ├─ 读取 handoff/final_review_{N}.json 的 conditions 字段
+   ├─ 对照 chapter_draft.json 的 revision_sync 字段，检查终审条件中的管理项是否已执行
+   ├─ 已执行的标记为 completed
+   ├─ 未执行的管理项（如角色卡同步/伏笔补登）标记为 pending，在步骤7中记入 session_pointer 的 pending_override_conditions
+   ├─ 跨章条件（如"ch12-13必须闭环1条悬念"）记入 pending_override_conditions，标注 due_chapter（到期章节）
+   └─ 在 next_action 中提醒：存在N条pending override条件需在后续章节执行
+
 2. 生成章节摘要
    ├─ 分析终稿正文，提取核心情节
    ├─ 识别关键事件（3-8个）
@@ -829,6 +902,13 @@ Step 4: 向用户汇报
    ├─ 将终稿全文保存至 memory/recent_chapters/chapter_XXX.txt
    ├─ 检查文件数量
    └─ 如超过3个，删除最旧章节文件
+
+3.5 重建全局全文文件 ★（v1.3新增）
+   ├─ 读取 output/ 目录所有 chapter_*.txt（按章节号排序）
+   ├─ 读取 config/novel_config.json 获取书名、作者、平台、类型
+   ├─ 读取各章 chapter_summaries 获取章节标题
+   ├─ 重建全文文件：头部元信息（含更新时间、当前进度Ch1-N）+ 逐章正文
+   └─ 覆盖写入 output/{novel_title}_全文.txt
 
 4. 更新角色状态
    ├─ 识别本章出场的角色
@@ -862,7 +942,13 @@ Step 4: 向用户汇报
    ├─ 刷新 foreshadowing_quick_status（各伏笔的 status/last_action_chapter/next_milestone）
    ├─ 写入 last_session_summary（本章生产过程摘要：评分/重写/质检结果）
    ├─ 写入 next_action（下一章的大纲规划摘要）
-   └─ 更新 open_decisions（如有新决策待定）
+   ├─ 更新 open_decisions（如有新决策待定）
+   └─ 更新 pending_override_conditions（v1.4 新增）★：
+      ├─ 从步骤1.5获取终审条件验证结果
+      ├─ 已执行的条件标记为 completed
+      ├─ 未执行的条件保留 pending，检查是否有 due_chapter 已到期
+      ├─ 到期未执行的条件在 next_action 中高亮提醒："⚠️ OC00X 条件已到期（due_chapter=N），本章必须执行"
+      └─ 新增本章终审产生的 override 条件（如有）
 
 8. 触发一致性自检（每10章）★
    ├─ 判断 chapter_num % 10 == 0
@@ -916,3 +1002,6 @@ Step 4: 向用户汇报
 16. **产能进度更新**：每章入库时，更新 `config/novel_config.json` 的 `production_schedule.actual_chapters_done`，计算偏差天数。偏差>3天时在 session_pointer 的 `pending_decisions` 中添加预警。
 17. **memes_used 记录**：每章入库时，从交接卡读取 `memes_used` 字段，记录到 chapter_summary 中。便于 detail-reviewer 审核梗时效性时引用。
 18. **goal_tracker 不可跳过**：goal_tracker.json 与 session_pointer.json 同为硬门禁验证项（见 chief-editor v1.2）。目标的新建/推进/闭环判定必须基于正文实际内容，不得仅凭大纲推断——目标断头预警（chapters_since_progress≥4）是 quality-reviewer v1.7 的扣分依据，漏记等于放过断头的目标。
+19. **全局全文文件用重建模式**（v1.3新增）：`output/{novel_title}_全文.txt` 每章入库时从 `output/` 目录所有章节文件重新拼接（覆盖写入，非追加），确保与 `output/chapter_*.txt` 完全一致，自动处理重写场景。文件头部含动态进度信息（更新时间、当前进度 Ch1-N），每次重建时刷新。章节标题从 `memory/chapter_summaries/chapter_XXX.json` 的 title 字段读取。
+20. **终审条件验证不可跳过**（v1.4新增）：步骤1.5的终审条件验证是入库前的强制检查。final-reviewer 给出的 conditions 中，管理项（角色卡同步/伏笔补登等）必须由 chapter-writer 在修订阶段执行（见 chapter-writer v2.4 修订同步要求），memory-manager 验证 `revision_sync` 字段。跨章条件（如"ch12-13闭环悬念"）记入 `pending_override_conditions` 追踪至到期。数据教训：Ch11 终审发现 R005/R023 两项管理项未执行，根因是修订与记忆更新脱节。
+21. **override条件到期提醒**（v1.4新增）：`pending_override_conditions` 中 due_chapter 已到期但 status 仍为 pending 的条件，必须在 next_action 中高亮提醒（"⚠️ OC00X 条件已到期"）。chief-editor 在下一章启动前读取此字段，确保到期条件在本章执行。若到期条件连续2章未执行，升级为 critical 预警上报用户。

@@ -1,10 +1,81 @@
 ---
 name: "de-ai-processor"
-version: "1.2"
-description: "De-AI processor for novel chapters. v1.2: 扩展情绪直说检测(三阶梯法+无意义行为替代)+新增段落逻辑链检测. v1.1: 新增Show vs Tell检测(Tell式角色塑造识别). Detects and eliminates AI writing patterns, humanizes language, and ensures text reads like a human web novel author wrote it. Invoke after chapter passes review and before platform adaptation."
+version: "1.3"
+description: "De-AI processor for novel chapters. v1.3: 新增分析模式(analysis_mode)——只检测输出报告不改文本，用于审核并行+统一合并. v1.2: 扩展情绪直说检测(三阶梯法+无意义行为替代)+新增段落逻辑链检测. v1.1: 新增Show vs Tell检测(Tell式角色塑造识别). Detects and eliminates AI writing patterns, humanizes language, and ensures text reads like a human web novel author wrote it. Invoke after chapter passes review and before platform adaptation."
 ---
 
 # 去AI化师 (De-AI Processor) v1.2
+
+## 工作模式
+
+本 Skill 支持两种工作模式：
+
+### 模式1：完整模式（默认）
+
+检测AI痕迹 → 直接修改文本 → 输出润色后的全文。用于串行流水线（当前标准流程）。
+
+- 前置条件：`review_feedback.json` 的 `passed=true`
+- 输出：`handoff/de_ai_polish.json`（含 polished_text 全文）
+- 直接修改文本
+
+### 模式2：分析模式 (analysis_mode)（v1.3 新增 ★）
+
+只执行检测，输出建议清单，**不修改文本**。用于审核并行+统一合并（parallel-execution.md 模式7）。
+
+- 前置条件：无 passed 门禁（与 detail-reviewer 同时启动，不依赖 quality-reviewer 通过）
+- 输出：`handoff/de_ai_analysis_ch{N}.json`（检测报告，含建议但不含修改后文本）
+- **不修改文本**，不输出 polished_text
+
+### 分析模式输出格式
+
+```json
+{
+  "card_type": "de_ai_analysis",
+  "mode": "analysis_mode",
+  "timestamp": "ISO8601",
+  "from_agent": "de-ai-processor",
+  "to_agent": "review-merger",
+  "chapter_num": 5,
+  "ai_score_before": 6.5,
+  "detected_issues": [
+    {
+      "category": "emotion_telling",
+      "location": "第3段第2句",
+      "original": "他感到一阵恐惧涌上心头",
+      "severity": "major",
+      "suggestion": "改为动作暗示：后背一凉，手指攥紧了手机",
+      "revised": "后背一凉，手指攥紧了手机"
+    }
+  ],
+  "stats": {
+    "total_issues": 12,
+    "by_category": {
+      "sentence_uniformity": 2,
+      "de_density": 1,
+      "emotion_telling": 3,
+      "formal_transition": 2,
+      "word_repetition": 1,
+      "dialogue_written": 1,
+      "four_char_idiom": 1,
+      "precise_number": 1
+    }
+  }
+}
+```
+
+### 分析模式工作流程
+
+```
+1. 读取章节草稿（handoff/chapter_draft.json 或 output/chapter_00N.txt）
+2. 读取参考文件（characters.json + recent_chapters/）
+3. 执行14类AI痕迹检测（同完整模式的检测清单）
+4. 为每处问题生成建议（含 original/suggestion/revised）
+5. 计算 ai_score_before
+6. 输出检测报告到 handoff/de_ai_analysis_ch{N}.json
+   （不修改文本，不输出 polished_text，不执行修复）
+```
+
+---
 
 ## 角色定位
 

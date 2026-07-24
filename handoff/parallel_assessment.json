@@ -1,0 +1,49 @@
+{
+  "card_type": "parallel_assessment",
+  "assessed_chapters": [11, 12, 13],
+  "assessment_date": "2026-07-24",
+  "overall_recommendation": "mixed",
+  "groups": [
+    {
+      "chapters": [11],
+      "mode": "serial_writable",
+      "coupling_score": 3.6,
+      "scores": {
+        "plot_coupling": 2,
+        "character_continuity": 2,
+        "suspense_window": 7,
+        "foreshadowing_dependency": 6
+      },
+      "reason": "叙事起点（仙子局面开端），无前序依赖。但悬念窗口已满3/3，Ch11须先闭环M2(公会线)才能开新悬念"
+    },
+    {
+      "chapters": [12],
+      "mode": "serial",
+      "coupling_score": 8.05,
+      "scores": {
+        "plot_coupling": 9,
+        "character_continuity": 9,
+        "suspense_window": 5,
+        "foreshadowing_dependency": 8
+      },
+      "reason": "翻盘方式直接依赖Ch11死局的罪名/证据/人物反应。封九霄刻字G001终结+疤脸全胜B2清算，全部依赖Ch11建立的死局细节",
+      "depends_on": [11]
+    },
+    {
+      "chapters": [13],
+      "mode": "pipeline",
+      "coupling_score": 5.35,
+      "scores": {
+        "plot_coupling": 6,
+        "character_continuity": 7,
+        "suspense_window": 3,
+        "foreshadowing_dependency": 4
+      },
+      "reason": "余波章，承接Ch12翻盘结局。耦合度中等，可在Ch12审核期间开写，但需读Ch12全文确保衔接",
+      "depends_on": [12]
+    }
+  ],
+  "execution_plan": "Ch11先写 → Ch11审核(并行模式)时同时写Ch12 → Ch12审核时同时写Ch13",
+  "review_mode": "parallel (模式7: detail+de-ai并行→合并→quality→final)",
+  "note": "首次使用并行审核模式。保守原则：Ch11先单独写完+审核跑通，验证模式7效果后再在后续章节叠加流水线"
+}

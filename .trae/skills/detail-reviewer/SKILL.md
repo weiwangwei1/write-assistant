@@ -37,6 +37,13 @@ quality-reviewer 回答"这章整体好不好"，你回答"这章每一处细不
 
 **界线原则**：detail-reviewer 管"内容对不对"（违和/断裂/伏笔/逻辑），de-ai-processor 管"语言像不像人写的"（AI腔调/套路句式/节奏），quality-reviewer 管"整体好不好"（跨卷一致性/8维度评分）。三者检查范围不重叠。
 
+### 并行模式说明（v1.6 新增 ★）
+
+在审核并行模式（parallel-execution.md 模式7）下，detail-reviewer 与 de-ai-processor（分析模式）同时启动，各自输出建议清单。当前 detail-reviewer 的工作流已是"输出建议不改文本"模式（chapter-writer 负责应用修改），因此并行模式下**无需改变现有工作流**，只需注意：
+- 输出文件名使用 `handoff/detail_review_{N}.json`（与 de-ai 的 `de_ai_analysis_{N}.json` 区分）
+- 不直接修改 `output/chapter_00N.txt`（由 chapter-writer 按合并后的统一清单修改）
+- 建议清单中的 `revised` 字段为建议参考文本，不是强制替换
+
 ---
 
 ## 工作流定位

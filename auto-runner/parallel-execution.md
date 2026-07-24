@@ -442,3 +442,134 @@ Agent 4: 搜索"龙空论坛写作经验精华" → research/longkong_tips.md
 | 日常连更（无存稿） | 模式5 | 并行写2-3章+连续性检查 |
 | 研究/竞品分析 | 模式6 | 多维度同时搜索 |
 | 单章精修 | 模式4 | detail+de-ai并行加速单章审核 |
+| 日常单章生产（通用） | 模式7 | 审核并行+统一合并，每章省10-15min |
+
+---
+
+## 模式7: 审核并行+统一合并 (Review Parallel + Merge) v1.1
+
+### 适用场景
+
+单章生产中的审核阶段。将 detail-reviewer 和 de-ai-processor 从串行改为并行，各自输出修改建议（不改文本），由合并步骤统一处理。
+
+### 核心改造
+
+将 de-ai-processor 拆分为两阶段：**分析阶段**（只检测输出报告）+ **应用阶段**（合并后统一改文本）。
+
+### 依赖关系
+
+```
+chapter-writer 产出草稿
+    ↓
+┌───────────────────────────────────────────┐
+│  PARALLEL (同时启动，各出意见，不改文本)    │
+│  Agent A: detail-reviewer (内容分析)      │
+│    → 逐句/逐梗/逐伏笔/逻辑/事实表/暗线      │
+│    → 输出 detail_review.json (建议清单)    │
+│                                           │
+│  Agent B: de-ai-processor 分析模式        │
+│    → 14类AI痕迹检测（只检测不修改）         │
+│    → 输出 de_ai_analysis.json (建议清单)   │
+└───────────────────────────────────────────┘
+    ↓
+review-merger (5min) → 合并两份建议，解决冲突，输出统一修改清单
+    ↓
+chapter-writer 按统一清单修改 (10min)
+    ↓
+quality-reviewer (15min) → 8维评分
+    ↓
+final-reviewer (15min) → 终审裁决
+```
+
+### 合并冲突处理规则
+
+| 场景 | detail 意见 | de-ai 意见 | 合并策略 |
+|------|------------|-----------|---------|
+| 同句不同因 | 第3段逻辑断裂 | 第3段句式工整 | 合为一条，两个reason，取severity更高的改法 |
+| 同句不冲突 | 第5段伏笔太明显 | 第5段情绪直说 | 两条独立建议，分别处理 |
+| 仅一方有 | 第7段角色台词串味 | 无 | 保留单方建议 |
+| 冲突修改 | 建议改为A句 | 建议改为B句 | detail优先（内容正确性>语言自然度），de-ai降级为备选 |
+
+### Agent分配
+
+```
+Agent A: detail-reviewer → handoff/detail_review_ch{N}.json (建议清单，不改文本)
+Agent B: de-ai-processor (分析模式) → handoff/de_ai_analysis_ch{N}.json (检测报告，不改文本)
+--- MERGE ---
+Agent C (主控/chief-editor): 合并两份建议 → handoff/merged_review_ch{N}.json (统一修改清单)
+```
+
+### 预期提速
+
+串行4步×15min = 60min → 并行(detail+de-ai)15min + merger 5min + quality 15min + final 15min = 50min，**提速1.2x**
+
+多章连审时收益更大：3章从210min降到150min，**提速1.4x**
+
+### 风险控制
+
+- de-ai 分析模式只输出检测报告，不修改文本，避免与 detail-reviewer 的修改冲突
+- 合并步骤必须检查两份报告是否有同一句子的冲突修改建议
+- quality-reviewer 仍需读取 detail_review 确认问题已修复（合并后的修改清单作为参考）
+
+---
+
+## 并行写作可行性评估 (Parallel Writing Assessment) v1.1
+
+### 触发时机
+
+每批章节（2-5章）写作前，由 chief-editor 触发评估，决定采用串行、流水线还是并行写作。
+
+### 评估维度与评分
+
+| 维度 | 评估内容 | 评分标准 | 权重 |
+|------|---------|---------|------|
+| **剧情耦合度** | 后章是否依赖前章结局 | 死局→翻盘=高耦合(9-10)；独立案件=低耦合(1-3) | 40% |
+| **角色状态连续性** | 前章结尾角色状态是否决定后章走向 | 被捕→审讯=强依赖(8-10)；日常=弱依赖(1-3) | 25% |
+| **悬念窗口约束** | 悬念闭环是否影响后续章节 | 需先闭环才能开新悬念=约束(7-10) | 20% |
+| **伏笔状态依赖** | 本章伏笔动作是否依赖前章结果 | 揭示需要前章铺垫=依赖(7-10) | 15% |
+
+### 耦合度判定
+
+| 加权总分 | 判定 | 处理 |
+|---------|------|------|
+| ≥7.0 | **高耦合** | 串行写作，不可并行 |
+| 4.0-6.9 | **中耦合** | 流水线模式（前章写完→审核时同时写后章） |
+| <4.0 | **低耦合** | 可并行写作（同时启动2-3章） |
+
+### 保守原则
+
+- 不确定时按高耦合处理（串行）
+- 评估误判的代价远大于串行的额外耗时
+- 首次使用并行写作时，最多2章并行，不用3章
+
+### 评估报告格式
+
+```json
+{
+  "card_type": "parallel_assessment",
+  "assessed_chapters": [11, 12, 13],
+  "overall_recommendation": "mixed",
+  "groups": [
+    {
+      "chapters": [11],
+      "mode": "parallel_writable",
+      "coupling_score": 2.0,
+      "reason": "叙事起点，无前序依赖"
+    },
+    {
+      "chapters": [12],
+      "mode": "serial",
+      "coupling_score": 9.0,
+      "reason": "翻盘方式直接依赖前章死局细节",
+      "depends_on": [11]
+    }
+  ],
+  "execution_plan": "Ch11先写 → Ch11审核时同时写Ch12 → 串行入库"
+}
+```
+
+### 评估数据源
+
+- `memory/outline.json` 的 beat_breakdown（章节beat规划）
+- `memory/goal_tracker.json`（目标依赖、悬念窗口状态）
+- `memory/foreshadowing_tracker.json`（伏笔状态依赖）

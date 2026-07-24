@@ -1,5 +1,5 @@
 {
-  "snapshot_date": "2026-07-22",
+  "snapshot_date": "2026-07-24",
   "agents": [
     {
       "name": "chapter-writer",
@@ -56,6 +56,20 @@
       "rule_sections": 1,
       "key_upgrades": [],
       "total_rules": 5
+    },
+    {
+      "name": "memory-manager",
+      "version": "1.3",
+      "rule_sections": 10,
+      "key_upgrades": ["v1.1大纲漂移记录+终审后强制入库硬门禁", "v1.2目标闭环追踪goal_tracker+主线进度条+悬念窗口", "v1.3全局全文文件重建(output/{novel_title}_全文.txt)"],
+      "total_rules": 19
+    },
+    {
+      "name": "chief-editor",
+      "version": "1.3",
+      "rule_sections": 8,
+      "key_upgrades": ["v1.1记忆入库硬门禁", "v1.2 goal_tracker门禁验证", "v1.3 memory-manager入库时重建全局全文文件"],
+      "total_rules": 18
     }
   ],
   "cross_references": [
@@ -70,7 +84,8 @@
     "character-designer Show vs Tell规则 ↔ de-ai-processor十三(Tell式角色塑造检测) [v1.4/v1.1新增]",
     "character-designer主角4型模板 ↔ plot-architect金手指四象限设计法(类型匹配爽感路径) [v1.4新增]",
     "plot-architect反派三级体系 ↔ character-designer反派4型分类法 [v1.4新增]",
-    "plot-architect高潮铺垫链 ↔ chapter-writer十一(伏笔半揭) ↔ quality-reviewer期待感持续性检测 [v1.4/v1.9/v1.4新增]"
+    "plot-architect高潮铺垫链 ↔ chapter-writer十一(伏笔半揭) ↔ quality-reviewer期待感持续性检测 [v1.4/v1.9/v1.4新增]",
+    "memory-manager全局全文文件重建 ↔ chief-editor章节循环存稿output/ [v1.3/v1.3新增]"
   ],
   "data_sources_learned": [
     "龙空论坛21篇精华帖（画面感/爽文认知/商业化/结构/角色/节奏/书名/伏笔/金手指/运营）",
@@ -80,5 +95,5 @@
     "实际写作中暴露的问题（模式化/角色单薄/术语可读性/跨文件冲突/形象缺失/吸引力不足）",
     "阅文作家专栏全量分析46专栏628篇文章（期待感分析/剧情微观结构/金手指设计/角色设计/长篇质控/Show vs Tell/矛盾层次/高潮铺垫/世界观设计/体系设计/故事延长/开篇技巧）"
   ],
-  "total_rules_estimated": 142
+  "total_rules_estimated": 145
 }

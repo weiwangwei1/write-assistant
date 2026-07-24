@@ -1,7 +1,7 @@
 ---
 name: "chief-editor"
-version: "1.2"
-description: "AI writing team coordinator for novel creation. v1.2: 记忆入库硬门禁加入goal_tracker验证——基于F1-F5框架补丁(goal_tracker与session_pointer同为门禁验证项). v1.1: 新增记忆入库硬门禁(memory-manager完成前禁止开写下一章)——基于Ch4-10连续跳账事故. Manages workflow, dispatches tasks to agents, tracks progress. Invoke when starting a new novel, beginning daily writing, checking status, or coordinating chapter generation."
+version: "1.5"
+description: "AI writing team coordinator for novel creation. v1.5: 入库硬门禁新增第4项验证(pending_override_conditions到期检查)+chapter-writer修订同步要求联动. v1.4: 章节循环新增并行写作评估+审核并行(模式7:detail+de-ai并行→合并→quality→final). v1.3: memory-manager入库时自动重建全局全文文件(output/{novel_title}_全文.txt)——连贯性阅读. v1.2: 记忆入库硬门禁加入goal_tracker验证——基于F1-F5框架补丁(goal_tracker与session_pointer同为门禁验证项). v1.1: 新增记忆入库硬门禁(memory-manager完成前禁止开写下一章)——基于Ch4-10连续跳账事故. Manages workflow, dispatches tasks to agents, tracks progress. Invoke when starting a new novel, beginning daily writing, checking status, or coordinating chapter generation."
 ---
 
 # 总编 (Chief Editor / Coordinator)
@@ -190,26 +190,36 @@ Step 4: 向用户汇报当前指针 ★ 必须执行
 进入 `chapter_loop` 阶段后，对每一章执行标准生产闭环：
 
 1. **选当前章节**：读取 task_plan 的 current_chapter，确认该章节在总大纲中的卷宗与情节线位置
-2. **调用 chapter-writer**：派发章节写作任务，写手读取交接卡与记忆系统生成初稿，产出 `handoff/chapter_draft.json`
-3. **调用 detail-reviewer**：派发细节控审核任务，对初稿进行逐句/逐梗/逐伏笔/逐逻辑的微观打磨，产出 `handoff/detail_review_{N}.json`
-4. **细节判定**：
-   - overall_verdict = major_rewrite：critical 问题过多，退回 chapter-writer 整章重写，不计入重写次数
-   - overall_verdict = needs_revision：退回 chapter-writer 按逐条建议修改，修改后复审 detail-reviewer
-   - overall_verdict = polished：细节通过，进入宏观评审
-5. **调用 quality-reviewer**：派发宏观审稿任务，对打磨后的章节进行8维+读者画像评分，产出 `handoff/review_feedback.json`
+1.5. **并行写作评估**（v1.4 新增 ★）：每批章节（2-5章）写作前，评估接下来几章的耦合度，决定写作模式。详见 `auto-runner/parallel-execution.md` 的「并行写作可行性评估」章节
+   - 读取 outline.json 的 beat_breakdown + goal_tracker.json + foreshadowing_tracker.json
+   - 按4维度（剧情耦合度40%/角色状态连续性25%/悬念窗口约束20%/伏笔状态依赖15%）评分
+   - 加权总分≥7.0=串行；4.0-6.9=流水线；<4.0=可并行写作
+   - 保守原则：不确定时按串行处理
+   - 产出 `handoff/parallel_assessment.json`
+2. **调用 chapter-writer**：按评估结果选择写作模式（串行/流水线/并行），写手读取交接卡与记忆系统生成初稿，产出 `handoff/chapter_draft.json`
+3. **审核并行**（v1.4 新增 ★）：同时启动 detail-reviewer 和 de-ai-processor（分析模式），各自输出建议清单不改文本
+   - Agent A: detail-reviewer → `handoff/detail_review_{N}.json`（逐句/逐梗/逐伏笔/逻辑/事实表/暗线建议）
+   - Agent B: de-ai-processor 分析模式 → `handoff/de_ai_analysis_{N}.json`（14类AI痕迹检测建议）
+   - 详见 `auto-runner/parallel-execution.md` 模式7
+3.5. **合并审核意见**（v1.4 新增 ★）：chief-editor 合并两份建议，解决冲突（detail优先原则），输出 `handoff/merged_review_{N}.json`（统一修改清单）
+4. **细节省略判定**：
+   - merged_review 中 critical 问题过多（>3处）：退回 chapter-writer 整章重写，不计入重写次数
+   - 有 major 问题：退回 chapter-writer 按统一修改清单修改，修改后进入 quality-reviewer
+   - 无 major/critical：进入宏观评审
+5. **调用 quality-reviewer**：派发宏观审稿任务，对修改后的章节进行8维+读者画像评分，产出 `handoff/review_feedback.json`
 6. **评分判定**：
    - 评分 < 8：判定不达标，进入重写分支
    - 评分 >= 8：判定通过，进入发布分支
 7. **重写分支（评分 < 8）**：
    - 检查当前章节重写次数，若已达 3 次上限，记录错误并暂停该章节，向用户汇报
    - 若未达上限，递增 rewrite_count，重新调用 chapter-writer（携带 review_feedback.json 进行针对性重写）
-   - 写手重写后重新走 detail-reviewer → quality-reviewer 流程，循环至通过或达上限
+   - 写手重写后重新走 审核并行(步骤3) → quality-reviewer 流程，循环至通过或达上限
 8. **发布分支（评分 >= 8）**：
-   - 调用 de-ai-processor：对通过审核的正文进行去AI化润色，消除AI写作痕迹
+   - 调用 de-ai-processor（完整模式）：对通过审核的正文进行去AI化润色（应用分析模式的建议+二次检测），消除AI写作痕迹
    - 调用 fanqie-adapter：将去AI化后的正文适配番茄平台格式
    - 调用 final-reviewer：派发终审裁决任务，由终审员进行8维度终审评分（均分≥9.5才放行），产出 `handoff/final_review_{N}.json`；若 verdict=rejected 则退回 chapter-writer 重走优化流程（终审退回最多2轮，第3轮仍不通过则暂停生产上报用户）
-   - 调用 memory-manager：更新章节摘要、最近章节全文、角色 current_state、伏笔状态追踪、session_pointer、大纲漂移记录、goal_tracker（目标闭环/主线进度条/悬念窗口）等记忆
-   - **记忆入库硬门禁（v1.1 新增，v1.2 扩展）**：memory-manager 完成入库（章节摘要+session_pointer+伏笔表+漂移记录+goal_tracker 全部写入）前，**禁止启动下一章写作**。数据教训：Ch4–Ch10 曾连续跳过记忆入库，导致 session_pointer 停留在旧项目、章节摘要欠账7章，跨章事实表失去数据源。每章启动 chapter-writer 前，chief-editor 必须验证三项：①上一章的 `memory/chapter_summaries/chapter_{N-1}.json` 存在；②session_pointer.last_updated_chapter == N-1；③`memory/goal_tracker.json` 存在且 last_updated_chapter == N-1（v1.2 新增）。任一不满足先补账再开写
+   - 调用 memory-manager：更新章节摘要、最近章节全文、角色 current_state、伏笔状态追踪、session_pointer、大纲漂移记录、goal_tracker（目标闭环/主线进度条/悬念窗口）、**重建全局全文文件 `output/{novel_title}_全文.txt`**（v1.3新增，连贯性阅读用）等记忆
+   - **记忆入库硬门禁（v1.1 新增，v1.2 扩展，v1.5 再扩展）**：memory-manager 完成入库（章节摘要+session_pointer+伏笔表+漂移记录+goal_tracker 全部写入）前，**禁止启动下一章写作**。数据教训：Ch4–Ch10 曾连续跳过记忆入库，导致 session_pointer 停留在旧项目、章节摘要欠账7章，跨章事实表失去数据源。每章启动 chapter-writer 前，chief-editor 必须验证四项：①上一章的 `memory/chapter_summaries/chapter_{N-1}.json` 存在；②session_pointer.last_updated_chapter == N-1；③`memory/goal_tracker.json` 存在且 last_updated_chapter == N-1（v1.2 新增）；④session_pointer.pending_override_conditions 中无 due_chapter ≤ N 且 status=pending 的条件（v1.5 新增）——如有到期未执行的 override 条件，chief-editor 必须在本章 chapter-writer 的写作指令中明确要求执行该条件，不得跳过。任一不满足先补账再开写
    - 存稿 output/：将最终章节正文写入 `output/chapter_{N}.txt`（或对应平台格式）
 8.5. **触发人工检查点（按节点类型）**：定稿入库后检查是否命中检查点节点
    - 黄金三章（第1/2/3章）：调度 human-checkpoint（golden_chapter），呈现本章亮点+钩子+爽点+伏笔给用户
@@ -222,13 +232,15 @@ Step 4: 向用户汇报当前指针 ★ 必须执行
 11. **循环或收尾**：若 daily_completed 已达 daily_target，汇报当日完成情况；若 current_chapter 已超过总章节数，将 phase 设为 `completed`
 
 ```
-选当前章节 → chapter-writer（先分镜后正文）→ detail-reviewer → 细节判定?
-   ├─ major_rewrite → chapter-writer整章重写（不计重写次数）→ detail-reviewer复审
-   ├─ needs_revision → chapter-writer按建议修改 → detail-reviewer复审
-   └─ polished → quality-reviewer → 评分<8?
-       ├─ 是 → (重写次数<3?) chapter-writer重写 → detail-reviewer → quality-reviewer（循环）
+选当前章节 → 并行写作评估(v1.4) → chapter-writer（按评估结果选模式）
+→ 审核并行: detail-reviewer ─┐
+           de-ai分析模式 ──┘ → 合并审核意见(v1.4) → 细节省略判定?
+   ├─ critical>3 → chapter-writer整章重写（不计重写次数）→ 审核并行复审
+   ├─ 有major → chapter-writer按统一清单修改 → quality-reviewer
+   └─ 无major/critical → quality-reviewer → 评分<8?
+       ├─ 是 → (重写次数<3?) chapter-writer重写 → 审核并行(步骤3) → quality-reviewer（循环）
        │       └─ (已达3次) 记录错误 → 暂停 → 汇报用户
-       └─ 否 → de-ai-processor → fanqie-adapter → final-reviewer（终审裁决）→ memory-manager → 存稿output/
+       └─ 否 → de-ai完整模式 → fanqie-adapter → final-reviewer（终审裁决）→ memory-manager → 存稿output/
                → 命中检查点? → human-checkpoint（黄金三章/卷宗高潮/伏笔全揭）
                → 更新进度 → (current_chapter%10==0?) 质量趋势监控 → 下一章/收尾
 ```
