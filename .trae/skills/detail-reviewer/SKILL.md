@@ -528,3 +528,17 @@ fanqie-adapter 番茄平台适配
 7. **效率与质量平衡**：每章审核控制在合理范围内。2500字的章节，通常10-20条修改建议足够，不需要100条。
 8. **v1.3检查以minor为主**（v1.3新增）：跨章隐喻意象一致性、同场景逐字重复、术语指代歧义三类检查发现的问题通常是minor级别。仅当术语指代歧义导致读者严重误解关键剧情时，可升级为major。不要将正常的文学修辞多样性误判为隐喻不一致。
 9. **核心隐喻体系优先**（v1.3新增）：隐喻一致性检查不是禁止所有异质比喻，而是确保核心隐喻体系（如"弦"）不被异质意象（如"电线""电路"）替代。偶尔使用其他比喻丰富表达是可以的，但对同一核心现象的比喻应保持一致。
+
+---
+
+## fast_io.ps1 集成（v1.6+）
+执行文件操作时，优先使用 `auto-runner/fast_io.ps1` 中的加速函数：
+
+| 场景 | fast_io 写法 | 加速比 |
+|------|-------------|--------|
+| 读取章节草稿正文 | `FastReadFile "output/chapter_NNN.txt"` | 1.80x |
+| 按行读取逐句审核 | `FastReadLines $path` | 3.94x |
+| 读取大纲伏笔计划 | `FastReadJson "memory/outline.json"` | 1.91x |
+| 读取角色卡 | `FastReadJson "memory/characters/{name}.json"` | 1.91x |
+| 写入审核报告 | `FastWriteJson -Path "handoff/chapters/detail_review_chNNN.json" -Object $report` | 1.83x |
+| 检查文件存在性 | `FastFileExists $path` | 1.76x |

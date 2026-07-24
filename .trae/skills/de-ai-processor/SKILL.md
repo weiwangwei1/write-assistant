@@ -510,3 +510,15 @@ description: "De-AI processor for novel chapters. v1.3: 新增分析模式(analy
 5. **文风连贯**：参考 recent_chapters 中的既有文风，确保润色后与前后章节风格一致
 6. **变更可追溯**：每处修改都必须记录 original/polished/reason，便于审稿员或总编抽查
 7. **不越权**：不修改大纲、角色卡或任何记忆文件。只输出 polished_text 和变更日志
+
+---
+
+## fast_io.ps1 集成（v1.4+）
+执行文件操作时，优先使用 `auto-runner/fast_io.ps1` 中的加速函数：
+
+| 场景 | fast_io 写法 | 加速比 |
+|------|-------------|--------|
+| 读取章节正文 | `FastReadFile "output/chapter_NNN.txt"` | 1.80x |
+| 按行读取（逐句分析） | `FastReadLines $path` | 3.94x |
+| 写入去AI化报告 | `FastWriteJson -Path "handoff/chapters/deai_analysis_chNNN.json" -Object $report` | 1.83x |
+| 写入润色后正文 | `FastWriteFile -Path $path -Content $polishedText` | 1.48x |

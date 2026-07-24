@@ -812,3 +812,17 @@ v2.5起，草稿交接卡只存元数据：
 - 每章节省约8-16KB读写
 - 消除双重存储不一致风险
 - 审核员读取路径统一
+
+### fast_io.ps1 集成（v2.5+）
+执行文件操作时，优先使用 `auto-runner/fast_io.ps1` 中的加速函数（需先 dot-source 加载）：
+
+| 场景 | 原生写法 | fast_io 写法 | 加速比 |
+|------|---------|-------------|--------|
+| 读取前章正文（衔接） | `Get-Content $path -Raw` | `FastReadFile $path` | 1.80x |
+| 读取大纲JSON | `Get-Content $path \| ConvertFrom-Json` | `FastReadJson $path` | 1.91x |
+| 按行读取章节（检查格式） | `Get-Content $path` | `FastReadLines $path` | 3.94x |
+| 写入章节正文 | `Set-Content $path -Value $text` | `FastWriteFile -Path $path -Content $text` | 1.48x |
+| 写入草稿元数据JSON | `$obj \| ConvertTo-Json \| Set-Content $path` | `FastWriteJson -Path $path -Object $obj` | 1.83x |
+| 写入TXT预览文件 | `Set-Content $path -Value $lines` | `FastWriteLines -Path $path -Lines $lines` | 1.58x |
+| 检查前章文件是否存在 | `Test-Path $path` | `FastFileExists $path` | 1.76x |
+| 批量读取多章（跨章事实表） | 逐个 `Get-Content` | `FastReadBatch $paths` | 2.13x |

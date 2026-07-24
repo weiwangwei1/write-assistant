@@ -1,4 +1,10 @@
-# 无人值守自动执行代理指令 v2.2
+# 无人值守自动执行代理指令 v2.3
+
+## v2.3变更摘要
+
+- **新增文件I/O加速模块**：初始化阶段 dot-source 加载 `fast_io.ps1`（20个 .NET 加速函数，20/20 快于原生 cmdlet，平均 1.89x）
+- **新增 fast_io 函数对照表**：所有文件操作优先使用 fast_io 函数替代 PowerShell 原生 cmdlet
+- **详见**：`auto-runner/file_io_optimization.md`（含基准测试结果和 Skill 集成指南）
 
 ## v2.2变更摘要
 
@@ -56,6 +62,19 @@
    - 若不存在或已过期（文件修改时间变更）：运行 `context_preloader.ps1` 重建缓存
    - 若缓存有效：后续步骤引用缓存中的 SKILL.md 摘要（~500字），而非重新读取完整文件（~2000-5000字）
    - 详见"上下文优化策略"章节
+8. **文件I/O加速模块加载（v2.3新增）**：
+   - Dot-source 加载 `auto-runner/fast_io.ps1`：`. .\auto-runner\fast_io.ps1`
+   - 后续所有文件操作**优先使用 fast_io 函数**（20/20 快于原生 cmdlet，平均 1.89x）
+   - 对照表：
+     - `Get-Content -Raw` → `FastReadFile`
+     - `Get-Content | ConvertFrom-Json` → `FastReadJson`
+     - `Set-Content` → `FastWriteFile`
+     - `ConvertTo-Json | Set-Content` → `FastWriteJson`
+     - `Add-Content` → `FastAppendFile`（全文文件追加场景）
+     - `Test-Path` → `FastFileExists`（高频检查）
+     - 批量读取多文件 → `FastReadBatch` / `FastReadJsonBatch`
+     - 批量写入多文件 → `FastWriteBatch`（并行 Agent 输出场景）
+   - 详见 `auto-runner/file_io_optimization.md`
 
 ### 主循环（重复执行直到退出条件）
 

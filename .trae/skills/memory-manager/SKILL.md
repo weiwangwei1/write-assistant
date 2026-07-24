@@ -1035,3 +1035,21 @@ Step 4: 向用户汇报
   ```
 - 下游读取时先查索引获取路径，再读独立卡
 - 收益：省158KB全局冗余 + 消除聚合文件与独立卡不同步风险
+
+### fast_io.ps1 集成（v1.5+）
+执行文件操作时，优先使用 `auto-runner/fast_io.ps1` 中的加速函数（需先 dot-source 加载）：
+
+| 场景 | 原生写法 | fast_io 写法 | 加速比 |
+|------|---------|-------------|--------|
+| 读取终稿交接卡 | `Get-Content $path \| ConvertFrom-Json` | `FastReadJson $path` | 1.91x |
+| 追加到全文文件 | `Add-Content $path -Value $text` | `FastAppendFile -Path $path -Content $text` | 1.57x |
+| 更新 goal_tracker（读改写） | `Get-Content \| ConvertFrom-Json` | `FastReadJson` + `FastWriteJson` | 1.91x+1.83x |
+| 更新角色独立卡 | `$obj \| ConvertTo-Json \| Set-Content` | `FastWriteJson -Path $path -Object $obj` | 1.83x |
+| 写章节摘要JSON | `$obj \| ConvertTo-Json \| Set-Content` | `FastWriteJson -Path $path -Object $obj` | 1.83x |
+| 写会话指针JSON | `$obj \| ConvertTo-Json \| Set-Content` | `FastWriteJson -Path $path -Object $obj` | 1.83x |
+| 追加写作日志(JSONL) | `Add-Content $path -Value $line` | `FastAppendFile -Path $path -Content $line -NoBom` | 1.57x |
+| 追加决策日志(JSONL) | `Add-Content $path -Value $line` | `FastAppendFile -Path $path -Content $line -NoBom` | 1.57x |
+| 读取最近3章正文(按需) | 逐个 `Get-Content -Raw` | `FastReadBatch $paths` | 2.13x |
+| 批量读取角色独立卡 | 逐个 `Get-Content \| ConvertFrom-Json` | `FastReadJsonBatch $paths` | 1.24x |
+| 列出摘要目录 | `Get-ChildItem $path -Filter *.json` | `FastListFiles $path *.json` | 3.01x |
+| 检查文件存在性 | `Test-Path $path` | `FastFileExists $path` | 1.76x |
