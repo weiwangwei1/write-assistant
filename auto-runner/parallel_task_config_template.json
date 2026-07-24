@@ -1,635 +1,466 @@
 {
-  "_description": "并行任务配置模板 v1.0 — 演示6种并行模式的task_config.json配置方式。使用时根据实际角色名/章节号替换占位符。",
-  "_usage": "复制对应模式的steps到task_config.json，替换{角色名}/{N}/{总角色数}等占位符。parallel_group相同的步骤会被同时启动，is_merger=true的步骤等待同组全部完成后执行。",
-  "_field_reference": {
-    "parallel_group": "并行组标识，同组步骤同时执行",
-    "parallel_index": "组内序号（从0开始）",
-    "parallel_total": "组内并行步骤总数",
-    "is_merger": "true=合并步骤，等待同组全部完成后执行",
-    "depends_on": "依赖的步骤ID列表，这些步骤必须completed后才能执行当前步骤",
-    "agent_type": "Task工具的subagent_type，默认general_purpose_task",
-    "input_files": "该步骤需要读取的文件列表",
-    "output_files": "该步骤产出的文件列表（并行Agent必须写独立文件）",
-    "pass_criteria": "质量门禁条件"
-  },
-
-  "patterns": {
-
-    "pattern_1_preproduction": {
-      "_name": "模式1: 预生产并行",
-      "_scenario": "plot-architect产出大纲后，title-reviewer/skeptic R1/setting-reviewer可同时执行",
-      "_speedup": "串行3步45min → 并行1步15min，提速3x",
-      "steps": [
-        {
-          "id": 10,
-          "name": "书名审核",
-          "agent": "title-reviewer",
-          "agent_type": "general_purpose_task",
-          "parallel_group": "preproduction",
-          "parallel_index": 0,
-          "parallel_total": 3,
-          "depends_on": [9],
-          "input_files": ["memory/outline.json", ".trae/skills/title-reviewer/SKILL.md"],
-          "output_files": ["handoff/title_review.json"],
-          "pass_criteria": "verdict in [pass, conditional_pass]"
-        },
-        {
-          "id": 11,
-          "name": "质疑第1轮",
-          "agent": "skeptic",
-          "agent_type": "general_purpose_task",
-          "parallel_group": "preproduction",
-          "parallel_index": 1,
-          "parallel_total": 3,
-          "depends_on": [9],
-          "input_files": ["memory/outline.json", "handoff/topic_screening.json", ".trae/skills/skeptic/SKILL.md"],
-          "output_files": ["handoff/skeptic_review.json"],
-          "pass_criteria": "round=1 completed"
-        },
-        {
-          "id": 12,
-          "name": "设定审核",
-          "agent": "setting-reviewer",
-          "agent_type": "general_purpose_task",
-          "parallel_group": "preproduction",
-          "parallel_index": 2,
-          "parallel_total": 3,
-          "depends_on": [9],
-          "input_files": ["memory/outline.json", ".trae/skills/setting-reviewer/SKILL.md"],
-          "output_files": ["handoff/setting_review.json"],
-          "pass_criteria": "total_score >= 9.5"
-        },
-        {
-          "id": 13,
-          "name": "大纲验收（合并）",
-          "agent": "outline-editor",
-          "agent_type": "general_purpose_task",
-          "parallel_group": "preproduction",
-          "is_merger": true,
-          "depends_on": [10, 11, 12],
-          "input_files": ["memory/outline.json", "handoff/title_review.json", "handoff/skeptic_review.json", "handoff/setting_review.json", ".trae/skills/outline-editor/SKILL.md"],
-          "output_files": ["handoff/outline_review.json"],
-          "pass_criteria": "verdict = pass"
-        }
-      ]
+  "_comments": {
+    "version": "2.0",
+    "scenario": "黄金三章生产 — 演示4种并行模式的完整task_config模板",
+    "usage": "复制本文件为task_config.json，根据实际项目替换角色名和章节内容。parallel_group相同的步骤会同时启动；is_merger=true的步骤等待同组全部完成后执行；parallel_group=null表示串行。depends_on中的步骤ID必须全部completed后当前步骤才可执行。",
+    "field_reference": {
+      "id": "步骤唯一ID（整数）",
+      "name": "步骤名称",
+      "agent": "执行的Agent（对应.trae/skills下的skill名）",
+      "instruction": "给Agent的简短指令；并行步骤须说明只负责自己的部分，合并步骤须说明合并逻辑",
+      "input_files": "该步骤需要读取的文件列表（相对workspace根目录）",
+      "output_files": "该步骤产出的文件列表（并行Agent必须写独立文件，禁止并发写同一文件）",
+      "pass_criteria": "质量门禁条件，不满足则重试或退回",
+      "max_retries": "最大重试次数",
+      "parallel_group": "并行组标识，同组步骤同时执行；null=串行",
+      "parallel_index": "组内序号（从0开始），可选",
+      "parallel_total": "组内并行步骤总数，可选",
+      "is_merger": "true=合并步骤，等待同组全部完成后执行，可选",
+      "depends_on": "依赖的步骤ID列表，这些步骤必须completed后才能执行当前步骤"
     },
-
-    "pattern_2_character_design": {
-      "_name": "模式2: 角色并行设计",
-      "_scenario": "大纲验收通过后，每个角色由独立Agent设计，最后合并关系网络",
-      "_speedup": "串行6角色90min → 并行1轮15min+合并1轮15min=30min，提速3x",
-      "_note": "替换{角色名}为实际角色名，{角色定位}为该角色在故事中的定位",
-      "steps": [
-        {
-          "id": 20,
-          "name": "角色设计-{角色名1}",
-          "agent": "character-designer",
-          "agent_type": "general_purpose_task",
-          "parallel_group": "char_design",
-          "parallel_index": 0,
-          "parallel_total": 6,
-          "depends_on": [13],
-          "input_files": ["memory/outline.json", "config/novel_config.json", ".trae/skills/character-designer/SKILL.md"],
-          "output_files": ["memory/characters/{角色名1}.json"],
-          "pass_criteria": "角色卡包含所有必需字段",
-          "agent_prompt_suffix": "只设计角色「{角色名1}」，不设计关系网络。输出到memory/characters/{角色名1}.json"
-        },
-        {
-          "id": 21,
-          "name": "角色设计-{角色名2}",
-          "agent": "character-designer",
-          "agent_type": "general_purpose_task",
-          "parallel_group": "char_design",
-          "parallel_index": 1,
-          "parallel_total": 6,
-          "depends_on": [13],
-          "input_files": ["memory/outline.json", "config/novel_config.json", ".trae/skills/character-designer/SKILL.md"],
-          "output_files": ["memory/characters/{角色名2}.json"],
-          "pass_criteria": "角色卡包含所有必需字段",
-          "agent_prompt_suffix": "只设计角色「{角色名2}」，不设计关系网络。输出到memory/characters/{角色名2}.json"
-        },
-        {
-          "id": 22,
-          "name": "角色设计-{角色名3}",
-          "agent": "character-designer",
-          "agent_type": "general_purpose_task",
-          "parallel_group": "char_design",
-          "parallel_index": 2,
-          "parallel_total": 6,
-          "depends_on": [13],
-          "input_files": ["memory/outline.json", "config/novel_config.json", ".trae/skills/character-designer/SKILL.md"],
-          "output_files": ["memory/characters/{角色名3}.json"],
-          "pass_criteria": "角色卡包含所有必需字段",
-          "agent_prompt_suffix": "只设计角色「{角色名3}」，不设计关系网络。输出到memory/characters/{角色名3}.json"
-        },
-        {
-          "id": 23,
-          "name": "角色设计-{角色名4}",
-          "agent": "character-designer",
-          "agent_type": "general_purpose_task",
-          "parallel_group": "char_design",
-          "parallel_index": 3,
-          "parallel_total": 6,
-          "depends_on": [13],
-          "input_files": ["memory/outline.json", "config/novel_config.json", ".trae/skills/character-designer/SKILL.md"],
-          "output_files": ["memory/characters/{角色名4}.json"],
-          "pass_criteria": "角色卡包含所有必需字段",
-          "agent_prompt_suffix": "只设计角色「{角色名4}」，不设计关系网络。输出到memory/characters/{角色名4}.json"
-        },
-        {
-          "id": 24,
-          "name": "角色设计-{角色名5}",
-          "agent": "character-designer",
-          "agent_type": "general_purpose_task",
-          "parallel_group": "char_design",
-          "parallel_index": 4,
-          "parallel_total": 6,
-          "depends_on": [13],
-          "input_files": ["memory/outline.json", "config/novel_config.json", ".trae/skills/character-designer/SKILL.md"],
-          "output_files": ["memory/characters/{角色名5}.json"],
-          "pass_criteria": "角色卡包含所有必需字段",
-          "agent_prompt_suffix": "只设计角色「{角色名5}」，不设计关系网络。输出到memory/characters/{角色名5}.json"
-        },
-        {
-          "id": 25,
-          "name": "角色设计-{角色名6}",
-          "agent": "character-designer",
-          "agent_type": "general_purpose_task",
-          "parallel_group": "char_design",
-          "parallel_index": 5,
-          "parallel_total": 6,
-          "depends_on": [13],
-          "input_files": ["memory/outline.json", "config/novel_config.json", ".trae/skills/character-designer/SKILL.md"],
-          "output_files": ["memory/characters/{角色名6}.json"],
-          "pass_criteria": "角色卡包含所有必需字段",
-          "agent_prompt_suffix": "只设计角色「{角色名6}」，不设计关系网络。输出到memory/characters/{角色名6}.json"
-        },
-        {
-          "id": 26,
-          "name": "关系网络设计（合并）",
-          "agent": "character-designer",
-          "agent_type": "general_purpose_task",
-          "parallel_group": "char_design",
-          "is_merger": true,
-          "depends_on": [20, 21, 22, 23, 24, 25],
-          "input_files": [
-            "memory/characters/{角色名1}.json",
-            "memory/characters/{角色名2}.json",
-            "memory/characters/{角色名3}.json",
-            "memory/characters/{角色名4}.json",
-            "memory/characters/{角色名5}.json",
-            "memory/characters/{角色名6}.json",
-            ".trae/skills/character-designer/SKILL.md"
-          ],
-          "output_files": ["memory/characters.json", "handoff/characters.json"],
-          "pass_criteria": "关系网络包含≥2个核心关系+演变阶段；角色间无设定冲突",
-          "agent_prompt_suffix": "你是关系网络合并Agent。读取所有单角色卡，设计关系网络，合并为memory/characters.json，输出交接卡handoff/characters.json"
-        }
-      ]
+    "parallel_modes": {
+      "mode_1_pre_production": "预生产并行：title-reviewer + skeptic R1 + setting-reviewer 三步并行(parallel_group=pre_production)。三者互不依赖，可同时启动。skeptic R2/R3依赖R1结果须串行，outline-editor等待全部完成后执行。",
+      "mode_2_char_design": "角色并行设计：6个角色各1个Agent并行(parallel_group=char_design)，每个Agent只设计自己的角色卡。关系网络设计is_merger=true等待6个角色卡全部完成后，合并设计关系网络。",
+      "mode_7_intra_review": "单章审核内部并行：detail-reviewer + de-ai-processor(分析模式)并行(parallel_group=review_ch{N})，两者各出修改建议不改正文。合并步骤is_merger=true读取两份建议，解决冲突后统一应用到正文。之后quality和final串行执行。",
+      "mode_8_pipeline": "流水线并行：Ch{N+1}写作与Ch{N}终审并行(parallel_group=pipeline_{N}_{N+1})。Ch{N+1}写作依赖Ch{N}的quality通过（正文已打磨），与Ch{N}终审同时执行，利用审核时间写下一章。"
     },
-
-    "pattern_3_multi_chapter_review": {
-      "_name": "模式3: 多章并行审核",
-      "_scenario": "多个章节初稿已完成，每章1个Agent执行完整4步审核流水线",
-      "_speedup": "串行5章300min → 并行1轮60min，提速5x",
-      "_note": "替换{N}为章节号。每个Agent独立审核，最后由主控合并foreshadowing_tracker",
-      "steps": [
-        {
-          "id": 30,
-          "name": "Ch{N1}完整审核",
-          "agent": "multi-reviewer",
-          "agent_type": "general_purpose_task",
-          "parallel_group": "batch_review",
-          "parallel_index": 0,
-          "parallel_total": 5,
-          "depends_on": [],
-          "input_files": [
-            "output/chapter_00{N1}.txt",
-            ".trae/skills/detail-reviewer/SKILL.md",
-            ".trae/skills/quality-reviewer/SKILL.md",
-            ".trae/skills/de-ai-processor/SKILL.md",
-            ".trae/skills/final-reviewer/SKILL.md",
-            "memory/outline.json",
-            "memory/characters.json",
-            "memory/foreshadowing_tracker.json"
-          ],
-          "output_files": [
-            "handoff/detail_review_{N1}.json",
-            "handoff/quality_review_{N1}.json",
-            "handoff/de_ai_polish_{N1}.json",
-            "handoff/final_review_{N1}.json"
-          ],
-          "pass_criteria": "final_review均分>=9.5",
-          "agent_prompt_suffix": "你是第{N1}章审核专家。按顺序执行detail→quality→de-ai→final 4步审核。如任何步骤未通过则标注并停止后续步骤。不要修改foreshadowing_tracker.json，将伏笔更新建议写入final_review报告。"
-        },
-        {
-          "id": 31,
-          "name": "Ch{N2}完整审核",
-          "agent": "multi-reviewer",
-          "agent_type": "general_purpose_task",
-          "parallel_group": "batch_review",
-          "parallel_index": 1,
-          "parallel_total": 5,
-          "depends_on": [],
-          "input_files": [
-            "output/chapter_00{N2}.txt",
-            ".trae/skills/detail-reviewer/SKILL.md",
-            ".trae/skills/quality-reviewer/SKILL.md",
-            ".trae/skills/de-ai-processor/SKILL.md",
-            ".trae/skills/final-reviewer/SKILL.md",
-            "memory/outline.json",
-            "memory/characters.json",
-            "memory/foreshadowing_tracker.json"
-          ],
-          "output_files": [
-            "handoff/detail_review_{N2}.json",
-            "handoff/quality_review_{N2}.json",
-            "handoff/de_ai_polish_{N2}.json",
-            "handoff/final_review_{N2}.json"
-          ],
-          "pass_criteria": "final_review均分>=9.5",
-          "agent_prompt_suffix": "你是第{N2}章审核专家。按顺序执行detail→quality→de-ai→final 4步审核。如任何步骤未通过则标注并停止后续步骤。不要修改foreshadowing_tracker.json，将伏笔更新建议写入final_review报告。"
-        },
-        {
-          "id": 32,
-          "name": "Ch{N3}完整审核",
-          "agent": "multi-reviewer",
-          "agent_type": "general_purpose_task",
-          "parallel_group": "batch_review",
-          "parallel_index": 2,
-          "parallel_total": 5,
-          "depends_on": [],
-          "input_files": [
-            "output/chapter_00{N3}.txt",
-            ".trae/skills/detail-reviewer/SKILL.md",
-            ".trae/skills/quality-reviewer/SKILL.md",
-            ".trae/skills/de-ai-processor/SKILL.md",
-            ".trae/skills/final-reviewer/SKILL.md",
-            "memory/outline.json",
-            "memory/characters.json",
-            "memory/foreshadowing_tracker.json"
-          ],
-          "output_files": [
-            "handoff/detail_review_{N3}.json",
-            "handoff/quality_review_{N3}.json",
-            "handoff/de_ai_polish_{N3}.json",
-            "handoff/final_review_{N3}.json"
-          ],
-          "pass_criteria": "final_review均分>=9.5",
-          "agent_prompt_suffix": "你是第{N3}章审核专家。按顺序执行detail→quality→de-ai→final 4步审核。如任何步骤未通过则标注并停止后续步骤。不要修改foreshadowing_tracker.json，将伏笔更新建议写入final_review报告。"
-        },
-        {
-          "id": 33,
-          "name": "Ch{N4}完整审核",
-          "agent": "multi-reviewer",
-          "agent_type": "general_purpose_task",
-          "parallel_group": "batch_review",
-          "parallel_index": 3,
-          "parallel_total": 5,
-          "depends_on": [],
-          "input_files": [
-            "output/chapter_00{N4}.txt",
-            ".trae/skills/detail-reviewer/SKILL.md",
-            ".trae/skills/quality-reviewer/SKILL.md",
-            ".trae/skills/de-ai-processor/SKILL.md",
-            ".trae/skills/final-reviewer/SKILL.md",
-            "memory/outline.json",
-            "memory/characters.json",
-            "memory/foreshadowing_tracker.json"
-          ],
-          "output_files": [
-            "handoff/detail_review_{N4}.json",
-            "handoff/quality_review_{N4}.json",
-            "handoff/de_ai_polish_{N4}.json",
-            "handoff/final_review_{N4}.json"
-          ],
-          "pass_criteria": "final_review均分>=9.5",
-          "agent_prompt_suffix": "你是第{N4}章审核专家。按顺序执行detail→quality→de-ai→final 4步审核。如任何步骤未通过则标注并停止后续步骤。不要修改foreshadowing_tracker.json，将伏笔更新建议写入final_review报告。"
-        },
-        {
-          "id": 34,
-          "name": "Ch{N5}完整审核",
-          "agent": "multi-reviewer",
-          "agent_type": "general_purpose_task",
-          "parallel_group": "batch_review",
-          "parallel_index": 4,
-          "parallel_total": 5,
-          "depends_on": [],
-          "input_files": [
-            "output/chapter_00{N5}.txt",
-            ".trae/skills/detail-reviewer/SKILL.md",
-            ".trae/skills/quality-reviewer/SKILL.md",
-            ".trae/skills/de-ai-processor/SKILL.md",
-            ".trae/skills/final-reviewer/SKILL.md",
-            "memory/outline.json",
-            "memory/characters.json",
-            "memory/foreshadowing_tracker.json"
-          ],
-          "output_files": [
-            "handoff/detail_review_{N5}.json",
-            "handoff/quality_review_{N5}.json",
-            "handoff/de_ai_polish_{N5}.json",
-            "handoff/final_review_{N5}.json"
-          ],
-          "pass_criteria": "final_review均分>=9.5",
-          "agent_prompt_suffix": "你是第{N5}章审核专家。按顺序执行detail→quality→de-ai→final 4步审核。如任何步骤未通过则标注并停止后续步骤。不要修改foreshadowing_tracker.json，将伏笔更新建议写入final_review报告。"
-        },
-        {
-          "id": 35,
-          "name": "伏笔追踪器合并（合并）",
-          "agent": "chief-editor",
-          "agent_type": "general_purpose_task",
-          "parallel_group": "batch_review",
-          "is_merger": true,
-          "depends_on": [30, 31, 32, 33, 34],
-          "input_files": [
-            "handoff/final_review_{N1}.json",
-            "handoff/final_review_{N2}.json",
-            "handoff/final_review_{N3}.json",
-            "handoff/final_review_{N4}.json",
-            "handoff/final_review_{N5}.json",
-            "memory/foreshadowing_tracker.json"
-          ],
-          "output_files": ["memory/foreshadowing_tracker.json"],
-          "pass_criteria": "所有章节伏笔状态已更新，无冲突",
-          "agent_prompt_suffix": "你是伏笔追踪器合并Agent。读取所有章节的final_review报告中的伏笔更新建议，统一合并到memory/foreshadowing_tracker.json。检查伏笔状态是否有冲突。"
-        }
-      ]
+    "flow_overview": "预生产(3步并行) → skeptic R2/R3(串行) → outline-editor → 角色设计(6+1并行) → Ch1写作 → Ch1审核(2+1并行合并) → Ch1 quality → [Ch1 final ∥ Ch2写作](pipeline_1_2) → Ch2审核(2+1并行合并) → Ch2 quality → [Ch2 final ∥ Ch3写作](pipeline_2_3) → Ch3审核(2+1并行合并) → Ch3 quality → Ch3 final",
+    "parallel_group_summary": {
+      "pre_production": "模式1 — 步骤1-3并行，无合并步骤（outline-editor串行在后）",
+      "char_design": "模式2 — 步骤7-12并行，步骤13合并",
+      "review_ch1": "模式7 — 步骤15-16并行，步骤17合并",
+      "pipeline_1_2": "模式8 — 步骤19(Ch1 final)与步骤20(Ch2写作)并行",
+      "review_ch2": "模式7 — 步骤21-22并行，步骤23合并",
+      "pipeline_2_3": "模式8 — 步骤25(Ch2 final)与步骤26(Ch3写作)并行",
+      "review_ch3": "模式7 — 步骤27-28并行，步骤29合并"
     },
-
-    "pattern_4_intra_chapter_parallel": {
-      "_name": "模式4: 单章审核内部并行",
-      "_scenario": "单章审核中detail-reviewer和de-ai-processor可并行（内容vs语言），quality和final串行在后",
-      "_speedup": "串行4步60min → 并行45min，提速1.3x",
-      "_note": "detail和de-ai都输出修改建议而非直接改文件，由合并步骤统一应用",
-      "steps": [
-        {
-          "id": 40,
-          "name": "Ch{N}细节审核",
-          "agent": "detail-reviewer",
-          "agent_type": "general_purpose_task",
-          "parallel_group": "intra_review_{N}",
-          "parallel_index": 0,
-          "parallel_total": 2,
-          "depends_on": [],
-          "input_files": [
-            "output/chapter_00{N}.txt",
-            "memory/outline.json",
-            "memory/characters.json",
-            ".trae/skills/detail-reviewer/SKILL.md"
-          ],
-          "output_files": ["handoff/detail_review_{N}.json"],
-          "pass_criteria": "overall_verdict in [polished, needs_revision]",
-          "agent_prompt_suffix": "只输出修改建议到handoff/detail_review_{N}.json，不要直接修改chapter_00{N}.txt"
-        },
-        {
-          "id": 41,
-          "name": "Ch{N}去AI味分析",
-          "agent": "de-ai-processor",
-          "agent_type": "general_purpose_task",
-          "parallel_group": "intra_review_{N}",
-          "parallel_index": 1,
-          "parallel_total": 2,
-          "depends_on": [],
-          "input_files": [
-            "output/chapter_00{N}.txt",
-            ".trae/skills/de-ai-processor/SKILL.md"
-          ],
-          "output_files": ["handoff/de_ai_analysis_{N}.json"],
-          "pass_criteria": "ai_score <= 2.0",
-          "agent_prompt_suffix": "只输出AI痕迹分析和修改建议到handoff/de_ai_analysis_{N}.json，不要直接修改chapter_00{N}.txt"
-        },
-        {
-          "id": 42,
-          "name": "Ch{N}修改合并（合并）",
-          "agent": "chapter-writer",
-          "agent_type": "general_purpose_task",
-          "parallel_group": "intra_review_{N}",
-          "is_merger": true,
-          "depends_on": [40, 41],
-          "input_files": [
-            "output/chapter_00{N}.txt",
-            "handoff/detail_review_{N}.json",
-            "handoff/de_ai_analysis_{N}.json"
-          ],
-          "output_files": ["output/chapter_00{N}.txt"],
-          "pass_criteria": "所有critical/major问题已修复",
-          "agent_prompt_suffix": "读取detail_review和de_ai_analysis的修改建议，统一应用到chapter_00{N}.txt。优先处理critical，再处理major，minor酌情处理。"
-        },
-        {
-          "id": 43,
-          "name": "Ch{N}宏观评分",
-          "agent": "quality-reviewer",
-          "agent_type": "general_purpose_task",
-          "parallel_group": null,
-          "depends_on": [42],
-          "input_files": [
-            "output/chapter_00{N}.txt",
-            "memory/outline.json",
-            "memory/characters.json",
-            ".trae/skills/quality-reviewer/SKILL.md"
-          ],
-          "output_files": ["handoff/quality_review_{N}.json"],
-          "pass_criteria": "技术分>=9.5"
-        },
-        {
-          "id": 44,
-          "name": "Ch{N}终审",
-          "agent": "final-reviewer",
-          "agent_type": "general_purpose_task",
-          "parallel_group": null,
-          "depends_on": [43],
-          "input_files": [
-            "output/chapter_00{N}.txt",
-            "handoff/quality_review_{N}.json",
-            ".trae/skills/final-reviewer/SKILL.md"
-          ],
-          "output_files": ["handoff/final_review_{N}.json"],
-          "pass_criteria": "均分>=9.5"
-        }
-      ]
-    },
-
-    "pattern_5_multi_chapter_writing": {
-      "_name": "模式5: 多章并行写作",
-      "_scenario": "beat sheet已就绪，多章同时写作，完成后连续性检查",
-      "_speedup": "串行3章90min → 并行1轮30min+检查15min=45min，提速2x",
-      "_warning": "高风险模式！beat sheet必须非常详细。最多并行3章。",
-      "steps": [
-        {
-          "id": 50,
-          "name": "写Ch{N1}",
-          "agent": "chapter-writer",
-          "agent_type": "general_purpose_task",
-          "parallel_group": "batch_write",
-          "parallel_index": 0,
-          "parallel_total": 3,
-          "depends_on": [],
-          "input_files": [
-            "memory/outline.json",
-            "memory/characters.json",
-            "handoff/beat_sheet_{N1}.json",
-            ".trae/skills/chapter-writer/SKILL.md"
-          ],
-          "output_files": ["output/chapter_00{N1}.txt"],
-          "pass_criteria": "字数达标+每句单独一行",
-          "agent_prompt_suffix": "严格按照beat_sheet_{N1}.json执行。开头方式:{开头类型}，结尾类型:{结尾类型}。不要修改其他章节文件。"
-        },
-        {
-          "id": 51,
-          "name": "写Ch{N2}",
-          "agent": "chapter-writer",
-          "agent_type": "general_purpose_task",
-          "parallel_group": "batch_write",
-          "parallel_index": 1,
-          "parallel_total": 3,
-          "depends_on": [],
-          "input_files": [
-            "memory/outline.json",
-            "memory/characters.json",
-            "handoff/beat_sheet_{N2}.json",
-            ".trae/skills/chapter-writer/SKILL.md"
-          ],
-          "output_files": ["output/chapter_00{N2}.txt"],
-          "pass_criteria": "字数达标+每句单独一行",
-          "agent_prompt_suffix": "严格按照beat_sheet_{N2}.json执行。开头方式:{开头类型}，结尾类型:{结尾类型}。不要修改其他章节文件。"
-        },
-        {
-          "id": 52,
-          "name": "写Ch{N3}",
-          "agent": "chapter-writer",
-          "agent_type": "general_purpose_task",
-          "parallel_group": "batch_write",
-          "parallel_index": 2,
-          "parallel_total": 3,
-          "depends_on": [],
-          "input_files": [
-            "memory/outline.json",
-            "memory/characters.json",
-            "handoff/beat_sheet_{N3}.json",
-            ".trae/skills/chapter-writer/SKILL.md"
-          ],
-          "output_files": ["output/chapter_00{N3}.txt"],
-          "pass_criteria": "字数达标+每句单独一行",
-          "agent_prompt_suffix": "严格按照beat_sheet_{N3}.json执行。开头方式:{开头类型}，结尾类型:{结尾类型}。不要修改其他章节文件。"
-        },
-        {
-          "id": 53,
-          "name": "跨章连续性检查（合并）",
-          "agent": "quality-reviewer",
-          "agent_type": "general_purpose_task",
-          "parallel_group": "batch_write",
-          "is_merger": true,
-          "depends_on": [50, 51, 52],
-          "input_files": [
-            "output/chapter_00{N1}.txt",
-            "output/chapter_00{N2}.txt",
-            "output/chapter_00{N3}.txt",
-            "memory/outline.json",
-            "memory/characters.json"
-          ],
-          "output_files": ["handoff/continuity_check.json"],
-          "pass_criteria": "无critical连续性问题",
-          "agent_prompt_suffix": "检查跨章衔接/角色状态连续性/伏笔一致性/时间线/开头结尾轮换/称呼一致性。对每个问题给出具体修改建议。"
-        }
-      ]
-    },
-
-    "pattern_6_research": {
-      "_name": "模式6: 研究并行",
-      "_scenario": "需要多方面参考资料时，多个搜索Agent同时工作",
-      "_speedup": "串行4搜索40min → 并行1轮10min，提速4x",
-      "steps": [
-        {
-          "id": 60,
-          "name": "搜索写作技法",
-          "agent": "researcher",
-          "agent_type": "general_purpose_task",
-          "parallel_group": "research",
-          "parallel_index": 0,
-          "parallel_total": 4,
-          "depends_on": [],
-          "input_files": [],
-          "output_files": ["research/technique_{topic}.md"],
-          "pass_criteria": "内容非空且包含≥3条可操作建议",
-          "agent_prompt_suffix": "搜索「{topic}写作技法」相关资料，提炼≥3条可操作建议，输出到research/technique_{topic}.md"
-        },
-        {
-          "id": 61,
-          "name": "搜索平台偏好",
-          "agent": "researcher",
-          "agent_type": "general_purpose_task",
-          "parallel_group": "research",
-          "parallel_index": 1,
-          "parallel_total": 4,
-          "depends_on": [],
-          "input_files": [],
-          "output_files": ["research/platform_prefs.md"],
-          "pass_criteria": "内容非空且包含≥3条读者偏好数据",
-          "agent_prompt_suffix": "搜索「番茄平台读者偏好2026」相关资料，提炼≥3条读者偏好数据，输出到research/platform_prefs.md"
-        },
-        {
-          "id": 62,
-          "name": "搜索竞品分析",
-          "agent": "researcher",
-          "agent_type": "general_purpose_task",
-          "parallel_group": "research",
-          "parallel_index": 2,
-          "parallel_total": 4,
-          "depends_on": [],
-          "input_files": [],
-          "output_files": ["research/competitors.md"],
-          "pass_criteria": "内容非空且包含≥3部竞品分析",
-          "agent_prompt_suffix": "搜索「{genre}题材竞品分析」相关资料，提炼≥3部竞品的优劣势分析，输出到research/competitors.md"
-        },
-        {
-          "id": 63,
-          "name": "搜索论坛经验",
-          "agent": "researcher",
-          "agent_type": "general_purpose_task",
-          "parallel_group": "research",
-          "parallel_index": 3,
-          "parallel_total": 4,
-          "depends_on": [],
-          "input_files": [],
-          "output_files": ["research/longkong_tips.md"],
-          "pass_criteria": "内容非空且包含≥5条写作经验",
-          "agent_prompt_suffix": "搜索「龙空论坛写作经验精华」相关资料，提炼≥5条写作经验，输出到research/longkong_tips.md"
-        }
-      ]
-    }
-  },
-
-  "combined_pipeline_example": {
-    "_name": "组合示例: 新书启动全流程（模式1+模式2+模式5+模式3）",
-    "_description": "展示一个新书从选题到黄金三章的完整并行流程配置",
-    "_total_steps": 22,
-    "_estimated_time": "165min (2.75h) vs 串行465min (7.75h)",
-    "phases": [
-      {
-        "phase": "预生产并行 (模式1)",
-        "step_range": "10-13",
-        "parallel": true,
-        "description": "title-reviewer + skeptic R1 + setting-reviewer 并行 → outline-editor合并"
-      },
-      {
-        "phase": "角色并行设计 (模式2)",
-        "step_range": "20-26",
-        "parallel": true,
-        "description": "6角色并行设计 → 关系网络合并"
-      },
-      {
-        "phase": "黄金三章并行写作 (模式5)",
-        "step_range": "50-53",
-        "parallel": true,
-        "description": "3章并行写作 → 连续性检查"
-      },
-      {
-        "phase": "黄金三章并行审核 (模式3)",
-        "step_range": "30-34",
-        "parallel": true,
-        "description": "3章完整审核并行 → 伏笔追踪器合并"
-      }
+    "notes": [
+      "并行Agent必须写入独立文件，禁止并发修改同一文件",
+      "只读共享文件（outline.json/characters.json等）可被多个并行Agent同时读取",
+      "合并Agent或串行步骤才可写共享输出文件",
+      "skeptic R2/R3依赖R1结果，必须串行，不能并入pre_production组",
+      "pipeline模式中Ch{N+1}写作依赖Ch{N}的quality步骤而非final，确保正文已打磨但不必等终审",
+      "角色名（许愿/老灯/豆灯/温故/霍东来/封九霄）为示例，实际使用时替换为项目角色"
     ]
-  }
+  },
+
+  "task_name": "黄金三章并行生产模板",
+  "task_description": "演示模式1(预生产并行)+模式2(角色并行)+模式7(单章审核内部并行)+模式8(流水线)的完整黄金三章生产流程。共31步，覆盖从书名审核到第3章终审的全链路。",
+
+  "steps": [
+    {
+      "id": 1,
+      "name": "书名与简介审核",
+      "agent": "title-reviewer",
+      "instruction": "只负责书名与简介审核。读取大纲，按6维书名+5维简介审核规范执行，输出到handoff/title_review.json。不执行其他审核任务。",
+      "input_files": ["memory/outline.json", "config/novel_config.json", ".trae/skills/title-reviewer/SKILL.md"],
+      "output_files": ["handoff/title_review.json"],
+      "pass_criteria": "输出文件存在且含verdict字段(pass/conditional_pass/adjust)，含书名6维评分和简介5维评分",
+      "max_retries": 2,
+      "parallel_group": "pre_production",
+      "parallel_index": 0,
+      "parallel_total": 3,
+      "depends_on": []
+    },
+    {
+      "id": 2,
+      "name": "质疑第1轮-主题执行可行性",
+      "agent": "skeptic",
+      "instruction": "只负责质疑第1轮（主题执行可行性）。检查大纲是否兑现预筛承诺、是否有主题漂移，输出round=1到handoff/skeptic_review.json。不执行R2/R3。",
+      "input_files": ["memory/outline.json", "handoff/topic_screening.json", ".trae/skills/skeptic/SKILL.md"],
+      "output_files": ["handoff/skeptic_review.json"],
+      "pass_criteria": "输出文件含round=1，含verdict(pass/needs_revision)和issues列表",
+      "max_retries": 2,
+      "parallel_group": "pre_production",
+      "parallel_index": 1,
+      "parallel_total": 3,
+      "depends_on": []
+    },
+    {
+      "id": 3,
+      "name": "设定审核",
+      "agent": "setting-reviewer",
+      "instruction": "只负责设定审核。读取大纲世界观设定，按6维度（机制完整性/设定自洽/世界合理性/体系丰富度/冲突平衡/扩展性）评分，输出到handoff/setting_review.json。不执行其他审核。",
+      "input_files": ["memory/outline.json", ".trae/skills/setting-reviewer/SKILL.md"],
+      "output_files": ["handoff/setting_review.json"],
+      "pass_criteria": "输出文件含6维度评分、total_score>=9.0、verdict=pass或pass_with_note",
+      "max_retries": 2,
+      "parallel_group": "pre_production",
+      "parallel_index": 2,
+      "parallel_total": 3,
+      "depends_on": []
+    },
+    {
+      "id": 4,
+      "name": "质疑第2轮-世界观严谨性",
+      "agent": "skeptic",
+      "instruction": "质疑第2轮（世界观严谨性）。读取R1结果，压力测试世界观自洽性，追加round=2到handoff/skeptic_review.json。",
+      "input_files": ["memory/outline.json", "handoff/skeptic_review.json", ".trae/skills/skeptic/SKILL.md"],
+      "output_files": ["handoff/skeptic_review.json"],
+      "pass_criteria": "输出文件含round=2，含verdict和issues",
+      "max_retries": 2,
+      "parallel_group": null,
+      "depends_on": [2]
+    },
+    {
+      "id": 5,
+      "name": "质疑第3轮-爽感路径与节奏",
+      "agent": "skeptic",
+      "instruction": "质疑第3轮（爽感路径与节奏）。读取R2结果，检查爽感路径<=2步、节奏起伏、开篇三问是否具体可执行，追加round=3到handoff/skeptic_review.json。",
+      "input_files": ["memory/outline.json", "handoff/skeptic_review.json", ".trae/skills/skeptic/SKILL.md"],
+      "output_files": ["handoff/skeptic_review.json"],
+      "pass_criteria": "输出文件含round=3，含verdict和issues",
+      "max_retries": 2,
+      "parallel_group": null,
+      "depends_on": [4]
+    },
+    {
+      "id": 6,
+      "name": "大纲验收定稿",
+      "agent": "outline-editor",
+      "instruction": "大纲验收定稿。读取书名审核、设定审核、3轮质疑结果，按6维度评分（商业性25%/结构20%/节奏20%/伏笔15%/角色10%/平台10%），总分>=8.5且无一票否决则通过。如有must_fix则更新memory/outline.json。输出到handoff/outline_review.json。",
+      "input_files": ["memory/outline.json", "handoff/title_review.json", "handoff/setting_review.json", "handoff/skeptic_review.json", ".trae/skills/outline-editor/SKILL.md"],
+      "output_files": ["handoff/outline_review.json", "memory/outline.json"],
+      "pass_criteria": "输出文件含6维度评分、总分>=8.5、verdict=pass",
+      "max_retries": 2,
+      "parallel_group": null,
+      "depends_on": [1, 3, 5]
+    },
+    {
+      "id": 7,
+      "name": "角色设计-许愿",
+      "agent": "character-designer",
+      "instruction": "只设计角色「许愿」（主角）的完整角色卡，不设计关系网络。读取大纲获取角色需求，按角色设计规范输出到memory/characters/许愿.json。须含外貌气质/性格极致/反差设计/独立目标/story_driver。",
+      "input_files": ["memory/outline.json", "config/novel_config.json", ".trae/skills/character-designer/SKILL.md"],
+      "output_files": ["memory/characters/许愿.json"],
+      "pass_criteria": "角色卡包含appearance+temperament+personality_extreme+identity_contrast+story_driver+personal_habits(>=3)+weaknesses(>=2)+show_events(>=3)",
+      "max_retries": 2,
+      "parallel_group": "char_design",
+      "parallel_index": 0,
+      "parallel_total": 6,
+      "depends_on": [6]
+    },
+    {
+      "id": 8,
+      "name": "角色设计-老灯",
+      "agent": "character-designer",
+      "instruction": "只设计角色「老灯」（古龙）的完整角色卡，不设计关系网络。读取大纲获取角色需求，按角色设计规范输出到memory/characters/老灯.json。须含外貌气质/性格极致/反差设计/独立目标/story_driver。",
+      "input_files": ["memory/outline.json", "config/novel_config.json", ".trae/skills/character-designer/SKILL.md"],
+      "output_files": ["memory/characters/老灯.json"],
+      "pass_criteria": "角色卡包含appearance+temperament+personality_extreme+identity_contrast+story_driver+personal_habits(>=3)+weaknesses(>=2)+show_events(>=3)",
+      "max_retries": 2,
+      "parallel_group": "char_design",
+      "parallel_index": 1,
+      "parallel_total": 6,
+      "depends_on": [6]
+    },
+    {
+      "id": 9,
+      "name": "角色设计-豆灯",
+      "agent": "character-designer",
+      "instruction": "只设计角色「豆灯」（萌宠）的完整角色卡，不设计关系网络。读取大纲获取角色需求，按角色设计规范输出到memory/characters/豆灯.json。须含外貌气质/性格极致/反差设计/独立目标/story_driver。",
+      "input_files": ["memory/outline.json", "config/novel_config.json", ".trae/skills/character-designer/SKILL.md"],
+      "output_files": ["memory/characters/豆灯.json"],
+      "pass_criteria": "角色卡包含appearance+temperament+personality_extreme+identity_contrast+story_driver+personal_habits(>=3)+weaknesses(>=2)+show_events(>=3)",
+      "max_retries": 2,
+      "parallel_group": "char_design",
+      "parallel_index": 2,
+      "parallel_total": 6,
+      "depends_on": [6]
+    },
+    {
+      "id": 10,
+      "name": "角色设计-温故",
+      "agent": "character-designer",
+      "instruction": "只设计角色「温故」（终极反派）的完整角色卡，不设计关系网络。读取大纲获取角色需求，按角色设计规范输出到memory/characters/温故.json。须含外貌气质/性格极致/反差设计/独立目标/story_driver。",
+      "input_files": ["memory/outline.json", "config/novel_config.json", ".trae/skills/character-designer/SKILL.md"],
+      "output_files": ["memory/characters/温故.json"],
+      "pass_criteria": "角色卡包含appearance+temperament+personality_extreme+identity_contrast+story_driver+personal_habits(>=3)+weaknesses(>=2)+show_events(>=3)",
+      "max_retries": 2,
+      "parallel_group": "char_design",
+      "parallel_index": 3,
+      "parallel_total": 6,
+      "depends_on": [6]
+    },
+    {
+      "id": 11,
+      "name": "角色设计-霍东来",
+      "agent": "character-designer",
+      "instruction": "只设计角色「霍东来」（隐藏反派）的完整角色卡，不设计关系网络。读取大纲获取角色需求，按角色设计规范输出到memory/characters/霍东来.json。须含外貌气质/性格极致/反差设计/独立目标/story_driver。",
+      "input_files": ["memory/outline.json", "config/novel_config.json", ".trae/skills/character-designer/SKILL.md"],
+      "output_files": ["memory/characters/霍东来.json"],
+      "pass_criteria": "角色卡包含appearance+temperament+personality_extreme+identity_contrast+story_driver+personal_habits(>=3)+weaknesses(>=2)+show_events(>=3)",
+      "max_retries": 2,
+      "parallel_group": "char_design",
+      "parallel_index": 4,
+      "parallel_total": 6,
+      "depends_on": [6]
+    },
+    {
+      "id": 12,
+      "name": "角色设计-封九霄",
+      "agent": "character-designer",
+      "instruction": "只设计角色「封九霄」（灰色角色）的完整角色卡，不设计关系网络。读取大纲获取角色需求，按角色设计规范输出到memory/characters/封九霄.json。须含外貌气质/性格极致/反差设计/独立目标/story_driver。",
+      "input_files": ["memory/outline.json", "config/novel_config.json", ".trae/skills/character-designer/SKILL.md"],
+      "output_files": ["memory/characters/封九霄.json"],
+      "pass_criteria": "角色卡包含appearance+temperament+personality_extreme+identity_contrast+story_driver+personal_habits(>=3)+weaknesses(>=2)+show_events(>=3)",
+      "max_retries": 2,
+      "parallel_group": "char_design",
+      "parallel_index": 5,
+      "parallel_total": 6,
+      "depends_on": [6]
+    },
+    {
+      "id": 13,
+      "name": "关系网络设计（合并）",
+      "agent": "character-designer",
+      "instruction": "合并步骤：读取全部6个角色卡，设计关系网络与成长弧线交叉点，检查角色间设定冲突（如背景矛盾/性格重复），确保>=2个核心关系有明确演变阶段。合并所有角色卡为memory/characters.json，输出交接卡handoff/characters.json。",
+      "input_files": ["memory/characters/许愿.json", "memory/characters/老灯.json", "memory/characters/豆灯.json", "memory/characters/温故.json", "memory/characters/霍东来.json", "memory/characters/封九霄.json", "memory/outline.json", ".trae/skills/character-designer/SKILL.md"],
+      "output_files": ["memory/characters.json", "handoff/characters.json"],
+      "pass_criteria": "关系网络包含>=2个核心关系+演变阶段；角色间无设定冲突；characters.json含全部6个角色卡",
+      "max_retries": 2,
+      "parallel_group": "char_design",
+      "is_merger": true,
+      "depends_on": [7, 8, 9, 10, 11, 12]
+    },
+    {
+      "id": 14,
+      "name": "第1章撰写",
+      "agent": "chapter-writer",
+      "instruction": "撰写第1章。读取大纲golden_three_chapters.chapter_1和角色卡，约3000字，每句单独一行。前100字展示核心能力，章末设冲突钩子。开头用动作/感官式（非地点+时间）。输出到output/chapter_001.txt和handoff/chapter_draft_ch1.json。",
+      "input_files": ["memory/outline.json", "memory/characters.json", ".trae/skills/chapter-writer/SKILL.md"],
+      "output_files": ["output/chapter_001.txt", "handoff/chapter_draft_ch1.json"],
+      "pass_criteria": "chapter_001.txt字数>=2700，前100字含核心能力展示，章末含冲突钩子，每句单独一行",
+      "max_retries": 2,
+      "parallel_group": null,
+      "depends_on": [13]
+    },
+    {
+      "id": 15,
+      "name": "Ch1细节审核",
+      "agent": "detail-reviewer",
+      "instruction": "只负责Ch1细节审核（分析模式，不改正文）。逐句/逐梗/逐伏笔微观检查：开头结尾模式化/节奏长段对比/角色视觉锚点/Show vs Tell/吸引力六要素/概念命名节奏/结尾钩子强度。输出修改建议到handoff/detail_review_ch1.json。",
+      "input_files": ["output/chapter_001.txt", "memory/outline.json", "memory/characters.json", ".trae/skills/detail-reviewer/SKILL.md"],
+      "output_files": ["handoff/detail_review_ch1.json"],
+      "pass_criteria": "输出文件含逐项检查结果和分级(critical/major/minor)修改建议",
+      "max_retries": 2,
+      "parallel_group": "review_ch1",
+      "parallel_index": 0,
+      "parallel_total": 2,
+      "depends_on": [14]
+    },
+    {
+      "id": 16,
+      "name": "Ch1去AI味分析",
+      "agent": "de-ai-processor",
+      "instruction": "只负责Ch1去AI味分析（分析模式，不改正文）。检测14类AI痕迹（Show vs Tell/模式化用词/重复句式/情感扁平化/情绪直说/段落逻辑链等），输出检测报告到handoff/de_ai_analysis_ch1.json。",
+      "input_files": ["output/chapter_001.txt", ".trae/skills/de-ai-processor/SKILL.md"],
+      "output_files": ["handoff/de_ai_analysis_ch1.json"],
+      "pass_criteria": "输出文件含ai_score(<=2.0为合格)和逐条AI痕迹检测建议",
+      "max_retries": 2,
+      "parallel_group": "review_ch1",
+      "parallel_index": 1,
+      "parallel_total": 2,
+      "depends_on": [14]
+    },
+    {
+      "id": 17,
+      "name": "Ch1修改合并（合并）",
+      "agent": "chapter-writer",
+      "instruction": "合并步骤：读取detail_review_ch1和de_ai_analysis_ch1两份建议，按冲突规则合并（同句不同因取severity更高改法；同句冲突修改detail优先，de-ai降级为备选；仅一方有则保留）。优先修复critical再处理major，统一应用到output/chapter_001.txt。输出合并清单到handoff/merged_review_ch1.json。",
+      "input_files": ["output/chapter_001.txt", "handoff/detail_review_ch1.json", "handoff/de_ai_analysis_ch1.json"],
+      "output_files": ["output/chapter_001.txt", "handoff/merged_review_ch1.json"],
+      "pass_criteria": "所有critical问题已修复，major问题已处理，chapter_001.txt已更新",
+      "max_retries": 2,
+      "parallel_group": "review_ch1",
+      "is_merger": true,
+      "depends_on": [15, 16]
+    },
+    {
+      "id": 18,
+      "name": "Ch1宏观评分",
+      "agent": "quality-reviewer",
+      "instruction": "Ch1宏观评分。读取修改后的正文，按8维评分（含吸引力提权+期待感评估+龙空读者画像），技术分>=9.5则通过，否则退回。输出到handoff/quality_review_ch1.json。",
+      "input_files": ["output/chapter_001.txt", "memory/outline.json", "memory/characters.json", "handoff/merged_review_ch1.json", ".trae/skills/quality-reviewer/SKILL.md"],
+      "output_files": ["handoff/quality_review_ch1.json"],
+      "pass_criteria": "输出文件含8维评分、技术分>=9.5、verdict=pass",
+      "max_retries": 3,
+      "parallel_group": null,
+      "depends_on": [17]
+    },
+    {
+      "id": 19,
+      "name": "Ch1终审",
+      "agent": "final-reviewer",
+      "instruction": "Ch1终审。读取正文，多维度终审打分，均分>=9.5放行。输出到handoff/final_review_ch1.json。本步与Ch2写作并行执行（pipeline_1_2组）。",
+      "input_files": ["output/chapter_001.txt", "handoff/quality_review_ch1.json", ".trae/skills/final-reviewer/SKILL.md"],
+      "output_files": ["handoff/final_review_ch1.json"],
+      "pass_criteria": "输出文件含终审评分、均分>=9.5、verdict=pass",
+      "max_retries": 3,
+      "parallel_group": "pipeline_1_2",
+      "parallel_index": 0,
+      "parallel_total": 2,
+      "depends_on": [18]
+    },
+    {
+      "id": 20,
+      "name": "第2章撰写",
+      "agent": "chapter-writer",
+      "instruction": "撰写第2章。读取大纲chapter_2、角色卡、Ch1正文（衔接），约3000字，每句单独一行。开头方式必须与Ch1不同。输出到output/chapter_002.txt和handoff/chapter_draft_ch2.json。本步与Ch1终审并行执行（pipeline_1_2组）。",
+      "input_files": ["memory/outline.json", "memory/characters.json", "output/chapter_001.txt", ".trae/skills/chapter-writer/SKILL.md"],
+      "output_files": ["output/chapter_002.txt", "handoff/chapter_draft_ch2.json"],
+      "pass_criteria": "chapter_002.txt字数>=2700，开头方式与Ch1不同，每句单独一行",
+      "max_retries": 2,
+      "parallel_group": "pipeline_1_2",
+      "parallel_index": 1,
+      "parallel_total": 2,
+      "depends_on": [18]
+    },
+    {
+      "id": 21,
+      "name": "Ch2细节审核",
+      "agent": "detail-reviewer",
+      "instruction": "只负责Ch2细节审核（分析模式，不改正文）。逐句/逐梗/逐伏笔微观检查，额外检查开头是否与Ch1不同、结尾类型是否轮换、角色形象Ch2动态反差。输出修改建议到handoff/detail_review_ch2.json。",
+      "input_files": ["output/chapter_002.txt", "output/chapter_001.txt", "memory/outline.json", "memory/characters.json", ".trae/skills/detail-reviewer/SKILL.md"],
+      "output_files": ["handoff/detail_review_ch2.json"],
+      "pass_criteria": "输出文件含逐项检查结果和分级修改建议，含跨章开头/结尾轮换检查",
+      "max_retries": 2,
+      "parallel_group": "review_ch2",
+      "parallel_index": 0,
+      "parallel_total": 2,
+      "depends_on": [20]
+    },
+    {
+      "id": 22,
+      "name": "Ch2去AI味分析",
+      "agent": "de-ai-processor",
+      "instruction": "只负责Ch2去AI味分析（分析模式，不改正文）。检测14类AI痕迹，输出检测报告到handoff/de_ai_analysis_ch2.json。",
+      "input_files": ["output/chapter_002.txt", ".trae/skills/de-ai-processor/SKILL.md"],
+      "output_files": ["handoff/de_ai_analysis_ch2.json"],
+      "pass_criteria": "输出文件含ai_score(<=2.0为合格)和逐条AI痕迹检测建议",
+      "max_retries": 2,
+      "parallel_group": "review_ch2",
+      "parallel_index": 1,
+      "parallel_total": 2,
+      "depends_on": [20]
+    },
+    {
+      "id": 23,
+      "name": "Ch2修改合并（合并）",
+      "agent": "chapter-writer",
+      "instruction": "合并步骤：读取detail_review_ch2和de_ai_analysis_ch2两份建议，按冲突规则合并（同句冲突detail优先），优先修复critical再处理major，统一应用到output/chapter_002.txt。输出合并清单到handoff/merged_review_ch2.json。",
+      "input_files": ["output/chapter_002.txt", "handoff/detail_review_ch2.json", "handoff/de_ai_analysis_ch2.json"],
+      "output_files": ["output/chapter_002.txt", "handoff/merged_review_ch2.json"],
+      "pass_criteria": "所有critical问题已修复，major问题已处理，chapter_002.txt已更新",
+      "max_retries": 2,
+      "parallel_group": "review_ch2",
+      "is_merger": true,
+      "depends_on": [21, 22]
+    },
+    {
+      "id": 24,
+      "name": "Ch2宏观评分",
+      "agent": "quality-reviewer",
+      "instruction": "Ch2宏观评分。读取修改后的正文，按8维评分，技术分>=9.5则通过。输出到handoff/quality_review_ch2.json。",
+      "input_files": ["output/chapter_002.txt", "memory/outline.json", "memory/characters.json", "handoff/merged_review_ch2.json", ".trae/skills/quality-reviewer/SKILL.md"],
+      "output_files": ["handoff/quality_review_ch2.json"],
+      "pass_criteria": "输出文件含8维评分、技术分>=9.5、verdict=pass",
+      "max_retries": 3,
+      "parallel_group": null,
+      "depends_on": [23]
+    },
+    {
+      "id": 25,
+      "name": "Ch2终审",
+      "agent": "final-reviewer",
+      "instruction": "Ch2终审。读取正文，多维度终审打分，均分>=9.5放行。输出到handoff/final_review_ch2.json。本步与Ch3写作并行执行（pipeline_2_3组）。",
+      "input_files": ["output/chapter_002.txt", "handoff/quality_review_ch2.json", ".trae/skills/final-reviewer/SKILL.md"],
+      "output_files": ["handoff/final_review_ch2.json"],
+      "pass_criteria": "输出文件含终审评分、均分>=9.5、verdict=pass",
+      "max_retries": 3,
+      "parallel_group": "pipeline_2_3",
+      "parallel_index": 0,
+      "parallel_total": 2,
+      "depends_on": [24]
+    },
+    {
+      "id": 26,
+      "name": "第3章撰写",
+      "agent": "chapter-writer",
+      "instruction": "撰写第3章。读取大纲chapter_3、角色卡、Ch2正文（衔接），约3000字，每句单独一行。开头方式必须与Ch1/Ch2都不同。输出到output/chapter_003.txt和handoff/chapter_draft_ch3.json。本步与Ch2终审并行执行（pipeline_2_3组）。",
+      "input_files": ["memory/outline.json", "memory/characters.json", "output/chapter_002.txt", ".trae/skills/chapter-writer/SKILL.md"],
+      "output_files": ["output/chapter_003.txt", "handoff/chapter_draft_ch3.json"],
+      "pass_criteria": "chapter_003.txt字数>=2700，开头方式与Ch1/Ch2都不同，每句单独一行",
+      "max_retries": 2,
+      "parallel_group": "pipeline_2_3",
+      "parallel_index": 1,
+      "parallel_total": 2,
+      "depends_on": [24]
+    },
+    {
+      "id": 27,
+      "name": "Ch3细节审核",
+      "agent": "detail-reviewer",
+      "instruction": "只负责Ch3细节审核（分析模式，不改正文）。逐句/逐梗/逐伏笔微观检查，额外检查开头是否与Ch1/Ch2都不同、结尾类型轮换、角色形象Ch3外部视角、暗线伏笔是否自然。输出修改建议到handoff/detail_review_ch3.json。",
+      "input_files": ["output/chapter_003.txt", "output/chapter_002.txt", "memory/outline.json", "memory/characters.json", ".trae/skills/detail-reviewer/SKILL.md"],
+      "output_files": ["handoff/detail_review_ch3.json"],
+      "pass_criteria": "输出文件含逐项检查结果和分级修改建议，含跨章开头/结尾轮换检查",
+      "max_retries": 2,
+      "parallel_group": "review_ch3",
+      "parallel_index": 0,
+      "parallel_total": 2,
+      "depends_on": [26]
+    },
+    {
+      "id": 28,
+      "name": "Ch3去AI味分析",
+      "agent": "de-ai-processor",
+      "instruction": "只负责Ch3去AI味分析（分析模式，不改正文）。检测14类AI痕迹，输出检测报告到handoff/de_ai_analysis_ch3.json。",
+      "input_files": ["output/chapter_003.txt", ".trae/skills/de-ai-processor/SKILL.md"],
+      "output_files": ["handoff/de_ai_analysis_ch3.json"],
+      "pass_criteria": "输出文件含ai_score(<=2.0为合格)和逐条AI痕迹检测建议",
+      "max_retries": 2,
+      "parallel_group": "review_ch3",
+      "parallel_index": 1,
+      "parallel_total": 2,
+      "depends_on": [26]
+    },
+    {
+      "id": 29,
+      "name": "Ch3修改合并（合并）",
+      "agent": "chapter-writer",
+      "instruction": "合并步骤：读取detail_review_ch3和de_ai_analysis_ch3两份建议，按冲突规则合并（同句冲突detail优先），优先修复critical再处理major，统一应用到output/chapter_003.txt。输出合并清单到handoff/merged_review_ch3.json。",
+      "input_files": ["output/chapter_003.txt", "handoff/detail_review_ch3.json", "handoff/de_ai_analysis_ch3.json"],
+      "output_files": ["output/chapter_003.txt", "handoff/merged_review_ch3.json"],
+      "pass_criteria": "所有critical问题已修复，major问题已处理，chapter_003.txt已更新",
+      "max_retries": 2,
+      "parallel_group": "review_ch3",
+      "is_merger": true,
+      "depends_on": [27, 28]
+    },
+    {
+      "id": 30,
+      "name": "Ch3宏观评分",
+      "agent": "quality-reviewer",
+      "instruction": "Ch3宏观评分。读取修改后的正文，按8维评分，技术分>=9.5则通过。输出到handoff/quality_review_ch3.json。",
+      "input_files": ["output/chapter_003.txt", "memory/outline.json", "memory/characters.json", "handoff/merged_review_ch3.json", ".trae/skills/quality-reviewer/SKILL.md"],
+      "output_files": ["handoff/quality_review_ch3.json"],
+      "pass_criteria": "输出文件含8维评分、技术分>=9.5、verdict=pass",
+      "max_retries": 3,
+      "parallel_group": null,
+      "depends_on": [29]
+    },
+    {
+      "id": 31,
+      "name": "Ch3终审",
+      "agent": "final-reviewer",
+      "instruction": "Ch3终审。读取正文，多维度终审打分，均分>=9.5放行。输出到handoff/final_review_ch3.json。黄金三章生产到此完成。",
+      "input_files": ["output/chapter_003.txt", "handoff/quality_review_ch3.json", ".trae/skills/final-reviewer/SKILL.md"],
+      "output_files": ["handoff/final_review_ch3.json"],
+      "pass_criteria": "输出文件含终审评分、均分>=9.5、verdict=pass",
+      "max_retries": 3,
+      "parallel_group": null,
+      "depends_on": [30]
+    }
+  ]
 }

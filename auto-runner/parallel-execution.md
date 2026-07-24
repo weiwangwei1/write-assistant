@@ -1,8 +1,19 @@
-# 并行执行框架 (Parallel Execution Framework) v1.0
+# 并行执行框架 (Parallel Execution Framework) v2.0
 
 ## 概述
 
-本框架定义了小说写作系统中可并行执行的6种模式，通过多Agent同时工作大幅提升生产速度。每个模式包含：适用场景、依赖关系、Agent分配策略、合并机制、风险控制。
+本框架定义了小说写作系统中可并行执行的8种模式，通过多Agent同时工作大幅提升生产速度。每个模式包含：适用场景、依赖关系、Agent分配策略、合并机制、风险控制、task_config配置示例。
+
+### v2.0变更说明
+
+**v1.0问题**：定义了7种并行模式，但 `task_config.json` 和 `state.json` 均未对接并行字段，`master_instruction.md` 的调度协议仅作概念描述——实际执行时所有步骤100%串行，并行模式停留在"设计文档"层面无法落地。经调研确认：**7种模式定义但0种实施**。
+
+**v2.0改进**：新增**实施层**，使并行框架从"设计文档"升级为"可执行规范"：
+- `task_config.json` 并行字段模板：每个模式给出可直接复制的 `parallel_group` / `parallel_index` / `parallel_total` / `is_merger` / `depends_on` 配置片段
+- `state.json` 并行状态扩展：新增 `parallel_groups` 数组，追踪每个并行组的实时状态（group_id / status / pending_agents / completed_agents / merger_ready）
+- `master_instruction.md` 调度协议：明确的"识别并行组 → 检查依赖 → 同时启动 → 等待完成 → 执行合并 → 更新状态"六步调度流程
+
+**落地验证**：v2.0要求至少1个模式在实际执行中使用，并通过文件末尾的"v2.0落地检查清单"验证。
 
 ---
 
@@ -63,6 +74,32 @@ Agent B: skeptic R1 → handoff/skeptic_review.json (round=1)
 Agent C: setting-reviewer → handoff/setting_review.json
 ```
 
+### task_config配置示例
+```json
+[
+  {
+    "id": 10, "name": "书名审核", "agent": "title-reviewer",
+    "parallel_group": "preproduction", "parallel_index": 0, "parallel_total": 3,
+    "depends_on": [9], "is_merger": false
+  },
+  {
+    "id": 11, "name": "质疑第1轮", "agent": "skeptic",
+    "parallel_group": "preproduction", "parallel_index": 1, "parallel_total": 3,
+    "depends_on": [9], "is_merger": false
+  },
+  {
+    "id": 12, "name": "设定审核", "agent": "setting-reviewer",
+    "parallel_group": "preproduction", "parallel_index": 2, "parallel_total": 3,
+    "depends_on": [9], "is_merger": false
+  },
+  {
+    "id": 13, "name": "大纲验收", "agent": "outline-editor",
+    "parallel_group": "preproduction", "is_merger": true,
+    "depends_on": [10, 11, 12]
+  }
+]
+```
+
 ### 合并机制
 outline-editor 读取全部3个输出文件后执行验收。
 
@@ -95,6 +132,47 @@ Agent 5: 设计 霍东来(隐藏反派) → memory/characters/霍东来.json
 Agent 6: 设计 封九霄(灰色角色) → memory/characters/封九霄.json
 --- MERGE ---
 Agent 7: 关系网络设计 → memory/characters.json (合并所有角色卡+关系网络+成长弧线)
+```
+
+### task_config配置示例
+```json
+[
+  {
+    "id": 20, "name": "角色设计-许愿", "agent": "character-designer",
+    "parallel_group": "char_design", "parallel_index": 0, "parallel_total": 6,
+    "depends_on": [13], "is_merger": false
+  },
+  {
+    "id": 21, "name": "角色设计-老灯", "agent": "character-designer",
+    "parallel_group": "char_design", "parallel_index": 1, "parallel_total": 6,
+    "depends_on": [13], "is_merger": false
+  },
+  {
+    "id": 22, "name": "角色设计-豆灯", "agent": "character-designer",
+    "parallel_group": "char_design", "parallel_index": 2, "parallel_total": 6,
+    "depends_on": [13], "is_merger": false
+  },
+  {
+    "id": 23, "name": "角色设计-温故", "agent": "character-designer",
+    "parallel_group": "char_design", "parallel_index": 3, "parallel_total": 6,
+    "depends_on": [13], "is_merger": false
+  },
+  {
+    "id": 24, "name": "角色设计-霍东来", "agent": "character-designer",
+    "parallel_group": "char_design", "parallel_index": 4, "parallel_total": 6,
+    "depends_on": [13], "is_merger": false
+  },
+  {
+    "id": 25, "name": "角色设计-封九霄", "agent": "character-designer",
+    "parallel_group": "char_design", "parallel_index": 5, "parallel_total": 6,
+    "depends_on": [13], "is_merger": false
+  },
+  {
+    "id": 26, "name": "关系网络设计", "agent": "relationship-designer",
+    "parallel_group": "char_design", "is_merger": true,
+    "depends_on": [20, 21, 22, 23, 24, 25]
+  }
+]
 ```
 
 ### 单角色Agent指令模板
@@ -171,6 +249,42 @@ Agent 4: Ch4 完整审核 → ...ch4.json
 Agent 5: Ch5 完整审核 → ...ch5.json
 ```
 
+### task_config配置示例
+```json
+[
+  {
+    "id": 30, "name": "Ch1完整审核", "agent": "multi-reviewer",
+    "parallel_group": "batch_review", "parallel_index": 0, "parallel_total": 5,
+    "depends_on": [], "is_merger": false
+  },
+  {
+    "id": 31, "name": "Ch2完整审核", "agent": "multi-reviewer",
+    "parallel_group": "batch_review", "parallel_index": 1, "parallel_total": 5,
+    "depends_on": [], "is_merger": false
+  },
+  {
+    "id": 32, "name": "Ch3完整审核", "agent": "multi-reviewer",
+    "parallel_group": "batch_review", "parallel_index": 2, "parallel_total": 5,
+    "depends_on": [], "is_merger": false
+  },
+  {
+    "id": 33, "name": "Ch4完整审核", "agent": "multi-reviewer",
+    "parallel_group": "batch_review", "parallel_index": 3, "parallel_total": 5,
+    "depends_on": [], "is_merger": false
+  },
+  {
+    "id": 34, "name": "Ch5完整审核", "agent": "multi-reviewer",
+    "parallel_group": "batch_review", "parallel_index": 4, "parallel_total": 5,
+    "depends_on": [], "is_merger": false
+  },
+  {
+    "id": 35, "name": "伏笔追踪器合并", "agent": "chief-editor",
+    "parallel_group": "batch_review", "is_merger": true,
+    "depends_on": [30, 31, 32, 33, 34]
+  }
+]
+```
+
 ### 单章审核Agent指令模板
 ```
 你是章节审核专家，负责第{N}章的完整审核流水线。
@@ -237,6 +351,31 @@ Agent C: quality-reviewer → handoff/quality_review_ch{N}.json (8维评分)
 Agent D: final-reviewer → handoff/final_review_ch{N}.json (终审)
 ```
 
+### task_config配置示例
+```json
+[
+  {
+    "id": 40, "name": "Ch{N}细节审核", "agent": "detail-reviewer",
+    "parallel_group": "intra_review_{N}", "parallel_index": 0, "parallel_total": 2,
+    "depends_on": [], "is_merger": false
+  },
+  {
+    "id": 41, "name": "Ch{N}去AI化", "agent": "de-ai-processor",
+    "parallel_group": "intra_review_{N}", "parallel_index": 1, "parallel_total": 2,
+    "depends_on": [], "is_merger": false
+  },
+  {
+    "id": 42, "name": "Ch{N}质量审核", "agent": "quality-reviewer",
+    "parallel_group": null, "depends_on": [40, 41], "is_merger": false
+  },
+  {
+    "id": 43, "name": "Ch{N}终审", "agent": "final-reviewer",
+    "parallel_group": null, "depends_on": [42], "is_merger": false
+  }
+]
+```
+注：quality-reviewer 和 final-reviewer 的 `parallel_group` 为 `null`，表示它们不参与并行，串行等待前序完成。
+
 ### 风险控制
 - detail-reviewer 和 de-ai-processor 都会修改 chapter_00N.txt
 - **解决方案**: 两个Agent分别输出修改建议（不直接改文件），由quality-reviewer前的合并步骤统一应用
@@ -268,6 +407,32 @@ Agent 4: 连续性检查 → handoff/continuity_check.json
   - 检查角色状态连续性
   - 检查伏笔埋设/回收一致性
   - 检查时间线连贯性
+```
+
+### task_config配置示例
+```json
+[
+  {
+    "id": 50, "name": "写Ch1", "agent": "chapter-writer",
+    "parallel_group": "batch_write", "parallel_index": 0, "parallel_total": 3,
+    "depends_on": [], "is_merger": false
+  },
+  {
+    "id": 51, "name": "写Ch2", "agent": "chapter-writer",
+    "parallel_group": "batch_write", "parallel_index": 1, "parallel_total": 3,
+    "depends_on": [], "is_merger": false
+  },
+  {
+    "id": 52, "name": "写Ch3", "agent": "chapter-writer",
+    "parallel_group": "batch_write", "parallel_index": 2, "parallel_total": 3,
+    "depends_on": [], "is_merger": false
+  },
+  {
+    "id": 53, "name": "跨章连续性检查", "agent": "quality-reviewer",
+    "parallel_group": "batch_write", "is_merger": true,
+    "depends_on": [50, 51, 52]
+  }
+]
 ```
 
 ### 单章写作Agent指令模板
@@ -331,6 +496,33 @@ Agent 3: 搜索"同类题材竞品分析" → research/competitors.md
 Agent 4: 搜索"龙空论坛写作经验精华" → research/longkong_tips.md
 ```
 
+### task_config配置示例
+```json
+[
+  {
+    "id": 60, "name": "搜索写作技法", "agent": "researcher",
+    "parallel_group": "research", "parallel_index": 0, "parallel_total": 4,
+    "depends_on": [], "is_merger": false
+  },
+  {
+    "id": 61, "name": "搜索平台偏好", "agent": "researcher",
+    "parallel_group": "research", "parallel_index": 1, "parallel_total": 4,
+    "depends_on": [], "is_merger": false
+  },
+  {
+    "id": 62, "name": "搜索竞品分析", "agent": "researcher",
+    "parallel_group": "research", "parallel_index": 2, "parallel_total": 4,
+    "depends_on": [], "is_merger": false
+  },
+  {
+    "id": 63, "name": "搜索论坛经验", "agent": "researcher",
+    "parallel_group": "research", "parallel_index": 3, "parallel_total": 4,
+    "depends_on": [], "is_merger": false
+  }
+]
+```
+注：模式6无合并步骤，各Agent独立输出，`is_merger` 均为 `false`。
+
 ### 预期提速
 串行4搜索×10min = 40min → 并行1轮×10min = 10min，**提速4x**
 
@@ -383,6 +575,106 @@ Agent 4: 搜索"龙空论坛写作经验精华" → research/longkong_tips.md
 
 ---
 
+## 实施层规范 (Implementation Layer) v2.0
+
+v1.0仅定义了并行模式的设计，但 `task_config.json` / `state.json` / `master_instruction.md` 三者均未对接，导致实际执行100%串行。本节定义实施层的三个组件，使并行模式真正可执行。
+
+### state.json 并行状态扩展格式
+
+在 `state.json` 顶层新增 `parallel_groups` 数组，追踪每个并行组的实时状态：
+
+```json
+{
+  "task_name": "...",
+  "status": "running",
+  "current_step": 20,
+  "total_steps": 26,
+  "parallel_groups": [
+    {
+      "group_id": "char_design",
+      "status": "in_progress",
+      "parallel_total": 6,
+      "pending_agents": ["角色设计-霍东来", "角色设计-封九霄"],
+      "completed_agents": ["角色设计-许愿", "角色设计-老灯", "角色设计-豆灯", "角色设计-温故"],
+      "failed_agents": [],
+      "merger_step_id": 26,
+      "merger_ready": false
+    }
+  ],
+  "steps": [ ... ]
+}
+```
+
+**字段说明**：
+
+| 字段 | 类型 | 说明 |
+|------|------|------|
+| `group_id` | string | 并行组标识，与 `task_config.json` 中的 `parallel_group` 对应 |
+| `status` | string | `pending` / `in_progress` / `merging` / `completed` / `failed` |
+| `parallel_total` | int | 组内并行Agent总数 |
+| `pending_agents` | string[] | 尚未完成的Agent名称列表 |
+| `completed_agents` | string[] | 已完成的Agent名称列表 |
+| `failed_agents` | string[] | 失败的Agent名称列表（不阻塞其他Agent） |
+| `merger_step_id` | int | 合并步骤的ID（若无合并步骤则为null） |
+| `merger_ready` | bool | 是否所有并行Agent已完成，合并步骤可启动 |
+
+**状态流转**：
+```
+pending → in_progress (首个Agent启动) → merging (全部完成，合并启动) → completed
+                                                    ↘ failed (合并检测到不可恢复缺失)
+```
+
+### master_instruction 调度协议
+
+在 `master_instruction.md` 的主循环中，将原"单步串行执行"升级为"六步并行调度协议"：
+
+```
+WHILE true:
+    1. 识别并行组：扫描 task_config.json 的 steps[current_step:]，
+       找出 parallel_group 相同且 is_merger != true 的连续步骤
+       
+    2. 检查依赖：确认该并行组所有步骤的 depends_on 指向的步骤均已完成
+       - 若依赖未满足 → 跳过本组，执行依赖步骤
+       - 若依赖已满足 → 进入步骤3
+    
+    3. 同时启动：在同一条消息中发送多个 Task 工具调用（最多5个），
+       将 state.json 中 parallel_groups[group_id].status 设为 "in_progress"
+    
+    4. 等待完成：所有并行Agent返回后，逐个检查输出文件
+       - 成功的Agent加入 completed_agents
+       - 失败的Agent加入 failed_agents（不中断其他Agent）
+       - 更新 pending_agents 列表
+    
+    5. 执行合并：当 pending_agents 为空时，将 merger_ready 设为 true
+       - 若存在 is_merger=true 的步骤 → 执行合并Agent
+       - 合并Agent检查 completed_agents 数量是否等于 parallel_total
+         · 缺失项（failed_agents中的）→ 标记为 missing，在合并报告中列出
+       - 若无合并步骤 → 直接推进 current_step
+    
+    6. 更新状态：将并行组所有步骤标记为 completed（失败的标记为 retry），
+       推进 current_step 跳过本组所有步骤
+END WHILE
+```
+
+**与v1.0的区别**：v1.0的 `master_instruction.md` 中"并行步骤执行策略"仅作概念描述，调度器实际仍按 `current_step` 逐个串行执行。v2.0要求调度器在步骤3真正发起并行 Task 调用。
+
+### 失败处理升级
+
+v1.0的失败处理为"并行组中1个Agent失败不影响其他"，但未定义合并Agent如何处理缺失项。v2.0明确以下规则：
+
+| 场景 | 处理方式 |
+|------|---------|
+| **单Agent失败** | 记录到 `failed_agents`，同组其他Agent继续执行，不中断 |
+| **合并Agent检测到缺失项** | 合并报告中列出所有 `failed_agents` 对应的缺失输出，标注 `missing_items` |
+| **缺失项为非关键** | 合并Agent跳过缺失项，继续合并已完成部分，`verdict=pass_with_note` |
+| **缺失项为关键**（如主角角色卡缺失） | 合并Agent标注 `verdict=fail`，退回失败的Agent重试（max_retries次） |
+| **重试超限** | 该并行组 `status` 设为 `failed`，停止执行，记录 `stop_reason` |
+| **无合并步骤的组** | 失败的Agent单独退回重试，不影响同组其他Agent的已完成状态 |
+
+**关键原则**：单Agent失败不阻塞同组其他Agent，合并Agent负责检查缺失项并决定是跳过还是退回。
+
+---
+
 ## 并行执行调度规则
 
 ### 1. 调度优先级
@@ -412,13 +704,15 @@ Agent 4: 搜索"龙空论坛写作经验精华" → research/longkong_tips.md
 
 ## 全流程提速估算
 
-| 阶段 | 串行耗时 | 并行耗时 | 提速 |
-|------|---------|---------|------|
-| 预生产 (topic→outline) | 105min | 45min | 2.3x |
-| 角色设计 | 90min | 30min | 3.0x |
-| 黄金三章写作 | 90min | 45min | 2.0x |
-| 黄金三章审核 | 180min | 45min | 4.0x |
-| **总计** | **465min** | **165min** | **2.8x** |
+| 阶段 | 串行耗时 | v1.0设计耗时 | v2.0实施后耗时 | 提速(v2.0) |
+|------|---------|-------------|---------------|-----------|
+| 预生产 (topic→outline) | 105min | 45min | 50min | 2.1x |
+| 角色设计 | 90min | 30min | 35min | 2.6x |
+| 黄金三章写作 | 90min | 45min | 50min | 1.8x |
+| 黄金三章审核 | 180min | 45min | 55min | 3.3x |
+| **总计** | **465min** | **165min** | **190min** | **2.4x** |
+
+注：v2.0实施后耗时略高于v1.0设计耗时，因增加了状态管理（parallel_groups更新）、合并协调和失败检查的开销（每阶段约+5-10min）。但相比串行465min仍有2.4x提速。
 
 ### 与当前auto-runner对比
 
@@ -426,9 +720,10 @@ Agent 4: 搜索"龙空论坛写作经验精华" → research/longkong_tips.md
 |------|-----------|---------|
 | 旧方案（每触发1步） | 330min (5.5h) | 22次 |
 | 当前方案（连续执行） | 120min (2h) | 8次 |
-| **并行方案** | **165min (2.75h)** | **6次** |
+| v1.0并行方案（设计值，未实施） | 165min (2.75h) | 6次 |
+| **v2.0并行方案（实施后）** | **190min (3.2h)** | **6次** |
 
-注：并行方案总耗时略高于连续执行方案，因为并行方案包含合并步骤。但并行方案在**多章审核**场景下优势巨大（5章审核从300min降至60min）。
+注：v2.0并行方案总耗时略高于v1.0设计值，因包含实施层的状态管理和合并协调开销。但v2.0是可实际执行的方案，而v1.0从未落地。v2.0在**多章审核**场景下优势巨大（5章审核从300min降至55min）。
 
 ---
 
@@ -440,6 +735,7 @@ Agent 4: 搜索"龙空论坛写作经验精华" → research/longkong_tips.md
 | 黄金三章生产 | 模式5+模式3 | 先并行写3章，再并行审核3章 |
 | 日常连更（已有存稿） | 模式3 | 多章已写好，并行审核最快 |
 | 日常连更（无存稿） | 模式5 | 并行写2-3章+连续性检查 |
+| 日常连更（流水线） | 模式8 | 前章审核时同时写后章，边审边写提速1.5x |
 | 研究/竞品分析 | 模式6 | 多维度同时搜索 |
 | 单章精修 | 模式4 | detail+de-ai并行加速单章审核 |
 | 日常单章生产（通用） | 模式7 | 审核并行+统一合并，每章省10-15min |
@@ -499,6 +795,35 @@ Agent B: de-ai-processor (分析模式) → handoff/de_ai_analysis_ch{N}.json (�
 Agent C (主控/chief-editor): 合并两份建议 → handoff/merged_review_ch{N}.json (统一修改清单)
 ```
 
+### task_config配置示例
+```json
+[
+  {
+    "id": 70, "name": "Ch{N}细节审核", "agent": "detail-reviewer",
+    "parallel_group": "merge_review_{N}", "parallel_index": 0, "parallel_total": 2,
+    "depends_on": [], "is_merger": false
+  },
+  {
+    "id": 71, "name": "Ch{N}去AI化分析", "agent": "de-ai-processor",
+    "parallel_group": "merge_review_{N}", "parallel_index": 1, "parallel_total": 2,
+    "depends_on": [], "is_merger": false
+  },
+  {
+    "id": 72, "name": "Ch{N}修改合并", "agent": "chief-editor",
+    "parallel_group": "merge_review_{N}", "is_merger": true,
+    "depends_on": [70, 71]
+  },
+  {
+    "id": 73, "name": "Ch{N}质量审核", "agent": "quality-reviewer",
+    "parallel_group": null, "depends_on": [72], "is_merger": false
+  },
+  {
+    "id": 74, "name": "Ch{N}终审", "agent": "final-reviewer",
+    "parallel_group": null, "depends_on": [73], "is_merger": false
+  }
+]
+```
+
 ### 预期提速
 
 串行4步×15min = 60min → 并行(detail+de-ai)15min + merger 5min + quality 15min + final 15min = 50min，**提速1.2x**
@@ -510,6 +835,87 @@ Agent C (主控/chief-editor): 合并两份建议 → handoff/merged_review_ch{N
 - de-ai 分析模式只输出检测报告，不修改文本，避免与 detail-reviewer 的修改冲突
 - 合并步骤必须检查两份报告是否有同一句子的冲突修改建议
 - quality-reviewer 仍需读取 detail_review 确认问题已修复（合并后的修改清单作为参考）
+
+---
+
+## 模式8: 流水线写作审核 (Pipeline Write-Review) v2.0
+
+### 适用场景
+日常连更场景：前一章进入审核流水线的同时，后一章开始写作，实现"边审边写"的流水线效果。适用于剧情中等耦合（章节间有衔接但不强依赖前章结局）的日常更新。
+
+### 依赖关系
+```
+Ch(N) 写作完成
+    ↓
+┌───────────────────────────────────────────┐
+│  PARALLEL                                  │
+│  Agent A: Ch(N) 审核 (detail→quality)      │
+│  Agent B: Ch(N+1) 写作 (读Ch(N)终稿衔接)   │
+└───────────────────────────────────────────┘
+    ↓
+Ch(N) 入库 (de-ai→final→memory-manager)
+    ↓
+Ch(N+1) 审核 (detail→quality→de-ai→final)
+```
+
+### Agent分配
+```
+Agent A: Ch(N) 审核 → handoff/detail_review_ch{N}.json + handoff/quality_review_ch{N}.json
+Agent B: Ch(N+1) 写作 → output/chapter_00{N+1}.txt (读 output/chapter_00{N}.txt 衔接)
+--- WAIT BOTH ---
+Agent C: Ch(N) 去AI化 → handoff/de_ai_polish_ch{N}.json (更新 chapter_00{N}.txt)
+Agent D: Ch(N) 终审 → handoff/final_review_ch{N}.json
+Agent E: Ch(N) 入库 → memory-manager 更新 (若终审通过)
+--- THEN ---
+Agent F: Ch(N+1) 审核 (完整4步流水线)
+```
+
+### task_config配置示例
+```json
+[
+  {
+    "id": 80, "name": "Ch{N}细节+质量审核", "agent": "multi-reviewer",
+    "parallel_group": "pipeline_{N}", "parallel_index": 0, "parallel_total": 2,
+    "depends_on": [], "is_merger": false
+  },
+  {
+    "id": 81, "name": "Ch{N+1}撰写", "agent": "chapter-writer",
+    "parallel_group": "pipeline_{N}", "parallel_index": 1, "parallel_total": 2,
+    "depends_on": [], "is_merger": false
+  },
+  {
+    "id": 82, "name": "Ch{N}去AI化", "agent": "de-ai-processor",
+    "parallel_group": null, "depends_on": [80], "is_merger": false
+  },
+  {
+    "id": 83, "name": "Ch{N}终审", "agent": "final-reviewer",
+    "parallel_group": null, "depends_on": [82], "is_merger": false
+  },
+  {
+    "id": 84, "name": "Ch{N}入库", "agent": "memory-manager",
+    "parallel_group": null, "depends_on": [83, 81], "is_merger": false
+  },
+  {
+    "id": 85, "name": "Ch{N+1}审核", "agent": "multi-reviewer",
+    "parallel_group": null, "depends_on": [84], "is_merger": false
+  }
+]
+```
+注：Ch{N+1}审核依赖 Ch{N}入库（id=84），而入库又依赖 Ch{N+1}写作完成（id=81），形成流水线闭环。`parallel_group: "pipeline_{N}"` 仅覆盖审核+写作的并行阶段。
+
+### 风险控制
+- **写作Agent需读取前章终稿**：Ch(N+1)写作Agent必须读取 `output/chapter_00{N}.txt`（此时Ch(N)可能尚未完成去AI化/终审，但初稿已稳定），确保衔接自然
+- **审核不通过时需回退**：若 Ch(N) 终审未通过（id=83 verdict≠pass），则：
+  1. Ch(N+1)写作结果保留但标记为 `pending_revision`（可能需根据Ch(N)修改调整衔接）
+  2. Ch(N) 退回 chapter-writer 修订
+  3. Ch(N) 修订完成后重新走审核，再决定 Ch(N+1) 是否需要同步调整
+- **去AI化与终审串行**：Ch(N)的去AI化（id=82）和终审（id=83）不参与并行，必须等审核Agent（id=80）完成后串行执行
+- **入库门禁**：Ch(N)入库（id=84）同时依赖终审通过和Ch(N+1)写作完成，确保流水线节奏可控
+
+### 预期提速
+串行2章×(写作30min + 审核60min) = 180min → 流水线(写作30min + 并行审核30min + 入库后审核60min) = 120min，**提速1.5x**
+
+多章连更时收益累积：5章连更从900min降至600min，**提速1.5x**
 
 ---
 
@@ -573,3 +979,27 @@ Agent C (主控/chief-editor): 合并两份建议 → handoff/merged_review_ch{N
 - `memory/outline.json` 的 beat_breakdown（章节beat规划）
 - `memory/goal_tracker.json`（目标依赖、悬念窗口状态）
 - `memory/foreshadowing_tracker.json`（伏笔状态依赖）
+
+---
+
+## v2.0落地检查清单
+
+v2.0的核心目标是将并行框架从"设计文档"变为"可执行规范"。以下检查清单用于验证v2.0是否真正落地：
+
+- [ ] `task_config.json` 包含 `parallel_group` 字段（至少1个步骤使用）
+- [ ] `state.json` 包含 `parallel_groups` 数组（运行时能追踪并行组状态）
+- [ ] `master_instruction.md` 包含并行调度协议（六步调度流程已写入指令）
+- [ ] 至少1个模式已在实际执行中使用（非模拟、非设计，真实跑通）
+
+**验证方法**：
+
+| 检查项 | 验证方式 | 通过标准 |
+|--------|---------|---------|
+| task_config并行字段 | 检查 `auto-runner/task_config.json` 的 steps 中是否有 `parallel_group != null` | 至少1个步骤 |
+| state并行状态 | 检查 `auto-runner/state.json` 是否有 `parallel_groups` 数组 | 数组存在且非空 |
+| 调度协议 | 检查 `auto-runner/master_instruction.md` 是否包含"并行调度协议"或"六步"描述 | 协议已写入 |
+| 实际执行 | 检查 `execution_log.md` 中是否有同一时间戳下多个并行步骤的记录 | 至少1组并行执行记录 |
+
+**未通过时的处理**：
+- 若仅前3项未通过 → 补充实施层文件配置，重新检查
+- 若第4项未通过（无实际执行记录）→ 选择最安全的模式（模式7或模式8）进行首次试运行

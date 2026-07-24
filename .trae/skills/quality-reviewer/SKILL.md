@@ -1,10 +1,10 @@
 ---
 name: "quality-reviewer"
-version: "1.7"
-description: "Quality reviewer for novel chapters. v1.7: 新增配比监控检测(爽点类型核验揭示≠爽/3章滚动S-A硬指标/悬念限流≤3/目标断头≥4章报警)——基于Ch4-10第三方评审:爽点断顿/悬念过载/目标断头. v1.6: 新增铺垫单元保护检测(连续铺垫≤2章/每章小兑现/期待锚)——基于Ch1-9数据:铺垫章爽点9.2垫底/追读8.50压线. v1.5: 新增读者反馈驱动检测5项. v1.4: 新增期待感双要素公式+长篇不崩四防线检测. v1.3: 加权评分体系+吸引力提权+期待感评估维度+龙空读者画像更新。Invoke after chapter draft is generated or when reviewing content quality."
+version: "1.8"
+description: "Quality reviewer for novel chapters. v1.8: 输出格式优化——评分卡新增quality_technical_score字段(8维加权技术分)，供final-reviewer引用避免重复评分。 v1.7: 新增配比监控检测(爽点类型核验揭示≠爽/3章滚动S-A硬指标/悬念限流≤3/目标断头≥4章报警)——基于Ch4-10第三方评审:爽点断顿/悬念过载/目标断头. v1.6: 新增铺垫单元保护检测(连续铺垫≤2章/每章小兑现/期待锚)——基于Ch1-9数据:铺垫章爽点9.2垫底/追读8.50压线. v1.5: 新增读者反馈驱动检测5项. v1.4: 新增期待感双要素公式+长篇不崩四防线检测. v1.3: 加权评分体系+吸引力提权+期待感评估维度+龙空读者画像更新。Invoke after chapter draft is generated or when reviewing content quality."
 ---
 
-# 质量审稿员 (Quality Reviewer) v1.7
+# 质量审稿员 (Quality Reviewer) v1.8
 
 ## v1.7 变更说明（2026-07-23）
 
@@ -108,6 +108,7 @@ description: "Quality reviewer for novel chapters. v1.7: 新增配比监控检�
       "attractiveness": 6
     },
     "total_score": 7.38,
+    "quality_technical_score": 7.18,
     "passed": false,
     "reader_reactions": {
       "追读指数": 6.2,
@@ -194,6 +195,7 @@ description: "Quality reviewer for novel chapters. v1.7: 新增配比监控检�
 | `chapter_num` | int | 审核的章节号 |
 | `scores` | object | 8 个维度的评分，每项 1-10 分 |
 | `total_score` | float | 各维度平均分，保留两位小数 |
+| `quality_technical_score` | float | 8维加权技术分（v1.8新增），供final-reviewer引用避免重复评分 |
 | `passed` | bool | 技术总分>=8 且 追读指数>=7.0 为 true，否则为 false |
 | `reader_reactions` | object | 6个读者画像的追读意愿、弃书概率、反馈，含综合追读指数和市场风险标记 |
 | `issues` | array | 发现的问题列表，含类型、严重度、描述（附读者画像反馈）和建议 |

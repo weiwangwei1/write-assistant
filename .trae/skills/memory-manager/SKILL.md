@@ -1,10 +1,10 @@
 ---
 name: "memory-manager"
-version: "1.4"
-description: "Memory manager for novel writing system. v1.4: 新增终审条件验证(步骤1.5)+override条件追踪(session_pointer.pending_override_conditions). v1.3: 新增全局全文文件维护(output/{novel_title}_全文.txt重建模式)——每章入库时重建连贯性阅读全文，含动态进度头部. v1.2: 新增目标闭环追踪(goal_tracker.json)+主线进度条/反派梯子追踪+悬念活跃窗口维护——基于Ch4-10第三方评审(目标断头/火种断更/悬念过载). v1.1: 新增章节级大纲漂移记录(drift_log)+终审后强制入库定位(硬门禁下游). Manages hierarchical storage, generates summaries, maintains sliding window context. Invoke MANDATORILY after final-reviewer approves each chapter — next chapter must not start until memory is committed."
+version: "1.5"
+description: "Memory manager for novel writing system. v1.5: 文件I/O优化——recent_chapters改为按需读取output/(不维护副本)+全文文件改为追加模式(非全量重建)+characters.json改为索引指针(独立卡为唯一源). v1.4: 新增终审条件验证(步骤1.5)+override条件追踪(session_pointer.pending_override_conditions). v1.3: 新增全局全文文件维护(output/{novel_title}_全文.txt重建模式)——每章入库时重建连贯性阅读全文，含动态进度头部. v1.2: 新增目标闭环追踪(goal_tracker.json)+主线进度条/反派梯子追踪+悬念活跃窗口维护——基于Ch4-10第三方评审(目标断头/火种断更/悬念过载). v1.1: 新增章节级大纲漂移记录(drift_log)+终审后强制入库定位(硬门禁下游). Manages hierarchical storage, generates summaries, maintains sliding window context. Invoke MANDATORILY after final-reviewer approves each chapter — next chapter must not start until memory is committed."
 ---
 
-# 记忆管家 (Memory Manager) v1.4
+# 记忆管家 (Memory Manager) v1.5
 
 > **流水线城市（v1.1 起强制）**：final-reviewer 终审通过后，memory-manager 是**不可跳过的强制步骤**。chief-editor 在其入库完成前不得启动下一章（硬门禁，见 chief-editor v1.1）。数据教训：Ch4–Ch10 连续跳过记忆入库，导致 session_pointer 停留在旧项目、章节摘要欠账 7 章，chapter-writer 跨章事实表失去数据源——跨章 critical 错误（Ch6-8 年代/人名/位置硬伤）均发生在欠账区间。
 
@@ -66,13 +66,13 @@ description: "Memory manager for novel writing system. v1.4: 新增终审条件�
 | 输出路径 | 说明 | 触发条件 |
 |---------|------|---------|
 | `memory/chapter_summaries/chapter_XXX.json` | 章节摘要 | 每章终稿入库时 |
-| `memory/recent_chapters/chapter_XXX.txt` | 滑动窗口全文 | 每章终稿入库时 |
-| `memory/characters.json` | 更新后的角色卡 | 每章终稿入库时 |
+| `memory/recent_chapters/chapter_XXX.txt` | 滑动窗口全文（v1.5优化：改为符号链接或按需从output/读取，不再维护副本） | 每章终稿入库时 |
+| `memory/characters.json` | 角色索引库（v1.5优化：改为索引指针格式，指向memory/characters/{角色名}.json独立卡，不再全量复制角色卡内容） | 每章终稿入库时 |
 | `memory/volume_summaries/vol_XX.json` | 卷宗摘要 | 卷宗最后一章入库时 |
 | `memory/foreshadowing_tracker.json` | 伏笔状态追踪表 | 每章终稿入库时更新 |
 | `memory/session_pointer.json` | L5 会话恢复指针 | 每章终稿入库时更新 |
 | `memory/goal_tracker.json` | 目标闭环+主线进度条+反派梯子追踪表（v1.2 新增） | 每章终稿入库时更新 |
-| `output/{novel_title}_全文.txt` | 全章全文合集（连贯性阅读，重建模式）（v1.3 新增） | 每章终稿入库时重建 |
+| `output/{novel_title}_全文.txt` | 全章全文合集（v1.5优化：改为追加模式，仅追加本章正文，不再全量重建） | 每章终稿入库时重建 |
 | `memory/consistency_check/consistency_{N}.json` | 一致性自检报告 | 每10章触发 |
 | `memory/decision_log.jsonl` | 写作决策日志（追加） | 关键决策发生时 |
 | `logs/writing_log.jsonl` | 写作日志（追加写入） | 每章终稿入库时 |
@@ -1005,3 +1005,33 @@ Step 4: 向用户汇报
 19. **全局全文文件用重建模式**（v1.3新增）：`output/{novel_title}_全文.txt` 每章入库时从 `output/` 目录所有章节文件重新拼接（覆盖写入，非追加），确保与 `output/chapter_*.txt` 完全一致，自动处理重写场景。文件头部含动态进度信息（更新时间、当前进度 Ch1-N），每次重建时刷新。章节标题从 `memory/chapter_summaries/chapter_XXX.json` 的 title 字段读取。
 20. **终审条件验证不可跳过**（v1.4新增）：步骤1.5的终审条件验证是入库前的强制检查。final-reviewer 给出的 conditions 中，管理项（角色卡同步/伏笔补登等）必须由 chapter-writer 在修订阶段执行（见 chapter-writer v2.4 修订同步要求），memory-manager 验证 `revision_sync` 字段。跨章条件（如"ch12-13闭环悬念"）记入 `pending_override_conditions` 追踪至到期。数据教训：Ch11 终审发现 R005/R023 两项管理项未执行，根因是修订与记忆更新脱节。
 21. **override条件到期提醒**（v1.4新增）：`pending_override_conditions` 中 due_chapter 已到期但 status 仍为 pending 的条件，必须在 next_action 中高亮提醒（"⚠️ OC00X 条件已到期"）。chief-editor 在下一章启动前读取此字段，确保到期条件在本章执行。若到期条件连续2章未执行，升级为 critical 预警上报用户。
+
+---
+
+## 文件I/O优化说明 (v1.5)
+
+### 优化1: recent_chapters 按需读取
+- 旧方案：维护 memory/recent_chapters/ 目录，复制最近3章全文（约22KB/3章）
+- 新方案：chapter-writer 和审核员直接从 output/chapter_NNN.txt 读取最近3章
+- 实现：session_pointer.json 记录最近3章的章节号，下游按号到 output/ 读取
+- 收益：省22KB冗余存储 + 消除窗口与正本不同步风险
+
+### 优化2: 全文文件追加模式
+- 旧方案：每章入库时全量重建 output/{novel_title}_全文.txt（330章时约1MB文本全量重写）
+- 新方案：每章入库时仅追加本章正文（约3KB追加 vs 1MB全量重写）
+- 实现：首次创建时写入标题+简介头部，后续每章追加章节标题+正文
+- 收益：入库写入从O(N)降至O(1)，330章时节省约99%写入量
+
+### 优化3: characters.json 索引化
+- 旧方案：memory/characters.json 全量包含8个角色卡完整内容（约226KB），与8个独立卡（约158KB）完全重复
+- 新方案：memory/characters.json 改为索引格式，只存角色名→文件路径映射+关系网络+成长弧线（约5KB）
+- 格式：
+  ```json
+  {
+    "index": {"许愿": "memory/characters/许愿.json", "老龙": "memory/characters/老龙.json", "...": "..."},
+    "relationships": ["..."],
+    "growth_arc_intersections": ["..."]
+  }
+  ```
+- 下游读取时先查索引获取路径，再读独立卡
+- 收益：省158KB全局冗余 + 消除聚合文件与独立卡不同步风险

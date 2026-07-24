@@ -1,7 +1,7 @@
 ---
 name: "chapter-writer"
-version: "2.4"
-description: "Chapter content writer for novels. v2.4: 新增修订同步要求(角色卡/伏笔表/目标追踪同步)+强化悬念窗口硬拦截(自审第5点)+字数预算中位值指引. v2.3: 新增goal_tracker读取+beat爽点类型标注(揭示≠爽)+悬念预算检查(基于Ch4-10第三方评审:爽点断顿/悬念过载). v2.2: 新增跨章事实表法则+高频AI词禁令+单章密度上限(基于Ch1-9审核数据:5个critical全部为跨章一致性错误). v2.1: 新增文笔质感法则7条. v2.0: 新增读者反馈驱动法则5条. v1.9: 新增剧情微观结构法则5条. v1.8: 新增角色形象渐入法则. v1.7: 新增吸引力放大法则6条. Generates chapter drafts based on outline, characters, and context memory."
+version: "2.5"
+description: "Chapter content writer for novels. v2.5: 文件I/O优化——草稿不内嵌全文(仅存beat_sheet元数据)，正文只写output/，消除双重存储. v2.4: 新增修订同步要求(角色卡/伏笔表/目标追踪同步)+强化悬念窗口硬拦截(自审第5点)+字数预算中位值指引. v2.3: 新增goal_tracker读取+beat爽点类型标注(揭示≠爽)+悬念预算检查(基于Ch4-10第三方评审:爽点断顿/悬念过载). v2.2: 新增跨章事实表法则+高频AI词禁令+单章密度上限(基于Ch1-9审核数据:5个critical全部为跨章一致性错误). v2.1: 新增文笔质感法则7条. v2.0: 新增读者反馈驱动法则5条. v1.9: 新增剧情微观结构法则5条. v1.8: 新增角色形象渐入法则. v1.7: 新增吸引力放大法则6条. Generates chapter drafts based on outline, characters, and context memory."
 ---
 
 # 写手 (Chapter Writer) v2.3
@@ -39,6 +39,10 @@ description: "Chapter content writer for novels. v2.4: 新增修订同步要求(
 
 写手输出章节草稿交接卡，保存至 `handoff/chapter_draft.json`。产出前必须先生成章节分镜（beat sheet）并自审，分镜作为交接卡的组成部分一并提交，供 detail-reviewer 作为额外审核输入。
 
+正文输出路径：`output/chapter_{NNN:03d}.txt`（三位数零填充命名，如 chapter_001.txt）。正文不内嵌在交接卡中。
+
+> **v2.5 文件I/O优化**：草稿交接卡不再内嵌正文全文。正文直接写入 `output/chapter_NNN.txt`，交接卡仅存 beat_sheet 元数据 + 跨章事实表 + 正文路径引用。消除草稿与正文的双重存储（节省约8KB/章读写）。
+
 ### 交接卡格式 (chapter_draft.json)
 
 ```json
@@ -72,7 +76,7 @@ description: "Chapter content writer for novels. v2.4: 新增修订同步要求(
         "known_info": ["前文已揭示、本章只能引用不能重新发现的信息"]
       }
     },
-    "text": "林逸站在落地窗前，俯瞰着脚下的城市……（章节正文全文）",
+    "text_ref": "output/chapter_00X.txt (正文不内嵌，仅引用路径)",
     "word_count": 4150,
     "memes_used": [
       {"meme": "梗内容", "location": "第几beat", "type": "玩梗对话/整活/吐槽", "timeliness": "2025-06"}
@@ -783,3 +787,28 @@ description: "Chapter content writer for novels. v2.4: 新增修订同步要求(
 - **重写克制**：重写时只改问题部分，保留通过的部分；避免过度重写导致文风断裂或字数失衡。每次重写后字数仍需保持在 3600-4400 区间
 - **不越权改设定**：写手不得修改大纲、角色卡或关系网设定；如需调整，应通过交接卡反馈给总编，由总编调度对应 Agent 修改
 - **交接卡完整性**：handoff/chapter_draft.json 必须包含完整的 text 正文与 key_events，确保审稿员能基于完整内容评估
+
+---
+
+## 文件I/O优化说明 (v2.5)
+
+### 问题
+v2.4及之前版本，chapter_draft.json 内嵌完整正文（约8-16KB），与 output/chapter_NNN.txt 形成双重存储：
+- 写手写两次（draft.json + output/）
+- 审核员读两次（从draft.json读全文 + 从output/读全文）
+- 修订时需同步两个文件，容易不一致
+
+### 优化
+v2.5起，草稿交接卡只存元数据：
+- beat_sheet（分镜数据）
+- cross_chapter_facts（跨章事实表）
+- foreshadowing（伏笔动作）
+- goal_tracking（目标追踪）
+- text_ref（正文路径引用，指向 output/chapter_NNN.txt）
+
+正文全文只写入 output/chapter_NNN.txt，所有下游审核员从该路径读取。
+
+### 收益
+- 每章节省约8-16KB读写
+- 消除双重存储不一致风险
+- 审核员读取路径统一
