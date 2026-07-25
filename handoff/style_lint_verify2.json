@@ -1,0 +1,179 @@
+{
+  "card_type": "style_lint",
+  "from_agent": "style_lint(script)",
+  "to_agent": "chapter-writer",
+  "status": "pass",
+  "style_pack": "yanyujiangnan",
+  "blocking_count": 0,
+  "non_blocking_count": 0,
+  "issues": [],
+  "timeline_clues": {
+    "chapter_001.txt": [
+      {
+        "line": 3,
+        "hit": "半年",
+        "context": "瓦当磕上供桌的时候，桌面震了一下，半年没动静的旧桌子头一回醒转。积了铜钱厚的灰从"
+      },
+      {
+        "line": 3,
+        "hit": "半年",
+        "context": "瓦当磕上供桌的时候，桌面震了一下，半年没动静的旧桌子头一回醒转。积了铜钱厚的灰从"
+      },
+      {
+        "line": 9,
+        "hit": "六十年",
+        "context": "\"又是破烂。\"声音从供桌深处传出来，干巴巴的，带了一股子不耐烦。许愿没抬头。而他"
+      },
+      {
+        "line": 25,
+        "hit": "半年",
+        "context": "许愿把瓦当摆正，掌心贴着桌面，木头是凉的，凉得厉害，冬天河底石头的凉。半年了这张"
+      },
+      {
+        "line": 67,
+        "hit": "半年",
+        "context": "许愿盯着这行字看很久。半年前爷爷头天晚上还说第二天教他认供桌上的纹路，到了第二天"
+      }
+    ],
+    "chapter_002.txt": [
+      {
+        "line": 29,
+        "hit": "半年",
+        "context": "许愿看了一眼那块碎玉，脂粉气重，皮色温润。拿去当铺少说值二两银子。霍东来拿这东西"
+      }
+    ],
+    "chapter_003.txt": [
+      {
+        "line": 31,
+        "hit": "二十年",
+        "context": "返出来的铜板攥在掌心，鳞纹微微发烫。老周头那烟杆抽过二十年，铜板过手就走，烟杆一"
+      }
+    ],
+    "chapter_004.txt": [
+      {
+        "line": 73,
+        "hit": "庚午年",
+        "context": "许愿不接茬，取了一根竹签，蘸着醋，一点一点剔刀身上的锈垢。锈垢一层一层剥下来，落"
+      },
+      {
+        "line": 75,
+        "hit": "庚午年",
+        "context": "\"念念，\"老灯的声音忽然近了些，\"一个字一个字念。\"许愿念了一遍：\"镇巷十三号，"
+      },
+      {
+        "line": 81,
+        "hit": "六十年",
+        "context": "\"六十年前的老地名刻在刀上，封刀的人手艺不差。\"老灯报账似的往下报，\"这刀来历不"
+      },
+      {
+        "line": 83,
+        "hit": "庚午年",
+        "context": "\"那庚午年呢，庚午年是哪一年？\"许愿冲着桌底一路追问。"
+      },
+      {
+        "line": 83,
+        "hit": "庚午年",
+        "context": "\"那庚午年呢，庚午年是哪一年？\"许愿冲着桌底一路追问。"
+      },
+      {
+        "line": 85,
+        "hit": "庚午年",
+        "context": "桌底下没声了，方才还有问有答的声音一下子收了进去，收得干干净净。油灯的火苗垂着，"
+      },
+      {
+        "line": 89,
+        "hit": "庚午年",
+        "context": "这把刀的年头比账册还老。来历越重，桌子消化得越久，初一十五开坛大供，倒是快些。许"
+      }
+    ]
+  },
+  "config": {
+    "not_a_is_b_max_per_chapter": 1,
+    "short_para_len": 15,
+    "short_para_ratio_max": 0.45,
+    "short_para_run_max": 6,
+    "simile_max_per_chapter": 6,
+    "simile_max_per_para": 1,
+    "ban_yizhong_feeling": true,
+    "ban_feeling_enum": true,
+    "ban_summary_voice": true,
+    "ranhou_max_per_chapter": 1,
+    "dialogue_ratio_min": 0.25,
+    "dialogue_ratio_max": 0.4,
+    "dash_max_per_1000": 1.0,
+    "ellipsis_max_per_1000": 1.5,
+    "le_max_per_1000": 25.0,
+    "zhe_max_per_1000": 9.0,
+    "conjunction_min_per_1000": 5.0,
+    "dialogue_guide_min_per_1000": 1.5,
+    "name_starter_run_max": 4,
+    "emotion_telling_words": [
+      "不敢",
+      "害怕",
+      "悲伤",
+      "震撼",
+      "激动"
+    ],
+    "four_char_cliches": [
+      "不急不缓",
+      "不紧不慢",
+      "取而代之",
+      "不约而同",
+      "悄无声息"
+    ],
+    "era_wrong_words": [
+      "路灯",
+      "火柴",
+      "同频",
+      "电话",
+      "汽车",
+      "手机"
+    ],
+    "tell_marker_words": [
+      "习惯性地",
+      "不由得",
+      "下意识地",
+      "情不自禁",
+      "自然而然地",
+      "本能地",
+      "条件反射般",
+      "潜意识里"
+    ],
+    "cliche_vehicles": [
+      "山",
+      "风",
+      "火",
+      "水",
+      "刀",
+      "剑",
+      "雷",
+      "电",
+      "铁",
+      "石",
+      "雾",
+      "冰",
+      "蛇",
+      "虎",
+      "龙",
+      "潮",
+      "浪",
+      "云",
+      "雨",
+      "雪"
+    ],
+    "short_le_ending_max": 3,
+    "narrative_dialogue_max": 2,
+    "certain_markers": [
+      "就是",
+      "分明是",
+      "肯定是",
+      "无疑是",
+      "确实是"
+    ],
+    "ending_family_window": 4,
+    "ending_family_max_in_window": 2,
+    "opening_channel_max_run": 2,
+    "dup_sentence_min_len": 6
+  },
+  "overrides": []
+}

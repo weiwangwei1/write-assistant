@@ -50,6 +50,12 @@ DEFAULT_CONFIG = {
     "emotion_telling_words": ["不敢", "害怕", "悲伤", "震撼", "激动"],
     "four_char_cliches": ["不急不缓", "不紧不慢", "取而代之", "不约而同", "悄无声息"],
     "era_wrong_words": ["路灯", "火柴", "同频", "电话", "汽车", "手机"],
+    # 六、文学质量检测（v2.2新增——解决钝规则导致过度矫正的问题）
+    "tell_marker_words": ["习惯性地", "不由得", "下意识地", "情不自禁", "自然而然地", "本能地", "条件反射般", "潜意识里"],
+    "cliche_vehicles": ["山", "风", "火", "水", "刀", "剑", "雷", "电", "铁", "石", "雾", "冰", "蛇", "虎", "龙", "潮", "浪", "云", "雨", "雪"],
+    "short_le_ending_max": 3,       # 短句(≤15字)以"了"收尾的上限（AI腔特征）
+    "narrative_dialogue_max": 2,    # 叙述化对话(无引号的X问Y说模式)上限
+    "certain_markers": ["就是", "分明是", "肯定是", "无疑是", "确实是"],
     # 六、跨章规则（仅目录模式）
     "ending_family_window": 4,
     "ending_family_max_in_window": 2,
@@ -71,9 +77,13 @@ RULE_LEVELS = {
     "dash_overuse": "L2", "ellipsis_overuse": "L2",
     "le_overuse": "L2", "zhe_overuse": "L2",
     "conjunction_underuse": "L2", "dialogue_guide_underuse": "L2",
+    # v2.2 新增：文学质量检测（L2，不阻断但提醒写手区分好坏实例）
+    "le_pattern": "L2", "tell_marker": "L2",
+    "narrative_dialogue": "L2", "certain_marker_mismatch": "L2",
     # L3: 偏好规则 — 仅提示
     "name_starter_run": "L3", "ranhou": "L3",
     "four_char": "L3", "emotion_telling": "L3",
+    "override_limit": "L3",
 }
 # 跨章规则分级
 CROSS_RULE_LEVELS = {
@@ -84,6 +94,9 @@ LEVEL_NAMES = {
 }
 
 SIMILE_EXCLUDE = ["画像", "雕像", "头像", "像样", "像话", "影像", "想像", "像章"]
+
+# v2.2: 陈词喻体表——命中则计为劣质比喻（权重1.0），未命中计为优质（权重0.5）
+CLICHE_VEHICLES = {"山", "风", "火", "水", "刀", "剑", "雷", "电", "铁", "石", "雾", "冰", "蛇", "虎", "龙", "潮", "浪", "云", "雨", "雪"}
 
 ENDING_FAMILIES = {
     "光/灯族": re.compile(r"(光|亮|灯|焰|火色|灭|晃)"),
@@ -108,15 +121,35 @@ class Chapter:
         self.name = os.path.basename(path)
         self.lines = [l.rstrip() for l in text.splitlines()]
         self.body_lines = []
+        self.overrides = []  # v2.2: 合理覆写列表 [{"rule": str, "reason": str, "line": int, "text": str}]
+        pending_override = None
         for i, l in enumerate(self.lines, 1):
             s = l.strip()
             if not s: continue
+            # v2.2: 解析覆写标记 <!-- OVERRIDE: rule_name reason -->
+            if s.startswith("<!--") and "OVERRIDE:" in s:
+                m = re.search(r"OVERRIDE:\s*(\S+)\s*(.*)", s)
+                if m:
+                    pending_override = {"rule": m.group(1), "reason": m.group(2).rstrip("-->").strip(), "line": i}
+                continue
             if re.match(r"^第\d+章", s): continue
             if re.match(r"^(字数|—{3,}|-{3,}|={3,})", s): continue
             if s.startswith("#"): continue
+            # 如果有待处理的覆写标记，关联到当前段落
+            if pending_override:
+                pending_override["text"] = s
+                pending_override["line"] = i  # 更新为实际段落行号
+                self.overrides.append(pending_override)
+                pending_override = None
             self.body_lines.append((i, s))
         self.text = "\n".join(s for _, s in self.body_lines)
         self.paras = [s for _, s in self.body_lines]
+        # v2.2: 构建覆写字典 {rule_name: [paragraph_text, ...]} 和覆写行号集合
+        self.override_rules = {}  # {rule_name: set of line_numbers}
+        for ov in self.overrides:
+            self.override_rules.setdefault(ov["rule"], set()).add(ov["line"])
+        # 被覆写的段落文本（用于从全章计数中排除）
+        self.override_texts = set(ov.get("text", "") for ov in self.overrides if ov.get("text"))
 
 def count_similes(text):
     cnt = 0
@@ -125,6 +158,23 @@ def count_similes(text):
         if any(tail.startswith(w[:2]) for w in SIMILE_EXCLUDE): continue
         cnt += 1
     return cnt
+
+def classify_similes(text):
+    """v2.2: 比喻质量分级——返回 (total, quality_count, cliche_count)
+    优质比喻（喻体具体、不在陈词表中）权重0.5，陈词比喻（喻体在CLICHE_VEHICLES中）权重1.0
+    优质占比≥70%时，超限从critical降级为minor——允许保留有效比喻"""
+    quality_count = 0
+    cliche_count = 0
+    for m in re.finditer(r"像", text):
+        tail = text[m.start():m.start()+3]
+        if any(tail.startswith(w[:2]) for w in SIMILE_EXCLUDE): continue
+        vehicle = text[m.end():m.end()+6]
+        is_cliche = any(cv in vehicle for cv in CLICHE_VEHICLES)
+        if is_cliche:
+            cliche_count += 1
+        else:
+            quality_count += 1
+    return quality_count + cliche_count, quality_count, cliche_count
 
 def lint_chapter(ch, cfg, disabled, custom_bans, rule_levels=None):
     issues = []
@@ -158,10 +208,13 @@ def lint_chapter(ch, cfg, disabled, custom_bans, rule_levels=None):
         if run == cfg["short_para_run_max"] + 1:
             add("short_para_run", "minor", ln, s, f"连续碎段超过{cfg['short_para_run_max']}段")
 
-    total_sim = count_similes(ch.text)
-    if total_sim > cfg["simile_max_per_chapter"]:
-        add("simile_total", "critical", 0, "",
-            f"“像”字比喻{total_sim}处 > 上限{cfg['simile_max_per_chapter']}")
+    # 比喻红线（v2.2：质量分级——优质比喻占比≥70%时超限降级为minor）
+    sim_total, sim_quality, sim_cliche = classify_similes(ch.text)
+    if sim_total > cfg["simile_max_per_chapter"]:
+        quality_ratio = sim_quality / max(1, sim_total)
+        sev = "minor" if quality_ratio >= 0.7 else "critical"
+        add("simile_total", sev, 0, "",
+            f"“像”字比喻{sim_total}处 > 上限{cfg['simile_max_per_chapter']}（优质{sim_quality}/陈词{sim_cliche}，优质占比{quality_ratio*100:.0f}%）")
     for ln, s in ch.body_lines:
         if count_similes(s) > cfg["simile_max_per_para"]:
             add("simile_stacked", "critical", ln, s, "单段多喻体堆叠（一段一喻）")
@@ -183,12 +236,27 @@ def lint_chapter(ch, cfg, disabled, custom_bans, rule_levels=None):
         add("ranhou", "minor", 0, "", f"叙事“然后”{ranhou}处 > 上限{cfg['ranhou_max_per_chapter']}")
 
     # 对话占比（H9）
-    dia = sum(han_len(p) for p in ch.paras if re.search(r"[\"“「]", p))
+    dia = sum(han_len(p) for p in ch.paras if re.search(r"[\"""「]", p))
     dr = dia / max(1, sum(han_len(p) for p in ch.paras))
     if dr < cfg["dialogue_ratio_min"]:
         add("dialogue_ratio", "minor", 0, "", f"对话占比{dr*100:.0f}% < 下限{cfg['dialogue_ratio_min']*100:.0f}%")
     elif dr > cfg["dialogue_ratio_max"]:
         add("dialogue_ratio", "minor", 0, "", f"对话占比{dr*100:.0f}% > 上限{cfg['dialogue_ratio_max']*100:.0f}%")
+    # v2.2.1 改进：叙述化对话检测——用"代词+对话动词"模式替代宽泛正则
+    # v2.2 原正则 (?:问|说|答|道)[^。！？]{5,40}(?:说|答|道|回) 会误匹配
+    # "总说""公道""知道""一道"等非对话用法，导致 9 处误报→写手过度矫正
+    # 改进：只有段落中出现≥2次"他说/她问/他答/她道"模式时才认定为叙述化对话
+    narrative_dia_cnt = 0
+    for ln, s in ch.body_lines:
+        if not re.search(r'[""「]', s):
+            pronoun_verbs = len(re.findall(r'(?:他|她)(?:说|问|答|道)', s))
+            if pronoun_verbs >= 2:
+                narrative_dia_cnt += 1
+                add("narrative_dialogue", "minor", ln, s[:50],
+                    f"叙述化对话（{pronoun_verbs}处代词+对话动词）——面对面场景建议用直接对话格式保留现场感")
+    if narrative_dia_cnt > cfg.get("narrative_dialogue_max", 2):
+        add("narrative_dialogue", "minor", 0, "",
+            f"叙述化对话{narrative_dia_cnt}处 > 上限{cfg.get('narrative_dialogue_max', 2)}——大量对话被转成摘要")
 
     # 标点指纹（破折号/省略号频率，风格包按原作指纹收紧）
     total_chars = max(1, sum(han_len(p) for p in ch.paras))
@@ -201,10 +269,20 @@ def lint_chapter(ch, cfg, disabled, custom_bans, rule_levels=None):
     if ellipsis_per_1k > cfg["ellipsis_max_per_1000"]:
         add("ellipsis_overuse", "minor", 0, "", f"省略号{ellipsis_per_1k}/千字 > 上限{cfg['ellipsis_max_per_1000']}")
 
-    # 功能词指纹（v2.1：了/着密度+书面连词下限+同段首连跑，风格包按原作指纹收紧）
+    # 功能词指纹（v2.2：了/着密度保留作指纹参考，lint 新增模式检测）
     le_per_1k = round(ch.text.count("了") / total_chars * 1000, 2)
     if le_per_1k > cfg["le_max_per_1000"]:
-        add("le_overuse", "minor", 0, "", f"“了”{le_per_1k}/千字 > 上限{cfg['le_max_per_1000']}（了字收尾碎句宜改连词衔接长句）")
+        add("le_overuse", "minor", 0, "", f"“了”{le_per_1k}/千字 > 上限{cfg['le_max_per_1000']}（参考指标——重点看 le_pattern 是否为 AI 腔模式）")
+    # v2.2 新增：AI 腔"了"模式检测——短句(≤15字)以"了"收尾（真正的 AI 腔特征，而非语法必需的"了"）
+    short_le_endings = []
+    for ln, s in ch.body_lines:
+        for sent in re.split(r"[。！？]", s):
+            sent = sent.strip()
+            if 0 < han_len(sent) <= 15 and sent.endswith("了"):
+                short_le_endings.append((ln, sent))
+    if len(short_le_endings) > cfg.get("short_le_ending_max", 3):
+        for ln, sent in short_le_endings[:5]:
+            add("le_pattern", "minor", ln, sent, f"短句以“了”收尾（共{len(short_le_endings)}处 > 上限{cfg.get('short_le_ending_max', 3)}）——AI腔特征：建议用连词衔接为长句，而非删除语法必需的“了”")
     zhe_per_1k = round(ch.text.count("着") / total_chars * 1000, 2)
     if zhe_per_1k > cfg["zhe_max_per_1000"]:
         add("zhe_overuse", "minor", 0, "", f"“着”{zhe_per_1k}/千字 > 上限{cfg['zhe_max_per_1000']}")
@@ -232,10 +310,21 @@ def lint_chapter(ch, cfg, disabled, custom_bans, rule_levels=None):
         n = ch.text.count(w)
         if n >= 3:
             add("emotion_telling", "minor", 0, w, f"情绪直说词“{w}”出现{n}次")
+    # v2.2 新增：Tell 标记词检测——描述动作心理机制而非展示动作本身
+    for w in cfg.get("tell_marker_words", []):
+        for ln, s in ch.body_lines:
+            if w in s:
+                add("tell_marker", "minor", ln, w, f"Tell标记词“{w}”——告诉而非展示，建议删除让动作本身说话")
     for w in cfg["four_char_cliches"]:
         for ln, s in ch.body_lines:
             if w in s:
                 add("four_char", "minor", ln, w, f"四字书面词组“{w}”")
+    # v2.2 新增：确定性语气检测——首次观察场景用确定语气时提醒视角漂移
+    for ln, s in ch.body_lines:
+        for cm in cfg.get("certain_markers", []):
+            for m in re.finditer(r"(?:看[到见]?|注意[到]?|瞧[见]?)[^。！？]{0,10}" + cm, s):
+                add("certain_marker_mismatch", "minor", ln, m.group(0),
+                    f"观察+确定语气“{cm}”——角色首次遭遇时建议用推测语气（像是/倒像是/似乎）")
     for w in cfg["era_wrong_words"]:
         for ln, s in ch.body_lines:
             if w in s:
@@ -250,6 +339,23 @@ def lint_chapter(ch, cfg, disabled, custom_bans, rule_levels=None):
     for ln, s in ch.body_lines:
         for m in re.finditer(r"([甲乙丙丁戊己庚辛壬癸][子丑寅卯辰巳午未申酉戌亥]年|\d+年|二十年|三十年|六十年|三百年|半年|\d+年前|上一次献祭)", s):
             time_hits.append({"line": ln, "hit": m.group(0), "context": s[:40]})
+
+    # v2.2: 合理覆写过滤——被覆写的行级问题从 issues 中移除
+    if ch.overrides:
+        # 检查覆写数量上限（每章最多 3 处）
+        if len(ch.overrides) > 3:
+            add("override_limit", "minor", 0, "",
+                f"合理覆写{len(ch.overrides)}处 > 上限3——超出部分不生效")
+        # 过滤：如果问题的行号在被覆写的行号集合中，且规则名匹配，则移除
+        filtered_issues = []
+        for iss in issues:
+            rule = iss["rule"]
+            line = iss.get("line", 0)
+            if line > 0 and rule in ch.override_rules and line in ch.override_rules[rule]:
+                continue  # 被覆写，跳过
+            filtered_issues.append(iss)
+        issues = filtered_issues
+
     return issues, time_hits
 
 def ending_family(ch):
@@ -341,10 +447,14 @@ def main():
         print("未找到章节文件"); sys.exit(2)
 
     all_issues, time_report = [], {}
+    all_overrides = []  # v2.2: 收集所有章节的覆写记录
     for ch in chapters:
         iss, th = lint_chapter(ch, cfg, disabled, custom_bans, rule_levels)
         all_issues += iss
         if th: time_report[ch.name] = th
+        if ch.overrides:
+            for ov in ch.overrides:
+                all_overrides.append({"chapter": ch.name, "rule": ov["rule"], "reason": ov["reason"], "line": ov["line"], "text": ov.get("text", "")[:50]})
     if len(chapters) > 1:
         all_issues += cross_chapter(chapters, cfg, disabled, cross_rule_levels)
 
@@ -383,9 +493,16 @@ def main():
         card = {"card_type": "style_lint", "from_agent": "style_lint(script)",
                 "to_agent": "chapter-writer", "status": status, "style_pack": args.style,
                 "blocking_count": len(blocking), "non_blocking_count": len(non_blocking),
-                "issues": all_issues, "timeline_clues": time_report, "config": cfg}
+                "issues": all_issues, "timeline_clues": time_report, "config": cfg,
+                "overrides": all_overrides}
         json.dump(card, open(args.json, "w", encoding="utf-8"), ensure_ascii=False, indent=2)
         print(f"\n交接卡已写入：{args.json}")
+    if all_overrides:
+        print(f"\n{'-'*56}\n合理覆写记录（供审核员复核）：")
+        for ov in all_overrides:
+            print(f"  {ov['chapter']}:L{ov['line']}  规则={ov['rule']}  理由={ov['reason']}")
+            if ov['text']:
+                print(f"    段落：{ov['text']}")
     sys.exit(1 if blocking else 0)
 
 if __name__ == "__main__":

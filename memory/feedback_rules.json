@@ -1,0 +1,200 @@
+{
+  "schema_version": "1.0",
+  "updated_at": "2026-07-25T22:05:42.514370",
+  "description": "反馈→规则回流管线产出：从历史审核中提取的反复出现的过度矫正模式。chapter-writer 写作前必读，避免重犯。",
+  "pipeline": "auto-runner/feedback_collector.py",
+  "threshold_chapters": 2,
+  "summary": {
+    "active_count": 6,
+    "monitoring_count": 1,
+    "resolved_count": 1
+  },
+  "active_patterns": [
+    {
+      "type": "certainty_drift",
+      "type_desc": "确定性漂移（角色首次遭遇用确定语气）",
+      "chapter_count": 2,
+      "chapters": [
+        3,
+        4
+      ],
+      "total_occurrences": 2,
+      "status": "active",
+      "writing_guidance": "角色首次遭遇某事物时应用推测语气（像是/似乎/倒像是），确证后才升级为确定语气（就是/分明是）。不得为修 lint 而把所有描写都改成\"似乎\"。",
+      "example_bad": "\"看着就是专门候着谁的\"（首次见公会的人，不该用确定语气）",
+      "example_good": "\"倒像是专门候着谁的\"",
+      "first_seen": 3,
+      "last_seen": 4,
+      "samples": [
+        {
+          "chapter": 3,
+          "detail": "\"便是\"→\"就是\"——语气过于确定，应与角色认知状态匹配"
+        },
+        {
+          "chapter": 4,
+          "detail": "\"看着就是\"→\"倒像是\"——首次见公会的人，应用推测语气"
+        }
+      ]
+    },
+    {
+      "type": "dialogue_loss",
+      "type_desc": "对话失现场感（直接对话转叙述摘要）",
+      "chapter_count": 1,
+      "chapters": [
+        2
+      ],
+      "total_occurrences": 1,
+      "status": "active",
+      "writing_guidance": "面对面交锋场景不得将直接对话转成叙述摘要。对话有语气/距离感/节奏，转述是摘要。修对话占比低应增加有信息的直接对话（带引号+动作），而非删减现有对话。",
+      "example_bad": "\"霍东来问许愿说没有\"替代直接对话——读者觉得隔了一层",
+      "example_good": "\"没有。\"许愿摇头。霍东来盯着他看了半秒。",
+      "first_seen": 2,
+      "last_seen": 2,
+      "samples": [
+        {
+          "chapter": 2,
+          "detail": "霍东来和许愿面对面场景，直接对话被转成叙述摘要，失去现场感"
+        }
+      ]
+    },
+    {
+      "type": "metaphor_regression",
+      "type_desc": "比喻退步（精准比喻被换成平叙）",
+      "chapter_count": 1,
+      "chapters": [
+        4
+      ],
+      "total_occurrences": 1,
+      "status": "active",
+      "writing_guidance": "不得删除精准比喻换成平叙。优质比喻有信息增量（温度/状态/张力），平叙没有。如果比喻超限，删陈词比喻，保留精准比喻，接受 lint minor。",
+      "example_bad": "\"喧嚣拢成一团\"替代\"像一锅将开未开的水\"——比喻有温度有张力，平叙没有",
+      "example_good": "保留\"像一锅将开未开的水\"，删其他陈词比喻",
+      "first_seen": 4,
+      "last_seen": 4,
+      "samples": [
+        {
+          "chapter": 4,
+          "detail": "\"一锅将开未开的水\"是有温度、有状态、有张力的比喻，暗示能量在积蓄但还没爆发。\"喧嚣拢成一团\"只是描述，没有信息增量。"
+        }
+      ]
+    },
+    {
+      "type": "grammar_residue",
+      "type_desc": "语法残缺（删功能词导致句子不完整）",
+      "chapter_count": 1,
+      "chapters": [
+        2
+      ],
+      "total_occurrences": 1,
+      "status": "active",
+      "writing_guidance": "修 lint 时不得删除语法必需的功能词（了/着/的/地）。语法残缺影响阅读体验，比 lint minor 更严重。正确做法：换用更精确的动词，而非删除功能词。",
+      "example_bad": "老灯累（缺\"了\"→语法残缺，读者以为打字漏了）",
+      "example_good": "老灯乏了 / 老灯暗了",
+      "first_seen": 2,
+      "last_seen": 2,
+      "samples": [
+        {
+          "chapter": 2,
+          "detail": "\"老灯累\"——独立段落缺\"了\"，语法不完整，读起来像打字漏字"
+        }
+      ]
+    },
+    {
+      "type": "hack_bypass",
+      "type_desc": "Hack绕过（同义词替换骗计数器）",
+      "chapter_count": 1,
+      "chapters": [
+        4
+      ],
+      "total_occurrences": 1,
+      "status": "active",
+      "writing_guidance": "禁止通过同义词替换骗 lint 计数器（像→如/似，了→已/曾）。lint 看不到了但问题还在，且引入新的 AI 腔。要么删除要么保留并接受 minor。",
+      "example_bad": "\"像一片旧鳞甲\"→\"如一片旧鳞甲\"（骗比喻计数器）",
+      "example_good": "保留\"像\"字比喻并接受 minor，或删除该比喻",
+      "first_seen": 4,
+      "last_seen": 4,
+      "samples": [
+        {
+          "chapter": 4,
+          "detail": "\"像\"被替换为\"如\"以绕过 lint 比喻计数——自欺欺人，问题还在"
+        }
+      ]
+    },
+    {
+      "type": "connector_loss",
+      "type_desc": "连接词缺失（删的/了导致不自然）",
+      "chapter_count": 1,
+      "chapters": [
+        2
+      ],
+      "total_occurrences": 2,
+      "status": "active",
+      "writing_guidance": "减少碎段时不得删除的/了等连接词。泛暗光不如泛了层暗光自然。正确做法：用逗号/连词衔接短句成长句。",
+      "example_bad": "\"泛暗光\"（应为\"泛了层暗光\"）/ \"密一层\"（应为\"密了一层\"）",
+      "example_good": "\"泛了层暗光\" / \"密了一层\"",
+      "first_seen": 2,
+      "last_seen": 2,
+      "samples": [
+        {
+          "chapter": 2,
+          "detail": "\"泛暗光\"不如\"泛着暗光\"或\"泛了层暗光\"自然"
+        },
+        {
+          "chapter": 2,
+          "detail": "\"密一层\"不如\"密了一层\"——\"密\"是状态变化，需要\"了\"标记"
+        }
+      ]
+    }
+  ],
+  "monitoring_patterns": [
+    {
+      "type": "tell_marker",
+      "type_desc": "Tell标记词（告诉而非展示）",
+      "chapter_count": 1,
+      "chapters": [
+        4
+      ],
+      "total_occurrences": 1,
+      "status": "monitoring",
+      "writing_guidance": "只删标记词（习惯性地/下意识地），保留展示性描写。读者看到第四次\"左手在桌沿敲\"时已知道是习惯，不需要\"习惯性地\"确认。",
+      "example_bad": "\"左手习惯性地在桌沿叩了两下\"——告诉而非展示",
+      "example_good": "\"左手在桌沿叩了两下\"——让动作本身说话",
+      "first_seen": 4,
+      "last_seen": 4,
+      "samples": [
+        {
+          "chapter": 4,
+          "detail": "\"习惯性地\"是告诉而非展示，读者已从前文知道这是习惯"
+        }
+      ]
+    }
+  ],
+  "resolved_patterns": [
+    {
+      "type": "false_positive",
+      "type_desc": "规则误报（正则太宽泛导致）",
+      "chapter_count": 4,
+      "chapters": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "total_occurrences": 9,
+      "status": "resolved",
+      "writing_guidance": "此规则误报已修复。narrative_dialogue 原正则误匹配\"总说\"\"公道\"\"知道\"等非对话用法，改进后用\"代词+对话动词\"模式，0 误报。",
+      "example_bad": "narrative_dialogue 误匹配\"总说这铺子\"\"供桌的规矩是公道\"",
+      "example_good": "改进后要求段落中出现≥2次\"他说/她问\"模式才触发",
+      "first_seen": 1,
+      "last_seen": 4,
+      "resolved_at": "2026-07-26T05:20:00",
+      "resolution": "v2.2.1: narrative_dialogue 正则从 (?:问|说|答|道)[^。！？]{5,40}(?:说|答|道|回) 改为 (?:他|她)(?:说|问|答|道) ≥2次模式",
+      "samples": [
+        {
+          "chapter": 1,
+          "detail": "9处误报全部消除：\"总说\"\"公道\"\"知道\"\"一道\"等非对话用法不再触发"
+        }
+      ]
+    }
+  ]
+}
