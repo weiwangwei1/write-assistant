@@ -1,0 +1,119 @@
+{
+  "card_type": "style_lint",
+  "from_agent": "style_lint(script)",
+  "to_agent": "chapter-writer",
+  "status": "pass",
+  "style_pack": "jiangnan",
+  "blocking_count": 0,
+  "advisory_count": 0,
+  "non_blocking_count": 1,
+  "issues": [
+    {
+      "rule": "dialogue_guide_underuse",
+      "severity": "minor",
+      "level": "L2",
+      "chapter": "chapter_003.txt",
+      "line": 0,
+      "excerpt": "",
+      "message": "对话引前引导(某某道：)0.99/千字 < 下限1.0（全裸对话不符合该风格引导习惯，需穿插引前引导）"
+    }
+  ],
+  "timeline_clues": {
+    "chapter_003.txt": [
+      {
+        "line": 103,
+        "hit": "二十年",
+        "context": "四十二年，老曹的娘死了快二十年了，城南路的老街坊都知道，老太太走的那年，老曹在外"
+      },
+      {
+        "line": 105,
+        "hit": "二十年",
+        "context": "\"这怎么还？\"许青急了，\"人都没了二十年了，你让他跟谁说去？这账本身就不讲道理！"
+      }
+    ]
+  },
+  "config": {
+    "not_a_is_b_max_per_chapter": 2,
+    "short_para_len": 15,
+    "short_para_ratio_max": 0.4,
+    "short_para_run_max": 6,
+    "simile_max_per_chapter": 8,
+    "simile_max_per_para": 1,
+    "ban_yizhong_feeling": true,
+    "ban_feeling_enum": true,
+    "ban_summary_voice": true,
+    "ranhou_max_per_chapter": 1,
+    "dialogue_ratio_min": 0.4,
+    "dialogue_ratio_max": 0.68,
+    "dash_max_per_1000": 1.5,
+    "ellipsis_max_per_1000": 3.0,
+    "le_max_per_1000": 24.0,
+    "zhe_max_per_1000": 11.0,
+    "conjunction_min_per_1000": 3.0,
+    "dialogue_guide_min_per_1000": 1.0,
+    "name_starter_run_max": 5,
+    "emotion_telling_words": [
+      "不敢",
+      "害怕",
+      "悲伤",
+      "震撼",
+      "激动"
+    ],
+    "four_char_cliches": [
+      "不急不缓",
+      "不紧不慢",
+      "取而代之",
+      "不约而同",
+      "悄无声息"
+    ],
+    "era_wrong_words": [],
+    "tell_marker_words": [
+      "习惯性地",
+      "不由得",
+      "下意识地",
+      "情不自禁",
+      "自然而然地",
+      "本能地",
+      "条件反射般",
+      "潜意识里"
+    ],
+    "cliche_vehicles": [
+      "山",
+      "风",
+      "火",
+      "水",
+      "刀",
+      "剑",
+      "雷",
+      "电",
+      "铁",
+      "石",
+      "雾",
+      "冰",
+      "蛇",
+      "虎",
+      "龙",
+      "潮",
+      "浪",
+      "云",
+      "雨",
+      "雪"
+    ],
+    "short_le_ending_max": 3,
+    "narrative_dialogue_max": 2,
+    "certain_markers": [
+      "就是",
+      "分明是",
+      "肯定是",
+      "无疑是",
+      "确实是"
+    ],
+    "ending_family_window": 4,
+    "ending_family_max_in_window": 2,
+    "opening_channel_max_run": 2,
+    "dup_sentence_min_len": 6,
+    "_note": "《补天之人》项目级 style_lint 配置。世界观=2026年盛夏现代都市（setting_bible.json），手机/电话/汽车/路灯等均为合理时代词，故清空默认 era_wrong_words（默认表按玄幻古背景设定）。风格维度规则仍由 --style jiangnan 的 lint_overlay.json 加载。用法：python style_lint.py output/chapter_NNN.txt --config config/lint_config.json --style jiangnan"
+  },
+  "advisory": [],
+  "overrides": []
+}

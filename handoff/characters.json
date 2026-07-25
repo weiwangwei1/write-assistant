@@ -1,0 +1,23 @@
+{
+  "card_type": "characters",
+  "timestamp": "2026-07-26T16:00:00+08:00",
+  "from_agent": "character-designer",
+  "to_agent": "chapter-writer",
+  "status": "ready",
+  "characters_ref": "memory/characters.json",
+  "content": {
+    "main_characters": ["许青", "苏晚晚", "陆沉舟", "常师傅", "白先生"],
+    "minor_characters": ["宋春燕（孩子妈）", "郭长海（她男人）", "刘有福（表叔）", "苏早早（哥哥·暗线不出场）"],
+    "character_cards_dir": "memory/characters/",
+    "personality_alignment": "personality_extreme.story_driver 已逐条与大纲 character_personality_requirements 咬合：许青=嘴贫心热+行动先于大脑（Ch1冲出去/Ch4接债）；苏晚晚=毒舌+胆大+拎得清（Ch1喊话/Ch5跟进褪色区）；陆沉舟=克制+亏欠感（不说破，留话留单交棒）；常师傅=油滑+护短（考校是假相中是真）",
+    "visual_anchor_plan": "主角前三章视觉锚点：Ch1轮廓（围裙+稳手冲出人群）→Ch2动态反差（贴膜手不抖vs抱铁盒手抖）→Ch3外部视角（苏晚晚/街坊/更夫眼中的他）；配角视觉标识均与性格呼应：苏晚晚敲柜台、常师傅干净指甲、白先生笑眼不笑+七分满的茶、陆沉舟停摆怀表",
+    "writer_notes": [
+      "许青三个梗已写入 signature_gags：记账精确到毛/贴膜零气泡/骂脏话含糊到自己都听不清——轮换使用，勿连用两章",
+      "主角卷一弧线：贴膜伙计（1-3）→醒着的人（4-9）→更夫学徒（10-50），触发条件见各卡 growth_arc",
+      "配角均有 independent_goals：苏晚晚攒钱盘店、常师傅守城南的账+传面馆、白先生账面做平+送儿子出行、陆沉舟交棒",
+      "关系网8条边含演变阶段与触发章节，苏早早线卷一只暗示不展开（F004，Ch10半揭）",
+      "show_events/scene_sides/show_variants 为写手调用素材池，按 v1.4 Show vs Tell 规则使用"
+    ],
+    "note": "前10章所需角色全部就绪：5张主角色独立卡（唯一事实源 memory/characters/），4个单元/背景简角内嵌 characters.json。可开始第1章写作。"
+  }
+}

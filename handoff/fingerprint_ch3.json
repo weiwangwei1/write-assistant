@@ -1,0 +1,152 @@
+{
+  "card_type": "style_fingerprint_check",
+  "from_agent": "style_fingerprint(script)",
+  "to_agent": "chapter-writer",
+  "status": "fail",
+  "baseline_ref": ".trae/skills/writer-styles/jiangnan/fingerprint.json",
+  "baseline_confidence": "high",
+  "failed_dims": [
+    "comma_period_ratio",
+    "dialogue_guide_per_1000"
+  ],
+  "dims": [
+    {
+      "dim": "func_words_cosine",
+      "current": 0.0679,
+      "baseline": 0.0,
+      "deviation": 0.0679,
+      "tolerance": 0.08,
+      "pass": true
+    },
+    {
+      "dim": "sent_len_mean",
+      "current": 23.82,
+      "baseline": 26.55,
+      "deviation": 0.1028,
+      "tolerance": 0.25,
+      "pass": true
+    },
+    {
+      "dim": "sent_len_stdev",
+      "current": 18.07,
+      "baseline": 20.12,
+      "deviation": 0.1019,
+      "tolerance": 0.35,
+      "pass": true
+    },
+    {
+      "dim": "short_sent_ratio",
+      "current": 0.2362,
+      "baseline": 0.1855,
+      "deviation": 0.2733,
+      "tolerance": 0.35,
+      "pass": true
+    },
+    {
+      "dim": "long_sent_ratio",
+      "current": 0.2126,
+      "baseline": 0.2022,
+      "deviation": 0.0514,
+      "tolerance": 0.553,
+      "pass": true
+    },
+    {
+      "dim": "para_len_mean",
+      "current": 49.59,
+      "baseline": 56.72,
+      "deviation": 0.1257,
+      "tolerance": 0.35,
+      "pass": true
+    },
+    {
+      "dim": "short_para_ratio",
+      "current": 0.1148,
+      "baseline": 0.1718,
+      "deviation": 0.3318,
+      "tolerance": 0.35,
+      "pass": true
+    },
+    {
+      "dim": "dialogue_ratio",
+      "current": 0.2426,
+      "baseline": 0.3434,
+      "deviation": 0.2935,
+      "tolerance": 0.665,
+      "pass": true
+    },
+    {
+      "dim": "comma_period_ratio",
+      "current": 3.064,
+      "baseline": 2.134,
+      "deviation": 0.4358,
+      "tolerance": 0.35,
+      "pass": false
+    },
+    {
+      "dim": "dash_per_1000",
+      "current": 0.0,
+      "baseline": 0.084,
+      "deviation": 0.42,
+      "tolerance": 1.0,
+      "pass": true
+    },
+    {
+      "dim": "ellipsis_per_1000",
+      "current": 1.322,
+      "baseline": 2.093,
+      "deviation": 0.3684,
+      "tolerance": 0.982,
+      "pass": true
+    },
+    {
+      "dim": "metaphor_per_1000",
+      "current": 2.975,
+      "baseline": 2.68,
+      "deviation": 0.1101,
+      "tolerance": 0.618,
+      "pass": true
+    },
+    {
+      "dim": "conjunction_starter_ratio",
+      "current": 0.0,
+      "baseline": 0.0123,
+      "deviation": 0.615,
+      "tolerance": 1.0,
+      "pass": true
+    },
+    {
+      "dim": "dialogue_guide_per_1000",
+      "current": 0.992,
+      "baseline": 0.176,
+      "deviation": 1.632,
+      "tolerance": 1.0,
+      "pass": false
+    },
+    {
+      "dim": "le_ending_ratio",
+      "current": 0.0079,
+      "baseline": 0.0245,
+      "deviation": 0.6776,
+      "tolerance": 0.693,
+      "pass": true
+    },
+    {
+      "dim": "sensory_cosine",
+      "current": 0.024,
+      "baseline": 0.0,
+      "deviation": 0.024,
+      "tolerance": 0.15,
+      "pass": true
+    }
+  ],
+  "advice": [
+    {
+      "dim": "comma_period_ratio",
+      "advice": "comma_period_ratio 偏高——原作基线 2.134，当前 3.064。逗号与句号配比偏差——用逗号串联分句增加流动感，或增加句号断句提升力度（按偏差方向）"
+    },
+    {
+      "dim": "dialogue_guide_per_1000",
+      "advice": "dialogue_guide_per_1000 偏高——原作基线 0.176，当前 0.992。引前引导（某某道：）密度偏差——全裸对话与引前引导的配比按基线方向调整"
+    }
+  ]
+}

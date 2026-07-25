@@ -1,0 +1,4 @@
+{
+  "_note": "《补天之人》项目级 style_lint 配置。世界观=2026年盛夏现代都市（setting_bible.json），手机/电话/汽车/路灯等均为合理时代词，故清空默认 era_wrong_words（默认表按玄幻古背景设定）。风格维度规则仍由 --style jiangnan 的 lint_overlay.json 加载。用法：python style_lint.py output/chapter_NNN.txt --config config/lint_config.json --style jiangnan",
+  "era_wrong_words": []
+}

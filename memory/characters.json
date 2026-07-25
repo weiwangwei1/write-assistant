@@ -1,0 +1,139 @@
+{
+  "version": "1.0",
+  "novel": "补天人",
+  "updated_at": "2026-07-26",
+  "note": "主角色唯一事实源为 memory/characters/ 下独立卡，本文件只存索引指针+关系网络；单元/背景简角无独立卡，直接内嵌于 minor_characters",
+  "characters_index": {
+    "许青": {"ref": "memory/characters/许青.json", "role": "男主", "status": "active"},
+    "苏晚晚": {"ref": "memory/characters/苏晚晚.json", "role": "女主", "status": "active"},
+    "陆沉舟": {"ref": "memory/characters/陆沉舟.json", "role": "关键配角-引路人", "status": "active"},
+    "常师傅": {"ref": "memory/characters/常师傅.json", "role": "配角-更夫联络人", "status": "active"},
+    "白先生": {"ref": "memory/characters/白先生.json", "role": "反派-隐藏级", "status": "active"}
+  },
+  "minor_characters": [
+    {
+      "name": "宋春燕",
+      "alias": "孩子妈（街坊喊'朵朵妈'）",
+      "role": "单元角色（Ch4-6）",
+      "age": 33,
+      "one_line": "褪色者家属；敲门求助时手里攥着孩子的气球绳",
+      "personality": "韧——天塌了先把孩子护住，再一家一家敲门求人",
+      "independent_goal": "守住她男人，撑住这个家；欠许青的人情她记着，日后成了街坊里最挺他的人",
+      "visual_signature": "攥气球绳的手+门把手上挂着的孩子气球"
+    },
+    {
+      "name": "郭长海",
+      "alias": "她男人（许青修过机的旧客）",
+      "role": "单元角色（Ch4-6褪色者）",
+      "age": 36,
+      "one_line": "去年在许青店里换过屏的老客；褪色从指尖开始，灰白一寸寸往上爬",
+      "personality": "闷——二十年的旧欠是'一直没说出口的话'（Ch6还债仪式说出口）",
+      "independent_goal": "褪色前想再看孩子一眼（卷一第一笔正式债的情感核）",
+      "visual_signature": "褪色的指尖+一部屏幕碎过的旧手机（接触链凭证）"
+    },
+    {
+      "name": "刘有福",
+      "alias": "表叔（'手机医院'老板）",
+      "role": "背景配角",
+      "age": 48,
+      "one_line": "许青妈那边的表亲；去年收下了被姐夫'踹'来的许青，嘴上嫌弃心里当半个儿子",
+      "personality": "碎嘴心软——连环call是他的关心方式",
+      "independent_goal": "想把店盘出去回老家，又舍不得这条街和这个外甥（卷二'表叔的旧债'暗线预留）",
+      "visual_signature": "座机不离手；Ch2手机没信号时座机排队连环call"
+    },
+    {
+      "name": "苏早早",
+      "alias": "苏晚晚的哥哥（暗线，不出场）",
+      "role": "暗线人物（F004）",
+      "one_line": "三年前失踪；'晚晚'对'早早'，名字是父母取的一对",
+      "note": "卷一只以旧合照与苏晚晚的只言片语存在；Ch10欠单翻页后与他的债产生关联"
+    }
+  ],
+  "relationship_network": [
+    {
+      "character_a": "许青",
+      "character_b": "苏晚晚",
+      "relationship_type": "盟友",
+      "label": "隔街斗嘴搭档，信任渐进（感情线种子，卷一不点破）",
+      "description": "手机医院与奶茶店隔街相望，互怼是日常；天裂与褪色区把斗嘴磨成了并肩",
+      "evolution": [
+        {"stage": "斗嘴邻居", "description": "Ch1天裂隔街对喊（'天在掉头皮屑'），互怼即日常", "trigger_chapter": 1},
+        {"stage": "并肩搭档", "description": "Ch5她带两杯奶茶跟进褪色区；Ch8她的红裙子他看不见，她察觉不对没说破", "trigger_chapter": 5},
+        {"stage": "信任确立", "description": "Ch10欠单翻页：第一笔将到期的债是她——他从'搭档'变成'要替她还债的人'", "trigger_chapter": 10}
+      ]
+    },
+    {
+      "character_a": "许青",
+      "character_b": "陆沉舟",
+      "relationship_type": "师徒",
+      "label": "三日修机结缘→遗物传承",
+      "description": "老头以修手机为名考校三日，留下铁盒与欠单后离场；不说破的传承",
+      "evolution": [
+        {"stage": "三日结缘", "description": "修机三日拌嘴相知，'手稳，比我稳'", "trigger_chapter": 1},
+        {"stage": "遗物传承", "description": "Ch2人去楼空，铁盒与欠单抬头写着许青的名字", "trigger_chapter": 2},
+        {"stage": "缺席的导师", "description": "人已走话留着，'睡浅一点'在许青每次抉择时回响", "trigger_chapter": 3}
+      ]
+    },
+    {
+      "character_a": "许青",
+      "character_b": "常师傅",
+      "relationship_type": "师徒",
+      "label": "考校与相中",
+      "description": "面馆一碗面的工夫三个问题的考校；认出欠单来头后从考校转相中",
+      "evolution": [
+        {"stage": "暗中旁观", "description": "Ch3更夫暗处目击许青垫还第一笔，按规矩没点破", "trigger_chapter": 3},
+        {"stage": "面馆考校", "description": "Ch7考校反被欠单来头惊到：'教你的人，没告诉你要收利息？'", "trigger_chapter": 7},
+        {"stage": "引路入伙", "description": "Ch8给活抵息，Ch10学徒入伙，成为城南后盾", "trigger_chapter": 8}
+      ]
+    },
+    {
+      "character_a": "许青",
+      "character_b": "白先生",
+      "relationship_type": "敌人",
+      "label": "茶桌博弈对立（还vs赖）",
+      "description": "白事铺的'赖'与许青的'还'是主题级对立；茶桌是战场，礼数是武器",
+      "evolution": [
+        {"stage": "茶桌博弈", "description": "Ch9请茶探底，许青不落下风；白先生知道陆沉舟的名字", "trigger_chapter": 9},
+        {"stage": "结下梁子", "description": "Ch10许青还掉白事铺这笔债，遗体安息，抵押品脱手", "trigger_chapter": 10},
+        {"stage": "正式对立", "description": "Ch30后撕破体面，卷一末段冲突升级", "trigger_chapter": 30}
+      ]
+    },
+    {
+      "character_a": "许青",
+      "character_b": "刘有福（表叔）",
+      "relationship_type": "亲属",
+      "label": "被踹来的亲情",
+      "description": "爸爸把许青踹到表叔店里（F007暗线）；表叔嘴上嫌弃心里当半个儿子",
+      "evolution": [
+        {"stage": "收留", "description": "去年被'踹'来当伙计，嘴上互相嫌弃", "trigger_chapter": 0},
+        {"stage": "连环call的牵挂", "description": "Ch2天裂后座机连环call，是这座城最土的担心", "trigger_chapter": 2},
+        {"stage": "留守与暗线", "description": "表叔不知欠单之事；卷二'表叔的旧债'揭开收留背后的真相", "trigger_chapter": 51}
+      ]
+    },
+    {
+      "character_a": "苏晚晚",
+      "character_b": "苏早早（哥哥）",
+      "relationship_type": "亲属",
+      "label": "失踪的哥哥（暗线，简笔）",
+      "description": "三年前失踪；她攒钱盘店的真正底气是'店在，哥回来找得到地方'。卷一只暗示不展开（F004，Ch10半揭）",
+      "evolution": [
+        {"stage": "暗示", "description": "打烊后翻旧合照；一提哥哥毒舌全废", "trigger_chapter": 3},
+        {"stage": "半揭", "description": "Ch10欠单翻页：她的债与哥哥相关", "trigger_chapter": 10}
+      ]
+    },
+    {
+      "character_a": "陆沉舟",
+      "character_b": "常师傅",
+      "relationship_type": "盟友",
+      "label": "旧识（未解秘密）",
+      "description": "陆沉舟在城南路三天三餐都在常记面馆吃素面；常师傅认出欠单来头——两人是否旧识，留白（卷三揭）"
+    },
+    {
+      "character_a": "陆沉舟",
+      "character_b": "白先生",
+      "relationship_type": "敌人",
+      "label": "知其名（未解秘密）",
+      "description": "白先生知道陆沉舟的名字（Ch9钩子）；六十年前'借'的当事人与经手方，旧账未清（F006）"
+    }
+  ]
+}

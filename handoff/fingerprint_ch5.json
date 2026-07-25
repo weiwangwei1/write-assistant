@@ -1,0 +1,167 @@
+{
+  "card_type": "style_fingerprint_check",
+  "from_agent": "style_fingerprint(script)",
+  "to_agent": "chapter-writer",
+  "status": "fail",
+  "baseline_ref": ".trae/skills/writer-styles/jiangnan/fingerprint.json",
+  "baseline_confidence": "high",
+  "failed_dims": [
+    "short_sent_ratio",
+    "short_para_ratio",
+    "dash_per_1000",
+    "ellipsis_per_1000",
+    "metaphor_per_1000"
+  ],
+  "dims": [
+    {
+      "dim": "func_words_cosine",
+      "current": 0.0468,
+      "baseline": 0.0,
+      "deviation": 0.0468,
+      "tolerance": 0.08,
+      "pass": true
+    },
+    {
+      "dim": "sent_len_mean",
+      "current": 22.47,
+      "baseline": 26.55,
+      "deviation": 0.1537,
+      "tolerance": 0.25,
+      "pass": true
+    },
+    {
+      "dim": "sent_len_stdev",
+      "current": 18.14,
+      "baseline": 20.12,
+      "deviation": 0.0984,
+      "tolerance": 0.35,
+      "pass": true
+    },
+    {
+      "dim": "short_sent_ratio",
+      "current": 0.321,
+      "baseline": 0.1855,
+      "deviation": 0.7305,
+      "tolerance": 0.35,
+      "pass": false
+    },
+    {
+      "dim": "long_sent_ratio",
+      "current": 0.1728,
+      "baseline": 0.2022,
+      "deviation": 0.1454,
+      "tolerance": 0.553,
+      "pass": true
+    },
+    {
+      "dim": "para_len_mean",
+      "current": 41.36,
+      "baseline": 56.72,
+      "deviation": 0.2708,
+      "tolerance": 0.35,
+      "pass": true
+    },
+    {
+      "dim": "short_para_ratio",
+      "current": 0.3409,
+      "baseline": 0.1718,
+      "deviation": 0.9843,
+      "tolerance": 0.35,
+      "pass": false
+    },
+    {
+      "dim": "dialogue_ratio",
+      "current": 0.1379,
+      "baseline": 0.3434,
+      "deviation": 0.5984,
+      "tolerance": 0.665,
+      "pass": true
+    },
+    {
+      "dim": "comma_period_ratio",
+      "current": 2.156,
+      "baseline": 2.134,
+      "deviation": 0.0103,
+      "tolerance": 0.35,
+      "pass": true
+    },
+    {
+      "dim": "dash_per_1000",
+      "current": 0.549,
+      "baseline": 0.084,
+      "deviation": 2.325,
+      "tolerance": 1.0,
+      "pass": false
+    },
+    {
+      "dim": "ellipsis_per_1000",
+      "current": 0.0,
+      "baseline": 2.093,
+      "deviation": 1.0,
+      "tolerance": 0.982,
+      "pass": false
+    },
+    {
+      "dim": "metaphor_per_1000",
+      "current": 5.495,
+      "baseline": 2.68,
+      "deviation": 1.0504,
+      "tolerance": 0.618,
+      "pass": false
+    },
+    {
+      "dim": "conjunction_starter_ratio",
+      "current": 0.0,
+      "baseline": 0.0123,
+      "deviation": 0.615,
+      "tolerance": 1.0,
+      "pass": true
+    },
+    {
+      "dim": "dialogue_guide_per_1000",
+      "current": 0.0,
+      "baseline": 0.176,
+      "deviation": 0.352,
+      "tolerance": 1.0,
+      "pass": true
+    },
+    {
+      "dim": "le_ending_ratio",
+      "current": 0.037,
+      "baseline": 0.0245,
+      "deviation": 0.5102,
+      "tolerance": 0.693,
+      "pass": true
+    },
+    {
+      "dim": "sensory_cosine",
+      "current": 0.0489,
+      "baseline": 0.0,
+      "deviation": 0.0489,
+      "tolerance": 0.15,
+      "pass": true
+    }
+  ],
+  "advice": [
+    {
+      "dim": "short_sent_ratio",
+      "advice": "short_sent_ratio 偏高——原作基线 0.1855，当前 0.321。碎短句合并为复合长句；短句是稀缺武器，只在重音处使用"
+    },
+    {
+      "dim": "short_para_ratio",
+      "advice": "short_para_ratio 偏高——原作基线 0.1718，当前 0.3409。减少单句段，合并为两句段"
+    },
+    {
+      "dim": "dash_per_1000",
+      "advice": "dash_per_1000 偏高——原作基线 0.084，当前 0.549。破折号密度偏差——按基线方向调整：多用逗号/句号替代，或恢复破折号的插入/转折用法"
+    },
+    {
+      "dim": "ellipsis_per_1000",
+      "advice": "ellipsis_per_1000 偏低——原作基线 2.093，当前 0.0。省略号密度偏差——按基线方向调整，可用动作节拍替代"
+    },
+    {
+      "dim": "metaphor_per_1000",
+      "advice": "metaphor_per_1000 偏高——原作基线 2.68，当前 5.495。比喻密度偏差——按基线方向增减；喻体优先取自故事世界本身的物质"
+    }
+  ]
+}

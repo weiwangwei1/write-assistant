@@ -1,0 +1,98 @@
+{
+  "card_type": "outline_review",
+  "timestamp": "2026-07-26T16:00:00+08:00",
+  "from_agent": "outline-editor",
+  "to_agent": "plot-architect",
+  "status": "revise",
+  "content": {
+    "overall_verdict": "小修",
+    "review_target": "memory/outline.json《补天人》v1（skeptic四轮质疑修复版）",
+    "commercial_score": 8.8,
+    "structure_score": 9.2,
+    "rhythm_score": 9.2,
+    "foreshadowing_score": 9.0,
+    "character_setup_score": 9.0,
+    "platform_fit_score": 8.7,
+    "total_score": 9.0,
+    "score_note": "权重：商业0.25/结构0.20/节奏0.20/伏笔0.15/角色0.10/平台0.10。通过门槛≥9.5，当前9.0，判revise小修后复审。",
+    "dimension_details": {
+      "commercial": "题材在番茄头部窗口（都市异象/末日悬疑=斩神/红月/道诡密集区）；logline S级一句话炸裂；'欠单即负债'反系统流+江南文风品类内无对标，差异化成立；耐久度合格——六卷换六次主舞台+stakes从'救一个孩子'递增到'一代人文明级抉择'+低武规则对抗避开战力通胀+单元剧还债结构。扣分：书名7.83偏含蓄（title-reviewer market_fit=7，第一眼冲击力略弱，'补'字承诺后置已用ch3贴膜=补屏双关锚定）。",
+      "structure": "六卷切分平衡（50/50/50/50/60/40，卷五放量承载大裂前夜可接受）；主线'欠与还'一条到底无断裂；三条副线（苏晚晚/父辈/白事铺）全部汇入主线不游离；卷间因果链成立（接单→进区→来历→真相→抉择→终局）；单元剧结构预留扩展接口。无一票否决项。",
+      "rhythm": "黄金三章S级（泡面天裂落差+欠单抬头写名+首笔垫还）；ch1-10密度A/A/S/A/A/S/A/A/B/S，S间隔3-4章，0纯铺垫章，micro_payoff 10/10在场；爽点类型10章10种不过度依赖单一型；章末钩子类型轮换。扣分：ch11-50卷一中段无爽点分布规划（仅有F003/F004/F005/F008四个回收锚点+卷末高潮），ch9为全段最低B。",
+      "foreshadowing": "修复后9条伏笔全部具备plant/half_reveal/full_reveal全生命周期；F001提前量142章合规（≥30章红线）；接触链规则经C3-1修复+ch9-10'债属白事铺'锁定后无破例；利息规则/信号连续性/债清即走边界均自洽可推演。扣分：150-300章后半程无新伏笔埋设规划（收线期可接受但需longline-guardian盯防）；skeptic卡O1状态滞后（大纲文本已落实，建议关闭）。",
+      "character_setup": "主角'嘴贫心热+行动先于大脑'反差萌成立，贴膜零气泡/记账到毛的习惯具象；character_personality_requirements对4名核心角色给出'性格不同则剧情崩'的反证约束，设计严谨；反派为'借vs还'伦理镜像（白先生儒雅赖账+更夫高层当年主张借），非脸谱化；关系网张力充足（苏晚晚债到期=情感炸点）。角色卡未产出，终评待下阶段兼任审核。",
+      "platform_fit": "半暗基调补偿三项全通过（每章emotion_release在场/主角吐槽属性/3章情绪循环）；对话≥40%承诺已有beat级抓手；日更4章支持；殡葬/遗体属民俗恐怖常规，无审核敏感点；读者画像覆盖番茄主流。扣分：config章节3000字略超番茄2000-2500偏好区间（下限2200在范围内，属可接受偏差）；tags格式问题已本次直修。"
+    },
+    "veto_check": {
+      "主线断裂": "未触发",
+      "核心设定矛盾": "未触发（四轮critical修复闭环后无矛盾）",
+      "商业方向错误": "未触发——(a)都市异象属番茄主流类别；(b)爽感路径≤2步A级；(c)半暗基调但暗基调补偿3项全通过",
+      "黄金三章失效": "未触发——黄金三章S级（钩子S/获宝A/升级S）"
+    },
+    "fixed_by_editor": [
+      {"location": "synopsis.tags", "before": "第4标签'轻松吐槽+热血苍凉'含'+'号7字复合词", "after": "拆分为标准标签'轻松''热血'（风格描述已在full_synopsis末行保留）", "reason": "title_review遗留low项：不符合番茄标签位2-4字格式，入库可能被拒收"},
+      {"location": "foreshadowing_plan", "before": "8条，终极反派'更夫高层（卷二盟友登场）'无追踪条目", "after": "补录F009'盟友的违和感' plant=55/half_reveal=140/full_reveal=185（章号由villain_ladder既有事实推导：卷二登场后埋、卷三末起疑、卷四翻脸期揭示，提前量130章合规）", "reason": "字段缺漏：卷四'盟友翻脸'反转缺伏笔锚点，longline-guardian无ID可追踪"}
+    ],
+    "strengths": [
+      "logline S级+'别看'短信把'被选中爽'扭成'被警告瘆'——黄金三章最强反套路点，非穿越非系统非重生",
+      "欠单本身也是债：金手指即负债，对系统流的本质反套路，差异化护城河",
+      "低武规则对抗（还/赖/抵押）避开战力通胀，300章耐久度有结构性保障",
+      "ch4第一单即闭环ch1救下的孩子——情感回报节奏教科书级",
+      "ch8'苏晚晚的红裙子他看不见'：代价具象化+半暗基调对冲的标杆设计",
+      "伏笔全生命周期管理（plant/half/full）+悬念提前量合规，无透支",
+      "七条core_commitments经skeptic逐条核验兑现，预筛-大纲无漂移",
+      "书名伏笔线：贴膜=补屏→补天人，Ch3已锚定，书名本身是长线伏笔"
+    ],
+    "risks": [
+      {
+        "severity": "high",
+        "category": "设定风险",
+        "description": "组织改名'守夜人→更夫'未全链路同步：handoff/outline.json交接卡main_plot_line与key_roles常师傅行仍写'守夜人'（2处），novel_config.json的core_commitments第2条亦写'守夜人体系'。memory/outline.json已0残留（20处更夫全部一致），但character-designer按交接卡工作会拿到旧组织名，造成下游事实源污染。",
+        "suggestion": "plot-architect将handoff/outline.json两处'守夜人'改为'更夫'并重发交接卡；chief-editor同步修订novel_config.json的core_commitments第2条为'更夫体系'。"
+      },
+      {
+        "severity": "medium",
+        "category": "节奏风险",
+        "description": "卷一中段ch11-50无爽点分布规划：shuang_point_distribution仅覆盖ch1-10，ch11-43之间只有伏笔回收锚点（F008@44/F004@46/F003@48/F005@50）与卷末高潮，40章空白期靠章纲滚动时即兴发挥，有密度塌陷风险。",
+        "suggestion": "plot-architect补卷一ch11-50的5章粒度爽点锚点表（每5章至少1个A级以上+标注S级位置，建议ch25-30与ch40各设1个S），作为复审提分（rhythm 9.2→9.5）的实质路径。卷二至卷六维持卷级粒度即可。"
+      },
+      {
+        "severity": "medium",
+        "category": "设定风险",
+        "description": "'褪色区'专名口径未裁定：前30章专名预算5个已满（更夫/褪色者/欠单/收债的/白事铺），但'褪色区'出现在ch5章名、ch4 hook、unit_2目标等7处。若keyword-expert按专名实体计数则破红线。skeptic O3仅约定正文按描述性短语执行，未明确卷名/章名口径。",
+        "suggestion": "plot-architect与keyword-expert锁定口径并写入决策卡：建议'卷名/章名属营销层不计入正文专名预算，正文一律用描述性短语（褪了色的街区）'；若裁定章名也计入，则ch5章名改为'褪色的街区'。"
+      },
+      {
+        "severity": "low",
+        "category": "结构风险",
+        "description": "后半程（ch150-300）无新伏笔埋设规划，150章全靠既有伏笔收束+主线推进，存在后段悬念供给不足的可能。",
+        "suggestion": "不阻断；卷三/卷四滚动章纲阶段由plot-architect按需要补埋中段伏笔，longline-guardian每10章审查时盯防。"
+      },
+      {
+        "severity": "low",
+        "category": "节奏风险",
+        "description": "ch2'失真新闻'若旁白recap超一屏将触发番茄最高弃书点（skeptic C2-2/O2残留风险）；ch3夜戏与ch10遗体仪式为无声恐怖场景，对话占比需前后对冲（dialogue_check残留风险）。",
+        "suggestion": "O2/O4转交chapter-writer决策卡执行：新闻全部对话转述、旁白≤一屏；detail-reviewer将ch3/ch10对话占比列为实测点。"
+      },
+      {
+        "severity": "low",
+        "category": "平台风险",
+        "description": "config章节字数3000（区间2200-3500）略超番茄2000-2500主流偏好。",
+        "suggestion": "不阻断；建议正文执行时锚定2500-2800区间，兼顾节奏与定价。"
+      }
+    ],
+    "must_fix": [
+      "【high】交接卡与配置同步改名：handoff/outline.json两处'守夜人→更夫'+novel_config.json的core_commitments第2条同步，重发交接卡后方可进入character-designer",
+      "【medium】补卷一ch11-50爽点锚点表（5章粒度，每5章≥1个A级，ch25-30与ch40各设1个S级），复审重点",
+      "【medium】裁定'褪色区'专名口径（卷名/章名是否计入前30章预算）并写入决策卡交keyword-expert执行"
+    ],
+    "recommended_fix": [
+      "关闭skeptic卡O1：ch9-10'债属白事铺+茶桌接触链'已在大纲文本锁定，无需回补，仅更新状态",
+      "O2（ch2新闻对话化）/O4（ch3-5再点一次'债清即走'边界）随流程转chapter-writer决策卡，不作复审阻断",
+      "卷三滚动章纲时注意F002（短信发送者full_reveal=105）与F003（铁盒full_reveal=48）揭示顺序错开，避免谜底撞车稀释",
+      "正文执行时章节字数锚定2500-2800区间"
+    ],
+    "rewrite_instructions": "小修方向（不颠覆骨架）：①同步全链路组织名'更夫'并重发交接卡；②补ch11-50爽点锚点表，目标rhythm≥9.5；③锁定'褪色区'口径。三项完成后连同本卡已直修的两处（tags/F009）一并复审，目标总分≥9.5。骨架、黄金三章、伏笔体系、角色需求均已达标，禁止推翻重做。",
+    "next_agent": "plot-architect（小修）→ outline-editor 复审；通过后 character-designer"
+  }
+}

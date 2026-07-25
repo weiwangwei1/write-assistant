@@ -1,0 +1,151 @@
+{
+  "card_type": "style_lint",
+  "from_agent": "style_lint(script)",
+  "to_agent": "chapter-writer",
+  "status": "pass",
+  "style_pack": "jiangnan",
+  "blocking_count": 0,
+  "advisory_count": 0,
+  "non_blocking_count": 4,
+  "issues": [
+    {
+      "rule": "dialogue_ratio",
+      "severity": "minor",
+      "level": "L1",
+      "chapter": "chapter_002.txt",
+      "line": 0,
+      "excerpt": "",
+      "message": "对话占比28% < 下限40%"
+    },
+    {
+      "rule": "le_overuse",
+      "severity": "minor",
+      "level": "L2",
+      "chapter": "chapter_002.txt",
+      "line": 0,
+      "excerpt": "",
+      "message": "“了”27.54/千字 > 上限24.0（参考指标——重点看 le_pattern 是否为 AI 腔模式）"
+    },
+    {
+      "rule": "conjunction_underuse",
+      "severity": "minor",
+      "level": "L2",
+      "chapter": "chapter_002.txt",
+      "line": 0,
+      "excerpt": "",
+      "message": "书面连词(而/却/但/已/将/与/不过/可是)0.72/千字 < 下限3.0（连词是长句黏合剂，缺失则句句短促）"
+    },
+    {
+      "rule": "dialogue_guide_underuse",
+      "severity": "minor",
+      "level": "L2",
+      "chapter": "chapter_002.txt",
+      "line": 0,
+      "excerpt": "",
+      "message": "对话引前引导(某某道：)0.0/千字 < 下限1.0（全裸对话不符合该风格引导习惯，需穿插引前引导）"
+    }
+  ],
+  "timeline_clues": {
+    "chapter_002.txt": [
+      {
+        "line": 51,
+        "hit": "六十年",
+        "context": "隔壁修鞋的探过头来，说这老头他记得，前天还跟他问路来着，问这城南路，六十年前是个"
+      },
+      {
+        "line": 53,
+        "hit": "六十年",
+        "context": "\"六十年前我哪知道，我爹那时候都还没生。\"修鞋的笑了，\"我说你问错人喽，他说，没"
+      },
+      {
+        "line": 71,
+        "hit": "六十年",
+        "context": "欠单底下，本该写债主名字的那一栏，写着一个名字，墨迹发乌，笔锋很旧，旧得像写了六"
+      }
+    ]
+  },
+  "config": {
+    "not_a_is_b_max_per_chapter": 2,
+    "short_para_len": 15,
+    "short_para_ratio_max": 0.4,
+    "short_para_run_max": 6,
+    "simile_max_per_chapter": 8,
+    "simile_max_per_para": 1,
+    "ban_yizhong_feeling": true,
+    "ban_feeling_enum": true,
+    "ban_summary_voice": true,
+    "ranhou_max_per_chapter": 1,
+    "dialogue_ratio_min": 0.4,
+    "dialogue_ratio_max": 0.68,
+    "dash_max_per_1000": 1.5,
+    "ellipsis_max_per_1000": 3.0,
+    "le_max_per_1000": 24.0,
+    "zhe_max_per_1000": 11.0,
+    "conjunction_min_per_1000": 3.0,
+    "dialogue_guide_min_per_1000": 1.0,
+    "name_starter_run_max": 5,
+    "emotion_telling_words": [
+      "不敢",
+      "害怕",
+      "悲伤",
+      "震撼",
+      "激动"
+    ],
+    "four_char_cliches": [
+      "不急不缓",
+      "不紧不慢",
+      "取而代之",
+      "不约而同",
+      "悄无声息"
+    ],
+    "era_wrong_words": [],
+    "tell_marker_words": [
+      "习惯性地",
+      "不由得",
+      "下意识地",
+      "情不自禁",
+      "自然而然地",
+      "本能地",
+      "条件反射般",
+      "潜意识里"
+    ],
+    "cliche_vehicles": [
+      "山",
+      "风",
+      "火",
+      "水",
+      "刀",
+      "剑",
+      "雷",
+      "电",
+      "铁",
+      "石",
+      "雾",
+      "冰",
+      "蛇",
+      "虎",
+      "龙",
+      "潮",
+      "浪",
+      "云",
+      "雨",
+      "雪"
+    ],
+    "short_le_ending_max": 3,
+    "narrative_dialogue_max": 2,
+    "certain_markers": [
+      "就是",
+      "分明是",
+      "肯定是",
+      "无疑是",
+      "确实是"
+    ],
+    "ending_family_window": 4,
+    "ending_family_max_in_window": 2,
+    "opening_channel_max_run": 2,
+    "dup_sentence_min_len": 6,
+    "_note": "《补天之人》项目级 style_lint 配置。世界观=2026年盛夏现代都市（setting_bible.json），手机/电话/汽车/路灯等均为合理时代词，故清空默认 era_wrong_words（默认表按玄幻古背景设定）。风格维度规则仍由 --style jiangnan 的 lint_overlay.json 加载。用法：python style_lint.py output/chapter_NNN.txt --config config/lint_config.json --style jiangnan"
+  },
+  "advisory": [],
+  "overrides": []
+}

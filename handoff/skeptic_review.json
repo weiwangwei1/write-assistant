@@ -1,0 +1,263 @@
+{
+  "card_type": "skeptic_review",
+  "timestamp": "2026-07-26T14:40:00+08:00",
+  "from_agent": "skeptic",
+  "to_agent": "plot-architect",
+  "round": 4,
+  "focus": "四轮综合：主题执行可行性（含漂移检测）→黄金三章→世界观严谨→开局场景；并按 risk_notes 专项核查情绪配比/悬念透支/对话驱动/爽点密度",
+  "outline_target": "memory/outline.json《补天人》v1",
+  "challenges": [
+    {
+      "id": "C1-1",
+      "round": 1,
+      "question": "概念明示'手机信号与网络全部中断'，为什么Ch2还能有'表叔的电话'？中断是瞬时还是持续？大纲通篇没交代。",
+      "why_it_matters": "这是开篇世界观的第一个硬规则，读者在第1章刚被建立'通讯全断'的认知，第2章马上看到打电话会觉得作者自己忘了设定——末日异象文读者对规则连续性极度敏感。",
+      "current_flaw": "chapter_cards ch2 emotion_release 写'表叔的电话'，与 concept 的'信号与网络全部中断'直接冲突；且中断时长/恢复情况大纲无任何说明。",
+      "iteration_required": "要么明确中断是瞬时现象，要么把通讯改为不受影响的渠道。已修复：ch2 emotion_release 与 beat 改为'表叔座机连环call（手机没信号，座机排队打）'——手机断信号座机排队，既补连续性又强化市井幽默与'修手机的没信号'的反讽。",
+      "severity": "critical",
+      "status": "fixed_in_outline"
+    },
+    {
+      "id": "C1-2",
+      "round": 1,
+      "question": "villain_ladder 写收债的 debut=Ch2，但 ch2 的 beat 里根本没有收债的——它第一次出现是 ch3'夜里收债的来收人'。到底哪章登场？",
+      "why_it_matters": "反派登场章是下游 chapter-writer 与 detail-reviewer 的事实锚点，两个字段打架必然导致写作期漂移。",
+      "current_flaw": "villain_ladder.debut=Ch2 与 beat_breakdown.ch3 首次出场矛盾。",
+      "iteration_required": "以 beat 为准。已修复：debut 改为 Ch3。F008（收债的规则）plant=2 可保留——ch2 失真新闻里的失踪报道作为规则暗示，不算实体登场。",
+      "severity": "critical",
+      "status": "fixed_in_outline"
+    },
+    {
+      "id": "C1-3",
+      "round": 1,
+      "question": "七条 core_commitments 是否逐条落地？还是只写在大纲的承诺栏里？",
+      "why_it_matters": "预筛 pass_with_note 的全部价值就在承诺兑现，skeptic 第1轮的核心职责。",
+      "current_flaw": "见 commitment_check 逐条结论：7条中6条直接落地，1条（对话≥40%）在原版 beats 中无法兑现——见 C2-1。",
+      "iteration_required": "已通过 C2-1 修复闭环。",
+      "severity": "major",
+      "status": "verified"
+    },
+    {
+      "id": "C1-4",
+      "round": 1,
+      "question": "漂移检测：大纲核心设定与预筛 concept 是否一致？",
+      "why_it_matters": "概念阶段通过的是'天裂+欠还'，若大纲漂向组织升级流或系统流，等于白预筛。",
+      "current_flaw": "无漂移。世界观/能力/反派/基调与 concept 逐条对齐。新增的'别看'短信（F002）是增强项而非漂移：修手机的人在信号全断时收到短信，与 concept 自洽且自带谜面。",
+      "iteration_required": "无需迭代。",
+      "severity": "none",
+      "status": "pass"
+    },
+    {
+      "id": "C1-5",
+      "round": 1,
+      "question": "第1章和第100章的赌注有没有数量级差异？300章不腻靠什么？",
+      "why_it_matters": "预筛只做了广度检测，深度耐久由本轮检测。",
+      "current_flaw": "赌注递增链成立：ch1救一个孩子→ch46-50苏晚晚的债到期（情感炸点）→ch51-100禁区里'债的形状'（规则升级）→ch151-200六十年前真相（伦理升级）→ch261-300一代人的还与借（文明级抉择）。每卷换主舞台，结构保障充分。",
+      "iteration_required": "无需迭代。",
+      "severity": "none",
+      "status": "pass"
+    },
+    {
+      "id": "C2-1",
+      "round": 2,
+      "question": "江南文风承诺对话占比≥40%，但原 ch1 全是大场面、ch2 独角戏送机、ch3 独角戏研究欠单——黄金三章的对话场景在哪儿？跟谁说话？",
+      "why_it_matters": "这是 risk_notes 第3条点名风险：样章回测对话占比仅10.7% vs 基线34.3%。承诺≥40%（高于江南本人均值34.3%，但低于其章际p95=48.5%，属可执行的拉伸目标）——但如果黄金三章的 beat 不设计对话对象和对话事件，写手写时再补就晚了，前两章定生死。",
+      "current_flaw": "原 beats：ch1'泡面日常→钟响→天裂…'无对话事件；ch2'送机上门→人去楼空'纯独角戏；ch3'研究欠单→夜里垫还'纯独角戏+无声恐怖。三章对话场景接近零。",
+      "iteration_required": "已修复 beats：ch1 增加'与取机街坊斗嘴开场''老头三日修机拌嘴收束''与苏晚晚隔街对喊（天在掉头皮屑）'；ch2 增加'表叔座机连环call''房东与邻居问答'；ch3 增加'白天与苏晚晚拌嘴'（顺承她家店招上的债）。每章≥2个显式对话事件，对话占比有了 beat 级抓手。",
+      "severity": "critical",
+      "status": "fixed_in_outline"
+    },
+    {
+      "id": "C2-2",
+      "round": 2,
+      "question": "第2章如何避免'第1章余韵+第3章铺垫'的夹心饼干困境？",
+      "why_it_matters": "第2章是番茄弃书率最高的单章。",
+      "current_flaw": "ch2 有独立兑现（铁盒+欠单抬头写他名字=A级获宝）与独立问题（老头为什么早认识他），结构上不夹心。残留风险：'善后与失真新闻'若用旁白罗列新闻超过500字，节奏会塌。",
+      "iteration_required": "建议（未改大纲）：新闻信息全部用街坊/表叔对话转述，禁止旁白 recap；失真新闻只留一个细节（官方说法与目击不符），点到即走。",
+      "severity": "minor",
+      "status": "recommendation"
+    },
+    {
+      "id": "C2-3",
+      "round": 2,
+      "question": "第3章的爽点具体是什么动作、什么台词？'看见债+垫还'会不会写成说明书？",
+      "why_it_matters": "能力激活章是全书的'玩法承诺'，写成设定说明就死了。",
+      "current_flaw": "ch3 爽点具体化合格：跟欠单讨价还价（幽默对话）→看见店招上的债（视觉奇观）→夜里收人（恐怖）→垫还（行动）→谢礼（即时正反馈）→被注视（钩子），五步全是场景不是说明。",
+      "iteration_required": "已随 C2-1 补入白天拌嘴段。",
+      "severity": "none",
+      "status": "pass"
+    },
+    {
+      "id": "C2-4",
+      "round": 2,
+      "question": "第1章第1段第一句话能不能3秒入坑？",
+      "why_it_matters": "黄金三章的第一秒。",
+      "current_flaw": "'泡面还有三分钟好'+Q1明示'天裂了'的落差组合成立，日常锚点+末日落差是非穿越流开局里的强首句。",
+      "iteration_required": "建议：日常段不得超过300字，落差必须发生在第1屏内。",
+      "severity": "minor",
+      "status": "recommendation"
+    },
+    {
+      "id": "C3-1",
+      "round": 3,
+      "question": "规则写明'只能看见与自己有接触者的债'，ch4 许青凭什么看见孩子妈男人的二十年旧欠？他接触过那个男人吗？",
+      "why_it_matters": "这是能力体系的第一单实战，第一单就破例等于规则白写；规则流读者（从红月开始/诡秘受众）专抓这个。",
+      "current_flaw": "原 ch4 beat'她男人在褪色→许青看见一笔二十年的旧欠'未交代接触链。",
+      "iteration_required": "已修复：ch4 beat 补'（男人是修过手机的旧客）'——与'贴膜手艺全城第一'的人设咬合，顺手强化'他修过半条街的手机'的市井根基。",
+      "severity": "critical",
+      "status": "fixed_in_outline"
+    },
+    {
+      "id": "C3-2",
+      "round": 3,
+      "question": "ch10'还掉遗体的债'——一具遗体怎么跟许青'产生过接触'？接触规则第二次破例？",
+      "why_it_matters": "同上，规则连续破例两次，体系信用破产。",
+      "current_flaw": "大纲未交代遗体的接触链。合理出口有两个：遗体是许青修过机的旧客（与ch4同构），或债不属遗体而属白事铺（白先生与许青已茶桌接触=接触链成立）——后者还能顺便把白事铺的'赖账'属性实体化。",
+      "iteration_required": "建议（未改大纲，属ch9-10写作层决策）：plot-architect 在 ch9-10 细纲中二选一锁死，推荐后者（债属白事铺），一箭双雕。",
+      "severity": "major",
+      "status": "open_for_plot_architect"
+    },
+    {
+      "id": "C3-3",
+      "round": 3,
+      "question": "收债的为什么不直接收许青？它按规则办事的边界在哪？",
+      "why_it_matters": "规则恐怖类反派如果'想收谁收谁'，恐怖感变 BUG 感。",
+      "current_flaw": "大纲隐含答案（债清即走）但未在任何 beat 里显式呈现。",
+      "iteration_required": "已随 C2-1 在 ch3 beat 补'（债清即走，规则初显）'——用场景自明规则，不用解释。建议 ch3-5 内再由常师傅或事件台词点明一次边界。",
+      "severity": "major",
+      "status": "fixed_in_outline"
+    },
+    {
+      "id": "C3-4",
+      "round": 3,
+      "question": "前30章新造专名≤5：守夜人/褪色者/欠单/收债的/白事铺=5 已满——'褪色区'算不算第6个？",
+      "why_it_matters": "专名预算是预筛红线，超一个就违约。",
+      "current_flaw": "'褪色区'在 ch5 标题与世界观中作为地名出现，口径模糊。",
+      "iteration_required": "建议（未改大纲）：写作层把'褪色区'作描述性短语使用（'褪了色的街区'），不做大写专名实体；keyword-expert 巡检时按此口径执行。",
+      "severity": "minor",
+      "status": "open_for_plot_architect"
+    },
+    {
+      "id": "C3-5",
+      "round": 3,
+      "question": "ch3垫还、ch8才'看不见红色'——利息为什么迟到5章？",
+      "why_it_matters": "代价延迟显现有讨巧嫌疑，读者会问'早干嘛去了'。",
+      "current_flaw": "链条自洽：利息无声累积（ch3-7）→常师傅ch7点破'没告诉你要收利息？'→ch8代价显形。'先欠后知'恰好是利息规则最阴的恐怖点，延迟是优点不是漏洞。",
+      "iteration_required": "无需迭代。",
+      "severity": "none",
+      "status": "pass"
+    },
+    {
+      "id": "C4-1",
+      "round": 4,
+      "question": "意想不到测试：这个开局与'醒来穿越/系统绑定/末世重生'三类烂大街开局有什么本质不同？",
+      "why_it_matters": "读者看完第1段就猜到后续=开局失败。",
+      "current_flaw": "通过测试：非穿越（原生都市）、非系统（欠单是遗物且本身负债）、非重生（时间是当下2026盛夏）。'全世界抬头只有他收到短信'是身份悬念而非能力公示，'别看'二字把'被选中的爽'扭成'被警告的瘆'——这是反套路细节。",
+      "iteration_required": "无需迭代。",
+      "severity": "none",
+      "status": "pass"
+    },
+    {
+      "id": "C4-2",
+      "round": 4,
+      "question": "短信谜面最强的点——'信号全断，这条短信本不该到'——为什么不大写特写？",
+      "why_it_matters": "超自然短信的'不可能性'是比'谁发的'更靠前的第一层谜，白送的钩子不用是浪费。",
+      "current_flaw": "原 ch1 beat 只写'短信别看'。",
+      "iteration_required": "已修复：ch1 beat 补'（信号全断，这条短信本不该到）'。",
+      "severity": "major",
+      "status": "fixed_in_outline"
+    },
+    {
+      "id": "C4-3",
+      "round": 4,
+      "question": "'慢慢披露'会不会变成'磨蹭'？前10章给了读者多少真东西？",
+      "why_it_matters": "冰山式披露与信息饥饿只有一线之隔。",
+      "current_flaw": "前10章实给清单：天裂全貌（展示）、欠单玩法三行字（分3次给全）、褪色规则、利息规则、守夜人三条规则、收债的规则边界——全是可用信息；吊着不给的只有'六十年前'与'老头身份'两条主谜。披露/埋藏比健康，不磨蹭。",
+      "iteration_required": "无需迭代。",
+      "severity": "none",
+      "status": "pass"
+    }
+  ],
+  "commitment_check": [
+    {"commitment": "第1章内完成天裂+救孩子+章末'别看'钩子", "verdict": "兑现", "evidence": "beat ch1 全链路在场，opening_hook_strength=S级自评经复核成立"},
+    {"commitment": "前3章核心概念≤2", "verdict": "兑现", "evidence": "天裂灰雪+欠/还；'收债的'ch3以威胁形象出现不做概念解释，不计入理解负担"},
+    {"commitment": "每章≥1情绪释放点", "verdict": "兑现（修复后）", "evidence": "逐章核查10/10在场；ch1释放点已绑定对话对象（隔街对喊苏晚晚），不再是无对象的内心吐槽"},
+    {"commitment": "前30章专名≤5，六十年前只做碎片暗示", "verdict": "兑现（口径watch）", "evidence": "5专名已满；'褪色区'需按描述性短语执行，见C3-4；ch1'六十年了'+ch9'也有人像你这样还债'均为碎片不解释"},
+    {"commitment": "能力意外继承+前10章每3-4章1次具象升级", "verdict": "兑现", "evidence": "ch3激活/ch6第二行/ch10第三行，间隔3-4章，升级全部场景化"},
+    {"commitment": "不悲观向，压抑3章内释放", "verdict": "兑现", "evidence": "ch5恐怖压迫→ch6温情高潮释放（间隔1章）；ch8酸涩→同章解法+红裙子幽默对冲"},
+    {"commitment": "对话占比≥40%", "verdict": "修复后可兑现", "evidence": "原黄金三章对话事件≈0（critical），修复后ch1-3每章≥2个对话事件；ch4-10天然对话场景充足（考校/仪式/茶桌博弈/拌嘴）"}
+  ],
+  "suspense_leak_check": {
+    "rule": "六十年前揭示提前量≥30章，前10章无实质答案",
+    "F001": {"plant": 1, "half_reveal": 9, "full_reveal": 151, "lead_time": "142章", "verdict": "合格", "note": "前10章仅'六十年了'一句叹与ch9一句碎片，无机制性泄露"},
+    "F002": {"plant": 1, "half_reveal": 14, "full_reveal": 105, "verdict": "合格"},
+    "F006": {"plant": 9, "half_reveal": 35, "full_reveal": 155, "verdict": "合格"},
+    "overall": "无悬念透支；F005（利息）plant7/half8为规则速付型非暗线，不适用提前量规则"
+  },
+  "dialogue_check": {
+    "baseline": "江南指纹 dialogue_ratio 均值34.3%，章际p95=48.5%，容差上限57%",
+    "commitment": "≥40%（高于作者均值的拉伸目标，处于p95可达区间）",
+    "per_chapter_after_fix": {
+      "ch1": "街坊斗嘴+老头拌嘴+隔街对喊=3组对话事件，达标可行",
+      "ch2": "座机call+房东邻居问答=2组，需写作时把新闻转对话，临界",
+      "ch3": "讨价还价+白天拌嘴=2组，夜戏靠与欠单'对话'补，临界",
+      "ch4-ch10": "孩子妈/禁区双人/仪式对话/面馆考校/红裙子/茶桌博弈/入伙=对话场景充足"
+    },
+    "residual_risk": "ch3夜间收人段、ch10遗体仪式段为无声恐怖场景，写作时需用前后对话段对冲，detail-reviewer 应把这两章对话占比列为实测点"
+  },
+  "shuang_density_check": {
+    "grades": "ch1-10: A/A/S/A/A/S/A/A/B/S",
+    "micro_payoff_per_chapter": "10/10在场（ch9已修复为'博弈小胜+暗线碎片'，原为纯铺垫）",
+    "consecutive_setup": "0章纯铺垫，≤2章规则通过",
+    "S_interval": "ch3→ch6→ch10，间隔3-4章",
+    "hook_grade": "章末钩子全部≥B级（ch1 S/ch10 S，ch4/ch8 B为最低）",
+    "verdict": "合格"
+  },
+  "emotion_release_check": {
+    "coverage": "10/10章有释放点",
+    "feasibility": "ch4气球/ch6二十年之话/ch7一碗面三问/ch9价目表吐槽均为场景内生，可兑现；ch1已修复绑定对话对象；ch8'看不见她的红裙子'是半暗基调最佳对冲设计，保留",
+    "verdict": "合格"
+  },
+  "reader_empathy_test": {
+    "scenario": "25岁男性上班族，下班地铁刷番茄，书荒状态下点开《补天人》",
+    "reader_reaction": "ch1泡面+天裂落差会停住拇指，章末'短信+老头在看他'大概率点下一章；ch2开头若新闻recap超过一屏会开始划屏加速，但'欠单抬头是他名字'能拽回来；ch3夜里收人+垫还是留存胜负手，恐怖与爽的配比决定他是否收藏；ch6温情高潮是首个'推书点'。",
+    "dropout_risk": "medium",
+    "risk_points": ["ch2开头新闻段（需对话化）", "ch3白天段（已补拌嘴）", "ch5若规则恐怖解释过量会劝退轻读者"]
+  },
+  "anti_cliche_check": {
+    "detected_cliches": [
+      "神秘老人留遗物（ch2）",
+      "组织前辈考校新人（ch7）",
+      "正邪茶桌博弈（ch9）",
+      "末世囤货群像（ch2）"
+    ],
+    "subversion_suggestion": "现有反套路细节充足：遗物抬头写着主角名字（不是天降是给定）、考校是'一碗面三个问题'的市井相中而非威严试炼、茶桌博弈配价目表吐槽解构威严、欠单本身也是债（金手指即负债，反系统流）。无需追加，写作层保住这些细节不被写平即可。"
+  },
+  "outline_edits": [
+    {"id": "E1", "location": "beat_breakdown.unit_1.beats.ch1", "before": "泡面日常→…→短信'别看'→老头在看他", "after": "补入街坊斗嘴/老头拌嘴/隔街对喊苏晚晚/短信本不该到", "reason": "C2-1对话场景+C4-2短信谜面", "severity": "critical"},
+    {"id": "E2", "location": "beat_breakdown.unit_1.beats.ch2", "before": "善后与失真新闻→老头爽约→…", "after": "补入表叔座机call+房东邻居问答", "reason": "C1-1信号连续性+C2-1对话场景", "severity": "critical"},
+    {"id": "E3", "location": "beat_breakdown.unit_1.beats.ch3", "before": "研究欠单→看见债→…→垫还第一笔→…", "after": "补入讨价还价/白天拌嘴/债清即走规则初显", "reason": "C2-1对话场景+C3-3规则边界", "severity": "critical"},
+    {"id": "E4", "location": "beat_breakdown.unit_2.beats.ch4", "before": "她男人在褪色→许青看见一笔二十年的旧欠", "after": "补'（男人是修过手机的旧客）'", "reason": "C3-1接触规则破例", "severity": "critical"},
+    {"id": "E5", "location": "villain_ladder[0].debut", "before": "Ch2", "after": "Ch3", "reason": "C1-2与beat首次出场矛盾", "severity": "critical"},
+    {"id": "E6", "location": "chapter_cards[ch2].emotion_release", "before": "表叔的电话", "after": "表叔的座机连环call（手机没信号，座机排队打）", "reason": "C1-1信号连续性", "severity": "critical"},
+    {"id": "E7", "location": "chapter_cards[ch10].title", "before": "第二行字", "after": "第三行字", "reason": "标题与内容矛盾（ch6才是第二行字，ch10为第三行解锁）", "severity": "critical"},
+    {"id": "E8", "location": "chapter_cards[ch9].micro_payoff", "before": "暗线碎片：六十年前第二次提（不解释）", "after": "博弈小胜：白先生探底被反将；暗线碎片：…", "reason": "每章小兑现规则——原字段纯铺垫无兑现", "severity": "major"}
+  ],
+  "open_issues_for_plot_architect": [
+    {"id": "O1", "issue": "ch9-10遗体之债的接触链必须锁死：推荐'债属白事铺'（白先生茶桌接触=接触链成立，且实体化赖账属性），备选'遗体是修机旧客'", "severity": "major", "due": "ch9写作前"},
+    {"id": "O2", "issue": "ch2失真新闻全部改对话转述，旁白recap控制在一屏内", "severity": "minor", "due": "chapter-writer 决策卡"},
+    {"id": "O3", "issue": "'褪色区'按描述性短语执行，保住专名≤5红线；交keyword-expert巡检口径", "severity": "minor", "due": "ch5写作前"},
+    {"id": "O4", "issue": "ch3-5内由场景或台词再点一次'债清即走'边界，防读者质疑收债的为何不直接收许青", "severity": "minor", "due": "ch3写作时"}
+  ],
+  "strengths_to_keep": [
+    "'别看'短信把被选中爽扭成被警告瘆——黄金三章最强反套路点",
+    "欠单本身也是债：金手指即负债，对系统流的本质反套路",
+    "ch8'苏晚晚的红裙子他看不见'：代价具象化+半暗对冲的标杆设计",
+    "低武规则对抗（还/赖/抵押）避开战力通胀，耐久度结构性保障",
+    "ch4孩子妈闭环ch1救的孩子：第一单即情感回报，节奏教科书级"
+  ],
+  "verdict": "通过（修改后）",
+  "verdict_note": "四轮质疑共17项追问：critical 7项已全部直接修复于 outline.json（E1-E7），major 1项修复（E8）+2项转plot-architect锁定（O1/O4前需落实），minor 3项转写作层执行。无主题漂移，无悬念透支，承诺7条逐条兑现。大纲可交付 outline-editor 评分验收。",
+  "iteration_count": 1,
+  "next_action": "outline.json（修复版）→ outline-editor 六维评分；O1 必须在 character-designer/写作启动前由 plot-architect 回补"
+}

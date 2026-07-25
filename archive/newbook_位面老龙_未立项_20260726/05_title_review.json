@@ -1,0 +1,91 @@
+{
+  "card_type": "title_review",
+  "timestamp": "2026-07-26T09:20:00+08:00",
+  "from_agent": "title-reviewer",
+  "to_agent": "plot-architect",
+  "candidates": [
+    {
+      "title": "献祭万界：我的老龙太抠门",
+      "scores": {"distinctiveness": 8, "relevance": 9, "intrigue": 7, "memorability": 8, "shareability": 8, "market_fit": 9},
+      "total_score": 8.17,
+      "verdict": "通过",
+      "strengths": [
+        "品类词'献祭'前置，读者0.5秒识别赛道；'献祭万界'四字给出金手指规模感",
+        "'我的老龙太抠门'与《我的师父太苟了》句式同构（已验证的番茄爆款句式），喜剧锚点一眼可见",
+        "四大承诺（献祭/万界/老龙/抠门）全部在黄金三章内兑现：Ch1霉饼献祭+老龙苏醒+首次压价，无一落空",
+        "说出口有趣不尴尬，具备社交货币属性"
+      ],
+      "weaknesses": [
+        "11字偏长，信息流截断风险（但双段结构后半段'我的老龙太抠门'可独立成立，截断后仍可读）",
+        "'万界'与'诸天'类词汇在同赛道泛滥，差异化全押在后半段"
+      ],
+      "suggestions": "通过。保留为最终书名。"
+    },
+    {
+      "title": "我的老龙太抠门",
+      "scores": {"distinctiveness": 7, "relevance": 8, "intrigue": 7, "memorability": 9, "shareability": 9, "market_fit": 6},
+      "total_score": 7.67,
+      "verdict": "通过（作副书名/封面简称）",
+      "strengths": ["7字极简，记忆度与口头传播满分", "抠门人设即卖点"],
+      "weaknesses": ["品类词全缺——读者无法判断是玄幻征战还是都市萌宠，信息流里会被错误归类", "'我的XX太XX'句式密度过高，单用时辨识度被稀释"],
+      "suggestions": "不作为主书名；用作封面字少场景/读者口口相传的简称"
+    },
+    {
+      "title": "万界当铺：老龙今天涨价了",
+      "scores": {"distinctiveness": 8, "relevance": 6, "intrigue": 8, "memorability": 8, "shareability": 7, "market_fit": 5},
+      "total_score": 7.0,
+      "verdict": "淘汰",
+      "strengths": ["'涨价了'动态感强，悬念最好"],
+      "weaknesses": [
+        "致命：'当铺'指向经营流（《万界淘宝店》系），本书是位面征战升级流——吸引来的读者期待开店日常，点开看到位面战争会弃书",
+        "'当铺'误导核心机制：献祭法则≠典当交易，文不对题风险"
+      ],
+      "suggestions": "淘汰。'涨价'梗保留给正文（老龙坐地起价的章节桥段），不进书名"
+    },
+    {
+      "title": "诸天构装师",
+      "scores": {"distinctiveness": 4, "relevance": 7, "intrigue": 3, "memorability": 5, "shareability": 6, "market_fit": 6},
+      "total_score": 5.17,
+      "verdict": "淘汰",
+      "strengths": ["构装师三字有职业差异化"],
+      "weaknesses": [
+        "'诸天XX'句式淹没在同质化书名中，刷到必划走",
+        "承诺正统严肃玄幻，与正文轻松幽默基调错位——简介和正文会让被书名吸引的读者觉得'换了个作者'",
+        "老龙/献祭/幽默三大卖点全缺席"
+      ],
+      "suggestions": "淘汰。可作IP化阶段的品类副标题"
+    }
+  ],
+  "ranking": ["献祭万界：我的老龙太抠门", "我的老龙太抠门", "万界当铺：老龙今天涨价了", "诸天构装师"],
+  "recommended": "献祭万界：我的老龙太抠门",
+  "synopsis_review": {
+    "first_line_score": 9,
+    "promise_fulfillment_score": 9,
+    "suspense_score": 8,
+    "tag_accuracy_score": 9,
+    "style_consistency_score": 9,
+    "total_score": 8.8,
+    "verdict": "通过",
+    "issues": [
+      {
+        "dimension": "body",
+        "severity": "low",
+        "description": "'诸天万界，皆可献祭；千军万马，不如老龙一句'与前后句信息有重叠，且'千军万马'偏正统玄幻腔，略冲散幽默语气",
+        "suggestion": "可精简为一句：'诸天万界，皆可献祭——只要老龙看得上。'"
+      },
+      {
+        "dimension": "suspense",
+        "severity": "info",
+        "description": "末句'账单快到期了'剧透风险控制良好：'付账'暗示自Ch1老龙收走祭品去向不明的疑问即埋，不构成后期真相泄露",
+        "suggestion": "无需修改"
+      }
+    ],
+    "checks": {
+      "首句15字内": "通过（13字：半块霉饼，换来一条抠门老龙。）",
+      "承诺黄金三章兑现": "霉饼/古鳞/老龙/献祭/抠门/账本=Ch1-2全兑现；构装=Ch3兑现；位面本源=Ch25-34兑现（可接受窗口）",
+      "标签准确性": "类型（玄幻）+元素（位面征战/献祭流/构装师）+风格（轻松幽默/热血）三层全覆盖",
+      "文风一致性": "'它定义的童叟无欺'等调侃语气与maibao风格包及正文基调一致"
+    }
+  },
+  "overall_assessment": "《献祭万界：我的老龙太抠门》为四候选中唯一无致命伤且双段结构自带传播韧性的书名，简介8.8分通过。正文创作注意：被'抠门老龙'吸引来的读者期待高浓度幽默，黄金三章的人龙对手戏密度是留存关键。"
+}

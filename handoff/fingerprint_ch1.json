@@ -1,0 +1,140 @@
+{
+  "card_type": "style_fingerprint_check",
+  "from_agent": "style_fingerprint(script)",
+  "to_agent": "chapter-writer",
+  "status": "pass",
+  "baseline_ref": ".trae/skills/writer-styles/jiangnan/fingerprint.json",
+  "baseline_confidence": "high",
+  "failed_dims": [],
+  "dims": [
+    {
+      "dim": "func_words_cosine",
+      "current": 0.0362,
+      "baseline": 0.0,
+      "deviation": 0.0362,
+      "tolerance": 0.08,
+      "pass": true
+    },
+    {
+      "dim": "sent_len_mean",
+      "current": 21.53,
+      "baseline": 26.55,
+      "deviation": 0.1891,
+      "tolerance": 0.25,
+      "pass": true
+    },
+    {
+      "dim": "sent_len_stdev",
+      "current": 17.42,
+      "baseline": 20.12,
+      "deviation": 0.1342,
+      "tolerance": 0.35,
+      "pass": true
+    },
+    {
+      "dim": "short_sent_ratio",
+      "current": 0.2439,
+      "baseline": 0.1855,
+      "deviation": 0.3148,
+      "tolerance": 0.35,
+      "pass": true
+    },
+    {
+      "dim": "long_sent_ratio",
+      "current": 0.122,
+      "baseline": 0.2022,
+      "deviation": 0.3966,
+      "tolerance": 0.553,
+      "pass": true
+    },
+    {
+      "dim": "para_len_mean",
+      "current": 37.3,
+      "baseline": 56.72,
+      "deviation": 0.3424,
+      "tolerance": 0.35,
+      "pass": true
+    },
+    {
+      "dim": "short_para_ratio",
+      "current": 0.1549,
+      "baseline": 0.1718,
+      "deviation": 0.0984,
+      "tolerance": 0.35,
+      "pass": true
+    },
+    {
+      "dim": "dialogue_ratio",
+      "current": 0.1707,
+      "baseline": 0.3434,
+      "deviation": 0.5029,
+      "tolerance": 0.665,
+      "pass": true
+    },
+    {
+      "dim": "comma_period_ratio",
+      "current": 2.393,
+      "baseline": 2.134,
+      "deviation": 0.1214,
+      "tolerance": 0.35,
+      "pass": true
+    },
+    {
+      "dim": "dash_per_1000",
+      "current": 0.0,
+      "baseline": 0.084,
+      "deviation": 0.42,
+      "tolerance": 1.0,
+      "pass": true
+    },
+    {
+      "dim": "ellipsis_per_1000",
+      "current": 0.378,
+      "baseline": 2.093,
+      "deviation": 0.8194,
+      "tolerance": 0.982,
+      "pass": true
+    },
+    {
+      "dim": "metaphor_per_1000",
+      "current": 2.644,
+      "baseline": 2.68,
+      "deviation": 0.0134,
+      "tolerance": 0.618,
+      "pass": true
+    },
+    {
+      "dim": "conjunction_starter_ratio",
+      "current": 0.0,
+      "baseline": 0.0123,
+      "deviation": 0.615,
+      "tolerance": 1.0,
+      "pass": true
+    },
+    {
+      "dim": "dialogue_guide_per_1000",
+      "current": 0.0,
+      "baseline": 0.176,
+      "deviation": 0.352,
+      "tolerance": 1.0,
+      "pass": true
+    },
+    {
+      "dim": "le_ending_ratio",
+      "current": 0.0325,
+      "baseline": 0.0245,
+      "deviation": 0.3265,
+      "tolerance": 0.693,
+      "pass": true
+    },
+    {
+      "dim": "sensory_cosine",
+      "current": 0.0944,
+      "baseline": 0.0,
+      "deviation": 0.0944,
+      "tolerance": 0.15,
+      "pass": true
+    }
+  ],
+  "advice": []
+}

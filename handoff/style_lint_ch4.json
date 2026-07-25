@@ -1,0 +1,143 @@
+{
+  "card_type": "style_lint",
+  "from_agent": "style_lint(script)",
+  "to_agent": "chapter-writer",
+  "status": "pass",
+  "style_pack": "jiangnan",
+  "blocking_count": 0,
+  "advisory_count": 0,
+  "non_blocking_count": 2,
+  "issues": [
+    {
+      "rule": "dialogue_ratio",
+      "severity": "minor",
+      "level": "L1",
+      "chapter": "chapter_004.txt",
+      "line": 0,
+      "excerpt": "",
+      "message": "对话占比81% > 上限68%"
+    },
+    {
+      "rule": "ellipsis_overuse",
+      "severity": "minor",
+      "level": "L2",
+      "chapter": "chapter_004.txt",
+      "line": 0,
+      "excerpt": "",
+      "message": "省略号3.045/千字 > 上限3.0"
+    }
+  ],
+  "timeline_clues": {
+    "chapter_004.txt": [
+      {
+        "line": 29,
+        "hit": "二十年",
+        "context": "许青没答，他怀里的欠单已经烫得贴不住身，便背过手把它从口袋里抽出来，展开。纸上那"
+      },
+      {
+        "line": 33,
+        "hit": "二十年",
+        "context": "老周缠布条的手停在半空。过好一会儿，他把布条搁在膝盖上，用那只完好的右手摸出一包"
+      },
+      {
+        "line": 39,
+        "hit": "二十年",
+        "context": "老周说：\"二十年前我在外头工地上，家里托人带话，说老爷子病了，想我。我给他摇了个"
+      },
+      {
+        "line": 49,
+        "hit": "二十年",
+        "context": "\"我想说，爹，钱没了，人还在，我这就回来。\"老周看着自己灰白的左臂，\"这句话我在"
+      },
+      {
+        "line": 49,
+        "hit": "二十年",
+        "context": "\"我想说，爹，钱没了，人还在，我这就回来。\"老周看着自己灰白的左臂，\"这句话我在"
+      }
+    ]
+  },
+  "config": {
+    "not_a_is_b_max_per_chapter": 2,
+    "short_para_len": 15,
+    "short_para_ratio_max": 0.4,
+    "short_para_run_max": 6,
+    "simile_max_per_chapter": 8,
+    "simile_max_per_para": 1,
+    "ban_yizhong_feeling": true,
+    "ban_feeling_enum": true,
+    "ban_summary_voice": true,
+    "ranhou_max_per_chapter": 1,
+    "dialogue_ratio_min": 0.4,
+    "dialogue_ratio_max": 0.68,
+    "dash_max_per_1000": 1.5,
+    "ellipsis_max_per_1000": 3.0,
+    "le_max_per_1000": 24.0,
+    "zhe_max_per_1000": 11.0,
+    "conjunction_min_per_1000": 3.0,
+    "dialogue_guide_min_per_1000": 1.0,
+    "name_starter_run_max": 5,
+    "emotion_telling_words": [
+      "不敢",
+      "害怕",
+      "悲伤",
+      "震撼",
+      "激动"
+    ],
+    "four_char_cliches": [
+      "不急不缓",
+      "不紧不慢",
+      "取而代之",
+      "不约而同",
+      "悄无声息"
+    ],
+    "era_wrong_words": [],
+    "tell_marker_words": [
+      "习惯性地",
+      "不由得",
+      "下意识地",
+      "情不自禁",
+      "自然而然地",
+      "本能地",
+      "条件反射般",
+      "潜意识里"
+    ],
+    "cliche_vehicles": [
+      "山",
+      "风",
+      "火",
+      "水",
+      "刀",
+      "剑",
+      "雷",
+      "电",
+      "铁",
+      "石",
+      "雾",
+      "冰",
+      "蛇",
+      "虎",
+      "龙",
+      "潮",
+      "浪",
+      "云",
+      "雨",
+      "雪"
+    ],
+    "short_le_ending_max": 3,
+    "narrative_dialogue_max": 2,
+    "certain_markers": [
+      "就是",
+      "分明是",
+      "肯定是",
+      "无疑是",
+      "确实是"
+    ],
+    "ending_family_window": 4,
+    "ending_family_max_in_window": 2,
+    "opening_channel_max_run": 2,
+    "dup_sentence_min_len": 6,
+    "_note": "《补天之人》项目级 style_lint 配置。世界观=2026年盛夏现代都市（setting_bible.json），手机/电话/汽车/路灯等均为合理时代词，故清空默认 era_wrong_words（默认表按玄幻古背景设定）。风格维度规则仍由 --style jiangnan 的 lint_overlay.json 加载。用法：python style_lint.py output/chapter_NNN.txt --config config/lint_config.json --style jiangnan"
+  },
+  "advisory": [],
+  "overrides": []
+}
