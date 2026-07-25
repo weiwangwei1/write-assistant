@@ -1,0 +1,45 @@
+{
+  "style": "maibao",
+  "overrides": {
+    "simile_max_per_chapter": 8,
+    "not_a_is_b_max_per_chapter": 2,
+    "dialogue_ratio_min": 0.30,
+    "dialogue_ratio_max": 0.50,
+    "dash_max_per_1000": 1.0,
+    "ellipsis_max_per_1000": 1.5,
+    "le_max_per_1000": 20.0,
+    "zhe_max_per_1000": 9.0,
+    "conjunction_min_per_1000": 0.0,
+    "dialogue_guide_min_per_1000": 0.0,
+    "name_starter_run_max": 6
+  },
+  "disabled_rules": [],
+  "disabled_reason": {},
+  "custom_ban_words": [
+    {"word": "毛玻璃", "severity": "critical", "reason": "通货意象"},
+    {"word": "命运丝线", "severity": "critical", "reason": "类型通货意象"}
+  ],
+  "fingerprint_ref": {
+    "source": "《大奉打更人》《灵境行者》两本全本（657万字）",
+    "confidence": "high",
+    "key_metrics": {
+      "sent_len_mean": 22.59,
+      "short_sent_ratio": 0.177,
+      "dialogue_ratio": 0.388,
+      "dash_per_1000": 0.378,
+      "ellipsis_per_1000": 0.495,
+      "comma_period_ratio": 2.334,
+      "le_per_1000": 13.887,
+      "zhe_per_1000": 5.901,
+      "metaphor_per_1000": 0.678
+    },
+    "note": "卖报小郎君风格以轻松爽文节奏为特征：句长22.59字（中等偏短）、对话占比38.8%（适中）、破折号极低（0.378/千字）、省略号低（0.495/千字）、比喻密度低（0.678/千字，不依赖比喻）。阈值设在原作与默认值之间，给创作渐进空间。"
+  },
+  "rule_level_strategy": {
+    "L0": "通用反AI红线全开——不是A是B≤2/通货意象0容忍/情绪直说/总结式心声不可豁免",
+    "L1": "身份：碎段占比默认/比喻≤8/对话占比30-50%",
+    "L2": "签名：破折号≤1.0/省略号≤1.5/了≤20/着≤9（渐进达标，不阻断）",
+    "L3": "偏好：段首同名连跑≤6段"
+  },
+  "note": "卖报小郎君方向：节奏明快、对话驱动、不依赖比喻和标点修饰。破折号和省略号都极低（原作几乎不用），但不需要像烟雨江南那样收紧到极致——卖报的轻快节奏允许偶用。了/着适中（原作13.9/5.9），不需要特别收紧。"
+}

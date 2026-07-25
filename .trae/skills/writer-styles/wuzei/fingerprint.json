@@ -1,0 +1,180 @@
+{
+  "card_type": "style_fingerprint_baseline",
+  "status": "ready",
+  "confidence": "high",
+  "note": "",
+  "metrics": {
+    "author": "爱潜水的乌贼",
+    "source": ".trae\\skills\\writer-styles\\wuzei\\reference\\原作_utf8\\一世之尊.txt;.trae\\skills\\writer-styles\\wuzei\\reference\\原作_utf8\\诡秘之主.txt;.trae\\skills\\writer-styles\\wuzei\\reference\\原作_utf8\\长夜余火.txt",
+    "sample_chars": 10157967,
+    "sample_sents": 377080,
+    "sample_paras": 317367,
+    "func_words_per_1000": {
+      "的": 34.177,
+      "了": 19.082,
+      "在": 6.659,
+      "是": 11.794,
+      "不": 12.35,
+      "他": 8.235,
+      "她": 1.938,
+      "我": 5.307,
+      "你": 3.323,
+      "也": 3.009,
+      "都": 2.468,
+      "就": 4.349,
+      "又": 1.642,
+      "还": 2.674,
+      "与": 1.677,
+      "和": 3.944,
+      "或": 0.921,
+      "着": 5.705,
+      "过": 3.713,
+      "把": 0.586,
+      "被": 1.826,
+      "向": 1.59,
+      "从": 1.251,
+      "但": 1.734,
+      "而": 2.83,
+      "却": 0.474,
+      "只": 2.404,
+      "已": 1.372,
+      "曾": 0.265,
+      "将": 1.851
+    },
+    "sent_len_mean": 26.94,
+    "sent_len_stdev": 22.01,
+    "short_sent_ratio": 0.1787,
+    "long_sent_ratio": 0.202,
+    "para_len_mean": 32.01,
+    "short_para_ratio": 0.2571,
+    "dialogue_ratio": 0.5073,
+    "comma_period_ratio": 2.971,
+    "dash_per_1000": 0.739,
+    "ellipsis_per_1000": 4.088,
+    "sensory_dist": {
+      "视觉": 16.863,
+      "听觉": 4.374,
+      "嗅觉": 0.819,
+      "触觉": 2.257,
+      "味觉": 0.547
+    },
+    "metaphor_per_1000": 0.905,
+    "imagery_top20": [
+      {
+        "word": "孟奇",
+        "count": 28605,
+        "per_1000": 2.816
+      },
+      {
+        "word": "自己",
+        "count": 24075,
+        "per_1000": 2.37
+      },
+      {
+        "word": "没有",
+        "count": 23098,
+        "per_1000": 2.274
+      },
+      {
+        "word": "莱恩",
+        "count": 22695,
+        "per_1000": 2.234
+      },
+      {
+        "word": "克莱",
+        "count": 22692,
+        "per_1000": 2.234
+      },
+      {
+        "word": "克莱恩",
+        "count": 22688,
+        "per_1000": 2.234
+      },
+      {
+        "word": "商见",
+        "count": 15867,
+        "per_1000": 1.562
+      },
+      {
+        "word": "见曜",
+        "count": 15866,
+        "per_1000": 1.562
+      },
+      {
+        "word": "商见曜",
+        "count": 15865,
+        "per_1000": 1.562
+      },
+      {
+        "word": "白棉",
+        "count": 14102,
+        "per_1000": 1.388
+      },
+      {
+        "word": "蒋白",
+        "count": 14099,
+        "per_1000": 1.388
+      },
+      {
+        "word": "蒋白棉",
+        "count": 14098,
+        "per_1000": 1.388
+      },
+      {
+        "word": "事情",
+        "count": 11311,
+        "per_1000": 1.114
+      },
+      {
+        "word": "知道",
+        "count": 8164,
+        "per_1000": 0.804
+      },
+      {
+        "word": "可能",
+        "count": 7385,
+        "per_1000": 0.727
+      },
+      {
+        "word": "世界",
+        "count": 7213,
+        "per_1000": 0.71
+      },
+      {
+        "word": "悦红",
+        "count": 7192,
+        "per_1000": 0.708
+      },
+      {
+        "word": "龙悦",
+        "count": 7191,
+        "per_1000": 0.708
+      },
+      {
+        "word": "龙悦红",
+        "count": 7191,
+        "per_1000": 0.708
+      },
+      {
+        "word": "似乎",
+        "count": 7087,
+        "per_1000": 0.698
+      }
+    ]
+  },
+  "tolerance": {
+    "func_words_cosine": 0.08,
+    "sent_len_mean": 0.25,
+    "sent_len_stdev": 0.35,
+    "short_sent_ratio": 0.35,
+    "long_sent_ratio": 0.5,
+    "para_len_mean": 0.35,
+    "short_para_ratio": 0.35,
+    "dialogue_ratio": 0.4,
+    "comma_period_ratio": 0.35,
+    "dash_per_1000": 0.6,
+    "ellipsis_per_1000": 0.6,
+    "sensory_cosine": 0.15,
+    "metaphor_per_1000": 0.5
+  }
+}

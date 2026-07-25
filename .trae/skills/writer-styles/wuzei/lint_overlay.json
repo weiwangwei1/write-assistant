@@ -1,0 +1,48 @@
+{
+  "style": "wuzei",
+  "overrides": {
+    "simile_max_per_chapter": 10,
+    "not_a_is_b_max_per_chapter": 2,
+    "dialogue_ratio_min": 0.40,
+    "dialogue_ratio_max": 0.65,
+    "dash_max_per_1000": 1.5,
+    "ellipsis_max_per_1000": 6.0,
+    "le_max_per_1000": 25.0,
+    "zhe_max_per_1000": 9.0,
+    "conjunction_min_per_1000": 3.0,
+    "dialogue_guide_min_per_1000": 0.0,
+    "name_starter_run_max": 6
+  },
+  "disabled_rules": [],
+  "disabled_reason": {},
+  "custom_ban_words": [
+    {"word": "毛玻璃", "severity": "critical", "reason": "通货意象"},
+    {"word": "命运丝线", "severity": "critical", "reason": "类型通货意象"},
+    {"word": "古老的符文", "severity": "critical", "reason": "类型通货意象"}
+  ],
+  "fingerprint_ref": {
+    "source": "《一世之尊》《诡秘之主》《长夜余火》三本全本（1016万字）",
+    "confidence": "high",
+    "key_metrics": {
+      "sent_len_mean": 26.94,
+      "sent_len_stdev": 22.01,
+      "short_sent_ratio": 0.179,
+      "dialogue_ratio": 0.507,
+      "dash_per_1000": 0.739,
+      "ellipsis_per_1000": 4.088,
+      "comma_period_ratio": 2.971,
+      "le_per_1000": 19.082,
+      "zhe_per_1000": 5.705,
+      "metaphor_per_1000": 0.905,
+      "signature_word": "似乎(0.698/千字)——推测语气签名"
+    },
+    "note": "爱潜水的乌贼风格以悬疑氛围和长短句大开大合为特征：句长26.94字但标准差22.01（长短交替剧烈）、对话占比50.7%（高，重度对话驱动）、省略号4.088/千字（签名特征！用省略号制造悬念和不确定感）、'似乎'进入意象Top20（推测语气签名）。阈值设在原作与默认值之间。"
+  },
+  "rule_level_strategy": {
+    "L0": "通用反AI红线全开——不是A是B≤2/通货意象0容忍/情绪直说/总结式心声不可豁免",
+    "L1": "身份：碎段占比默认/比喻≤10/对话占比40-65%",
+    "L2": "签名：破折号≤1.5/省略号≤6.0/了≤25/着≤9/连词≥3（渐进达标，不阻断）。省略号高阈值是签名手法豁免——原作4.088/千字",
+    "L3": "偏好：段首同名连跑≤6段"
+  },
+  "note": "爱潜水的乌贼方向：悬疑氛围、长短句大开大合、省略号签名（4.088/千字，远超其他作者）、推测语气签名（'似乎'进入Top20）、视觉画面密集（16.86/千字，6位作者中最高）。省略号阈值设为6.0（远超默认5.0），因为省略号是乌贼的签名标点——用于制造悬念、不确定感和克苏鲁式的信息残缺。"
+}

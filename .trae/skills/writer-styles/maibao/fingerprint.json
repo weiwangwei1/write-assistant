@@ -1,0 +1,180 @@
+{
+  "card_type": "style_fingerprint_baseline",
+  "status": "ready",
+  "confidence": "high",
+  "note": "",
+  "metrics": {
+    "author": "卖报小郎君",
+    "source": ".trae\\skills\\writer-styles\\maibao\\reference\\原作_utf8\\大奉打更人.txt;.trae\\skills\\writer-styles\\maibao\\reference\\原作_utf8\\灵境行者.txt",
+    "sample_chars": 6569346,
+    "sample_sents": 290805,
+    "sample_paras": 242222,
+    "func_words_per_1000": {
+      "的": 38.321,
+      "了": 13.887,
+      "在": 7.789,
+      "是": 14.445,
+      "不": 12.807,
+      "他": 8.646,
+      "她": 2.634,
+      "我": 7.482,
+      "你": 5.369,
+      "也": 2.736,
+      "都": 2.424,
+      "就": 4.43,
+      "又": 1.209,
+      "还": 2.256,
+      "与": 1.053,
+      "和": 3.546,
+      "或": 0.455,
+      "着": 5.901,
+      "过": 3.26,
+      "把": 1.738,
+      "被": 1.763,
+      "向": 1.372,
+      "从": 1.174,
+      "但": 2.399,
+      "而": 2.345,
+      "却": 0.397,
+      "只": 2.007,
+      "已": 1.187,
+      "曾": 0.159,
+      "将": 0.816
+    },
+    "sent_len_mean": 22.59,
+    "sent_len_stdev": 14.95,
+    "short_sent_ratio": 0.1771,
+    "long_sent_ratio": 0.121,
+    "para_len_mean": 27.12,
+    "short_para_ratio": 0.2941,
+    "dialogue_ratio": 0.3877,
+    "comma_period_ratio": 2.334,
+    "dash_per_1000": 0.378,
+    "ellipsis_per_1000": 0.495,
+    "sensory_dist": {
+      "视觉": 12.553,
+      "听觉": 5.679,
+      "嗅觉": 0.948,
+      "触觉": 2.929,
+      "味觉": 0.579
+    },
+    "metaphor_per_1000": 0.678,
+    "imagery_top20": [
+      {
+        "word": "许七",
+        "count": 21984,
+        "per_1000": 3.346
+      },
+      {
+        "word": "七安",
+        "count": 21962,
+        "per_1000": 3.343
+      },
+      {
+        "word": "许七安",
+        "count": 21959,
+        "per_1000": 3.343
+      },
+      {
+        "word": "张元",
+        "count": 19028,
+        "per_1000": 2.896
+      },
+      {
+        "word": "元清",
+        "count": 18928,
+        "per_1000": 2.881
+      },
+      {
+        "word": "张元清",
+        "count": 18888,
+        "per_1000": 2.875
+      },
+      {
+        "word": "没有",
+        "count": 13616,
+        "per_1000": 2.073
+      },
+      {
+        "word": "自己",
+        "count": 7802,
+        "per_1000": 1.188
+      },
+      {
+        "word": "知道",
+        "count": 7723,
+        "per_1000": 1.176
+      },
+      {
+        "word": "元始",
+        "count": 6196,
+        "per_1000": 0.943
+      },
+      {
+        "word": "天尊",
+        "count": 5407,
+        "per_1000": 0.823
+      },
+      {
+        "word": "始天",
+        "count": 5019,
+        "per_1000": 0.764
+      },
+      {
+        "word": "始天尊",
+        "count": 4983,
+        "per_1000": 0.759
+      },
+      {
+        "word": "元始天",
+        "count": 4967,
+        "per_1000": 0.756
+      },
+      {
+        "word": "心里",
+        "count": 4921,
+        "per_1000": 0.749
+      },
+      {
+        "word": "灵境",
+        "count": 4774,
+        "per_1000": 0.727
+      },
+      {
+        "word": "可能",
+        "count": 4315,
+        "per_1000": 0.657
+      },
+      {
+        "word": "如果",
+        "count": 4260,
+        "per_1000": 0.648
+      },
+      {
+        "word": "青阳",
+        "count": 4205,
+        "per_1000": 0.64
+      },
+      {
+        "word": "道具",
+        "count": 4172,
+        "per_1000": 0.635
+      }
+    ]
+  },
+  "tolerance": {
+    "func_words_cosine": 0.08,
+    "sent_len_mean": 0.25,
+    "sent_len_stdev": 0.35,
+    "short_sent_ratio": 0.35,
+    "long_sent_ratio": 0.5,
+    "para_len_mean": 0.35,
+    "short_para_ratio": 0.35,
+    "dialogue_ratio": 0.4,
+    "comma_period_ratio": 0.35,
+    "dash_per_1000": 0.6,
+    "ellipsis_per_1000": 0.6,
+    "sensory_cosine": 0.15,
+    "metaphor_per_1000": 0.5
+  }
+}
