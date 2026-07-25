@@ -96,10 +96,22 @@ def scan_detail_reviews(handoff_dir):
     """扫描所有 detail_review JSON，提取过度矫正问题"""
     issues = []
     scanned = 0
-    for fname in sorted(os.listdir(handoff_dir)):
-        if not fname.startswith("detail_review_") or not fname.endswith(".json"):
+    # v1.1：扫描 handoff/ 顶层 + chapters/ + archive/ch{N}/——detail_review 实际产出在
+    # chapters/ 并在合并后归档到 archive/，此前只扫顶层目录导致采集恒为空（空转）
+    fnames = []
+    scan_dirs = [handoff_dir, os.path.join(handoff_dir, "chapters")]
+    archive_root = os.path.join(handoff_dir, "archive")
+    if os.path.isdir(archive_root):
+        for sub in sorted(os.listdir(archive_root)):
+            if os.path.isdir(os.path.join(archive_root, sub)):
+                scan_dirs.append(os.path.join(archive_root, sub))
+    for d in scan_dirs:
+        if not os.path.isdir(d):
             continue
-        fpath = os.path.join(handoff_dir, fname)
+        for fname in sorted(os.listdir(d)):
+            if fname.startswith("detail_review_") and fname.endswith(".json"):
+                fnames.append(os.path.join(d, fname))
+    for fpath in fnames:
         try:
             with open(fpath, "r", encoding="utf-8") as f:
                 data = json.load(f)

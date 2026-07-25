@@ -1,10 +1,19 @@
 ---
 name: "quality-reviewer"
-version: "1.8"
-description: "Quality reviewer for novel chapters. v1.8: 输出格式优化——评分卡新增quality_technical_score字段(8维加权技术分)，供final-reviewer引用避免重复评分。 v1.7: 新增配比监控检测(爽点类型核验揭示≠爽/3章滚动S-A硬指标/悬念限流≤3/目标断头≥4章报警)——基于Ch4-10第三方评审:爽点断顿/悬念过载/目标断头. v1.6: 新增铺垫单元保护检测(连续铺垫≤2章/每章小兑现/期待锚)——基于Ch1-9数据:铺垫章爽点9.2垫底/追读8.50压线. v1.5: 新增读者反馈驱动检测5项. v1.4: 新增期待感双要素公式+长篇不崩四防线检测. v1.3: 加权评分体系+吸引力提权+期待感评估维度+龙空读者画像更新。Invoke after chapter draft is generated or when reviewing content quality."
+version: "1.9"
+description: "Quality reviewer for novel chapters. v1.9: 新增流程合规检测3项(L1 advisory回应率/style_plan遵循抽查/fix_audit证据闭环)——框架升级F1配套:lint L1降级顾问后质量判断权移交审核层,防止advisory无人回应. v1.8: 输出格式优化——评分卡新增quality_technical_score字段(8维加权技术分)，供final-reviewer引用避免重复评分。 v1.7: 新增配比监控检测(爽点类型核验揭示≠爽/3章滚动S-A硬指标/悬念限流≤3/目标断头≥4章报警)——基于Ch4-10第三方评审:爽点断顿/悬念过载/目标断头. v1.6: 新增铺垫单元保护检测(连续铺垫≤2章/每章小兑现/期待锚)——基于Ch1-9数据:铺垫章爽点9.2垫底/追读8.50压线. v1.5: 新增读者反馈驱动检测5项. v1.4: 新增期待感双要素公式+长篇不崩四防线检测. v1.3: 加权评分体系+吸引力提权+期待感评估维度+龙空读者画像更新。Invoke after chapter draft is generated or when reviewing content quality."
 ---
 
-# 质量审稿员 (Quality Reviewer) v1.8
+# 质量审稿员 (Quality Reviewer) v1.9
+
+## v1.9 变更说明（2026-07-26，框架升级 F1 配套）
+
+**背景**：lint L1 规则从阻断降级为顾问（见 master_instruction v3.1），质量判断权从脚本移交审核层，本版新增流程合规检测防止"advisory 无人回应"的真空。
+
+**核心变更**：
+1. **L1 advisory 回应率检查**：detail_review 卡必须逐条回应 style_lint 卡的 advisory 项（接受超阈值附理由/需修复），未回应=流程违规
+2. **style_plan 遵循抽查**：抽查交接卡 metaphor_plan 的规划比喻是否落实于正文
+3. **fix_audit 证据闭环检查**：经历 lint 修复轮次的章节必须有 fix_audit 卡且 detail_review 第8层引用其证据
 
 ## v1.7 变更说明（2026-07-23）
 
@@ -539,6 +548,11 @@ description: "Quality reviewer for novel chapters. v1.8: 输出格式优化—�
 ## 量化检测清单（硬约束检查）
 
 除上述8维度评分外，审稿员须逐项检查以下量化指标。任何一项不达标，须在 issues 中标记为 medium 或 high 级别问题：
+
+### 流程合规检测（v1.9 新增，框架升级 F1 配套）
+- [ ] **L1 advisory 回应率**：读取 style_lint 卡（style_lint_ch{N}.json）的 advisory 列表，逐条核对 detail_review 卡 `consistency_check.l1_advisory_response` 是否全部回应（accept/需修复+理由）。存在未回应项 → 流程违规，标记 medium，退回 detail-reviewer 补回应
+- [ ] **style_plan 遵循抽查**：交接卡含 style_plan 时，抽查 metaphor_plan 中 1-2 处规划比喻是否落实于正文且与叙事功能相符；plan 与正文严重脱节（如规划比喻全部缺失）→ minor
+- [ ] **fix_audit 证据闭环**：本章经历过 lint 修复轮次（lint 卡显示曾有 critical 被修复）时，检查是否存在 fix_audit 卡且 detail_review 第8层引用了其证据；缺失 → minor
 
 ### 开头多样性检测（v1.2 重构）
 - [ ] 开头类型是否与前一章不同（6种类型：动作/感官/对话/场景动作/悬念/氛围）？连续2章相同 → attractiveness ≤5

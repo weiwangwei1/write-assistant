@@ -1,4 +1,13 @@
-# 无人值守自动执行代理指令 v3.0
+# 无人值守自动执行代理指令 v3.1
+
+## v3.1变更摘要（框架升级 F1/F2/F4，2026-07-26）
+
+> 依据：`auto-runner/framework_architecture_upgrade.md` 的架构分析（门禁制激励错位导致"修 lint→文学性退步"恶性循环）及第三方评审结论。F3（规则生命周期管理）暂缓——待 feedback_collector 采集可靠性验证后再做。
+
+- **F1: lint L1 规则降级为顾问**：style_lint 退出码只看 L0 通用反AI红线；L1（碎段率/比喻总数/对话占比/章首感官通道）critical 仍报告为 advisory 但不阻断，由 detail-reviewer 逐条回应（接受超阈值附理由/需修复），quality-reviewer 检查回应率。配套：修复 OVERRIDE 可越级豁免 L0 红线的漏洞；OVERRIDE 机制废弃（chapter-writer 5b.3 存档）
+- **F2: style_plan 前置（缩水版）**：交接卡新增 style_plan（metaphor_plan 比喻位置/功能规划 + dialogue_plan 交锋场景对话格式）；确定性状态沿用 H3 certainty_state，不另设字段。定位：给审核员的意图上下文，非可强制步骤
+- **F4: fix_auditor.py（改造版）**：lint 修复前存 `handoff/pre_lint_ch{N}.txt` 快照，修复后运行 fix_auditor 生成 diff 证据卡（比喻变化/功能词减少/引号消失/lint 计数差）——只产证据不做判定，detail-reviewer 第8层据此实证判定过度矫正
+- **配套修复**：feedback_collector.py 扫描路径修复（改扫 handoff/chapters/ + archive/，此前只扫顶层恒为空）；detail-reviewer v1.9（第8层实证化 + L1 advisory 回应 + 判例集）；quality-reviewer v1.9（advisory 回应率检查）
 
 ## v3.0变更摘要
 

@@ -8,7 +8,11 @@ style_lint.py — 网文章节文风校验器（write-assistant 流水线前置�
   python style_lint.py output/ --style chendong        # 加载风格包覆盖层
   python style_lint.py output/ --styles-root .trae/skills/writer-styles
 
-退出码：0=通过  1=存在 critical（供流水线拦截）
+退出码：0=通过  1=存在 L0 critical（供流水线拦截；v2.3 起 L1 降级为顾问，报告但不阻断）
+
+v2.3（框架升级 F1）：L1 作者身份规则从阻断降级为顾问——退出码只看 L0 critical；
+  L1 critical 仍作为 advisory 报告，由 detail-reviewer 逐条回应（接受超阈值附理由/需修复）；
+  OVERRIDE 覆写对 L0 不再生效（修复越级豁免漏洞），L1 顾问化后覆写机制废弃。
 
 风格覆盖层（.trae/skills/writer-styles/<name>/lint_overlay.json）：
   {
@@ -64,13 +68,13 @@ DEFAULT_CONFIG = {
 }
 
 # P0-2: 规则分层（L0通用反AI红线 / L1作者身份 / L2签名手法 / L3偏好提示）
-# L0=不可豁免不可降级 | L1=必须通过(critical) | L2=渐进达标(不阻断) | L3=仅提示
+# L0=不可豁免不可降级(阻断) | L1=作者身份(v2.3起顾问制:critical仍报告但不阻断) | L2=渐进达标(不阻断) | L3=仅提示
 RULE_LEVELS = {
     # L0: 通用反AI红线 — 不可豁免，不可降级
     "not_a_is_b": "L0", "ban_yizhong": "L0", "ban_feeling_enum": "L0",
     "ban_summary_voice": "L0", "simile_stacked": "L0", "era_word": "L0",
     "style_ban_word": "L0",
-    # L1: 作者身份规则 — 定义风格核心特征，必须通过
+    # L1: 作者身份规则 — 定义风格核心特征，v2.3 起顾问制（critical 报告但不再阻断，审核员逐条回应）
     "short_para_ratio": "L1", "short_para_run": "L1", "simile_total": "L1",
     "dialogue_ratio": "L1",
     # L2: 签名手法规则 — 渐进达标，不阻断但需关注
@@ -346,12 +350,12 @@ def lint_chapter(ch, cfg, disabled, custom_bans, rule_levels=None):
         if len(ch.overrides) > 3:
             add("override_limit", "minor", 0, "",
                 f"合理覆写{len(ch.overrides)}处 > 上限3——超出部分不生效")
-        # 过滤：如果问题的行号在被覆写的行号集合中，且规则名匹配，则移除
+        # 过滤：如果问题的行号在被覆写的行号集合中，且规则名匹配，则移除；v2.3：L0 红线不可覆写（修复越级豁免漏洞）
         filtered_issues = []
         for iss in issues:
             rule = iss["rule"]
             line = iss.get("line", 0)
-            if line > 0 and rule in ch.override_rules and line in ch.override_rules[rule]:
+            if iss.get("level") != "L0" and line > 0 and rule in ch.override_rules and line in ch.override_rules[rule]:
                 continue  # 被覆写，跳过
             filtered_issues.append(iss)
         issues = filtered_issues
@@ -458,9 +462,10 @@ def main():
     if len(chapters) > 1:
         all_issues += cross_chapter(chapters, cfg, disabled, cross_rule_levels)
 
-    # P0-2: 退出码只看 L0+L1 的 critical（L2/L3 不阻断流水线）
-    blocking = [i for i in all_issues if i.get("level") in ("L0", "L1") and i["severity"] == "critical"]
-    non_blocking = [i for i in all_issues if i not in blocking]
+    # v2.3（框架升级 F1）：退出码只看 L0 critical；L1 critical 降级为顾问项，报告但不阻断
+    blocking = [i for i in all_issues if i.get("level") == "L0" and i["severity"] == "critical"]
+    advisory = [i for i in all_issues if i.get("level") == "L1" and i["severity"] == "critical"]
+    non_blocking = [i for i in all_issues if i not in blocking and i not in advisory]
     status = "fail" if blocking else "pass"
 
     # 按 level 分组统计
@@ -470,7 +475,7 @@ def main():
         by_level.setdefault(lv, []).append(i)
 
     print(f"\n{'='*56}\n文风 lint 结果：{status.upper()}{style_note}")
-    print(f"  阻断项（L0+L1 critical）：{len(blocking)}  |  非阻断项：{len(non_blocking)}\n{'='*56}")
+    print(f"  阻断项（L0 critical）：{len(blocking)}  |  顾问项（L1 critical，需审核员逐条回应）：{len(advisory)}  |  非阻断项：{len(non_blocking)}\n{'='*56}")
     for lv in ["L0", "L1", "L2", "L3"]:
         items = by_level.get(lv, [])
         if not items: continue
@@ -492,9 +497,9 @@ def main():
     if args.json:
         card = {"card_type": "style_lint", "from_agent": "style_lint(script)",
                 "to_agent": "chapter-writer", "status": status, "style_pack": args.style,
-                "blocking_count": len(blocking), "non_blocking_count": len(non_blocking),
+                "blocking_count": len(blocking), "advisory_count": len(advisory), "non_blocking_count": len(non_blocking),
                 "issues": all_issues, "timeline_clues": time_report, "config": cfg,
-                "overrides": all_overrides}
+                "advisory": advisory, "overrides": all_overrides}
         json.dump(card, open(args.json, "w", encoding="utf-8"), ensure_ascii=False, indent=2)
         print(f"\n交接卡已写入：{args.json}")
     if all_overrides:

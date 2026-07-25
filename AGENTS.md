@@ -87,7 +87,7 @@ write-assistant/
 - **Agent 间通信**：**交接卡（handoff card）**——JSON 文件，含 `card_type`/`from_agent`/`to_agent`/`status`/`content` 字段。正文永远用 `draft_ref` 引用文件路径，不内嵌 JSON。
 - **Auto-Runner 模式**：定时触发的无人值守执行。每次触发读取 `state.json` → 执行 `task_config.json` 中的步骤 → 每步完成立即同步 state（State 同步协议 v2.1）→ 满足退出条件即退。支持并行组（最多 5 个并行 Agent）与流水线模式（Ch(N) 审核与 Ch(N+1) 写作并行）。会话启动时执行 State 恢复（验证 output_files 存在性）与 context 缓存检查。
 - **质量门禁（按执行顺序）**：
-  1. `style_lint.py` 退出码 0（chapter-writer 提交前置条件，见下）；
+  1. `style_lint.py` 退出码 0（chapter-writer 提交前置条件；v2.3 起仅 L0 通用反AI红线阻断，L1 降为顾问项由 detail-reviewer 逐条回应）；若经历 lint 修复轮次，`fix_auditor.py` 生成修复差异证据卡（只产证据不判定）；
   2. detail-reviewer 微观打磨 + de-ai-processor 去 AI 化（可并行）；
   3. unified_review 统一审核：v3.0 起为**问题清单制**——critical 清零即通过，分数（`unified_score = technical×0.6 + supplementary×0.4`）仅作参考，不再以 ≥9.5 为门禁；
   4. `style_fingerprint.py check`（挂载风格包且基线非 pending 时）；
@@ -99,6 +99,9 @@ write-assistant/
 # 文风硬约束校验（写手提交前必须退出码 0；1=存在 critical，2=用法/文件错误）
 python style_lint.py output/chapter_001.txt --json handoff/style_lint_ch1.json
 python style_lint.py output/ --style yanyujiangnan        # 目录模式含跨章检查，加载风格包覆盖层
+
+# 修复差异证据（lint 修复后、detail 审核前；只产证据不判定，退出码恒 0）
+python fix_auditor.py handoff/pre_lint_ch15.txt output/chapter_015.txt --json handoff/fix_audit_ch15.json
 
 # 文体指纹：从原作建基线 / 校验章节偏差（退出码 0=通过 1=超阈 2=基线不可用）
 python style_fingerprint.py build 原作1.txt 原作2.txt --author 作者名 --out fingerprint.json
