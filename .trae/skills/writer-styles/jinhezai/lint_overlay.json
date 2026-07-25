@@ -1,0 +1,52 @@
+{
+  "style": "jinhezai",
+  "overrides": {
+    "simile_max_per_chapter": 8,
+    "not_a_is_b_max_per_chapter": 3,
+    "short_para_ratio_max": 0.50,
+    "short_para_run_max": 8,
+    "dialogue_ratio_min": 0.50,
+    "dialogue_ratio_max": 0.80,
+    "dash_max_per_1000": 6.0,
+    "ellipsis_max_per_1000": 10.0,
+    "le_max_per_1000": 30.0,
+    "zhe_max_per_1000": 12.0,
+    "conjunction_min_per_1000": 0.0,
+    "dialogue_guide_min_per_1000": 0.0,
+    "name_starter_run_max": 6
+  },
+  "disabled_rules": [],
+  "disabled_reason": {},
+  "custom_ban_words": [
+    {"word": "毛玻璃", "severity": "critical", "reason": "通货意象（通用反AI红线，今何在不用此类俗套比喻）"},
+    {"word": "隔了一层纱", "severity": "critical", "reason": "通货意象"},
+    {"word": "命运的齿轮", "severity": "critical", "reason": "通用宿命通货意象（今何在写宿命用'原来一生一世那么短暂'式白描，不用机械隐喻）"},
+    {"word": "命运丝线", "severity": "critical", "reason": "类型通货意象（西幻腔调陷阱）"},
+    {"word": "古老的符文", "severity": "critical", "reason": "类型通货意象"},
+    {"word": "时间长河", "severity": "critical", "reason": "通用时间通货意象（今何在写时间用'水在无声的极缓的流动'式具象，不用套话）"},
+    {"word": "灰烬如雪", "severity": "critical", "reason": "类型通货意象（废土腔调陷阱）"}
+  ],
+  "fingerprint_ref": {
+    "source": "《悟空传》（61427字采样，high置信度）",
+    "confidence": "high",
+    "key_metrics": {
+      "sent_len_mean": 15.4,
+      "sent_len_stdev": 14.49,
+      "short_sent_ratio": 0.3774,
+      "long_sent_ratio": 0.0587,
+      "para_len_mean": 24.0,
+      "short_para_ratio": 0.4189,
+      "dialogue_ratio": 0.6559,
+      "comma_period_ratio": 1.916,
+      "dash_per_1000": 4.802,
+      "ellipsis_per_1000": 8.368,
+      "le_per_1000": 23.703,
+      "zhe_per_1000": 7.537,
+      "wo_per_1000": 19.714,
+      "ni_per_1000": 19.649,
+      "ta_per_1000": 13.317
+    },
+    "note": "今何在方向：碎片化诗人小说，与烟雨江南'长句史诗'截然相反。破折号4.802/千字、省略号8.368/千字是签名手法，阈值必须放宽（dash≤6.0、ellipsis≤10.0），不可按烟雨江南≤1.0/≤1.5卡死——那是把诗人的呼吸当AI病来治。对话占比65.6%近乎剧本式，下限设50%。短段41.9%是他的节奏不是AI碎句病，上限放宽至50%、连跑放宽至8段。第一/第二人称密集（我19.7+你19.6，烟雨江南仅9.3+6.5）是独白体底色。通用反AI红线（不是A是B≤3、通货意象0容忍、情绪直说、总结式心声）不关闭——今何在的克制是留白式而非隐身式，但仍不解释已演出的情感。"
+  },
+  "note": "今何在是'诗人小说'而非'史诗小说'：短句碎片、对话剧本式、破折号/省略号签名、第一二人称呼告、哲思独白。v1.0基于《悟空传》6.1万字high置信度基线。核心放宽度：破折号6.0/千字（原作4.8，给±25%空间）、省略号10.0/千字（原作8.4）、对话下限50%（原作65.6%）、短段上限50%（原作41.9%）、短段连跑8段（碎片化是他的节奏）。不强制书面连词与对话引前引导——今何在不用连词黏合长句（他根本不写长句，句长15.4 vs 烟雨江南27.78），大量裸对话是其剧本式风格（65.6%对话近乎剧本）。了≤30/千字（原作23.7）、着≤12/千字（原作7.5）。不是A是B≤3（原作偶用定义式判断，比烟雨江南宽松但仍防对仗腔）。"
+}

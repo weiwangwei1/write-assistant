@@ -14,7 +14,9 @@
 ## 已有风格包
 
 - `chendong/` 辰东——宏大、热血、悲壮，东方玄幻史诗（fingerprint 为 provisional，语录样本，建议用全本重建）
-- `yanyujiangnan/` 烟雨江南——黑暗、苍凉、克制，黑暗奇幻（fingerprint 为 pending，须先用原作建基线）
+- `yanyujiangnan/` 烟雨江南——黑暗、苍凉、克制，黑暗奇幻（fingerprint high，三本全本1015万字）
+- `jiangnan/` 江南——青春史诗、热血苍凉、少年视角，长短句大开大合（fingerprint high，三本273万字。句长26.08/对话53.4%/破折号0.251）
+- `jinhezai/` 今何在——诗意碎片、哲思独白、剧本式对话，破折号/省略号为签名手法（fingerprint high，《悟空传》6.1万字。句长15.4/对话65.6%/破折号4.8/省略号8.4）
 
 ## 挂载方式
 

@@ -1,0 +1,47 @@
+{
+  "style": "jiangnan",
+  "overrides": {
+    "simile_max_per_chapter": 8,
+    "not_a_is_b_max_per_chapter": 2,
+    "dialogue_ratio_min": 0.40,
+    "dialogue_ratio_max": 0.68,
+    "dash_max_per_1000": 1.5,
+    "ellipsis_max_per_1000": 3.0,
+    "le_max_per_1000": 24.0,
+    "zhe_max_per_1000": 11.0,
+    "conjunction_min_per_1000": 3.0,
+    "dialogue_guide_min_per_1000": 1.0,
+    "name_starter_run_max": 5,
+    "short_para_ratio_max": 0.40
+  },
+  "disabled_rules": [],
+  "disabled_reason": {},
+  "custom_ban_words": [
+    {"word": "命运的齿轮", "severity": "critical", "reason": "青春史诗类通货意象（命运空洞化，江南用少年质问呈现命运而非空洞比喻）"},
+    {"word": "少年的热血", "severity": "critical", "reason": "热血类通货——江南用具体行为与仪式表现热血，而非直接说'热血'"},
+    {"word": "星辰大海", "severity": "critical", "reason": "远方/理想类通货意象（江南的远方是具体的：天拓海峡、载你的大船）"},
+    {"word": "不羁的风", "severity": "critical", "reason": "自由类通货意象"},
+    {"word": "眼中闪过一丝", "severity": "critical", "reason": "AI腔情绪直说（江南用行为和对话表达情绪，不用'闪过一丝'式贴标签）"},
+    {"word": "某种说不清的", "severity": "critical", "reason": "冗余分类词（江南要么说清楚，要么用行为留白）"}
+  ],
+  "fingerprint_ref": {
+    "source": "《九州·缥缈录》《此间的少年》《龙族》三部代表作（273万字）",
+    "confidence": "high",
+    "key_metrics": {
+      "sent_len_mean": 26.08,
+      "sent_len_stdev": 19.78,
+      "short_sent_ratio": 0.1921,
+      "long_sent_ratio": 0.1959,
+      "para_len_mean": 56.72,
+      "short_para_ratio": 0.1718,
+      "dialogue_ratio": 0.5342,
+      "comma_period_ratio": 2.134,
+      "dash_per_1000": 0.251,
+      "ellipsis_per_1000": 2.093,
+      "le_per_1000": 17.049,
+      "zhe_per_1000": 7.764
+    },
+    "note": "江南对话占比53.4%极高→dialogue_ratio_min设0.40（留渐进空间）；破折号0.251/千字（比烟雨江南0.008高但仍是少用）→dash_max设1.5；省略号2.093/千字（承载情感停顿）→ellipsis_max设3.0。了17.05/着7.76按原作+缓冲设阈值（了≤24/着≤11）。书面连词下限3.0（江南而2.23/却0.96/但1.77/已1.89/将1.22/与0.20合计约8.3/千字，给创作渐进空间）。对话引前引导下限1.0（江南对话极多，引导语使用频率中等）。短段占比收紧至0.40（原作0.172，江南以中长段为骨架）。段首同名连跑收紧至5段。"
+  },
+  "note": "江南方向重对话与长短交错：对话占比下限0.40（原作0.534，极高，是对话驱动型叙事）、破折号上限1.5/千字（原作0.251，比烟雨江南高但仍属少用）、省略号上限3.0/千字（原作2.093，是对话中情感停顿的标点武器）。功能词约束按原作指纹+缓冲设阈值。通用反AI红线全部保留不豁免——江南虽比烟雨江南'热'，但同样不解释已演出的信息、不金句收束、不贴情绪标签。"
+}
