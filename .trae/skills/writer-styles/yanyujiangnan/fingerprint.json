@@ -1,5 +1,6 @@
 {
   "card_type": "style_fingerprint_baseline",
+  "metric_version": "2.0",
   "status": "ready",
   "confidence": "high",
   "note": "",
@@ -7,7 +8,7 @@
     "author": "烟雨江南",
     "source": ".trae/skills/writer-styles/yanyujiangnan/reference/原作_utf8/《永夜君王》（校对版全本）作者：烟雨江南.txt;.trae/skills/writer-styles/yanyujiangnan/reference/原作_utf8/《狩魔手记》（校对版全本）作者：烟雨江南.txt;.trae/skills/writer-styles/yanyujiangnan/reference/原作_utf8/《罪恶之城》（校对版全本）作者：烟雨江南.txt",
     "sample_chars": 10155416,
-    "sample_sents": 365613,
+    "sample_sents": 359990,
     "sample_paras": 177726,
     "func_words_per_1000": {
       "的": 38.355,
@@ -41,15 +42,15 @@
       "曾": 0.233,
       "将": 1.73
     },
-    "sent_len_mean": 27.78,
-    "sent_len_stdev": 15.26,
-    "short_sent_ratio": 0.0821,
-    "long_sent_ratio": 0.183,
+    "sent_len_mean": 28.21,
+    "sent_len_stdev": 15.32,
+    "short_sent_ratio": 0.0752,
+    "long_sent_ratio": 0.1889,
     "para_len_mean": 57.14,
     "short_para_ratio": 0.1103,
-    "dialogue_ratio": 0.2744,
+    "dialogue_ratio": 0.1663,
     "comma_period_ratio": 2.157,
-    "dash_per_1000": 0.008,
+    "dash_per_1000": 0.006,
     "ellipsis_per_1000": 0.646,
     "sensory_dist": {
       "视觉": 13.289,
@@ -58,18 +59,11 @@
       "触觉": 2.783,
       "味觉": 0.702
     },
-    "metaphor_per_1000": 0.294,
+    "metaphor_per_1000": 0.652,
+    "conjunction_starter_ratio": 0.0488,
+    "dialogue_guide_per_1000": 3.385,
+    "le_ending_ratio": 0.0159,
     "imagery_top20": [
-      {
-        "word": "李察",
-        "count": 40704,
-        "per_1000": 4.008
-      },
-      {
-        "word": "千夜",
-        "count": 39760,
-        "per_1000": 3.915
-      },
       {
         "word": "没有",
         "count": 24881,
@@ -121,19 +115,9 @@
         "per_1000": 0.749
       },
       {
-        "word": "宋子",
-        "count": 7428,
-        "per_1000": 0.731
-      },
-      {
         "word": "时间",
         "count": 7406,
         "per_1000": 0.729
-      },
-      {
-        "word": "子宁",
-        "count": 7375,
-        "per_1000": 0.726
       },
       {
         "word": "如果",
@@ -156,25 +140,184 @@
         "per_1000": 0.696
       },
       {
-        "word": "宋子宁",
-        "count": 7056,
-        "per_1000": 0.695
+        "word": "能力",
+        "count": 7027,
+        "per_1000": 0.692
+      },
+      {
+        "word": "帝国",
+        "count": 6817,
+        "per_1000": 0.671
+      },
+      {
+        "word": "开始",
+        "count": 6516,
+        "per_1000": 0.642
+      },
+      {
+        "word": "出来",
+        "count": 6499,
+        "per_1000": 0.64
+      },
+      {
+        "word": "身上",
+        "count": 6434,
+        "per_1000": 0.634
       }
     ]
   },
+  "n_groups": 2951,
+  "chapter_stats": {
+    "sent_len_mean": {
+      "mean": 28.1432,
+      "stdev": 3.9507,
+      "p5": 22.1,
+      "p95": 34.98,
+      "cv": 0.1404
+    },
+    "sent_len_stdev": {
+      "mean": 14.5096,
+      "stdev": 2.1398,
+      "p5": 11.33,
+      "p95": 18.265,
+      "cv": 0.1475
+    },
+    "short_sent_ratio": {
+      "mean": 0.0739,
+      "stdev": 0.0469,
+      "p5": 0.0103,
+      "p95": 0.1567,
+      "cv": 0.6344
+    },
+    "long_sent_ratio": {
+      "mean": 0.1871,
+      "stdev": 0.0802,
+      "p5": 0.0726,
+      "p95": 0.3333,
+      "cv": 0.4285
+    },
+    "para_len_mean": {
+      "mean": 56.5181,
+      "stdev": 13.7429,
+      "p5": 39.76,
+      "p95": 83.945,
+      "cv": 0.2432
+    },
+    "short_para_ratio": {
+      "mean": 0.1074,
+      "stdev": 0.0559,
+      "p5": 0.0333,
+      "p95": 0.2078,
+      "cv": 0.5209
+    },
+    "dialogue_ratio": {
+      "mean": 0.1821,
+      "stdev": 0.138,
+      "p5": 0.0033,
+      "p95": 0.4433,
+      "cv": 0.7575
+    },
+    "comma_period_ratio": {
+      "mean": 2.1761,
+      "stdev": 0.3537,
+      "p5": 1.644,
+      "p95": 2.7785,
+      "cv": 0.1626
+    },
+    "dash_per_1000": {
+      "mean": 0.0073,
+      "stdev": 0.0973,
+      "p5": 0.0,
+      "p95": 0.0,
+      "cv": 0.4864
+    },
+    "ellipsis_per_1000": {
+      "mean": 0.6558,
+      "stdev": 0.786,
+      "p5": 0.0,
+      "p95": 2.175,
+      "cv": 1.1986
+    },
+    "metaphor_per_1000": {
+      "mean": 0.6363,
+      "stdev": 0.7708,
+      "p5": 0.0,
+      "p95": 2.0735,
+      "cv": 1.2114
+    },
+    "conjunction_starter_ratio": {
+      "mean": 0.0516,
+      "stdev": 0.0395,
+      "p5": 0.0,
+      "p95": 0.125,
+      "cv": 0.7657
+    },
+    "dialogue_guide_per_1000": {
+      "mean": 3.8462,
+      "stdev": 2.8697,
+      "p5": 0.0,
+      "p95": 9.182,
+      "cv": 0.7461
+    },
+    "le_ending_ratio": {
+      "mean": 0.0161,
+      "stdev": 0.0146,
+      "p5": 0.0,
+      "p95": 0.044,
+      "cv": 0.7324
+    },
+    "func_words_cosine": {
+      "mean": 0.0342,
+      "stdev": 0.0286,
+      "p5": 0.0107,
+      "p95": 0.0948
+    },
+    "sensory_cosine": {
+      "mean": 0.0418,
+      "stdev": 0.0542,
+      "p5": 0.0036,
+      "p95": 0.1465
+    }
+  },
   "tolerance": {
-    "func_words_cosine": 0.08,
-    "sent_len_mean": 0.25,
+    "func_words_cosine": 0.095,
+    "sent_len_mean": 0.281,
     "sent_len_stdev": 0.35,
-    "short_sent_ratio": 0.35,
-    "long_sent_ratio": 0.5,
-    "para_len_mean": 0.35,
-    "short_para_ratio": 0.35,
-    "dialogue_ratio": 0.4,
+    "short_sent_ratio": 1.0,
+    "long_sent_ratio": 0.857,
+    "para_len_mean": 0.486,
+    "short_para_ratio": 1.0,
+    "dialogue_ratio": 1.0,
     "comma_period_ratio": 0.35,
-    "dash_per_1000": 0.6,
-    "ellipsis_per_1000": 0.6,
+    "dash_per_1000": 0.973,
+    "ellipsis_per_1000": 1.0,
     "sensory_cosine": 0.15,
-    "metaphor_per_1000": 0.5
-  }
+    "metaphor_per_1000": 1.0,
+    "conjunction_starter_ratio": 1.0,
+    "dialogue_guide_per_1000": 1.0,
+    "le_ending_ratio": 1.0
+  },
+  "tolerance_source": {
+    "sent_len_mean": "derived_2cv",
+    "sent_len_stdev": "default_floor",
+    "short_sent_ratio": "derived_2cv",
+    "long_sent_ratio": "derived_2cv",
+    "para_len_mean": "derived_2cv",
+    "short_para_ratio": "derived_2cv",
+    "dialogue_ratio": "derived_2cv",
+    "comma_period_ratio": "default_floor",
+    "dash_per_1000": "derived_2cv",
+    "ellipsis_per_1000": "derived_2cv",
+    "metaphor_per_1000": "derived_2cv",
+    "conjunction_starter_ratio": "derived_2cv",
+    "dialogue_guide_per_1000": "derived_2cv",
+    "le_ending_ratio": "derived_2cv",
+    "func_words_cosine": "derived_p95",
+    "sensory_cosine": "default_floor"
+  },
+  "exclude_names": [
+    "李察",
+    "千夜",
+    "宋子宁"
+  ]
 }

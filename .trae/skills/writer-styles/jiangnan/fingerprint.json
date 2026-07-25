@@ -1,5 +1,6 @@
 {
   "card_type": "style_fingerprint_baseline",
+  "metric_version": "2.0",
   "status": "ready",
   "confidence": "high",
   "note": "",
@@ -7,7 +8,7 @@
     "author": "江南",
     "source": ".trae/skills/writer-styles/jiangnan/reference/原作_utf8/《九州·缥缈录》作者：江南.txt;.trae/skills/writer-styles/jiangnan/reference/原作_utf8/《此间的少年》作者：江南.txt;.trae/skills/writer-styles/jiangnan/reference/原作_utf8/《龙族》作者：江南.txt",
     "sample_chars": 2739021,
-    "sample_sents": 105041,
+    "sample_sents": 103171,
     "sample_paras": 48288,
     "func_words_per_1000": {
       "的": 44.096,
@@ -41,15 +42,15 @@
       "曾": 0.367,
       "将": 1.215
     },
-    "sent_len_mean": 26.08,
-    "sent_len_stdev": 19.78,
-    "short_sent_ratio": 0.1921,
-    "long_sent_ratio": 0.1959,
+    "sent_len_mean": 26.55,
+    "sent_len_stdev": 20.12,
+    "short_sent_ratio": 0.1855,
+    "long_sent_ratio": 0.2022,
     "para_len_mean": 56.72,
     "short_para_ratio": 0.1718,
-    "dialogue_ratio": 0.5342,
+    "dialogue_ratio": 0.3434,
     "comma_period_ratio": 2.134,
-    "dash_per_1000": 0.251,
+    "dash_per_1000": 0.084,
     "ellipsis_per_1000": 2.093,
     "sensory_dist": {
       "视觉": 14.267,
@@ -58,7 +59,10 @@
       "触觉": 4.052,
       "味觉": 0.564
     },
-    "metaphor_per_1000": 2.046,
+    "metaphor_per_1000": 2.68,
+    "conjunction_starter_ratio": 0.0123,
+    "dialogue_guide_per_1000": 0.176,
+    "le_ending_ratio": 0.0245,
     "imagery_top20": [
       {
         "word": "没有",
@@ -69,21 +73,6 @@
         "word": "自己",
         "count": 5765,
         "per_1000": 2.105
-      },
-      {
-        "word": "明非",
-        "count": 5683,
-        "per_1000": 2.075
-      },
-      {
-        "word": "路明",
-        "count": 5612,
-        "per_1000": 2.049
-      },
-      {
-        "word": "路明非",
-        "count": 5610,
-        "per_1000": 2.048
       },
       {
         "word": "时候",
@@ -99,26 +88,6 @@
         "word": "知道",
         "count": 3584,
         "per_1000": 1.308
-      },
-      {
-        "word": "恺撒",
-        "count": 3383,
-        "per_1000": 1.235
-      },
-      {
-        "word": "子航",
-        "count": 2806,
-        "per_1000": 1.024
-      },
-      {
-        "word": "楚子",
-        "count": 2795,
-        "per_1000": 1.02
-      },
-      {
-        "word": "楚子航",
-        "count": 2795,
-        "per_1000": 1.02
       },
       {
         "word": "源稚",
@@ -159,22 +128,199 @@
         "word": "声音",
         "count": 1873,
         "per_1000": 0.684
+      },
+      {
+        "word": "东西",
+        "count": 1873,
+        "per_1000": 0.684
+      },
+      {
+        "word": "因为",
+        "count": 1843,
+        "per_1000": 0.673
+      },
+      {
+        "word": "眼睛",
+        "count": 1773,
+        "per_1000": 0.647
+      },
+      {
+        "word": "女孩",
+        "count": 1568,
+        "per_1000": 0.572
+      },
+      {
+        "word": "看见",
+        "count": 1552,
+        "per_1000": 0.567
+      },
+      {
+        "word": "世界",
+        "count": 1515,
+        "per_1000": 0.553
+      },
+      {
+        "word": "男人",
+        "count": 1446,
+        "per_1000": 0.528
       }
     ]
+  },
+  "n_groups": 37,
+  "chapter_stats": {
+    "sent_len_mean": {
+      "mean": 26.5641,
+      "stdev": 2.8864,
+      "p5": 23.194,
+      "p95": 30.68,
+      "cv": 0.1087
+    },
+    "sent_len_stdev": {
+      "mean": 18.6435,
+      "stdev": 2.4254,
+      "p5": 15.738,
+      "p95": 22.658,
+      "cv": 0.1301
+    },
+    "short_sent_ratio": {
+      "mean": 0.1692,
+      "stdev": 0.0286,
+      "p5": 0.1157,
+      "p95": 0.2091,
+      "cv": 0.1692
+    },
+    "long_sent_ratio": {
+      "mean": 0.1948,
+      "stdev": 0.0538,
+      "p5": 0.133,
+      "p95": 0.2645,
+      "cv": 0.2764
+    },
+    "para_len_mean": {
+      "mean": 53.7192,
+      "stdev": 7.0134,
+      "p5": 45.64,
+      "p95": 67.406,
+      "cv": 0.1306
+    },
+    "short_para_ratio": {
+      "mean": 0.1941,
+      "stdev": 0.033,
+      "p5": 0.1358,
+      "p95": 0.2406,
+      "cv": 0.1698
+    },
+    "dialogue_ratio": {
+      "mean": 0.317,
+      "stdev": 0.1054,
+      "p5": 0.1584,
+      "p95": 0.4849,
+      "cv": 0.3325
+    },
+    "comma_period_ratio": {
+      "mean": 2.1526,
+      "stdev": 0.2577,
+      "p5": 1.7384,
+      "p95": 2.5636,
+      "cv": 0.1197
+    },
+    "dash_per_1000": {
+      "mean": 0.221,
+      "stdev": 0.2867,
+      "p5": 0.0,
+      "p95": 0.8592,
+      "cv": 1.2973
+    },
+    "ellipsis_per_1000": {
+      "mean": 1.9575,
+      "stdev": 0.9615,
+      "p5": 0.6354,
+      "p95": 3.3628,
+      "cv": 0.4912
+    },
+    "metaphor_per_1000": {
+      "mean": 2.3967,
+      "stdev": 0.7407,
+      "p5": 1.2818,
+      "p95": 3.8134,
+      "cv": 0.3091
+    },
+    "conjunction_starter_ratio": {
+      "mean": 0.0146,
+      "stdev": 0.0119,
+      "p5": 0.0031,
+      "p95": 0.038,
+      "cv": 0.5929
+    },
+    "dialogue_guide_per_1000": {
+      "mean": 0.6151,
+      "stdev": 1.0431,
+      "p5": 0.023,
+      "p95": 2.4706,
+      "cv": 1.696
+    },
+    "le_ending_ratio": {
+      "mean": 0.0237,
+      "stdev": 0.0082,
+      "p5": 0.0107,
+      "p95": 0.0347,
+      "cv": 0.3464
+    },
+    "func_words_cosine": {
+      "mean": 0.0124,
+      "stdev": 0.008,
+      "p5": 0.0038,
+      "p95": 0.026
+    },
+    "sensory_cosine": {
+      "mean": 0.014,
+      "stdev": 0.0164,
+      "p5": 0.0013,
+      "p95": 0.0354
+    }
   },
   "tolerance": {
     "func_words_cosine": 0.08,
     "sent_len_mean": 0.25,
     "sent_len_stdev": 0.35,
     "short_sent_ratio": 0.35,
-    "long_sent_ratio": 0.5,
+    "long_sent_ratio": 0.553,
     "para_len_mean": 0.35,
     "short_para_ratio": 0.35,
-    "dialogue_ratio": 0.4,
+    "dialogue_ratio": 0.665,
     "comma_period_ratio": 0.35,
-    "dash_per_1000": 0.6,
-    "ellipsis_per_1000": 0.6,
+    "dash_per_1000": 1.0,
+    "ellipsis_per_1000": 0.982,
     "sensory_cosine": 0.15,
-    "metaphor_per_1000": 0.5
-  }
+    "metaphor_per_1000": 0.618,
+    "conjunction_starter_ratio": 1.0,
+    "dialogue_guide_per_1000": 1.0,
+    "le_ending_ratio": 0.693
+  },
+  "tolerance_source": {
+    "sent_len_mean": "default_floor",
+    "sent_len_stdev": "default_floor",
+    "short_sent_ratio": "default_floor",
+    "long_sent_ratio": "derived_2cv",
+    "para_len_mean": "default_floor",
+    "short_para_ratio": "default_floor",
+    "dialogue_ratio": "derived_2cv",
+    "comma_period_ratio": "default_floor",
+    "dash_per_1000": "derived_2cv",
+    "ellipsis_per_1000": "derived_2cv",
+    "metaphor_per_1000": "derived_2cv",
+    "conjunction_starter_ratio": "derived_2cv",
+    "dialogue_guide_per_1000": "derived_2cv",
+    "le_ending_ratio": "derived_2cv",
+    "func_words_cosine": "default_floor",
+    "sensory_cosine": "default_floor"
+  },
+  "exclude_names": [
+    "路明非",
+    "恺撒",
+    "楚子航",
+    "姬野",
+    "吕归尘",
+    "诺诺"
+  ]
 }

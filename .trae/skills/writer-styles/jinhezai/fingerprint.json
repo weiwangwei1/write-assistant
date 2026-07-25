@@ -1,5 +1,6 @@
 {
   "card_type": "style_fingerprint_baseline",
+  "metric_version": "2.0",
   "status": "ready",
   "confidence": "high",
   "note": "",
@@ -7,7 +8,7 @@
     "author": "今何在",
     "source": ".trae/skills/writer-styles/jinhezai/reference/原作_utf8/《悟空传》作者：今何在.txt",
     "sample_chars": 61427,
-    "sample_sents": 3988,
+    "sample_sents": 3787,
     "sample_paras": 2559,
     "func_words_per_1000": {
       "的": 33.926,
@@ -41,15 +42,15 @@
       "曾": 0.228,
       "将": 1.351
     },
-    "sent_len_mean": 15.4,
-    "sent_len_stdev": 14.49,
-    "short_sent_ratio": 0.3774,
-    "long_sent_ratio": 0.0587,
+    "sent_len_mean": 16.22,
+    "sent_len_stdev": 15.65,
+    "short_sent_ratio": 0.3586,
+    "long_sent_ratio": 0.0681,
     "para_len_mean": 24.0,
     "short_para_ratio": 0.4189,
-    "dialogue_ratio": 0.6559,
+    "dialogue_ratio": 0.5133,
     "comma_period_ratio": 1.916,
-    "dash_per_1000": 4.802,
+    "dash_per_1000": 1.612,
     "ellipsis_per_1000": 8.368,
     "sensory_dist": {
       "视觉": 13.789,
@@ -58,23 +59,11 @@
       "触觉": 2.702,
       "味觉": 0.879
     },
-    "metaphor_per_1000": 0.033,
+    "metaphor_per_1000": 0.423,
+    "conjunction_starter_ratio": 0.0133,
+    "dialogue_guide_per_1000": 1.628,
+    "le_ending_ratio": 0.0502,
     "imagery_top20": [
-      {
-        "word": "悟空",
-        "count": 447,
-        "per_1000": 7.277
-      },
-      {
-        "word": "孙悟",
-        "count": 425,
-        "per_1000": 6.919
-      },
-      {
-        "word": "孙悟空",
-        "count": 425,
-        "per_1000": 6.919
-      },
       {
         "word": "哈哈",
         "count": 194,
@@ -101,11 +90,6 @@
         "per_1000": 1.84
       },
       {
-        "word": "紫霞",
-        "count": 107,
-        "per_1000": 1.742
-      },
-      {
         "word": "猴子",
         "count": 103,
         "per_1000": 1.677
@@ -116,19 +100,9 @@
         "per_1000": 1.53
       },
       {
-        "word": "八戒",
-        "count": 80,
-        "per_1000": 1.302
-      },
-      {
         "word": "猪八",
         "count": 79,
         "per_1000": 1.286
-      },
-      {
-        "word": "猪八戒",
-        "count": 78,
-        "per_1000": 1.27
       },
       {
         "word": "看见",
@@ -159,22 +133,192 @@
         "word": "白龙",
         "count": 70,
         "per_1000": 1.14
+      },
+      {
+        "word": "小白龙",
+        "count": 70,
+        "per_1000": 1.14
+      },
+      {
+        "word": "东西",
+        "count": 69,
+        "per_1000": 1.123
+      },
+      {
+        "word": "松鼠",
+        "count": 69,
+        "per_1000": 1.123
+      },
+      {
+        "word": "忽然",
+        "count": 67,
+        "per_1000": 1.091
+      },
+      {
+        "word": "天篷",
+        "count": 60,
+        "per_1000": 0.977
+      },
+      {
+        "word": "阿瑶",
+        "count": 54,
+        "per_1000": 0.879
       }
     ]
   },
+  "n_groups": 20,
+  "chapter_stats": {
+    "sent_len_mean": {
+      "mean": 16.4955,
+      "stdev": 2.2099,
+      "p5": 13.918,
+      "p95": 21.6535,
+      "cv": 0.134
+    },
+    "sent_len_stdev": {
+      "mean": 15.1565,
+      "stdev": 3.0855,
+      "p5": 11.4635,
+      "p95": 20.2475,
+      "cv": 0.2036
+    },
+    "short_sent_ratio": {
+      "mean": 0.3465,
+      "stdev": 0.0694,
+      "p5": 0.2168,
+      "p95": 0.4215,
+      "cv": 0.2002
+    },
+    "long_sent_ratio": {
+      "mean": 0.0708,
+      "stdev": 0.0325,
+      "p5": 0.0364,
+      "p95": 0.1225,
+      "cv": 0.4597
+    },
+    "para_len_mean": {
+      "mean": 24.0895,
+      "stdev": 3.3065,
+      "p5": 18.9595,
+      "p95": 30.1425,
+      "cv": 0.1373
+    },
+    "short_para_ratio": {
+      "mean": 0.4145,
+      "stdev": 0.0645,
+      "p5": 0.3225,
+      "p95": 0.5284,
+      "cv": 0.1556
+    },
+    "dialogue_ratio": {
+      "mean": 0.4952,
+      "stdev": 0.1462,
+      "p5": 0.3015,
+      "p95": 0.6829,
+      "cv": 0.2953
+    },
+    "comma_period_ratio": {
+      "mean": 2.0067,
+      "stdev": 0.4027,
+      "p5": 1.3943,
+      "p95": 2.7118,
+      "cv": 0.2007
+    },
+    "dash_per_1000": {
+      "mean": 1.7261,
+      "stdev": 2.1838,
+      "p5": 0.0,
+      "p95": 5.3281,
+      "cv": 1.2652
+    },
+    "ellipsis_per_1000": {
+      "mean": 8.8472,
+      "stdev": 5.0647,
+      "p5": 2.903,
+      "p95": 18.7045,
+      "cv": 0.5725
+    },
+    "metaphor_per_1000": {
+      "mean": 0.4042,
+      "stdev": 0.4481,
+      "p5": 0.0,
+      "p95": 1.308,
+      "cv": 1.1087
+    },
+    "conjunction_starter_ratio": {
+      "mean": 0.0139,
+      "stdev": 0.0154,
+      "p5": 0.0,
+      "p95": 0.0335,
+      "cv": 0.7694
+    },
+    "dialogue_guide_per_1000": {
+      "mean": 1.6763,
+      "stdev": 1.5546,
+      "p5": 0.3715,
+      "p95": 5.3504,
+      "cv": 0.9274
+    },
+    "le_ending_ratio": {
+      "mean": 0.0506,
+      "stdev": 0.0288,
+      "p5": 0.011,
+      "p95": 0.0945,
+      "cv": 0.57
+    },
+    "func_words_cosine": {
+      "mean": 0.029,
+      "stdev": 0.0163,
+      "p5": 0.0107,
+      "p95": 0.0588
+    },
+    "sensory_cosine": {
+      "mean": 0.0329,
+      "stdev": 0.0393,
+      "p5": 0.0027,
+      "p95": 0.1022
+    }
+  },
   "tolerance": {
     "func_words_cosine": 0.08,
-    "sent_len_mean": 0.25,
-    "sent_len_stdev": 0.35,
-    "short_sent_ratio": 0.35,
-    "long_sent_ratio": 0.5,
+    "sent_len_mean": 0.268,
+    "sent_len_stdev": 0.407,
+    "short_sent_ratio": 0.4,
+    "long_sent_ratio": 0.919,
     "para_len_mean": 0.35,
     "short_para_ratio": 0.35,
-    "dialogue_ratio": 0.4,
-    "comma_period_ratio": 0.35,
-    "dash_per_1000": 0.6,
-    "ellipsis_per_1000": 0.6,
+    "dialogue_ratio": 0.591,
+    "comma_period_ratio": 0.401,
+    "dash_per_1000": 1.0,
+    "ellipsis_per_1000": 1.0,
     "sensory_cosine": 0.15,
-    "metaphor_per_1000": 0.5
-  }
+    "metaphor_per_1000": 1.0,
+    "conjunction_starter_ratio": 1.0,
+    "dialogue_guide_per_1000": 1.0,
+    "le_ending_ratio": 1.0
+  },
+  "tolerance_source": {
+    "sent_len_mean": "derived_2cv",
+    "sent_len_stdev": "derived_2cv",
+    "short_sent_ratio": "derived_2cv",
+    "long_sent_ratio": "derived_2cv",
+    "para_len_mean": "default_floor",
+    "short_para_ratio": "default_floor",
+    "dialogue_ratio": "derived_2cv",
+    "comma_period_ratio": "derived_2cv",
+    "dash_per_1000": "derived_2cv",
+    "ellipsis_per_1000": "derived_2cv",
+    "metaphor_per_1000": "derived_2cv",
+    "conjunction_starter_ratio": "derived_2cv",
+    "dialogue_guide_per_1000": "derived_2cv",
+    "le_ending_ratio": "derived_2cv",
+    "func_words_cosine": "default_floor",
+    "sensory_cosine": "default_floor"
+  },
+  "exclude_names": [
+    "孙悟空",
+    "紫霞",
+    "八戒",
+    "唐僧"
+  ]
 }

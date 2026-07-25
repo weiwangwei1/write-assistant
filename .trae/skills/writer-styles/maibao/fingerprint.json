@@ -1,13 +1,14 @@
 {
   "card_type": "style_fingerprint_baseline",
+  "metric_version": "2.0",
   "status": "ready",
   "confidence": "high",
   "note": "",
   "metrics": {
     "author": "卖报小郎君",
-    "source": ".trae\\skills\\writer-styles\\maibao\\reference\\原作_utf8\\大奉打更人.txt;.trae\\skills\\writer-styles\\maibao\\reference\\原作_utf8\\灵境行者.txt",
+    "source": ".trae/skills/writer-styles/maibao/reference/原作_utf8/大奉打更人.txt;.trae/skills/writer-styles/maibao/reference/原作_utf8/灵境行者.txt",
     "sample_chars": 6569346,
-    "sample_sents": 290805,
+    "sample_sents": 256289,
     "sample_paras": 242222,
     "func_words_per_1000": {
       "的": 38.321,
@@ -41,15 +42,15 @@
       "曾": 0.159,
       "将": 0.816
     },
-    "sent_len_mean": 22.59,
-    "sent_len_stdev": 14.95,
-    "short_sent_ratio": 0.1771,
-    "long_sent_ratio": 0.121,
+    "sent_len_mean": 25.63,
+    "sent_len_stdev": 18.59,
+    "short_sent_ratio": 0.1415,
+    "long_sent_ratio": 0.1661,
     "para_len_mean": 27.12,
     "short_para_ratio": 0.2941,
-    "dialogue_ratio": 0.3877,
+    "dialogue_ratio": 0.2841,
     "comma_period_ratio": 2.334,
-    "dash_per_1000": 0.378,
+    "dash_per_1000": 0.159,
     "ellipsis_per_1000": 0.495,
     "sensory_dist": {
       "视觉": 12.553,
@@ -58,38 +59,11 @@
       "触觉": 2.929,
       "味觉": 0.579
     },
-    "metaphor_per_1000": 0.678,
+    "metaphor_per_1000": 1.255,
+    "conjunction_starter_ratio": 0.0267,
+    "dialogue_guide_per_1000": 3.827,
+    "le_ending_ratio": 0.0221,
     "imagery_top20": [
-      {
-        "word": "许七",
-        "count": 21984,
-        "per_1000": 3.346
-      },
-      {
-        "word": "七安",
-        "count": 21962,
-        "per_1000": 3.343
-      },
-      {
-        "word": "许七安",
-        "count": 21959,
-        "per_1000": 3.343
-      },
-      {
-        "word": "张元",
-        "count": 19028,
-        "per_1000": 2.896
-      },
-      {
-        "word": "元清",
-        "count": 18928,
-        "per_1000": 2.881
-      },
-      {
-        "word": "张元清",
-        "count": 18888,
-        "per_1000": 2.875
-      },
       {
         "word": "没有",
         "count": 13616,
@@ -104,31 +78,6 @@
         "word": "知道",
         "count": 7723,
         "per_1000": 1.176
-      },
-      {
-        "word": "元始",
-        "count": 6196,
-        "per_1000": 0.943
-      },
-      {
-        "word": "天尊",
-        "count": 5407,
-        "per_1000": 0.823
-      },
-      {
-        "word": "始天",
-        "count": 5019,
-        "per_1000": 0.764
-      },
-      {
-        "word": "始天尊",
-        "count": 4983,
-        "per_1000": 0.759
-      },
-      {
-        "word": "元始天",
-        "count": 4967,
-        "per_1000": 0.756
       },
       {
         "word": "心里",
@@ -159,22 +108,216 @@
         "word": "道具",
         "count": 4172,
         "per_1000": 0.635
+      },
+      {
+        "word": "因为",
+        "count": 4165,
+        "per_1000": 0.634
+      },
+      {
+        "word": "副本",
+        "count": 4024,
+        "per_1000": 0.613
+      },
+      {
+        "word": "长老",
+        "count": 3992,
+        "per_1000": 0.608
+      },
+      {
+        "word": "傅青",
+        "count": 3947,
+        "per_1000": 0.601
+      },
+      {
+        "word": "时间",
+        "count": 3767,
+        "per_1000": 0.573
+      },
+      {
+        "word": "傅青阳",
+        "count": 3701,
+        "per_1000": 0.563
+      },
+      {
+        "word": "起来",
+        "count": 3366,
+        "per_1000": 0.512
+      },
+      {
+        "word": "声道",
+        "count": 3318,
+        "per_1000": 0.505
+      },
+      {
+        "word": "关雅",
+        "count": 3281,
+        "per_1000": 0.499
+      },
+      {
+        "word": "出来",
+        "count": 3246,
+        "per_1000": 0.494
+      },
+      {
+        "word": "时候",
+        "count": 3161,
+        "per_1000": 0.481
       }
     ]
   },
+  "n_groups": 944,
+  "chapter_stats": {
+    "sent_len_mean": {
+      "mean": 29.6338,
+      "stdev": 14.8309,
+      "p5": 23.603,
+      "p95": 34.5625,
+      "cv": 0.5005
+    },
+    "sent_len_stdev": {
+      "mean": 20.2212,
+      "stdev": 18.3019,
+      "p5": 14.4215,
+      "p95": 24.2035,
+      "cv": 0.9051
+    },
+    "short_sent_ratio": {
+      "mean": 0.1265,
+      "stdev": 0.0423,
+      "p5": 0.0585,
+      "p95": 0.1986,
+      "cv": 0.3343
+    },
+    "long_sent_ratio": {
+      "mean": 0.2249,
+      "stdev": 0.0841,
+      "p5": 0.135,
+      "p95": 0.3411,
+      "cv": 0.374
+    },
+    "para_len_mean": {
+      "mean": 36.6841,
+      "stdev": 76.0359,
+      "p5": 23.7045,
+      "p95": 52.03,
+      "cv": 2.0727
+    },
+    "short_para_ratio": {
+      "mean": 0.2441,
+      "stdev": 0.0858,
+      "p5": 0.0943,
+      "p95": 0.3713,
+      "cv": 0.3514
+    },
+    "dialogue_ratio": {
+      "mean": 0.2937,
+      "stdev": 0.1513,
+      "p5": 0.0407,
+      "p95": 0.5485,
+      "cv": 0.5152
+    },
+    "comma_period_ratio": {
+      "mean": 3.2382,
+      "stdev": 7.7773,
+      "p5": 1.9711,
+      "p95": 3.6607,
+      "cv": 2.4017
+    },
+    "dash_per_1000": {
+      "mean": 0.2324,
+      "stdev": 0.5622,
+      "p5": 0.0,
+      "p95": 0.8586,
+      "cv": 2.4187
+    },
+    "ellipsis_per_1000": {
+      "mean": 0.9656,
+      "stdev": 1.3573,
+      "p5": 0.0,
+      "p95": 3.8406,
+      "cv": 1.4057
+    },
+    "metaphor_per_1000": {
+      "mean": 1.306,
+      "stdev": 0.9297,
+      "p5": 0.0,
+      "p95": 2.8531,
+      "cv": 0.7119
+    },
+    "conjunction_starter_ratio": {
+      "mean": 0.0293,
+      "stdev": 0.0196,
+      "p5": 0.0,
+      "p95": 0.0632,
+      "cv": 0.6703
+    },
+    "dialogue_guide_per_1000": {
+      "mean": 3.1098,
+      "stdev": 2.2206,
+      "p5": 0.0,
+      "p95": 7.0066,
+      "cv": 0.714
+    },
+    "le_ending_ratio": {
+      "mean": 0.021,
+      "stdev": 0.0141,
+      "p5": 0.0,
+      "p95": 0.047,
+      "cv": 0.675
+    },
+    "func_words_cosine": {
+      "mean": 0.0233,
+      "stdev": 0.022,
+      "p5": 0.0077,
+      "p95": 0.0515
+    },
+    "sensory_cosine": {
+      "mean": 0.0321,
+      "stdev": 0.0401,
+      "p5": 0.0028,
+      "p95": 0.1099
+    }
+  },
   "tolerance": {
     "func_words_cosine": 0.08,
-    "sent_len_mean": 0.25,
-    "sent_len_stdev": 0.35,
-    "short_sent_ratio": 0.35,
-    "long_sent_ratio": 0.5,
-    "para_len_mean": 0.35,
-    "short_para_ratio": 0.35,
-    "dialogue_ratio": 0.4,
-    "comma_period_ratio": 0.35,
-    "dash_per_1000": 0.6,
-    "ellipsis_per_1000": 0.6,
+    "sent_len_mean": 1.0,
+    "sent_len_stdev": 1.0,
+    "short_sent_ratio": 0.669,
+    "long_sent_ratio": 0.748,
+    "para_len_mean": 1.0,
+    "short_para_ratio": 0.703,
+    "dialogue_ratio": 1.0,
+    "comma_period_ratio": 1.0,
+    "dash_per_1000": 1.0,
+    "ellipsis_per_1000": 1.0,
     "sensory_cosine": 0.15,
-    "metaphor_per_1000": 0.5
-  }
+    "metaphor_per_1000": 1.0,
+    "conjunction_starter_ratio": 1.0,
+    "dialogue_guide_per_1000": 1.0,
+    "le_ending_ratio": 1.0
+  },
+  "tolerance_source": {
+    "sent_len_mean": "derived_2cv",
+    "sent_len_stdev": "derived_2cv",
+    "short_sent_ratio": "derived_2cv",
+    "long_sent_ratio": "derived_2cv",
+    "para_len_mean": "derived_2cv",
+    "short_para_ratio": "derived_2cv",
+    "dialogue_ratio": "derived_2cv",
+    "comma_period_ratio": "derived_2cv",
+    "dash_per_1000": "derived_2cv",
+    "ellipsis_per_1000": "derived_2cv",
+    "metaphor_per_1000": "derived_2cv",
+    "conjunction_starter_ratio": "derived_2cv",
+    "dialogue_guide_per_1000": "derived_2cv",
+    "le_ending_ratio": "derived_2cv",
+    "func_words_cosine": "default_floor",
+    "sensory_cosine": "default_floor"
+  },
+  "exclude_names": [
+    "许七安",
+    "张元清",
+    "元始天尊"
+  ]
 }
