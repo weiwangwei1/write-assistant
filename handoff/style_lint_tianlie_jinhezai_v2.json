@@ -1,0 +1,212 @@
+{
+  "card_type": "style_lint",
+  "from_agent": "style_lint(script)",
+  "to_agent": "chapter-writer",
+  "status": "fail",
+  "style_pack": "jinhezai",
+  "blocking_count": 2,
+  "advisory_count": 1,
+  "non_blocking_count": 8,
+  "issues": [
+    {
+      "rule": "short_para_ratio",
+      "severity": "critical",
+      "level": "L1",
+      "chapter": "chapter_tianlie_jinhezai_v2.txt",
+      "line": 0,
+      "excerpt": "",
+      "message": "碎段占比72%（94/131）> 上限50%"
+    },
+    {
+      "rule": "short_para_run",
+      "severity": "minor",
+      "level": "L1",
+      "chapter": "chapter_tianlie_jinhezai_v2.txt",
+      "line": 44,
+      "excerpt": "……",
+      "message": "连续碎段超过8段"
+    },
+    {
+      "rule": "short_para_run",
+      "severity": "minor",
+      "level": "L1",
+      "chapter": "chapter_tianlie_jinhezai_v2.txt",
+      "line": 101,
+      "excerpt": "\"收什么人？\"",
+      "message": "连续碎段超过8段"
+    },
+    {
+      "rule": "dialogue_ratio",
+      "severity": "minor",
+      "level": "L1",
+      "chapter": "chapter_tianlie_jinhezai_v2.txt",
+      "line": 0,
+      "excerpt": "",
+      "message": "对话占比32% < 下限50%"
+    },
+    {
+      "rule": "le_pattern",
+      "severity": "minor",
+      "level": "L2",
+      "chapter": "chapter_tianlie_jinhezai_v2.txt",
+      "line": 19,
+      "excerpt": "\"老周笑了，\"说是……想我了",
+      "message": "短句以“了”收尾（共12处 > 上限3）——AI腔特征：建议用连词衔接为长句，而非删除语法必需的“了”"
+    },
+    {
+      "rule": "le_pattern",
+      "severity": "minor",
+      "level": "L2",
+      "chapter": "chapter_tianlie_jinhezai_v2.txt",
+      "line": 51,
+      "excerpt": "天裂了",
+      "message": "短句以“了”收尾（共12处 > 上限3）——AI腔特征：建议用连词衔接为长句，而非删除语法必需的“了”"
+    },
+    {
+      "rule": "le_pattern",
+      "severity": "minor",
+      "level": "L2",
+      "chapter": "chapter_tianlie_jinhezai_v2.txt",
+      "line": 64,
+      "excerpt": "\"放你个头，炮能把天崩了",
+      "message": "短句以“了”收尾（共12处 > 上限3）——AI腔特征：建议用连词衔接为长句，而非删除语法必需的“了”"
+    },
+    {
+      "rule": "le_pattern",
+      "severity": "minor",
+      "level": "L2",
+      "chapter": "chapter_tianlie_jinhezai_v2.txt",
+      "line": 89,
+      "excerpt": "\"钟一响，它就死了",
+      "message": "短句以“了”收尾（共12处 > 上限3）——AI腔特征：建议用连词衔接为长句，而非删除语法必需的“了”"
+    },
+    {
+      "rule": "le_pattern",
+      "severity": "minor",
+      "level": "L2",
+      "chapter": "chapter_tianlie_jinhezai_v2.txt",
+      "line": 96,
+      "excerpt": "\"你听见那声钟了",
+      "message": "短句以“了”收尾（共12处 > 上限3）——AI腔特征：建议用连词衔接为长句，而非删除语法必需的“了”"
+    },
+    {
+      "rule": "era_word",
+      "severity": "critical",
+      "level": "L0",
+      "chapter": "chapter_tianlie_jinhezai_v2.txt",
+      "line": 61,
+      "excerpt": "手机",
+      "message": "时代错词“手机”（确认世界观背景）"
+    },
+    {
+      "rule": "era_word",
+      "severity": "critical",
+      "level": "L0",
+      "chapter": "chapter_tianlie_jinhezai_v2.txt",
+      "line": 80,
+      "excerpt": "手机",
+      "message": "时代错词“手机”（确认世界观背景）"
+    }
+  ],
+  "timeline_clues": {},
+  "config": {
+    "not_a_is_b_max_per_chapter": 3,
+    "short_para_len": 15,
+    "short_para_ratio_max": 0.5,
+    "short_para_run_max": 8,
+    "simile_max_per_chapter": 8,
+    "simile_max_per_para": 1,
+    "ban_yizhong_feeling": true,
+    "ban_feeling_enum": true,
+    "ban_summary_voice": true,
+    "ranhou_max_per_chapter": 1,
+    "dialogue_ratio_min": 0.5,
+    "dialogue_ratio_max": 0.8,
+    "dash_max_per_1000": 6.0,
+    "ellipsis_max_per_1000": 10.0,
+    "le_max_per_1000": 30.0,
+    "zhe_max_per_1000": 12.0,
+    "conjunction_min_per_1000": 0.0,
+    "dialogue_guide_min_per_1000": 0.0,
+    "name_starter_run_max": 6,
+    "emotion_telling_words": [
+      "不敢",
+      "害怕",
+      "悲伤",
+      "震撼",
+      "激动"
+    ],
+    "four_char_cliches": [
+      "不急不缓",
+      "不紧不慢",
+      "取而代之",
+      "不约而同",
+      "悄无声息"
+    ],
+    "era_wrong_words": [
+      "路灯",
+      "火柴",
+      "同频",
+      "电话",
+      "汽车",
+      "手机"
+    ],
+    "tell_marker_words": [
+      "习惯性地",
+      "不由得",
+      "下意识地",
+      "情不自禁",
+      "自然而然地",
+      "本能地",
+      "条件反射般",
+      "潜意识里"
+    ],
+    "cliche_vehicles": [
+      "山",
+      "风",
+      "火",
+      "水",
+      "刀",
+      "剑",
+      "雷",
+      "电",
+      "铁",
+      "石",
+      "雾",
+      "冰",
+      "蛇",
+      "虎",
+      "龙",
+      "潮",
+      "浪",
+      "云",
+      "雨",
+      "雪"
+    ],
+    "short_le_ending_max": 3,
+    "narrative_dialogue_max": 2,
+    "certain_markers": [
+      "就是",
+      "分明是",
+      "肯定是",
+      "无疑是",
+      "确实是"
+    ],
+    "ending_family_window": 4,
+    "ending_family_max_in_window": 2,
+    "opening_channel_max_run": 2,
+    "dup_sentence_min_len": 6
+  },
+  "advisory": [
+    {
+      "rule": "short_para_ratio",
+      "severity": "critical",
+      "level": "L1",
+      "chapter": "chapter_tianlie_jinhezai_v2.txt",
+      "line": 0,
+      "excerpt": "",
+      "message": "碎段占比72%（94/131）> 上限50%"
+    }
+  ],
+  "overrides": []
+}
