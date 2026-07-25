@@ -21,12 +21,12 @@
     {
       "phrase": "哈哈",
       "per_1000": 3.158,
-      "ratio": 50.841756300887745
+      "ratio": 38.53131235857404
     },
     {
       "phrase": "哈哈哈",
       "per_1000": 1.888,
-      "ratio": 156.09346512203564
+      "ratio": 140.74032470193626
     },
     {
       "phrase": "紫霞",
@@ -36,7 +36,7 @@
     {
       "phrase": "猴子",
       "per_1000": 1.677,
-      "ratio": 999.9
+      "ratio": 29.032900489279605
     },
     {
       "phrase": "八戒",
@@ -56,7 +56,7 @@
     {
       "phrase": "看见",
       "per_1000": 1.188,
-      "ratio": 8.221068802768157
+      "ratio": 14.970775963633422
     },
     {
       "phrase": "小白",
@@ -71,7 +71,7 @@
     {
       "phrase": "白龙",
       "per_1000": 1.14,
-      "ratio": 48.02064004768506
+      "ratio": 88.50259231061386
     },
     {
       "phrase": "小白龙",
@@ -107,43 +107,43 @@
   "avoided_phrases_top10": [
     {
       "phrase": "李察",
-      "others_per_1000": 3.157
+      "others_per_1000": 1.696
     },
     {
       "phrase": "千夜",
-      "others_per_1000": 3.083
+      "others_per_1000": 1.657
     },
     {
-      "phrase": "战士",
-      "others_per_1000": 0.651
+      "phrase": "石昊",
+      "others_per_1000": 1.637
     },
     {
-      "phrase": "原力",
-      "others_per_1000": 0.616
-    },
-    {
-      "phrase": "宋子",
-      "others_per_1000": 0.576
-    },
-    {
-      "phrase": "子宁",
-      "others_per_1000": 0.572
-    },
-    {
-      "phrase": "能力",
-      "others_per_1000": 0.568
-    },
-    {
-      "phrase": "宋子宁",
-      "others_per_1000": 0.547
-    },
-    {
-      "phrase": "帝国",
-      "others_per_1000": 0.531
+      "phrase": "叶凡",
+      "others_per_1000": 1.585
     },
     {
       "phrase": "强者",
-      "others_per_1000": 0.498
+      "others_per_1000": 0.514
+    },
+    {
+      "phrase": "战士",
+      "others_per_1000": 0.353
+    },
+    {
+      "phrase": "可怕",
+      "others_per_1000": 0.35
+    },
+    {
+      "phrase": "非常",
+      "others_per_1000": 0.346
+    },
+    {
+      "phrase": "原力",
+      "others_per_1000": 0.331
+    },
+    {
+      "phrase": "能力",
+      "others_per_1000": 0.32
     }
   ],
   "imagery_top20": [

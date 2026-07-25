@@ -19,6 +19,11 @@
       "ratio": 999.9
     },
     {
+      "phrase": "时候",
+      "per_1000": 1.587,
+      "ratio": 3.7709808411020593
+    },
+    {
       "phrase": "恺撒",
       "per_1000": 1.235,
       "ratio": 999.9
@@ -61,12 +66,17 @@
     {
       "phrase": "女孩",
       "per_1000": 0.572,
-      "ratio": 7.123368540061256
+      "ratio": 10.272748711781649
     },
     {
       "phrase": "看见",
       "per_1000": 0.567,
-      "ratio": 15.035348540282488
+      "ratio": 28.355621120793092
+    },
+    {
+      "phrase": "男人",
+      "per_1000": 0.528,
+      "ratio": 4.27277052753937
     },
     {
       "phrase": "息衍",
@@ -92,58 +102,48 @@
       "phrase": "阿苏勒",
       "per_1000": 0.517,
       "ratio": 999.9
-    },
-    {
-      "phrase": "吕归",
-      "per_1000": 0.515,
-      "ratio": 999.9
-    },
-    {
-      "phrase": "吕归尘",
-      "per_1000": 0.515,
-      "ratio": 999.9
     }
   ],
   "avoided_phrases_top10": [
     {
       "phrase": "李察",
-      "others_per_1000": 3.984
+      "others_per_1000": 1.909
     },
     {
       "phrase": "千夜",
-      "others_per_1000": 3.892
+      "others_per_1000": 1.865
+    },
+    {
+      "phrase": "石昊",
+      "others_per_1000": 1.843
+    },
+    {
+      "phrase": "叶凡",
+      "others_per_1000": 1.784
     },
     {
       "phrase": "原力",
-      "others_per_1000": 0.778
+      "others_per_1000": 0.373
     },
     {
       "phrase": "宋子",
-      "others_per_1000": 0.727
+      "others_per_1000": 0.348
     },
     {
       "phrase": "子宁",
-      "others_per_1000": 0.722
+      "others_per_1000": 0.346
     },
     {
       "phrase": "宋子宁",
-      "others_per_1000": 0.691
+      "others_per_1000": 0.331
     },
     {
       "phrase": "构装",
-      "others_per_1000": 0.561
+      "others_per_1000": 0.269
     },
     {
       "phrase": "位面",
-      "others_per_1000": 0.476
-    },
-    {
-      "phrase": "血族",
-      "others_per_1000": 0.4
-    },
-    {
-      "phrase": "海伦",
-      "others_per_1000": 0.323
+      "others_per_1000": 0.229
     }
   ],
   "imagery_top20": [
