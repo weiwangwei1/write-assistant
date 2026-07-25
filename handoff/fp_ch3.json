@@ -9,25 +9,25 @@
   "dims": [
     {
       "dim": "func_words_cosine",
-      "current": 0.0463,
+      "current": 0.0435,
       "baseline": 0.0,
-      "deviation": 0.0463,
+      "deviation": 0.0435,
       "tolerance": 0.08,
       "pass": true
     },
     {
       "dim": "sent_len_mean",
-      "current": 24.37,
+      "current": 24.43,
       "baseline": 27.78,
-      "deviation": 0.1228,
+      "deviation": 0.1206,
       "tolerance": 0.25,
       "pass": true
     },
     {
       "dim": "sent_len_stdev",
-      "current": 14.71,
+      "current": 14.67,
       "baseline": 15.26,
-      "deviation": 0.036,
+      "deviation": 0.0387,
       "tolerance": 0.35,
       "pass": true
     },
@@ -49,9 +49,9 @@
     },
     {
       "dim": "para_len_mean",
-      "current": 52.08,
+      "current": 52.22,
       "baseline": 57.14,
-      "deviation": 0.0886,
+      "deviation": 0.0861,
       "tolerance": 0.35,
       "pass": true
     },
@@ -65,17 +65,17 @@
     },
     {
       "dim": "dialogue_ratio",
-      "current": 0.3396,
+      "current": 0.3417,
       "baseline": 0.2744,
-      "deviation": 0.2376,
+      "deviation": 0.2453,
       "tolerance": 0.4,
       "pass": true
     },
     {
       "dim": "comma_period_ratio",
-      "current": 2.687,
+      "current": 2.697,
       "baseline": 2.157,
-      "deviation": 0.2457,
+      "deviation": 0.2503,
       "tolerance": 0.35,
       "pass": true
     },
@@ -89,9 +89,9 @@
     },
     {
       "dim": "ellipsis_per_1000",
-      "current": 0.377,
+      "current": 0.376,
       "baseline": 0.646,
-      "deviation": 0.4164,
+      "deviation": 0.418,
       "tolerance": 0.6,
       "pass": true
     },
@@ -105,9 +105,9 @@
     },
     {
       "dim": "metaphor_per_1000",
-      "current": 0.377,
+      "current": 0.376,
       "baseline": 0.294,
-      "deviation": 0.2823,
+      "deviation": 0.2789,
       "tolerance": 0.5,
       "pass": true
     }
