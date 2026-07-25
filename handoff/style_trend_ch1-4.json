@@ -1,0 +1,78 @@
+{
+  "status": "ok",
+  "summary": {
+    "latest_chapter": "chapter_004.txt",
+    "latest_status": "pass",
+    "latest_max_deviation": 0.415,
+    "latest_failed_dims": [],
+    "total_records": 2,
+    "dim_summary": {
+      "func_words_cosine": {
+        "deviation": 0.0762,
+        "pass": true,
+        "trend": "rising"
+      },
+      "sent_len_mean": {
+        "deviation": 0.1443,
+        "pass": true,
+        "trend": "rising"
+      },
+      "sent_len_stdev": {
+        "deviation": 0.0079,
+        "pass": true,
+        "trend": "falling"
+      },
+      "short_sent_ratio": {
+        "deviation": 0.1559,
+        "pass": true,
+        "trend": "falling"
+      },
+      "long_sent_ratio": {
+        "deviation": 0.3508,
+        "pass": true,
+        "trend": "falling"
+      },
+      "para_len_mean": {
+        "deviation": 0.0662,
+        "pass": true,
+        "trend": "rising"
+      },
+      "short_para_ratio": {
+        "deviation": 0.194,
+        "pass": true,
+        "trend": "rising"
+      },
+      "dialogue_ratio": {
+        "deviation": 0.2872,
+        "pass": true,
+        "trend": "falling"
+      },
+      "comma_period_ratio": {
+        "deviation": 0.1613,
+        "pass": true,
+        "trend": "falling"
+      },
+      "dash_per_1000": {
+        "deviation": 0.04,
+        "pass": true,
+        "trend": "stable"
+      },
+      "ellipsis_per_1000": {
+        "deviation": 0.356,
+        "pass": true,
+        "trend": "falling"
+      },
+      "sensory_cosine": {
+        "deviation": 0.0829,
+        "pass": true,
+        "trend": "rising"
+      },
+      "metaphor_per_1000": {
+        "deviation": 0.415,
+        "pass": true,
+        "trend": "rising"
+      }
+    }
+  },
+  "alerts": []
+}

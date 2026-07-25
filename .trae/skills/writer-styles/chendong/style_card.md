@@ -29,3 +29,17 @@ python style_fingerprint.py check output/chapter_xxx.txt \
 ```
 
 当前 fingerprint 为 provisional（语录样本），正式量产前用原作全本重建。
+
+## 签名词库参考（vocabulary.json 摘要）
+
+> 辰东原作未入库，本词库为基于 style_card.md 意象词库手动构建的简化版。需用户提供原作后用 style_signature.py 重建。
+
+**意象词库按类调用**（已从核心决策提取，详见第2条）：
+- 时空类：万古/岁月/苍穹/洪荒
+- 力量类：大道/天则/帝威
+- 角色类：天骄/至尊/绝代
+- 轮回类：涅槃/寂灭/不朽
+- 暴力动词：崩碎/撕裂/湮灭/镇压/焚烧
+- 悲壮用词：残躯/道骨/燃尽/殉道/浴血
+
+**感官配比**：pending（需原作重建）

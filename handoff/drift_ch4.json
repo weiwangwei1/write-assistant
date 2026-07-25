@@ -1,0 +1,58 @@
+{
+  "chapter": "chapter_004.txt",
+  "results": [
+    {
+      "author": "yanyujiangnan",
+      "avg_deviation": 0.1798,
+      "failed_count": 0,
+      "failed_dims": [],
+      "confidence": "high"
+    },
+    {
+      "author": "chendong",
+      "avg_deviation": 0.3164,
+      "failed_count": 4,
+      "failed_dims": [
+        "func_words_cosine",
+        "short_para_ratio",
+        "dash_per_1000",
+        "ellipsis_per_1000"
+      ],
+      "confidence": "provisional"
+    },
+    {
+      "author": "jiangnan",
+      "avg_deviation": 0.3964,
+      "failed_count": 5,
+      "failed_dims": [
+        "short_sent_ratio",
+        "short_para_ratio",
+        "dash_per_1000",
+        "ellipsis_per_1000",
+        "metaphor_per_1000"
+      ],
+      "confidence": "high"
+    },
+    {
+      "author": "jinhezai",
+      "avg_deviation": 0.7088,
+      "failed_count": 10,
+      "failed_dims": [
+        "func_words_cosine",
+        "sent_len_mean",
+        "short_sent_ratio",
+        "long_sent_ratio",
+        "para_len_mean",
+        "short_para_ratio",
+        "dialogue_ratio",
+        "dash_per_1000",
+        "ellipsis_per_1000",
+        "metaphor_per_1000"
+      ],
+      "confidence": "high"
+    }
+  ],
+  "closest": "yanyujiangnan",
+  "target": "yanyujiangnan",
+  "drift": false
+}
