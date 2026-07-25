@@ -13,7 +13,7 @@
       "chapter": "chapter_002.txt",
       "line": 0,
       "excerpt": "",
-      "message": "对话占比43% > 上限40%"
+      "message": "对话占比40% > 上限40%"
     }
   ],
   "timeline_clues": {
@@ -46,7 +46,7 @@
     ],
     "chapter_002.txt": [
       {
-        "line": 27,
+        "line": 29,
         "hit": "半年",
         "context": "许愿看了一眼那块碎玉。脂粉气重，皮色温润，拿去当铺少说值二两银子。霍东来拿这东西"
       }

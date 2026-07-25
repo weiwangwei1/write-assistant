@@ -40,6 +40,12 @@ DEFAULT_CONFIG = {
     # 四b、标点指纹（风格包可覆盖；默认宽松，风格包按原作指纹收紧）
     "dash_max_per_1000": 20.0,        # 破折号"——"每千字上限
     "ellipsis_max_per_1000": 5.0,     # 省略号"……"每千字上限
+    # 四c、功能词指纹（v2.1新增，风格包按原作指纹收紧；默认宽松近似不启用）
+    "le_max_per_1000": 60.0,          # "了"每千字上限（minor）
+    "zhe_max_per_1000": 25.0,         # "着"每千字上限（minor）
+    "conjunction_min_per_1000": 0.0,  # 书面连词(而/却/但/已/将/与/不过/可是)合计每千字下限（minor，0=不启用）
+    "dialogue_guide_min_per_1000": 0.0,  # 对话引前引导(某某道：/说：/问：)每千字下限（minor，0=不启用）
+    "name_starter_run_max": 8,        # 同二字段首连续段落上限（minor）
     # 五、警告级
     "emotion_telling_words": ["不敢", "害怕", "悲伤", "震撼", "激动"],
     "four_char_cliches": ["不急不缓", "不紧不慢", "取而代之", "不约而同", "悄无声息"],
@@ -166,6 +172,33 @@ def lint_chapter(ch, cfg, disabled, custom_bans):
     ellipsis_per_1k = round(ellipsis_cnt / total_chars * 1000, 3)
     if ellipsis_per_1k > cfg["ellipsis_max_per_1000"]:
         add("ellipsis_overuse", "minor", 0, "", f"省略号{ellipsis_per_1k}/千字 > 上限{cfg['ellipsis_max_per_1000']}")
+
+    # 功能词指纹（v2.1：了/着密度+书面连词下限+同段首连跑，风格包按原作指纹收紧）
+    le_per_1k = round(ch.text.count("了") / total_chars * 1000, 2)
+    if le_per_1k > cfg["le_max_per_1000"]:
+        add("le_overuse", "minor", 0, "", f"“了”{le_per_1k}/千字 > 上限{cfg['le_max_per_1000']}（了字收尾碎句宜改连词衔接长句）")
+    zhe_per_1k = round(ch.text.count("着") / total_chars * 1000, 2)
+    if zhe_per_1k > cfg["zhe_max_per_1000"]:
+        add("zhe_overuse", "minor", 0, "", f"“着”{zhe_per_1k}/千字 > 上限{cfg['zhe_max_per_1000']}")
+    if cfg["conjunction_min_per_1000"] > 0:
+        conj_cnt = sum(ch.text.count(w) for w in ("而", "却", "但", "已", "将", "与", "不过", "可是"))
+        conj_per_1k = round(conj_cnt / total_chars * 1000, 2)
+        if conj_per_1k < cfg["conjunction_min_per_1000"]:
+            add("conjunction_underuse", "minor", 0, "", f"书面连词(而/却/但/已/将/与/不过/可是){conj_per_1k}/千字 < 下限{cfg['conjunction_min_per_1000']}（连词是长句黏合剂，缺失则句句短促）")
+    if cfg["dialogue_guide_min_per_1000"] > 0:
+        guide_cnt = len(re.findall(r"(?:道|说|问|答)\s*[:：]\s*[\"“「]", ch.text))
+        guide_per_1k = round(guide_cnt / total_chars * 1000, 2)
+        if guide_per_1k < cfg["dialogue_guide_min_per_1000"]:
+            add("dialogue_guide_underuse", "minor", 0, "", f"对话引前引导(某某道：){guide_per_1k}/千字 < 下限{cfg['dialogue_guide_min_per_1000']}（全裸对话不符合该风格引导习惯，需穿插引前引导）")
+    run_head, run_len = None, 0
+    for ln, s in ch.body_lines:
+        head = re.sub(r"^[\"“「\s]+", "", s)[:2]
+        if head and head == run_head:
+            run_len += 1
+            if run_len == cfg["name_starter_run_max"] + 1:
+                add("name_starter_run", "minor", ln, s, f"连续同段首“{head}…”超过{cfg['name_starter_run_max']}段（段首须换型：连词/感官/动作/对话）")
+        else:
+            run_head, run_len = head, 1
 
     for w in cfg["emotion_telling_words"]:
         n = ch.text.count(w)

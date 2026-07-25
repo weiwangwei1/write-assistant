@@ -2,40 +2,40 @@
   "card_type": "goal_tracker",
   "novel_title": "有龙则灵",
   "outline_version": "v4.3",
-  "last_updated_chapter": 14,
-  "last_updated": "2026-07-24T17:10:00+08:00",
+  "last_updated_chapter": 4,
+  "last_updated": "2026-07-25T14:21:00+08:00",
+  "reset_note": "2026-07-25黄金三章重写后全量重置。旧版Ch1-14目标记录作废（G001镇巷令/G002老灯委托/G004角纹养纹/G005青灯灯油/G006龙纹曝光均随旧章删除），以新Ch1-3文本为唯一事实源重建",
   "goals": [
     {
       "id": "G001",
-      "title": "镇巷令刻字（公会之行）",
+      "title": "顶住例钱压力守住铺子",
       "type": "task",
-      "established_chapter": 4,
+      "established_chapter": 1,
       "expected_close_chapter": 12,
-      "status": "closed",
-      "closed_chapter": 11,
+      "status": "active",
       "progress_log": [
-        {"chapter": 4, "action": "established", "detail": "蓝袍子传话'封分会长想见你'+爷爷与公会有往来"},
-        {"chapter": 5, "action": "developed", "detail": "霍东来交镇巷令——背面空白须封九霄亲手刻字方生效，生效后例钱免"},
-        {"chapter": 8, "action": "actively_suspended", "detail": "E1-4主动延后：'公会的秤先不碰。等攒够本钱，摸清水深水浅，再蹚'（断头→主动挂起，读者心智保留）"},
-        {"chapter": 11, "action": "closed", "detail": "封九霄亲自登门，指腹在镇巷令背面刻字'免'——'例钱到此为止。公会不站队。只称量。'镇巷令刻字闭环"},
-        {"chapter": 12, "action": "confirmed", "detail": "ch12确认生效：纪霜衡撕封条重开铺子=公会'善意'对照神殿'恶意'讽刺对照，例钱免确认落地"}
+        {"chapter": 1, "action": "established", "detail": "章末霍家络腮胡子带两人踹门收纹材例钱（本月+前两月欠账共三两二钱）"},
+        {"chapter": 2, "action": "developed", "detail": "许愿两遍'我不交'当面拒缴；霍东来碎玉试探被老灯碾压、竖瞳慑退，例钱没收成但霍东来未死心（'老灯，还醒着？'转身没回头）"},
+        {"chapter": 4, "action": "developed", "detail": "例钱线转暗手最低推进：霍家纹材铺伙计翻过旧货摊同一堆铁（嫌锈没要）+柜台后伙计朝许愿张望盯梢（目光相碰若无其事拨算盘）；摊主情报'霍家收旧刀旧剑，价压得比我还狠，只讲分量不讲字'——霍家在暗中扫旧货市场带字旧铁"}
       ],
-      "chapters_since_progress": 2,
+      "chapters_since_progress": 0,
       "alert": null,
-      "close_plan": "已完成。ch11封九霄刻字'免'闭环，ch12确认生效"
+      "close_plan": "大纲unit1(ch11-13)：镇巷令刻字'免'闭环例钱线。ch4-10期间霍东来需再有动作（再上门/转暗手/赔礼服软节骨眼），不可让例钱压力悬空超4章",
+      "deadline_note": "ch5 deadline：本章推进力度偏弱（伙计盯梢级，霍东来本人未动），ch5必须落地霍东来实质动作（再上门/赔礼服软/暗手升级其一），否则例钱线实质进展断档达预警线（承merged卡deferred+unified UR4-05）"
     },
     {
       "id": "G002",
-      "title": "老灯委托：带盏旧灯",
-      "type": "promise",
-      "established_chapter": 6,
-      "expected_close_chapter": 7,
+      "title": "摸清供桌规矩",
+      "type": "quest",
+      "established_chapter": 1,
+      "expected_close_chapter": 3,
       "status": "closed",
+      "closed_chapter": 3,
       "progress_log": [
-        {"chapter": 6, "action": "established", "detail": "老灯'给我带盏灯。旧灯。有人用过的。来历深的'"},
-        {"chapter": 7, "action": "closed", "detail": "泥灯（三百年）白拿走，符号同源=供簿封面"}
+        {"chapter": 1, "action": "established", "detail": "供桌苏醒，许愿开始摸索（鳞纹落位/试纹）"},
+        {"chapter": 3, "action": "closed", "detail": "七样供品测试完成：拒收=免费鉴定/来历定返利轻重/纹位落位规则（掌心鳞手腕爪）+鳞爪共振初探。'规矩摸清了'"}
       ],
-      "chapters_since_progress": 7,
+      "chapters_since_progress": 0,
       "alert": null
     },
     {
@@ -46,64 +46,27 @@
       "expected_close_chapter": 245,
       "status": "active_long_term",
       "progress_log": [
-        {"chapter": 3, "action": "established", "detail": "老灯梦话泄露火种线"},
-        {"chapter": 7, "action": "linked", "detail": "泥灯入手（老灯'想要'）+青灯意象"},
-        {"chapter": 10, "action": "keep_warm", "detail": "青灯灯油委托（G005）+E2-5'青灯烧了三百年的又是什么'挂钩"},
-        {"chapter": 12, "action": "keep_warm", "detail": "旧牌龙爪纹火色'还没灭'=火种碎片附着师父遗物暗示，火种线保温beat到位"},
-        {"chapter": 13, "action": "keep_warm", "detail": "旧牌龙爪纹火色callback'火色还没灭'维持火种线读者心智"}
+        {"chapter": 3, "action": "established", "detail": "老灯沉睡泄梦话'火种还差三个……长明灯……'，许愿追问被装睡挡回（'有些事问不出来，得自己找'）"}
       ],
       "chapters_since_progress": 1,
       "alert": null,
-      "note": "主线进度条本体，见main_quest_progress。ch14鉴定生意线开启未触碰火种线，chapters_since=1在可接受范围内"
+      "note": "主线进度条本体（MQ001）。下次大纲节点：ch10青灯灯油挂钩→ch19-20豆灯归位。ch4-9期间可安插≤30字保温beat（非必须，悬念窗口满时勿开新）"
     },
     {
       "id": "G004",
-      "title": "角纹养纹三天",
-      "type": "task",
-      "established_chapter": 9,
-      "expected_close_chapter": 13,
-      "status": "closed",
-      "closed_chapter": 13,
-      "progress_log": [
-        {"chapter": 9, "action": "established", "detail": "喷火首秀后老灯明示'角纹要养三天方稳，今天这口算送你看的'"},
-        {"chapter": 11, "action": "maintained", "detail": "养纹第三天，角纹不可用=拘传死局压力来源之一（能力限制已锁死）"},
-        {"chapter": 12, "action": "maintained", "detail": "养纹第三天持续——'后背的角纹是凉的。养纹第三天，还没稳。能用的是掌心这一片鳞，也只剩这一片。死局就压在这上头。'"},
-        {"chapter": 13, "action": "closed", "detail": "养纹期满'六天。稳了。'→'三纹都稳了。死局那三天里使不上的东西，回来了'。角纹可用，G004闭环"},
-        {"chapter": 14, "action": "confirmed", "detail": "角纹验来历能力实战验证：温=传物（青白玉佩三代传物），角纹稳了后热从肩胛骨之间往外走。G004闭环确认"}
-      ],
-      "chapters_since_progress": 0,
-      "alert": null,
-      "close_plan": "已完成。ch13养纹期满角纹闭环，ch14能力使用确认"
-    },
-    {
-      "id": "G005",
-      "title": "青灯灯油委托",
-      "type": "promise",
-      "established_chapter": 10,
-      "expected_close_chapter": 25,
-      "status": "active",
-      "progress_log": [
-        {"chapter": 10, "action": "established", "detail": "老人'灯油快没了。灯市口那盏青灯。烧了三百年。你要是有旧灯油——来历深的——给它续上'"}
-      ],
-      "chapters_since_progress": 4,
-      "alert": "high——目标建立后4章无进展（ch10建立→ch14未推进，触达≥4章报警阈值）。属计划内长线（ch19-25闭环），建议ch15-17加1句≤30字提及维持读者心智",
-      "close_plan": "大纲ch19-25：豆灯出世对青灯起反应→青灯=引灯指向火种一，灯油线归位火种主线"
-    },
-    {
-      "id": "G006",
-      "title": "龙纹曝光后的应对（从暗转明）",
+      "title": "爷爷下落（找到失踪的爷爷）",
       "type": "quest",
-      "established_chapter": 12,
-      "expected_close_chapter": 25,
-      "status": "active",
+      "established_chapter": 1,
+      "expected_close_chapter": 230,
+      "status": "active_long_term",
       "progress_log": [
-        {"chapter": 12, "action": "established", "detail": "许愿掌心鳞纹当众曝光——疤脸铁棍砸下被弹飞，围观者惊呼'鳞纹！是龙纹！许家那小子身上有龙纹'。龙纹从暗转明，身份暴露将引来各方关注"},
-        {"chapter": 13, "action": "developed", "detail": "陌生人捧锦盒上门'听说这儿能验东西的来历？'=龙纹曝光后果初显，巷子传开引来客人"},
-        {"chapter": 14, "action": "developed", "detail": "聚宝阁因'听说许家铺子能验来历'派人来试探赝品=龙纹曝光后果正面转化（从身份危机到鉴定生意机遇）。聚宝阁来人临走威胁'验到不该验的'+章末多人脚步=后果持续发酵"}
+        {"chapter": 1, "action": "established", "detail": "爷爷半年前凭空失踪，头天晚上还说'明儿教你认供桌上的纹路'；账册末页'供桌认主，守灯人传承。慎独留。'"},
+        {"chapter": 3, "action": "keep_warm", "detail": "太爷爷怀表'慎独'与账册末页'慎独留'同款字——许愿意识到'这桌子认的，是人'，传承链条感知加深"}
       ],
-      "chapters_since_progress": 0,
+      "chapters_since_progress": 1,
       "alert": null,
-      "note": "ch12新增目标。龙纹曝光=许愿身份从'落魄小东家'转'有龙纹的人'。ch14聚宝阁首次交锋=龙纹曝光后果从被动应对转向主动经营，但聚宝阁威胁+反扑预示后续压力升级"
+      "close_plan": "三层答案：ch5-6表层'被供桌收回去了'→Vol2-3中层'被栽赃渎神窃坛'→Vol5深层'携火种守火未死'",
+      "note": "ch4零触碰（灯市捡漏章专注F006/G001/M2，F004未保温）。chapters_since_progress=1未达预警；大纲ch5-6表层答案窗口在即，ch5写作约束第⑥条已列入"
     }
   ],
   "main_quest_progress": {
@@ -111,46 +74,43 @@
     "title": "火种收集（三火归位→长明重燃）",
     "total_stages": 3,
     "completed_stages": 0,
-    "current_chapter": 14,
+    "current_chapter": 4,
     "stage_log": [],
     "warm_beats": [
-      {"chapter": 3, "beat": "梦话立标"},
-      {"chapter": 7, "beat": "泥灯入手+青灯意象"},
-      {"chapter": 10, "beat": "青灯灯油委托+火种挂钩"},
-      {"chapter": 12, "beat": "旧牌龙爪纹火色'还没灭'=火种碎片附着师父遗物暗示"},
-      {"chapter": 13, "beat": "旧牌龙爪纹火色callback'火色还没灭'维持火种线读者心智"}
+      {"chapter": 3, "beat": "梦话立标'火种还差三个……长明灯'"}
     ],
-    "health": "stalled_with_plan",
-    "stalled_chapters": 11,
-    "recovery_plan": "longline_review_10 warning已受理：①ch11-15安插1次≤100字保温beat（ch12已执行：旧牌火色'还没灭'，ch13callback维持）✓✓；②ch19-20豆灯出世对青灯起反应=正式归位；③~86火种一入手=stage1完成。ch14鉴定生意线开启未触碰火种线，stalled_chapters累计至11（自ch3起无stage完成），但保温beat持续执行中"
+    "health": "on_track",
+    "stalled_chapters": 1,
+    "recovery_plan": "ch3刚立标无需恢复。大纲节点：ch10青灯灯油挂钩→ch19-20豆灯出世对青灯起反应→~86火种一入手=stage1完成",
+    "stall_evaluation": "ch4未触碰主线（stalled_chapters=1，阈值≥5才转stalled）。评估：不告警——ch3刚立标处于恢复期，且ch4按串糖葫芦节拍承担灯市捡漏正位+F006物证落地，主线断更风险极低；ch10青灯灯油挂钩为下一个强制节点"
   },
   "villain_ladder": [
     {
       "tier": "喽啰",
       "name": "疤脸打手",
-      "planned_window": "ch1-25零星打脸，ch11-12全胜债清",
-      "status": "cleared",
-      "first_appear_chapter": 2,
-      "cleared_chapter": 12,
-      "note": "B2复仇债ch12全胜清算完成（铁棍被弹+虎口再裂+'又掉了'二次回调+被差役带走）"
+      "planned_window": "ch1-10零星打脸，ch11-12全胜债清",
+      "status": "active",
+      "first_appear_chapter": 1,
+      "cleared_chapter": null,
+      "note": "ch1末踹门收例钱→ch2抡棍被鳞纹弹飞+'霍家就这点行头'羞辱（first_blood已兑现，债未清）"
     },
     {
       "tier": "明线小boss",
       "name": "霍东来",
       "planned_window": "ch1-10登场施压，Vol1灰色反复",
-      "status": "active_turned_gray",
+      "status": "active",
       "first_appear_chapter": 2,
       "cleared_chapter": null,
-      "note": "ch2被威压慑退→ch5赔礼服软转灰色知情人（半敌半友），明面冲突已转地下博弈"
+      "note": "ch2碎玉试探被碾+竖瞳慑退，'老灯认我'旧识之谜planted。ch4暗手启动：伙计翻旧货摊同一堆铁+柜台后盯梢，霍家收旧刀旧剑只讲分量不讲字——明面冲突转地下。ch5需霍东来本人实质动作（G001 deadline，F008态度变化节骨眼）"
     },
     {
       "tier": "卷一小boss",
       "name": "聚宝阁（赝品链黑商）",
       "planned_window": "ch14-17连破三赝登场，ch26-30总清算",
-      "status": "active",
-      "first_appear_chapter": 14,
+      "status": "not_started",
+      "first_appear_chapter": null,
       "cleared_chapter": null,
-      "note": "ch10'供桌能鉴宝'传闻炸街+铜碟防伪公开演示=铺垫。ch12龙纹曝光+鉴定能力展示=铺垫加深。ch14聚宝阁派人来试探赝品=首次交锋（老灯碾压赝品'假都假得不用心'+许愿识破'你是聚宝阁的'），聚宝阁来人临走威胁'验到不该验的'+章末多人脚步暗示反扑。status从foreshadowed→active"
+      "note": "新版ch2老灯碾压霍东来假籽料=赝品鉴定能力的前置展示（非聚宝阁线正式启动）"
     },
     {
       "tier": "隐藏boss",
@@ -173,34 +133,28 @@
     "max_active": 3,
     "rule": "活跃=本章文本实际触碰/提醒读者；闭环一条才开新一条",
     "active": [
-      {"id": "S001", "title": "聚宝阁赝品链（M6龙纹曝光后果延伸）", "opened_chapter": 14, "last_touched": 14, "type": "plot", "detail": "ch14聚宝阁来人带赝品试探+老灯碾压+许愿识破身份+章末多人脚步暗示反扑"},
-      {"id": "S002", "title": "老周碎纹石来历", "opened_chapter": 14, "last_touched": 14, "type": "character", "detail": "ch14老周虎口旧疤+胸口口袋鼓着硬物+'碎了的石头有什么来历'未说完"},
-      {"id": "S003", "title": "老灯'又来了'聚宝阁旧识暗示", "opened_chapter": 14, "last_touched": 14, "type": "character", "detail": "ch14老灯'又来了'+'又？'后不接话竖瞳合上=装睡回避，暗示老灯与聚宝阁有旧识"}
+      {"id": "S001", "title": "爷爷下落（半年前失踪+守灯人传承遗言）", "opened_chapter": 1, "last_touched": 3, "type": "main", "detail": "ch3怀表'慎独'同款字保温；ch4零触碰"},
+      {"id": "S002", "title": "火种还差三个/长明灯", "opened_chapter": 3, "last_touched": 3, "type": "main", "detail": "ch3老灯梦话泄露，追问被装睡挡回"},
+      {"id": "S003", "title": "桌底裂缝'有什么东西，醒了'", "opened_chapter": 3, "last_touched": 4, "type": "plot", "detail": "ch4开头保温'那点光还死定在那儿，只是比昨夜暗了一线'（与ch3'挤不出也缩不回'物理状态接续一致）"}
     ],
     "dormant_open": [
-      {"id": "M3", "title": "火种进度（青灯灯油+旧牌火色）", "opened_chapter": 3, "last_touched": 13, "type": "main", "note": "ch13旧牌火色callback最后触碰，ch14未触碰。保温beat持续执行中"},
-      {"id": "M4", "title": "上一任是谁（接替链/庚午年）", "opened_chapter": 4, "last_touched": 10, "type": "main", "note": "已4章未触碰（ch10→ch14），low级远期待提醒，建议ch15-17安插≤100字保温beat"},
-      {"id": "M5", "title": "盲眼老人身份（烟散之诡）", "opened_chapter": 7, "last_touched": 10, "type": "character", "note": "已4章未触碰（ch10→ch14），low级远期待提醒，建议ch15-17安插≤100字保温beat"}
+      {"id": "M1", "title": "老灯认我（霍东来旧识之谜）", "opened_chapter": 2, "last_touched": 2, "type": "character", "note": "ch2种下后未再触碰，转dormant。Vol2递刀线重启；ch4霍家暗手启动为间接保温"}
     ],
-    "suspended": [
-      {"id": "M1", "title": "爷爷渎神旧案（拘传改监管观察，正式挂起）", "suspended_at": 13, "reason": "ch11拘传令翻出旧案时M1被激活（4/3超限），ch12拘传改监管观察后挂起，ch13纪霜衡'旧案暂缓。先查供桌'textual confirmation正式挂起。旧案仍在但即时危机解除，纪霜衡驻店观察=调查转入长期", "previously_suspended_at": 12, "reactivated_at": 11},
-      {"id": "M2", "title": "公会/封九霄（镇巷令+老灯认我）", "suspended_at": 8, "reason": "E1-4/E2-1双重主动挂起，ch11封九霄刻字兑现闭环。M2已关闭", "closed_at": 11, "closed_reason": "封九霄亲自登门刻字'免'，镇巷令兑现，例钱免确认"}
+    "closed": [
+      {"id": "M2", "title": "公会人声（章末风里'公会'）", "opened_chapter": 2, "closed_chapter": 4, "closed_actively": true, "type": "plot", "detail": "ch4灰衣人桥头传话'吹灯巷新醒了一张桌子，会长过几日想登门看看'——ch2章末钩子窗内（ch4-6）最优位置主动兑现，出窗。后续'会长登门'转入foreshadowing_tracker F-ch2-1里程碑管理，不占悬念窗口"}
     ],
+    "suspended": [],
     "overflow_alerts": [],
-    "ch13_resolution": "ch13通过M1 textual suspension（纪霜衡'旧案暂缓'）将悬念窗口从4/4降至3/3达标，OC001已执行闭环",
-    "ch14_status": "ch14新开2条悬念（老周碎纹石+老灯旧识）+聚宝阁线活跃=3/3 borderline pass。M3/M4/M5转入dormant_open（未闭环但近期未触碰）。建议ch15闭环聚宝阁来人线（章末钩子兑现）释放窗口空间",
-    "ch14_borderline_note": "ch14文本实际触碰活跃悬念=3条(S001/S002/S003)，≤3上限通过(borderline)。累计未闭环悬念(M3/M4/M5)仍在读者心智中虽本章未触碰。建议ch15闭环聚宝阁来人线释放窗口空间"
+    "ch4_status": "3/3达标。S001(ch3保温,ch4零触碰)/S002(ch3新开)/S003(ch4'暗了一线'保温)。M2公会人声ch4兑现出窗（closed_actively=true），dormant_open仅剩M1。本章未新开主线悬念（庚午年追问属F006窗内深化非新条目），未超限"
   },
   "shuang_rolling_window": {
     "rule": "每3章≥1个S/A级爽点",
-    "last_check": "ch12-14: A,B+,A 达标（Ch12 A级死局翻盘/Ch13 B+级角纹闭环温馨过渡/Ch14 A级鉴定打脸+聚宝阁首次交锋）",
-    "full_record": "见handoff/chapter_review.json hard_metric_1_shuang",
+    "last_check": "ch2-4: A,A,A 达标（Ch2 A级碎玉打脸+鳞纹弹棍+竖瞳慑退/Ch3 A级捡漏得爪纹+怀表认主+火种梦话/Ch4 A级锈刀捡漏开奖闭环：35文得本铺旧门牌'镇巷十三号庚午年封'+老灯认证'你赚了'——真爽点非reveal虚标）",
     "all_windows_pass": true,
     "windows": [
-      {"window": "ch10-12", "result": "A,B,A 达标", "detail": "Ch10 A级/Ch11 B级/Ch12 A级死局翻盘"},
-      {"window": "ch11-13", "result": "B,A,B+ 达标", "detail": "Ch11 B级/Ch12 A级死局翻盘/Ch13 B+级角纹闭环温馨过渡"},
-      {"window": "ch12-14", "result": "A,B+,A 达标", "detail": "Ch12 A级死局翻盘/Ch13 B+级角纹闭环温馨过渡/Ch14 A级鉴定打脸+聚宝阁首次交锋"}
+      {"window": "ch1-3", "result": "A,A,A 达标", "detail": "黄金三章三连A：认主开奖/打脸慑退/捡漏认主"},
+      {"window": "ch2-4", "result": "A,A,A 达标", "detail": "打脸慑退/捡漏认主/锈刀捡漏开奖。ch4爽点为A级（收益为长线物证非即战力，故未达S）：砍价智斗B级小爽+开奖A级主爽，间隔均匀无1500字无收获段"}
     ],
-    "note": "ch14为A级鉴定打脸（老灯毒舌破碗+聚宝阁赝品碾压双连）。ch13为B+级角纹闭环温馨过渡章（override通过，类型修正后内在质量≥9.5）"
+    "note": "ch2-4三连A达标。ch4-6窗口：ch4 A级已计入（1/1满足），ch5-6有缓冲空间但仍建议ch5安排开奖/打脸型兑现（霍东来实质动作天然适配打脸或反转爽点）"
   }
 }

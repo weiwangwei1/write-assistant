@@ -1,0 +1,104 @@
+{
+  "card_type": "style_lint",
+  "from_agent": "style_lint(script)",
+  "to_agent": "chapter-writer",
+  "status": "pass",
+  "style_pack": "yanyujiangnan",
+  "critical_count": 0,
+  "minor_count": 1,
+  "issues": [
+    {
+      "rule": "dialogue_ratio",
+      "severity": "minor",
+      "chapter": "chapter_002.txt",
+      "line": 0,
+      "excerpt": "",
+      "message": "对话占比40% > 上限40%"
+    }
+  ],
+  "timeline_clues": {
+    "chapter_001.txt": [
+      {
+        "line": 3,
+        "hit": "半年",
+        "context": "瓦当磕上供桌的时候，桌面震了一下，半年没动静的旧桌子头一回醒了。"
+      },
+      {
+        "line": 5,
+        "hit": "半年",
+        "context": "积了铜钱厚的灰从木头缝里往外渗，许愿每天拿抹布擦三遍也擦不净，灰擦了又渗，渗了又"
+      },
+      {
+        "line": 21,
+        "hit": "六十年",
+        "context": "六十年一千四百笔供品一笔没记差，连哪笔给了几文香火钱都记得清清楚楚，许愿有时候怀"
+      },
+      {
+        "line": 45,
+        "hit": "半年",
+        "context": "许愿把瓦当摆正，掌心贴着桌面，木头是凉的，凉得厉害，冬天河底石头的凉，半年了这张"
+      },
+      {
+        "line": 117,
+        "hit": "半年",
+        "context": "许愿盯着这行字看了很久，半年前爷爷头天晚上还说第二天教他认供桌上的纹路，到了第二"
+      }
+    ],
+    "chapter_002.txt": [
+      {
+        "line": 29,
+        "hit": "半年",
+        "context": "许愿看了一眼那块碎玉。脂粉气重，皮色温润，拿去当铺少说值二两银子。霍东来拿这东西"
+      }
+    ],
+    "chapter_003.txt": [
+      {
+        "line": 29,
+        "hit": "二十年",
+        "context": "他把返出来的铜板攥在掌心，鳞纹微微发烫。老周头那烟杆抽了二十年，铜板过手就走，烟"
+      }
+    ]
+  },
+  "config": {
+    "not_a_is_b_max_per_chapter": 1,
+    "short_para_len": 15,
+    "short_para_ratio_max": 0.45,
+    "short_para_run_max": 6,
+    "simile_max_per_chapter": 6,
+    "simile_max_per_para": 1,
+    "ban_yizhong_feeling": true,
+    "ban_feeling_enum": true,
+    "ban_summary_voice": true,
+    "ranhou_max_per_chapter": 1,
+    "dialogue_ratio_min": 0.25,
+    "dialogue_ratio_max": 0.4,
+    "dash_max_per_1000": 1.0,
+    "ellipsis_max_per_1000": 1.5,
+    "emotion_telling_words": [
+      "不敢",
+      "害怕",
+      "悲伤",
+      "震撼",
+      "激动"
+    ],
+    "four_char_cliches": [
+      "不急不缓",
+      "不紧不慢",
+      "取而代之",
+      "不约而同",
+      "悄无声息"
+    ],
+    "era_wrong_words": [
+      "路灯",
+      "火柴",
+      "同频",
+      "电话",
+      "汽车",
+      "手机"
+    ],
+    "ending_family_window": 4,
+    "ending_family_max_in_window": 2,
+    "opening_channel_max_run": 2,
+    "dup_sentence_min_len": 6
+  }
+}

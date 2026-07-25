@@ -1,0 +1,70 @@
+{
+  "card_type": "unified_review",
+  "chapter": 2,
+  "chapter_title": "十献一返",
+  "review_mode": "unified",
+  "review_basis": "quality-reviewer v1.8 + final-reviewer v1.1 merged (spec v2.0/门禁v3.0)",
+  "timestamp": "2026-07-25T14:00:00+08:00",
+  "merge_phase": {
+    "phase": "Phase 1 (Merge)",
+    "inputs": ["handoff/chapters/merged_review_ch002.json"],
+    "output_text": "output/chapter_002.txt",
+    "applied_changes": [
+      {"source": "merged_review", "loc": "行3-5", "severity": "critical", "action": "Ch1→Ch2衔接硬重置修复：采用方案A同场景延续——'问得好'接Ch1问句，疤脸三人让开、霍东来从中间踱入，门状态/访客首领/问句回收全部闭环"},
+      {"source": "merged_review", "loc": "行19", "severity": "major", "action": "例钱口径统一：'例钱三两二钱，方才我门下弟兄报过数了'，'你门上的弟兄'改'我门下弟兄'"},
+      {"source": "merged_review", "loc": "行59", "severity": "major", "action": "时代错词'装备'改'行头'：'霍家就这点行头？'，语感归位"}
+    ],
+    "merge_summary": "critical 1条+major 2条已闭环；残留minor 6条（行57/81密了一层重复/一成vs两三成参照系/温度沉了下来/几乎没听清+引语/随即·一丝不苟四字/十献一返跨章复述）不拦截，记入chapter_health"
+  },
+  "technical_dimensions": {
+    "attraction": {"score": 9.6, "weight": 0.12, "weighted": 1.152, "detail": "霍东来出场肖像（鞋底不沾泥=从不弄脏手的视觉自白）+打脸三连递进+老灯威压，反预期与社交确认密集；'我不交'两遍平静重复是全章情绪最高点"},
+    "shuang_point": {"score": 9.5, "weight": 0.09, "weighted": 0.855, "detail": "S-：规则反制（吐赝A）→金手指显威（挡棍A，'纹路都歪了'嘴贫加料）→靠山碾压（竖瞳威压S），三连层层升级且每点有设定规则背书"},
+    "rhythm": {"score": 9.5, "weight": 0.075, "weighted": 0.7125, "detail": "对峙→试桌→吐赝→动手→威压→收束，冲突曲线持续上扬无回落；威压段镜头链（火苗弯→影子收→竖瞳睁→光站直）节奏教科书级"},
+    "hook": {"score": 8.6, "weight": 0.075, "weighted": 0.645, "detail": "B+：风里单字'公会。'新名词钩+巷灯渐灭氛围收束，悬疑抓挠感成立；但单字信息量偏少、兑现距离远（公会线ch11归位），是全章唯一低于9的维度——ch4-6须尽早给公会线动作防断头"},
+    "character": {"score": 9.6, "weight": 0.06, "weighted": 0.576, "detail": "霍东来三锚点（圆脸弥勒/不沾泥布鞋/沉香木珠）+笑里藏刀的灰度立住；许愿'语气和头一遍一样，没有高一分，也没有低一分'精确兑现认死理签名"},
+    "plot": {"score": 9.5, "weight": 0.06, "weighted": 0.57, "detail": "碎玉打脸+拒例钱+鳞纹弹棍+竖瞳慑退合并一章，漂移=压缩合并已accept；'老灯认我'F008 planted"},
+    "logic": {"score": 9.3, "weight": 0.06, "weighted": 0.558, "detail": "critical修复后跨章衔接成立；残留minor：'一成利'与'陈家三成/赵家两成'参照系未点明（可圆读为神殿渠道价vs私桌价）、'低到几乎没听清'与后接引语的小张力"},
+    "writing": {"score": 9.5, "weight": 0.06, "weighted": 0.57, "detail": "lint仅1条minor（对话占比40%贴上限）；威压段全程Show无Tell；残留'温度沉了下来'搭配生硬、'随即/一丝不苟/纹丝不动'书面词3处"}
+  },
+  "technical_score": 9.4,
+  "supplementary_dimensions": {
+    "commercial_potential": {"score": 9.5, "weight": 0.12, "weighted": 1.14, "detail": "打脸三连是番茄第二章留存的最强模型之一，反派灰度（灰色知情人而非脸谱恶霸）提升长线商业纵深"},
+    "reader_abandon_risk": {"score": 9.5, "weight": 0.10, "weighted": 0.95, "detail": "风险低：爽点密度全书前三章最高；唯一风险是章末钩偏弱，依赖ch3开头的规则试验留住考据型读者"},
+    "platform_compliance": {"score": 9.8, "weight": 0.08, "weighted": 0.784, "detail": "无敏感内容；冲突止于推搡抡棍未见血，合规"},
+    "cross_chapter_consistency": {"score": 9.6, "weight": 0.10, "weighted": 0.96, "detail": "修复后门状态/问句/例钱数字与Ch1完全连续；鳞纹'被打会生长'新信息与Ch1镇纸实测自洽；'半年前'时间线一致"}
+  },
+  "supplementary_score": 9.59,
+  "unified_score": 9.48,
+  "retention_index": 9.0,
+  "critical_count": 0,
+  "verdict": "approved",
+  "monitoring": {
+    "shuang_type_check": "pass — 打脸三连为实体爽点，威压段有设定背书非空洞碾压",
+    "three_chapter_rolling": "pass — Ch1(A+)—Ch2(S-)窗口内含≥1个S/A",
+    "suspense_throttle": "pass — active=3/3（爷爷下落/例钱冲突/公会人声）",
+    "goal_stall_check": "pass — G001例钱压力ch2推进（拒交+慑退），chapters_since_progress=0；注意ch4-5需交代例钱后续（再上门或转暗手）",
+    "padawan_protection": {"consecutive_padawan": "0", "small_payoff": "有（吐赝+挡棍+威压三连兑现）", "expectation_anchor": "有（公会人声+霍东来债未清）"}
+  },
+  "cross_check": {
+    "dialogue_consistency": "pass — '我不交'两遍口径、霍东来自称'霍某'一致",
+    "terminology_consistency": "pass — 十献一返/纹材例钱/鳞纹与设定源一致",
+    "cross_chapter_continuity": "pass — 修复后与Ch1同场景无缝接力",
+    "foreshadowing_status": "pass — F008'老灯认我'planted（较计划提前3章，±5容忍内）；B2疤脸债first_blood；公会人声planted"
+  },
+  "abandon_risk_assessment": {"risk_level": "low", "risk_points": ["章末钩B+偏弱，'公会'单字兑现远（ch4-6必须给公会线一个动作）", "对话占比40%贴上限，ch3-4注意叙述段回补防风格漂移"]},
+  "reader_profiles": {
+    "retention_index": 9.0,
+    "market_risk": false,
+    "risk_readers": [],
+    "profiles": [
+      {"name": "爽感猎人·阿爽", "追读意愿": 10, "弃书概率": "5%", "verdict": "追读", "feedback": "吐赝+弹棍+竖瞳三连打脸一气呵成，'霍家就这点行头？'爽到拍桌"},
+      {"name": "逻辑警察·老缜", "追读意愿": 9, "弃书概率": "8%", "verdict": "追读", "feedback": "吐赝有'边角修太光/皮色染的/酸咬过'三重鉴伪依据，不是空口打脸"},
+      {"name": "角色粉·小迷", "追读意愿": 9, "弃书概率": "8%", "verdict": "追读", "feedback": "霍东来笑面虎层次好，许愿不卑不亢两遍'我不交'圈粉"},
+      {"name": "氛围党·画师", "追读意愿": 9, "弃书概率": "5%", "verdict": "追读", "feedback": "火苗往桌底弯、影子收成团、竖瞳一睁即灭，威压段全是画面"},
+      {"name": "碎片党·地铁客", "追读意愿": 8, "弃书概率": "15%", "verdict": "追读", "feedback": "对话多节奏快好读；章末'公会'单字有点懵但想往下看"},
+      {"name": "老书虫·毒舌", "追读意愿": 9, "弃书概率": "10%", "verdict": "追读", "feedback": "'鞋底不沾泥，要么是抬轿来的，要么是有人在前头铺了路'——一句肖像三层信息，老辣"}
+    ]
+  },
+  "rework_instructions": {"needed": false, "reason": "", "target_agents": [], "priority_fixes": []},
+  "summary": "统一审核结论：通过。critical=0（v3.0问题清单制门禁达标）。unified_score=9.48（技术9.40×0.6+补充9.59×0.4），追读指数9.0≥8.5。打脸三连+威压段可作全书样章；唯一短板章末钩B+（8.6），技术性预防：ch4-6尽早兑现公会线'想见你'传话。技术分9.40略低于9.5参考线，主因hook单维8.6，按v3.0问题清单制不拦截，列入ch4写作指令。"
+}

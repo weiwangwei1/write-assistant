@@ -1,0 +1,17 @@
+{
+  "novel_title": "有龙则灵",
+  "phase": "chapter_loop",
+  "current_chapter": 4,
+  "completed_chapters": [
+    1,
+    2,
+    3
+  ],
+  "daily_target": 2,
+  "daily_completed": 0,
+  "current_date": "2026-07-25",
+  "rewrite_count": {},
+  "errors": [],
+  "note": "2026-07-25黄金三章烟雨江南文风重写后重建。旧task_plan随旧章删除作废，以session_pointer.json为运行时事实源",
+  "last_updated": "2026-07-25T13:40:00+08:00"
+}

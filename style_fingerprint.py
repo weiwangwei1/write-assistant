@@ -123,8 +123,15 @@ def cmd_check(args):
     bm, tol = base["metrics"], {**DEFAULT_TOLERANCE, **base.get("tolerance", {})}
 
     dims, fails = [], []
+    # 近零基线的相对偏差会失真（如破折号基线0.008/千字，差0.008即报偏差1.0）。
+    # 对 *_per_1000 类指标引入最小量纲：|cur-base|/max(|base|, MIN_SCALE)，
+    # MIN_SCALE=0.2/千字 ≈ 半次出现（按2500字/章计），低于此视为统计噪声。
+    MIN_SCALE = {"dash_per_1000": 0.2, "ellipsis_per_1000": 0.2}
     def dim(name, cur_v, base_v, rel=True):
-        dev = abs(cur_v - base_v) / (abs(base_v) or 1e-9) if rel else abs(cur_v - base_v)
+        if rel:
+            dev = abs(cur_v - base_v) / max(abs(base_v), MIN_SCALE.get(name, 0.0) or 1e-9)
+        else:
+            dev = abs(cur_v - base_v)
         ok = dev <= tol.get(name, 0.35)
         dims.append({"dim": name, "current": cur_v, "baseline": base_v,
                      "deviation": round(dev, 4), "tolerance": tol.get(name), "pass": ok})
