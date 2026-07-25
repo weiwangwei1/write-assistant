@@ -1,56 +1,166 @@
 {
   "card_type": "style_fingerprint_baseline",
-  "status": "provisional",
-  "confidence": "provisional",
-  "note": "样本为研究资料汇编中的经典语录摘录（约2700字），偏长句/诗词，对话占比偏高、日常与战斗段落缺失。仅供趋势参考，正式量产前务必用原作全本重建：python style_fingerprint.py build 神墓.txt 遮天.txt 完美世界.txt 圣墟.txt --author 辰东 --out fingerprint.json",
+  "status": "ready",
+  "confidence": "high",
+  "note": "",
   "metrics": {
     "author": "辰东",
-    "source": "chendong_corpus.txt",
-    "sample_chars": 2686,
-    "sample_sents": 110,
-    "sample_paras": 58,
+    "source": ".trae\\skills\\writer-styles\\chendong\\reference\\原作\\完美世界.txt;.trae\\skills\\writer-styles\\chendong\\reference\\原作\\遮天（精校版）.txt",
+    "sample_chars": 11092421,
+    "sample_sents": 408939,
+    "sample_paras": 347112,
     "func_words_per_1000": {
-      "的": 35.741,
-      "了": 8.191,
-      "在": 5.957,
-      "是": 11.541,
-      "不": 14.52,
-      "他": 5.957,
-      "她": 0.0,
-      "我": 17.498,
-      "你": 5.212,
-      "也": 1.489,
-      "都": 4.095,
-      "就": 2.978,
-      "又": 0.745,
-      "还": 2.234,
-      "与": 4.095,
-      "和": 0.745,
-      "或": 0.0,
-      "着": 3.723,
-      "过": 2.606,
-      "把": 0.0,
-      "被": 0.372,
-      "向": 0.745,
-      "从": 1.489,
-      "但": 1.489,
-      "而": 2.606,
-      "却": 1.489,
-      "只": 2.606,
-      "已": 0.745,
-      "曾": 0.372,
-      "将": 1.862
+      "的": 29.964,
+      "了": 18.943,
+      "在": 10.339,
+      "是": 15.742,
+      "不": 15.029,
+      "他": 11.943,
+      "她": 0.978,
+      "我": 4.22,
+      "你": 3.734,
+      "也": 4.118,
+      "都": 6.601,
+      "就": 3.739,
+      "又": 1.324,
+      "还": 2.989,
+      "与": 2.728,
+      "和": 0.256,
+      "或": 0.2,
+      "着": 3.295,
+      "过": 3.506,
+      "把": 0.229,
+      "被": 2.859,
+      "向": 1.926,
+      "从": 1.054,
+      "但": 2.011,
+      "而": 4.744,
+      "却": 1.474,
+      "只": 2.086,
+      "已": 1.551,
+      "曾": 0.814,
+      "将": 2.652
     },
-    "sent_len_mean": 24.42,
-    "sent_len_stdev": 15.65,
-    "short_sent_ratio": 0.0727,
-    "long_sent_ratio": 0.1273,
-    "para_len_mean": 46.31,
-    "short_para_ratio": 0.1897,
-    "dialogue_ratio": 0.487,
-    "comma_period_ratio": 3.554,
-    "dash_per_1000": 1.117,
-    "ellipsis_per_1000": 3.723
+    "sent_len_mean": 27.12,
+    "sent_len_stdev": 15.48,
+    "short_sent_ratio": 0.1605,
+    "long_sent_ratio": 0.2019,
+    "para_len_mean": 31.96,
+    "short_para_ratio": 0.1729,
+    "dialogue_ratio": 0.3034,
+    "comma_period_ratio": 3.353,
+    "dash_per_1000": 0.074,
+    "ellipsis_per_1000": 0.913,
+    "sensory_dist": {
+      "视觉": 15.737,
+      "听觉": 6.192,
+      "嗅觉": 0.973,
+      "触觉": 3.25,
+      "味觉": 0.587
+    },
+    "metaphor_per_1000": 1.042,
+    "imagery_top20": [
+      {
+        "word": "石昊",
+        "count": 39294,
+        "per_1000": 3.542
+      },
+      {
+        "word": "叶凡",
+        "count": 38027,
+        "per_1000": 3.428
+      },
+      {
+        "word": "没有",
+        "count": 29413,
+        "per_1000": 2.652
+      },
+      {
+        "word": "有人",
+        "count": 17440,
+        "per_1000": 1.572
+      },
+      {
+        "word": "知道",
+        "count": 10507,
+        "per_1000": 0.947
+      },
+      {
+        "word": "因为",
+        "count": 10305,
+        "per_1000": 0.929
+      },
+      {
+        "word": "出现",
+        "count": 9787,
+        "per_1000": 0.882
+      },
+      {
+        "word": "强大",
+        "count": 9637,
+        "per_1000": 0.869
+      },
+      {
+        "word": "说道",
+        "count": 9132,
+        "per_1000": 0.823
+      },
+      {
+        "word": "自己",
+        "count": 8395,
+        "per_1000": 0.757
+      },
+      {
+        "word": "下来",
+        "count": 7682,
+        "per_1000": 0.693
+      },
+      {
+        "word": "生灵",
+        "count": 7531,
+        "per_1000": 0.679
+      },
+      {
+        "word": "金色",
+        "count": 7496,
+        "per_1000": 0.676
+      },
+      {
+        "word": "可怕",
+        "count": 7416,
+        "per_1000": 0.669
+      },
+      {
+        "word": "可能",
+        "count": 7190,
+        "per_1000": 0.648
+      },
+      {
+        "word": "起来",
+        "count": 7171,
+        "per_1000": 0.646
+      },
+      {
+        "word": "时间",
+        "count": 6867,
+        "per_1000": 0.619
+      },
+      {
+        "word": "出来",
+        "count": 6735,
+        "per_1000": 0.607
+      },
+      {
+        "word": "虚空",
+        "count": 6722,
+        "per_1000": 0.606
+      },
+      {
+        "word": "化成",
+        "count": 6619,
+        "per_1000": 0.597
+      }
+    ]
   },
   "tolerance": {
     "func_words_cosine": 0.08,
@@ -63,6 +173,8 @@
     "dialogue_ratio": 0.4,
     "comma_period_ratio": 0.35,
     "dash_per_1000": 0.6,
-    "ellipsis_per_1000": 0.6
+    "ellipsis_per_1000": 0.6,
+    "sensory_cosine": 0.15,
+    "metaphor_per_1000": 0.5
   }
 }

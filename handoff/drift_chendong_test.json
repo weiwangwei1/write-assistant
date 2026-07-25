@@ -1,0 +1,138 @@
+{
+  "card_type": "style_fingerprint_check",
+  "from_agent": "style_fingerprint(script)",
+  "to_agent": "chapter-writer",
+  "status": "fail",
+  "baseline_ref": ".trae\\skills\\writer-styles\\chendong\\fingerprint.json",
+  "baseline_confidence": "high",
+  "failed_dims": [
+    "func_words_cosine",
+    "short_sent_ratio",
+    "dash_per_1000",
+    "ellipsis_per_1000"
+  ],
+  "dims": [
+    {
+      "dim": "func_words_cosine",
+      "current": 0.0807,
+      "baseline": 0.0,
+      "deviation": 0.0807,
+      "tolerance": 0.08,
+      "pass": false
+    },
+    {
+      "dim": "sent_len_mean",
+      "current": 26.41,
+      "baseline": 27.12,
+      "deviation": 0.0262,
+      "tolerance": 0.25,
+      "pass": true
+    },
+    {
+      "dim": "sent_len_stdev",
+      "current": 13.81,
+      "baseline": 15.48,
+      "deviation": 0.1079,
+      "tolerance": 0.35,
+      "pass": true
+    },
+    {
+      "dim": "short_sent_ratio",
+      "current": 0.0816,
+      "baseline": 0.1605,
+      "deviation": 0.4916,
+      "tolerance": 0.35,
+      "pass": false
+    },
+    {
+      "dim": "long_sent_ratio",
+      "current": 0.1327,
+      "baseline": 0.2019,
+      "deviation": 0.3427,
+      "tolerance": 0.5,
+      "pass": true
+    },
+    {
+      "dim": "para_len_mean",
+      "current": 39.82,
+      "baseline": 31.96,
+      "deviation": 0.2459,
+      "tolerance": 0.35,
+      "pass": true
+    },
+    {
+      "dim": "short_para_ratio",
+      "current": 0.1538,
+      "baseline": 0.1729,
+      "deviation": 0.1105,
+      "tolerance": 0.35,
+      "pass": true
+    },
+    {
+      "dim": "dialogue_ratio",
+      "current": 0.3311,
+      "baseline": 0.3034,
+      "deviation": 0.0913,
+      "tolerance": 0.4,
+      "pass": true
+    },
+    {
+      "dim": "comma_period_ratio",
+      "current": 3.091,
+      "baseline": 3.353,
+      "deviation": 0.0781,
+      "tolerance": 0.35,
+      "pass": true
+    },
+    {
+      "dim": "dash_per_1000",
+      "current": 1.159,
+      "baseline": 0.074,
+      "deviation": 5.425,
+      "tolerance": 0.6,
+      "pass": false
+    },
+    {
+      "dim": "ellipsis_per_1000",
+      "current": 3.091,
+      "baseline": 0.913,
+      "deviation": 2.3855,
+      "tolerance": 0.6,
+      "pass": false
+    },
+    {
+      "dim": "sensory_cosine",
+      "current": 0.0094,
+      "baseline": 0.0,
+      "deviation": 0.0094,
+      "tolerance": 0.15,
+      "pass": true
+    },
+    {
+      "dim": "metaphor_per_1000",
+      "current": 1.159,
+      "baseline": 1.042,
+      "deviation": 0.1123,
+      "tolerance": 0.5,
+      "pass": true
+    }
+  ],
+  "advice": [
+    {
+      "dim": "func_words_cosine",
+      "advice": "功能词分布偏差——检查'了/着/的/是'等虚词频率。烟雨江南：了≤25/千字、着≤9/千字、书面连词≥5/千字。改法：把'他点燃了灯。'式的了字收尾改为连词衔接的流动句"
+    },
+    {
+      "dim": "short_sent_ratio",
+      "advice": "短句（≤8字）占比偏高——原作仅8.2%。将碎短句合并为复合长句，短句是稀缺武器一章最多1-2次用于重锤收束"
+    },
+    {
+      "dim": "dash_per_1000",
+      "advice": "破折号过多——烟雨江南几乎不用破折号（0.008/千字）。用逗号/句号替代破折号做插入或转折"
+    },
+    {
+      "dim": "ellipsis_per_1000",
+      "advice": "省略号过多——原作省略号0.646/千字。减少省略号使用，用动作节拍替代"
+    }
+  ]
+}
