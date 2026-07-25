@@ -1,0 +1,187 @@
+{
+  "card_type": "style_fingerprint_check",
+  "from_agent": "style_fingerprint(script)",
+  "to_agent": "chapter-writer",
+  "status": "fail",
+  "baseline_ref": ".trae/skills/writer-styles/wuzei/fingerprint.json",
+  "baseline_confidence": "high",
+  "failed_dims": [
+    "sent_len_mean",
+    "short_sent_ratio",
+    "long_sent_ratio",
+    "para_len_mean",
+    "short_para_ratio",
+    "comma_period_ratio",
+    "metaphor_per_1000",
+    "dialogue_guide_per_1000",
+    "sensory_cosine"
+  ],
+  "dims": [
+    {
+      "dim": "func_words_cosine",
+      "current": 0.0605,
+      "baseline": 0.0,
+      "deviation": 0.0605,
+      "tolerance": 0.08,
+      "pass": true
+    },
+    {
+      "dim": "sent_len_mean",
+      "current": 13.79,
+      "baseline": 31.53,
+      "deviation": 0.5626,
+      "tolerance": 0.31,
+      "pass": false
+    },
+    {
+      "dim": "sent_len_stdev",
+      "current": 11.97,
+      "baseline": 26.35,
+      "deviation": 0.5457,
+      "tolerance": 0.699,
+      "pass": true
+    },
+    {
+      "dim": "short_sent_ratio",
+      "current": 0.4129,
+      "baseline": 0.1409,
+      "deviation": 1.9304,
+      "tolerance": 0.659,
+      "pass": false
+    },
+    {
+      "dim": "long_sent_ratio",
+      "current": 0.0323,
+      "baseline": 0.262,
+      "deviation": 0.8767,
+      "tolerance": 0.747,
+      "pass": false
+    },
+    {
+      "dim": "para_len_mean",
+      "current": 17.38,
+      "baseline": 32.01,
+      "deviation": 0.457,
+      "tolerance": 0.35,
+      "pass": false
+    },
+    {
+      "dim": "short_para_ratio",
+      "current": 0.5366,
+      "baseline": 0.2571,
+      "deviation": 1.0871,
+      "tolerance": 0.416,
+      "pass": false
+    },
+    {
+      "dim": "dialogue_ratio",
+      "current": 0.16,
+      "baseline": 0.264,
+      "deviation": 0.3939,
+      "tolerance": 0.813,
+      "pass": true
+    },
+    {
+      "dim": "comma_period_ratio",
+      "current": 1.212,
+      "baseline": 2.971,
+      "deviation": 0.5921,
+      "tolerance": 0.414,
+      "pass": false
+    },
+    {
+      "dim": "dash_per_1000",
+      "current": 0.0,
+      "baseline": 0.286,
+      "deviation": 1.0,
+      "tolerance": 1.0,
+      "pass": true
+    },
+    {
+      "dim": "ellipsis_per_1000",
+      "current": 6.08,
+      "baseline": 4.088,
+      "deviation": 0.4873,
+      "tolerance": 1.0,
+      "pass": true
+    },
+    {
+      "dim": "metaphor_per_1000",
+      "current": 4.677,
+      "baseline": 1.768,
+      "deviation": 1.6454,
+      "tolerance": 1.0,
+      "pass": false
+    },
+    {
+      "dim": "conjunction_starter_ratio",
+      "current": 0.0163,
+      "baseline": 0.029,
+      "deviation": 0.4379,
+      "tolerance": 1.0,
+      "pass": true
+    },
+    {
+      "dim": "dialogue_guide_per_1000",
+      "current": 0.0,
+      "baseline": 3.008,
+      "deviation": 1.0,
+      "tolerance": 0.896,
+      "pass": false
+    },
+    {
+      "dim": "le_ending_ratio",
+      "current": 0.0129,
+      "baseline": 0.0139,
+      "deviation": 0.05,
+      "tolerance": 1.0,
+      "pass": true
+    },
+    {
+      "dim": "sensory_cosine",
+      "current": 0.2205,
+      "baseline": 0.0,
+      "deviation": 0.2205,
+      "tolerance": 0.15,
+      "pass": false
+    }
+  ],
+  "advice": [
+    {
+      "dim": "sent_len_mean",
+      "advice": "sent_len_mean 偏低——原作基线 31.53，当前 13.79。用逗号串联分句形成流动长句，或拆长句为短句（按偏差方向）。段首优先用连词起段（不过/然而/虽然）"
+    },
+    {
+      "dim": "short_sent_ratio",
+      "advice": "short_sent_ratio 偏高——原作基线 0.1409，当前 0.4129。碎短句合并为复合长句；短句是稀缺武器，只在重音处使用"
+    },
+    {
+      "dim": "long_sent_ratio",
+      "advice": "long_sent_ratio 偏低——原作基线 0.262，当前 0.0323。用书面连词（不过/然而/虽然/而且）串联多个分句形成绵长复合句，或反向拆分（按偏差方向）"
+    },
+    {
+      "dim": "para_len_mean",
+      "advice": "para_len_mean 偏低——原作基线 32.01，当前 17.38。合并碎段或拆分长段（按偏差方向），注意两句段与单句段的配比"
+    },
+    {
+      "dim": "short_para_ratio",
+      "advice": "short_para_ratio 偏高——原作基线 0.2571，当前 0.5366。减少单句段，合并为两句段"
+    },
+    {
+      "dim": "comma_period_ratio",
+      "advice": "comma_period_ratio 偏低——原作基线 2.971，当前 1.212。逗号与句号配比偏差——用逗号串联分句增加流动感，或增加句号断句提升力度（按偏差方向）"
+    },
+    {
+      "dim": "metaphor_per_1000",
+      "advice": "metaphor_per_1000 偏高——原作基线 1.768，当前 4.677。比喻密度偏差——按基线方向增减；喻体优先取自故事世界本身的物质"
+    },
+    {
+      "dim": "dialogue_guide_per_1000",
+      "advice": "dialogue_guide_per_1000 偏低——原作基线 3.008，当前 0.0。引前引导（某某道：）密度偏差——全裸对话与引前引导的配比按基线方向调整"
+    },
+    {
+      "dim": "sensory_cosine",
+      "advice": "sensory_cosine 距离 0.2205（容差 0.15）。感官通道配比偏差——检查视/听/嗅/触/味五通道分布是否贴近基线"
+    }
+  ]
+}
