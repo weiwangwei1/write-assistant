@@ -5,7 +5,7 @@
   "note": "",
   "metrics": {
     "author": "烟雨江南",
-    "source": ".trae/skills/writer-styles/yanyujiangnan/reference/原作_utf8/《罪恶之城》（校对版全本）作者：烟雨江南.txt;.trae/skills/writer-styles/yanyujiangnan/reference/原作_utf8/《狩魔手记》（校对版全本）作者：烟雨江南.txt;.trae/skills/writer-styles/yanyujiangnan/reference/原作_utf8/《永夜君王》（校对版全本）作者：烟雨江南.txt",
+    "source": ".trae/skills/writer-styles/yanyujiangnan/reference/原作_utf8/《永夜君王》（校对版全本）作者：烟雨江南.txt;.trae/skills/writer-styles/yanyujiangnan/reference/原作_utf8/《狩魔手记》（校对版全本）作者：烟雨江南.txt;.trae/skills/writer-styles/yanyujiangnan/reference/原作_utf8/《罪恶之城》（校对版全本）作者：烟雨江南.txt",
     "sample_chars": 10155416,
     "sample_sents": 365613,
     "sample_paras": 177726,
@@ -50,7 +50,117 @@
     "dialogue_ratio": 0.2744,
     "comma_period_ratio": 2.157,
     "dash_per_1000": 0.008,
-    "ellipsis_per_1000": 0.646
+    "ellipsis_per_1000": 0.646,
+    "sensory_dist": {
+      "视觉": 13.289,
+      "听觉": 4.395,
+      "嗅觉": 0.939,
+      "触觉": 2.783,
+      "味觉": 0.702
+    },
+    "metaphor_per_1000": 0.294,
+    "imagery_top20": [
+      {
+        "word": "李察",
+        "count": 40704,
+        "per_1000": 4.008
+      },
+      {
+        "word": "千夜",
+        "count": 39760,
+        "per_1000": 3.915
+      },
+      {
+        "word": "没有",
+        "count": 24881,
+        "per_1000": 2.45
+      },
+      {
+        "word": "自己",
+        "count": 15564,
+        "per_1000": 1.533
+      },
+      {
+        "word": "知道",
+        "count": 12715,
+        "per_1000": 1.252
+      },
+      {
+        "word": "能够",
+        "count": 9603,
+        "per_1000": 0.946
+      },
+      {
+        "word": "战士",
+        "count": 8245,
+        "per_1000": 0.812
+      },
+      {
+        "word": "然后",
+        "count": 8229,
+        "per_1000": 0.81
+      },
+      {
+        "word": "忽然",
+        "count": 7947,
+        "per_1000": 0.783
+      },
+      {
+        "word": "原力",
+        "count": 7945,
+        "per_1000": 0.782
+      },
+      {
+        "word": "身体",
+        "count": 7715,
+        "per_1000": 0.76
+      },
+      {
+        "word": "起来",
+        "count": 7602,
+        "per_1000": 0.749
+      },
+      {
+        "word": "宋子",
+        "count": 7428,
+        "per_1000": 0.731
+      },
+      {
+        "word": "时间",
+        "count": 7406,
+        "per_1000": 0.729
+      },
+      {
+        "word": "子宁",
+        "count": 7375,
+        "per_1000": 0.726
+      },
+      {
+        "word": "如果",
+        "count": 7257,
+        "per_1000": 0.715
+      },
+      {
+        "word": "力量",
+        "count": 7114,
+        "per_1000": 0.701
+      },
+      {
+        "word": "可能",
+        "count": 7094,
+        "per_1000": 0.699
+      },
+      {
+        "word": "出现",
+        "count": 7068,
+        "per_1000": 0.696
+      },
+      {
+        "word": "宋子宁",
+        "count": 7056,
+        "per_1000": 0.695
+      }
+    ]
   },
   "tolerance": {
     "func_words_cosine": 0.08,
@@ -63,6 +173,8 @@
     "dialogue_ratio": 0.4,
     "comma_period_ratio": 0.35,
     "dash_per_1000": 0.6,
-    "ellipsis_per_1000": 0.6
+    "ellipsis_per_1000": 0.6,
+    "sensory_cosine": 0.15,
+    "metaphor_per_1000": 0.5
   }
 }

@@ -57,6 +57,32 @@ DEFAULT_CONFIG = {
     "dup_sentence_min_len": 6,
 }
 
+# P0-2: 规则分层（L0通用反AI红线 / L1作者身份 / L2签名手法 / L3偏好提示）
+# L0=不可豁免不可降级 | L1=必须通过(critical) | L2=渐进达标(不阻断) | L3=仅提示
+RULE_LEVELS = {
+    # L0: 通用反AI红线 — 不可豁免，不可降级
+    "not_a_is_b": "L0", "ban_yizhong": "L0", "ban_feeling_enum": "L0",
+    "ban_summary_voice": "L0", "simile_stacked": "L0", "era_word": "L0",
+    "style_ban_word": "L0",
+    # L1: 作者身份规则 — 定义风格核心特征，必须通过
+    "short_para_ratio": "L1", "short_para_run": "L1", "simile_total": "L1",
+    "dialogue_ratio": "L1",
+    # L2: 签名手法规则 — 渐进达标，不阻断但需关注
+    "dash_overuse": "L2", "ellipsis_overuse": "L2",
+    "le_overuse": "L2", "zhe_overuse": "L2",
+    "conjunction_underuse": "L2", "dialogue_guide_underuse": "L2",
+    # L3: 偏好规则 — 仅提示
+    "name_starter_run": "L3", "ranhou": "L3",
+    "four_char": "L3", "emotion_telling": "L3",
+}
+# 跨章规则分级
+CROSS_RULE_LEVELS = {
+    "ending_family": "L0", "opening_channel": "L1", "dup_sentence": "L3",
+}
+LEVEL_NAMES = {
+    "L0": "通用反AI红线", "L1": "作者身份", "L2": "签名手法", "L3": "偏好提示",
+}
+
 SIMILE_EXCLUDE = ["画像", "雕像", "头像", "像样", "像话", "影像", "想像", "像章"]
 
 ENDING_FAMILIES = {
@@ -100,12 +126,14 @@ def count_similes(text):
         cnt += 1
     return cnt
 
-def lint_chapter(ch, cfg, disabled, custom_bans):
+def lint_chapter(ch, cfg, disabled, custom_bans, rule_levels=None):
     issues = []
+    rl = rule_levels or RULE_LEVELS
     def add(rule, sev, lineno, excerpt, msg):
-        if rule in disabled: return
-        issues.append({"rule": rule, "severity": sev, "chapter": ch.name,
-                       "line": lineno, "excerpt": excerpt[:50], "message": msg})
+        level = rl.get(rule, "L3")
+        if rule in disabled and level != "L0": return  # L0 通用反AI红线不可豁免
+        issues.append({"rule": rule, "severity": sev, "level": level,
+                       "chapter": ch.name, "line": lineno, "excerpt": excerpt[:50], "message": msg})
 
     if "not_a_is_b" not in disabled:
         hits = []
@@ -236,11 +264,13 @@ def opening_channel(ch):
         if rx.search(head): return chn
     return "动作/其他"
 
-def cross_chapter(chapters, cfg, disabled):
+def cross_chapter(chapters, cfg, disabled, rule_levels=None):
     issues = []
+    rl = rule_levels or CROSS_RULE_LEVELS
     def add(rule, sev, chapter, excerpt, msg):
-        if rule in disabled: return
-        issues.append({"rule": rule, "severity": sev, "chapter": chapter,
+        level = rl.get(rule, "L3")
+        if rule in disabled and level != "L0": return
+        issues.append({"rule": rule, "severity": sev, "level": level, "chapter": chapter,
                        "line": 0, "excerpt": excerpt[:40], "message": msg})
     fams = [ending_family(c) for c in chapters]
     w, mx = cfg["ending_family_window"], cfg["ending_family_max_in_window"]
@@ -286,6 +316,8 @@ def main():
     if args.config and os.path.exists(args.config):
         cfg.update(json.load(open(args.config, encoding="utf-8")))
     disabled, custom_bans, style_note = set(), [], ""
+    rule_levels = dict(RULE_LEVELS)
+    cross_rule_levels = dict(CROSS_RULE_LEVELS)
     if args.style:
         ov_path = os.path.join(args.styles_root, args.style, "lint_overlay.json")
         if not os.path.exists(ov_path):
@@ -294,6 +326,8 @@ def main():
         cfg.update(ov.get("overrides", {}))
         disabled = set(ov.get("disabled_rules", []))
         custom_bans = ov.get("custom_ban_words", [])
+        rule_levels.update(ov.get("rule_level_overrides", {}))
+        cross_rule_levels.update(ov.get("cross_rule_level_overrides", {}))
         style_note = f"（风格包：{args.style}，豁免 {sorted(disabled)}）"
 
     files = []
@@ -308,23 +342,38 @@ def main():
 
     all_issues, time_report = [], {}
     for ch in chapters:
-        iss, th = lint_chapter(ch, cfg, disabled, custom_bans)
+        iss, th = lint_chapter(ch, cfg, disabled, custom_bans, rule_levels)
         all_issues += iss
         if th: time_report[ch.name] = th
     if len(chapters) > 1:
-        all_issues += cross_chapter(chapters, cfg, disabled)
+        all_issues += cross_chapter(chapters, cfg, disabled, cross_rule_levels)
 
-    crit = [i for i in all_issues if i["severity"] == "critical"]
-    minor = [i for i in all_issues if i["severity"] == "minor"]
-    status = "fail" if crit else "pass"
+    # P0-2: 退出码只看 L0+L1 的 critical（L2/L3 不阻断流水线）
+    blocking = [i for i in all_issues if i.get("level") in ("L0", "L1") and i["severity"] == "critical"]
+    non_blocking = [i for i in all_issues if i not in blocking]
+    status = "fail" if blocking else "pass"
 
-    print(f"\n{'='*56}\n文风 lint 结果：{status.upper()}{style_note}  （critical {len(crit)} / minor {len(minor)}）\n{'='*56}")
-    for rule, n in sorted(Counter(i["rule"] for i in all_issues).items(), key=lambda x: -x[1]):
-        print(f"  {rule:20s} × {n}")
+    # 按 level 分组统计
+    by_level = {}
+    for i in all_issues:
+        lv = i.get("level", "L3")
+        by_level.setdefault(lv, []).append(i)
+
+    print(f"\n{'='*56}\n文风 lint 结果：{status.upper()}{style_note}")
+    print(f"  阻断项（L0+L1 critical）：{len(blocking)}  |  非阻断项：{len(non_blocking)}\n{'='*56}")
+    for lv in ["L0", "L1", "L2", "L3"]:
+        items = by_level.get(lv, [])
+        if not items: continue
+        crit_n = sum(1 for i in items if i["severity"] == "critical")
+        minor_n = sum(1 for i in items if i["severity"] == "minor")
+        print(f"\n  [{lv} {LEVEL_NAMES[lv]}] critical {crit_n} / minor {minor_n}")
+        for rule, n in sorted(Counter(i["rule"] for i in items).items(), key=lambda x: -x[1]):
+            print(f"    {rule:22s} × {n}")
     print()
     for i in all_issues[:80]:
         loc = f"{i['chapter']}:L{i['line']}" if i['line'] else i['chapter']
-        print(f"[{i['severity']:8s}] {i['rule']:18s} {loc}  {i['message']}  {i['excerpt']}")
+        lv = i.get("level", "L3")
+        print(f"[{lv} {i['severity']:8s}] {i['rule']:18s} {loc}  {i['message']}  {i['excerpt']}")
     if time_report:
         print(f"\n{'-'*56}\n时间线线索（请与设定圣经逐条比对）：")
         for cname, hits in time_report.items():
@@ -333,11 +382,11 @@ def main():
     if args.json:
         card = {"card_type": "style_lint", "from_agent": "style_lint(script)",
                 "to_agent": "chapter-writer", "status": status, "style_pack": args.style,
-                "critical_count": len(crit), "minor_count": len(minor),
+                "blocking_count": len(blocking), "non_blocking_count": len(non_blocking),
                 "issues": all_issues, "timeline_clues": time_report, "config": cfg}
         json.dump(card, open(args.json, "w", encoding="utf-8"), ensure_ascii=False, indent=2)
         print(f"\n交接卡已写入：{args.json}")
-    sys.exit(1 if crit else 0)
+    sys.exit(1 if blocking else 0)
 
 if __name__ == "__main__":
     main()

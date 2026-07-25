@@ -1,0 +1,99 @@
+{
+  "card_type": "style_fingerprint_check",
+  "from_agent": "style_fingerprint(script)",
+  "to_agent": "chapter-writer",
+  "status": "pass",
+  "baseline_ref": ".trae/skills/writer-styles/jiangnan/fingerprint.json",
+  "baseline_confidence": "high",
+  "failed_dims": [],
+  "dims": [
+    {
+      "dim": "func_words_cosine",
+      "current": 0.0522,
+      "baseline": 0.0,
+      "deviation": 0.0522,
+      "tolerance": 0.08,
+      "pass": true
+    },
+    {
+      "dim": "sent_len_mean",
+      "current": 23.26,
+      "baseline": 26.08,
+      "deviation": 0.1081,
+      "tolerance": 0.25,
+      "pass": true
+    },
+    {
+      "dim": "sent_len_stdev",
+      "current": 15.28,
+      "baseline": 19.78,
+      "deviation": 0.2275,
+      "tolerance": 0.35,
+      "pass": true
+    },
+    {
+      "dim": "short_sent_ratio",
+      "current": 0.2411,
+      "baseline": 0.1921,
+      "deviation": 0.2551,
+      "tolerance": 0.35,
+      "pass": true
+    },
+    {
+      "dim": "long_sent_ratio",
+      "current": 0.1161,
+      "baseline": 0.1959,
+      "deviation": 0.4074,
+      "tolerance": 0.5,
+      "pass": true
+    },
+    {
+      "dim": "para_len_mean",
+      "current": 53.16,
+      "baseline": 56.72,
+      "deviation": 0.0628,
+      "tolerance": 0.35,
+      "pass": true
+    },
+    {
+      "dim": "short_para_ratio",
+      "current": 0.1429,
+      "baseline": 0.1718,
+      "deviation": 0.1682,
+      "tolerance": 0.35,
+      "pass": true
+    },
+    {
+      "dim": "dialogue_ratio",
+      "current": 0.4031,
+      "baseline": 0.5342,
+      "deviation": 0.2454,
+      "tolerance": 0.4,
+      "pass": true
+    },
+    {
+      "dim": "comma_period_ratio",
+      "current": 2.21,
+      "baseline": 2.134,
+      "deviation": 0.0356,
+      "tolerance": 0.35,
+      "pass": true
+    },
+    {
+      "dim": "dash_per_1000",
+      "current": 0.384,
+      "baseline": 0.251,
+      "deviation": 0.5299,
+      "tolerance": 0.6,
+      "pass": true
+    },
+    {
+      "dim": "ellipsis_per_1000",
+      "current": 1.919,
+      "baseline": 2.093,
+      "deviation": 0.0831,
+      "tolerance": 0.6,
+      "pass": true
+    }
+  ]
+}

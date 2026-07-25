@@ -50,7 +50,117 @@
     "dialogue_ratio": 0.6559,
     "comma_period_ratio": 1.916,
     "dash_per_1000": 4.802,
-    "ellipsis_per_1000": 8.368
+    "ellipsis_per_1000": 8.368,
+    "sensory_dist": {
+      "视觉": 13.789,
+      "听觉": 8.954,
+      "嗅觉": 0.554,
+      "触觉": 2.702,
+      "味觉": 0.879
+    },
+    "metaphor_per_1000": 0.033,
+    "imagery_top20": [
+      {
+        "word": "悟空",
+        "count": 447,
+        "per_1000": 7.277
+      },
+      {
+        "word": "孙悟",
+        "count": 425,
+        "per_1000": 6.919
+      },
+      {
+        "word": "孙悟空",
+        "count": 425,
+        "per_1000": 6.919
+      },
+      {
+        "word": "哈哈",
+        "count": 194,
+        "per_1000": 3.158
+      },
+      {
+        "word": "没有",
+        "count": 163,
+        "per_1000": 2.654
+      },
+      {
+        "word": "自己",
+        "count": 122,
+        "per_1000": 1.986
+      },
+      {
+        "word": "哈哈哈",
+        "count": 116,
+        "per_1000": 1.888
+      },
+      {
+        "word": "知道",
+        "count": 113,
+        "per_1000": 1.84
+      },
+      {
+        "word": "紫霞",
+        "count": 107,
+        "per_1000": 1.742
+      },
+      {
+        "word": "猴子",
+        "count": 103,
+        "per_1000": 1.677
+      },
+      {
+        "word": "起来",
+        "count": 94,
+        "per_1000": 1.53
+      },
+      {
+        "word": "八戒",
+        "count": 80,
+        "per_1000": 1.302
+      },
+      {
+        "word": "猪八",
+        "count": 79,
+        "per_1000": 1.286
+      },
+      {
+        "word": "猪八戒",
+        "count": 78,
+        "per_1000": 1.27
+      },
+      {
+        "word": "看见",
+        "count": 73,
+        "per_1000": 1.188
+      },
+      {
+        "word": "声音",
+        "count": 71,
+        "per_1000": 1.156
+      },
+      {
+        "word": "小白",
+        "count": 71,
+        "per_1000": 1.156
+      },
+      {
+        "word": "出来",
+        "count": 70,
+        "per_1000": 1.14
+      },
+      {
+        "word": "老孙",
+        "count": 70,
+        "per_1000": 1.14
+      },
+      {
+        "word": "白龙",
+        "count": 70,
+        "per_1000": 1.14
+      }
+    ]
   },
   "tolerance": {
     "func_words_cosine": 0.08,
@@ -63,6 +173,8 @@
     "dialogue_ratio": 0.4,
     "comma_period_ratio": 0.35,
     "dash_per_1000": 0.6,
-    "ellipsis_per_1000": 0.6
+    "ellipsis_per_1000": 0.6,
+    "sensory_cosine": 0.15,
+    "metaphor_per_1000": 0.5
   }
 }

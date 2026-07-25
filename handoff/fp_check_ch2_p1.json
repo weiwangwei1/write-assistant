@@ -1,0 +1,123 @@
+{
+  "card_type": "style_fingerprint_check",
+  "from_agent": "style_fingerprint(script)",
+  "to_agent": "chapter-writer",
+  "status": "fail",
+  "baseline_ref": ".trae/skills/writer-styles/yanyujiangnan/fingerprint.json",
+  "baseline_confidence": "high",
+  "failed_dims": [
+    "func_words_cosine",
+    "sent_len_mean",
+    "short_sent_ratio",
+    "long_sent_ratio",
+    "dialogue_ratio",
+    "ellipsis_per_1000",
+    "metaphor_per_1000"
+  ],
+  "dims": [
+    {
+      "dim": "func_words_cosine",
+      "current": 0.1564,
+      "baseline": 0.0,
+      "deviation": 0.1564,
+      "tolerance": 0.08,
+      "pass": false
+    },
+    {
+      "dim": "sent_len_mean",
+      "current": 20.42,
+      "baseline": 27.78,
+      "deviation": 0.2649,
+      "tolerance": 0.25,
+      "pass": false
+    },
+    {
+      "dim": "sent_len_stdev",
+      "current": 11.6,
+      "baseline": 15.26,
+      "deviation": 0.2398,
+      "tolerance": 0.35,
+      "pass": true
+    },
+    {
+      "dim": "short_sent_ratio",
+      "current": 0.1402,
+      "baseline": 0.0821,
+      "deviation": 0.7077,
+      "tolerance": 0.35,
+      "pass": false
+    },
+    {
+      "dim": "long_sent_ratio",
+      "current": 0.0374,
+      "baseline": 0.183,
+      "deviation": 0.7956,
+      "tolerance": 0.5,
+      "pass": false
+    },
+    {
+      "dim": "para_len_mean",
+      "current": 48.56,
+      "baseline": 57.14,
+      "deviation": 0.1502,
+      "tolerance": 0.35,
+      "pass": true
+    },
+    {
+      "dim": "short_para_ratio",
+      "current": 0.0889,
+      "baseline": 0.1103,
+      "deviation": 0.194,
+      "tolerance": 0.35,
+      "pass": true
+    },
+    {
+      "dim": "dialogue_ratio",
+      "current": 0.4009,
+      "baseline": 0.2744,
+      "deviation": 0.461,
+      "tolerance": 0.4,
+      "pass": false
+    },
+    {
+      "dim": "comma_period_ratio",
+      "current": 2.247,
+      "baseline": 2.157,
+      "deviation": 0.0417,
+      "tolerance": 0.35,
+      "pass": true
+    },
+    {
+      "dim": "dash_per_1000",
+      "current": 0.0,
+      "baseline": 0.008,
+      "deviation": 0.04,
+      "tolerance": 0.6,
+      "pass": true
+    },
+    {
+      "dim": "ellipsis_per_1000",
+      "current": 0.0,
+      "baseline": 0.646,
+      "deviation": 1.0,
+      "tolerance": 0.6,
+      "pass": false
+    },
+    {
+      "dim": "sensory_cosine",
+      "current": 0.0311,
+      "baseline": 0.0,
+      "deviation": 0.0311,
+      "tolerance": 0.15,
+      "pass": true
+    },
+    {
+      "dim": "metaphor_per_1000",
+      "current": 0.915,
+      "baseline": 0.294,
+      "deviation": 2.1122,
+      "tolerance": 0.5,
+      "pass": false
+    }
+  ]
+}

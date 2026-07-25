@@ -1,0 +1,58 @@
+{
+  "card_type": "style_lint",
+  "from_agent": "style_lint(script)",
+  "to_agent": "chapter-writer",
+  "status": "pass",
+  "style_pack": "yanyujiangnan",
+  "critical_count": 0,
+  "minor_count": 0,
+  "issues": [],
+  "timeline_clues": {},
+  "config": {
+    "not_a_is_b_max_per_chapter": 1,
+    "short_para_len": 15,
+    "short_para_ratio_max": 0.45,
+    "short_para_run_max": 6,
+    "simile_max_per_chapter": 6,
+    "simile_max_per_para": 1,
+    "ban_yizhong_feeling": true,
+    "ban_feeling_enum": true,
+    "ban_summary_voice": true,
+    "ranhou_max_per_chapter": 1,
+    "dialogue_ratio_min": 0.25,
+    "dialogue_ratio_max": 0.4,
+    "dash_max_per_1000": 1.0,
+    "ellipsis_max_per_1000": 1.5,
+    "le_max_per_1000": 25.0,
+    "zhe_max_per_1000": 9.0,
+    "conjunction_min_per_1000": 5.0,
+    "dialogue_guide_min_per_1000": 1.5,
+    "name_starter_run_max": 4,
+    "emotion_telling_words": [
+      "不敢",
+      "害怕",
+      "悲伤",
+      "震撼",
+      "激动"
+    ],
+    "four_char_cliches": [
+      "不急不缓",
+      "不紧不慢",
+      "取而代之",
+      "不约而同",
+      "悄无声息"
+    ],
+    "era_wrong_words": [
+      "路灯",
+      "火柴",
+      "同频",
+      "电话",
+      "汽车",
+      "手机"
+    ],
+    "ending_family_window": 4,
+    "ending_family_max_in_window": 2,
+    "opening_channel_max_run": 2,
+    "dup_sentence_min_len": 6
+  }
+}
