@@ -1,0 +1,74 @@
+{
+  "card_type": "title_review",
+  "timestamp": "2026-07-26T16:30:00+08:00",
+  "from_agent": "title-reviewer",
+  "to_agent": "plot-architect",
+  "status": "passed",
+  "review_target": "v2.0 书名《献祭纪元：赊刀人》（主标题）+《我的老龙太抠门》（平台副标题）+ 04_outline.json v2.0 synopsis 字段",
+  "supersedes": "newbook/05_title_review.json（v1.x《献祭万界：我的老龙太抠门》，已标 superseded）",
+  "candidates": [
+    {
+      "title": "献祭纪元：赊刀人（主）+ 我的老龙太抠门（副）",
+      "scores": {
+        "distinctiveness": 9.0,
+        "relevance": 9.0,
+        "intrigue": 8.5,
+        "memorability": 8.5,
+        "shareability": 8.0,
+        "market_fit": 9.0
+      },
+      "total_score": 8.7,
+      "verdict": "通过",
+      "strengths": [
+        "「赊刀人」三合一记忆点：①民俗原型（民间'赊刀人'传说，预言刀价、赊而不卖）自带文化钩子与神秘感，精准命中用户'民俗典故+故事感'偏好；②职业流标签，番茄职业文读者一眼识货；③与'构装师'彻底切割，同赛道无重名",
+        "「献祭纪元」vs v1 的「献祭万界」：纪元=时间维度+轮回悬念（为什么一个时代叫献祭？），比空间向的'万界'多一层暗线承载，且'纪元税'核心设定直接埋进书名——书名即暗线",
+        "主副标题分工清晰：主标题立格局与职业（留存），副标题「我的老龙太抠门」立人设与喜剧钩子（点击）——v1 评审验证过的'名字调侃内容严谨'策略完整保留",
+        "规避全部用户红线：无俗套动物名、无西幻翻译腔、民俗底色浓"
+      ],
+      "weaknesses": [
+        "「赊」(shē)字低频，约两成读者首次可能迟疑读音——但民俗赊刀人传说在短视频平台有存量认知，风险可控",
+        "主标题偏正剧腔，单看点击率弱于副标题——必须确保番茄展示位主副标题同出，或副标题前置",
+        "「献祭」敏感词风险与 v1 相同（低），fanqie-adapter 阶段过敏感词库，必要时展示名以副标题为主"
+      ],
+      "suggestions": "通过，不改。执行建议：①平台后台书名填「献祭纪元：赊刀人」，简介区第一行放副标题钩子「我的老龙太抠门」；②封面文案用「万界都是债务人」承接首句。"
+    }
+  ],
+  "ranking": ["献祭纪元：赊刀人（主）+ 我的老龙太抠门（副）"],
+  "recommended": "献祭纪元：赊刀人（主）+ 我的老龙太抠门（副）",
+  "overall_assessment": "总分 8.7，无维度≤4，通过。v2.0 改名是一次净升级：辨识度持平（赊刀人=民俗钩子替换抠门的部分点击功能）、悬念感与暗线承载上升（纪元>万界）、匹配度上升（赊刀人 Ch1 即兑现，构装师 v1 要到 Ch3 才立住）。副标题原样保留 v1 验证过的点击引擎。",
+  "synopsis_review": {
+    "target": "04_outline.json v2.0 synopsis 字段（整段式简介）",
+    "first_line_score": 7.0,
+    "promise_fulfillment_score": 8.5,
+    "suspense_score": 9.0,
+    "tag_accuracy_score": 5.0,
+    "style_consistency_score": 9.0,
+    "total_score": 7.7,
+    "verdict": "通过（两处微调建议）",
+    "issues": [
+      {
+        "dimension": "first_line",
+        "severity": "medium",
+        "description": "首句「万界都是债务人，每个纪元末都有人上门收账。」19 字，未触 20 字红线但超过 15 字最佳区，书城推荐位可能截断",
+        "suggestion": "压缩为「万界都是债务人。」（7字）独立成句，后半句并入第二行——更短更冷，悬念反而更强"
+      },
+      {
+        "dimension": "tag_accuracy",
+        "severity": "high",
+        "description": "synopsis 未附标签，按红线 tag_accuracy 封顶 5 分",
+        "suggestion": "补标签：玄幻 / 献祭流 / 职业流（赊刀人）/ 轻松搞笑 / 位面 / 金手指伙伴 / 升级流——覆盖类型+元素+风格三层"
+      },
+      {
+        "dimension": "promise_fulfillment",
+        "severity": "low",
+        "description": "末段'老龙收下的每一件祭品都在替这个将死的世界付账'触及卷四才揭的垫税暗线——以悬念句式呈现不构成剧透，但属提前量边缘",
+        "suggestion": "保留（它是简介最强钩子），但正文执行红线不变：卷四前只能侧写，不得借任何角色之口点破（03_worldview.md 写作红线已锁定）"
+      }
+    ],
+    "strengths": [
+      "悬念收尾「这笔账我算不清，所以我不算了。龙老头，收货。」：具体人声+具体动作+未解之谜（什么账？什么货？），9 分级别末句",
+      "简介文风=正文文风（maibao 轻快口语+账房黑话'成色''收货''记账'），读者无缝过渡",
+      "承诺链条完整：封门天才（Ch1 兑现）→截胡开市（Ch1-2）→旧物活当（Ch5 起）→人龙相声（每章）→层升到万界之巅——没有空头支票"
+    ]
+  }
+}
