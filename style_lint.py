@@ -41,6 +41,9 @@ DEFAULT_CONFIG = {
     # 四、对话占比（H9）
     "dialogue_ratio_min": 0.35,
     "dialogue_ratio_max": 0.60,
+    # 四d、篇幅硬检（v2.4新增；0=不启用。书籍级标准经 --config 注入，如 newbook2/lint_config.json）
+    "chapter_len_min": 0,
+    "chapter_len_max": 0,
     # 四b、标点指纹（风格包可覆盖；默认宽松，风格包按原作指纹收紧）
     "dash_max_per_1000": 20.0,        # 破折号"——"每千字上限
     "ellipsis_max_per_1000": 5.0,     # 省略号"……"每千字上限
@@ -76,7 +79,7 @@ RULE_LEVELS = {
     "style_ban_word": "L0",
     # L1: 作者身份规则 — 定义风格核心特征，v2.3 起顾问制（critical 报告但不再阻断，审核员逐条回应）
     "short_para_ratio": "L1", "short_para_run": "L1", "simile_total": "L1",
-    "dialogue_ratio": "L1",
+    "dialogue_ratio": "L1", "chapter_length": "L1",
     # L2: 签名手法规则 — 渐进达标，不阻断但需关注
     "dash_overuse": "L2", "ellipsis_overuse": "L2",
     "le_overuse": "L2", "zhe_overuse": "L2",
@@ -264,6 +267,13 @@ def lint_chapter(ch, cfg, disabled, custom_bans, rule_levels=None):
 
     # 标点指纹（破折号/省略号频率，风格包按原作指纹收紧）
     total_chars = max(1, sum(han_len(p) for p in ch.paras))
+    # v2.4: 篇幅硬检（L1 advisory，提交前必须清零；初稿写长，宁删勿补）
+    if cfg.get("chapter_len_min", 0) > 0 and total_chars < cfg["chapter_len_min"]:
+        add("chapter_length", "critical", 0, "",
+            f"篇幅{total_chars}字 < 下限{cfg['chapter_len_min']}字——初稿写长，宁删勿补，扩场景/加冲突，不凑字")
+    if cfg.get("chapter_len_max", 0) > 0 and total_chars > cfg["chapter_len_max"]:
+        add("chapter_length", "critical", 0, "",
+            f"篇幅{total_chars}字 > 上限{cfg['chapter_len_max']}字")
     dash_cnt = ch.text.count("——") + ch.text.count("—")
     dash_per_1k = round(dash_cnt / total_chars * 1000, 3)
     if dash_per_1k > cfg["dash_max_per_1000"]:

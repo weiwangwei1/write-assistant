@@ -137,6 +137,8 @@
   "synopsis_tags": ["玄幻", "职业流（铸纹师）", "热血", "位面征战", "匠人逆袭", "无系统", "设定流"],
   "production_notes": {
     "chapter_length": "2600-3200字/章（2026-07-26 用户调整，原2200-2600）",
+    "review_pipeline": "每章入库必须：①style_lint --style chendong --config newbook2/lint_config.json 单章 exit 0 且 chapter_length advisory 清零 ②跨章 exit 0 ③style_fingerprint.py check PASS ④独立 quality_review 评审卡 critical 清零（未参与写作的 Agent/子代理评审）。lint+指纹仅为提交前置，不构成入库（2026-07-26 框架修正，漏评教训）",
+    "writing_principle": "宁删勿补：初稿写长，修订只删不补；写短后先扩场景/加冲突/补伏笔达标再送检，禁止凑字硬补",
     "tone": "热血+悬念为主，幽默靠人物性格自然产生（石头/老铁匠/后期老龙的毒舌），不刻意正剧也不刻意搞笑；黄金三章战斗开场，设定全靠'演'不靠'讲'",
     "dialogue_ratio_target": "15-30%（chendong基线17.9%，叙述驱动；对峙场景允许上浮）",
     "emotion_release_rule": "每章≥1个爽点/燃点/温情释放点；压抑场景3章内释放",

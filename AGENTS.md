@@ -88,11 +88,13 @@ write-assistant/
 - **Agent 间通信**：**交接卡（handoff card）**——JSON 文件，含 `card_type`/`from_agent`/`to_agent`/`status`/`content` 字段。正文永远用 `draft_ref` 引用文件路径，不内嵌 JSON。
 - **Auto-Runner 模式**：定时触发的无人值守执行。每次触发读取 `state.json` → 执行 `task_config.json` 中的步骤 → 每步完成立即同步 state（State 同步协议 v2.1）→ 满足退出条件即退。支持并行组（最多 5 个并行 Agent）与流水线模式（Ch(N) 审核与 Ch(N+1) 写作并行）。会话启动时执行 State 恢复（验证 output_files 存在性）与 context 缓存检查。
 - **质量门禁（按执行顺序）**：
-  1. `style_lint.py` 退出码 0（chapter-writer 提交前置条件；v2.3 起仅 L0 通用反AI红线阻断，L1 降为顾问项由 detail-reviewer 逐条回应）；若经历 lint 修复轮次，`fix_auditor.py` 生成修复差异证据卡（只产证据不判定）；
+  1. `style_lint.py` 退出码 0（chapter-writer 提交前置条件；v2.3 起仅 L0 通用反AI红线阻断，L1 降为顾问项由 detail-reviewer 逐条回应）；含 **篇幅硬检**（v2.4 `chapter_length` 规则，书籍级标准经 `--config` 注入，如 `newbook2/lint_config.json`，advisory 提交前必须清零；原则：**宁删勿补**——初稿写长，修订只删不补）；若经历 lint 修复轮次，`fix_auditor.py` 生成修复差异证据卡（只产证据不判定）；
   2. detail-reviewer 微观打磨 + de-ai-processor 去 AI 化（可并行）；
   3. unified_review 统一审核：v3.0 起为**问题清单制**——critical 清零即通过，分数（`unified_score = technical×0.6 + supplementary×0.4`）仅作参考，不再以 ≥9.5 为门禁；
   4. `style_fingerprint.py check`（挂载风格包且基线非 pending 时）；
   5. 质量门禁 3 次未通过则停止执行并记录 `stop_reason`。
+
+  **评审不可跳过（v2.4 新增）**：lint + 指纹双门禁只是**提交前置**，不构成入库。正式入库的每章必须有独立 quality_review 评审卡（由未参与写作的 Agent/子代理按 quality-reviewer rubric 产出，critical 清零）。《万纹师》黄金三章曾因走"轻量流程"漏掉评审，被用户追问后补评并查出 4 个 major——此为本条的数据教训。
 
 ## 四、常用命令
 
@@ -153,3 +155,5 @@ powershell -ExecutionPolicy Bypass -File auto-runner/generate_task_config.ps1 # 
 ## 九、当前进度快照
 
 以 `memory/session_pointer.json` 为准（开局必读）：截至最近更新，《有龙则灵》处于 chapter_loop 阶段，卷一，已完成 14 章，下一章为第 15 章。注意 `novel_config.json`（total_chapters=330、outline_version=v4.1）与 session_pointer（total_chapters=300、outline_version=v4.3 定稿）存在口径差异——**session_pointer 为运行时事实源，config 为立项配置**；涉及总数/版本判断时以 session_pointer 为准并可向用户确认。
+
+**其他项目状态**：《献祭纪元：赊刀人》已放弃归档（`archive/newbook_献祭纪元_放弃_20260726/`）；《万纹师》为当前在产新书（`newbook2/`，天赋流铸纹师、无系统金手指、热血+悬念、chendong 文风包，420 章 6 卷大纲，9 张角色卡，黄金三章已入库且经 quality_review 复评修复），篇幅标准 2600-3200 字/章（lint 命令须带 `--config newbook2/lint_config.json`），下一章为第 4 章（糖葫芦单元 2：修复断纹罗盘）。

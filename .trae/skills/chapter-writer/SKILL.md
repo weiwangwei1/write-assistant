@@ -27,7 +27,7 @@ description: "章节写手 v3.1（瘦身版）。负责按大纲与分镜生成�
 
 | # | 约束 | 校验方式 |
 |---|------|---------|
-| H1 | **篇幅**：2800–3500 字/章；前 10 章 2500–3000 字 | 脚本数字数 |
+| H1 | **篇幅**：以本书 production_notes 为准（有龙则灵 2800-3500；万纹师 2600-3200）。**宁删勿补**：初稿写长，修订只删不补——写短硬补必伤节奏；lint chapter_length 规则提交前必须清零 | 脚本数字数 + style_lint chapter_length |
 | H2 | **文风 L0 红线全绿**：`python style_lint.py 本章文件 --json handoff/style_lint_ch{N}.json` 退出码 0 = L0 通用反AI红线清零（"不是A—是B"≤2/章；一段一喻；"一种+感觉类"/感觉编号/总结式心声/时代错词 0 容忍）。v3.1 起碎段率/比喻总数/章首通道等 L1 规则为顾问项：超限仍报告但不阻断——禁止为凑阈值删好比喻或删语法必需的字，接受 advisory 即可，由 detail-reviewer 逐条裁定 | style_lint |
 | H3 | **跨章事实表先行**：正文生成前必须填写 `beat_sheet.cross_chapter_facts`——本章全部专名、全部数字与年代（**显式写出验算过程**，如"庚午→庚午=60年"）、角色/物品位置状态、已知信息清单（前文已揭示的信息只能引用，不得重新发现）、**角色确定性状态**（每个视点角色对本章关键信息的确定程度：first_encounter=首次遭遇用推测语气"像是/似乎/倒像是"/partial=部分了解/full=已确证可用"就是/分明是"） | 交接卡字段存在性 + detail-reviewer 抽验 |
 | H4 | **单章密度上限**：beat≤6；新命名概念≤2；新出场角色≤1；伏笔动作≤3；大爽点≤1。任一超限在分镜阶段拆章，不得侥幸提交 | 交接卡 beat_sheet 字段计数 |
@@ -45,11 +45,12 @@ description: "章节写手 v3.1（瘦身版）。负责按大纲与分镜生成�
 
 ```
 1. 写 beat sheet（含 cross_chapter_facts / shuang_type / suspense_budget_check）
-2. 写正文
-3. python style_lint.py 本章 --json handoff/style_lint_ch{N}.json
-4. 退出码≠0 → **先存修复前快照 handoff/pre_lint_ch{N}.txt** → 自修 → 回到 3
-5. 若经历过修复轮次：python fix_auditor.py handoff/pre_lint_ch{N}.txt 本章文件 --json handoff/fix_audit_ch{N}.json（只产证据，不判定）
-6. 退出码=0 → 填交接卡（附 style_lint 卡 + fix_audit 卡路径）→ 提交
+2. 写正文（初稿写长，宁删勿补）
+3. **先数字数**：低于下限先扩写（扩场景/加冲突/补伏笔，不凑字），达标后才送检
+4. python style_lint.py 本章 --json handoff/style_lint_ch{N}.json（带本书 --config 篇幅配置）
+5. 退出码≠0 → **先存修复前快照 handoff/pre_lint_ch{N}.txt** → 自修 → 回到 4
+6. 若经历过修复轮次：python fix_auditor.py handoff/pre_lint_ch{N}.txt 本章文件 --json handoff/fix_audit_ch{N}.json（只产证据，不判定）
+7. 退出码=0 且 chapter_length advisory 清零 → 填交接卡（附 style_lint 卡 + fix_audit 卡路径）→ 提交
 ```
 
 ## 五、倾向库（非强制，供参考）
