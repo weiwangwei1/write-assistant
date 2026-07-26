@@ -3,7 +3,8 @@
   "timestamp": "2026-07-26T13:05:00+08:00",
   "from_agent": "title-reviewer",
   "to_agent": "chief-editor",
-  "status": "passed",
+  "status": "superseded",
+  "v2_note": "本卡为 v1.x 书名《献祭万界：我的老龙太抠门》的评审记录。v2.0（七大调整）起书名已改为《献祭纪元：赊刀人》（主标题）+《我的老龙太抠门》（平台网感副标题），见 01_concept_style.md v2.0 与 04_outline.json v2.0。新书名沿用本卡评审逻辑：「太抠门」点击钩子保留为副标题，主标题置换为「献祭纪元」（纪元税格局+差异化）与「赊刀人」（职业记忆点，替代「献祭万界」的泛化表述）；敏感词风险项不变，fanqie-adapter 阶段仍以副标题为主展示。新书名待 title-reviewer 正式复评，本卡暂作历史参照保留。",
   "content": {
     "title": "献祭万界：我的老龙太抠门",
     "title_scores": {

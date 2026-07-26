@@ -3,7 +3,8 @@
   "timestamp": "2026-07-26T13:40:00+08:00",
   "from_agent": "outline-editor",
   "to_agent": "chief-editor",
-  "status": "passed",
+  "status": "superseded_by_v2",
+  "v2_note": "本卡为 v1.x 大纲评审（330章/6卷、构装语境）。v2.0 大纲已扩为 520章/8卷（04_outline.json v2.0），评分维度结论（商业性/结构）在七大调整中整体加强：天才开局、灰度群像、Ch400对账局等均为新增资产。新大纲待 outline-editor 正式复评，本卡作历史参照。",
   "content": {
     "overall_verdict": "通过",
     "commercial_score": 9.6,

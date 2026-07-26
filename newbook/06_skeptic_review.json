@@ -3,7 +3,8 @@
   "timestamp": "2026-07-26T13:20:00+08:00",
   "from_agent": "skeptic",
   "to_agent": "plot-architect",
-  "status": "passed_after_iteration",
+  "status": "superseded_by_v2",
+  "v2_note": "本卡为 v1.x 五轮质疑记录（构装/祀典司/废材开局语境）。v2.0 后相关 FIX 已在新体系重述：收割法理'自愿'原则、账房行为逻辑、挂刀图谱第七节缺陷等均保留于 03_worldview.md v2.0；开局从'深夜补破构装'改为'月末大祭断契刀被收缴'（04_outline.json v2.0 opening_three_questions）。质疑方法论可复用，具体设定表述以 v2.0 文件为准。",
   "total_rounds": 5,
   "rounds": [
     {
