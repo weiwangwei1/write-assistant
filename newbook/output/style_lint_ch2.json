@@ -1,0 +1,185 @@
+{
+  "card_type": "style_lint",
+  "from_agent": "style_lint(script)",
+  "to_agent": "chapter-writer",
+  "status": "pass",
+  "style_pack": "maibao",
+  "blocking_count": 0,
+  "advisory_count": 1,
+  "non_blocking_count": 7,
+  "issues": [
+    {
+      "rule": "short_para_ratio",
+      "severity": "critical",
+      "level": "L1",
+      "chapter": "chapter_002.txt",
+      "line": 0,
+      "excerpt": "",
+      "message": "碎段占比56%（55/99）> 上限45%"
+    },
+    {
+      "rule": "ellipsis_overuse",
+      "severity": "minor",
+      "level": "L2",
+      "chapter": "chapter_002.txt",
+      "line": 0,
+      "excerpt": "",
+      "message": "省略号1.87/千字 > 上限1.5"
+    },
+    {
+      "rule": "le_overuse",
+      "severity": "minor",
+      "level": "L2",
+      "chapter": "chapter_002.txt",
+      "line": 0,
+      "excerpt": "",
+      "message": "“了”28.05/千字 > 上限20.0（参考指标——重点看 le_pattern 是否为 AI 腔模式）"
+    },
+    {
+      "rule": "le_pattern",
+      "severity": "minor",
+      "level": "L2",
+      "chapter": "chapter_002.txt",
+      "line": 7,
+      "excerpt": "\"醒了",
+      "message": "短句以“了”收尾（共10处 > 上限3）——AI腔特征：建议用连词衔接为长句，而非删除语法必需的“了”"
+    },
+    {
+      "rule": "le_pattern",
+      "severity": "minor",
+      "level": "L2",
+      "chapter": "chapter_002.txt",
+      "line": 14,
+      "excerpt": "梁上盘着的已经不是一片鳞了",
+      "message": "短句以“了”收尾（共10处 > 上限3）——AI腔特征：建议用连词衔接为长句，而非删除语法必需的“了”"
+    },
+    {
+      "rule": "le_pattern",
+      "severity": "minor",
+      "level": "L2",
+      "chapter": "chapter_002.txt",
+      "line": 24,
+      "excerpt": "陈砚把怀里摸遍了",
+      "message": "短句以“了”收尾（共10处 > 上限3）——AI腔特征：建议用连词衔接为长句，而非删除语法必需的“了”"
+    },
+    {
+      "rule": "le_pattern",
+      "severity": "minor",
+      "level": "L2",
+      "chapter": "chapter_002.txt",
+      "line": 33,
+      "excerpt": "\"半文，什么都换不了",
+      "message": "短句以“了”收尾（共10处 > 上限3）——AI腔特征：建议用连词衔接为长句，而非删除语法必需的“了”"
+    },
+    {
+      "rule": "le_pattern",
+      "severity": "minor",
+      "level": "L2",
+      "chapter": "chapter_002.txt",
+      "line": 44,
+      "excerpt": "\"小龙道，\"柜上旧藏，赠你了",
+      "message": "短句以“了”收尾（共10处 > 上限3）——AI腔特征：建议用连词衔接为长句，而非删除语法必需的“了”"
+    }
+  ],
+  "timeline_clues": {},
+  "config": {
+    "not_a_is_b_max_per_chapter": 2,
+    "short_para_len": 15,
+    "short_para_ratio_max": 0.45,
+    "short_para_run_max": 6,
+    "simile_max_per_chapter": 8,
+    "simile_max_per_para": 1,
+    "ban_yizhong_feeling": true,
+    "ban_feeling_enum": true,
+    "ban_summary_voice": true,
+    "ranhou_max_per_chapter": 1,
+    "dialogue_ratio_min": 0.3,
+    "dialogue_ratio_max": 0.5,
+    "dash_max_per_1000": 1.0,
+    "ellipsis_max_per_1000": 1.5,
+    "le_max_per_1000": 20.0,
+    "zhe_max_per_1000": 9.0,
+    "conjunction_min_per_1000": 0.0,
+    "dialogue_guide_min_per_1000": 0.0,
+    "name_starter_run_max": 6,
+    "emotion_telling_words": [
+      "不敢",
+      "害怕",
+      "悲伤",
+      "震撼",
+      "激动"
+    ],
+    "four_char_cliches": [
+      "不急不缓",
+      "不紧不慢",
+      "取而代之",
+      "不约而同",
+      "悄无声息"
+    ],
+    "era_wrong_words": [
+      "路灯",
+      "火柴",
+      "同频",
+      "电话",
+      "汽车",
+      "手机"
+    ],
+    "tell_marker_words": [
+      "习惯性地",
+      "不由得",
+      "下意识地",
+      "情不自禁",
+      "自然而然地",
+      "本能地",
+      "条件反射般",
+      "潜意识里"
+    ],
+    "cliche_vehicles": [
+      "山",
+      "风",
+      "火",
+      "水",
+      "刀",
+      "剑",
+      "雷",
+      "电",
+      "铁",
+      "石",
+      "雾",
+      "冰",
+      "蛇",
+      "虎",
+      "龙",
+      "潮",
+      "浪",
+      "云",
+      "雨",
+      "雪"
+    ],
+    "short_le_ending_max": 3,
+    "narrative_dialogue_max": 2,
+    "certain_markers": [
+      "就是",
+      "分明是",
+      "肯定是",
+      "无疑是",
+      "确实是"
+    ],
+    "ending_family_window": 4,
+    "ending_family_max_in_window": 2,
+    "opening_channel_max_run": 2,
+    "dup_sentence_min_len": 6
+  },
+  "advisory": [
+    {
+      "rule": "short_para_ratio",
+      "severity": "critical",
+      "level": "L1",
+      "chapter": "chapter_002.txt",
+      "line": 0,
+      "excerpt": "",
+      "message": "碎段占比56%（55/99）> 上限45%"
+    }
+  ],
+  "overrides": []
+}
