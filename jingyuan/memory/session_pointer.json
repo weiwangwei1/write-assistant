@@ -1,8 +1,8 @@
 {
   "card_type": "session_pointer",
-  "last_updated": "2026-07-28T12:00:00+08:00",
+  "last_updated": "2026-07-28T20:00:00+08:00",
   "last_updated_chapter": 3,
-  "framework_version": "v3.2.1（叙事引擎校准：style_card v2.3十条重构+H7章尾类型滚动去重）",
+  "framework_version": "v3.2.2（第三方反馈修复：旁白替爽检测+打脸即时反馈+金手指成长暗示+narrative_dialogue_max 2→1）",
   "project_status": {
     "novel_title": "镜渊",
     "outline_version": "v1.2",
@@ -15,7 +15,7 @@
     "style_pack": "yanyujiangnan（v2.3：6条文风手艺+4条叙事引擎）",
     "chapter_word_count": "2400-2800",
     "golden_three_word_count_max": 2600,
-    "phase_note": "黄金三章v2（框架v3.2.1新标准重写完成）。Ch1(~2350字/动作型结尾)Ch2(~2380字/悬念型结尾)Ch3(~2440字/动作型结尾)。三章全部style_lint L0清零EXIT=0。新框架叙事引擎改动：①信息在对抗中释放(养父教纹路→林深vs孙鉴对峙中揭示)②赌注具象化(赵四喂镜失败前例)③章末翻页(Ch3取消空悬念改写为林深推门问老铁匠)④主角在选(林深手痒动机/主动选择喂镜/主动推门)。下一步：质量评审(detail-reviewer+quality-reviewer)然后Ch4开写。"
+    "phase_note": "黄金三章v2.1（第三方反馈修复完成）。Ch1(~2380字/动作型结尾/加围观反应)Ch2(~2344字/悬念型结尾)Ch3(~2500字/动作型结尾/删旁白替爽+金手指暗示)。三章全部style_lint L0清零EXIT=0。第三方反馈修复：①Ch1打脸后加猎镜手低笑围观反应(即时反馈放大爽感)②Ch3删除两处'石头递眼神说林哥不简单'(旁白替爽anti-pattern)③Ch3加金手指成长暗示(铜框放大镜发热/纹路清晰一层后退/暗示能力成长)④框架新增：SKILL.md 5.3节加旁白替爽禁止/打脸即时反馈/金手指成长暗示三条规则；style_lint.py narrative_dialogue_max 2→1。下一步：质量评审然后Ch4开写。"
   },
   "h7_ending_type_tracking": {
     "description": "v3.2.1新增：章尾类型滚动去重。连续2章不得重复，连续3章内氛围型≤1",
@@ -79,7 +79,8 @@
     "2026-07-27 outline-editor round3总分9.0 verdict=pass",
     "2026-07-28 黄金三章v1完成(旧框架，已由v2替代)",
     "2026-07-28 ★框架升级v3.2.1：style_card v2.3十条重构(6条文风+4条叙事引擎)+chapter-writer H7章尾类型滚动去重+master_instruction v3.2.1变更记录。起因：《镜渊》黄金三章vs《罪恶之城》原文叙事引擎对比诊断——prose过关但叙事引擎偏向'感受驱动'。",
-    "2026-07-28 ★黄金三章v2重写完成：Ch1-3按新标准全量重写。三章style_lint L0全清零EXIT=0。叙事引擎改动：信息在对抗中释放/赌注具象化(赵四前例)/章末翻页(Ch3推门改写)/主角在选(手痒动机)。H7章尾类型：Ch1=动作/Ch2=悬念/Ch3=动作。"
+    "2026-07-28 ★黄金三章v2重写完成：Ch1-3按新标准全量重写。三章style_lint L0全清零EXIT=0。叙事引擎改动：信息在对抗中释放/赌注具象化(赵四前例)/章末翻页(Ch3推门改写)/主角在选(手痒动机)。H7章尾类型：Ch1=动作/Ch2=悬念/Ch3=动作。",
+    "2026-07-28 ★框架v3.2.2+黄金三章v2.1第三方反馈修复：起点7/10番茄6/10反馈。章节修复：Ch1加猎镜手低笑围观反应(打脸即时反馈)/Ch3删两处'石头递眼神说林哥不简单'(旁白替爽)/Ch3加铜框放大镜发热金手指暗示。框架修复：SKILL.md 5.3节新增三条规则(旁白替爽禁止/打脸即时反馈/金手指成长暗示前10章每3-4章1处)/style_lint.py narrative_dialogue_max 2→1。"
   ],
   "open_decisions": [
     "黄金三章v2是否需要quality_review评审后再进入Ch4(建议走评审流程确保新框架产出质量)"

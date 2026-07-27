@@ -1,0 +1,401 @@
+{
+  "card_type": "style_lint",
+  "from_agent": "style_lint(script)",
+  "to_agent": "chapter-writer",
+  "status": "pass",
+  "style_pack": "yanyujiangnan",
+  "blocking_count": 0,
+  "advisory_count": 2,
+  "non_blocking_count": 23,
+  "issues": [
+    {
+      "rule": "dialogue_ratio",
+      "severity": "minor",
+      "level": "L1",
+      "chapter": "Ch001_哑镜.md",
+      "line": 0,
+      "excerpt": "",
+      "message": "对话占比20% < 下限25%"
+    },
+    {
+      "rule": "chapter_length",
+      "severity": "critical",
+      "level": "L1",
+      "chapter": "Ch001_哑镜.md",
+      "line": 0,
+      "excerpt": "",
+      "message": "篇幅2298字 < 下限2400字——初稿写长，宁删勿补，扩场景/加冲突，不凑字"
+    },
+    {
+      "rule": "dash_overuse",
+      "severity": "critical",
+      "level": "L2",
+      "chapter": "Ch001_哑镜.md",
+      "line": 0,
+      "excerpt": "",
+      "message": "破折号3.916/千字 > 上限1.0"
+    },
+    {
+      "rule": "zhe_overuse",
+      "severity": "minor",
+      "level": "L2",
+      "chapter": "Ch001_哑镜.md",
+      "line": 0,
+      "excerpt": "",
+      "message": "“着”10.88/千字 > 上限9.0"
+    },
+    {
+      "rule": "conjunction_underuse",
+      "severity": "minor",
+      "level": "L2",
+      "chapter": "Ch001_哑镜.md",
+      "line": 0,
+      "excerpt": "",
+      "message": "书面连词(而/却/但/已/将/与/不过/可是)2.61/千字 < 下限5.0（连词是长句黏合剂，缺失则句句短促）"
+    },
+    {
+      "rule": "dialogue_guide_underuse",
+      "severity": "minor",
+      "level": "L2",
+      "chapter": "Ch001_哑镜.md",
+      "line": 0,
+      "excerpt": "",
+      "message": "对话引前引导(某某道：)0.0/千字 < 下限1.5（全裸对话不符合该风格引导习惯，需穿插引前引导）"
+    },
+    {
+      "rule": "tell_exposition",
+      "severity": "minor",
+      "level": "L2",
+      "chapter": "Ch001_哑镜.md",
+      "line": 51,
+      "excerpt": "意味着",
+      "message": "旁白式设定解释'意味着'——建议通过角色行为/对话/感官自然释放设定信息"
+    },
+    {
+      "rule": "tell_exposition",
+      "severity": "minor",
+      "level": "L2",
+      "chapter": "Ch001_哑镜.md",
+      "line": 51,
+      "excerpt": "意味着",
+      "message": "旁白式设定解释'意味着'——建议通过角色行为/对话/感官自然释放设定信息"
+    },
+    {
+      "rule": "dialogue_ratio",
+      "severity": "minor",
+      "level": "L1",
+      "chapter": "Ch002_一击穿核.md",
+      "line": 0,
+      "excerpt": "",
+      "message": "对话占比15% < 下限25%"
+    },
+    {
+      "rule": "chapter_length",
+      "severity": "critical",
+      "level": "L1",
+      "chapter": "Ch002_一击穿核.md",
+      "line": 0,
+      "excerpt": "",
+      "message": "篇幅2344字 < 下限2400字——初稿写长，宁删勿补，扩场景/加冲突，不凑字"
+    },
+    {
+      "rule": "le_pattern",
+      "severity": "minor",
+      "level": "L2",
+      "chapter": "Ch002_一击穿核.md",
+      "line": 11,
+      "excerpt": "快熄了",
+      "message": "短句以“了”收尾（共9处 > 上限3）——AI腔特征：建议用连词衔接为长句，而非删除语法必需的“了”"
+    },
+    {
+      "rule": "le_pattern",
+      "severity": "minor",
+      "level": "L2",
+      "chapter": "Ch002_一击穿核.md",
+      "line": 13,
+      "excerpt": "昨晚问过的问题不再问了",
+      "message": "短句以“了”收尾（共9处 > 上限3）——AI腔特征：建议用连词衔接为长句，而非删除语法必需的“了”"
+    },
+    {
+      "rule": "le_pattern",
+      "severity": "minor",
+      "level": "L2",
+      "chapter": "Ch002_一击穿核.md",
+      "line": 33,
+      "excerpt": "赤蝎队十七口人，听这一声便够了",
+      "message": "短句以“了”收尾（共9处 > 上限3）——AI腔特征：建议用连词衔接为长句，而非删除语法必需的“了”"
+    },
+    {
+      "rule": "le_pattern",
+      "severity": "minor",
+      "level": "L2",
+      "chapter": "Ch002_一击穿核.md",
+      "line": 55,
+      "excerpt": "镜片光晕耗尽了最后一缕光，熄了",
+      "message": "短句以“了”收尾（共9处 > 上限3）——AI腔特征：建议用连词衔接为长句，而非删除语法必需的“了”"
+    },
+    {
+      "rule": "le_pattern",
+      "severity": "minor",
+      "level": "L2",
+      "chapter": "Ch002_一击穿核.md",
+      "line": 57,
+      "excerpt": "十年不碰镜，第一次碰，就打穿了",
+      "message": "短句以“了”收尾（共9处 > 上限3）——AI腔特征：建议用连词衔接为长句，而非删除语法必需的“了”"
+    },
+    {
+      "rule": "conjunction_underuse",
+      "severity": "minor",
+      "level": "L2",
+      "chapter": "Ch002_一击穿核.md",
+      "line": 0,
+      "excerpt": "",
+      "message": "书面连词(而/却/但/已/将/与/不过/可是)2.99/千字 < 下限5.0（连词是长句黏合剂，缺失则句句短促）"
+    },
+    {
+      "rule": "dialogue_guide_underuse",
+      "severity": "minor",
+      "level": "L2",
+      "chapter": "Ch002_一击穿核.md",
+      "line": 0,
+      "excerpt": "",
+      "message": "对话引前引导(某某道：)0.85/千字 < 下限1.5（全裸对话不符合该风格引导习惯，需穿插引前引导）"
+    },
+    {
+      "rule": "dash_overuse",
+      "severity": "critical",
+      "level": "L2",
+      "chapter": "Ch003_古镜入水.md",
+      "line": 0,
+      "excerpt": "",
+      "message": "破折号2.489/千字 > 上限1.0"
+    },
+    {
+      "rule": "le_pattern",
+      "severity": "minor",
+      "level": "L2",
+      "chapter": "Ch003_古镜入水.md",
+      "line": 29,
+      "excerpt": "他怕的，是有一天老铁匠挡不动了",
+      "message": "短句以“了”收尾（共7处 > 上限3）——AI腔特征：建议用连词衔接为长句，而非删除语法必需的“了”"
+    },
+    {
+      "rule": "le_pattern",
+      "severity": "minor",
+      "level": "L2",
+      "chapter": "Ch003_古镜入水.md",
+      "line": 47,
+      "excerpt": "钱锈的山核桃停了",
+      "message": "短句以“了”收尾（共7处 > 上限3）——AI腔特征：建议用连词衔接为长句，而非删除语法必需的“了”"
+    },
+    {
+      "rule": "le_pattern",
+      "severity": "minor",
+      "level": "L2",
+      "chapter": "Ch003_古镜入水.md",
+      "line": 47,
+      "excerpt": "掌柜的核桃停转，说明账算不下去了",
+      "message": "短句以“了”收尾（共7处 > 上限3）——AI腔特征：建议用连词衔接为长句，而非删除语法必需的“了”"
+    },
+    {
+      "rule": "le_pattern",
+      "severity": "minor",
+      "level": "L2",
+      "chapter": "Ch003_古镜入水.md",
+      "line": 81,
+      "excerpt": "锈街几十年没见过兽潮了",
+      "message": "短句以“了”收尾（共7处 > 上限3）——AI腔特征：建议用连词衔接为长句，而非删除语法必需的“了”"
+    },
+    {
+      "rule": "le_pattern",
+      "severity": "minor",
+      "level": "L2",
+      "chapter": "Ch003_古镜入水.md",
+      "line": 87,
+      "excerpt": "炉火已经熄了",
+      "message": "短句以“了”收尾（共7处 > 上限3）——AI腔特征：建议用连词衔接为长句，而非删除语法必需的“了”"
+    },
+    {
+      "rule": "dialogue_guide_underuse",
+      "severity": "minor",
+      "level": "L2",
+      "chapter": "Ch003_古镜入水.md",
+      "line": 0,
+      "excerpt": "",
+      "message": "对话引前引导(某某道：)0.0/千字 < 下限1.5（全裸对话不符合该风格引导习惯，需穿插引前引导）"
+    },
+    {
+      "rule": "recurring_phrase",
+      "severity": "minor",
+      "level": "L1",
+      "chapter": "Ch001_哑镜.md/Ch003_古镜入水.md",
+      "line": 0,
+      "excerpt": "张了张嘴",
+      "message": "跨章重复短语'张了张嘴'在2章中出现3次 > 上限2"
+    }
+  ],
+  "timeline_clues": {
+    "Ch001_哑镜.md": [
+      {
+        "line": 37,
+        "hit": "三十年",
+        "context": "孙鉴的脸涨红了，眼镜片上的镜粉被油灯照得发白。他看了三十年图谱，今天被一个打杂学"
+      },
+      {
+        "line": 45,
+        "hit": "半年",
+        "context": "他见过喂镜失败的人。三年前锈街东头的赵四，喂镜时手抖了半寸，镜片炸裂，碎片扎进眼"
+      },
+      {
+        "line": 61,
+        "hit": "三十年",
+        "context": "林深把镜硅粉撒在镜片纹路上。手稳如在描纹，指腹在纹路上滑过，确认每道沟壑都填满。"
+      },
+      {
+        "line": 63,
+        "hit": "三十年",
+        "context": "镜片在他手里发烫，纹路的走向开始泛光。是饿纹，不是死的。三十年没人喂过，饿到沉睡"
+      }
+    ],
+    "Ch003_古镜入水.md": [
+      {
+        "line": 53,
+        "hit": "三十年",
+        "context": "孙鉴答不上来。围观的锈街人里有倒抽凉气的声音，有人低声说我操，有人拿胳膊肘捅旁边"
+      },
+      {
+        "line": 63,
+        "hit": "三十年",
+        "context": "\"古镜给你。祖训说待有缘人。我看了三十年，没第二个人。\""
+      }
+    ]
+  },
+  "config": {
+    "not_a_is_b_max_per_chapter": 1,
+    "short_para_len": 15,
+    "short_para_ratio_max": 0.45,
+    "short_para_run_max": 6,
+    "simile_max_per_chapter": 6,
+    "simile_max_per_para": 1,
+    "ban_yizhong_feeling": true,
+    "ban_feeling_enum": true,
+    "ban_summary_voice": true,
+    "ranhou_max_per_chapter": 1,
+    "dialogue_ratio_min": 0.25,
+    "dialogue_ratio_max": 0.4,
+    "chapter_len_min": 2400,
+    "chapter_len_max": 2800,
+    "dash_max_per_1000": 1.0,
+    "ellipsis_max_per_1000": 1.5,
+    "le_max_per_1000": 25.0,
+    "zhe_max_per_1000": 9.0,
+    "conjunction_min_per_1000": 5.0,
+    "dialogue_guide_min_per_1000": 1.5,
+    "name_starter_run_max": 4,
+    "emotion_telling_words": [
+      "不敢",
+      "害怕",
+      "悲伤",
+      "震撼",
+      "激动"
+    ],
+    "four_char_cliches": [
+      "不急不缓",
+      "不紧不慢",
+      "取而代之",
+      "不约而同",
+      "悄无声息"
+    ],
+    "era_wrong_words": [
+      "路灯",
+      "火柴",
+      "同频",
+      "电话",
+      "汽车",
+      "手机"
+    ],
+    "tell_marker_words": [
+      "习惯性地",
+      "不由得",
+      "下意识地",
+      "情不自禁",
+      "自然而然地",
+      "本能地",
+      "条件反射般",
+      "潜意识里"
+    ],
+    "cliche_vehicles": [
+      "山",
+      "风",
+      "火",
+      "水",
+      "刀",
+      "剑",
+      "雷",
+      "电",
+      "铁",
+      "石",
+      "雾",
+      "冰",
+      "蛇",
+      "虎",
+      "龙",
+      "潮",
+      "浪",
+      "云",
+      "雨",
+      "雪"
+    ],
+    "short_le_ending_max": 3,
+    "narrative_dialogue_max": 2,
+    "certain_markers": [
+      "就是",
+      "分明是",
+      "肯定是",
+      "无疑是",
+      "确实是"
+    ],
+    "ending_family_window": 4,
+    "ending_family_max_in_window": 2,
+    "opening_channel_max_run": 2,
+    "dup_sentence_min_len": 6,
+    "recurring_phrase_min_len": 8,
+    "recurring_phrase_max_across": 2,
+    "signature_line_max_per_5ch": 2,
+    "tell_exposition_patterns": [
+      "是.{2,10}的命脉",
+      "是.{2,10}的命根",
+      "意味着",
+      "对于.{1,8}来说.{2,15}就是",
+      "换句话说",
+      "也就是说"
+    ],
+    "golden_three_chapter_len_max": 2600,
+    "golden_three_beat_max": 4,
+    "golden_three_major_beat_max": 3,
+    "regular_beat_max": 5,
+    "regular_major_beat_max": 3,
+    "note": "v1.3调整：新增 beat 上限配置（v3.2框架升级F5）；黄金三章beat≤4(major≤3)，常规章beat≤5(major≤3)；原2600-3200偏长已下调以适配番茄碎片阅读；黄金三章严格控制在2600字以内确保新读者完读率"
+  },
+  "advisory": [
+    {
+      "rule": "chapter_length",
+      "severity": "critical",
+      "level": "L1",
+      "chapter": "Ch001_哑镜.md",
+      "line": 0,
+      "excerpt": "",
+      "message": "篇幅2298字 < 下限2400字——初稿写长，宁删勿补，扩场景/加冲突，不凑字"
+    },
+    {
+      "rule": "chapter_length",
+      "severity": "critical",
+      "level": "L1",
+      "chapter": "Ch002_一击穿核.md",
+      "line": 0,
+      "excerpt": "",
+      "message": "篇幅2344字 < 下限2400字——初稿写长，宁删勿补，扩场景/加冲突，不凑字"
+    }
+  ],
+  "overrides": []
+}

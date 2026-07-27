@@ -61,7 +61,7 @@ DEFAULT_CONFIG = {
     "tell_marker_words": ["习惯性地", "不由得", "下意识地", "情不自禁", "自然而然地", "本能地", "条件反射般", "潜意识里"],
     "cliche_vehicles": ["山", "风", "火", "水", "刀", "剑", "雷", "电", "铁", "石", "雾", "冰", "蛇", "虎", "龙", "潮", "浪", "云", "雨", "雪"],
     "short_le_ending_max": 3,       # 短句(≤15字)以"了"收尾的上限（AI腔特征）
-    "narrative_dialogue_max": 2,    # 叙述化对话(无引号的X问Y说模式)上限
+    "narrative_dialogue_max": 1,    # 叙述化对话(无引号的X问Y说模式)上限，从2降至1——旁白替爽检测
     "certain_markers": ["就是", "分明是", "肯定是", "无疑是", "确实是"],
     # 六、跨章规则（仅目录模式）
     "ending_family_window": 4,
@@ -274,9 +274,9 @@ def lint_chapter(ch, cfg, disabled, custom_bans, rule_levels=None):
                 narrative_dia_cnt += 1
                 add("narrative_dialogue", "minor", ln, s[:50],
                     f"叙述化对话（{pronoun_verbs}处代词+对话动词）——面对面场景建议用直接对话格式保留现场感")
-    if narrative_dia_cnt > cfg.get("narrative_dialogue_max", 2):
+    if narrative_dia_cnt > cfg.get("narrative_dialogue_max", 1):
         add("narrative_dialogue", "minor", 0, "",
-            f"叙述化对话{narrative_dia_cnt}处 > 上限{cfg.get('narrative_dialogue_max', 2)}——大量对话被转成摘要")
+            f"叙述化对话{narrative_dia_cnt}处 > 上限{cfg.get('narrative_dialogue_max', 1)}——大量对话被转成摘要")
 
     # 标点指纹（破折号/省略号频率，风格包按原作指纹收紧）
     total_chars = max(1, sum(han_len(p) for p in ch.paras))
