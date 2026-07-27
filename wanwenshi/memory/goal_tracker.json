@@ -1,0 +1,28 @@
+{
+  "card_type": "goal_tracker",
+  "last_updated": "2026-07-27",
+  "active_goals": [
+    {"id": "G1", "description": "通过学徒考核拿到纹籍（草根vs纹籍制度）", "established_chapter": 1, "status": "active", "note": "卷一中期Ch7兑现"},
+    {"id": "G2", "description": "修好断纹罗盘（糖葫芦单元2，Ch4-6喂纹/相性/引纹三关）", "established_chapter": 3, "status": "active", "note": "Ch3末雷横托付罗盘，Ch4开写喂纹难关"},
+    {"id": "G3", "description": "守住铁匠铺和父亲的旧锤", "established_chapter": 1, "status": "active", "note": "贯穿卷一"},
+    {"id": "G4", "description": "弄明白纹为什么'饿'（纹学探索）", "established_chapter": 1, "status": "active", "note": "Ch1喂纹后盘着的核心问题"},
+    {"id": "G5", "description": "三日公断期限内自保（行会郡城大师将至）", "established_chapter": 3, "status": "active", "note": "短期目标，Ch3起算第1天夜→Ch4第2天"},
+    {"id": "G6", "description": "进绝地找父亲——生要见人，死要见尸", "established_chapter": 3, "status": "active", "note": "罗盘指向与父亲失踪方向一致，远期目标Ch60兑现"}
+  ],
+  "closed_goals": [],
+  "suspense_window": [
+    {"id": "S1", "description": "三日公断：行会郡城大师到镇断弩断路，沈拓三天内须自保", "status": "active", "planted_chapter": 3, "note": "近程悬念，Ch3末起算，Ch4为第2天"},
+    {"id": "S2", "description": "罗盘指向绝地深处：指针自转指西南，与父亲失踪方向一致，罗盘是什么", "status": "active", "planted_chapter": 3, "note": "中程悬念，Ch4-6修复线收拢"},
+    {"id": "S3", "description": "父亲下落：旧锤纹与弩机核心纹同一只手，爹到底碰过什么", "status": "active", "planted_chapter": 2, "note": "远程悬念，卷二Ch88父亲刻记推进"},
+    {"id": "S4", "description": "黑纹核/蚀纹：狼王骨上烧不化的黑纹是什么，孙师傅为何失态", "status": "active", "planted_chapter": 2, "note": "远程悬念，暗线露头不解释"},
+    {"id": "S5", "description": "黑纹兽成群聚集：绝地深处黑纹兽向边缘聚集，兽潮前兆", "status": "active", "planted_chapter": 3, "note": "远程悬念，伏Ch55兽潮夜袭"},
+    {"id": "S6", "description": "老铁匠'当年'：师父头回提当年，行会这道坎他当年没过去", "status": "active", "planted_chapter": 3, "note": "轻量悬念，师父暗线"}
+  ],
+  "suspense_window_count_note": "quality_review提到约5条悬念超≤3指导线，黄金三章蓄钩期可容忍，Ch4-6须按unit2规划收拢到罗盘修复主线",
+  "villain_ladder": {
+    "minion": {"role": "孙师傅（行会外聘铸纹师）", "status": "active", "last_chapter": 3, "note": "Ch1-3连续被打脸的掉书袋"},
+    "minor_boss": {"role": "钱掌柜（百炼阁断纹镇分号掌柜）", "status": "active", "last_chapter": 3, "note": "规矩武器化的笑面虎，卷一压迫感执行人"},
+    "hidden": {"role": "拜纹教（暗线，未点名）", "status": "not_started", "note": "前60章禁区，卷二起以驱赶蚀纹者形态不点名出场"},
+    "ultimate": {"role": "初代教主（以纹逆天派后裔）+蚀纹之源", "status": "not_started", "note": "卷四-六终局对手"}
+  }
+}

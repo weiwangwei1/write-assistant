@@ -8,8 +8,8 @@
   "total_chapters": 420,
   "volumes": 6,
   "style_pack": "chendong（热血正剧主基调；若嫌四字堆叠过重，备选 wuzei）",
-  "worldview_ref": "newbook2/03_worldview.md v1.0（唯一事实源）",
-  "terminology_ref": "newbook2/00_terminology.md（铸纹师/纹/蚀纹/衔纹龙族）",
+  "worldview_ref": "wanwenshi/03_worldview.md v1.0（唯一事实源）",
+  "terminology_ref": "wanwenshi/00_terminology.md（铸纹师/纹/蚀纹/衔纹龙族）",
   "golden_finger_policy": "无系统金手指。主角=纯匠师天赋（稳手+过目不忘+空间逻辑），力量全部来自手艺/材料/规则领悟。老龙=遗迹交易方，限量出场，只给知识不给力量",
   "core_rules": {
     "pattern_rule": "纹有活性（会饿会醒）、有相性（强铸反噬）、有极限（材质定上限）——纹器要喂养，材料收集是永恒驱动力",
@@ -127,7 +127,7 @@
     {"unit": 7, "chapters": "Ch34-45", "promise": "修复护城阵", "payoff": "Ch45阵纹亮起，全镇知名", "small_payoff_per_chapter": ["Ch38查阵", "Ch42修阵", "Ch45阵成"], "next_hook": "兽潮前兆"},
     {"unit": 8, "chapters": "Ch46-60", "promise": "兽潮守镇+离镇", "payoff": "Ch55守阵天明+Ch60进绝地", "small_payoff_per_chapter": ["Ch50备战", "Ch55守阵", "Ch60第三条路"], "next_hook": "猎纹公会（卷二）"}
   ],
-  "foreshadowing_table": "见 newbook2/03_worldview.md 第九节《暗线与伏笔总表》——揭示提前量≥30章，前60章严禁给出纹崩之夜实质答案，蚀纹只以异变形态出现",
+  "foreshadowing_table": "见 wanwenshi/03_worldview.md 第九节《暗线与伏笔总表》——揭示提前量≥30章，前60章严禁给出纹崩之夜实质答案，蚀纹只以异变形态出现",
   "opening_three_questions": {
     "first_sentence": "弩机上的纹熄灭的那一刻，队长就知道，今晚要死人了。（战斗开场+危机+悬念三合一）",
     "chapter1_hook": "行会铸纹师宣布'纹死了修不了'，打杂的学徒却看出来了：纹不是死，是饿——他喂亮纹的那一瞬，营地外亮起一片兽眼",
@@ -137,7 +137,7 @@
   "synopsis_tags": ["玄幻", "职业流（铸纹师）", "热血", "位面征战", "匠人逆袭", "无系统", "设定流"],
   "production_notes": {
     "chapter_length": "2600-3200字/章（2026-07-26 用户调整，原2200-2600）",
-    "review_pipeline": "每章入库必须：①style_lint --style chendong --config newbook2/lint_config.json 单章 exit 0 且 chapter_length advisory 清零 ②跨章 exit 0 ③style_fingerprint.py check PASS ④独立 quality_review 评审卡 critical 清零（未参与写作的 Agent/子代理评审）。lint+指纹仅为提交前置，不构成入库（2026-07-26 框架修正，漏评教训）",
+    "review_pipeline": "每章入库必须：①style_lint --style chendong --config wanwenshi/lint_config.json 单章 exit 0 且 chapter_length advisory 清零 ②跨章 exit 0 ③style_fingerprint.py check PASS ④独立 quality_review 评审卡 critical 清零（未参与写作的 Agent/子代理评审）。lint+指纹仅为提交前置，不构成入库（2026-07-26 框架修正，漏评教训）",
     "writing_principle": "宁删勿补：初稿写长，修订只删不补；写短后先扩场景/加冲突/补伏笔达标再送检，禁止凑字硬补",
     "tone": "热血+悬念为主，幽默靠人物性格自然产生（石头/老铁匠/后期老龙的毒舌），不刻意正剧也不刻意搞笑；黄金三章战斗开场，设定全靠'演'不靠'讲'",
     "dialogue_ratio_target": "15-30%（chendong基线17.9%，叙述驱动；对峙场景允许上浮）",

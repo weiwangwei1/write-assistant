@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>网文创作系统 - 项目进度面板</title>
+<style>
+  :root {
+    --bg: #0f1117; --card: #1a1d27; --border: #2a2d3a;
+    --text: #e0e0e0; --muted: #888; --accent: #4a9eff;
+    --green: #4caf50; --yellow: #ffc107; --red: #f44336;
+    --orange: #ff9800; --purple: #9c27b0;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--bg); color: var(--text); font-family: "Microsoft YaHei", sans-serif; padding: 20px; }
+  .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid var(--border); flex-wrap: wrap; gap: 12px; }
+  .header h1 { font-size: 22px; }
+  .header .meta { font-size: 13px; color: var(--muted); margin-top: 4px; }
+  .project-selector { display: flex; align-items: center; gap: 8px; }
+  .project-selector label { font-size: 13px; color: var(--muted); }
+  .project-selector select { background: var(--card); color: var(--text); border: 1px solid var(--border); border-radius: 4px; padding: 4px 8px; font-size: 13px; }
+  .grid { display: grid; gap: 16px; }
+  .grid-2 { grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); }
+  .grid-3 { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .card-header { display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; cursor: pointer; user-select: none; border-bottom: 1px solid var(--border); }
+  .card-header h2 { font-size: 15px; color: var(--accent); }
+  .card-header .toggle { background: none; border: none; color: var(--muted); font-size: 14px; cursor: pointer; padding: 2px 8px; transition: transform 0.2s; }
+  .card-header .toggle.collapsed { transform: rotate(-90deg); }
+  .card-body { padding: 16px; transition: max-height 0.3s ease, padding 0.3s ease, opacity 0.2s ease; max-height: 9999px; opacity: 1; }
+  .card.collapsed .card-body { max-height: 0; padding-top: 0; padding-bottom: 0; opacity: 0; overflow: hidden; }
+  .progress-bar { background: var(--border); border-radius: 4px; height: 24px; overflow: hidden; margin: 8px 0; }
+  .progress-fill { background: linear-gradient(90deg, var(--green), var(--accent)); height: 100%; display: flex; align-items: center; justify-content: center; font-size: 12px; color: #fff; transition: width 0.5s; }
+  .stat-row { display: flex; justify-content: space-between; align-items: flex-start; padding: 6px 0; border-bottom: 1px solid var(--border); font-size: 14px; gap: 8px; }
+  .stat-row:last-child { border-bottom: none; }
+  .stat-label { color: var(--muted); flex-shrink: 0; }
+  .stat-value { font-weight: bold; text-align: right; word-break: break-all; }
+  .badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: bold; white-space: nowrap; }
+  .badge-green { background: rgba(76,175,80,0.2); color: var(--green); }
+  .badge-yellow { background: rgba(255,193,7,0.2); color: var(--yellow); }
+  .badge-red { background: rgba(244,67,54,0.2); color: var(--red); }
+  .badge-orange { background: rgba(255,152,0,0.2); color: var(--orange); }
+  .badge-purple { background: rgba(156,39,176,0.2); color: var(--purple); }
+  .badge-muted { background: rgba(136,136,136,0.2); color: var(--muted); }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th, td { padding: 6px 8px; text-align: left; border-bottom: 1px solid var(--border); }
+  th { color: var(--muted); font-weight: normal; }
+  .char-card { background: var(--bg); border: 1px solid var(--border); border-radius: 6px; padding: 12px; }
+  .char-card .name { font-size: 15px; font-weight: bold; margin-bottom: 4px; }
+  .char-card .loc { font-size: 12px; color: var(--accent); margin-bottom: 4px; }
+  .char-card .note { font-size: 12px; color: var(--muted); line-height: 1.5; }
+  .foreshadow-item { padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 13px; }
+  .foreshadow-item:last-child { border-bottom: none; }
+  .foreshadow-item .fid { color: var(--accent); font-weight: bold; margin-right: 8px; }
+  .alert { background: rgba(244,67,54,0.1); border: 1px solid var(--red); border-radius: 6px; padding: 10px; margin: 8px 0; font-size: 13px; }
+  .next-step { background: rgba(74,158,255,0.1); border-left: 3px solid var(--accent); padding: 12px; margin: 8px 0; font-size: 14px; line-height: 1.6; }
+  .error-msg { background: rgba(244,67,54,0.1); border: 1px solid var(--red); border-radius: 8px; padding: 20px; text-align: center; margin: 20px 0; }
+  .refresh-btn { background: var(--accent); color: #fff; border: none; padding: 6px 16px; border-radius: 4px; cursor: pointer; font-size: 13px; }
+  .refresh-btn:hover { opacity: 0.8; }
+  .loading { text-align: center; color: var(--muted); padding: 40px; }
+  .villain-tier { display: flex; gap: 8px; margin: 8px 0; flex-wrap: wrap; }
+  .villain-tier .tier { flex: 1; min-width: 120px; background: var(--bg); border: 1px solid var(--border); border-radius: 6px; padding: 8px; text-align: center; }
+  .villain-tier .tier-label { font-size: 11px; color: var(--muted); margin-bottom: 4px; }
+  .villain-tier .tier-role { font-size: 13px; font-weight: bold; }
+  .dir-tree { font-size: 13px; line-height: 1.8; font-family: "Consolas", monospace; }
+  .dir-tree .dir { color: var(--accent); }
+  .dir-tree .file { color: var(--text); }
+  .dir-tree .size { color: var(--muted); font-size: 11px; margin-left: 8px; }
+  .dir-tree a { color: var(--text); text-decoration: none; }
+  .dir-tree a:hover { color: var(--accent); text-decoration: underline; }
+  .expand-all-btn { background: var(--border); color: var(--text); border: 1px solid var(--border); padding: 4px 10px; border-radius: 4px; cursor: pointer; font-size: 12px; margin-left: 8px; }
+  .expand-all-btn:hover { background: var(--card); }
+</style>
+</head>
+<body>
+<div id="app">
+  <div class="loading">正在加载项目数据...</div>
+</div>
+
+<script>
+// ===== 配置 =====
+const KNOWN_PROJECTS = ['wanwenshi']; // 已知有 memory 系统的项目
+
+function getProject() {
+  const params = new URLSearchParams(location.search);
+  return params.get('project') || 'wanwenshi';
+}
+
+function dataUrl(file) {
+  return `${getProject()}/${file}`;
+}
+
+// ===== 工具函数 =====
+async function loadJSON(url) {
+  const resp = await fetch(url);
+  if (!resp.ok) throw new Error(`HTTP ${resp.status}: ${url}`);
+  return resp.json();
+}
+
+async function loadDir(path) {
+  // 尝试读取目录列表（Python http.server 提供 HTML 目录列表）
+  try {
+    const resp = await fetch(path);
+    if (!resp.ok) return null;
+    const html = await resp.text();
+    return parseDirListing(html, path);
+  } catch { return null; }
+}
+
+function parseDirListing(html, basePath) {
+  const items = [];
+  const regex = /<a href="([^"]+)">[^<]+<\/a>\s*([\d\-]+ [\d:]+)?\s*([\d.]+[KM]?|-)/g;
+  let match;
+  while ((match = regex.exec(html)) !== null) {
+    const name = decodeURIComponent(match[1]);
+    if (name === '../' || name === './') continue;
+    const size = match[3] || '-';
+    items.push({ name, size, isDir: name.endsWith('/') });
+  }
+  return items;
+}
+
+function badge(text, type) {
+  return `<span class="badge badge-${type}">${text}</span>`;
+}
+
+function statusBadge(status) {
+  if (!status) return badge('—', 'muted');
+  if (status === 'active' || status === 'developed') return badge(status, 'green');
+  if (status === 'planted') return badge(status, 'yellow');
+  if (status === 'not_started') return badge('未启动', 'muted');
+  if (status === 'half_revealed') return badge(status, 'orange');
+  if (status === 'revealed') return badge(status, 'purple');
+  return badge(status, 'muted');
+}
+
+function esc(s) {
+  return String(s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+// ===== 折叠/展开 =====
+function toggleCard(id) {
+  const card = document.getElementById(id);
+  card.classList.toggle('collapsed');
+  const toggle = card.querySelector('.toggle');
+  toggle.classList.toggle('collapsed');
+}
+
+function expandAll(expand) {
+  document.querySelectorAll('.card').forEach(card => {
+    if (expand) { card.classList.remove('collapsed'); card.querySelector('.toggle').classList.remove('collapsed'); }
+    else { card.classList.add('collapsed'); card.querySelector('.toggle').classList.add('collapsed'); }
+  });
+}
+
+function card(id, title, bodyHtml, collapsed = false) {
+  return `
+    <div class="card ${collapsed ? 'collapsed' : ''}" id="${id}">
+      <div class="card-header" onclick="toggleCard('${id}')">
+        <h2>${title}</h2>
+        <button class="toggle ${collapsed ? 'collapsed' : ''}">▼</button>
+      </div>
+      <div class="card-body">${bodyHtml}</div>
+    </div>
+  `;
+}
+
+// ===== 渲染 =====
+function render(session, goal, foreshadowing, characters, config, dirInfo, outline, chapterSummaries) {
+  const project = getProject();
+  const ps = session.project_status || {};
+  const progress = ps.total_chapters ? (ps.completed_chapters / ps.total_chapters * 100).toFixed(1) : 0;
+  const qt = session.quality_trend || {};
+  const ch = session.chapter_health || [];
+  const cs = session.character_quick_state || [];
+  const fs = foreshadowing.foreshadowings || [];
+  const activeGoals = goal.active_goals || [];
+  const suspense = goal.suspense_window || [];
+  const villain = goal.villain_ladder || {};
+
+  // 目录信息模块
+  let dirHtml = '<div class="dir-tree">';
+  dirHtml += `<div class="dir">📁 ${project}/</div>`;
+  const cfg = config || {};
+  const refs = [
+    { label: '大纲', path: cfg.outline_ref || `${project}/04_outline.json` },
+    { label: '世界观', path: cfg.worldview_ref || `${project}/03_worldview.md` },
+    { label: '术语', path: cfg.terminology_ref || `${project}/00_terminology.md` },
+    { label: 'Lint配置', path: cfg.lint_config_ref || `${project}/lint_config.json` },
+    { label: '全局配置', path: `${project}/config/novel_config.json` },
+    { label: '会话指针', path: `${project}/memory/session_pointer.json` },
+    { label: '目标追踪', path: `${project}/memory/goal_tracker.json` },
+    { label: '伏笔追踪', path: `${project}/memory/foreshadowing_tracker.json` },
+    { label: '角色索引', path: `${project}/memory/characters.json` },
+    { label: '决策日志', path: `${project}/memory/decision_log.jsonl` },
+    { label: '写作日志', path: `${project}/logs/writing_log.jsonl` },
+    { label: '质量评审', path: `${project}/quality_review_golden3.json` },
+    { label: 'Ch4任务', path: `${project}/handoff/chapter_assignment_ch4.json` },
+  ];
+  refs.forEach(r => {
+    const href = r.path.replace(`${project}/`, `./${project}/`);
+    dirHtml += `  <div>  <span class="file">📄</span> <a href="${href}" target="_blank">${r.label}</a> <span class="size">${r.path}</span></div>`;
+  });
+  dirHtml += `  <div>  <span class="dir">📁 output/</span> <span class="size">章节终稿 (Ch1-${ps.completed_chapters || 0})</span></div>`;
+  dirHtml += `  <div>  <span class="dir">📁 characters/</span> <span class="size">角色卡 (${(characters.characters || []).length} 张)</span></div>`;
+  dirHtml += `  <div>  <span class="dir">📁 memory/chapter_summaries/</span> <span class="size">章节摘要 (Ch1-${ps.completed_chapters || 0})</span></div>`;
+  dirHtml += '</div>';
+
+  return `
+    <div class="header">
+      <div>
+        <h1>《${esc(ps.novel_title || '万纹师')}》项目进度面板</h1>
+        <div class="meta">文风包: ${esc(ps.style_pack || '—')} | 大纲: ${esc(ps.outline_version || '—')} | 篇幅: ${esc(ps.chapter_word_count || '—')} 字/章 | 最后更新: ${esc(session.last_updated || '—')}</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+        <div class="project-selector">
+          <label>项目:</label>
+          <select onchange="switchProject(this.value)">
+            ${KNOWN_PROJECTS.map(p => `<option value="${p}" ${p === project ? 'selected' : ''}>${p}</option>`).join('')}
+          </select>
+        </div>
+        <button class="expand-all-btn" onclick="expandAll(true)">全部展开</button>
+        <button class="expand-all-btn" onclick="expandAll(false)">全部折叠</button>
+        <button class="refresh-btn" onclick="location.reload()">刷新</button>
+      </div>
+    </div>
+
+    <div class="alert">
+      <strong>当前阶段:</strong> ${esc(ps.current_phase || '—')} | <strong>卷:</strong> ${ps.current_volume || '—'} | <strong>已完成:</strong> ${ps.completed_chapters || 0} / ${ps.total_chapters || 0} 章
+      <br>${esc(ps.phase_note || '')}
+    </div>
+
+    <div class="next-step">
+      <strong>下一步:</strong> ${esc(session.next_action || '—')}
+      ${session.open_decisions && session.open_decisions.length ? `<br><strong>待决策:</strong> ${session.open_decisions.map(esc).join('；')}` : ''}
+    </div>
+
+    <div class="grid grid-2" style="margin-top:16px;">
+      ${card('progress', '进度概览', `
+        <div class="progress-bar"><div class="progress-fill" style="width:${progress}%;">${progress}%</div></div>
+        <div class="stat-row"><span class="stat-label">总章节</span><span class="stat-value">${ps.total_chapters || '—'}</span></div>
+        <div class="stat-row"><span class="stat-label">已完成</span><span class="stat-value">${ps.completed_chapters || '—'}</span></div>
+        <div class="stat-row"><span class="stat-label">当前章</span><span class="stat-value">第 ${ps.current_chapter || '—'} 章</span></div>
+        <div class="stat-row"><span class="stat-label">总卷数</span><span class="stat-value">${ps.total_volumes || '—'}</span></div>
+        <div class="stat-row"><span class="stat-label">当前卷</span><span class="stat-value">第 ${ps.current_volume || '—'} 卷</span></div>
+      `)}
+
+      ${card('quality', '质量趋势', `
+        <table>
+          <thead><tr><th>章节</th><th>技术分</th><th>追读</th><th>verdict</th></tr></thead>
+          <tbody>
+            ${ch.map(c => {
+              const q = (c.residual || '').match(/(\d+\.\d+)\/(\d+\.\d+)/);
+              const tech = q ? q[1] : '—';
+              const read = q ? q[2] : '—';
+              const v = c.status || '';
+              const vType = v.includes('待') || v.includes('重写') ? 'red' : v.includes('优化') ? 'yellow' : 'green';
+              return `<tr><td>Ch${c.chapter}</td><td>${tech}</td><td>${read}</td><td>${badge(esc(v), vType)}</td></tr>`;
+            }).join('')}
+          </tbody>
+        </table>
+        <div style="margin-top:12px; font-size:13px; color:var(--muted);">
+          <strong>整体:</strong> ${esc(qt.overall || '—')}<br>
+          <strong>趋势:</strong> ${esc(qt.trend || '—')}<br>
+          <strong>门槛:</strong> ${esc(qt.note || '—')}
+        </div>
+      `)}
+    </div>
+
+    <div style="margin-top:16px;">
+      ${card('directory', '📁 目录信息', dirHtml, true)}
+    </div>
+
+    <div style="margin-top:16px;">
+      ${card('catalog', `📖 章节目录（${(chapterSummaries || []).length} 已写 / ${(outline && outline.shuang_point_distribution || []).length} 规划节点 / ${(outline && outline.volume_plan || []).length} 卷）`, renderChapterCatalog(outline, chapterSummaries || [], ps.current_volume))}
+    </div>
+
+    <div class="grid grid-2" style="margin-top:16px;">
+      ${card('goals', `活跃目标 (${activeGoals.length})`, activeGoals.map(g => `
+        <div class="stat-row">
+          <span class="stat-label">${esc(g.id)} ${esc(g.description)}</span>
+          <span class="stat-value">${badge(esc(g.status), 'green')}</span>
+        </div>
+        ${g.note ? `<div style="font-size:12px;color:var(--muted);padding-left:8px;padding-bottom:4px;">${esc(g.note)}</div>` : ''}
+      `).join(''))}
+
+      ${card('suspense', `悬念窗口 (${suspense.length})`, suspense.map(s => `
+        <div class="stat-row">
+          <span class="stat-label">${esc(s.id)} ${esc(s.description)}</span>
+          <span class="stat-value">${statusBadge(s.status)}</span>
+        </div>
+        ${s.note ? `<div style="font-size:12px;color:var(--muted);padding-left:8px;padding-bottom:4px;">${esc(s.note)}</div>` : ''}
+      `).join('') + (goal.suspense_window_count_note ? `<div class="alert" style="margin-top:8px;">${esc(goal.suspense_window_count_note)}</div>` : ''))}
+    </div>
+
+    <div style="margin-top:16px;">
+      ${card('villain', '反派梯队', `
+        <div class="villain-tier">
+          ${['minion','minor_boss','hidden','ultimate'].map(tier => {
+            const v = villain[tier] || {};
+            const labels = {minion:'小兵', minor_boss:'小BOSS', hidden:'隐藏BOSS', ultimate:'终极BOSS'};
+            return `<div class="tier">
+              <div class="tier-label">${labels[tier]}</div>
+              <div class="tier-role">${esc(v.role || '—')}</div>
+              <div style="margin-top:4px;">${statusBadge(v.status)}</div>
+            </div>`;
+          }).join('')}
+        </div>
+      `)}
+    </div>
+
+    <div style="margin-top:16px;">
+      ${card('characters', `角色状态 (${cs.length})`, `
+        <div class="grid grid-3">
+          ${cs.map(c => `
+            <div class="char-card">
+              <div class="name">${esc(c.name)}</div>
+              ${c.location ? `<div class="loc">📍 ${esc(c.location)}</div>` : ''}
+              ${c.emotion ? `<div style="font-size:12px;margin-bottom:4px;">😮 ${esc(c.emotion)}</div>` : ''}
+              ${c.power ? `<div style="font-size:12px;color:var(--orange);margin-bottom:4px;">⚡ ${esc(c.power)}</div>` : ''}
+              <div class="note">${esc(c.note || '—')}</div>
+              <div style="margin-top:4px;font-size:11px;color:var(--muted);">最后出场: Ch${c.last_chapter || 0}</div>
+            </div>
+          `).join('')}
+        </div>
+      `)}
+    </div>
+
+    <div style="margin-top:16px;">
+      ${card('foreshadowing', `伏笔追踪 (${fs.length})`, fs.map(f => `
+        <div class="foreshadow-item">
+          <span class="fid">${esc(f.id)}</span>${statusBadge(f.status)}
+          <div style="margin-top:4px;">${esc(f.description)}</div>
+          <div style="font-size:12px;color:var(--muted);margin-top:2px;">
+            植入: Ch${f.planted_chapter} | 最后推进: Ch${f.last_action_chapter}<br>
+            <strong>下一步:</strong> ${esc(f.next)}
+          </div>
+        </div>
+      `).join(''))}
+    </div>
+
+    <div style="margin-top:16px;">
+      ${card('decisions', '关键决策日志', (session.key_decisions_log || []).map((d, i) => `
+        <div class="stat-row"><span class="stat-label">${i + 1}</span><span style="font-size:13px;flex:1;padding-left:12px;">${esc(d)}</span></div>
+      `).join(''), true)}
+    </div>
+
+    <div style="margin-top:24px; text-align:center; color:var(--muted); font-size:12px; padding-bottom:20px;">
+      网文创作系统 - 项目进度面板 | 项目: ${project} | 数据源: ${project}/memory/*.json<br>
+      启动: <code>python -m http.server 8000</code> 在 write-assistant/ 目录 | 切换项目: <code>?project=xxx</code>
+    </div>
+  `;
+}
+
+function renderError(msg) {
+  const project = getProject();
+  document.getElementById('app').innerHTML = `
+    <div class="header">
+      <h1>网文创作系统 - 项目进度面板</h1>
+      <div class="project-selector">
+        <label>项目:</label>
+        <select onchange="switchProject(this.value)">
+          ${KNOWN_PROJECTS.map(p => `<option value="${p}" ${p === project ? 'selected' : ''}>${p}</option>`).join('')}
+        </select>
+        <button class="refresh-btn" onclick="location.reload()">刷新</button>
+      </div>
+    </div>
+    <div class="error-msg">
+      <h2 style="color:var(--red);margin-bottom:12px;">数据加载失败</h2>
+      <p style="margin-bottom:12px;">${esc(msg)}</p>
+      <p style="font-size:13px;color:var(--muted);">
+        面板需要通过 HTTP 服务器访问以读取 JSON 文件。<br>
+        请在 <code>write-assistant/</code> 目录下运行: <code>python -m http.server 8000</code><br>
+        然后访问: <code>http://localhost:8000/dashboard.html?project=${project}</code><br><br>
+        确认项目 <code>${project}/</code> 下有 memory/session_pointer.json 等文件。
+      </p>
+    </div>
+  `;
+}
+
+function switchProject(p) {
+  const url = new URL(location);
+  url.searchParams.set('project', p);
+  location.href = url;
+}
+
+async function loadChapterSummaries(completedChapters) {
+  // 并行加载已写章节的摘要（上限保护：最多前 100 章）
+  const maxLoad = Math.min(completedChapters || 0, 100);
+  if (maxLoad <= 0) return [];
+  const promises = [];
+  for (let i = 1; i <= maxLoad; i++) {
+    const num = String(i).padStart(3, '0');
+    promises.push(
+      loadJSON(dataUrl(`memory/chapter_summaries/chapter_${num}.json`)).catch(() => null)
+    );
+  }
+  const results = await Promise.all(promises);
+  return results.filter(Boolean);
+}
+
+function renderChapterCatalog(outline, chapterSummaries, currentVolume) {
+  const volumes = (outline && outline.volume_plan) || [];
+  const shuangPoints = (outline && outline.shuang_point_distribution) || [];
+
+  // 章号映射
+  const shuangMap = {};
+  shuangPoints.forEach(sp => { shuangMap[sp.chapter] = sp; });
+  const summaryMap = {};
+  chapterSummaries.forEach(s => { summaryMap[s.chapter_num] = s; });
+
+  if (volumes.length === 0) {
+    return '<div style="color:var(--muted); font-size:13px;">未找到卷规划数据（outline.volume_plan）</div>';
+  }
+
+  let html = '';
+  volumes.forEach(vol => {
+    const m = (vol.chapters || '').match(/Ch(\d+)-(\d+)/);
+    if (!m) return;
+    const start = parseInt(m[1]);
+    const end = parseInt(m[2]);
+    const isCurrent = (currentVolume === vol.volume);
+
+    html += `<div style="margin-bottom:14px; padding:12px; background:var(--bg); border-radius:6px; border-left:3px solid ${isCurrent ? 'var(--accent)' : 'var(--border)'};">`;
+    html += `<div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-bottom:6px;">
+      <span style="font-weight:bold; color:var(--accent);">卷${vol.volume} · ${esc(vol.name)}</span>
+      <span style="color:var(--muted); font-size:12px;">${esc(vol.chapters || '')} | ${esc(vol.stage || '')}</span>
+      ${isCurrent ? badge('当前卷', 'green') : ''}
+    </div>`;
+
+    if (vol.summary) {
+      html += `<details style="margin-bottom:8px;"><summary style="font-size:12px; color:var(--muted); cursor:pointer;">卷摘要</summary><div style="font-size:12px; color:var(--text); padding:8px 12px; line-height:1.7;">${esc(vol.summary)}</div></details>`;
+    }
+
+    // 收集该卷内所有要展示的章节（已写 ∪ 爽点规划）
+    const chaptersToShow = new Set();
+    for (let ch = start; ch <= end; ch++) {
+      if (summaryMap[ch] || shuangMap[ch]) chaptersToShow.add(ch);
+    }
+    const sorted = Array.from(chaptersToShow).sort((a, b) => a - b);
+
+    if (sorted.length === 0) {
+      html += `<div style="font-size:12px; color:var(--muted); padding:6px 8px;">（该卷暂无关键章节规划/已写）</div>`;
+    } else {
+      html += '<div style="display:grid; gap:4px; margin-top:6px;">';
+      sorted.forEach(ch => {
+        const summary = summaryMap[ch];
+        const shuang = shuangMap[ch];
+        if (summary) {
+          // 已写章节
+          const q = summary.quality_status || {};
+          let qBadge = '';
+          if (q.verdict) {
+            const vType = (q.verdict.includes('重写') || q.verdict.includes('待')) ? 'red'
+              : q.verdict.includes('优化') ? 'yellow' : 'green';
+            qBadge = badge(q.verdict, vType);
+          }
+          const tech = q.technical_score ? `${q.technical_score}/${q.reader_retention}` : '';
+          html += `<div style="display:flex; align-items:center; gap:8px; padding:6px 8px; background:rgba(76,175,80,0.06); border-radius:4px; flex-wrap:wrap;">
+            <span style="color:var(--green);" title="已写">●</span>
+            <span style="font-weight:bold; min-width:54px;">Ch${ch}</span>
+            <span style="font-weight:bold; color:var(--text);">${esc(summary.title || '—')}</span>
+            <span style="color:var(--muted); font-size:12px;">${summary.word_count || 0} 字</span>
+            ${tech ? `<span style="color:var(--muted); font-size:12px;">技术/追读 ${esc(tech)}</span>` : ''}
+            ${qBadge}
+          </div>`;
+        } else if (shuang) {
+          // 规划中的爽点章节
+          const desc = (shuang.description || '');
+          const shortDesc = desc.length > 90 ? desc.slice(0, 90) + '…' : desc;
+          const pathType = shuang.path === 'S' ? 'orange' : 'purple';
+          html += `<div style="display:flex; align-items:center; gap:8px; padding:6px 8px; background:rgba(0,0,0,0.2); border-radius:4px; flex-wrap:wrap;">
+            <span style="color:var(--muted);" title="规划中">○</span>
+            <span style="font-weight:bold; min-width:54px; color:var(--muted);">Ch${ch}</span>
+            <span style="font-weight:bold; color:var(--accent);">[${esc(shuang.type || '—')}]</span>
+            <span style="font-size:12px; color:var(--muted); flex:1; min-width:200px;">${esc(shortDesc)}</span>
+            ${shuang.path ? badge(shuang.path, pathType) : ''}
+          </div>`;
+        }
+      });
+      html += '</div>';
+    }
+
+    html += '</div>';
+  });
+
+  // 图例
+  html += `<div style="margin-top:8px; padding:8px; font-size:12px; color:var(--muted); border-top:1px dashed var(--border);">
+    <span style="color:var(--green);">●</span> 已写章节 &nbsp;&nbsp;
+    <span style="color:var(--muted);">○</span> 规划爽点章节 &nbsp;&nbsp;
+    <span class="badge badge-orange">S</span> 主爽点 &nbsp;
+    <span class="badge badge-purple">A</span> 辅助点 &nbsp;&nbsp;
+    共 ${chapterSummaries.length} 章已写 / ${shuangPoints.length} 个规划节点
+  </div>`;
+
+  return html;
+}
+
+async function init() {
+  try {
+    const [session, goal, foreshadowing, characters, config, outline] = await Promise.all([
+      loadJSON(dataUrl('memory/session_pointer.json')),
+      loadJSON(dataUrl('memory/goal_tracker.json')),
+      loadJSON(dataUrl('memory/foreshadowing_tracker.json')),
+      loadJSON(dataUrl('memory/characters.json')),
+      loadJSON(dataUrl('config/novel_config.json')).catch(() => ({})),
+      loadJSON(dataUrl('memory/outline.json')).catch(() => null)
+    ]);
+    const completedChapters = (session.project_status && session.project_status.completed_chapters) || 0;
+    const chapterSummaries = await loadChapterSummaries(completedChapters);
+    document.getElementById('app').innerHTML = render(session, goal, foreshadowing, characters, config, null, outline, chapterSummaries);
+  } catch (e) {
+    renderError(e.message);
+  }
+}
+
+init();
+</script>
+</body>
+</html>

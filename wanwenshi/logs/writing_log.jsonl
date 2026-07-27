@@ -1,0 +1,12 @@
+{"timestamp": "2026-07-26", "event": "chapter_written", "chapter": 1, "title": "哑纹", "word_count": 3013, "note": "黄金三章Ch1，辰东文风包"}
+{"timestamp": "2026-07-26", "event": "chapter_written", "chapter": 2, "title": "纹是活的", "word_count": 3008}
+{"timestamp": "2026-07-26", "event": "chapter_written", "chapter": 3, "title": "罗盘", "word_count": 3079}
+{"timestamp": "2026-07-26", "event": "lint_passed", "chapter": 1, "note": "style_lint exit 0"}
+{"timestamp": "2026-07-26", "event": "lint_passed", "chapter": 2}
+{"timestamp": "2026-07-26", "event": "lint_passed", "chapter": 3}
+{"timestamp": "2026-07-26", "event": "fingerprint_passed", "chapter": 1, "note": "chendong指纹check exit 0"}
+{"timestamp": "2026-07-26", "event": "fingerprint_passed", "chapter": 2}
+{"timestamp": "2026-07-26", "event": "fingerprint_passed", "chapter": 3}
+{"timestamp": "2026-07-26T17:30:00+08:00", "event": "quality_review_completed", "chapter_range": "1-3", "verdict": "需修改", "technical_score": 8.60, "reader_retention": 8.24, "major_count": 4, "note": "黄金三章补评，4个major待修"}
+{"timestamp": "2026-07-27", "event": "directory_renamed", "from": "newbook2", "to": "wanwenshi", "note": "纯ASCII避免编码问题"}
+{"timestamp": "2026-07-27", "event": "memory_system_initialized", "note": "补建config/memory/logs标配目录与文件"}

@@ -4,7 +4,7 @@
 
 > 起因：《万纹师》黄金三章走"轻量流程"（lint+指纹），漏掉评审层，被用户追问后补评查出 4 个 major；且章节初稿屡次写短后"强行补字"过门禁——两个问题均为框架级漏洞。
 
-- **篇幅硬检脚本化**：style_lint v2.4 新增 `chapter_length` 规则（`chapter_len_min/max` 配置项，L1 advisory，提交前必须清零）；书籍级篇幅标准经 `--config` 注入（如 `newbook2/lint_config.json` 2600-3200）——"能写成脚本的规则，不写成提示词"
+- **篇幅硬检脚本化**：style_lint v2.4 新增 `chapter_length` 规则（`chapter_len_min/max` 配置项，L1 advisory，提交前必须清零）；书籍级篇幅标准经 `--config` 注入（如 `wanwenshi/lint_config.json` 2600-3200）——"能写成脚本的规则，不写成提示词"
 - **写作原则"宁删勿补"**：初稿写长，修订只删不补；写短先扩场景/加冲突/补伏笔达标再送检，禁止凑字硬补（写入 chapter-writer SKILL.md 自检流程与本书 production_notes）
 - **评审不可跳过**：lint+指纹双门禁仅为提交前置，不构成入库；正式入库每章必须有独立 quality_review 评审卡（未参与写作的 Agent 评审，critical 清零）。写入 AGENTS.md 质量门禁节
 

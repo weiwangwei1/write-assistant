@@ -1,0 +1,70 @@
+{
+  "card_type": "session_pointer",
+  "last_updated": "2026-07-27T11:00:00+08:00",
+  "last_updated_chapter": 3,
+  "project_status": {
+    "novel_title": "万纹师",
+    "outline_version": "v1.0",
+    "current_phase": "golden3_revision",
+    "current_volume": 1,
+    "current_chapter": 4,
+    "total_chapters": 420,
+    "completed_chapters": 3,
+    "overall_progress": "0.7%",
+    "style_pack": "chendong",
+    "chapter_word_count": "2600-3200",
+    "phase_note": "黄金三章已写（Ch1哑纹/Ch2纹是活的/Ch3罗盘），quality_review verdict=需修改，技术分8.60/追读8.24，4个major待修（Ch3称呼爹误用/章末余韵/登记册来源+雷横卡矛盾）；Ch4任务分配已就绪（喂纹难关，糖葫芦单元2第一环，承接Ch3末罗盘异动）"
+  },
+  "recent_milestone": {
+    "type": "quality_review_completed",
+    "chapter_range": "1-3",
+    "summary": "2026-07-26 17:30 黄金三章质量评审完成，verdict=需修改，技术分8.60/追读8.24，4个major待修（Ch1 8.90/8.38优化档，Ch2 8.78/8.52优化档，Ch3 8.11/7.81重写局部）"
+  },
+  "character_quick_state": [
+    {"name": "沈拓", "location": "断纹镇铁匠铺（闩门拆罗盘）", "emotion": "沉静的憋劲+寻父执念被罗盘指针点燃", "power": "凡境一重/无纹籍学徒/纯匠师天赋（稳手+过目不忘+空间逻辑）", "last_chapter": 3, "note": "Ch3末闩门摸火折子拆罗盘，罗盘发烫指针再偏半分'像是在催'；身怀父锤（与弩机核心纹同源）、破甲弩（代管）、断纹罗盘"},
+    {"name": "老铁匠", "location": "断纹镇铁匠铺", "emotion": "拧巴——首次提'当年'后拉风箱到后半夜", "power": "三十年前被百炼阁革名的铸纹师（隐世好手）", "last_chapter": 3, "note": "头回跟徒弟提'当年你师父我就是没过去'；咳嗽初起瞒着所有人；Ch3替徒弟挡了一句'我徒弟打铁的不懂纹'"},
+    {"name": "雷横", "location": "断纹镇（已把罗盘托付沈拓）", "emotion": "释然+信任——三代人守的死罗盘终于转了", "power": "凡境三重战师/断纹镇最强猎纹人", "last_chapter": 3, "note": "把祖传断纹罗盘赠沈拓'它认你'，赤蝎队十七口人随叫随到；卡与正文有矛盾（卡写指针疯转vs正文锈死，待修）"},
+    {"name": "钱掌柜", "location": "断纹镇百炼阁分号", "emotion": "怀恨——笑容一寸寸收回，当众笑不出来", "power": "分号掌柜实权（规矩武器化/料库钥匙/估价收购一言堂）", "last_chapter": 3, "note": "被当众戳破上古纹打脸，甩袖'三日后公断弩你先看管'；怀恨在心后续刁难"},
+    {"name": "孙师傅", "location": "断纹镇分号后堂", "emotion": "恐惧+结舌——三十年的架子一夜塌了", "power": "半瓶醋外聘铸纹师（图谱皮毛/纹死免责口诀）", "last_chapter": 3, "note": "当众被请辨上古纹银签举三举落不下去，低头看鞋尖；抢功被雷横'请功帖'顶回"},
+    {"name": "石头", "location": "断纹镇赤蝎队驻地", "emotion": "乐天（Ch3未直接出场）", "power": "凡境二重/向导/绝地活地图", "last_chapter": 2, "note": "Ch1-2夜猎随队，Ch2吓得话多三倍人往回跑扛伤员；Ch3未直接出场"},
+    {"name": "苏镜", "note": "未登场，大纲Ch61公会鉴定师首登场（识破罗盘假纹真底）"},
+    {"name": "老龙", "note": "未登场，卷一禁区（荒纹绝地深处沉睡守印，前60章严禁提及）"},
+    {"name": "沈山", "note": "未登场（失踪），父亲暗线核心——十年前往西南绝地深处走未归，留旧锤'手比命硬'+半张图纸"}
+  ],
+  "foreshadowing_quick_status": [
+    {"id": "F-ch1-1", "status": "planted", "last_action_chapter": 3, "next": "父锤手比命硬+捡残纹片往事→Ch3罗盘指向父亲失踪方向升级→卷二Ch88绝地刻记"},
+    {"id": "F-ch2-1", "status": "planted", "last_action_chapter": 2, "next": "黑纹核(蚀纹)烧不化+孙师傅失态→暗线露头不解释→伏Ch55兽潮"},
+    {"id": "F-ch2-2", "status": "developed", "last_action_chapter": 3, "next": "父锤纹与弩机核心纹同一只手→Ch3罗盘指向父亲方向→卷二Ch88"},
+    {"id": "F-ch3-2", "status": "planted", "last_action_chapter": 3, "next": "断纹罗盘指针自转指西南绝地深处→Ch4-6修复罗盘→Ch13修好"},
+    {"id": "F-ch3-3", "status": "planted", "last_action_chapter": 3, "next": "老铁匠当年→卷一末革名文书全揭"},
+    {"id": "F-ch3-4", "status": "planted", "last_action_chapter": 3, "next": "黑纹兽成群聚集→伏Ch55兽潮夜袭"},
+    {"id": "F-ch3-5", "status": "planted", "last_action_chapter": 3, "next": "三日公断→Ch6-7公断兑现"}
+  ],
+  "goal_quick_status": {
+    "active": ["G1通过学徒考核拿纹籍", "G2修好断纹罗盘(Ch4-6)", "G3守住铁匠铺和父锤", "G4弄明白纹为什么饿", "G5三日公断期限内自保", "G6进绝地找父亲"],
+    "closed": [],
+    "suspense_window": "约5-6条活跃悬念超≤3指导线：三日公断(近)/罗盘指向(中)/父亲下落(远)/黑纹核(远)/黑纹兽聚集(远)/老铁匠当年(轻)——黄金三章蓄钩期可容忍，Ch4-6须按unit2规划收拢到罗盘修复主线",
+    "villain_ladder": "minion孙师傅(行会铸纹师/active) → minor_boss钱掌柜(分号掌柜/active) → hidden拜纹教(暗线未点名/not_started) → ultimate初代教主+蚀纹之源(not_started)"
+  },
+  "last_session_summary": "黄金三章已写（Ch1哑纹3013字/Ch2纹是活的3008字/Ch3罗盘3079字），quality_review已出但verdict=需修改（技术8.60/追读8.24，4个major待修），Ch4任务分配已就绪（喂纹难关），newbook2→wanwenshi目录重命名完成",
+  "next_action": "①修复Ch3三项major（第14行'爹'→'师父'/章末改硬钩火折子下罗盘异动/雷横卡改锈死+正文补登记册公开来源）②重跑quality_review ③Ch4开写（承接Ch3末罗盘异动，喂纹难关，糖葫芦单元2第一环）",
+  "quality_trend": {
+    "golden_three": "Ch1 8.90/8.38 优化档, Ch2 8.78/8.52 优化档, Ch3 8.11/7.81 重写局部",
+    "overall": "技术分8.60/追读8.24, verdict=需修改, 4major待修",
+    "trend": "Ch1→Ch2递增, Ch3回落(打脸后泄气)",
+    "note": "v1.9双门槛: 技术≥9.5且追读≥8.5, 三章均未达标"
+  },
+  "chapter_health": [
+    {"chapter": 1, "residual": "爽点全后置约2800字处/对话占比10.9%低于目标/超短句13.7%低于15%检测线/开局方式与角色卡略出入(随补给队vs随队打杂)", "status": "优化档，可微调"},
+    {"chapter": 2, "residual": "纹认纹饵钓逻辑偏拟人(纹有领地荣辱感超出已立规则)/章末父锤钩为信息揭示非动作(强度B+)/对话占比12.1%/超短句12.2%", "status": "优化档，可微调"},
+    {"chapter": 3, "residual": "1high(第14行沈拓喊'爹'角色死穴误用)+2medium(章末'温到天明'余韵收尾边缘违规/登记册六十年信息来源无交代)+3low(连夜驮回与天蒙蒙亮时间线拧巴/脚程偏快/万纹时代首次出现无注释)+跨文件high(雷横卡指针疯转vs正文锈死)", "status": "重写局部，待修复"}
+  ],
+  "key_decisions_log": [
+    "2026-07-26 万纹师立项：天赋流匠人职业+无系统金手指+热血正剧，chendong文风包，420章6卷",
+    "2026-07-26 黄金三章走轻量流程漏评审，被用户追问后补评quality_review",
+    "2026-07-27 newbook2/→wanwenshi/ 目录重命名（纯ASCII避免编码问题）",
+    "2026-07-27 补建memory/config/logs标配目录与文件"
+  ],
+  "open_decisions": ["Ch3三项major修复策略：按quality_review建议改（爹→师父/章末加火折子下罗盘异动/雷横卡改锈死+正文补公开来源）"],
+  "outline_drift_log": []
+}

@@ -1,0 +1,78 @@
+{
+  "card_type": "foreshadowing_tracker",
+  "last_updated": "2026-07-27",
+  "foreshadowings": [
+    {
+      "id": "F-ch1-1",
+      "description": "父锤'手比命硬'四字 + 沈拓七岁跟爹在绝地边缘捡残纹片的往事——父亲沈山十年前失踪，留旧锤与遗训",
+      "status": "planted",
+      "planted_chapter": 1,
+      "last_action_chapter": 3,
+      "next": "Ch3罗盘指向与父亲失踪方向一致，父亲暗线升级；卷二Ch88绝地刻记推进，卷四Ch261随身旧物半揭，卷五Ch322全揭"
+    },
+    {
+      "id": "F-ch1-2",
+      "description": "弩机纹路走势刁钻古拙，与沈拓描过的成千上万道残纹不同路，但一眼就看进去了——纹的特殊来历",
+      "status": "developed",
+      "planted_chapter": 1,
+      "last_action_chapter": 2,
+      "next": "Ch2发展为弩机核心纹与父锤纹同一只手（F-ch2-2），已合并到父亲暗线"
+    },
+    {
+      "id": "F-ch2-1",
+      "description": "狼王骨上烧不化的黑纹（蚀纹暗线露头）+ 孙师傅失态'晦气东西赶紧烧了'（行会知情暗线接口）+ 老猎户三十年没见过烧不化的纹",
+      "status": "planted",
+      "planted_chapter": 2,
+      "last_action_chapter": 2,
+      "next": "暗线露头不解释，前60章蚀纹只以异变形态出现；Ch3绝地黑纹兽聚集呼应；伏Ch55兽潮夜袭"
+    },
+    {
+      "id": "F-ch2-2",
+      "description": "弩机核心纹与父锤纹同一只手——'一个路数，一个师傅教的'，收笔回勾一致",
+      "status": "developed",
+      "planted_chapter": 2,
+      "last_action_chapter": 3,
+      "next": "Ch3罗盘指向父亲失踪方向，父亲暗线再升级；卷二Ch88绝地刻记与半张图纸推进"
+    },
+    {
+      "id": "F-ch3-1",
+      "description": "万纹时代手法：弩机核心纹收笔带回勾，走万纹时代手法，六十年前郡城铸纹师铸不出——上古纹器",
+      "status": "planted",
+      "planted_chapter": 3,
+      "last_action_chapter": 3,
+      "next": "Ch4-6罗盘修复线自然补万纹时代常识落地；卷三Ch158复原流云纹推进"
+    },
+    {
+      "id": "F-ch3-2",
+      "description": "断纹罗盘指针自转指西南绝地深处——雷家祖传三代没转过的死罗盘，在沈拓手中自转，指向与父亲十年前失踪方向一致",
+      "status": "planted",
+      "planted_chapter": 3,
+      "last_action_chapter": 3,
+      "next": "Ch4-6修复罗盘（喂纹/相性/引纹三关），Ch13修好第一个大爽点；卷二半揭寻纹仪真相"
+    },
+    {
+      "id": "F-ch3-3",
+      "description": "老铁匠'当年'：师父头回提当年——'行会这道坎没那么好过，当年你师父我 就是没过去'，夜里拉风箱到后半夜",
+      "status": "planted",
+      "planted_chapter": 3,
+      "last_action_chapter": 3,
+      "next": "师父暗线，卷一末病逝后锤柄夹层革名文书全揭；Ch30挡刁难/Ch55守炉/Ch60赠锤推进"
+    },
+    {
+      "id": "F-ch3-4",
+      "description": "绝地深处黑纹兽成群向边缘聚集：镇口逃回猎户传怪事，黑压一片一片，少则几十多则上百",
+      "status": "planted",
+      "planted_chapter": 3,
+      "last_action_chapter": 3,
+      "next": "兽潮前兆，伏Ch55蚀纹兽潮夜袭断纹镇；前60章不解释来源"
+    },
+    {
+      "id": "F-ch3-5",
+      "description": "三日公断期限：钱掌柜甩袖'三日后郡城大师到镇公断'，沈拓须三天内让自己变得不好惹",
+      "status": "planted",
+      "planted_chapter": 3,
+      "last_action_chapter": 3,
+      "next": "近程悬念，Ch4为第2天，Ch6-7公断兑现（与罗盘修复/学徒考核交织）"
+    }
+  ]
+}

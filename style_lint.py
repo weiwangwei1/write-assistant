@@ -41,7 +41,7 @@ DEFAULT_CONFIG = {
     # 四、对话占比（H9）
     "dialogue_ratio_min": 0.35,
     "dialogue_ratio_max": 0.60,
-    # 四d、篇幅硬检（v2.4新增；0=不启用。书籍级标准经 --config 注入，如 newbook2/lint_config.json）
+    # 四d、篇幅硬检（v2.4新增；0=不启用。书籍级标准经 --config 注入，如 wanwenshi/lint_config.json）
     "chapter_len_min": 0,
     "chapter_len_max": 0,
     # 四b、标点指纹（风格包可覆盖；默认宽松，风格包按原作指纹收紧）

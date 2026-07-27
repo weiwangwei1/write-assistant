@@ -4,7 +4,7 @@
 
 ## 一、项目概述
 
-这不是一个传统软件项目，而是一套**多智能体网文创作系统**：通过多个专业化 LLM Agent（Skill）协作，完成从大纲构思、角色设计到章节写作、审核、发布的全流程，目标平台为**番茄小说（fanqie）**。当前在产作品为《有龙则灵》（玄幻/民俗悬疑/轻松，规划 330 章 / 6 卷，见 `config/novel_config.json`）。
+这不是一个传统软件项目，而是一套**多智能体网文创作系统**：通过多个专业化 LLM Agent（Skill）协作，完成从大纲构思、角色设计到章节写作、审核、发布的全流程，目标平台为**番茄小说（fanqie）**。当前在产作品为《万纹师》（玄幻/职业流/热血正剧，规划 420 章 / 6 卷，见 `wanwenshi/04_outline.json`）。
 
 系统的"代码"主要是三类：
 
@@ -88,13 +88,13 @@ write-assistant/
 - **Agent 间通信**：**交接卡（handoff card）**——JSON 文件，含 `card_type`/`from_agent`/`to_agent`/`status`/`content` 字段。正文永远用 `draft_ref` 引用文件路径，不内嵌 JSON。
 - **Auto-Runner 模式**：定时触发的无人值守执行。每次触发读取 `state.json` → 执行 `task_config.json` 中的步骤 → 每步完成立即同步 state（State 同步协议 v2.1）→ 满足退出条件即退。支持并行组（最多 5 个并行 Agent）与流水线模式（Ch(N) 审核与 Ch(N+1) 写作并行）。会话启动时执行 State 恢复（验证 output_files 存在性）与 context 缓存检查。
 - **质量门禁（按执行顺序）**：
-  1. `style_lint.py` 退出码 0（chapter-writer 提交前置条件；v2.3 起仅 L0 通用反AI红线阻断，L1 降为顾问项由 detail-reviewer 逐条回应）；含 **篇幅硬检**（v2.4 `chapter_length` 规则，书籍级标准经 `--config` 注入，如 `newbook2/lint_config.json`，advisory 提交前必须清零；原则：**宁删勿补**——初稿写长，修订只删不补）；若经历 lint 修复轮次，`fix_auditor.py` 生成修复差异证据卡（只产证据不判定）；
+  1. `style_lint.py` 退出码 0（chapter-writer 提交前置条件；v2.3 起仅 L0 通用反AI红线阻断，L1 降为顾问项由 detail-reviewer 逐条回应）；含 **篇幅硬检**（v2.4 `chapter_length` 规则，书籍级标准经 `--config` 注入，如 `wanwenshi/lint_config.json`，advisory 提交前必须清零；原则：**宁删勿补**——初稿写长，修订只删不补）；若经历 lint 修复轮次，`fix_auditor.py` 生成修复差异证据卡（只产证据不判定）；
   2. detail-reviewer 微观打磨 + de-ai-processor 去 AI 化（可并行）；
   3. unified_review 统一审核：v3.0 起为**问题清单制**——critical 清零即通过，分数（`unified_score = technical×0.6 + supplementary×0.4`）仅作参考，不再以 ≥9.5 为门禁；
   4. `style_fingerprint.py check`（挂载风格包且基线非 pending 时）；
   5. 质量门禁 3 次未通过则停止执行并记录 `stop_reason`。
 
-  **评审不可跳过（v2.4 新增）**：lint + 指纹双门禁只是**提交前置**，不构成入库。正式入库的每章必须有独立 quality_review 评审卡（由未参与写作的 Agent/子代理按 quality-reviewer rubric 产出，critical 清零）。《万纹师》黄金三章曾因走"轻量流程"漏掉评审，被用户追问后补评并查出 4 个 major——此为本条的数据教训。
+  **评审不可跳过（v2.4 新增）**：lint + 指纹双门禁只是**提交前置**，不构成入库。正式入库的每章必须有独立 quality_review 评审卡（由未参与写作的 Agent/子代理按 quality-reviewer rubric 产出，critical 清零）。《万纹师》黄金三章曾因走"轻量流程"漏掉评审，被用户追问后补评（`wanwenshi/quality_review_golden3.json` 2026-07-26 17:30）查出 4 个 major——verdict="需修改"尚未清零，待修 major：①Ch3 第14行沈拓误称老铁匠"爹"（角色死穴专属称呼）②Ch3 章末"温到了天明"余韵收尾违反 chapter_end_hook_rule ③雷横角色卡"指针疯转"与正文"锈死"矛盾 ④Ch3"登记册六十年"无信息来源。此为本条的数据教训。
 
 ## 四、常用命令
 
@@ -154,6 +154,14 @@ powershell -ExecutionPolicy Bypass -File auto-runner/generate_task_config.ps1 # 
 
 ## 九、当前进度快照
 
-以 `memory/session_pointer.json` 为准（开局必读）：截至最近更新，《有龙则灵》处于 chapter_loop 阶段，卷一，已完成 14 章，下一章为第 15 章。注意 `novel_config.json`（total_chapters=330、outline_version=v4.1）与 session_pointer（total_chapters=300、outline_version=v4.3 定稿）存在口径差异——**session_pointer 为运行时事实源，config 为立项配置**；涉及总数/版本判断时以 session_pointer 为准并可向用户确认。
+以 `wanwenshi/memory/session_pointer.json` 为准（开局必读）：截至最近更新，《万纹师》处于黄金三章质量修复 + Ch4 待写阶段，卷一（断纹镇），已完成 3 章，下一章为第 4 章「喂纹」（糖葫芦单元 2：修复罗盘+学徒考核 第一环）。outline v1.0（2026-07-26），total_chapters=420 / 6 卷，chendong 文风包，篇幅标准 2600-3200 字/章（lint 命令须带 `--config wanwenshi/lint_config.json`）。
 
-**其他项目状态**：《献祭纪元：赊刀人》已放弃归档（`archive/newbook_献祭纪元_放弃_20260726/`）；《万纹师》为当前在产新书（`newbook2/`，天赋流铸纹师、无系统金手指、热血+悬念、chendong 文风包，420 章 6 卷大纲，9 张角色卡，黄金三章已入库且经 quality_review 复评修复），篇幅标准 2600-3200 字/章（lint 命令须带 `--config newbook2/lint_config.json`），下一章为第 4 章（糖葫芦单元 2：修复断纹罗盘）。
+**黄金三章质量状态**：`wanwenshi/quality_review_golden3.json`（2026-07-26 17:30）verdict="需修改"——技术分 8.60 / 追读指数 8.24，未达 v1.9 双门槛（技术≥9.5 且追读≥8.5）。三章分章评分：Ch1（8.90/8.38 优化档）/ Ch2（8.78/8.52 优化档）/ Ch3（8.11/7.81 重写局部）。问题统计：critical 0 / major 4 / minor 10。Top3 待修：①Ch3 第14行沈拓误称老铁匠"爹"（角色死穴专属称呼）②Ch3 章末"温到了天明"余韵收尾违反 chapter_end_hook_rule ③雷横角色卡"指针疯转"与正文"锈死"矛盾 + Ch3"登记册六十年"无信息来源。**Ch4 开写前须先修复 Ch3 三项 major 并重跑 quality_review**。
+
+**项目进度面板**：`dashboard.html`（位于 `write-assistant/` 根目录，作为通用工具不绑定具体项目，避免项目归档时被删除）提供实时可视化监控（进度/质量趋势/角色状态/伏笔追踪/悬念窗口/反派梯队/下一步动作/目录信息）。支持项目选择器（URL 参数 `?project=wanwenshi`）、模块展开/折叠。启动方式：在 `write-assistant/` 目录下运行 `python -m http.server 8000`，访问 `http://localhost:8000/dashboard.html?project=wanwenshi`。数据源为各项目 `memory/*.json`，memory 系统更新后刷新浏览器即可看到最新状态。
+
+**其他项目状态**（均已归档）：
+- 《有龙则灵》：已归档（`archive/有龙则灵_20260726/`，2026-07-26 归档；旧版 Ch1-14 删除，重写版 Ch1-4 入库后整体归档）
+- 《补天人》：已归档（`archive/补天人_20260726/`，写了 5 章后归档）
+- 《献祭纪元：赊刀人》：已放弃归档（`archive/newbook_献祭纪元_放弃_20260726/`）
+- 《临渊》《玩家请就位》：早期归档项目（`archive/临渊_20260719/`、`archive/玩家请就位_20260720/`）

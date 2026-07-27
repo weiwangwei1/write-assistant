@@ -5,7 +5,7 @@
   "status": "ready",
   "created": "2026-07-26",
   "content": {
-    "project": "《万纹师》（newbook2/）",
+    "project": "《万纹师》（wanwenshi/）",
     "chapter_num": 4,
     "chapter_title_suggestion": "喂纹",
     "style_pack": "chendong（热血+悬念，叙述驱动、长短句大开大合、破折号近乎为零、对话占比15-30%）",
@@ -31,10 +31,10 @@
 
     "continuity": {
       "read_first": [
-        "newbook2/03_worldview.md（第三节'纹与规则之力'为 Ch4 核心设定）",
-        "newbook2/04_outline.json（candy_gourd unit2 + shuang_point_distribution）",
-        "newbook2/output/chapter_003.txt（直接前文）",
-        "newbook2/characters/沈拓.json、老铁匠.json、雷横.json、钱掌柜.json",
+        "wanwenshi/03_worldview.md（第三节'纹与规则之力'为 Ch4 核心设定）",
+        "wanwenshi/04_outline.json（candy_gourd unit2 + shuang_point_distribution）",
+        "wanwenshi/output/chapter_003.txt（直接前文）",
+        "wanwenshi/characters/沈拓.json、老铁匠.json、雷横.json、钱掌柜.json",
         ".trae/skills/writer-styles/chendong/style_card.md（文风决策卡）"
       ],
       "established_facts": [
@@ -49,9 +49,9 @@
     },
 
     "gates": {
-      "lint": "python style_lint.py newbook2/output/chapter_004.txt --style chendong --config newbook2/lint_config.json --json newbook2/output/style_lint_ch4.json（exit 0 且 chapter_length advisory 清零）",
-      "cross_lint": "python style_lint.py newbook2/output/ --style chendong --config newbook2/lint_config.json（跨章 exit 0；注意 Ch1-2 章尾均为'光/灯族'意象，Ch4 章尾须换族）",
-      "fingerprint": "python style_fingerprint.py check newbook2/output/chapter_004.txt --baseline .trae/skills/writer-styles/chendong/fingerprint.json --json newbook2/output/fp_check_ch4.json（exit 0）",
+      "lint": "python style_lint.py wanwenshi/output/chapter_004.txt --style chendong --config wanwenshi/lint_config.json --json wanwenshi/output/style_lint_ch4.json（exit 0 且 chapter_length advisory 清零）",
+      "cross_lint": "python style_lint.py wanwenshi/output/ --style chendong --config wanwenshi/lint_config.json（跨章 exit 0；注意 Ch1-2 章尾均为'光/灯族'意象，Ch4 章尾须换族）",
+      "fingerprint": "python style_fingerprint.py check wanwenshi/output/chapter_004.txt --baseline .trae/skills/writer-styles/chendong/fingerprint.json --json wanwenshi/output/fp_check_ch4.json（exit 0）",
       "quality_review": "独立 Agent（未参与本章写作者）按 .trae/skills/quality-reviewer/SKILL.md rubric 评审，critical 清零方可入库",
       "principle": "宁删勿补：初稿写长，修订只删不补；写短先扩场景/加冲突达标再送检"
     },
@@ -64,6 +64,6 @@
       "章尾意象避开'光/亮/灯/焰/火色/灭/晃'（Ch1-2 已用'光族'，Ch3 已用'温/烫'）"
     ],
 
-    "handoff_after": "完稿过门禁后：git 提交 newbook2/（含章节+3张报告卡+评审卡），消息注明 Ch4 标题与门禁状态"
+    "handoff_after": "完稿过门禁后：git 提交 wanwenshi/（含章节+3张报告卡+评审卡），消息注明 Ch4 标题与门禁状态"
   }
 }

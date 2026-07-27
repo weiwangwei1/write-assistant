@@ -4,10 +4,10 @@
   "from_agent": "quality-reviewer",
   "review_scope": "《万纹师》黄金三章（Ch1-3）宏观质量评审：分章评分 + 综合总评",
   "context_refs": [
-    "newbook2/03_worldview.md v1.0（唯一事实源）",
-    "newbook2/04_outline.json v1.0（shuang_point_distribution Ch1-3 / candy_gourd unit1 / production_notes）",
-    "newbook2/characters/ 沈拓、老铁匠、雷横、石头、钱掌柜、孙师傅",
-    "newbook2/00_terminology.md"
+    "wanwenshi/03_worldview.md v1.0（唯一事实源）",
+    "wanwenshi/04_outline.json v1.0（shuang_point_distribution Ch1-3 / candy_gourd unit1 / production_notes）",
+    "wanwenshi/characters/ 沈拓、老铁匠、雷横、石头、钱掌柜、孙师傅",
+    "wanwenshi/00_terminology.md"
   ],
   "content": {
     "chapters": [

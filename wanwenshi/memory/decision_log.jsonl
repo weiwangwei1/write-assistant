@@ -1,0 +1,5 @@
+{"timestamp": "2026-07-26", "decision": "万纹师立项：天赋流匠人职业+无系统金手指+热血正剧，chendong文风包，420章6卷", "source": "04_outline.json"}
+{"timestamp": "2026-07-26", "decision": "黄金三章走轻量流程漏评审，被用户追问后补评quality_review", "source": "quality_review_golden3.json"}
+{"timestamp": "2026-07-27", "decision": "newbook2/→wanwenshi/ 目录重命名（纯ASCII避免编码问题）", "source": "用户指示"}
+{"timestamp": "2026-07-27", "decision": "补建memory/config/logs标配目录与文件", "source": "用户指示"}
+{"timestamp": "2026-07-27", "decision": "Ch3三项major修复策略：按quality_review建议改", "source": "用户指示"}

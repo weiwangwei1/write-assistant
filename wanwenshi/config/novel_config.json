@@ -1,0 +1,19 @@
+{
+  "title": "万纹师",
+  "subtitle": "备选：铸纹纪元 / 从边城铁匠铺开始",
+  "genre": "玄幻 · 职业流（铸纹师）· 位面征战 · 热血正剧",
+  "theme": "手比命硬。一个没有血脉、没有宿命的铁匠学徒，用一双稳手把断代的文明一纹一纹铸回来。",
+  "total_chapters": 420,
+  "total_volumes": 6,
+  "style_pack": "chendong",
+  "chapter_word_count": "2600-3200",
+  "outline_version": "v1.0",
+  "outline_ref": "wanwenshi/04_outline.json",
+  "worldview_ref": "wanwenshi/03_worldview.md",
+  "terminology_ref": "wanwenshi/00_terminology.md",
+  "lint_config_ref": "wanwenshi/lint_config.json",
+  "chapter_len_min": 2600,
+  "chapter_len_max": 3200,
+  "golden_finger_policy": "无系统金手指。主角=纯匠师天赋（稳手+过目不忘+空间逻辑），力量全部来自手艺/材料/规则领悟。老龙=遗迹交易方，限量出场，只给知识不给力量",
+  "platform": "fanqie"
+}
