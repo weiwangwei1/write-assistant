@@ -1,0 +1,127 @@
+{
+  "card_type": "chapter_draft",
+  "from_agent": "chapter-writer",
+  "to_agent": "detail-reviewer",
+  "status": "ready",
+  "content": {
+    "chapter_num": 4,
+    "title": "问锤",
+    "word_count": 2780,
+    "draft_ref": "chapters/Ch004_问锤.md",
+    "opening_type": "场景动作开头",
+    "ending_type": "悬念",
+    "hook_sentence": "古镜知道缺的那块料在哪个方向。镜渊方向的低鸣声又沉了一分，古镜在他怀里跟着嗡了一下，像在回应。",
+    "style_lint_ref": "handoff/style_lint_ch4.json",
+    "fix_audit_ref": null,
+    "style_pack": "yanyujiangnan",
+    "style_plan": {
+      "metaphor_plan": [
+        {"position": "第2段", "target": "老铁匠烟杆停在空中", "metaphor": "像一截被风吹灭的蜡烛", "function": "外化老铁匠被逼问时的心理状态——沉默、熄灭、僵住"},
+        {"position": "第53行", "target": "三天时间压力", "metaphor": "像有人在暗处掐着表", "function": "时间压力的具象化，三线时间汇聚的压迫感"},
+        {"position": "第83行", "target": "镜渊低鸣", "metaphor": "像有什么巨大的东西在地下翻身", "function": "镜渊威胁的感官化，暗示镜渊深处有活物"},
+        {"position": "第93行", "target": "古镜回应", "metaphor": "像在回应", "function": "古镜与镜渊的呼应关系，暗示古镜与镜渊同源"}
+      ],
+      "dialogue_plan": {
+        "confrontation_scenes": ["林深深夜追问老铁匠养父锤纹与行踪"],
+        "format": "直接对话",
+        "reason": "师徒十年首次正面交锋——林深不再等老铁匠掐话头，老铁匠首次正面回应'断代前的手法'+'你爹他是个好匠人'。转述会失去张力与克制情感的微妙层次"
+      }
+    },
+    "beat_sheet": {
+      "beats": [
+        {
+          "beat_id": 1,
+          "summary": "林深深夜追问养父锤上纹路来历，老铁匠首次正面回应'断代前的手法'+'你爹他是个好匠人'，追问行踪被回避",
+          "purpose": "信息揭示+情感转折",
+          "weight": "major",
+          "shuang_type": "reveal",
+          "info_delivery": "dialogue"
+        },
+        {
+          "beat_id": 2,
+          "summary": "林深拿出古镜指出三纹同路（锤纹、古镜纹、镜片纹），老铁匠沉默后问'学了几成'，告知学徒考核三天后→缺料→考核拿镜晶→'我试试'",
+          "purpose": "任务驱动+主动出击",
+          "weight": "major",
+          "shuang_type": null,
+          "info_delivery": "dialogue"
+        },
+        {
+          "beat_id": 3,
+          "summary": "石头报信黑镜纹兽成群，猎镜队撑不过三天——三线时间汇聚（钱锈限期/考核/兽潮）",
+          "purpose": "外部压力+悬念推进",
+          "weight": "minor",
+          "shuang_type": null,
+          "info_delivery": "dialogue"
+        },
+        {
+          "beat_id": 4,
+          "summary": "林深描纹发现缺料被人切开（断代前手法），试七种续法失败，第八种续法线没断且偏向镜渊方向——镜眼能力微暗示+古镜感知缺料方向",
+          "purpose": "成长+发现",
+          "weight": "major",
+          "shuang_type": "reveal",
+          "info_delivery": "discovery"
+        }
+      ],
+      "cross_chapter_facts": {
+        "names": ["老铁匠", "林深", "石头", "雷横", "钱锈", "老张头"],
+        "numbers": [
+          {"item": "学徒考核", "value": "三天后", "source": "Ch4老铁匠告知"},
+          {"item": "匠牌", "value": "三十年", "source": "Ch4叙述", "verify": "与setting_bible老铁匠退守锈街30年一致"},
+          {"item": "锤法", "value": "七成", "source": "Ch4林深自述"},
+          {"item": "续法", "value": "七种失败/第八种成功", "source": "Ch4"},
+          {"item": "缺料断口", "value": "半毫米", "source": "Ch4描纹发现"}
+        ],
+        "positions": [
+          {"character": "老铁匠", "location": "铁匠铺里屋床沿"},
+          {"character": "林深", "location": "铁匠铺里屋→门口→炉边石台"},
+          {"character": "石头", "location": "铁匠铺门口"},
+          {"character": "雷横", "location": "镇口架镜阵"},
+          {"item": "古镜", "location": "林深贴身收着"}
+        ],
+        "known_info": [
+          "养父的锤(Ch1-3已揭示：锤头半道磨得快平的旧镜纹)",
+          "古镜(Ch3雷横托付：镜面烧不化的旧裂纹，入水自浮映出镜渊画面)",
+          "黑镜纹兽(Ch3章末石头报信：镜渊边缘成群出现)",
+          "钱锈限期三天(Ch3堵门问罪)",
+          "古镜入水自浮(Ch3：映出黑暗中有光有路)"
+        ],
+        "certainty_state": {
+          "林深": {
+            "养父真实身份": "partial——知道养父是断代前的人、锤法是断代前手法，不知道具体去向和身世全貌",
+            "古镜缺料方向": "partial——感知到古镜知道方向，但尚未确认",
+            "古镜与养父关联": "partial——确认三纹同路（锤纹/古镜纹/镜片纹），确认同一个人教的手法",
+            "镜眼能力": "first_encounter——描纹时视野清晰了一层，认为是眼花或疲劳"
+          },
+          "老铁匠": {
+            "养父去向": "full——知道但不透露",
+            "古镜来历": "full——知道但不透露",
+            "林深身世": "full——知道但不透露"
+          },
+          "石头": {
+            "兽潮严重程度": "partial——听老张头说的，不确定意味着什么"
+          }
+        }
+      },
+      "character_internal": {
+        "林深": {
+          "inner_conflict": "想知道养父真相 vs 不忍逼问咳疾缠身的师父（引用：老铁匠角色卡 conflicts 第1条'守秘的硬规矩vs对林深的父爱'的对应面——林深察觉师父的回避与咳疾的关联，追问中带着克制）",
+          "desire_this_chapter": "弄清养父锤法与古镜的关联，拿到镜晶修好古镜以通过考核守住铺子",
+          "emotion_arc": "决然（不等老铁匠掐了）→震惊（断代前/好匠人）→克制（师父咳着回避，不再追问）→承担（我试试）→发现（缺料被切开/第八种续法线没断）"
+        },
+        "老铁匠": {
+          "inner_conflict": "守秘的硬规矩vs对林深的父爱（引用：角色卡 conflicts 第1条）——他破例说了'你爹他是个好匠人'，但追问行踪时又回避；给出考核路径是父爱的表达，不说真相是规矩的约束",
+          "desire_this_chapter": "让林深通过考核拿到镜晶，在不透露身世的前提下推他往前走",
+          "emotion_arc": "沉默（烟杆停在半空）→破例回应（好匠人）→回避（问那么多干什么）→给出任务（考核拿镜晶）→宿命感（该来的躲不掉）"
+        }
+      },
+      "shuang_types": ["reveal", "reveal"],
+      "suspense_budget_check": "无新开悬念。goal_tracker suspense_window为空（立项阶段），本章推进已有悬念线：古镜来历(G1)、镜渊异象(G3)。新增伏笔：古镜缺料被人切开（断代前手法同源）→指向同一个人的未解之谜；古镜感知缺料方向→指向镜渊方向。",
+      "opponent_rebuttals": []
+    },
+    "timeline_clues_confirmed": true,
+    "timeline_verification": {
+      "thirty_years_匠牌": "老铁匠匠牌挂了三十年——与setting_bible退守锈街30年一致（镜崩之夜30年前→退守锈街→开铁匠铺）",
+      "three_days": "考核三天后——与Ch3钱锈限期三天并行，形成三线时间汇聚"
+    }
+  }
+}
