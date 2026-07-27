@@ -1,0 +1,69 @@
+{
+  "card_type": "chapter_assignment",
+  "from_agent": "chief-editor",
+  "to_agent": "chapter-writer（外部任务）",
+  "status": "ready",
+  "created": "2026-07-26",
+  "content": {
+    "project": "《万纹师》（newbook2/）",
+    "chapter_num": 4,
+    "chapter_title_suggestion": "喂纹",
+    "style_pack": "chendong（热血+悬念，叙述驱动、长短句大开大合、破折号近乎为零、对话占比15-30%）",
+    "chapter_length": "2600-3200字（汉字，硬性标准）",
+
+    "assignment": {
+      "beat": "糖葫芦单元2（Ch4-7 修复罗盘+学徒考核）第一环：喂纹难关。Ch3 末沈拓闩门拆罗盘、罗盘发烫指针又偏半分（'像是在催'）——Ch4 写他尝试修复断纹罗盘的第一道难关：这面万纹时代寻纹仪的纹'饿'了三代，但它'吃'的东西和弩不一样（弩吃同源骨纹，罗盘吃什么？），一次喂错/喂不进去的失败→悟出罗盘的'食谱'（它吃的是'路'——指针每指一个方向，就要带它走一段。或更稳妥的处理：喂普通纹材无效，发现罗盘纹芯要的是绝地边缘的活纹，必须冒险出镇采）",
+      "must_include": [
+        "承接 Ch3 末'罗盘异动'开局，不跳时间",
+        "一次真实的失败（喂不进去/喂错了东西），失败过程展示纹的相性规则（世界观第三节：纹有活性/相性/极限）",
+        "三天期限的倒计时压力（行会郡城大师将至——现为第1天夜→第2天）",
+        "老铁匠师徒戏（师父看出他在憋大招，不点破）",
+        "章末硬钩子（建议：喂对方向后罗盘第一次'指路'，或行会大师提前一天到镇）"
+      ],
+      "must_not": [
+        "不得让罗盘完全修好（那是 Ch6 的事）",
+        "不得出现老龙/纹崩真相/拜纹教点名/蚀纹解释（黑纹兽传闻可延续，不解释）",
+        "不得让沈拓获得任何形式的血脉/系统/宿命暗示（写作红线）",
+        "新造专名零新增（现有：纹/纹器/纹兽/纹核/蚀纹（黑纹）/断纹罗盘）",
+        "不得在 Ch4 安排学徒考核（那是 Ch7）"
+      ]
+    },
+
+    "continuity": {
+      "read_first": [
+        "newbook2/03_worldview.md（第三节'纹与规则之力'为 Ch4 核心设定）",
+        "newbook2/04_outline.json（candy_gourd unit2 + shuang_point_distribution）",
+        "newbook2/output/chapter_003.txt（直接前文）",
+        "newbook2/characters/沈拓.json、老铁匠.json、雷横.json、钱掌柜.json",
+        ".trae/skills/writer-styles/chendong/style_card.md（文风决策卡）"
+      ],
+      "established_facts": [
+        "沈拓已公开打脸钱掌柜与孙师傅，全镇目击；行会限期：三日后郡城大师到镇'公断'弩与考核（Ch3 起算）",
+        "雷横已当众把断纹罗盘赠给沈拓，赤蝎队'十七口人随叫随到'",
+        "罗盘=万纹时代寻纹仪，指针指'纹最浓的地方'，现指西南绝地深处（与沈拓父亲失踪方向一致），'像是在催'",
+        "绝地深处黑纹兽成群向边缘聚集（兽潮前兆，伏 Ch55），镇上只有传闻，无人解释",
+        "沈拓身怀：父亲旧锤（纹路与行会老弩同一只手）、半张图纸、断纹罗盘、破甲弩（代管）",
+        "沈拓公开能力：喂活'饿纹'、识出万纹时代手法；对外身份仍是铁匠铺学徒"
+      ],
+      "information_boundary": "卷一除沈拓外无人知道老龙存在；罗盘真相（寻纹仪）沈拓与读者同步猜，不得有角色一语道破；老铁匠知道行会内幕但'不问当年'是师徒默契"
+    },
+
+    "gates": {
+      "lint": "python style_lint.py newbook2/output/chapter_004.txt --style chendong --config newbook2/lint_config.json --json newbook2/output/style_lint_ch4.json（exit 0 且 chapter_length advisory 清零）",
+      "cross_lint": "python style_lint.py newbook2/output/ --style chendong --config newbook2/lint_config.json（跨章 exit 0；注意 Ch1-2 章尾均为'光/灯族'意象，Ch4 章尾须换族）",
+      "fingerprint": "python style_fingerprint.py check newbook2/output/chapter_004.txt --baseline .trae/skills/writer-styles/chendong/fingerprint.json --json newbook2/output/fp_check_ch4.json（exit 0）",
+      "quality_review": "独立 Agent（未参与本章写作者）按 .trae/skills/quality-reviewer/SKILL.md rubric 评审，critical 清零方可入库",
+      "principle": "宁删勿补：初稿写长，修订只删不补；写短先扩场景/加冲突达标再送检"
+    },
+
+    "style_notes": [
+      "叙述驱动，对话克制（15-30%），对峙/师徒戏可上浮",
+      "句长基准 30 字：多用逗号串联的流动长句，短句只用于重音",
+      "比喻≤6处/章，一段一喻；破折号 0 个；省略号≤2处",
+      "避免'了'字收尾的短句（≤3处/章）；避免'不是…是…'句式（≤2处/章）",
+      "章尾意象避开'光/亮/灯/焰/火色/灭/晃'（Ch1-2 已用'光族'，Ch3 已用'温/烫'）"
+    ],
+
+    "handoff_after": "完稿过门禁后：git 提交 newbook2/（含章节+3张报告卡+评审卡），消息注明 Ch4 标题与门禁状态"
+  }
+}

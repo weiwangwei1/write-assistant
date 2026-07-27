@@ -1,0 +1,136 @@
+{
+  "card_type": "de_ai_analysis",
+  "mode": "analysis_mode",
+  "timestamp": "2026-07-28T00:00:00+08:00",
+  "from_agent": "de-ai-processor",
+  "to_agent": "review-merger",
+  "chapter_num": 4,
+  "chapter_title": "问锤",
+  "word_count": 2493,
+  "style_pack": "yanyujiangnan",
+  "chapter_end_type": "悬念型",
+  "ai_score_before": 1.5,
+  "scoring_breakdown": {
+    "sentence_uniformity": 1.0,
+    "sentence_uniformity_note": "长短句交替自然，碎片句（弯折，分叉，汇合。）、一句成段（炉火旺了一夜。）、省略主语（烟杆停了。）手法丰富。平行结构（问过...问过...问过.../在...之前，在...之前，在...之前）均为修辞性排比，服务于情绪递进与世界构建，非机械重复。",
+    "de_density": 2.0,
+    "de_density_note": "全章'的'字密度约2.8-3.2/100字，总体在正常范围。第15行段落（'断代前...留给老铁匠'约120字含7个'的'，密度约5.8/100字）略偏高，但该段为世界观信息密集段，非描写冗余。",
+    "emotion_telling": 1.0,
+    "emotion_telling_note": "全章仅1处轻微情绪直说（'语气平静'），其余情绪均通过动作/生理反应传递：攥门框指节发白（紧张）、咬烟杆杆头发颤（压抑）、没抖也没躲（镇定）、咳得只剩气声（虚弱）。符合烟雨江南克制文风。",
+    "formal_transition": 1.5,
+    "formal_transition_note": "叙述中'但'出现5次（第9/22/27/89/91行），无'然而''因此''于是''接着''随后'等书面转折词。'但'均为短促转折，节奏上与烟雨江南风格一致，密度在可接受范围。",
+    "word_repetition": 1.0,
+    "word_repetition_note": "主题词（古镜/烟杆/炉火/锤/镜纹/断代前）重复均为领域必需与叙事动机（'三天'为章节核心母题，'一呼一吸'为镜渊呼吸意象，'弯折/分叉/汇合'为镜纹术语回响），非AI机械重复。",
+    "dialogue_spoken": 0.5,
+    "dialogue_spoken_note": "对话口语度极高。林深话短而准（'缺料。''我试试。'），老铁匠糙话中有关切（'问那么多干什么。先把你的古镜修好。'），石头带街头口语特征（'他娘的''成片成片的''老张头'）。角色语音辨识度清晰，与角色卡设定一致。",
+    "four_char_idiom": 0.5,
+    "four_char_idiom_note": "全章未发现'不动声色''若有所思''面色凝重''心急如焚'等AI高频四字词组。'一呼一吸''分毫不差''一高一低'等均为具体描写性短语，非成语堆砌。",
+    "paragraph_uniformity": 0.5,
+    "paragraph_uniformity_note": "段落长短悬殊：最短3字（'七成。''缺料。'），最长约250字（描纹场景），中间有大量中短段落穿插。标准差远大于均值30%，节奏呼吸感强，无AI均匀症。"
+  },
+  "detected_issues": [
+    {
+      "category": "emotion_telling",
+      "location": "第67行（石头报信段落）",
+      "original": "林深抬头看着石头，语气平静",
+      "severity": "minor",
+      "suggestion": "'语气平静'为直接情绪标签。改为动作暗示：'林深抬头看着石头，声音没变' 或 删除标签让对话本身传递平静。",
+      "revised": "林深抬头看着石头，声音没变",
+      "rule_reference": "三阶梯法第1阶梯：直接命名情绪（平静）→ 建议用第2阶梯替代（声音没变=生理特征）"
+    },
+    {
+      "category": "precise_number",
+      "location": "第77行（描纹发现场景）",
+      "original": "错位处纹路断了半毫米，断口齐茬，干净利落。",
+      "severity": "minor",
+      "suggestion": "'半毫米'为AI典型精确度量。工匠视角下可用模糊化表达：'错位处纹路断了一小截' 或 '断了一丝'。",
+      "revised": "错位处纹路断了一小截，断口齐茬，干净利落。",
+      "rule_reference": "精确数字症：在非必要精确的叙事语境中使用度量单位"
+    },
+    {
+      "category": "precise_number",
+      "location": "第91行（续法成功场景）",
+      "original": "但弯过去之后，线往镜渊的方向偏了一度。",
+      "severity": "minor",
+      "suggestion": "'一度'为精确角度。模糊化：'线往镜渊的方向偏了一丝' 或 '偏了一点'。",
+      "revised": "但弯过去之后，线往镜渊的方向偏了一丝。",
+      "rule_reference": "精确数字症：在非必要精确的叙事语境中使用度量单位"
+    },
+    {
+      "category": "logic_chain",
+      "location": "第79行（古镜裂口分析段落）",
+      "original": "断口处纹路走向与古镜自身纹路是同一个路数，说明当年切这面镜的人用的也是断代前的手法。",
+      "severity": "minor",
+      "suggestion": "'说明'为逻辑链标志词，使分析读起来像推理说明书。可改为画面式呈现：'断口处纹路走向与古镜自身纹路是同一个路数。当年切这面镜的人，用的也是断代前的手法。'——拆成两句，让读者自己连线。",
+      "revised": "断口处纹路走向与古镜自身纹路是同一个路数。当年切这面镜的人，用的也是断代前的手法。",
+      "rule_reference": "段落逻辑链症：'说明'→解释性连接，改为句号断句=镜头链"
+    },
+    {
+      "category": "de_density",
+      "location": "第15行（断代前世界观段落）",
+      "original": "断代前，那是在行会之前，在镜晶配额和规矩钱之前，在纹籍和匠牌之前。一个已经消失的年代，老铁匠不提，没人提，好像那个年代从来没有存在过。养父的锤是他留下的，锤上的纹是断代前的手法，那养父也是断代前的人。一个消失年代里走出来的人，把锤留给了老铁匠，把林深也留给了老铁匠。",
+      "severity": "minor",
+      "suggestion": "该段约120字含7个'的'（密度约5.8/100字），略超阈值。其中'消失的年代''他留下的''断代前的手法''走出来的人'等可微调。但该段为世界观信息密集段，且排比修辞（把锤留给...把林深也留给...）为刻意节奏，不建议大改。可考虑将'一个已经消失的年代'改为'一个年代，已经消失了'。",
+      "revised": "断代前，那是在行会之前，在镜晶配额和规矩钱之前，在纹籍和匠牌之前。一个年代，已经消失了，老铁匠不提，没人提，好像从来没有存在过。养父的锤是他留下，锤上的纹是断代前的手法，那养父也是断代前的人。一个消失年代里走出来的人，把锤留给了老铁匠，把林深也留给了老铁匠。",
+      "rule_reference": "'的'字依赖症：每100字'的'超过5次"
+    }
+  ],
+  "stats": {
+    "total_issues": 5,
+    "by_category": {
+      "sentence_uniformity": 0,
+      "de_density": 1,
+      "emotion_telling": 1,
+      "formal_transition": 0,
+      "word_repetition": 0,
+      "dialogue_written": 0,
+      "four_char_idiom": 0,
+      "precise_number": 2,
+      "paragraph_uniformity": 0,
+      "over_connection": 0,
+      "summary_ending": 0,
+      "over_describe": 0,
+      "character_telling": 0,
+      "logic_chain": 1
+    },
+    "severity_breakdown": {
+      "critical": 0,
+      "major": 0,
+      "minor": 5
+    }
+  },
+  "cross_chapter_consistency": {
+    "character_voice": "PASS",
+    "character_voice_note": "林深对话短而准（'缺料。''我试试。'），与角色卡'话比锤声少'一致。老铁匠糙话编码关切（'问那么多干什么'），与角色卡'嘴硬心软到拧巴'一致。石头口语化（'他娘的''成片成片的'），与Ch3出场一致。",
+    "character_habits": "PASS",
+    "character_habits_note": "林深'拇指蹭锤柄棱'（第46/89行）命中角色卡habit#1；'古镜油布包三层贴身收'（第24/89行）命中角色卡appearance描述；老铁匠'咳嗽'（第10/19/34/83行）命中角色卡habit#1；'烟杆不离手/敲桌沿'（第3/9/13/21/27/33/49行）命中角色卡habit#2-3。",
+    "foreshadowing_continuity": "PASS",
+    "foreshadowing_note": "Ch1-3埋设的伏笔在本章得到延续：古镜入水自浮画面（Ch3）→本章第65行回忆复现；'三天'期限（Ch3钱锈设限）→本章第34/61/62/67行多重加压；养父锤纹同路（Ch2）→本章第25行'三处同路'深化。暗线呼吸节奏保持。",
+    "timeline_consistency": "PASS",
+    "timeline_consistency_note": "本章时间线紧接Ch3当晚至次日，'三天'期限在Ch3钱锈设限→Ch4石头报信兽潮三天→Ch4考核三天形成三重加压，逻辑自洽。"
+  },
+  "style_pack_alignment": {
+    "long_sentence_dominance": "PASS",
+    "long_sentence_dominance_note": "长句为主，段落内多重复合句（如第5行'林深站在门口...指节发白'、第65行'古镜入水自浮...也在跟着'），符合烟雨江南长句风格。",
+    "emotional_restraint": "PASS",
+    "emotional_restraint_note": "情绪克制，无直抒胸臆。悲伤不哭（老铁匠咳到弯腰压住湿气），愤怒不吼（林深攥门框指节发白），所有情绪化入动作与物象。",
+    "visual_sensory_priority": "PASS",
+    "visual_sensory_priority_note": "视觉优先：油灯晃影、炉火映背、火星溅落、放大镜反光、幽光一闪。触觉次之（凉意透骨、放大镜发热）。听觉点缀（低鸣、咳声、脚步声）。无多余嗅觉/味觉。",
+    "dialogue_ratio": "PASS (estimated ~28-32%)",
+    "dialogue_ratio_note": "对话占比估计在28-32%区间，在烟雨江南25-40%正常范围内。"
+  },
+  "clean_pass_categories": [
+    "句式工整症（sentence_uniformity）：长短句交替自然，碎片句与平行结构均为修辞性手法，非机械重复。",
+    "转折词正式化（formal_transition）：无'然而''因此''于是''接着''随后'等AI高频书面转折词，'但'使用在可接受范围。",
+    "用词重复症（word_repetition）：主题词重复均为领域必需（古镜/烟杆/炉火/镜纹）或叙事动机（三天/一呼一吸），非AI机械重复。",
+    "对话书面化（dialogue_written）：三角色语音辨识度清晰，含语气词、省略、口语化表达，对话自然。",
+    "四字词组堆砌（four_char_idiom）：未发现AI高频四字词组，描写均为具体动作与物象。",
+    "段落均匀症（paragraph_uniformity）：段落长短悬殊（3字-250字），节奏呼吸感强。",
+    "过度连接症（over_connection）：句间以意合为主，无显式连接词堆砌。",
+    "总结式结尾（summary_ending）：无'这说明''他意识到''这意味着'等总结句式，章尾以环境画面收束。",
+    "描写面面俱到（over_describe）：感官描写以视觉为主、触觉听觉为辅，聚焦精准，无面面俱到。",
+    "Tell式角色塑造（character_telling）：无'他是XX的人'等性格标签，所有角色特质均通过行为与对话展示。"
+  ],
+  "overall_assessment": "本章AI痕迹极低（ai_score=1.5），5处问题均为minor级，其中3处（精确数字2处+逻辑链1处）为烟雨江南文风下可接受的轻微偏差，2处（情绪直说+的密度）为轻微可优化点。对话口语度、句式变化、情绪克制、角色行为一致性均为优秀水平。建议：若追求极致，可微调2处精确数字（半毫米→一小截，一度→一丝）和1处逻辑链（删除'说明'改句号断句）；其余2处改动收益低，可保留不改。",
+  "recommendation": "PASS — 可直接进入下一环节。5处minor中，精确数字2处和逻辑链1处建议修复（改动量极小），情绪直说和'的'密度可保留。"
+}

@@ -1,89 +1,95 @@
 {
   "card_type": "session_pointer",
-  "last_updated": "2026-07-28T20:00:00+08:00",
-  "last_updated_chapter": 3,
+  "last_updated": "2026-07-28T22:00:00+08:00",
+  "last_updated_chapter": 4,
   "framework_version": "v3.2.2（第三方反馈修复：旁白替爽检测+打脸即时反馈+金手指成长暗示+narrative_dialogue_max 2→1）",
   "project_status": {
     "novel_title": "镜渊",
     "outline_version": "v1.2",
     "current_phase": "writing",
     "current_volume": 1,
-    "current_chapter": 3,
+    "current_chapter": 4,
     "total_chapters": 505,
-    "completed_chapters": 3,
-    "overall_progress": "0.6%",
+    "completed_chapters": 4,
+    "overall_progress": "0.8%",
     "style_pack": "yanyujiangnan（v2.3：6条文风手艺+4条叙事引擎）",
     "chapter_word_count": "2400-2800",
     "golden_three_word_count_max": 2600,
-    "phase_note": "黄金三章v2.1（第三方反馈修复完成）。Ch1(~2380字/动作型结尾/加围观反应)Ch2(~2344字/悬念型结尾)Ch3(~2500字/动作型结尾/删旁白替爽+金手指暗示)。三章全部style_lint L0清零EXIT=0。第三方反馈修复：①Ch1打脸后加猎镜手低笑围观反应(即时反馈放大爽感)②Ch3删除两处'石头递眼神说林哥不简单'(旁白替爽anti-pattern)③Ch3加金手指成长暗示(铜框放大镜发热/纹路清晰一层后退/暗示能力成长)④框架新增：SKILL.md 5.3节加旁白替爽禁止/打脸即时反馈/金手指成长暗示三条规则；style_lint.py narrative_dialogue_max 2→1。下一步：质量评审然后Ch4开写。"
+    "phase_note": "黄金三章v2.1完成+Ch4《问锤》入库。Ch4~2780字/悬念型结尾。L0+L1全绿，detail_review/de_ai均PASS。师徒十年首次正面交锋，老铁匠破例回应。新伏笔：缺料被人切开(同一个人/同一把刀/同一种手法)。镜眼能力微暗示(视野清晰一层)。三线时间汇聚(钱锈三天/考核三天/兽潮三天)。H7约束：Ch5不能是悬念型。"
   },
   "h7_ending_type_tracking": {
     "description": "v3.2.1新增：章尾类型滚动去重。连续2章不得重复，连续3章内氛围型≤1",
     "history": [
       {"chapter": 1, "ending_type": "动作", "detail": "雷横吼'赤蝎队，准备！'——行动号令"},
       {"chapter": 2, "ending_type": "悬念", "detail": "镜渊静默+核心镜纹带着余温——信息炸弹"},
-      {"chapter": 3, "ending_type": "动作", "detail": "林深推门'师父，养父的锤上——'老铁匠烟杆停了——行动起点"}
+      {"chapter": 3, "ending_type": "动作", "detail": "林深推门'师父，养父的锤上——'老铁匠烟杆停了——行动起点"},
+      {"chapter": 4, "ending_type": "悬念", "detail": "古镜知道缺的那块料在哪个方向。镜渊低鸣又沉一分，古镜在怀里嗡了一下像在回应。——信息炸弹"}
     ],
-    "next_chapter_constraint": "Ch4不能是动作型(Ch3=动作)，可选悬念或氛围"
+    "next_chapter_constraint": "Ch5不能是悬念型(Ch4=悬念)，可选动作或氛围"
   },
   "recent_milestone": {
     "type": "framework_upgrade_and_rewrite",
-    "chapter_range": "Ch1-3（黄金三章v2）",
-    "summary": "2026-07-28 框架v3.2.1升级+黄金三章按新标准全量重写。框架改动：style_card.md十条重构（5条文风手艺→6条文风+4条叙事引擎：信息在对抗中释放/赌注是画面/章末是翻页的理由/主角在选+手痒时刻）+ chapter-writer H7新增章尾类型滚动去重。三章重写核心改动：Ch1开头危机先行砍四段环境/赌注具象化赵四前例/林深手痒动机/石头砍提问留反应/章末行动号令(动作型)；Ch2信息在战斗中投放/战后核心镜纹炸弹结尾(悬念型)；Ch3章末重写——取消空悬念'等什么人进来'改为林深主动推门问老铁匠'养父的锤上——'(动作型)。三章style_lint L0全清零EXIT=0。伏笔埋设与旧版一致。"
+    "chapter_range": "Ch1-3（黄金三章v2）+ Ch4（常规节奏首章）",
+    "summary": "2026-07-28 框架v3.2.1升级+黄金三章按新标准全量重写+Ch4《问锤》完成。框架改动：style_card.md十条重构（5条文风手艺→6条文风+4条叙事引擎：信息在对抗中释放/赌注是画面/章末是翻页的理由/主角在选+手痒时刻）+ chapter-writer H7新增章尾类型滚动去重。三章重写核心改动：Ch1开头危机先行砍四段环境/赌注具象化赵四前例/林深手痒动机/石头砍提问留反应/章末行动号令(动作型)；Ch2信息在战斗中投放/战后核心镜纹炸弹结尾(悬念型)；Ch3章末重写——取消空悬念'等什么人进来'改为林深主动推门问老铁匠'养父的锤上——'(动作型)。Ch4师徒十年首次正面交锋，老铁匠破例回应'断代前的手法'，三线时间汇聚(钱锈/考核/兽潮)，镜眼能力微暗示。四章style_lint L0全清零EXIT=0。"
   },
   "character_quick_state": [
-    {"name": "林深", "location": "锈街铁匠铺里屋门口", "emotion": "Ch3章末主动推门，站在老铁匠面前，开口问养父锤纹的秘密。十年不敢问的话今夜要问。", "power": "镜匠学徒/纯匠人天赋（镜眼+稳手+过目不忘）/第七镜徒·全镜残片载体（自己不知道）", "last_chapter": 3, "note": "Ch3新状态：当众指出上古镜纹打脸孙鉴→收古镜入水自浮→推门直面老铁匠。'手痒'动机确立(救人只是理由，手痒才是真的)。Ch3 signature：'这纹，是上古的。'/'救人只是理由，手痒才是真的。'/'师父，养父的锤上——'"},
-    {"name": "老铁匠", "location": "锈街铁匠铺里屋床沿", "emotion": "Ch3章末坐在床沿，烟杆搁膝上，听见林深推门进来开口问养父锤纹，烟杆停了。", "power": "30年前救出第七残片的初代镜匠之一（隐世好手）", "last_chapter": 3, "note": "Ch3护犊子(锤在我铺子里人也在)→章末被林深推门直面。卷一末病逝前赠古镜；Ch30挡刁难/Ch55镜潮守炉/Ch60赠镜；身世暗线钥匙"},
-    {"name": "雷横", "location": "锈街", "emotion": "托付古镜后离去。祖训三十年的责任卸下了。", "power": "锈街猎镜队队长", "last_chapter": 3, "note": "Ch3送古镜：'古镜给你。祖训说待有缘人。我看了三十年，没第二个人。'认人弧线完成。"},
-    {"name": "石头", "location": "锈街铁匠铺", "emotion": "Ch3碎嘴减少——压制汇报兽潮，蹲在门口喉结滚了两滚没问怎么办。", "power": "锈街跑腿/渊城活地图", "last_chapter": 3, "note": "Ch3重写后碎嘴大幅减少，关键反应保留(掏私藏镜硅粉/喉结滚/递眼神)。悲伤让碎嘴停住的形象强化。"},
-    {"name": "钱锈", "location": "离开铁匠铺", "emotion": "施压失败，山核桃停转，笑凝在脸上，话变短。", "power": "锈街维修分号掌柜，规矩武器化的笑面虎", "last_chapter": 3, "note": "Ch3堵门→规矩施压(封铺子收匠牌，赌注具象化)→被打脸→核桃停转→走人。卷一反派·minor_boss"},
-    {"name": "孙鉴", "location": "离开铁匠铺", "emotion": "被当众指出上古镜纹，脸色铁青得生了锈，答不上来先嗯后哼。", "power": "行会铸镜师，半瓶醋掉书袋", "last_chapter": 3, "note": "Ch3帮腔钱锈→被林深当众打脸→三十年'纹死修不了'口诀被戳破→甩袖。卷一反派·minion"},
+    {"name": "林深", "location": "锈街铁匠铺炉边", "emotion": "Ch4章末蹲在炉边描第八种续法，线没断。古镜在怀里嗡了一下像在回应。三天要修好古镜、过考核、拿镜晶、守住铺子。", "power": "镜匠学徒/纯匠人天赋（镜眼+稳手+过目不忘）/第七镜徒·全镜残片载体（自己不知道）", "last_chapter": 4, "note": "Ch4主动出击：推门问养父锤纹→拿出古镜指出三纹同路→主动说'我试试'。镜眼微暗示：描纹时视野清晰一层(比Ch3的'清晰一层后退了'多了一次)。发现缺料被人切开(同一个人+同一把刀+同一种手法=断代前手法)。试七种续法失败→第八种续法线没断→古镜知道缺料方向。Ch4 signature：'十年，他问过养父去了哪里，问过锤上的纹是哪路手法，问过那张图纸的另一半在谁手里。'/'我试试。'"},
+    {"name": "老铁匠", "location": "锈街铁匠铺里屋床沿→炉边", "emotion": "Ch4破例回应林深追问：'那锤上的纹，是断代前的手法。你爹他是个好匠人。'烟杆停了，手指攥紧，不骂人不咳嗽不说话。最后说'该来的，躲不掉。'", "power": "30年前救出第七残片的初代镜匠之一（隐世好手）", "last_chapter": 4, "note": "Ch4首次正面回应养父锤纹，首次告知学徒考核三天后。十年封口今夜破例。卷一末病逝前赠古镜；Ch30挡刁难/Ch55镜潮守炉/Ch60赠镜；身世暗线钥匙"},
+    {"name": "雷横", "location": "锈街镇口", "emotion": "架镜阵，说撑不过三天。", "power": "锈街猎镜队队长", "last_chapter": 3, "note": "Ch4未出场，通过石头转述：猎镜队全拉出去了，在镇口架了镜阵，说撑不过三天。"},
+    {"name": "石头", "location": "锈街铁匠铺门口→跑向镇口", "emotion": "Ch4碎嘴大幅减少，喉结滚了两滚，憋了半天才憋出一句，语气压低。", "power": "锈街跑腿/渊城活地图", "last_chapter": 4, "note": "Ch4报信黑镜纹兽成群+猎镜队撑不过三天+老张头说这辈子没见过。三线时间汇聚。悲伤让碎嘴停住的形象强化。跑向镇口传林深的话。"},
+    {"name": "钱锈", "location": "离开铁匠铺", "emotion": "施压失败，山核桃停转，笑凝在脸上，话变短。", "power": "锈街维修分号掌柜，规矩武器化的笑面虎", "last_chapter": 3, "note": "Ch4未出场，但三天期限仍在生效，且镜晶配额握在钱锈手里。"},
+    {"name": "孙鉴", "location": "离开铁匠铺", "emotion": "被当众指出上古镜纹，脸色铁青得生了锈。", "power": "行会铸镜师，半瓶醋掉书袋", "last_chapter": 3, "note": "Ch4未出场。"},
     {"name": "苏镜", "note": "未登场，大纲Ch61雾闸数据鉴定师首登场"},
     {"name": "老龙", "note": "未登场，镜渊深处沉睡的初代镜匠意识；Ch126首交易"},
-    {"name": "镜母", "note": "终极反派；前60章不点名；Ch1已植入F2暗线（兽眼黑镜纹=镜母残片逸散）"}
+    {"name": "镜母", "note": "终极反派；前60章不点名；Ch4间接推进：镜渊低鸣+古镜回应，黑镜纹兽成群"}
   ],
   "foreshadowing_quick_status": [
-    {"id": "F-preset-1", "status": "core_planted", "last_action_chapter": 2, "next": "Ch2核心兑现：林深拆镜片发现核心镜纹与养父旧锤同路 → Ch88镜渊刻记发现养父30年前救出第七残片真相"},
-    {"id": "F-preset-2", "status": "core_planted", "last_action_chapter": 2, "next": "Ch2核心兑现：镜兽王骨黑镜纹露头 → 卷二驱赶镜渊逸识 → 卷三镜器噬主案"},
-    {"id": "F-preset-3", "status": "core_planted", "last_action_chapter": 3, "next": "Ch3核心植入：古镜入水自浮映出镜渊画面 → 卷二起林深镜眼识别 → 卷七七残片集齐仪式"},
-    {"id": "F-preset-4", "status": "not_started", "last_action_chapter": 0, "next": "镜渊渗透六层的日常异象 → 卷二起林深镜眼逐步识别"},
-    {"id": "F-preset-5", "status": "planted", "last_action_chapter": 3, "next": "Ch3打脸闭环雏形 → Ch20/Ch40手艺高光（前60章严禁觉醒镜徒能力）"},
+    {"id": "F-preset-1", "status": "deepened", "last_action_chapter": 4, "next": "Ch4推进：老铁匠确认养父锤纹是'断代前的手法'+'你爹他是个好匠人'→Ch88镜渊刻记发现养父30年前救出第七残片真相"},
+    {"id": "F-preset-2", "status": "deepened", "last_action_chapter": 4, "next": "Ch4推进：黑镜纹兽成群在镜渊边缘挤成一团(不散不冲，在等别的什么东西)→卷二驱赶镜渊逸识→卷三镜器噬主案"},
+    {"id": "F-preset-3", "status": "deepened", "last_action_chapter": 4, "next": "Ch4推进：古镜缺料处泛幽光，与镜渊低鸣同步→古镜知道缺料方向→卷二起林深镜眼识别"},
+    {"id": "F-preset-4", "status": "not_started", "last_action_chapter": 0, "next": "镜渊渗透六层的日常异象→卷二起林深镜眼逐步识别"},
+    {"id": "F-preset-5", "status": "deepened", "last_action_chapter": 4, "next": "Ch4推进：学徒考核三天后→Ch20/Ch40手艺高光（前60章严禁觉醒镜徒能力）"},
     {"id": "F-preset-6", "status": "not_started", "last_action_chapter": 0},
     {"id": "F-preset-7", "status": "not_started", "last_action_chapter": 0},
     {"id": "F-preset-8", "status": "not_started", "last_action_chapter": 0},
-    {"id": "F-preset-9", "status": "not_started", "last_action_chapter": 0}
+    {"id": "F-preset-9", "status": "not_started", "last_action_chapter": 0},
+    {"id": "F-ch4-1", "status": "planted", "last_action_chapter": 4, "next": "新增：缺料被人切开——同一个人/同一把刀/同一种手法(断代前手法)，先铸镜再切镜带走一块料。与Ch3三纹同路呼应。后续揭示：切镜者身份。"}
   ],
   "goal_quick_status": {
-    "active": ["G1弄清养父断纹古镜的来历", "G2在锈街立足成为镜匠", "G3追查身世"],
+    "active": ["G1弄清养父断纹古镜的来历（Ch4推进：老铁匠确认'断代前的手法'）", "G2在锈街立足成为镜匠（Ch4推进：学徒考核三天后）", "G3追查身世（Ch4推进：镜眼能力微暗示）"],
     "closed": [],
-    "suspense_window": "Ch1激活：镜片纹路眼熟(Ch2兑现)/喂镜源头(Ch2兑现)/兽眼黑镜纹(Ch2兑现)/养父当年(中)/镜渊渗透(远)/身世(远)/镜母(终极)。Ch3新增：老铁匠知道什么+古镜映出的是哪里。",
-    "villain_ladder": "minion孙鉴(被打脸怀恨) → minor_boss钱锈(施压失败怀恨) → mid雾闸/极光中层(卷二-三) → hidden第五镜徒·裂镜(卷四-六) → ultimate镜母(卷七-八)"
+    "new_goal": "G4修好古镜通过学徒考核拿镜晶（Ch4新建：林深主动说'我试试'+三天限期）",
+    "suspense_window": "Ch4活跃悬念：①养父当年(中，Ch4推进：老铁匠破例回应半句又掐断)②镜渊渗透(远，Ch4推进：黑镜纹兽成群+镜渊低鸣)③古镜缺料方向(新，Ch4章末悬念型结尾)④身世(远)⑤镜母(终极)。前3条为当前活跃窗口。",
+    "villain_ladder": "minion孙鉴(被打脸怀恨) → minor_boss钱锈(施压失败怀恨，三天期限+镜晶配额) → mid雾闸/极光中层(卷二-三) → hidden第五镜徒·裂镜(卷四-六) → ultimate镜母(卷七-八)"
   },
-  "last_session_summary": "2026-07-28 框架v3.2.1升级+黄金三章按新标准全量重写。框架层：style_card.md十条重构(6条文风+4条叙事引擎)+chapter-writer H7章尾类型滚动去重+master_instruction v3.2.1变更记录。章节层：Ch1-3全部L0清零EXIT=0(Ch1~2350字动作型/Ch2~2380字悬念型/Ch3~2440字动作型)。叙事引擎应用：信息在对抗中释放/赌注具象化(赵四前例)/章末翻页(Ch3推门改写)/主角在选(手痒动机+主动行为)。伏笔与旧版一致。下一步：质量评审然后Ch4开写。",
-  "next_action": "①质量评审(detail-reviewer+quality-reviewer对黄金三章v2)②Ch4-10 beat sheet细化③Ch4开写(进入卷一常规节奏，H7约束Ch4不能是动作型)④每章通过style_lint+quality_review门禁",
-  "ending_type_rotation_note": "v3.2.1 H7: Ch1=动作/Ch2=悬念/Ch3=动作。Ch4不能是动作型（与Ch3连续重复），可选悬念或氛围。",
+  "last_session_summary": "Ch4《问锤》完成入库。~2780字/悬念型结尾。L0+L1全绿(0阻断/0顾问)。detail_review PASS(0 critical/0 major/10 minor)。de_ai PASS(ai_score=1.5)。核心推进：①师徒十年首次正面交锋，老铁匠破例回应'断代前的手法'+'你爹他是个好匠人'②林深拿出古镜指出三纹同路，逼老铁匠告知学徒考核三天后③石头报信黑镜纹兽成群，三线时间汇聚(钱锈三天/考核三天/兽潮三天)④林深描纹发现缺料被人切开(同一个人/同一把刀/同一种手法)⑤试七种续法失败→第八种续法线没断→古镜感知缺料方向(镜眼能力微暗示+悬念型结尾)。新伏笔：缺料被切开之谜。",
+  "next_action": "①Ch5开写（H7约束：不能是悬念型，可选动作或氛围）②节奏：Ch4为信息揭示为主，Ch5需平衡动作/考核推进③推进G4(修古镜/过考核)④注意缺料被切开之谜的伏笔推进节奏",
+  "ending_type_rotation_note": "v3.2.1 H7: Ch1=动作/Ch2=悬念/Ch3=动作/Ch4=悬念。Ch5不能是悬念型（与Ch4连续重复），可选动作或氛围。",
   "quality_trend": {
-    "golden_three": "Ch1-3黄金三章v2完成（style_lint L0全清零EXIT=0）",
-    "overall": "写作阶段（3/505章）",
-    "trend": "黄金三章v2达标，等待质量评审",
-    "note": "v3.2.1新框架：叙事引擎四条原则应用于写作前引导。L1 advisory(字数/对话/连词/引前引导)由detail-reviewer逐条回应。yanyujiangnan文风包v2.3基线。"
+    "golden_three": "Ch1-3黄金三章v2.1完成（style_lint L0全清零EXIT=0）",
+    "ch4": "Ch4常规节奏首章完成（~2780字，L0+L1全绿，detail_review PASS，de_ai PASS）",
+    "overall": "写作阶段（4/505章）",
+    "trend": "新框架产出稳定，写作流水线顺畅",
+    "note": "v3.2.2新框架：叙事引擎四条原则+旁白替爽检测+打脸即时反馈+金手指成长暗示。Ch4镜眼微暗示符合金手指成长暗示规则(每3-4章1处)。yanyujiangnan文风包v2.3基线。"
   },
   "chapter_health": [
-    {"chapter": 1, "title": "哑镜", "word_count": "~2350", "style_lint": "L0=0 EXIT=0 (L1字数advisory)", "ending_type": "动作", "quality_review": "待评审", "foreshadowing_planted": ["F1雏形", "F2雏形", "F5前兆"], "hooks": {"opening": "伤员抬入血止不住(危机先行)", "mid1": "林深vs孙鉴对峙指出拐纹(信息在对抗中释放)", "mid2": "喂镜+赵四前例+手痒动机", "ending": "雷横吼'赤蝎队，准备！'(行动号令)"}, "note": "v2重写核心改动：开头危机先行砍四段环境/赌注具象化赵四前例/信息在对抗中释放/石头砍提问留反应/林深手痒动机。新element：'救人只是理由，手痒才是真的。'"},
-    {"chapter": 2, "title": "一击穿核", "word_count": "~2380", "style_lint": "L0=0 EXIT=0 (L1字数advisory)", "ending_type": "悬念", "quality_review": "待评审", "foreshadowing_planted": ["F1核心", "F2核心", "F3雏形"], "hooks": {"opening": "兽群围攻直接战斗", "mid1": "林深看纹路识兽王(战场中投信息)", "mid2": "一击穿核手艺高光(十年练呼吸)", "ending": "镜渊静默+核心镜纹余温(信息炸弹)"}, "note": "v2重写核心改动：战斗中投信息不靠回忆/砍感受描写/虎口烫疤细节/战后信息炸弹结尾。雷横'嗯'减少，增具体动作(断脊刀换手)。"},
-    {"chapter": 3, "title": "古镜入水", "word_count": "~2440", "style_lint": "L0=0 EXIT=0", "ending_type": "动作", "quality_review": "待评审", "foreshadowing_planted": ["F3核心", "F1延续", "F2延续", "F5打脸闭环"], "hooks": {"opening": "钱锈堵门直接冲突", "mid1": "规矩施压+赌注具象化(封铺子收匠牌)", "mid2": "当众指出上古镜纹打脸(手艺打脸规矩)", "ending": "林深推门'师父，养父的锤上——'老铁匠烟杆停了(行动起点)"}, "note": "v2重写核心改动：★章末重写——取消空悬念'等什么人进来'改为林深主动推门直面老铁匠。钱锈威胁具象化(封铺子收匠牌)。石头碎嘴大幅减少。林深从被动接收到主动选择(推门问)。新element：'十年不敢问的话，今夜他要问。'→'师父，养父的锤上——'老铁匠烟杆停了。(行动型结尾)"}
+    {"chapter": 1, "title": "哑镜", "word_count": "~2350", "style_lint": "L0=0 EXIT=0", "ending_type": "动作", "quality_review": "待评审", "foreshadowing_planted": ["F1雏形", "F2雏形", "F5前兆"], "hooks": {"opening": "伤员抬入血止不住(危机先行)", "mid1": "林深vs孙鉴对峙指出拐纹(信息在对抗中释放)", "mid2": "喂镜+赵四前例+手痒动机", "ending": "雷横吼'赤蝎队，准备！'(行动号令)"}, "note": "v2.1：第三方反馈修复——加猎镜手低笑围观反应(打脸即时反馈)"},
+    {"chapter": 2, "title": "一击穿核", "word_count": "~2380", "style_lint": "L0=0 EXIT=0", "ending_type": "悬念", "quality_review": "待评审", "foreshadowing_planted": ["F1核心", "F2核心", "F3雏形"], "hooks": {"opening": "兽群围攻直接战斗", "mid1": "林深看纹路识兽王(战场中投信息)", "mid2": "一击穿核手艺高光(十年练呼吸)", "ending": "镜渊静默+核心镜纹余温(信息炸弹)"}, "note": "v2：战斗中投信息不靠回忆/砍感受描写/虎口烫疤细节/战后信息炸弹结尾"},
+    {"chapter": 3, "title": "古镜入水", "word_count": "~2500", "style_lint": "L0=0 EXIT=0", "ending_type": "动作", "quality_review": "待评审", "foreshadowing_planted": ["F3核心", "F1延续", "F2延续", "F5打脸闭环"], "hooks": {"opening": "钱锈堵门直接冲突", "mid1": "规矩施压+赌注具象化(封铺子收匠牌)", "mid2": "当众指出上古镜纹打脸(手艺打脸规矩)", "ending": "林深推门'师父，养父的锤上——'老铁匠烟杆停了(行动起点)"}, "note": "v2.1：第三方反馈修复——删两处'石头递眼神说林哥不简单'(旁白替爽)+加铜框放大镜发热金手指暗示"},
+    {"chapter": 4, "title": "问锤", "word_count": 2780, "style_lint": "L0=0+L1=0 EXIT=0", "ending_type": "悬念", "quality_review": "detail_review PASS(0 critical/0 major/10 minor)", "foreshadowing_planted": ["F1推进", "F2推进", "F3推进", "F5推进", "F-ch4-1新增(缺料被切开之谜)"], "hooks": {"opening": "场景动作开头：老铁匠烟杆停在半空→林深推门问", "mid1": "老铁匠破例回应'断代前的手法'+'你爹他是个好匠人'", "mid2": "石头报信黑镜纹兽成群三线时间汇聚", "ending": "悬念型：古镜知道缺的那块料在哪个方向。镜渊低鸣又沉一分，古镜在怀里嗡了一下像在回应。"}, "note": "Ch4常规节奏首章。师徒十年首次正面交锋。三线时间汇聚(钱锈三天/考核三天/兽潮三天)。镜眼能力微暗示。新伏笔：缺料被人切开。de_ai ai_score=1.5。"}
   ],
   "key_decisions_log": [
     "2026-07-27《镜渊》立项",
     "2026-07-27 9张角色卡全量产出并检阅通过",
     "2026-07-27 outline-editor round3总分9.0 verdict=pass",
     "2026-07-28 黄金三章v1完成(旧框架，已由v2替代)",
-    "2026-07-28 ★框架升级v3.2.1：style_card v2.3十条重构(6条文风+4条叙事引擎)+chapter-writer H7章尾类型滚动去重+master_instruction v3.2.1变更记录。起因：《镜渊》黄金三章vs《罪恶之城》原文叙事引擎对比诊断——prose过关但叙事引擎偏向'感受驱动'。",
-    "2026-07-28 ★黄金三章v2重写完成：Ch1-3按新标准全量重写。三章style_lint L0全清零EXIT=0。叙事引擎改动：信息在对抗中释放/赌注具象化(赵四前例)/章末翻页(Ch3推门改写)/主角在选(手痒动机)。H7章尾类型：Ch1=动作/Ch2=悬念/Ch3=动作。",
-    "2026-07-28 ★框架v3.2.2+黄金三章v2.1第三方反馈修复：起点7/10番茄6/10反馈。章节修复：Ch1加猎镜手低笑围观反应(打脸即时反馈)/Ch3删两处'石头递眼神说林哥不简单'(旁白替爽)/Ch3加铜框放大镜发热金手指暗示。框架修复：SKILL.md 5.3节新增三条规则(旁白替爽禁止/打脸即时反馈/金手指成长暗示前10章每3-4章1处)/style_lint.py narrative_dialogue_max 2→1。"
+    "2026-07-28 ★框架升级v3.2.1：style_card v2.3十条重构(6条文风+4条叙事引擎)+chapter-writer H7章尾类型滚动去重+master_instruction v3.2.1变更记录。",
+    "2026-07-28 ★黄金三章v2重写完成：Ch1-3按新标准全量重写。三章style_lint L0全清零EXIT=0。",
+    "2026-07-28 ★框架v3.2.2+黄金三章v2.1第三方反馈修复：起点7/10番茄6/10反馈。章节修复：Ch1加猎镜手低笑围观反应/Ch3删旁白替爽+加金手指暗示。框架修复：SKILL.md 5.3节新增三条规则/style_lint.py narrative_dialogue_max 2→1。",
+    "2026-07-28 ★Ch4《问锤》完成入库。~2780字/悬念型结尾。师徒十年首次正面交锋。新伏笔：缺料被人切开(同一个人+同一把刀+同一种手法)。三线时间汇聚。镜眼能力微暗示。流水线：chapter-writer→detail-reviewer∥de-ai-processor→unified→memory-manager(入库)。"
   ],
-  "open_decisions": [
-    "黄金三章v2是否需要quality_review评审后再进入Ch4(建议走评审流程确保新框架产出质量)"
-  ],
-  "outline_drift_log": []
+  "open_decisions": [],
+  "outline_drift_log": [
+    {"chapter": 4, "planned_beat": "大纲计划：林深问老铁匠锤纹来历+学徒考核信息+缺料困境", "actual_beat": "林深问锤纹→老铁匠回应'断代前的手法'+'你爹好匠人'→拿出古镜指三纹同路→考核三天→缺料→镜晶→'我试试'→石头报信→描纹发现缺料被切开→八种续法→古镜感知缺料方向", "drift_type": "无漂移", "decision": "accept", "decided_by": "chapter-writer", "note": "大纲计划beat全部兑现，且额外推进了镜眼能力微暗示+缺料方向悬念，属正向扩展"}
+  ]
 }

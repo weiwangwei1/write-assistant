@@ -1,30 +1,47 @@
 {
   "card_type": "foreshadowing_tracker",
-  "last_updated": "2026-07-27",
+  "last_updated": "2026-07-28",
+  "last_updated_chapter": 4,
   "foreshadowings": [
     {
       "id": "F-preset-1",
       "description": "养父断纹古镜+'手比命硬'四字（父亲暗线/身世暗线钥匙）",
-      "status": "not_started",
-      "planted_chapter": 0,
-      "last_action_chapter": 0,
-      "next": "Ch1预设植入 → Ch88镜渊刻记发现养父30年前救出第七残片真相 → Ch126老龙知情 → Ch261养父旧物（空白镜片） → Ch322真相全揭 → Ch340父子跨时空合铸"
+      "status": "deepened",
+      "planted_chapter": 1,
+      "last_action_chapter": 4,
+      "chapters_since_last_action": 0,
+      "actual_progress": [
+        {"chapter": 1, "action": "planted", "detail": "林深发现养父旧锤纹路与古镜纹路同源", "status": "completed"},
+        {"chapter": 2, "action": "deepened", "detail": "拆镜片发现核心镜纹与养父旧锤同路（三纹同路）", "status": "completed"},
+        {"chapter": 4, "action": "deepened", "detail": "老铁匠确认养父锤纹是'断代前的手法'+'你爹他是个好匠人'", "status": "completed"}
+      ],
+      "next": "Ch88镜渊刻记发现养父30年前救出第七残片真相 → Ch126老龙知情 → Ch261养父旧物（空白镜片） → Ch322真相全揭 → Ch340父子跨时空合铸"
     },
     {
       "id": "F-preset-2",
       "description": "镜兽身上烧不化的黑镜纹（镜母残片逸散，镜母暗线露头）",
-      "status": "not_started",
-      "planted_chapter": 0,
-      "last_action_chapter": 0,
-      "next": "Ch2预设植入 → 卷二驱赶镜渊逸识 → 卷三镜器噬主案 → 卷四第五镜徒战死 → 卷五初代镜母永生执念全揭 → 卷六开镜渊主裂口"
+      "status": "deepened",
+      "planted_chapter": 2,
+      "last_action_chapter": 4,
+      "chapters_since_last_action": 0,
+      "actual_progress": [
+        {"chapter": 2, "action": "planted", "detail": "镜兽王骨甲黑镜纹烧不化，从骨甲里长出来", "status": "completed"},
+        {"chapter": 4, "action": "deepened", "detail": "黑镜纹兽成群在镜渊边缘挤成一团，不散不冲，在等别的什么东西", "status": "completed"}
+      ],
+      "next": "卷二驱赶镜渊逸识 → 卷三镜器噬主案 → 卷四第五镜徒战死 → 卷五初代镜母永生执念全揭 → 卷六开镜渊主裂口"
     },
     {
       "id": "F-preset-3",
       "description": "雷横托付的断纹古镜是镜渊碎片载体（身世暗线钥匙）",
-      "status": "not_started",
-      "planted_chapter": 0,
-      "last_action_chapter": 0,
-      "next": "Ch1预设植入，与F-preset-1养父古镜形成双镜呼应；卷二起林深镜眼识别其镜渊属性"
+      "status": "deepened",
+      "planted_chapter": 3,
+      "last_action_chapter": 4,
+      "chapters_since_last_action": 0,
+      "actual_progress": [
+        {"chapter": 3, "action": "planted", "detail": "古镜入水自浮映出镜渊画面", "status": "completed"},
+        {"chapter": 4, "action": "deepened", "detail": "古镜缺料处泛幽光与镜渊低鸣同步，古镜知道缺料方向", "status": "completed"}
+      ],
+      "next": "卷二起林深镜眼识别其镜渊属性 → 卷七七残片集齐仪式"
     },
     {
       "id": "F-preset-4",
@@ -32,23 +49,32 @@
       "status": "not_started",
       "planted_chapter": 0,
       "last_action_chapter": 0,
+      "chapters_since_last_action": 4,
+      "actual_progress": [],
       "next": "卷一起零星异象'眼花' → 卷二起林深镜眼逐步识别为镜渊渗透 → 卷六开镜渊主裂口总爆发"
     },
     {
       "id": "F-preset-5",
       "description": "手艺高光时刻（Ch20/Ch40，替代能力觉醒的快感）",
-      "status": "not_started",
-      "planted_chapter": 0,
-      "last_action_chapter": 0,
+      "status": "planted",
+      "planted_chapter": 3,
+      "last_action_chapter": 4,
+      "chapters_since_last_action": 0,
+      "actual_progress": [
+        {"chapter": 3, "action": "planted", "detail": "当众指出上古镜纹打脸孙鉴(手艺高光雏形)", "status": "completed"},
+        {"chapter": 4, "action": "foreshadowed", "detail": "学徒考核三天后，林深主动说'我试试'", "status": "completed"}
+      ],
       "next": "Ch20残次镜片修好连匠师都放弃的精密镜片 → Ch40用最垃圾材料手搓接近镜晶品质镜片；前60章严禁觉醒镜徒能力"
     },
     {
       "id": "F-preset-6",
-      "description": "镜母情感锚点：靠残次镜片续命的底层老人（镜母意识碎片逸散体）",
+      "description": "镜母情感锚点：靠残次镜片续命的底层老人",
       "status": "not_started",
       "planted_chapter": 0,
       "last_action_chapter": 0,
-      "next": "卷三-四支线必埋；老人有名字有面孔有女儿；林深修好镜片只能延缓不能根治；卷八万镜重铸时的道德支点"
+      "chapters_since_last_action": 4,
+      "actual_progress": [],
+      "next": "卷三-四支线必埋"
     },
     {
       "id": "F-preset-7",
@@ -56,7 +82,9 @@
       "status": "not_started",
       "planted_chapter": 0,
       "last_action_chapter": 0,
-      "next": "卷二某章；林深刚完成第一片镜晶级镜片或刚在雾闸深网发现养父记录时消息传来；错位情感节拍，非临终告别"
+      "chapters_since_last_action": 4,
+      "actual_progress": [],
+      "next": "卷二某章"
     },
     {
       "id": "F-preset-8",
@@ -64,16 +92,33 @@
       "status": "not_started",
       "planted_chapter": 0,
       "last_action_chapter": 0,
-      "next": "卷五；所有鉴定手段显示是废玻璃但苏镜职业直觉不对劲；动用雾闸数据权限查到卷六关键线索"
+      "chapters_since_last_action": 4,
+      "actual_progress": [],
+      "next": "卷五"
     },
     {
       "id": "F-preset-9",
-      "description": "拜镜教暗线：教义'只有被遗忘的才是真实的'，入会仪式砸碎刻录痛苦记忆的镜片扔进钢脊熔炉",
+      "description": "拜镜教暗线",
       "status": "not_started",
       "planted_chapter": 0,
       "last_action_chapter": 0,
-      "next": "卷二驱赶镜渊逸识不点名 → 卷三镜器噬主案 → 卷四舵主战死钢脊 → 卷五初代教主永生执念全揭 → 卷六开镜渊主裂口"
+      "chapters_since_last_action": 4,
+      "actual_progress": [],
+      "next": "卷二驱赶镜渊逸识不点名"
+    },
+    {
+      "id": "F-ch4-1",
+      "description": "缺料被切开之谜：同一个人用同一把刀同一种手法，先铸镜再切镜带走一块料",
+      "status": "planted",
+      "planted_chapter": 4,
+      "last_action_chapter": 4,
+      "chapters_since_last_action": 0,
+      "actual_progress": [
+        {"chapter": 4, "action": "planted", "detail": "林深描纹发现缺料断口齐茬干净利落，是被人用工具切开的，不是自然崩裂。切镜者用的也是断代前的手法，与铸镜者是同一个人。", "status": "completed"}
+      ],
+      "next": "后续揭示切镜者身份（与养父/老铁匠/断代前的关系）"
     }
   ],
-  "preset_note": "立项阶段为预设伏笔（status=not_started），待04_outline.json产出并开写Ch1后激活。揭示提前量≥30章，前60章严禁给出镜崩之夜实质答案，镜母残片只以异变形态出现，镜徒身份前60章不点名。"
+  "overdue_alerts": [],
+  "density_note": "Ch1-4每章均有伏笔动作（Ch1:3条/Ch2:3条/Ch3:3条/Ch4:5条），密度充足，无密度预警。F-preset-4/6/7/8/9尚未启动，属远程伏笔，暂不触发预警。"
 }

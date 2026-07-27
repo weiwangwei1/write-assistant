@@ -1,19 +1,130 @@
 {
   "card_type": "goal_tracker",
-  "last_updated": "2026-07-27",
-  "active_goals": [
-    {"id": "G1", "description": "弄清养父老铁匠临终赠予的断纹古镜来历（'手比命硬'四字+镜渊碎片）", "established_chapter": 0, "status": "preset", "note": "Ch1预设，Ch88镜渊刻记推进，Ch322真相全揭"},
-    {"id": "G2", "description": "在锈街立足成为镜匠（学徒→匠师→大师→宗师），手艺阶层跃迁", "established_chapter": 0, "status": "preset", "note": "贯穿全书明线，对应镜匠品阶晋升"},
-    {"id": "G3", "description": "追查身世——为什么自己是唯一能稳定看见镜渊渗透的人", "established_chapter": 0, "status": "preset", "note": "卷二起逐步识别，卷七七残片集齐"}
+  "last_updated": "2026-07-28",
+  "last_updated_chapter": 4,
+  "goals": [
+    {
+      "id": "G1",
+      "title": "弄清养父断纹古镜的来历",
+      "type": "quest",
+      "established_chapter": 1,
+      "expected_close_chapter": 322,
+      "status": "active",
+      "progress_log": [
+        {"chapter": 1, "action": "established", "detail": "林深发现养父旧锤纹路与古镜纹路同源"},
+        {"chapter": 2, "action": "progressed", "detail": "拆镜片发现核心镜纹与养父旧锤同路"},
+        {"chapter": 4, "action": "progressed", "detail": "老铁匠确认养父锤纹是'断代前的手法'+'你爹他是个好匠人'"}
+      ],
+      "chapters_since_progress": 0,
+      "alert": null
+    },
+    {
+      "id": "G2",
+      "title": "在锈街立足成为镜匠（学徒→匠师→大师→宗师）",
+      "type": "quest",
+      "established_chapter": 1,
+      "expected_close_chapter": 505,
+      "status": "active",
+      "progress_log": [
+        {"chapter": 1, "action": "established", "detail": "林深在铁匠铺做学徒，手艺被老铁匠认可"},
+        {"chapter": 3, "action": "progressed", "detail": "当众指出上古镜纹打脸孙鉴，手艺初露锋芒"},
+        {"chapter": 4, "action": "progressed", "detail": "老铁匠告知学徒考核三天后，林深主动说'我试试'"}
+      ],
+      "chapters_since_progress": 0,
+      "alert": null
+    },
+    {
+      "id": "G3",
+      "title": "追查身世——为什么自己是唯一能稳定看见镜渊渗透的人",
+      "type": "quest",
+      "established_chapter": 2,
+      "expected_close_chapter": 322,
+      "status": "active",
+      "progress_log": [
+        {"chapter": 2, "action": "established", "detail": "林深发现镜片纹路与养父旧锤纹路同源，身世开始浮现"},
+        {"chapter": 4, "action": "progressed", "detail": "描纹时视野清晰一层(镜眼能力微暗示)，发现缺料被切开(同一个人+断代前手法)"}
+      ],
+      "chapters_since_progress": 0,
+      "alert": null
+    },
+    {
+      "id": "G4",
+      "title": "修好古镜通过学徒考核拿镜晶",
+      "type": "task",
+      "established_chapter": 4,
+      "expected_close_chapter": 10,
+      "status": "active",
+      "progress_log": [
+        {"chapter": 4, "action": "established", "detail": "老铁匠告知三天后学徒考核，过了拿镜晶修古镜；林深主动说'我试试'"}
+      ],
+      "chapters_since_progress": 0,
+      "alert": null
+    }
   ],
-  "closed_goals": [],
-  "suspense_window": [],
-  "suspense_window_count_note": "立项阶段无活跃悬念。预设悬念池待大纲产出后激活：断纹古镜来历/镜兽黑镜纹/养父当年/镜渊渗透异象/身世之谜/镜母拆解真相。前60章严禁给出镜崩之夜实质答案。",
-  "villain_ladder": {
-    "minion": {"role": "孙鉴（行会铸镜师，半瓶醋掉书袋）", "status": "not_started", "note": "卷一minion，'纹死'三十年免责口诀"},
-    "minor_boss": {"role": "钱锈（锈街维修分号掌柜，规矩武器化的笑面虎）", "status": "not_started", "note": "卷一压迫感执行人，Ch3问罪→Ch13打脸→卷一末报复"},
-    "mid": {"role": "雾闸数据/极光义体中层+世家派", "status": "not_started", "note": "卷二-三，门第之见+路线之争"},
-    "hidden": {"role": "第五镜徒·裂镜（觉醒后视主角为宿敌，虚无主义）", "status": "not_started", "note": "卷四-六，要集齐残片独吞镜母力量"},
-    "ultimate": {"role": "镜母（不是人格反派，是'意识过度索取'的具象）", "status": "not_started", "note": "卷七-八，主角胜利不是杀伐是'铸新镜'"}
+  "main_quest_progress": {
+    "id": "MQ001",
+    "title": "镜渊主线：铸新镜",
+    "total_stages": 8,
+    "completed_stages": 0,
+    "current_chapter": 4,
+    "stage_log": [],
+    "health": "on_track",
+    "stalled_chapters": 0,
+    "note": "卷一阶段：古镜修复+镜匠学徒立足。Ch4推进了考核线+镜眼暗示，主线在正常推进中。"
+  },
+  "villain_ladder": [
+    {
+      "tier": "minion",
+      "name": "孙鉴",
+      "planned_window": "Ch1-3",
+      "status": "active",
+      "first_appear_chapter": 1,
+      "cleared_chapter": null,
+      "note": "Ch3被打脸后怀恨"
+    },
+    {
+      "tier": "minor_boss",
+      "name": "钱锈",
+      "planned_window": "Ch3-13",
+      "status": "active",
+      "first_appear_chapter": 3,
+      "cleared_chapter": null,
+      "note": "Ch3施压失败怀恨。三天期限+镜晶配额控制。Ch4未出场但压力仍在。"
+    },
+    {
+      "tier": "mid",
+      "name": "雾闸数据/极光义体中层+世家派",
+      "planned_window": "卷二-三",
+      "status": "not_started",
+      "first_appear_chapter": null,
+      "cleared_chapter": null
+    },
+    {
+      "tier": "hidden",
+      "name": "第五镜徒·裂镜",
+      "planned_window": "卷四-六",
+      "status": "not_started",
+      "first_appear_chapter": null,
+      "cleared_chapter": null
+    },
+    {
+      "tier": "ultimate",
+      "name": "镜母",
+      "planned_window": "卷七-八",
+      "status": "not_started",
+      "first_appear_chapter": null,
+      "cleared_chapter": null,
+      "note": "Ch4间接推进：镜渊低鸣+古镜回应，黑镜纹兽成群在镜渊边缘"
+    }
+  ],
+  "suspense_window": {
+    "max_active": 3,
+    "active": [
+      {"id": "S001", "title": "养父当年——断代前的人，去了哪里", "opened_chapter": 1, "type": "main", "note": "Ch4推进：老铁匠破例回应半句又掐断('问那么多干什么')"},
+      {"id": "S002", "title": "古镜缺料方向——谁切走了那块料", "opened_chapter": 4, "type": "main", "note": "Ch4章末新悬念：古镜知道缺料方向，缺料被人用断代前手法切开"},
+      {"id": "S003", "title": "黑镜纹兽成群在等什么", "opened_chapter": 4, "type": "plot", "note": "Ch4新悬念：黑镜纹兽在镜渊边缘挤成一团不散不冲，老张头说这辈子没见过"}
+    ],
+    "overflow_alerts": [],
+    "note": "Ch4已闭环悬念：①Ch3'师父，养父的锤上——'(Ch4老铁匠回应'断代前的手法'半揭)②Ch3'三天期限'(Ch4转化为考核三天+兽潮三天双重压力)"
   }
 }

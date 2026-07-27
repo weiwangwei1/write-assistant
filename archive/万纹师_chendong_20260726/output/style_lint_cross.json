@@ -1,0 +1,171 @@
+{
+  "card_type": "style_lint",
+  "from_agent": "style_lint(script)",
+  "to_agent": "chapter-writer",
+  "status": "pass",
+  "style_pack": "chendong",
+  "blocking_count": 0,
+  "advisory_count": 0,
+  "non_blocking_count": 4,
+  "issues": [
+    {
+      "rule": "ranhou",
+      "severity": "minor",
+      "level": "L3",
+      "chapter": "chapter_001.txt",
+      "line": 0,
+      "excerpt": "",
+      "message": "叙事“然后”2处 > 上限1"
+    },
+    {
+      "rule": "dialogue_ratio",
+      "severity": "minor",
+      "level": "L1",
+      "chapter": "chapter_001.txt",
+      "line": 0,
+      "excerpt": "",
+      "message": "对话占比17% < 下限25%"
+    },
+    {
+      "rule": "certain_marker_mismatch",
+      "severity": "minor",
+      "level": "L2",
+      "chapter": "chapter_002.txt",
+      "line": 47,
+      "excerpt": "看老铁匠的时候，就是",
+      "message": "观察+确定语气“就是”——角色首次遭遇时建议用推测语气（像是/倒像是/似乎）"
+    },
+    {
+      "rule": "certain_marker_mismatch",
+      "severity": "minor",
+      "level": "L2",
+      "chapter": "chapter_002.txt",
+      "line": 62,
+      "excerpt": "看着就是",
+      "message": "观察+确定语气“就是”——角色首次遭遇时建议用推测语气（像是/倒像是/似乎）"
+    }
+  ],
+  "timeline_clues": {
+    "chapter_001.txt": [
+      {
+        "line": 36,
+        "hit": "三十年",
+        "context": "\"那你就是拉着全队陪葬！\"孙师傅拂袖，\"老夫铸纹三十年，还没见过死了的纹能再亮的"
+      }
+    ],
+    "chapter_002.txt": [
+      {
+        "line": 66,
+        "hit": "三十年",
+        "context": "火堆边上，有个老猎户往地上啐了一口，说他在绝地跑了三十年，没见过烧不化的纹。"
+      },
+      {
+        "line": 74,
+        "hit": "三十年",
+        "context": "帐篷外，有年轻队员学着他的腔调捏着嗓子来了一句\"老夫铸纹三十年\"，又是一阵压不住"
+      }
+    ],
+    "chapter_003.txt": [
+      {
+        "line": 29,
+        "hit": "六十年",
+        "context": "\"这台弩身上有行会的登记烙印，写的是六十年前郡城铸。\"沈拓一字一字地说，\"可这圈"
+      },
+      {
+        "line": 29,
+        "hit": "六十年",
+        "context": "\"这台弩身上有行会的登记烙印，写的是六十年前郡城铸。\"沈拓一字一字地说，\"可这圈"
+      }
+    ]
+  },
+  "config": {
+    "not_a_is_b_max_per_chapter": 2,
+    "short_para_len": 15,
+    "short_para_ratio_max": 0.5,
+    "short_para_run_max": 6,
+    "simile_max_per_chapter": 12,
+    "simile_max_per_para": 1,
+    "ban_yizhong_feeling": true,
+    "ban_feeling_enum": true,
+    "ban_summary_voice": true,
+    "ranhou_max_per_chapter": 1,
+    "dialogue_ratio_min": 0.25,
+    "dialogue_ratio_max": 0.6,
+    "dash_max_per_1000": 20.0,
+    "ellipsis_max_per_1000": 5.0,
+    "le_max_per_1000": 60.0,
+    "zhe_max_per_1000": 25.0,
+    "conjunction_min_per_1000": 0.0,
+    "dialogue_guide_min_per_1000": 0.0,
+    "name_starter_run_max": 8,
+    "emotion_telling_words": [
+      "不敢",
+      "害怕",
+      "悲伤",
+      "震撼",
+      "激动"
+    ],
+    "four_char_cliches": [
+      "不急不缓",
+      "不紧不慢",
+      "取而代之",
+      "不约而同",
+      "悄无声息"
+    ],
+    "era_wrong_words": [
+      "路灯",
+      "火柴",
+      "同频",
+      "电话",
+      "汽车",
+      "手机"
+    ],
+    "tell_marker_words": [
+      "习惯性地",
+      "不由得",
+      "下意识地",
+      "情不自禁",
+      "自然而然地",
+      "本能地",
+      "条件反射般",
+      "潜意识里"
+    ],
+    "cliche_vehicles": [
+      "山",
+      "风",
+      "火",
+      "水",
+      "刀",
+      "剑",
+      "雷",
+      "电",
+      "铁",
+      "石",
+      "雾",
+      "冰",
+      "蛇",
+      "虎",
+      "龙",
+      "潮",
+      "浪",
+      "云",
+      "雨",
+      "雪"
+    ],
+    "short_le_ending_max": 3,
+    "narrative_dialogue_max": 2,
+    "certain_markers": [
+      "就是",
+      "分明是",
+      "肯定是",
+      "无疑是",
+      "确实是"
+    ],
+    "ending_family_window": 4,
+    "ending_family_max_in_window": 2,
+    "opening_channel_max_run": 2,
+    "dup_sentence_min_len": 6
+  },
+  "advisory": [],
+  "overrides": []
+}
