@@ -4,7 +4,7 @@
 
 ## 一、项目概述
 
-这不是一个传统软件项目，而是一套**多智能体网文创作系统**：通过多个专业化 LLM Agent（Skill）协作，完成从大纲构思、角色设计到章节写作、审核、发布的全流程，目标平台为**番茄小说（fanqie）**。当前在产作品为《万纹师》（玄幻/职业流/热血正剧，规划 420 章 / 6 卷，见 `wanwenshi/04_outline.json`）。
+这不是一个传统软件项目，而是一套**多智能体网文创作系统**：通过多个专业化 LLM Agent（Skill）协作，完成从大纲构思、角色设计到章节写作、审核、发布的全流程，目标平台为**番茄小说（fanqie）**。**当前在产项目：《镜渊》**（2026-07-27 立项，赛博朋克×智性幻想，yanyujiangnan 文风包，505 章 / 8 卷，2400-2800 字/章，黄金三章≤2600；立项完成——`00_terminology.md` / `03_worldview.md` / `04_outline.json` v1.2 全量产出（skeptic 5项challenge全修复 + outline-editor round3角色维度复核通过，总分 8.18→8.90→9.0，verdict=pass），9张角色卡全量产出并检阅通过，11项审核红线check全通过；当前 pre_writing 阶段，下一步黄金三章 Ch1-3 beat sheet 细化 + Ch1 开写）。
 
 系统的"代码"主要是三类：
 
@@ -154,13 +154,12 @@ powershell -ExecutionPolicy Bypass -File auto-runner/generate_task_config.ps1 # 
 
 ## 九、当前进度快照
 
-以 `wanwenshi/memory/session_pointer.json` 为准（开局必读）：截至最近更新，《万纹师》处于黄金三章质量修复 + Ch4 待写阶段，卷一（断纹镇），已完成 3 章，下一章为第 4 章「喂纹」（糖葫芦单元 2：修复罗盘+学徒考核 第一环）。outline v1.0（2026-07-26），total_chapters=420 / 6 卷，chendong 文风包，篇幅标准 2600-3200 字/章（lint 命令须带 `--config wanwenshi/lint_config.json`）。
+**当前状态**：在产项目《镜渊》（`jingyuan/`，2026-07-27 立项）。赛博朋克×智性幻想，yanyujiangnan 文风包，505 章 / 8 卷，2400-2800 字/章（黄金三章≤2600）。立项完成——`00_terminology.md` / `03_worldview.md` 已完成（含第三方评价修订：七镜徒哲学立场 / 镜母情感锚点 / 镜渊空间渗透 / 老铁匠延迟到站 / 苏镜空白镜片遗物 / 拜镜教仪式 / 手艺高光时刻）；`04_outline.json` v1.2 全量产出（skeptic 5项challenge全修复 + outline-editor round3角色维度复核通过：总分 8.18→8.90→9.0，verdict=pass，6维评分 商业8.5/结构9.0/节奏9.0/伏笔9.5/角色9.5/平台9.0，剩余差距0.50分为题材本征风险不可修复）；9张角色卡全量产出并检阅通过（林深v2.0/老铁匠/苏镜/石头v2.0/雷横v2.0/钱锈v2.0/孙鉴/老龙/镜母），11项审核红线check全通过；基建文件齐备（`config/novel_config.json` + `lint_config.json` + `memory/` 标配 + `logs/writing_log.jsonl`）；`dashboard.html` 的 `KNOWN_PROJECTS` 已注册 `jingyuan`。**下一步**：黄金三章 Ch1-3 beat sheet 细化（分镜/钩子/字数预算/伏笔点，每章≤2600字）+ Ch1 开写（2400-2800字，yanyujiangnan 文风包基线：句长27.78字/了15.3/着5.36/连词15.8/千字）。
 
-**黄金三章质量状态**：`wanwenshi/quality_review_golden3.json`（2026-07-26 17:30）verdict="需修改"——技术分 8.60 / 追读指数 8.24，未达 v1.9 双门槛（技术≥9.5 且追读≥8.5）。三章分章评分：Ch1（8.90/8.38 优化档）/ Ch2（8.78/8.52 优化档）/ Ch3（8.11/7.81 重写局部）。问题统计：critical 0 / major 4 / minor 10。Top3 待修：①Ch3 第14行沈拓误称老铁匠"爹"（角色死穴专属称呼）②Ch3 章末"温到了天明"余韵收尾违反 chapter_end_hook_rule ③雷横角色卡"指针疯转"与正文"锈死"矛盾 + Ch3"登记册六十年"无信息来源。**Ch4 开写前须先修复 Ch3 三项 major 并重跑 quality_review**。
-
-**项目进度面板**：`dashboard.html`（位于 `write-assistant/` 根目录，作为通用工具不绑定具体项目，避免项目归档时被删除）提供实时可视化监控（进度/质量趋势/角色状态/伏笔追踪/悬念窗口/反派梯队/下一步动作/目录信息）。支持项目选择器（URL 参数 `?project=wanwenshi`）、模块展开/折叠。启动方式：在 `write-assistant/` 目录下运行 `python -m http.server 8000`，访问 `http://localhost:8000/dashboard.html?project=wanwenshi`。数据源为各项目 `memory/*.json`，memory 系统更新后刷新浏览器即可看到最新状态。
+**项目进度面板**：`dashboard.html`（位于 `write-assistant/` 根目录，作为通用工具不绑定具体项目，避免项目归档时被删除）提供实时可视化监控（进度/质量趋势/角色状态/伏笔追踪/悬念窗口/反派梯队/下一步动作/目录信息/章节目录）。支持项目选择器（URL 参数 `?project=<项目名>`）、模块展开/折叠、章节目录按卷分组。启动方式：在 `write-assistant/` 目录下运行 `python -m http.server 8000`，访问 `http://localhost:8000/dashboard.html?project=jingyuan`。数据源为各项目 `memory/*.json`。**当 `KNOWN_PROJECTS` 数组为空时面板会显示"暂无在产项目"提示；新项目立项后须在 `dashboard.html` 的 `KNOWN_PROJECTS` 数组中追加项目名，刷新浏览器即可看到最新状态**。
 
 **其他项目状态**（均已归档）：
+- 《万纹师》：已归档（`archive/wanwenshi_20260727/`，2026-07-27 归档；玄幻/职业流/热血正剧，规划 420 章 / 6 卷，chendong 文风包；黄金三章已写 Ch1-3 共 9100 字，quality_review verdict=需修改 4 个 major 待修，Ch4 任务分配已就绪但未开写；归档原因：用户决定开启新项目。潜在复活点：Ch3 三项 major 修复 + Ch4「喂纹」开写）
 - 《有龙则灵》：已归档（`archive/有龙则灵_20260726/`，2026-07-26 归档；旧版 Ch1-14 删除，重写版 Ch1-4 入库后整体归档）
 - 《补天人》：已归档（`archive/补天人_20260726/`，写了 5 章后归档）
 - 《献祭纪元：赊刀人》：已放弃归档（`archive/newbook_献祭纪元_放弃_20260726/`）

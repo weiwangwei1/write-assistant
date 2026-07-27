@@ -1,0 +1,20 @@
+{
+  "title": "镜渊",
+  "subtitle": "备选：镜里看花 / 渊中求真",
+  "genre": "赛博朋克 · 智性幻想 · 匠人流 · 沉郁正剧",
+  "theme": "镜里看花，渊中求真。一个被拆解的意识AI的第七残片载体，在分层巨型都市的底层做镜匠学徒，用一双稳手把断代的镜片文明一纹一纹铸回来，也把自己铸成了所有势力都要抢的那个人。",
+  "total_chapters": 505,
+  "total_volumes": 8,
+  "style_pack": "yanyujiangnan",
+  "chapter_word_count": "2400-2800",
+  "outline_version": "v1.2（skeptic 5项challenge全修复 + outline-editor round3角色维度复核通过：总分8.18→8.90→9.0，verdict=pass；6维评分 商业8.5/结构9.0/节奏9.0/伏笔9.5/角色9.5/平台9.0；剩余差距0.50分为题材本征风险不可修复）",
+  "outline_ref": "jingyuan/04_outline.json",
+  "worldview_ref": "jingyuan/03_worldview.md",
+  "terminology_ref": "jingyuan/00_terminology.md",
+  "lint_config_ref": "jingyuan/lint_config.json",
+  "chapter_len_min": 2400,
+  "chapter_len_max": 2800,
+  "golden_three_chapter_len_max": 2600,
+  "golden_finger_policy": "无系统/无面板/无天眼。主角=纯匠人天赋（镜眼+稳手+过目不忘），力量全部来自手艺/材料/规则领悟。镜母残片是身世引擎不是外挂，前60章严禁觉醒镜徒能力。老龙=镜渊深处沉睡的初代镜匠意识，每卷出场≤2次，契约交易等价交换，只给知识不给力量",
+  "platform": "fanqie"
+}

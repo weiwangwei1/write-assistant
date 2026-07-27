@@ -79,11 +79,31 @@
 
 <script>
 // ===== 配置 =====
-const KNOWN_PROJECTS = ['wanwenshi']; // 已知有 memory 系统的项目
+const KNOWN_PROJECTS = ["jingyuan"]; // 已知有 memory 系统的项目（2026-07-27《镜渊》立项，yanyujiangnan文风包，505章8卷，2400-2800字/章，立项完成pre_writing阶段）
 
 function getProject() {
   const params = new URLSearchParams(location.search);
-  return params.get('project') || 'wanwenshi';
+  return params.get('project') || (KNOWN_PROJECTS[0] || null);
+}
+
+function renderNoProject() {
+  document.getElementById('app').innerHTML = `
+    <div class="header">
+      <h1>网文创作系统 - 项目进度面板</h1>
+      <div class="project-selector">
+        <label>项目:</label>
+        <select disabled><option>暂无在产项目</option></select>
+        <button class="refresh-btn" onclick="location.reload()">刷新</button>
+      </div>
+    </div>
+    <div class="error-msg">
+      <h2 style="color:var(--yellow);margin-bottom:12px;">暂无在产项目</h2>
+      <p style="margin-bottom:12px;">所有项目均已归档，请先立项后再使用面板。</p>
+      <p style="font-size:13px;color:var(--muted);">
+        立项步骤：在 <code>write-assistant/</code> 下新建项目目录（ASCII 命名）→ 创建 <code>memory/session_pointer.json</code> 等标配文件 → 在本文件 <code>KNOWN_PROJECTS</code> 数组中追加项目名 → 刷新浏览器。
+      </p>
+    </div>
+  `;
 }
 
 function dataUrl(file) {
@@ -497,6 +517,10 @@ function renderChapterCatalog(outline, chapterSummaries, currentVolume) {
 }
 
 async function init() {
+  if (KNOWN_PROJECTS.length === 0) {
+    renderNoProject();
+    return;
+  }
   try {
     const [session, goal, foreshadowing, characters, config, outline] = await Promise.all([
       loadJSON(dataUrl('memory/session_pointer.json')),

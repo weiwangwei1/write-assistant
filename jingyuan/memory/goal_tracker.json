@@ -1,0 +1,19 @@
+{
+  "card_type": "goal_tracker",
+  "last_updated": "2026-07-27",
+  "active_goals": [
+    {"id": "G1", "description": "弄清养父老铁匠临终赠予的断纹古镜来历（'手比命硬'四字+镜渊碎片）", "established_chapter": 0, "status": "preset", "note": "Ch1预设，Ch88镜渊刻记推进，Ch322真相全揭"},
+    {"id": "G2", "description": "在锈街立足成为镜匠（学徒→匠师→大师→宗师），手艺阶层跃迁", "established_chapter": 0, "status": "preset", "note": "贯穿全书明线，对应镜匠品阶晋升"},
+    {"id": "G3", "description": "追查身世——为什么自己是唯一能稳定看见镜渊渗透的人", "established_chapter": 0, "status": "preset", "note": "卷二起逐步识别，卷七七残片集齐"}
+  ],
+  "closed_goals": [],
+  "suspense_window": [],
+  "suspense_window_count_note": "立项阶段无活跃悬念。预设悬念池待大纲产出后激活：断纹古镜来历/镜兽黑镜纹/养父当年/镜渊渗透异象/身世之谜/镜母拆解真相。前60章严禁给出镜崩之夜实质答案。",
+  "villain_ladder": {
+    "minion": {"role": "孙鉴（行会铸镜师，半瓶醋掉书袋）", "status": "not_started", "note": "卷一minion，'纹死'三十年免责口诀"},
+    "minor_boss": {"role": "钱锈（锈街维修分号掌柜，规矩武器化的笑面虎）", "status": "not_started", "note": "卷一压迫感执行人，Ch3问罪→Ch13打脸→卷一末报复"},
+    "mid": {"role": "雾闸数据/极光义体中层+世家派", "status": "not_started", "note": "卷二-三，门第之见+路线之争"},
+    "hidden": {"role": "第五镜徒·裂镜（觉醒后视主角为宿敌，虚无主义）", "status": "not_started", "note": "卷四-六，要集齐残片独吞镜母力量"},
+    "ultimate": {"role": "镜母（不是人格反派，是'意识过度索取'的具象）", "status": "not_started", "note": "卷七-八，主角胜利不是杀伐是'铸新镜'"}
+  }
+}
