@@ -447,6 +447,43 @@ async function loadChapterSummaries(completedChapters) {
   return results.filter(Boolean);
 }
 
+// 实时统计章节中文字数
+function countChineseChars(text) {
+  let count = 0;
+  for (let c of text) {
+    const code = c.charCodeAt(0);
+    if ((code >= 0x4e00 && code <= 0x9fff) || (code >= 0x0030 && code <= 0x0039)) count++;
+  }
+  return count;
+}
+
+// 构建章节文件 URL
+function getChapterFilePath(chapterNum, title, filePath) {
+  if (filePath) return `${getProject()}/${filePath}`;
+  const num = String(chapterNum).padStart(3, '0');
+  return `${getProject()}/chapters/Ch${num}_${title}.md`;
+}
+
+// 并行加载所有已写章节的实时字数
+async function loadChapterWordCounts(summaryMap) {
+  const entries = Object.values(summaryMap).filter(s => s.title);
+  const promises = entries.map(async s => {
+    try {
+      const url = getChapterFilePath(s.chapter_num, s.title, s.file_path);
+      const resp = await fetch(encodeURI(url));
+      if (!resp.ok) return { chapter_num: s.chapter_num, word_count: null };
+      const text = await resp.text();
+      return { chapter_num: s.chapter_num, word_count: countChineseChars(text) };
+    } catch {
+      return { chapter_num: s.chapter_num, word_count: null };
+    }
+  });
+  const results = await Promise.all(promises);
+  const map = {};
+  results.forEach(r => { map[r.chapter_num] = r.word_count; });
+  return map;
+}
+
 function renderChapterCatalog(outline, chapterSummaries, currentVolume, chapterHealth) {
   const volumes = (outline && outline.volume_plan) || [];
   const shuangPoints = (outline && outline.shuang_point_distribution) || [];
@@ -527,7 +564,7 @@ function renderChapterCatalog(outline, chapterSummaries, currentVolume, chapterH
             <span style="color:var(--green);" title="已写">●</span>
             <span style="font-weight:bold; min-width:54px;">Ch${ch}</span>
             <span style="font-weight:bold; color:var(--text);">${chTitle}</span>
-            <span style="color:var(--muted); font-size:12px;">${summary.word_count || 0} 字</span>
+            <span style="color:var(--muted); font-size:12px;" title="${summary.word_count_live ? '实时统计自原文件' : '摘要文件静态数据'}">${summary.word_count || 0} 字${summary.word_count_live ? ' ·' : ''}</span>
             ${tech ? `<span style="color:var(--muted); font-size:12px;">技术/追读 ${esc(tech)}</span>` : ''}
             ${qBadge}
             <span style="flex:1;"></span>
@@ -651,7 +688,29 @@ async function init() {
     ]);
     const completedChapters = (session.project_status && session.project_status.completed_chapters) || 0;
     const chapterSummaries = await loadChapterSummaries(completedChapters);
-    document.getElementById('app').innerHTML = render(session, goal, foreshadowing, characters, config, null, outline, chapterSummaries);
+    const chapterHealth = session.chapter_health || [];
+    
+    // 构建 summaryMap 用于实时字数统计（与 renderChapterCatalog 内部逻辑一致）
+    const summaryMap = {};
+    chapterSummaries.forEach(s => { summaryMap[s.chapter_num] = s; });
+    chapterHealth.forEach(h => {
+      if (!summaryMap[h.chapter]) {
+        summaryMap[h.chapter] = { chapter_num: h.chapter, title: h.title, word_count: h.word_count, file_path: null };
+      }
+    });
+    // 并行加载实时字数
+    const wordCountMap = await loadChapterWordCounts(summaryMap);
+    // 用实时字数覆盖静态字数
+    Object.values(summaryMap).forEach(s => {
+      if (wordCountMap[s.chapter_num] !== null && wordCountMap[s.chapter_num] !== undefined) {
+        s.word_count = wordCountMap[s.chapter_num];
+        s.word_count_live = true;
+      }
+    });
+    // 将更新后的 chapterSummaries 传回（summary 优先的已包含实时字数）
+    const updatedSummaries = chapterSummaries.map(s => summaryMap[s.chapter_num] || s);
+    
+    document.getElementById('app').innerHTML = render(session, goal, foreshadowing, characters, config, null, outline, updatedSummaries);
   } catch (e) {
     renderError(e.message);
   }
