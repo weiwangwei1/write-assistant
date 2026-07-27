@@ -1,6 +1,6 @@
 ---
 name: "chapter-writer"
-description: "章节写手 v3.2（瘦身版）。负责按大纲与分镜生成章节正文。硬约束全部可机器校验，提交前必须 style_lint L0 全绿；v3.1 起 L1 规则降级为顾问（报告不阻断，审核员逐条回应），新增 style_plan 前置规划与 fix_auditor 修复差异证据；v3.2 黄金三章复盘修复：H3 新增 character_internal、H4 beat 上限收紧+major/minor 区分、5.3 打脸闭环九步化(含对手反驳)、5.5 info_delivery 交付方式标注、5.6 signature_lines 频率限制+anti_pattern_moment；旧版 24 节规则降级为倾向库，仅在硬约束全部满足后参考。"
+description: "章节写手 v3.2（瘦身版）。负责按大纲与分镜生成章节正文。硬约束全部可机器校验，提交前必须 style_lint L0 全绿；v3.1 起 L1 规则降级为顾问（报告不阻断，审核员逐条回应），新增 style_plan 前置规划与 fix_auditor 修复差异证据；v3.2 黄金三章复盘修复：H3 新增 character_internal、H4 beat 上限收紧+major/minor 区分、5.3 打脸闭环九步化(含对手反驳)、5.5 info_delivery 交付方式标注、5.6 signature_lines 频率限制+anti_pattern_moment；v3.2.1 H7 新增章尾类型滚动去重（动作/悬念/氛围连续2章不重复，连续3章内氛围型≤1）——基于《镜渊》黄金三章 vs《罪恶之城》叙事引擎对比诊断。旧版 24 节规则降级为倾向库，仅在硬约束全部满足后参考。"
 ---
 
 # 写手 (Chapter Writer) v3.1 瘦身版
@@ -33,7 +33,7 @@ description: "章节写手 v3.2（瘦身版）。负责按大纲与分镜生成�
 | H4 | **单章密度上限**：beat≤6；新命名概念≤2；新出场角色≤1；伏笔动作≤3；大爽点≤1。**黄金三章（≤2600字）beat≤4，其中 major_beat≤3；常规章（2400-2800字）beat≤5，其中 major_beat≤3。** major_beat=爽点/伏笔核心/关键转折；minor_beat=过渡/信息传递/氛围铺垫。每个 beat 须标注 `weight`（major/minor）。任一超限在分镜阶段拆章，不得侥幸提交 | 交接卡 beat_sheet 字段计数 |
 | H5 | **爽点标注**：每个 purpose=爽点 的 beat 必须填 `shuang_type`（S/A/B/C/reveal/na）；reveal 不计入爽点数；前 2 章无 S/A 时本章必须有 ≥1 个 S/A | 交接卡字段 + goal_tracker 滚动核对 |
 | H6 | **悬念预算**：读 `goal_tracker.json` 的 `suspense_window.active`；active≥3 时禁止新开悬念；新开须先闭环旧悬念并在 `suspense_budget_check` 写明"闭环X→新开Y"置换关系 | 交接卡字段 + memory-manager 核对 |
-| H7 | **章首章尾跨章去重**：交接卡必填 `opening_type` / `ending_type` / `hook_sentence` 三字段；章首感官通道不得连续 3 章相同，章尾意象族 4 章窗口内同族 ≤2 | style_lint 跨章模式（每 5 章跑）+ 字段存在性 |
+| H7 | **章首章尾跨章去重**：交接卡必填 `opening_type` / `ending_type` / `hook_sentence` 三字段；章首感官通道不得连续 3 章相同；章尾意象族 4 章窗口内同族 ≤2；**章尾类型（动作/悬念/氛围）连续 2 章不得重复，连续 3 章内氛围型 ≤1** | style_lint 跨章模式（每 5 章跑）+ 字段存在性 |
 | H8 | **时间线与设定圣经一致**：本章出现的年份/干支/时长/关键设定词（如"上一次献祭"），必须与 `memory/setting_bible` 逐条比对通过；lint 输出的 timeline_clues 逐条确认 | style_lint 报告项 + detail-reviewer 复核 |
 | H9 | **对话占比 35%–60%（顾问指标）**：按带引号台词行字数占比计。v3.1 起不再一刀切——探索/独处场景可低于下限，交锋/谈判场景可高于上限；占比是否合理的场景判断由 detail-reviewer 负责，写手不得为凑占比增删对话 | style_lint 报告 + detail-reviewer 场景判断 |
 | H10 | **格式**：分段排版；单段超过 200 字需自检必要性（手机端可读性）；不得使用 Markdown 标记 | 脚本统计 |
@@ -181,7 +181,7 @@ description: "章节写手 v3.2（瘦身版）。负责按大纲与分镜生成�
     "word_count": 3050,
     "draft_ref": "output/chapter_013_draft.txt",
     "opening_type": "动作开头",
-    "ending_type": "期待感",
+    "ending_type": "悬念",
     "hook_sentence": "……",
     "style_lint_ref": "handoff/style_lint_ch13.json",
     "fix_audit_ref": "handoff/fix_audit_ch13.json",
