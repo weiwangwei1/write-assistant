@@ -21,7 +21,7 @@ v2.3（框架升级 F1）：L1 作者身份规则从阻断降级为顾问——�
     "custom_ban_words": [{"word": "仙器", "severity": "minor", "reason": "命名通货"}]
   }
 """
-import re, os, sys, json, argparse, unicodedata
+import re, os, sys, json, argparse, unicodedata, glob
 from collections import Counter
 
 DEFAULT_CONFIG = {
@@ -68,6 +68,15 @@ DEFAULT_CONFIG = {
     "ending_family_max_in_window": 2,
     "opening_channel_max_run": 2,
     "dup_sentence_min_len": 6,
+    # 六b、跨章短语重复检测（v2.5新增——黄金三章复盘修复）
+    "recurring_phrase_min_len": 8,        # 重复短语最小长度（汉字数）
+    "recurring_phrase_max_across": 2,     # 同一短语跨章出现的最大次数（超过报minor）
+    "signature_line_max_per_5ch": 2,      # 角色签名台词每5章窗口内最大使用次数
+    # 七b、旁白式设定解释检测（v2.5新增，L2级）
+    "tell_exposition_patterns": [
+        r"是.{2,10}的命脉", r"是.{2,10}的命根", r"意味着",
+        r"对于.{1,8}来说.{2,15}就是", r"换句话说", r"也就是说",
+    ],
 }
 
 # P0-2: 规则分层（L0通用反AI红线 / L1作者身份 / L2签名手法 / L3偏好提示）
@@ -87,6 +96,8 @@ RULE_LEVELS = {
     # v2.2 新增：文学质量检测（L2，不阻断但提醒写手区分好坏实例）
     "le_pattern": "L2", "tell_marker": "L2",
     "narrative_dialogue": "L2", "certain_marker_mismatch": "L2",
+    # v2.5 新增：旁白式设定解释（L2，顾问项）
+    "tell_exposition": "L2",
     # L3: 偏好规则 — 仅提示
     "name_starter_run": "L3", "ranhou": "L3",
     "four_char": "L3", "emotion_telling": "L3",
@@ -95,6 +106,8 @@ RULE_LEVELS = {
 # 跨章规则分级
 CROSS_RULE_LEVELS = {
     "ending_family": "L0", "opening_channel": "L1", "dup_sentence": "L3",
+    # v2.5 新增：跨章短语重复 + 签名台词频率（L1 顾问项）
+    "recurring_phrase": "L1", "signature_line_freq": "L1",
 }
 LEVEL_NAMES = {
     "L0": "通用反AI红线", "L1": "作者身份", "L2": "签名手法", "L3": "偏好提示",
@@ -328,7 +341,13 @@ def lint_chapter(ch, cfg, disabled, custom_bans, rule_levels=None):
     for w in cfg.get("tell_marker_words", []):
         for ln, s in ch.body_lines:
             if w in s:
-                add("tell_marker", "minor", ln, w, f"Tell标记词“{w}”——告诉而非展示，建议删除让动作本身说话")
+                add("tell_marker", "minor", ln, w, f"Tell标记词'{w}'——告诉而非展示，建议删除让动作本身说话")
+    # v2.5 新增：旁白式设定解释检测——定义式句式而非角色自然认知
+    for pat in cfg.get("tell_exposition_patterns", []):
+        for ln, s in ch.body_lines:
+            for m in re.finditer(pat, s):
+                add("tell_exposition", "minor", ln, m.group(0),
+                    f"旁白式设定解释'{m.group(0)}'——建议通过角色行为/对话/感官自然释放设定信息")
     for w in cfg["four_char_cliches"]:
         for ln, s in ch.body_lines:
             if w in s:
@@ -384,7 +403,7 @@ def opening_channel(ch):
         if rx.search(head): return chn
     return "动作/其他"
 
-def cross_chapter(chapters, cfg, disabled, rule_levels=None):
+def cross_chapter(chapters, cfg, disabled, rule_levels=None, characters_dir=None):
     issues = []
     rl = rule_levels or CROSS_RULE_LEVELS
     def add(rule, sev, chapter, excerpt, msg):
@@ -421,6 +440,73 @@ def cross_chapter(chapters, cfg, disabled, rule_levels=None):
         if len(where) >= 2:
             add("dup_sentence", "minor", "/".join(sorted(where)), s,
                 "跨章重复句（若为桥段复现，需有增量设计）")
+    # v2.5 新增：跨章重复短语检测（8-20字片段，按逗号/顿号/分号切分）
+    phrase_map = {}
+    for c in chapters:
+        for seg in re.split(r"[，、；,;]", c.text):
+            seg = seg.strip().strip("""”"'"「」""")
+            if cfg["recurring_phrase_min_len"] <= han_len(seg) <= 20:
+                phrase_map.setdefault(seg, set()).add(c.name)
+    for phrase, where in sorted(phrase_map.items()):
+        total = sum(1 for c in chapters if phrase in c.text)
+        if total > cfg["recurring_phrase_max_across"]:
+            add("recurring_phrase", "minor",
+                "/".join(sorted(where)), phrase,
+                f"跨章重复短语'{phrase}'在{len(where)}章中出现{total}次 > 上限{cfg['recurring_phrase_max_across']}")
+    # v2.5b 新增：N-gram 跨章重复检测（4-10字连续汉字序列，补充短短语检测）
+    # 解决按标点切分无法检测"手没抖""一声压着一声"等短短语跨章重复的问题
+    ngram_min = cfg.get("recurring_ngram_min_len", 4)
+    ngram_max_across = cfg.get("recurring_ngram_max_across", 2)
+    ngram_map = {}
+    for c in chapters:
+        seen_in_ch = set()
+        for m in re.finditer(r"[\u4e00-\u9fff]{%d,10}" % ngram_min, c.text):
+            ng = m.group()
+            if ng not in seen_in_ch:
+                seen_in_ch.add(ng)
+                ngram_map.setdefault(ng, set()).add(c.name)
+    # 过滤常见虚词开头/结尾的无意义片段
+    bad_starts = set("的了着过在地")
+    bad_ends = set("的他她它在地")
+    for ngram, where in sorted(ngram_map.items(), key=lambda x: -len(x[0])):
+        if ngram[0] in bad_starts or ngram[-1] in bad_ends:
+            continue
+        total = sum(1 for c in chapters if ngram in c.text)
+        if total > ngram_max_across:
+            # 排除已被更长 N-gram 包含的短 N-gram（避免重复报告）
+            already_reported = any(
+                ngram in longer and longer != ngram
+                for longer, lw in ngram_map.items()
+                if len(longer) > len(ngram) and len(lw) >= 2 and ngram in longer
+            )
+            if not already_reported:
+                add("recurring_phrase", "minor",
+                    "/".join(sorted(where)), ngram,
+                    f"跨章重复短语'{ngram}'在{len(where)}章中出现{total}次 > 上限{ngram_max_across}")
+    # v2.5 新增：角色签名台词频率检测（需 --characters 参数）
+    if characters_dir and os.path.isdir(characters_dir):
+        for char_file in glob.glob(os.path.join(characters_dir, "*.json")):
+            try:
+                char_data = json.load(open(char_file, encoding="utf-8"))
+            except Exception:
+                continue
+            sig_lines = char_data.get("language_fingerprint", {}).get("signature_lines", [])
+            for sig in sig_lines:
+                sig_text = re.sub(r"[「」""\"\"']", "", sig).strip()
+                if han_len(sig_text) < 4:
+                    continue
+                # v2.5b 修复：自适应窗口——章节数<5时用实际章节数
+                window_size = min(5, len(chapters))
+                if window_size < 2:
+                    continue
+                for i in range(len(chapters) - window_size + 1):
+                    window = chapters[i:i+window_size]
+                    count = sum(1 for c in window if sig_text in c.text)
+                    if count > cfg["signature_line_max_per_5ch"]:
+                        add("signature_line_freq", "minor",
+                            window[0].name, sig_text,
+                            f"签名台词'{sig_text}'{window_size}章窗口内出现{count}次 > 上限{cfg['signature_line_max_per_5ch']}")
+                        break
     return issues
 
 def main():
@@ -430,6 +516,7 @@ def main():
     ap.add_argument("--config", help="阈值配置 JSON 路径")
     ap.add_argument("--style", help="风格包名（加载 lint_overlay.json）")
     ap.add_argument("--styles-root", default=".trae/skills/writer-styles", help="风格包根目录")
+    ap.add_argument("--characters", help="角色卡目录（启用签名台词频率检测）")
     args = ap.parse_args()
 
     cfg = dict(DEFAULT_CONFIG)
@@ -453,7 +540,7 @@ def main():
     files = []
     if os.path.isdir(args.path):
         files = sorted(os.path.join(args.path, f) for f in os.listdir(args.path)
-                       if f.endswith(".txt") and re.search(r"\d+", f))
+                       if (f.endswith(".txt") or f.endswith(".md")) and re.search(r"\d+", f))
     else:
         files = [args.path]
     chapters = [Chapter(f, open(f, encoding="utf-8-sig", errors="ignore").read()) for f in files]
@@ -470,7 +557,7 @@ def main():
             for ov in ch.overrides:
                 all_overrides.append({"chapter": ch.name, "rule": ov["rule"], "reason": ov["reason"], "line": ov["line"], "text": ov.get("text", "")[:50]})
     if len(chapters) > 1:
-        all_issues += cross_chapter(chapters, cfg, disabled, cross_rule_levels)
+        all_issues += cross_chapter(chapters, cfg, disabled, cross_rule_levels, args.characters)
 
     # v2.3（框架升级 F1）：退出码只看 L0 critical；L1 critical 降级为顾问项，报告但不阻断
     blocking = [i for i in all_issues if i.get("level") == "L0" and i["severity"] == "critical"]

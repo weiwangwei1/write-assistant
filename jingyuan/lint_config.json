@@ -2,5 +2,9 @@
   "chapter_len_min": 2400,
   "chapter_len_max": 2800,
   "golden_three_chapter_len_max": 2600,
-  "note": "v1.2调整：原2600-3200偏长，下调以适配番茄碎片阅读；黄金三章严格控制在2600字以内确保新读者完读率"
+  "golden_three_beat_max": 4,
+  "golden_three_major_beat_max": 3,
+  "regular_beat_max": 5,
+  "regular_major_beat_max": 3,
+  "note": "v1.3调整：新增 beat 上限配置（v3.2框架升级F5）；黄金三章beat≤4(major≤3)，常规章beat≤5(major≤3)；原2600-3200偏长已下调以适配番茄碎片阅读；黄金三章严格控制在2600字以内确保新读者完读率"
 }

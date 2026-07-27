@@ -70,11 +70,39 @@
   .dir-tree a:hover { color: var(--accent); text-decoration: underline; }
   .expand-all-btn { background: var(--border); color: var(--text); border: 1px solid var(--border); padding: 4px 10px; border-radius: 4px; cursor: pointer; font-size: 12px; margin-left: 8px; }
   .expand-all-btn:hover { background: var(--card); }
+  /* 章节正文弹窗 */
+  .chapter-modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 9999; display: none; justify-content: center; align-items: flex-start; padding: 40px 20px; overflow-y: auto; }
+  .chapter-modal-overlay.active { display: flex; }
+  .chapter-modal { background: var(--card); border: 1px solid var(--border); border-radius: 8px; max-width: 800px; width: 100%; margin: 0 auto; }
+  .chapter-modal-header { display: flex; justify-content: space-between; align-items: center; padding: 12px 20px; border-bottom: 1px solid var(--border); position: sticky; top: 0; background: var(--card); border-radius: 8px 8px 0 0; z-index: 1; }
+  .chapter-modal-header h3 { font-size: 16px; color: var(--accent); }
+  .chapter-modal-close { background: var(--border); color: var(--text); border: none; width: 30px; height: 30px; border-radius: 4px; cursor: pointer; font-size: 16px; display: flex; align-items: center; justify-content: center; }
+  .chapter-modal-close:hover { background: var(--red); color: #fff; }
+  .chapter-modal-body { padding: 20px 28px; max-height: calc(100vh - 160px); overflow-y: auto; font-size: 15px; line-height: 2; }
+  .chapter-modal-body .ch-title { font-size: 18px; font-weight: bold; color: var(--accent); margin-bottom: 16px; text-align: center; }
+  .chapter-modal-body p { margin-bottom: 12px; text-indent: 2em; }
+  .chapter-modal-body .loading-text { text-align: center; color: var(--muted); padding: 40px; }
+  .chapter-modal-body .error-text { text-align: center; color: var(--red); padding: 40px; }
+  .view-chapter-btn { background: rgba(74,158,255,0.15); color: var(--accent); border: 1px solid rgba(74,158,255,0.3); padding: 2px 10px; border-radius: 4px; cursor: pointer; font-size: 12px; white-space: nowrap; }
+  .view-chapter-btn:hover { background: rgba(74,158,255,0.3); }
 </style>
 </head>
 <body>
 <div id="app">
   <div class="loading">正在加载项目数据...</div>
+</div>
+
+<!-- 章节正文弹窗 -->
+<div class="chapter-modal-overlay" id="chapterModalOverlay" onclick="if(event.target===this)closeChapterModal()">
+  <div class="chapter-modal">
+    <div class="chapter-modal-header">
+      <h3 id="chapterModalTitle">章节正文</h3>
+      <button class="chapter-modal-close" onclick="closeChapterModal()">✕</button>
+    </div>
+    <div class="chapter-modal-body" id="chapterModalBody">
+      <div class="loading-text">加载中...</div>
+    </div>
+  </div>
 </div>
 
 <script>
@@ -292,7 +320,7 @@ function render(session, goal, foreshadowing, characters, config, dirInfo, outli
     </div>
 
     <div style="margin-top:16px;">
-      ${card('catalog', `📖 章节目录（${(chapterSummaries || []).length} 已写 / ${(outline && outline.shuang_point_distribution || []).length} 规划节点 / ${(outline && outline.volume_plan || []).length} 卷）`, renderChapterCatalog(outline, chapterSummaries || [], ps.current_volume))}
+      ${card('catalog', `📖 章节目录（${(chapterSummaries || []).length} 已写 / ${(outline && outline.shuang_point_distribution || []).length} 规划节点 / ${(outline && outline.volume_plan || []).length} 卷）`, renderChapterCatalog(outline, chapterSummaries || [], ps.current_volume, ch))}
     </div>
 
     <div class="grid grid-2" style="margin-top:16px;">
@@ -419,19 +447,34 @@ async function loadChapterSummaries(completedChapters) {
   return results.filter(Boolean);
 }
 
-function renderChapterCatalog(outline, chapterSummaries, currentVolume) {
+function renderChapterCatalog(outline, chapterSummaries, currentVolume, chapterHealth) {
   const volumes = (outline && outline.volume_plan) || [];
   const shuangPoints = (outline && outline.shuang_point_distribution) || [];
 
   // 章号映射
   const shuangMap = {};
   shuangPoints.forEach(sp => { shuangMap[sp.chapter] = sp; });
+  
+  // 合并 chapter_summaries 和 chapter_health（summary 优先，health 作为后备）
   const summaryMap = {};
   chapterSummaries.forEach(s => { summaryMap[s.chapter_num] = s; });
+  (chapterHealth || []).forEach(h => { 
+    if (!summaryMap[h.chapter]) {
+      summaryMap[h.chapter] = {
+        chapter_num: h.chapter,
+        title: h.title,
+        word_count: h.word_count,
+        file_path: null,
+        quality_status: { verdict: h.quality_review || 'PASS', technical_score: null, reader_retention: null }
+      };
+    }
+  });
 
   if (volumes.length === 0) {
     return '<div style="color:var(--muted); font-size:13px;">未找到卷规划数据（outline.volume_plan）</div>';
   }
+
+  const totalWritten = Object.keys(summaryMap).length;
 
   let html = '';
   volumes.forEach(vol => {
@@ -476,14 +519,24 @@ function renderChapterCatalog(outline, chapterSummaries, currentVolume) {
             qBadge = badge(q.verdict, vType);
           }
           const tech = q.technical_score ? `${q.technical_score}/${q.reader_retention}` : '';
+          const chTitle = esc(summary.title || '—');
+          const filePath = summary.file_path || null;
+          // 查看正文按钮：有 file_path 时直接用，否则从章号+标题构造
+          const viewBtn = `<button class="view-chapter-btn" onclick="viewChapterContent(${ch}, '${chTitle.replace(/'/g, "\\'")}', ${filePath ? `'${filePath}'` : 'null'})">📖 查看正文</button>`;
           html += `<div style="display:flex; align-items:center; gap:8px; padding:6px 8px; background:rgba(76,175,80,0.06); border-radius:4px; flex-wrap:wrap;">
             <span style="color:var(--green);" title="已写">●</span>
             <span style="font-weight:bold; min-width:54px;">Ch${ch}</span>
-            <span style="font-weight:bold; color:var(--text);">${esc(summary.title || '—')}</span>
+            <span style="font-weight:bold; color:var(--text);">${chTitle}</span>
             <span style="color:var(--muted); font-size:12px;">${summary.word_count || 0} 字</span>
             ${tech ? `<span style="color:var(--muted); font-size:12px;">技术/追读 ${esc(tech)}</span>` : ''}
             ${qBadge}
+            <span style="flex:1;"></span>
+            ${viewBtn}
           </div>`;
+          // 如果有 beat 信息，展开显示
+          if (summary.beats && summary.beats.length) {
+            html += `<details style="margin-left:62px; margin-bottom:4px;"><summary style="font-size:11px; color:var(--muted); cursor:pointer;">分镜 (${summary.beats.length})</summary><div style="font-size:12px; color:var(--text); padding:6px 12px; line-height:1.6;">${summary.beats.map((b,i) => `<div style="padding:2px 0;">${i+1}. ${esc(b)}</div>`).join('')}</div></details>`;
+          }
         } else if (shuang) {
           // 规划中的爽点章节
           const desc = (shuang.description || '');
@@ -510,11 +563,77 @@ function renderChapterCatalog(outline, chapterSummaries, currentVolume) {
     <span style="color:var(--muted);">○</span> 规划爽点章节 &nbsp;&nbsp;
     <span class="badge badge-orange">S</span> 主爽点 &nbsp;
     <span class="badge badge-purple">A</span> 辅助点 &nbsp;&nbsp;
-    共 ${chapterSummaries.length} 章已写 / ${shuangPoints.length} 个规划节点
+    共 ${totalWritten} 章已写 / ${shuangPoints.length} 个规划节点 &nbsp;&nbsp;
+    <span style="color:var(--accent);">📖 查看正文</span> = 点击阅读章节内容
   </div>`;
 
   return html;
 }
+
+// ===== 章节正文查看 =====
+async function viewChapterContent(chapterNum, title, filePath) {
+  const overlay = document.getElementById('chapterModalOverlay');
+  const modalTitle = document.getElementById('chapterModalTitle');
+  const modalBody = document.getElementById('chapterModalBody');
+  
+  modalTitle.textContent = `Ch${chapterNum} · ${title || '—'}`;
+  modalBody.innerHTML = '<div class="loading-text">正在加载章节正文...</div>';
+  overlay.classList.add('active');
+  document.body.style.overflow = 'hidden';
+  
+  try {
+    // 构建文件路径：优先使用 filePath，否则从章号和标题构造
+    let url;
+    if (filePath) {
+      url = `${getProject()}/${filePath}`;
+    } else {
+      const num = String(chapterNum).padStart(3, '0');
+      url = `${getProject()}/chapters/Ch${num}_${title}.md`;
+    }
+    
+    const resp = await fetch(encodeURI(url));
+    if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+    const text = await resp.text();
+    
+    // 解析 Markdown 为 HTML
+    const lines = text.split('\n');
+    let html = '';
+    
+    for (let line of lines) {
+      const trimmed = line.trim();
+      if (!trimmed) {
+        // 空行：分段
+        continue;
+      }
+      if (trimmed.startsWith('# ')) {
+        // Markdown 标题
+        html += `<div class="ch-title">${esc(trimmed.slice(2))}</div>`;
+      } else {
+        // 正文段落
+        html += `<p>${esc(trimmed)}</p>`;
+      }
+    }
+    
+    if (!html) {
+      html = '<div class="error-text">章节内容为空</div>';
+    }
+    
+    modalBody.innerHTML = html;
+  } catch (e) {
+    modalBody.innerHTML = `<div class="error-text">加载失败: ${esc(e.message)}<br><span style="font-size:12px;color:var(--muted);">请确认 HTTP 服务器正在运行（python -m http.server 8000）</span></div>`;
+  }
+}
+
+function closeChapterModal() {
+  const overlay = document.getElementById('chapterModalOverlay');
+  overlay.classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+// ESC 关闭弹窗
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeChapterModal();
+});
 
 async function init() {
   if (KNOWN_PROJECTS.length === 0) {

@@ -1,0 +1,27 @@
+{
+  "chapter_num": 2,
+  "title": "一击穿核",
+  "word_count": 2434,
+  "file_path": "chapters/Ch002_一击穿核.md",
+  "style_lint": "PASS(L0+L1+L2全绿)",
+  "quality_review": "PASS",
+  "quality_status": {
+    "verdict": "PASS",
+    "technical_score": null,
+    "reader_retention": null
+  },
+  "beats": [
+    "兽群合围防线告急，赤蝎队结阵抵抗",
+    "林深用放大镜看穿兽王位置，引兽王露头",
+    "一击穿核射杀兽王，稳手高光时刻",
+    "拆镜片发现核心镜纹与养父旧锤同路，身世暗线第一次叩响"
+  ],
+  "foreshadowing_planted": ["F2核心", "F1核心", "F5前兆延续", "F3雏形"],
+  "hooks": {
+    "opening": "兽群合围防线告急",
+    "mid1": "兽王狡诈不露头废料镜片只撑一击",
+    "mid2": "一击穿核稳手高光",
+    "ending": "养父旧锤与镜片核心同路"
+  },
+  "note": "Ch1悬念全兑现（喂镜源头是养父说的+镜兽王骨黑镜纹）。手艺高光前兆（稳手一击穿核）。文风指标：破折号0.00/省略号0.41/着7.81/了16.43/连词5.75/比喻1处/对话27.1%/引前引导8.63"
+}
