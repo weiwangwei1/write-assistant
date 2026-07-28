@@ -154,11 +154,12 @@ powershell -ExecutionPolicy Bypass -File auto-runner/generate_task_config.ps1 # 
 
 ## 九、当前进度快照
 
-**当前状态**：在产项目《镜渊》（`jingyuan/`，2026-07-27 立项）。赛博朋克×智性幻想，yanyujiangnan 文风包，505 章 / 8 卷，2400-2800 字/章（黄金三章≤2600）。立项完成——`00_terminology.md` / `03_worldview.md` 已完成（含第三方评价修订：七镜徒哲学立场 / 镜母情感锚点 / 镜渊空间渗透 / 老铁匠延迟到站 / 苏镜空白镜片遗物 / 拜镜教仪式 / 手艺高光时刻）；`04_outline.json` v1.2 全量产出（skeptic 5项challenge全修复 + outline-editor round3角色维度复核通过：总分 8.18→8.90→9.0，verdict=pass，6维评分 商业8.5/结构9.0/节奏9.0/伏笔9.5/角色9.5/平台9.0，剩余差距0.50分为题材本征风险不可修复）；9张角色卡全量产出并检阅通过（林深v2.0/老铁匠/苏镜/石头v2.0/雷横v2.0/钱锈v2.0/孙鉴/老龙/镜母），11项审核红线check全通过；基建文件齐备（`config/novel_config.json` + `lint_config.json` + `memory/` 标配 + `logs/writing_log.jsonl`）；`dashboard.html` 的 `KNOWN_PROJECTS` 已注册 `jingyuan`。**下一步**：黄金三章 Ch1-3 beat sheet 细化（分镜/钩子/字数预算/伏笔点，每章≤2600字）+ Ch1 开写（2400-2800字，yanyujiangnan 文风包基线：句长27.78字/了15.3/着5.36/连词15.8/千字）。
+**当前状态**：《征诏之界》在产中。征调/副本流/无限流变体，yanyujiangnan 文风包，400 章 / 6 卷，2400-2600 字/章，黄金三章≤2600。立项完成——选题预筛 + 大纲设计 + 角色设计（7 张角色卡+关系网）+ 黄金三章 Ch1-3 全量产出（style_lint 全绿通过）。下一步：detail-reviewer + de-ai-processor 并行审核。
 
-**项目进度面板**：`dashboard.html`（位于 `write-assistant/` 根目录，作为通用工具不绑定具体项目，避免项目归档时被删除）提供实时可视化监控（进度/质量趋势/角色状态/伏笔追踪/悬念窗口/反派梯队/下一步动作/目录信息/章节目录）。支持项目选择器（URL 参数 `?project=<项目名>`）、模块展开/折叠、章节目录按卷分组。启动方式：在 `write-assistant/` 目录下运行 `python -m http.server 8000`，访问 `http://localhost:8000/dashboard.html?project=jingyuan`。数据源为各项目 `memory/*.json`。**当 `KNOWN_PROJECTS` 数组为空时面板会显示"暂无在产项目"提示；新项目立项后须在 `dashboard.html` 的 `KNOWN_PROJECTS` 数组中追加项目名，刷新浏览器即可看到最新状态**。
+**项目进度面板**：`dashboard.html`（位于 `write-assistant/` 根目录，作为通用工具不绑定具体项目，避免项目归档时被删除）提供实时可视化监控（进度/质量趋势/角色状态/伏笔追踪/悬念窗口/反派梯队/下一步动作/目录信息/章节目录）。支持项目选择器（URL 参数 `?project=<项目名>`）、模块展开/折叠、章节目录按卷分组。启动方式：在 `write-assistant/` 目录下运行 `python -m http.server 8000`，访问 `http://localhost:8000/dashboard.html?project=征诏之界`。数据源为各项目 `memory/*.json`。**当 `KNOWN_PROJECTS` 数组为空时面板会显示"暂无在产项目"提示；新项目立项后须在 `dashboard.html` 的 `KNOWN_PROJECTS` 数组中追加项目名，刷新浏览器即可看到最新状态**。
 
 **其他项目状态**（均已归档）：
+- 《镜渊》：已放弃归档（`archive/镜渊_20260728/`，2026-07-28 归档；赛博朋克×智性幻想，yanyujiangnan 文风包，505 章 / 8 卷；黄金三章 Ch1-3 重写完成 + Ch4《问锤》完成，共 4 章约 10000 字；归档原因：用户决定放弃）
 - 《万纹师》：已归档（`archive/wanwenshi_20260727/`，2026-07-27 归档；玄幻/职业流/热血正剧，规划 420 章 / 6 卷，chendong 文风包；黄金三章已写 Ch1-3 共 9100 字，quality_review verdict=需修改 4 个 major 待修，Ch4 任务分配已就绪但未开写；归档原因：用户决定开启新项目。潜在复活点：Ch3 三项 major 修复 + Ch4「喂纹」开写）
 - 《有龙则灵》：已归档（`archive/有龙则灵_20260726/`，2026-07-26 归档；旧版 Ch1-14 删除，重写版 Ch1-4 入库后整体归档）
 - 《补天人》：已归档（`archive/补天人_20260726/`，写了 5 章后归档）

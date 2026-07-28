@@ -1,0 +1,89 @@
+{
+  "project": "征诏之界",
+  "updated_at": "2026-07-28T09:00:00",
+  "foreshadowings": [
+    {
+      "id": "F1",
+      "description": "铜钱共九枚，程铖现有四枚，需收集剩余五枚",
+      "planted_chapter": 2,
+      "planted_by": "杨铁（改造征调者遗言）",
+      "expected_reveal_chapter": "30-40",
+      "status": "planted",
+      "type": "main_plot",
+      "notes": "九枚铜钱=征诏令控制核心，分散在九个人手中"
+    },
+    {
+      "id": "F2",
+      "description": "三年前同一时间点多人被征调（师父/苏眠姐姐/杨铁/沈缺），不是随机",
+      "planted_chapter": 2,
+      "planted_by": "程铖（精算发现）",
+      "expected_reveal_chapter": "15-20",
+      "status": "planted",
+      "type": "conspiracy",
+      "notes": "暗示三年前的征调有针对性的筛选标准"
+    },
+    {
+      "id": "F3",
+      "description": "铜钱上的血在慢慢渗入纹路，和铜钱融为一体",
+      "planted_chapter": 3,
+      "planted_by": "程铖（观察）",
+      "expected_reveal_chapter": "10-15",
+      "status": "planted",
+      "type": "ability",
+      "notes": "血与铜钱本是一体——铜钱需要血来激活/认主"
+    },
+    {
+      "id": "F4",
+      "description": "裂缝深处的观察者——一群在学在观察，在等更多接触主位面的机会",
+      "planted_chapter": 1,
+      "planted_by": "程铖（铜钱三算）",
+      "expected_reveal_chapter": "25-30",
+      "status": "planted",
+      "type": "world_building",
+      "notes": "可能是征诏令的'意识'或最早的被改造者"
+    },
+    {
+      "id": "F5",
+      "description": "征诏令说谎——任务失败的人回不去，死在这边的人连名字都不会被记住",
+      "planted_chapter": 3,
+      "planted_by": "沈缺（口述）",
+      "expected_reveal_chapter": "15-20",
+      "status": "planted",
+      "type": "conspiracy",
+      "notes": "征诏令管理机构系统性造假，掩盖征调者死亡"
+    },
+    {
+      "id": "F6",
+      "description": "苏眠的入梦能力与程铖铜钱卜算是互补的——一个算规则，一个看人心",
+      "planted_chapter": 2,
+      "planted_by": "程铖（精算发现）",
+      "expected_reveal_chapter": "20-30",
+      "status": "planted",
+      "type": "character",
+      "notes": "两人能力协同可以覆盖规则+人心两个维度"
+    },
+    {
+      "id": "F7",
+      "description": "程铖承诺下次来带全部被流放者出去",
+      "planted_chapter": 3,
+      "planted_by": "程铖（承诺）",
+      "expected_reveal_chapter": "10-12",
+      "status": "planted",
+      "type": "character",
+      "notes": "第十次征调时需兑现，建立程铖言出必行的形象"
+    },
+    {
+      "id": "F8",
+      "description": "赵家少主请程铖明天喝茶——首次正面冲突预告",
+      "planted_chapter": 3,
+      "planted_by": "赵家管家",
+      "expected_reveal_chapter": "4-7",
+      "status": "planted",
+      "type": "conflict",
+      "notes": "赵家占据程家旧宅，程铖需要赎回家产"
+    }
+  ],
+  "total_planted": 8,
+  "total_resolved": 0,
+  "next_review_chapter": 10
+}

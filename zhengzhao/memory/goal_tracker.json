@@ -1,0 +1,99 @@
+{
+  "project": "征诏之界",
+  "updated_at": "2026-07-28T09:00:00",
+  "main_quest": {
+    "name": "主线：调查师父失踪真相",
+    "status": "active",
+    "progress": "黄金三章完成，确认师父在界门那边还活着，铜钱共九枚，程铖现有四枚",
+    "next_milestone": "Ch4-6：调查师父下落，发现程家旧宅被赵家占据，用功勋赎回",
+    "stall_check": "已连续3章推进主线，无停滞"
+  },
+  "character_goals": {
+    "程铖": {
+      "short_term": "赎回程家旧宅，攒够功勋，找到第五枚铜钱",
+      "long_term": "找到师父，查清征诏令真相",
+      "progress": "已获得四枚铜钱，功勋112.5点，确认师父活着"
+    },
+    "老周": {
+      "short_term": "攒够功勋换女儿的药",
+      "long_term": "换一条新胳膊回去见女儿",
+      "progress": "程铖给了功勋，够换四个月的药"
+    },
+    "苏眠": {
+      "short_term": "找到姐姐苏醒的下落",
+      "long_term": "查清姐姐被征调后失踪的真相",
+      "progress": "确认姐姐不在这个位面，但不知道具体在哪"
+    }
+  },
+  "suspense_window": {
+    "active": [
+      {
+        "id": "S1",
+        "description": "师父铜钱上的血为什么是三天内的",
+        "opened_chapter": 1,
+        "type": "main",
+        "status": "partial_revealed",
+        "notes": "沈缺确认师父一年前离开，血的来源仍未知——铜钱上的血可能不是师父的，而是某种'激活'机制"
+      },
+      {
+        "id": "S2",
+        "description": "裂缝那头在观察的东西是什么",
+        "opened_chapter": 1,
+        "type": "atmosphere",
+        "status": "partial_revealed",
+        "notes": "苏眠入梦+铜钱三算确认不止一个，是一群在学在观察，在等更多接触主位面的机会"
+      },
+      {
+        "id": "S3",
+        "description": "师父在界门那边还活着，铜钱共九枚",
+        "opened_chapter": 2,
+        "type": "main",
+        "status": "active",
+        "notes": "沈缺确认师父一年前走向界门深处，留给程铖'别替我算，算你自己的'"
+      }
+    ],
+    "resolved": [
+      {
+        "id": "S_resolved_1",
+        "description": "铜钱自己会动（Ch1悬念③）",
+        "resolved_chapter": 2,
+        "resolution": "铜钱之间互相感应，铜钱共振是铜钱引能力的雏形"
+      }
+    ],
+    "total_active": 3,
+    "max_allowed": 5
+  },
+  "villain_ladder": {
+    "current_villains": [
+      {
+        "name": "裂缝深处的观察者",
+        "type": "mystery",
+        "status": "introduced",
+        "first_appearance": "Ch1",
+        "notes": "一群在学在观察的存在，在等更多接触主位面的机会"
+      },
+      {
+        "name": "赵家少主",
+        "type": "political",
+        "status": "introduced",
+        "first_appearance": "Ch3（管家递请柬，未出场）",
+        "notes": "强势家族少主，占据程家旧宅，下一阶段主要对手"
+      }
+    ],
+    "pending_villains": [
+      {
+        "name": "执令者",
+        "type": "mastermind",
+        "status": "hinted",
+        "notes": "征诏令管理机构背后的存在，Ch3中通过书吏间接展示体制冷漠"
+      }
+    ]
+  },
+  "ability_progression": {
+    "程铖": {
+      "current_abilities": ["铜钱卜算（三枚铜钱，每枚每天一次）", "铜钱引（雏形，铜钱之间互相感应）"],
+      "next_upgrade": "获得第四枚铜钱，解锁铜钱引完整版（追踪定位）",
+      "next_upgrade_chapter": 11
+    }
+  }
+}

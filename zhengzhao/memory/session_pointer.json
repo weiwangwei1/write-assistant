@@ -1,0 +1,73 @@
+{
+  "project": "征诏之界",
+  "updated_at": "2026-07-28T09:00:00",
+  "current_chapter": 3,
+  "current_volume": 1,
+  "total_chapters_written": 3,
+  "phase": "golden_three_complete",
+  "next_phase": "detail_review",
+  "chapters": {
+    "chapter_001": {
+      "title": "第七征营",
+      "word_count": 2560,
+      "file_path": "output/chapter_001.txt",
+      "status": "draft",
+      "lint_status": "pass",
+      "opening_type": "场景动作开头",
+      "ending_type": "悬念",
+      "beats": [
+        "界门裂缝，程铖站在第七营城墙上，实到四人，满编十二人",
+        "东墙裂缝涌出改造征调者，铜钱卜算首次展示：算出敌人弱点和裂缝规律",
+        "在改造征调者壳腔中发现师父的铜钱，血是三天内的",
+        "程铖决定活下去查清楚，老周问'你认识这铜钱？'程铖说'不认识'"
+      ]
+    },
+    "chapter_002": {
+      "title": "铜钱里的血",
+      "word_count": 2403,
+      "file_path": "output/chapter_002.txt",
+      "status": "draft",
+      "lint_status": "pass",
+      "opening_type": "感官开头",
+      "ending_type": "动作未完成",
+      "beats": [
+        "程铖检查师父的铜钱，发现铜钱之间互相感应，血迹指向城墙深处",
+        "城墙深处发现残留意识的改造征调者杨铁，说出'铜钱九枚'和'她'后完全壳化",
+        "苏眠入梦触碰程铖记忆，两人第一次正面交锋。程铖发现苏眠姐姐三年前也被征调",
+        "新裂缝出现，一个活的被流放者爬出来，带来师父口信：第四枚铜钱在界门那边"
+      ]
+    },
+    "chapter_003": {
+      "title": "界门那边",
+      "word_count": 2598,
+      "file_path": "output/chapter_003.txt",
+      "status": "draft",
+      "lint_status": "pass",
+      "opening_type": "对话开头",
+      "ending_type": "信息揭示",
+      "beats": [
+        "沈缺从裂缝爬出，程铖用铜钱验证他不是敌人。沈缺自报身份：第七批征调者，被遗弃三年",
+        "沈缺讲述师父在界门这边的经历，交出师父的铜钱。程铖算过后归还",
+        "界门提前缩小，程铖三算找出延缓方法，制定利用征调令漏洞带被流放者回去的计划",
+        "回到主位面功勋结算，程铖把功勋给老周换药，怼回赵家管家，苏眠第一次笑"
+      ]
+    }
+  },
+  "chapter_health": {
+    "chapter_001": "pass",
+    "chapter_002": "pass",
+    "chapter_003": "pass"
+  },
+  "active_characters": ["程铖", "老周", "苏眠", "沈缺", "赵家管家"],
+  "mentioned_characters": ["乔老头（师父）", "苏醒（苏眠姐姐）", "魏东（已死）", "杨铁（已死）", "赵家少主"],
+  "milestones": {
+    "golden_three_written": "2026-07-28",
+    "golden_three_lint_pass": "2026-07-28"
+  },
+  "decision_log": [
+    {
+      "timestamp": "2026-07-28T09:00:00",
+      "decision": "黄金三章完成，style_lint 全绿通过。Ch1 2560字（场景动作开头+悬念结尾），Ch2 2403字（感官开头+动作未完成结尾），Ch3 2598字（对话开头+信息揭示结尾）。下一步：detail-reviewer + de-ai-processor 并行审核"
+    }
+  ]
+}
