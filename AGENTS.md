@@ -4,7 +4,7 @@
 
 ## 一、项目概述
 
-这不是一个传统软件项目，而是一套**多智能体网文创作系统**：通过多个专业化 LLM Agent（Skill）协作，完成从大纲构思、角色设计到章节写作、审核、发布的全流程，目标平台为**番茄小说（fanqie）**。**当前在产项目：《镜渊》**（2026-07-27 立项，赛博朋克×智性幻想，yanyujiangnan 文风包，505 章 / 8 卷，2400-2800 字/章，黄金三章≤2600；立项完成——`00_terminology.md` / `03_worldview.md` / `04_outline.json` v1.2 全量产出（skeptic 5项challenge全修复 + outline-editor round3角色维度复核通过，总分 8.18→8.90→9.0，verdict=pass），9张角色卡全量产出并检阅通过，11项审核红线check全通过；当前 pre_writing 阶段，下一步黄金三章 Ch1-3 beat sheet 细化 + Ch1 开写）。
+这不是一个传统软件项目，而是一套**多智能体网文创作系统**：通过多个专业化 LLM Agent（Skill）协作，完成从大纲构思、角色设计到章节写作、审核、发布的全流程，目标平台为**番茄小说（fanqie）**。**当前在产项目：《征诏之界》**（2026-07-28 立项，征调/副本流/无限流变体，yanyujiangnan 文风包，400 章 / 6 卷，2400-2600 字/章，黄金三章≤2600；立项完成——选题预筛 + 大纲设计（6 卷 400 章）+ 角色设计（7 张角色卡+12 关系网）全量产出；黄金三章 Ch1-3 已完成全流水线（detail-review → de-ai → quality-review → final-review → fanqie-adapter → memory-manager），三章 published，终审评分 9.05/9.06/9.04（策略性放行，无硬性否决）；框架升级至 v3.2.5（chapter-writer H3 新增精算失效时刻要求、detail-reviewer v1.11、style_lint 新增规则）；当前 chapter_loop 阶段，下一步 Ch4 beat sheet 细化 + 开写）。
 
 系统的"代码"主要是三类：
 
@@ -154,7 +154,7 @@ powershell -ExecutionPolicy Bypass -File auto-runner/generate_task_config.ps1 # 
 
 ## 九、当前进度快照
 
-**当前状态**：《征诏之界》在产中。征调/副本流/无限流变体，yanyujiangnan 文风包，400 章 / 6 卷，2400-2600 字/章，黄金三章≤2600。立项完成——选题预筛 + 大纲设计 + 角色设计（7 张角色卡+关系网）+ 黄金三章 Ch1-3 全量产出（style_lint 全绿通过）。下一步：detail-reviewer + de-ai-processor 并行审核。
+**当前状态**：《征诏之界》在产中。征调/副本流/无限流变体，yanyujiangnan 文风包，400 章 / 6 卷，2400-2600 字/章，黄金三章≤2600。立项完成——选题预筛 + 大纲设计 + 角色设计（7 张角色卡+关系网）+ 黄金三章 Ch1-3 已完成全流水线审核并 published（style_lint 全绿，detail-review 33 项修复，de-ai ai_score 1.3/1.3/1.9，终审 9.05/9.06/9.04 策略性放行，fanqie-adapter ready_to_publish）。框架升级至 v3.2.5（chapter-writer v3.2.2 H3 新增精算失效时刻要求、detail-reviewer v1.11、style_lint 新增规则）。关键设定变更：师父姓名乔老头→沈老头/沈问机；苏眠能力入梦→读心（看情感意图非记忆）+ 代价丢记忆。下一步：Ch4 beat sheet 细化 + 开写（Ch4-6 方向：调查师父下落 + 苏眠正式出场 + 程家旧宅赵家冲突）。
 
 **项目进度面板**：`dashboard.html`（位于 `write-assistant/` 根目录，作为通用工具不绑定具体项目，避免项目归档时被删除）提供实时可视化监控（进度/质量趋势/角色状态/伏笔追踪/悬念窗口/反派梯队/下一步动作/目录信息/章节目录）。支持项目选择器（URL 参数 `?project=<项目名>`）、模块展开/折叠、章节目录按卷分组。启动方式：在 `write-assistant/` 目录下运行 `python -m http.server 8000`，访问 `http://localhost:8000/dashboard.html?project=征诏之界`。数据源为各项目 `memory/*.json`。**当 `KNOWN_PROJECTS` 数组为空时面板会显示"暂无在产项目"提示；新项目立项后须在 `dashboard.html` 的 `KNOWN_PROJECTS` 数组中追加项目名，刷新浏览器即可看到最新状态**。
 
