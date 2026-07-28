@@ -1,28 +1,38 @@
 {
   "project": "征诏之界",
-  "updated_at": "2026-07-28T09:00:00",
+  "updated_at": "2026-07-28T23:30:00+08:00",
   "main_quest": {
     "name": "主线：调查师父失踪真相",
     "status": "active",
-    "progress": "黄金三章完成，确认师父在界门那边还活着，铜钱共九枚，程铖现有四枚",
+    "progress": "黄金三章完成。Ch1发现师父铜钱（血是三天内的）→Ch2铜钱九枚总数揭示+师父在界门那边还活着→Ch3沈缺确认师父一年前往界门深处，留下遗言'别替我算'。铜钱收集进度：3→4枚（Ch1获得师父铜钱），第五枚在界门那边（沈缺处一枚已归还）。师父确认还活着，在界门那边更深处。",
     "next_milestone": "Ch4-6：调查师父下落，发现程家旧宅被赵家占据，用功勋赎回",
     "stall_check": "已连续3章推进主线，无停滞"
   },
   "character_goals": {
     "程铖": {
-      "short_term": "赎回程家旧宅，攒够功勋，找到第五枚铜钱",
+      "short_term": [
+        {"goal": "找到沈老头", "set_chapter": 1, "status": "active", "progress": "Ch1发现师父铜钱→Ch2确认师父在界门那边还活着→Ch3沈缺确认师父一年前往界门深处，遗言'别替我算'"},
+        {"goal": "找到第五枚铜钱", "set_chapter": 2, "status": "active", "progress": "Ch2沈缺警告'别算第五枚，在界门那边'→Ch3程铖接过第五枚铜钱产生共鸣后归还沈缺，章末目标'找到第五枚铜钱'"},
+        {"goal": "三十天后带被流放者全部出去", "set_chapter": 3, "status": "active", "progress": "Ch3程铖承诺'下次我来，带你们全部出去'，时间锚三十天后下一轮征调"},
+        {"goal": "赎回程家旧宅", "set_chapter": 3, "status": "partial_completed", "progress": "Ch3功勋到账112.5点，赎回偏房，但赵家牌子还挂在门上"}
+      ],
       "long_term": "找到师父，查清征诏令真相",
-      "progress": "已获得四枚铜钱，功勋112.5点，确认师父活着"
+      "progress": "已获得四枚铜钱（三旧一师父的），功勋112.5点，确认师父活着。师父遗言'别替我算，算你自己的'——不让他追，但程铖决定'追不追，不用别人替他算'"
     },
     "老周": {
       "short_term": "攒够功勋换女儿的药",
       "long_term": "换一条新胳膊回去见女儿",
-      "progress": "程铖给了功勋，够换四个月的药"
+      "progress": "Ch3程铖把功勋牌给老周，加老周自己的112.5点共225点，够换四个月的药。老周表态'我也来'——跟随程铖下一次征调。用右手拍程铖肩膀——第一次用右手碰他。"
     },
     "苏眠": {
       "short_term": "找到姐姐苏醒的下落",
       "long_term": "查清姐姐被征调后失踪的真相",
-      "progress": "确认姐姐不在这个位面，但不知道具体在哪"
+      "progress": "尚未正式出场（推迟至Ch4）。姐姐苏醒三年前被征调，苏眠自身能力（读心+代价丢记忆）将在Ch4首次展示。"
+    },
+    "沈缺": {
+      "short_term": "带九个被流放者离开子位面",
+      "long_term": "等待程铖兑现承诺带他们出去",
+      "progress": "Ch3首次出场，被遗弃三年，三十七人剩十个。程铖承诺三十天后来带他们出去。沈缺做第七营手势回应。"
     }
   },
   "suspense_window": {
@@ -33,7 +43,7 @@
         "opened_chapter": 1,
         "type": "main",
         "status": "partial_revealed",
-        "notes": "沈缺确认师父一年前离开，血的来源仍未知——铜钱上的血可能不是师父的，而是某种'激活'机制"
+        "notes": "Ch2/Ch3确认师父一年前离开走向界门深处，血的来源仍未知——铜钱上的血可能不是师父的，而是某种'激活'机制。Ch3血迹在渗入纹路与铜钱融合。"
       },
       {
         "id": "S2",
@@ -41,7 +51,7 @@
         "opened_chapter": 1,
         "type": "atmosphere",
         "status": "partial_revealed",
-        "notes": "苏眠入梦+铜钱三算确认不止一个，是一群在学在观察，在等更多接触主位面的机会"
+        "notes": "Ch1铜钱三算发现观察者→Ch3沈缺警告'它发现你们了'，程铖第三算确认不止一个，是一群在学在观察，在等更多接触主位面的机会。身份仍未知（不在规则里，在规则之上）。"
       },
       {
         "id": "S3",
@@ -49,19 +59,50 @@
         "opened_chapter": 2,
         "type": "main",
         "status": "active",
-        "notes": "沈缺确认师父一年前走向界门深处，留给程铖'别替我算，算你自己的'"
+        "notes": "Ch2沈缺警告'别算第五枚，在界门那边'→Ch3沈缺确认师父一年前往界门深处，留下遗言'别替我算，算你自己的'。师父在界门那边更深处，铜钱需要九枚。"
+      },
+      {
+        "id": "S4",
+        "description": "'她'是谁——杨铁临终说的单字",
+        "opened_chapter": 2,
+        "type": "mystery",
+        "status": "active",
+        "notes": "Ch2杨铁说出'她'后壳化。'她'有九枚铜钱——可能是征诏令背后的存在或最早的被改造者。无近期兑现路径，预计Ch25-30+揭示。"
+      },
+      {
+        "id": "S5",
+        "description": "铜钱上的血在渗入纹路与铜钱融合",
+        "opened_chapter": 2,
+        "type": "ability",
+        "status": "active",
+        "notes": "Ch2血迹渗入纹路→Ch3血迹变淡，融合加深。暗示血与铜钱本是一体，铜钱需要血来激活/认主。预计Ch10-15揭示。"
+      },
+      {
+        "id": "S6",
+        "description": "赵家少主请喝茶——正面冲突预告",
+        "opened_chapter": 3,
+        "type": "conflict",
+        "status": "active",
+        "notes": "Ch3赵家管家递请柬，程铖三连怼回。赵家少主尚未出场。预计Ch4-7正面冲突。"
       }
     ],
     "resolved": [
       {
         "id": "S_resolved_1",
-        "description": "铜钱自己会动（Ch1悬念③）",
+        "description": "铜钱自己会动（Ch1悬念）",
         "resolved_chapter": 2,
         "resolution": "铜钱之间互相感应，铜钱共振是铜钱引能力的雏形"
+      },
+      {
+        "id": "S_resolved_2",
+        "description": "师父是否还活着（Ch1核心悬念）",
+        "resolved_chapter": 2,
+        "resolution": "Ch2沈缺传师父口信确认活着，Ch3沈缺详细讲述师父一年前往界门那边"
       }
     ],
-    "total_active": 3,
-    "max_allowed": 5
+    "total_active": 6,
+    "max_allowed": 5,
+    "warning": "活跃悬念已达6条，超过max_allowed=5。Ch4-6需优先收拢S1（血迹来源）或推进S6（赵家冲突），避免悬念过载。"
   },
   "villain_ladder": {
     "current_villains": [
@@ -70,14 +111,16 @@
         "type": "mystery",
         "status": "introduced",
         "first_appearance": "Ch1",
-        "notes": "一群在学在观察的存在，在等更多接触主位面的机会"
+        "threat_level": "unknown",
+        "notes": "一群在学在观察的存在，在等更多接触主位面的机会。铜钱算不出——不在规则里，在规则之上。可能是征诏令的'意识'或最早的被改造者。"
       },
       {
-        "name": "赵家少主",
+        "name": "赵家少主赵阙",
         "type": "political",
         "status": "introduced",
         "first_appearance": "Ch3（管家递请柬，未出场）",
-        "notes": "强势家族少主，占据程家旧宅，下一阶段主要对手"
+        "threat_level": "family_level",
+        "notes": "强势家族少主，占据程家旧宅。程铖三连怼回请柬，主动挑衅。下一阶段主要对手，预计Ch4-7正面冲突。"
       }
     ],
     "pending_villains": [
@@ -85,15 +128,31 @@
         "name": "执令者",
         "type": "mastermind",
         "status": "hinted",
-        "notes": "征诏令管理机构背后的存在，Ch3中通过书吏间接展示体制冷漠"
+        "notes": "征诏令管理机构背后的存在，Ch3中通过书吏间接展示体制冷漠。征诏令系统性造假（F5）暗示更深层的阴谋。"
       }
     ]
   },
   "ability_progression": {
     "程铖": {
-      "current_abilities": ["铜钱卜算（三枚铜钱，每枚每天一次）", "铜钱引（雏形，铜钱之间互相感应）"],
-      "next_upgrade": "获得第四枚铜钱，解锁铜钱引完整版（追踪定位）",
+      "current_abilities": [
+        "铜钱卜算（三枚铜钱，每枚每天一次，精度七成）",
+        "铜钱引（雏形，铜钱之间互相感应，可追踪方向）"
+      ],
+      "coin_count": 4,
+      "coin_inventory": [
+        "三枚旧铜钱（父亲留下母亲转交，其中一枚刻'九'字）",
+        "一枚师父的铜钱（沈老头磨的划痕，血迹渗入纹路中）"
+      ],
+      "next_upgrade": "获得第四枚铜钱（非师父那枚），解锁铜钱引完整版（追踪定位）",
       "next_upgrade_chapter": 11
+    },
+    "苏眠": {
+      "current_abilities": [
+        "读心（触碰他人时看到情感和意图，不是具体记忆。能看到谁在撒谎、谁有杀心、谁在害怕）"
+      ],
+      "ability_cost": "每次入梦后丢失自己一小段记忆（琐碎日常片段，累积效应）",
+      "next_upgrade": "入梦能力突破，在梦中看到执令者的形象",
+      "next_upgrade_chapter": 56
     }
   }
 }

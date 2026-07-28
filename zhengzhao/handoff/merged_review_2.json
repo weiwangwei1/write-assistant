@@ -1,0 +1,120 @@
+{
+  "card_type": "merged_review",
+  "chapter_num": 2,
+  "chapter_title": "铜钱里的血",
+  "timestamp": "2026-07-28T20:00:00+08:00",
+  "merge_rule": "detail优先原则：冲突项以detail-reviewer判定为准；de-ai建议作为语言层补充",
+  "user_decisions": {
+    "master_name": "统一为沈姓，正文'乔老头'→'沈老头'",
+    "coin_source": "父亲留下母亲转交（程铖.json版本为准）",
+    "timeline_fix": "Ch1说'只剩四天'，Ch2需加换日标记统一时间线"
+  },
+  "modifications": [
+    {
+      "id": "M2-01",
+      "source": "detail_review",
+      "severity": "major",
+      "category": "cross_card_consistency",
+      "location": "第5行",
+      "issue": "师父姓名：正文用'乔老头'，需统一为'沈老头'",
+      "fix_instruction": "将'乔老头磨的'→'沈老头磨的'，'乔老头说'→'沈老头说'"
+    },
+    {
+      "id": "M2-02",
+      "source": "detail_review",
+      "severity": "major",
+      "category": "logic",
+      "location": "全章",
+      "issue": "铜钱使用次数矛盾：Ch1已用完当日3次额度（三枚各用一次），Ch2多次卜算违反'每枚每天一次'规则",
+      "fix_instruction": "在Ch2开头加换日标记（如'第二天。风从裂缝那边灌进来'或通过光线/任务时间暗示次日），使Ch2的卜算在新一天进行"
+    },
+    {
+      "id": "M2-03",
+      "source": "detail_review",
+      "severity": "major",
+      "category": "logic",
+      "location": "第19行/全章",
+      "issue": "时间线矛盾：Ch1说'只剩四天'，Ch2说'倒数第二天'，中间跳跃未标记",
+      "fix_instruction": "与M2-02联动：加换日标记后，Ch2为第二天或第三天，'倒数第二天'与'四天'的数学关系成立（第二天开始时剩三天=倒数第三天，或第三天开始时剩两天=倒数第二天）"
+    },
+    {
+      "id": "M2-04",
+      "source": "detail_review",
+      "severity": "major",
+      "category": "foreshadowing",
+      "location": "第129行",
+      "issue": "'铜钱别算第四枚'指代歧义：程铖已持有4枚铜钱，'第四枚'可指已持有的第4枚或九枚编号中的第4号",
+      "fix_instruction": "改为'铜钱别算第五枚。第五枚不在这个位面。在界门那边。'——程铖已有4枚（3旧+1师父的），第五枚在界门那边，逻辑清晰"
+    },
+    {
+      "id": "M2-05",
+      "source": "detail_review",
+      "severity": "major",
+      "category": "show_vs_tell",
+      "location": "第79行",
+      "issue": "F6能力互补关系过于直白：'苏眠的入梦能力和他的铜钱卜算是互补的——一个算规则，一个看人心'直接陈述定义",
+      "fix_instruction": "改为半揭式：'一个算规则，一个看人。程铖说不清这是好事还是坏事。'不点破'互补'定义，留给后续章节发现"
+    },
+    {
+      "id": "M2-06",
+      "source": "de_ai_analysis",
+      "severity": "major",
+      "category": "de_density",
+      "location": "第3行",
+      "issue": "101字内8个'的'（7.9/100字），开篇段落'的'字密集",
+      "fix_instruction": "压缩'的'字：'三枚旧的，一枚新的——师父的'→'三旧一新。师父那枚'；'铜钱上的血迹在子位面的暗光里'→'铜钱上的血在暗光里'"
+    },
+    {
+      "id": "M2-07",
+      "source": "de_ai_analysis",
+      "severity": "major",
+      "category": "de_density+word_repetition",
+      "location": "第37行",
+      "issue": "128字内7个'的'+'暗紫色的纹路'重复2次+'纹路'3次/70字",
+      "fix_instruction": "合并并压缩：'墙壁上布满了暗紫色纹路，和裂缝边缘一样'→'墙上爬满纹路，和裂缝边的一样，暗紫色'"
+    },
+    {
+      "id": "M2-08",
+      "source": "de_ai_analysis",
+      "severity": "major",
+      "category": "dialogue_written",
+      "location": "第77行",
+      "issue": "苏眠台词'入梦不可控'偏书面术语",
+      "fix_instruction": "改为口语化：'入梦不是我能控的'或'不是我想入的。它自己来的。'"
+    },
+    {
+      "id": "M2-09",
+      "source": "detail_review",
+      "severity": "minor",
+      "category": "consistency",
+      "location": "第63行/第69行",
+      "issue": "苏眠戒指位置连续性断裂（第63行左手→第69行'从右手换到左手'，中间无过渡）",
+      "fix_instruction": "统一戒指初始位置：第63行改为'右手握着一枚旧银戒指'，与第69行'从右手换到左手'（=说真话）一致"
+    },
+    {
+      "id": "M2-10",
+      "source": "de_ai_analysis",
+      "severity": "minor",
+      "category": "emotion_telling",
+      "location": "第73行",
+      "issue": "'让人不敢直视'情绪直说",
+      "fix_instruction": "改为'那双眼很沉'或'他没躲'——用动作暗示"
+    },
+    {
+      "id": "M2-11",
+      "source": "de_ai_analysis",
+      "severity": "minor",
+      "category": "character_telling",
+      "location": "第63行",
+      "issue": "'看似打发时间，但...——她在等'旁白判断",
+      "fix_instruction": "删除旁白判断，让读者从'削下的木屑每一片都差不多大小'自行感知"
+    }
+  ],
+  "summary": {
+    "total_modifications": 11,
+    "critical": 0,
+    "major": 8,
+    "minor": 3,
+    "fix_priority": ["M2-01 师父姓名统一", "M2-02+M2-03 铜钱次数+时间线统一", "M2-04 第四枚→第五枚"]
+  }
+}

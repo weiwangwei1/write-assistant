@@ -257,8 +257,25 @@ function render(session, goal, foreshadowing, characters, config, dirInfo, outli
     quality_review: typeof v === 'string' ? v : (v.quality_review || 'pass')
   }));
 
-  // 4. character_quick_state（兼容数组对象格式 和 active_characters 字符串数组）
-  let cs = session.character_quick_state || [];
+  // 4. character_quick_state（兼容对象格式、数组格式 和 active_characters 字符串数组）
+  let csRaw = session.character_quick_state || [];
+  let cs;
+  if (Array.isArray(csRaw)) {
+    cs = csRaw;
+  } else if (typeof csRaw === 'object' && csRaw !== null) {
+    // 对象格式：{ "程铖": { current_location, status, emotional_state, ... }, ... }
+    cs = Object.entries(csRaw).map(([name, v]) => ({
+      name,
+      location: v.current_location || v.location || '',
+      emotion: v.emotional_state || v.emotion || '',
+      power: v.coin_count != null ? `铜钱×${v.coin_count}` : (v.power || ''),
+      note: v.status || v.note || '',
+      last_chapter: v.last_chapter || 0,
+      goals: v.goals || []
+    }));
+  } else {
+    cs = [];
+  }
   if (cs.length === 0 && session.active_characters) {
     cs = session.active_characters.map(name => ({ name, location: '', emotion: '', power: '', note: '', last_chapter: 0 }));
   }
@@ -461,6 +478,7 @@ function render(session, goal, foreshadowing, characters, config, dirInfo, outli
               ${c.emotion ? `<div style="font-size:12px;margin-bottom:4px;">😮 ${esc(c.emotion)}</div>` : ''}
               ${c.power ? `<div style="font-size:12px;color:var(--orange);margin-bottom:4px;">⚡ ${esc(c.power)}</div>` : ''}
               <div class="note">${esc(c.note || '—')}</div>
+              ${c.goals && c.goals.length > 0 ? `<div style="margin-top:4px;font-size:11px;color:var(--blue);">🎯 ${c.goals.map(g => esc(g)).join(' / ')}</div>` : ''}
               <div style="margin-top:4px;font-size:11px;color:var(--muted);">最后出场: Ch${c.last_chapter || 0}</div>
             </div>
           `).join('')}

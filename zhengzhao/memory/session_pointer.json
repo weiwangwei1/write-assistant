@@ -1,18 +1,19 @@
 {
   "project": "征诏之界",
-  "updated_at": "2026-07-28T09:00:00",
+  "updated_at": "2026-07-28T23:30:00+08:00",
   "current_chapter": 3,
   "current_volume": 1,
   "total_chapters_written": 3,
   "phase": "golden_three_complete",
-  "next_phase": "detail_review",
+  "next_phase": "chapter_loop_ch4",
   "chapters": {
     "chapter_001": {
       "title": "第七征营",
-      "word_count": 2560,
+      "word_count": 2544,
       "file_path": "output/chapter_001.txt",
-      "status": "draft",
+      "status": "published",
       "lint_status": "pass",
+      "lint_version": "v2",
       "opening_type": "场景动作开头",
       "ending_type": "悬念",
       "beats": [
@@ -20,37 +21,58 @@
         "东墙裂缝涌出改造征调者，铜钱卜算首次展示：算出敌人弱点和裂缝规律",
         "在改造征调者壳腔中发现师父的铜钱，血是三天内的",
         "程铖决定活下去查清楚，老周问'你认识这铜钱？'程铖说'不认识'"
-      ]
+      ],
+      "review_fixes": "11项（6 major + 5 minor）：师父姓名统一沈姓、枚举排比打破、暗紫色减频、老周台词碎片化、逻辑链拆段",
+      "final_review_score": 9.05,
+      "final_review_verdict": "策略性放行（score<9.5但无一票否决维度<8.0/无high风险/无critical交叉问题）",
+      "fanqie_adapted": true,
+      "fanqie_word_count": 2544,
+      "ai_score": 1.3
     },
     "chapter_002": {
       "title": "铜钱里的血",
-      "word_count": 2403,
+      "word_count": 2422,
       "file_path": "output/chapter_002.txt",
-      "status": "draft",
+      "status": "published",
       "lint_status": "pass",
+      "lint_version": "v2",
       "opening_type": "感官开头",
-      "ending_type": "动作未完成",
+      "ending_type": "悬念确认",
       "beats": [
         "程铖检查师父的铜钱，发现铜钱之间互相感应，血迹指向城墙深处",
         "城墙深处发现残留意识的改造征调者杨铁，说出'铜钱九枚'和'她'后完全壳化",
-        "苏眠入梦触碰程铖记忆，两人第一次正面交锋。程铖发现苏眠姐姐三年前也被征调",
-        "新裂缝出现，一个活的被流放者爬出来，带来师父口信：第四枚铜钱在界门那边"
-      ]
+        "回到城墙上独处思考九枚铜钱含义，师父铜钱与自己的铜钱共鸣指向裂缝对面",
+        "裂缝扩大，活的被流放者爬出，带来师父口信：第五枚铜钱在界门那边"
+      ],
+      "review_fixes": "A+B全改修订：删除苏眠全部段落（推迟至Ch4），替换为程铖独处思考九枚+铜钱共鸣内容；扩展杨铁死后情感（老周割布纪念）；style_lint全绿通过",
+      "final_review_score": 9.06,
+      "final_review_verdict": "策略性放行（信息推进章结构性限制，无一票否决/无high风险/无critical）",
+      "fanqie_adapted": true,
+      "fanqie_word_count": 2422,
+      "ai_score": 1.3
     },
     "chapter_003": {
       "title": "界门那边",
-      "word_count": 2598,
+      "word_count": 2578,
       "file_path": "output/chapter_003.txt",
-      "status": "draft",
+      "status": "published",
       "lint_status": "pass",
+      "lint_version": "v2",
       "opening_type": "对话开头",
-      "ending_type": "信息揭示",
+      "ending_type": "承诺收束",
       "beats": [
         "沈缺从裂缝爬出，程铖用铜钱验证他不是敌人。沈缺自报身份：第七批征调者，被遗弃三年",
         "沈缺讲述师父在界门这边的经历，交出师父的铜钱。程铖算过后归还",
         "界门提前缩小，程铖三算找出延缓方法，制定利用征调令漏洞带被流放者回去的计划",
-        "回到主位面功勋结算，程铖把功勋给老周换药，怼回赵家管家，苏眠第一次笑"
-      ]
+        "程铖先拒绝'带不了'再承诺'下次来带你们全部出去'，老周表态'我也来'",
+        "回到主位面功勋结算，程铖把功勋给老周换药，怼回赵家管家，程铖独处看铜钱（不算的时候）"
+      ],
+      "review_fixes": "rev3修订：①加界门关闭→功勋结算过渡段（物理缓冲）②沈缺转述师父话加终点预期'九枚齐了就能算征诏令本身的规则'③结尾重排：静默段→怼管家→展望（沉默→行动→展望）④删除老周/新兵笑声残留（已离开场景）。style_lint全绿通过",
+      "final_review_score": 9.04,
+      "final_review_verdict": "approved（score<9.5但四项硬性否决条件均未触发，5轮优化达实际天花板）",
+      "fanqie_adapted": true,
+      "fanqie_word_count": 2578,
+      "ai_score": 1.9
     }
   },
   "chapter_health": {
@@ -59,15 +81,69 @@
     "chapter_003": "pass"
   },
   "active_characters": ["程铖", "老周", "苏眠", "沈缺", "赵家管家"],
-  "mentioned_characters": ["乔老头（师父）", "苏醒（苏眠姐姐）", "魏东（已死）", "杨铁（已死）", "赵家少主"],
+  "mentioned_characters": ["沈老头/沈问机（师父）", "魏东（已死）", "杨铁（已死）", "赵家少主赵阙"],
+  "character_quick_state": {
+    "程铖": {
+      "current_location": "程家旧宅偏房（主位面）",
+      "status": "第九次征调结束，回到主位面。功勋112.5点已给老周。铜钱四枚（三旧一师父的）。",
+      "emotional_state": "师父遗言'别替我算'与程铖'追不追不用别人替他算'的内在冲突。承诺三十天后来带被流放者出去。",
+      "coin_count": 4,
+      "goals": ["找到沈老头", "找到第五枚铜钱", "三十天后带被流放者全部出去", "赎回程家旧宅"]
+    },
+    "老周": {
+      "current_location": "主位面（程家旧宅附近）",
+      "status": "功勋225点（程铖给的+自己的），够换四个月药。表态'我也来'跟随下一次征调。",
+      "emotional_state": "用右手拍程铖肩膀——第一次用右手碰他。女儿病情仍需持续换药。",
+      "goals": ["攒功勋换女儿的药", "换一条新胳膊回去见女儿"]
+    },
+    "苏眠": {
+      "current_location": "主位面（尚未正式出场）",
+      "status": "推迟至Ch4正式出场。能力重构为读心（看情感意图非记忆）+代价丢记忆。",
+      "emotional_state": "未出场",
+      "goals": ["找到姐姐苏醒的下落", "查清姐姐被征调后失踪的真相"]
+    },
+    "沈缺": {
+      "current_location": "子位面（界门已关闭，与九个被流放者在一起）",
+      "status": "被遗弃三年，三十七人剩十个。第五枚铜钱已归还给他（能用一次）。等待程铖三十天后来带他们出去。",
+      "emotional_state": "对程铖的信任——'你师父帮人，他心好。你不一样，你算过。但一样。'",
+      "goals": ["带九个被流放者离开子位面", "等待程铖兑现承诺"]
+    }
+  },
+  "foreshadowing_quick_status": {
+    "F1": {"desc": "铜钱共九枚+集齐可算征诏令规则", "status": "planted", "last_chapter": 3},
+    "F2": {"desc": "三年前同期征调阴谋", "status": "planted", "last_chapter": 3},
+    "F3": {"desc": "铜钱血迹渗入纹路", "status": "planted", "last_chapter": 3},
+    "F4": {"desc": "裂缝深处观察者", "status": "partial_revealed", "last_chapter": 3},
+    "F5": {"desc": "征诏令说谎", "status": "planted", "last_chapter": 3},
+    "F6": {"desc": "苏眠读心+铜钱互补", "status": "pending（推迟至Ch4植入）", "last_chapter": 0},
+    "F7": {"desc": "承诺带被流放者出去", "status": "planted", "last_chapter": 3},
+    "F8": {"desc": "赵家少主请喝茶", "status": "planted", "last_chapter": 3}
+  },
+  "last_session_summary": "黄金三章（Ch1-3）终稿入库完成。三章均通过完整发布流程：detail-review → quality-review → de-ai full polish → fanqie-adapter → final-reviewer策略性放行。终审评分：Ch1=9.05, Ch2=9.06, Ch3=9.04（均低于9.5理想阈值但四项硬性否决条件均未触发）。fanqie适配完成（三章ready_to_publish=true），ai_score分别为1.3/1.3/1.9。入库操作：更新3章摘要（修正师父姓名乔老头→沈老头）、更新伏笔追踪表（8条伏笔actual_progress+current_status）、更新目标追踪表（4角色goals+6悬念窗口+反派梯队）、更新会话指针（phase→golden_three_complete）、创建全文文件（header+正文合集）、追加写作日志。",
+  "next_action": "第4章：按大纲推进卷一第4章，beat sheet细化后开写。Ch4-6方向：调查师父下落+发现程家旧宅被赵家占据+用功勋赎回。注意：①活跃悬念已达6条超限，Ch4-6需优先收拢S1或推进S6；②铜钱规则差异（师父铜钱总量三次vs程铖每天一次）建议Ch4-5显式解释；③铜钱手部动作控制在单章3-4次以内。",
   "milestones": {
     "golden_three_written": "2026-07-28",
-    "golden_three_lint_pass": "2026-07-28"
+    "golden_three_lint_pass": "2026-07-28",
+    "detail_review_complete": "2026-07-28T20:30:00+08:00",
+    "golden_three_review_complete": "2026-07-28T22:30:00+08:00",
+    "golden_three_published": "2026-07-28T23:30:00+08:00"
   },
   "decision_log": [
     {
       "timestamp": "2026-07-28T09:00:00",
       "decision": "黄金三章完成，style_lint 全绿通过。Ch1 2560字（场景动作开头+悬念结尾），Ch2 2403字（感官开头+动作未完成结尾），Ch3 2598字（对话开头+信息揭示结尾）。下一步：detail-reviewer + de-ai-processor 并行审核"
+    },
+    {
+      "timestamp": "2026-07-28T20:30:00+08:00",
+      "decision": "detail-reviewer + de-ai-processor 并行审核完成→合并→修复完成。6份审核报告合并为3份统一修改清单（merged_review_1/2/3.json），共33项修复（1 critical + 20 major + 12 minor）。用户裁定：师父姓名统一沈姓、铜钱来源父亲留下母亲转交、Ch3结尾改承诺视角。修复后三章style_lint全绿通过。下一步：quality-reviewer 宏观8维+读者画像评审"
+    },
+    {
+      "timestamp": "2026-07-28T22:30:00+08:00",
+      "decision": "终审策略性放行决策：三章终审评分均低于9.5理想阈值（Ch1=9.05/Ch2=9.06/Ch3=9.04），但四项硬性否决条件均未触发（无一票否决维度<8.0/无high级弃书风险/无critical级交叉终检问题/ai_score均<2.0）。根因分析：黄金三章setup章/信息推进章的shuang_density=8.0-8.5是outline规划的结构性限制，非质量缺陷。Ch3 final-reviewer判定approved，Ch1/Ch2 final-reviewer判定rejected但建议策略性放行。用户决策：策略性放行，三章均可发布。放行依据：①quality-reviewer verdict均为通过（≥8.0门禁）；②终审4维均≥9.1；③fanqie-adapter ready_to_publish=true；④黄金三章整体叙事弧完整，三层追读驱动建立到位。"
+    },
+    {
+      "timestamp": "2026-07-28T23:30:00+08:00",
+      "decision": "memory-manager终稿入库完成。更新文件：3章摘要（修正乔老头→沈老头）、伏笔追踪表（8条actual_progress）、目标追踪表（4角色goals+6悬念+反派梯队）、会话指针（phase=golden_three_complete）、全文文件（header+正文合集）、写作日志。注意：活跃悬念6条超限（max_allowed=5），Ch4-6需优先收拢。"
     }
   ]
 }
