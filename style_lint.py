@@ -10,6 +10,10 @@ style_lint.py — 网文章节文风校验器（write-assistant 流水线前置�
 
 退出码：0=通过  1=存在 L0 critical（供流水线拦截；v2.3 起 L1 降级为顾问，报告但不阻断）
 
+v2.7：撤回 distant_recall 规则（v2.6 引入，2026-07-28 撤回）——实战中 2 次标记全是同段落
+  false positive、0 次回应、0 次真实拦截；其覆盖的回指过远问题仅占真人反馈 3.8%，ROI 为负。
+  检测职责移交真人读者（入库前随口反馈制，见 chief-editor 章节循环 8b）。
+
 v2.3（框架升级 F1）：L1 作者身份规则从阻断降级为顾问——退出码只看 L0 critical；
   L1 critical 仍作为 advisory 报告，由 detail-reviewer 逐条回应（接受超阈值附理由/需修复）；
   OVERRIDE 覆写对 L0 不再生效（修复越级豁免漏洞），L1 顾问化后覆写机制废弃。
@@ -77,13 +81,6 @@ DEFAULT_CONFIG = {
         r"是.{2,10}的命脉", r"是.{2,10}的命根", r"意味着",
         r"对于.{1,8}来说.{2,15}就是", r"换句话说", r"也就是说",
     ],
-    # 八、读者体验检测（v2.6新增——detail-reviewer第10层配套，读者视角问题的可机器化部分）
-    # distant_recall：回指词检测——lint只标记位置，由detail-reviewer判定回指距离是否>300字且未锚定
-    "distant_recall_patterns": [
-        r"第[一二三四五六七八九十]+件事",
-        r"之前说的", r"上文提到", r"刚才说的",
-        r"之前提到", r"那件事",
-    ],
 }
 
 # P0-2: 规则分层（L0通用反AI红线 / L1作者身份 / L2签名手法 / L3偏好提示）
@@ -109,8 +106,6 @@ RULE_LEVELS = {
     "name_starter_run": "L3", "ranhou": "L3",
     "four_char": "L3", "emotion_telling": "L3",
     "override_limit": "L3",
-    # v2.6 新增：读者体验检测（L1 顾问项——detail-reviewer第9层裁定回指距离是否过远）
-    "distant_recall": "L1",
 }
 # 跨章规则分级
 CROSS_RULE_LEVELS = {
@@ -296,15 +291,6 @@ def lint_chapter(ch, cfg, disabled, custom_bans, rule_levels=None):
     if cfg.get("chapter_len_max", 0) > 0 and total_chars > cfg["chapter_len_max"]:
         add("chapter_length", "critical", 0, "",
             f"篇幅{total_chars}字 > 上限{cfg['chapter_len_max']}字")
-
-    # v2.6: 回指过远检测（L1 advisory——读者体验配套，detail-reviewer第9层裁定回指距离）
-    # lint 只标记回指词位置，由 detail-reviewer 判定距离是否>300字且未重新锚定
-    if "distant_recall" not in disabled:
-        for ln, s in ch.body_lines:
-            for pattern in cfg.get("distant_recall_patterns", []):
-                for m in re.finditer(pattern, s):
-                    add("distant_recall", "critical", ln, m.group(0),
-                        f"回指词'{m.group(0)}'——请检查回指距离是否>300字且未重新锚定前文内容")
 
     dash_cnt = ch.text.count("——") + ch.text.count("—")
     dash_per_1k = round(dash_cnt / total_chars * 1000, 3)
