@@ -6,7 +6,7 @@
   "style_pack": null,
   "blocking_count": 0,
   "advisory_count": 0,
-  "non_blocking_count": 7,
+  "non_blocking_count": 6,
   "issues": [
     {
       "rule": "dialogue_ratio",
@@ -18,22 +18,13 @@
       "message": "对话占比22% < 下限35%"
     },
     {
-      "rule": "dash_overuse",
-      "severity": "critical",
-      "level": "L2",
-      "chapter": "chapter_002.txt",
-      "line": 0,
-      "excerpt": "",
-      "message": "破折号27.963/千字 > 上限20.0"
-    },
-    {
       "rule": "le_pattern",
       "severity": "minor",
       "level": "L2",
       "chapter": "chapter_002.txt",
       "line": 35,
       "excerpt": "\"在门里三天了",
-      "message": "短句以“了”收尾（共6处 > 上限3）——AI腔特征：建议用连词衔接为长句，而非删除语法必需的“了”"
+      "message": "短句以“了”收尾（共5处 > 上限3）——AI腔特征：建议用连词衔接为长句，而非删除语法必需的“了”"
     },
     {
       "rule": "le_pattern",
@@ -42,16 +33,7 @@
       "chapter": "chapter_002.txt",
       "line": 55,
       "excerpt": "眼里的光熄了，人那半边脸也僵住了",
-      "message": "短句以“了”收尾（共6处 > 上限3）——AI腔特征：建议用连词衔接为长句，而非删除语法必需的“了”"
-    },
-    {
-      "rule": "le_pattern",
-      "severity": "minor",
-      "level": "L2",
-      "chapter": "chapter_002.txt",
-      "line": 79,
-      "excerpt": "也许他教了",
-      "message": "短句以“了”收尾（共6处 > 上限3）——AI腔特征：建议用连词衔接为长句，而非删除语法必需的“了”"
+      "message": "短句以“了”收尾（共5处 > 上限3）——AI腔特征：建议用连词衔接为长句，而非删除语法必需的“了”"
     },
     {
       "rule": "le_pattern",
@@ -60,7 +42,7 @@
       "chapter": "chapter_002.txt",
       "line": 87,
       "excerpt": "老周磨刀的手停了",
-      "message": "短句以“了”收尾（共6处 > 上限3）——AI腔特征：建议用连词衔接为长句，而非删除语法必需的“了”"
+      "message": "短句以“了”收尾（共5处 > 上限3）——AI腔特征：建议用连词衔接为长句，而非删除语法必需的“了”"
     },
     {
       "rule": "le_pattern",
@@ -69,7 +51,16 @@
       "chapter": "chapter_002.txt",
       "line": 87,
       "excerpt": "\"又来了",
-      "message": "短句以“了”收尾（共6处 > 上限3）——AI腔特征：建议用连词衔接为长句，而非删除语法必需的“了”"
+      "message": "短句以“了”收尾（共5处 > 上限3）——AI腔特征：建议用连词衔接为长句，而非删除语法必需的“了”"
+    },
+    {
+      "rule": "le_pattern",
+      "severity": "minor",
+      "level": "L2",
+      "chapter": "chapter_002.txt",
+      "line": 89,
+      "excerpt": "\"程铖说，\"但快了",
+      "message": "短句以“了”收尾（共5处 > 上限3）——AI腔特征：建议用连词衔接为长句，而非删除语法必需的“了”"
     }
   ],
   "timeline_clues": {},

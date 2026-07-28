@@ -6,16 +6,61 @@
   "style_pack": null,
   "blocking_count": 0,
   "advisory_count": 0,
-  "non_blocking_count": 1,
+  "non_blocking_count": 6,
   "issues": [
     {
-      "rule": "dialogue_ratio",
-      "severity": "minor",
-      "level": "L1",
-      "chapter": "chapter_001.txt",
+      "rule": "dash_overuse",
+      "severity": "critical",
+      "level": "L2",
+      "chapter": "chapter_003.txt",
       "line": 0,
       "excerpt": "",
-      "message": "对话占比14% < 下限35%"
+      "message": "破折号23.193/千字 > 上限20.0"
+    },
+    {
+      "rule": "le_pattern",
+      "severity": "minor",
+      "level": "L2",
+      "chapter": "chapter_003.txt",
+      "line": 27,
+      "excerpt": "\"他走了",
+      "message": "短句以“了”收尾（共8处 > 上限3）——AI腔特征：建议用连词衔接为长句，而非删除语法必需的“了”"
+    },
+    {
+      "rule": "le_pattern",
+      "severity": "minor",
+      "level": "L2",
+      "chapter": "chapter_003.txt",
+      "line": 27,
+      "excerpt": "去哪了",
+      "message": "短句以“了”收尾（共8处 > 上限3）——AI腔特征：建议用连词衔接为长句，而非删除语法必需的“了”"
+    },
+    {
+      "rule": "le_pattern",
+      "severity": "minor",
+      "level": "L2",
+      "chapter": "chapter_003.txt",
+      "line": 33,
+      "excerpt": "\"我只剩一枚铜钱了",
+      "message": "短句以“了”收尾（共8处 > 上限3）——AI腔特征：建议用连词衔接为长句，而非删除语法必需的“了”"
+    },
+    {
+      "rule": "le_pattern",
+      "severity": "minor",
+      "level": "L2",
+      "chapter": "chapter_003.txt",
+      "line": 51,
+      "excerpt": "\"它发现你们了",
+      "message": "短句以“了”收尾（共8处 > 上限3）——AI腔特征：建议用连词衔接为长句，而非删除语法必需的“了”"
+    },
+    {
+      "rule": "le_pattern",
+      "severity": "minor",
+      "level": "L2",
+      "chapter": "chapter_003.txt",
+      "line": 85,
+      "excerpt": "七成够了",
+      "message": "短句以“了”收尾（共8处 > 上限3）——AI腔特征：建议用连词衔接为长句，而非删除语法必需的“了”"
     }
   ],
   "timeline_clues": {},
