@@ -266,6 +266,19 @@ state.json 新增 `parallel_groups` 字段：
 2. 在 execution_log.md 中标注 `[AUTO-APPROVED]`
 3. 将该步骤的 `auto_approved: true` 写入 state.json
 
+### 真人读者定期抽检 (Reader Spot Check)（v3.0 新增 ★）
+
+**背景**：AI 写作 + AI 审核的固有缺陷——LLM 无法真正以"读者视角"体验阅读流畅度。detail-reviewer 第10层（reader_experience）虽能检测 4 类读者体验问题，但执行率受 LLM 角色扮演能力限制。真人读者反馈是终极安全网。
+
+**机制**：
+1. 每 5 章（Ch5/Ch10/Ch15/...）由用户以"第一次读这本书的读者"视角通读全章
+2. 用户标注所有"停顿一下"的位置（多余/啰嗦/困惑/不自然），分类为：展示-解释冗余/信息近距离重复/概念引入突兀/对话动作不自然
+3. 抽检结果写入 `memory/reader_feedback_log.jsonl`（每行一条：`{"chapter": N, "date": "ISO8601", "issues": [...], "resolved": false}`）
+4. 抽检发现的问题由 chapter-writer 按现有修订流程修复
+5. 修复后标记 `"resolved": true`
+
+**与 detail-reviewer 第10层的关系**：抽检结果用于校准第10层的检查项和判定阈值。如果某类问题在抽检中反复出现但第10层未拦截，应更新第10层的识别规则或反例。
+
 ### 统一审核模式 (Unified Review Mode) v2.0
 
 将传统2步审核（quality-reviewer 8维 → final-reviewer 4维+引用）合并为单步统一审核。v2.0进一步将 Merge 步骤整合到统一审核中（Phase 1 合并 + Phase 2 评分）。
