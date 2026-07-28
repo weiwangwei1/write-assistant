@@ -1,0 +1,63 @@
+{
+  "card_type": "chapter_draft",
+  "from_agent": "chapter-writer",
+  "to_agent": "detail-reviewer",
+  "status": "ready",
+  "content": {
+    "chapter_num": 1,
+    "title": "第七征营",
+    "word_count": 2554,
+    "draft_ref": "output/chapter_001.txt",
+    "opening_type": "场景动作开头",
+    "ending_type": "悬念",
+    "hook_sentence": "三枚铜钱在他指间转了一圈，停下来的时候，其中一枚的朝向变了。不是他控制的。铜钱自己在动。",
+    "style_lint_ref": "handoff/style_lint_ch1.json",
+    "fix_audit_ref": "handoff/fix_audit_ch1.json",
+    "style_pack": "yanyujiangnan",
+    "style_plan": {
+      "metaphor_plan": [
+        {"position": "第1段", "target": "界门裂缝", "metaphor": "像一道竖着的裂缝", "function": "开门见山建立视觉锚点"},
+        {"position": "第3段", "target": "铜钱翻转", "metaphor": "像算盘珠子在看不见的算盘上移动", "function": "外化程铖精算性格"},
+        {"position": "第13段", "target": "裂缝纹路", "metaphor": "像一道被撕开的伤口", "function": "暗示界门暴力和被反复伤害的历史"}
+      ],
+      "dialogue_plan": {"confrontation_scenes": ["程铖与老周对话"], "format": "直接对话", "reason": "面对面交锋，转述会失去现场感"}
+    },
+    "beat_sheet": {
+      "beats": [
+        {"beat_id": 1, "summary": "界门裂缝，程铖站在第七营城墙上，实到四人，满编十二人", "purpose": "开场/世界观展示", "weight": "major", "shuang_type": null, "info_delivery": "action"},
+        {"beat_id": 2, "summary": "东墙裂缝涌出改造征调者，铜钱卜算首次展示：算出敌人弱点和裂缝规律", "purpose": "冲突/能力展示", "weight": "major", "shuang_type": "A", "info_delivery": "action"},
+        {"beat_id": 3, "summary": "在改造征调者壳腔中发现师父的铜钱，血是三天内的", "purpose": "发现/悬念", "weight": "major", "shuang_type": "reveal", "info_delivery": "discovery"},
+        {"beat_id": 4, "summary": "程铖决定活下去查清楚，老周问'你认识这铜钱？'程铖说'不认识'", "purpose": "收束/悬念钩子", "weight": "minor", "shuang_type": null, "info_delivery": "dialogue"}
+      ],
+      "cross_chapter_facts": {
+        "names": ["程铖", "老周", "魏东（第六营老兵，已改造）", "乔老头（师父，只提及名字）", "第七营", "第六营", "大徵", "征诏令"],
+        "numbers": ["满编12人实到4人", "三枚铜钱", "每枚每天能用一次", "九息", "六十息", "四天后界门关闭", "丁级子位面", "第七批战袍", "第六批战袍", "铜钱上的血是三天内的", "三年"],
+        "positions": ["程铖：第七营城墙上/东墙下", "老周：程铖身边", "乔老头铜钱：魏东壳腔内→程铖手中"],
+        "known_info": ["首次出场，无前文已知信息"],
+        "certainty_state": {
+          "程铖": {
+            "征诏令改造征调者": "full",
+            "铜钱卜算规则漏洞": "full",
+            "师父铜钱上的血是三天内的": "full",
+            "裂缝那头有东西在观察": "partial"
+          },
+          "老周": {
+            "魏东已被改造": "full",
+            "程铖认识那枚铜钱": "partial"
+          }
+        }
+      },
+      "character_internal": {
+        "程铖": {
+          "inner_conflict": "精算到极致vs无法计算的人情和师父的谜——引用角色卡conflicts中'无法算人情'和'对师父的执念压过精算'",
+          "desire_this_chapter": "活下去，找到铜钱主人的线索",
+          "emotion_arc": "冷静精算→铜钱发现时精算系统短暂宕机→强行恢复冷静→暗下决心"
+        }
+      },
+      "shuang_types": ["A（铜钱破局）"],
+      "suspense_budget_check": "首章，无前文悬念。新开3条悬念：①师父铜钱上的血为什么是三天内的（主线）②裂缝那头在观察的东西是什么（氛围）③铜钱自己会动（能力暗示）",
+      "opponent_rebuttals": []
+    },
+    "timeline_clues_confirmed": true
+  }
+}

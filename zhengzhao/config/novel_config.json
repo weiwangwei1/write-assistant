@@ -1,0 +1,26 @@
+{
+  "title": "征诏之界",
+  "author": "待定",
+  "platform": "fanqie",
+  "genre": "征调/副本流/无限流变体",
+  "style_pack": "yanyujiangnan",
+  "total_volumes": 6,
+  "total_chapters": 400,
+  "chapters_per_volume": [30, 70, 80, 80, 70, 70],
+  "word_count_target": {
+    "per_chapter": "2400-2800",
+    "golden_three_max": 2600
+  },
+  "topic_screening": {
+    "core_commitments": [
+      "前3章核心概念≤2个（征诏令+铜钱），功勋/家族/排名在后续章节逐步释放",
+      "铜钱能力升级节奏明确：3→5→7→9枚，每枚解锁新能力",
+      "第一章开篇即子位面任务，500字内进入冲突",
+      "暗基调3项补偿：每章情绪释放点/主角毒舌风格/情绪循环节奏"
+    ]
+  },
+  "worldview": {
+    "setting_bible_ref": "memory/setting_bible.json",
+    "key_systems": ["征诏令制度", "铜钱卜算体系", "功勋等级体系", "子位面分级体系", "七大家族权力结构"]
+  }
+}

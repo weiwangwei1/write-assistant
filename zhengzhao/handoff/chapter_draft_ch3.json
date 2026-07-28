@@ -1,0 +1,72 @@
+{
+  "card_type": "chapter_draft",
+  "from_agent": "chapter-writer",
+  "to_agent": "detail-reviewer",
+  "status": "ready",
+  "content": {
+    "chapter_num": 3,
+    "title": "界门那边",
+    "word_count": 2598,
+    "draft_ref": "output/chapter_003.txt",
+    "opening_type": "对话开头",
+    "ending_type": "信息揭示",
+    "hook_sentence": "界门那边。师父在那边。还活着。",
+    "style_lint_ref": "handoff/style_lint_ch3.json",
+    "fix_audit_ref": "handoff/fix_audit_ch3.json",
+    "style_pack": "yanyujiangnan",
+    "style_plan": {
+      "metaphor_plan": [
+        {"position": "第3段", "target": "锁链拖地声", "metaphor": "像旧铜钱互相撞击", "function": "锁链与铜钱意象呼应——被锁住的人=被铜钱锁住的命运"},
+        {"position": "第13段", "target": "沈缺笑容", "metaphor": "像攒了很久才攒出来", "function": "外化被流放三年的疲惫和见到希望的不易"},
+        {"position": "第137段", "target": "血迹渗入纹路", "metaphor": "像血在慢慢渗进纹路里，和铜钱融为一体", "function": "暗示血与铜钱本是一体，铜钱需要血来激活/认主"}
+      ],
+      "dialogue_plan": {
+        "confrontation_scenes": ["程铖与沈缺互相试探", "程铖怼赵家管家"],
+        "format": "直接对话",
+        "reason": "沈缺是师父的故人，程铖需要通过对话确认信任；赵家管家是权力压迫，程铖的毒舌反击必须用直接对话展现"
+      }
+    },
+    "beat_sheet": {
+      "beats": [
+        {"beat_id": 1, "summary": "沈缺从裂缝爬出，程铖用铜钱验证他不是敌人。沈缺自报身份：第七批征调者，被遗弃三年，三十七人剩九个", "purpose": "人物登场/悬念释放", "weight": "major", "shuang_type": null, "info_delivery": "dialogue"},
+        {"beat_id": 2, "summary": "沈缺讲述师父在界门这边的经历：待了两年帮他们找到通道，一年前独自走向界门深处。师父留话'别替我算，算你自己的'。沈缺交出师父的铜钱，程铖算过后归还——九个人用一枚比一个人用划算", "purpose": "信息揭示/人物建立", "weight": "major", "shuang_type": "reveal", "info_delivery": "dialogue"},
+        {"beat_id": 3, "summary": "界门提前缩小——裂缝深处有东西在干预。程铖三算找出延缓方法：征诏令检测到城墙上人多会延长开放时间。沈缺唤出九个被流放者，程铖制定'利用征调令漏洞带他们回去'的计划", "purpose": "危机/爽点（智谋）", "weight": "major", "shuang_type": "B", "info_delivery": "action"},
+        {"beat_id": 4, "summary": "回到主位面，功勋结算（乙级威胁加成）。程铖把功勋给老周换药，程家旧宅门前赵家管家递请柬，程铖毒舌怼回。苏眠第一次笑。偏房内铜钱血迹在渗入纹路", "purpose": "收束/爽点（打脸+人情）", "weight": "minor", "shuang_type": "S", "info_delivery": "dialogue"}
+      ],
+      "cross_chapter_facts": {
+        "names": ["程铖", "老周", "苏眠", "沈缺（新登场，第七批征调者，被流放三年）", "乔老头（师父，仅提及）", "苏醒（苏眠姐姐，仅提及）", "杨铁（Ch2已死，本章仅提及）", "第七营", "赵家少主（首次提及，未出场）", "赵家管家（新登场）"],
+        "numbers": ["程铖现有四枚铜钱（三枚旧+一枚师父的）", "沈缺持有一枚师父的铜钱，能用三次已用两次", "铜钱共九枚（Ch2已揭示）", "被流放者三十七人剩九个（沈缺把自己算漏，实际十个）", "师父一年前走向界门深处", "功勋每人112.5，乙级威胁加成五成", "下一轮征调三十天后", "界门提前缩小至最多一天"],
+        "positions": ["程铖：城墙→主位面管理机构→程家旧宅→偏房", "老周：跟随程铖全程", "苏眠：城墙→主位面程家门外", "沈缺：裂缝→城墙（最终留在子位面）", "九个被流放者：裂缝深处→城墙（留在子位面）"],
+        "known_info": ["Ch1: 师父铜钱上的血三天内", "Ch1: 裂缝那头有东西在观察", "Ch2: 铜钱共九枚", "Ch2: 师父在界门那边还活着", "Ch2: 杨铁三年前被征调后改造", "Ch2: 苏眠姐姐三年前被征调"],
+        "certainty_state": {
+          "程铖": {"师父在界门那边": "full——沈缺口述+铜钱共鸣确认", "裂缝深处有东西在观察": "full——苏眠入梦+铜钱三算双重确认", "铜钱共九枚": "full——杨铁+沈缺双重确认", "征诏令说谎": "full——沈缺口述+老周确认三年前征调记录造假"},
+          "苏眠": {"姐姐下落": "partial——确认不在这个位面，但不知道具体在哪"},
+          "老周": {"征诏令说谎": "full——三年前征调记录与沈缺口述矛盾"}
+        }
+      },
+      "character_internal": {
+        "程铖": {
+          "inner_conflict": "精算到极致 vs 面对无法计算的人情（角色卡 conflicts: 精算性格与无法计算之物的内在冲突）",
+          "desire_this_chapter": "确认师父下落和铜钱秘密，带所有人活着回去",
+          "emotion_arc": "警觉→确认师父活着（释然）→算清归还铜钱更划算→决心（下次来带他们出去）→怼赵家（毒舌释放）"
+        },
+        "老周": {
+          "inner_conflict": "对女儿的愧疚 vs 对程铖的忠诚（角色卡 conflicts: 家庭责任与征调使命的拉扯）",
+          "desire_this_chapter": "活下去，攒够功勋换女儿的药",
+          "emotion_arc": "戒备→信任沈缺→被程铖给功勋触动→第一次用右手拍程铖肩膀"
+        },
+        "苏眠": {
+          "inner_conflict": "寻找姐姐 vs 对程铖的戒备（角色卡 conflicts: 入梦能力带来的信任危机）",
+          "desire_this_chapter": "在被流放者中寻找姐姐的脸",
+          "emotion_arc": "寻找→失望（没找到姐姐）→观察→第一次对程铖笑"
+        }
+      },
+      "shuang_types": ["reveal", "B", "S"],
+      "suspense_budget_check": "闭环：无。持续：①师父铜钱上的血三天内→沈缺确认师父一年前离开，血的来源仍未知；②裂缝那头观察的东西→确认不止一个，是一群在学在观察；③师父在界门那边→确认活着。新开：无。active=3，未超上限",
+      "opponent_rebuttals": [
+        {"beat_id": 4, "opponent": "赵家管家", "rebuttal": "赵家少主请您明天去喝茶（以权势压人）", "counter_rebuttal": "程铖'明天没空，后天也没空，大后天也不一定有空'——用毒舌和算账逻辑瓦解权势压迫"}
+      ]
+    },
+    "timeline_clues_confirmed": true
+  }
+}
