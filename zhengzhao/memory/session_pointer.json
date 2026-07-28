@@ -1,6 +1,6 @@
 {
   "project": "征诏之界",
-  "updated_at": "2026-07-28T23:30:00+08:00",
+  "updated_at": "2026-07-28T23:59:00+08:00",
   "current_chapter": 3,
   "current_volume": 1,
   "total_chapters_written": 3,
@@ -9,46 +9,48 @@
   "chapters": {
     "chapter_001": {
       "title": "第七征营",
-      "word_count": 2544,
+      "word_count": 2604,
       "file_path": "output/chapter_001.txt",
       "status": "published",
       "lint_status": "pass",
-      "lint_version": "v2",
+      "lint_version": "v3.2.2",
       "opening_type": "场景动作开头",
       "ending_type": "悬念",
       "beats": [
         "界门裂缝，程铖站在第七营城墙上，实到四人，满编十二人",
         "东墙裂缝涌出改造征调者，铜钱卜算首次展示：算出敌人弱点和裂缝规律",
+        "第二波升级壳，铜钱算错——壳变厚了，刀偏半寸，手背灼伤。精算失效时刻",
         "在改造征调者壳腔中发现师父的铜钱，血是三天内的",
-        "程铖决定活下去查清楚，老周问'你认识这铜钱？'程铖说'不认识'"
+        "铜钱焊死算不出，对老周说'不认识'——精算失效：师父线索触发"
       ],
-      "review_fixes": "11项（6 major + 5 minor）：师父姓名统一沈姓、枚举排比打破、暗紫色减频、老周台词碎片化、逻辑链拆段",
+      "review_fixes": "v3.2.2优化：战斗场景增加精算失效（壳变厚→刀偏→手背灼伤），打破'一刀一个'的完美感。原11项修复保留。",
       "final_review_score": 9.05,
       "final_review_verdict": "策略性放行（score<9.5但无一票否决维度<8.0/无high风险/无critical交叉问题）",
       "fanqie_adapted": true,
-      "fanqie_word_count": 2544,
+      "fanqie_word_count": 2604,
       "ai_score": 1.3
     },
     "chapter_002": {
       "title": "铜钱里的血",
-      "word_count": 2422,
+      "word_count": 2512,
       "file_path": "output/chapter_002.txt",
       "status": "published",
       "lint_status": "pass",
-      "lint_version": "v2",
+      "lint_version": "v3.2.2",
       "opening_type": "感官开头",
       "ending_type": "悬念确认",
       "beats": [
         "程铖检查师父的铜钱，发现铜钱之间互相感应，血迹指向城墙深处",
-        "城墙深处发现残留意识的改造征调者杨铁，说出'铜钱九枚'和'她'后完全壳化",
+        "城墙深处发现残留意识的改造征调者杨铁，铜钱算不出——失灵第三次。精算失效：明知可算但不忍算",
+        "杨铁说出'铜钱九枚'和'她'后完全壳化，老周割布纪念",
         "回到城墙上独处思考九枚铜钱含义，师父铜钱与自己的铜钱共鸣指向裂缝对面",
         "裂缝扩大，活的被流放者爬出，带来师父口信：第五枚铜钱在界门那边"
       ],
-      "review_fixes": "A+B全改修订：删除苏眠全部段落（推迟至Ch4），替换为程铖独处思考九枚+铜钱共鸣内容；扩展杨铁死后情感（老周割布纪念）；style_lint全绿通过",
+      "review_fixes": "v3.2.2优化：杨铁场景强化精算失效——铜钱失灵后攥紧指节发白，回顾九次征调仅三次失灵，蹲着看杨铁壳化但不忍算剩余时间。原A+B全改保留。",
       "final_review_score": 9.06,
       "final_review_verdict": "策略性放行（信息推进章结构性限制，无一票否决/无high风险/无critical）",
       "fanqie_adapted": true,
-      "fanqie_word_count": 2422,
+      "fanqie_word_count": 2512,
       "ai_score": 1.3
     },
     "chapter_003": {
@@ -57,7 +59,7 @@
       "file_path": "output/chapter_003.txt",
       "status": "published",
       "lint_status": "pass",
-      "lint_version": "v2",
+      "lint_version": "v3.2.2",
       "opening_type": "对话开头",
       "ending_type": "承诺收束",
       "beats": [
@@ -67,7 +69,7 @@
         "程铖先拒绝'带不了'再承诺'下次来带你们全部出去'，老周表态'我也来'",
         "回到主位面功勋结算，程铖把功勋给老周换药，怼回赵家管家，程铖独处看铜钱（不算的时候）"
       ],
-      "review_fixes": "rev3修订：①加界门关闭→功勋结算过渡段（物理缓冲）②沈缺转述师父话加终点预期'九枚齐了就能算征诏令本身的规则'③结尾重排：静默段→怼管家→展望（沉默→行动→展望）④删除老周/新兵笑声残留（已离开场景）。style_lint全绿通过",
+      "review_fixes": "v3.2.2验证：Ch3已有精算失效时刻——'他没在算'场景（沈缺说'你师父帮人，他心好。你不一样，你算过。但一样。'——程铖没说话，算不清算出来的和不算出来的有没有区别）。rev3修订保留。style_lint全绿通过",
       "final_review_score": 9.04,
       "final_review_verdict": "approved（score<9.5但四项硬性否决条件均未触发，5轮优化达实际天花板）",
       "fanqie_adapted": true,
@@ -119,14 +121,15 @@
     "F7": {"desc": "承诺带被流放者出去", "status": "planted", "last_chapter": 3},
     "F8": {"desc": "赵家少主请喝茶", "status": "planted", "last_chapter": 3}
   },
-  "last_session_summary": "黄金三章（Ch1-3）终稿入库完成。三章均通过完整发布流程：detail-review → quality-review → de-ai full polish → fanqie-adapter → final-reviewer策略性放行。终审评分：Ch1=9.05, Ch2=9.06, Ch3=9.04（均低于9.5理想阈值但四项硬性否决条件均未触发）。fanqie适配完成（三章ready_to_publish=true），ai_score分别为1.3/1.3/1.9。入库操作：更新3章摘要（修正师父姓名乔老头→沈老头）、更新伏笔追踪表（8条伏笔actual_progress+current_status）、更新目标追踪表（4角色goals+6悬念窗口+反派梯队）、更新会话指针（phase→golden_three_complete）、创建全文文件（header+正文合集）、追加写作日志。",
-  "next_action": "第4章：按大纲推进卷一第4章，beat sheet细化后开写。Ch4-6方向：调查师父下落+发现程家旧宅被赵家占据+用功勋赎回。注意：①活跃悬念已达6条超限，Ch4-6需优先收拢S1或推进S6；②铜钱规则差异（师父铜钱总量三次vs程铖每天一次）建议Ch4-5显式解释；③铜钱手部动作控制在单章3-4次以内。",
+  "last_session_summary": "v3.2.2框架优化+黄金三章精算失效强化完成。chapter-writer H3新增精算失效时刻要求（每章至少1个展示性场景，非旁白），角色卡新增vulnerability_triggers（3条触发条件+行为表现）和铜钱规则差异（传承vs未认主）。黄金三章针对性优化：Ch1战斗增加壳变厚→刀偏→手背灼伤（精算失效），Ch2杨铁场景强化铜钱失灵后身体反应（攥紧指节发白+不忍算），Ch3已有'他没在算'场景验证通过。三章style_lint全绿通过（L0清零），字数2604/2512/2578。",
+      "next_action": "第4章：按大纲推进卷一第4章，beat sheet细化后开写。Ch4-6方向：调查师父下落+苏眠正式出场（读心+丢记忆代价）+发现程家旧宅被赵家占据+用功勋赎回。注意：①活跃悬念6条超限，Ch4优先收拢S1（血迹来源）或推进S6（赵家冲突）；②铜钱认主条件需在Ch4-6剧情中揭示（角色卡已标注）；③每章须有1个精算失效场景（v3.2.2 H3要求，参考vulnerability_triggers）。",
   "milestones": {
     "golden_three_written": "2026-07-28",
     "golden_three_lint_pass": "2026-07-28",
     "detail_review_complete": "2026-07-28T20:30:00+08:00",
     "golden_three_review_complete": "2026-07-28T22:30:00+08:00",
-    "golden_three_published": "2026-07-28T23:30:00+08:00"
+    "golden_three_published": "2026-07-28T23:30:00+08:00",
+    "v322_framework_update": "2026-07-28T23:59:00+08:00"
   },
   "decision_log": [
     {
@@ -140,6 +143,10 @@
     {
       "timestamp": "2026-07-28T22:30:00+08:00",
       "decision": "终审策略性放行决策：三章终审评分均低于9.5理想阈值（Ch1=9.05/Ch2=9.06/Ch3=9.04），但四项硬性否决条件均未触发（无一票否决维度<8.0/无high级弃书风险/无critical级交叉终检问题/ai_score均<2.0）。根因分析：黄金三章setup章/信息推进章的shuang_density=8.0-8.5是outline规划的结构性限制，非质量缺陷。Ch3 final-reviewer判定approved，Ch1/Ch2 final-reviewer判定rejected但建议策略性放行。用户决策：策略性放行，三章均可发布。放行依据：①quality-reviewer verdict均为通过（≥8.0门禁）；②终审4维均≥9.1；③fanqie-adapter ready_to_publish=true；④黄金三章整体叙事弧完整，三层追读驱动建立到位。"
+    },
+    {
+      "timestamp": "2026-07-28T23:59:00+08:00",
+      "decision": "v3.2.2框架优化+黄金三章精算失效强化。诊断：主角情感深度不足与战斗场面过于干净是同一根因——程铖精算被写成完美工具。方案：chapter-writer H3新增精算失效时刻要求（每章1个展示性场景），角色卡新增vulnerability_triggers（3条触发条件+行为表现）和铜钱规则差异（传承vs未认主）。黄金三章优化：Ch1战斗增加壳变厚→刀偏→手背灼伤，Ch2杨铁场景强化铜钱失灵后身体反应，Ch3已有'他没在算'场景验证通过。三章style_lint全绿，字数2604/2512/2578。"
     },
     {
       "timestamp": "2026-07-28T23:30:00+08:00",
