@@ -107,7 +107,7 @@
 
 <script>
 // ===== 配置 =====
-const KNOWN_PROJECTS = ['征诏之界']; // 已知有 memory 系统的项目（2026-07-28《镜渊》已放弃归档至 archive/镜渊_20260728）
+const KNOWN_PROJECTS = ['zhengzhao']; // 已知有 memory 系统的项目（2026-07-28《镜渊》已放弃归档至 archive/镜渊_20260728）
 
 function getProject() {
   const params = new URLSearchParams(location.search);
@@ -216,15 +216,115 @@ function card(id, title, bodyHtml, collapsed = false) {
 // ===== 渲染 =====
 function render(session, goal, foreshadowing, characters, config, dirInfo, outline, chapterSummaries) {
   const project = getProject();
-  const ps = session.project_status || {};
+
+  // ===== 数据归一化层：兼容不同项目的 JSON 结构差异 =====
+
+  // 1. project_status（兼容嵌套对象格式 和 顶层平铺格式）
+  const ps = session.project_status || {
+    novel_title: session.project || session.novel_title || (outline && outline.title),
+    current_phase: session.phase || session.current_phase,
+    current_volume: session.current_volume,
+    current_chapter: session.current_chapter,
+    total_chapters: session.total_chapters || (outline && (outline.total_chapters || (outline.volumes ? outline.volumes.reduce((s, v) => s + (v.shuang_point_distribution || []).length, 0) * 0 : 0))) || (outline && outline.total_chapters),
+    completed_chapters: session.total_chapters_written || session.completed_chapters,
+    total_volumes: session.total_volumes || (outline && (outline.total_volumes || (outline.volumes ? outline.volumes.length : 0))),
+    style_pack: session.style_pack,
+    outline_version: session.outline_version,
+    phase_note: session.phase_note || (session.next_phase ? `下一步阶段: ${session.next_phase}` : ''),
+    chapter_word_count: session.chapter_word_count
+  };
+  // 如果 total_chapters 仍然为空，从 outline 补充
+  if (!ps.total_chapters && outline) {
+    ps.total_chapters = outline.total_chapters || 0;
+  }
+  if (!ps.total_volumes && outline) {
+    ps.total_volumes = outline.total_volumes || (outline.volumes ? outline.volumes.length : 0);
+  }
   const progress = ps.total_chapters ? (ps.completed_chapters / ps.total_chapters * 100).toFixed(1) : 0;
+
+  // 1.5 next_action（兼容 session.next_action 和 session.next_phase）
+  const nextAction = session.next_action || (session.next_phase ? `进入下一阶段: ${session.next_phase}` : '—');
+
+  // 2. quality_trend
   const qt = session.quality_trend || {};
-  const ch = session.chapter_health || [];
-  const cs = session.character_quick_state || [];
-  const fs = foreshadowing.foreshadowings || [];
-  const activeGoals = goal.active_goals || [];
-  const suspense = goal.suspense_window || [];
-  const villain = goal.villain_ladder || {};
+
+  // 3. chapter_health（兼容对象格式 {"chapter_001":"pass"} 和数组格式 [{chapter:1,...}]）
+  const chRaw = session.chapter_health || [];
+  const ch = Array.isArray(chRaw) ? chRaw : Object.entries(chRaw).map(([k, v]) => ({
+    chapter: parseInt(k.replace('chapter_', '')),
+    title: '',
+    word_count: 0,
+    quality_review: typeof v === 'string' ? v : (v.quality_review || 'pass')
+  }));
+
+  // 4. character_quick_state（兼容数组对象格式 和 active_characters 字符串数组）
+  let cs = session.character_quick_state || [];
+  if (cs.length === 0 && session.active_characters) {
+    cs = session.active_characters.map(name => ({ name, location: '', emotion: '', power: '', note: '', last_chapter: 0 }));
+  }
+
+  // 5. foreshadowings（兼容两种字段命名：description/title, status/current_status, planted_chapter/plan_from_outline.plant_chapter 等）
+  const fs = (foreshadowing.foreshadowings || []).map(f => {
+    const plantedCh = f.planted_chapter || (f.plan_from_outline && f.plan_from_outline.plant_chapter) || 0;
+    const lastAction = f.last_action_chapter || (f.actual_progress && f.actual_progress.length > 0 ? f.actual_progress[f.actual_progress.length - 1].chapter : plantedCh);
+    const nextStep = f.next || (f.next_milestone ? `Ch${f.next_milestone.chapter} ${f.next_milestone.action}` : '—');
+    return {
+      id: f.id,
+      description: f.description || f.title || '',
+      status: f.status || f.current_status || 'unknown',
+      planted_chapter: plantedCh,
+      last_action_chapter: lastAction,
+      next: nextStep
+    };
+  });
+
+  // 6. goals（兼容 active_goals/goals 数组格式 和 main_quest+character_goals 对象格式）
+  let activeGoals = goal.active_goals || goal.goals || [];
+  if (activeGoals.length === 0 && goal.main_quest) {
+    activeGoals = [{ id: 'MQ', description: goal.main_quest.name, status: goal.main_quest.status, note: goal.main_quest.progress }];
+    if (goal.character_goals) {
+      Object.entries(goal.character_goals).forEach(([name, g]) => {
+        activeGoals.push({ id: name, description: g.short_term || '', status: 'active', note: g.progress || '' });
+      });
+    }
+  }
+  activeGoals = activeGoals.map(g => ({
+    ...g,
+    description: g.description || g.title || '',
+    note: g.note || g.detail || g.progress || ''
+  }));
+
+  // 7. suspense_window（兼容对象格式：提取 .active 数组；兼容字段 description/title, note/notes/detail）
+  const sw = goal.suspense_window || {};
+  const suspenseRaw = Array.isArray(sw) ? sw : (sw.active || []);
+  const suspense = suspenseRaw.map(s => ({
+    ...s,
+    description: s.description || s.title || '',
+    note: s.note || s.notes || s.detail || ''
+  }));
+  const suspenseNote = sw.ch4_status || sw.note || goal.suspense_window_count_note || '';
+
+  // 8. villain_ladder（兼容数组格式、{current_villains,pending_villains}格式、{tier:{}}格式）
+  const villainRaw = goal.villain_ladder || [];
+  let villainItems = [];
+  if (Array.isArray(villainRaw)) {
+    villainItems = villainRaw;
+  } else if (villainRaw.current_villains) {
+    villainItems = [...villainRaw.current_villains, ...(villainRaw.pending_villains || [])];
+  } else {
+    villainItems = Object.entries(villainRaw).filter(([, v]) => typeof v === 'object' && v !== null).map(([k, v]) => ({ tier: k, ...v }));
+  }
+  villainItems = villainItems.map(v => ({
+    name: v.name || v.role || '—',
+    tier: v.tier || v.type || '',
+    status: v.status || 'unknown',
+    note: v.note || v.notes || v.planned_window || ''
+  }));
+
+  // 9. decisions（兼容字符串数组 和 对象数组 {timestamp, decision}）
+  const decisions = (session.key_decisions_log || session.decision_log || []).map(d =>
+    typeof d === 'string' ? d : (d.decision || d.detail || JSON.stringify(d))
+  );
 
   // 目录信息模块
   let dirHtml = '<div class="dir-tree">';
@@ -258,7 +358,7 @@ function render(session, goal, foreshadowing, characters, config, dirInfo, outli
     <div class="header">
       <div>
         <h1>《${esc(ps.novel_title || '万纹师')}》项目进度面板</h1>
-        <div class="meta">文风包: ${esc(ps.style_pack || '—')} | 大纲: ${esc(ps.outline_version || '—')} | 篇幅: ${esc(ps.chapter_word_count || '—')} 字/章 | 最后更新: ${esc(session.last_updated || '—')}</div>
+        <div class="meta">文风包: ${esc(ps.style_pack || '—')} | 大纲: ${esc(ps.outline_version || '—')} | 篇幅: ${esc(ps.chapter_word_count || '—')} 字/章 | 最后更新: ${esc(session.last_updated || session.updated_at || '—')}</div>
       </div>
       <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
         <div class="project-selector">
@@ -279,7 +379,7 @@ function render(session, goal, foreshadowing, characters, config, dirInfo, outli
     </div>
 
     <div class="next-step">
-      <strong>下一步:</strong> ${esc(session.next_action || '—')}
+      <strong>下一步:</strong> ${esc(nextAction)}
       ${session.open_decisions && session.open_decisions.length ? `<br><strong>待决策:</strong> ${session.open_decisions.map(esc).join('；')}` : ''}
     </div>
 
@@ -320,7 +420,7 @@ function render(session, goal, foreshadowing, characters, config, dirInfo, outli
     </div>
 
     <div style="margin-top:16px;">
-      ${card('catalog', `📖 章节目录（${(chapterSummaries || []).length} 已写 / ${(outline && outline.shuang_point_distribution || []).length} 规划节点 / ${(outline && outline.volume_plan || []).length} 卷）`, renderChapterCatalog(outline, chapterSummaries || [], ps.current_volume, ch))}
+      ${card('catalog', `📖 章节目录（${(chapterSummaries || []).length} 已写 / ${(outline && (outline.shuang_point_distribution || (outline.volumes ? outline.volumes.flatMap(v => v.shuang_point_distribution || []) : [])) || []).length} 规划节点 / ${(outline && (outline.volume_plan || outline.volumes || [])).length} 卷）`, renderChapterCatalog(outline, chapterSummaries || [], ps.current_volume, ch))}
     </div>
 
     <div class="grid grid-2" style="margin-top:16px;">
@@ -338,23 +438,17 @@ function render(session, goal, foreshadowing, characters, config, dirInfo, outli
           <span class="stat-value">${statusBadge(s.status)}</span>
         </div>
         ${s.note ? `<div style="font-size:12px;color:var(--muted);padding-left:8px;padding-bottom:4px;">${esc(s.note)}</div>` : ''}
-      `).join('') + (goal.suspense_window_count_note ? `<div class="alert" style="margin-top:8px;">${esc(goal.suspense_window_count_note)}</div>` : ''))}
+      `).join('') + (suspenseNote ? `<div class="alert" style="margin-top:8px;">${esc(suspenseNote)}</div>` : ''))}
     </div>
 
     <div style="margin-top:16px;">
-      ${card('villain', '反派梯队', `
-        <div class="villain-tier">
-          ${['minion','minor_boss','hidden','ultimate'].map(tier => {
-            const v = villain[tier] || {};
-            const labels = {minion:'小兵', minor_boss:'小BOSS', hidden:'隐藏BOSS', ultimate:'终极BOSS'};
-            return `<div class="tier">
-              <div class="tier-label">${labels[tier]}</div>
-              <div class="tier-role">${esc(v.role || '—')}</div>
-              <div style="margin-top:4px;">${statusBadge(v.status)}</div>
-            </div>`;
-          }).join('')}
+      ${card('villain', `反派梯队 (${villainItems.length})`, villainItems.length > 0 ? villainItems.map(v => `
+        <div class="stat-row">
+          <span class="stat-label">${v.tier ? `[${esc(v.tier)}] ` : ''}${esc(v.name)}</span>
+          <span class="stat-value">${statusBadge(v.status)}</span>
         </div>
-      `)}
+        ${v.note ? `<div style="font-size:12px;color:var(--muted);padding-left:8px;padding-bottom:4px;">${esc(v.note)}</div>` : ''}
+      `).join('') : '<div style="color:var(--muted);font-size:13px;">暂无反派数据</div>')}
     </div>
 
     <div style="margin-top:16px;">
@@ -388,7 +482,7 @@ function render(session, goal, foreshadowing, characters, config, dirInfo, outli
     </div>
 
     <div style="margin-top:16px;">
-      ${card('decisions', '关键决策日志', (session.key_decisions_log || []).map((d, i) => `
+      ${card('decisions', `关键决策日志 (${decisions.length})`, decisions.map((d, i) => `
         <div class="stat-row"><span class="stat-label">${i + 1}</span><span style="font-size:13px;flex:1;padding-left:12px;">${esc(d)}</span></div>
       `).join(''), true)}
     </div>
@@ -485,17 +579,32 @@ async function loadChapterWordCounts(summaryMap) {
 }
 
 function renderChapterCatalog(outline, chapterSummaries, currentVolume, chapterHealth) {
-  const volumes = (outline && outline.volume_plan) || [];
-  const shuangPoints = (outline && outline.shuang_point_distribution) || [];
+  // 兼容两种 outline 格式：
+  // 万纹师：outline.volume_plan = [{volume:1, name:..., chapters:"Ch1-30", stage:...}], outline.shuang_point_distribution = [...]
+  // 征诏之界：outline.volumes = [{vol:1, title:..., chapters:"1-30", shuang_point_distribution:[...]}]
+  const rawVolumes = (outline && (outline.volume_plan || outline.volumes)) || [];
+  // 归一化 volume 字段
+  const volumes = rawVolumes.map(v => ({
+    volume: v.volume || v.vol,
+    name: v.name || v.title || '',
+    chapters: v.chapters || '',
+    stage: v.stage || '',
+    summary: v.summary || ''
+  }));
+  // 归一化爽点分布：兼容顶层 shuang_point_distribution 和嵌套在每个 volume 的 shuang_point_distribution
+  let shuangPoints = (outline && outline.shuang_point_distribution) || [];
+  if (shuangPoints.length === 0 && rawVolumes.length > 0) {
+    shuangPoints = rawVolumes.flatMap((v, i) => (v.shuang_point_distribution || []).map(sp => ({ ...sp, _vol: i + 1 })));
+  }
 
   // 章号映射
   const shuangMap = {};
   shuangPoints.forEach(sp => { shuangMap[sp.chapter] = sp; });
-  
+
   // 合并 chapter_summaries 和 chapter_health（summary 优先，health 作为后备）
   const summaryMap = {};
   chapterSummaries.forEach(s => { summaryMap[s.chapter_num] = s; });
-  (chapterHealth || []).forEach(h => { 
+  (chapterHealth || []).forEach(h => {
     if (!summaryMap[h.chapter]) {
       summaryMap[h.chapter] = {
         chapter_num: h.chapter,
@@ -508,14 +617,14 @@ function renderChapterCatalog(outline, chapterSummaries, currentVolume, chapterH
   });
 
   if (volumes.length === 0) {
-    return '<div style="color:var(--muted); font-size:13px;">未找到卷规划数据（outline.volume_plan）</div>';
+    return '<div style="color:var(--muted); font-size:13px;">未找到卷规划数据（outline.volume_plan / outline.volumes）</div>';
   }
 
   const totalWritten = Object.keys(summaryMap).length;
 
   let html = '';
   volumes.forEach(vol => {
-    const m = (vol.chapters || '').match(/Ch(\d+)-(\d+)/);
+    const m = (vol.chapters || '').match(/(?:Ch)?(\d+)-(\d+)/);
     if (!m) return;
     const start = parseInt(m[1]);
     const end = parseInt(m[2]);
@@ -686,9 +795,16 @@ async function init() {
       loadJSON(dataUrl('config/novel_config.json')).catch(() => ({})),
       loadJSON(dataUrl('memory/outline.json')).catch(() => null)
     ]);
-    const completedChapters = (session.project_status && session.project_status.completed_chapters) || 0;
+    const completedChapters = (session.project_status && session.project_status.completed_chapters) || session.total_chapters_written || 0;
     const chapterSummaries = await loadChapterSummaries(completedChapters);
-    const chapterHealth = session.chapter_health || [];
+    const chapterHealthRaw = session.chapter_health || [];
+    // 兼容 chapter_health 为对象格式 {"chapter_001": "pass"} 或数组格式 [{chapter:1,...}]
+    const chapterHealth = Array.isArray(chapterHealthRaw) ? chapterHealthRaw : Object.entries(chapterHealthRaw).map(([k, v]) => ({
+      chapter: parseInt(k.replace('chapter_', '')),
+      title: '',
+      word_count: 0,
+      quality_review: typeof v === 'string' ? v : (v.quality_review || 'pass')
+    }));
     
     // 构建 summaryMap 用于实时字数统计（与 renderChapterCatalog 内部逻辑一致）
     const summaryMap = {};
