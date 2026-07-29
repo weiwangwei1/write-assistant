@@ -1,0 +1,120 @@
+{
+  "file": "practice/chapter_002_v7.txt",
+  "total_chars": 3865,
+  "total_paragraphs": 74,
+  "overall_score": 81.3,
+  "t1": {
+    "dim": "T1",
+    "dim_name": "具身感知度",
+    "score": 73.5,
+    "stats": {
+      "total_checked": 48,
+      "embodied": 21,
+      "info_dump": 0,
+      "partial": 4,
+      "weak": 18,
+      "embodied_ratio": "43.8%",
+      "focal_level": "画面级广角",
+      "unanchored_nouns": 0
+    },
+    "issues": []
+  },
+  "t2": {
+    "dim": "T2",
+    "dim_name": "叙述者退场度",
+    "score": 100,
+    "stats": {
+      "translation_count": 0,
+      "punchline_count": 8,
+      "punchline_density": 2.07,
+      "world_rotation_count": 19
+    },
+    "issues": []
+  },
+  "t3": {
+    "dim": "T3",
+    "dim_name": "意象感知多样性",
+    "score": 85.0,
+    "stats": {
+      "discovered_groups": 2,
+      "groups_detail": [
+        {
+          "noun": "干涩的气",
+          "total": 6,
+          "channel_distribution": {
+            "嗅觉": 6
+          },
+          "coverage_ratio": 1.0,
+          "score": 85,
+          "transfer": "退步"
+        }
+      ],
+      "sensory_oneoff_count": 0
+    },
+    "issues": []
+  },
+  "t4": {
+    "dim": "T4",
+    "dim_name": "节律控制",
+    "score": 65,
+    "stats": {
+      "action_patterns": [
+        {
+          "verb": "磨",
+          "count": 7,
+          "budget": 4,
+          "over_limit": true
+        },
+        {
+          "verb": "碰",
+          "count": 4,
+          "budget": 4,
+          "over_limit": false
+        }
+      ],
+      "ref_patterns": [
+        {
+          "name": "那枚/那几枚",
+          "count": 22,
+          "threshold": 6,
+          "over_limit": true
+        },
+        {
+          "name": "这枚/这几枚",
+          "count": 2,
+          "threshold": 6,
+          "over_limit": false
+        },
+        {
+          "name": "它",
+          "count": 0,
+          "threshold": 10,
+          "over_limit": false
+        },
+        {
+          "name": "掌中之物",
+          "count": 1,
+          "threshold": 3,
+          "over_limit": false
+        }
+      ]
+    },
+    "issues": [
+      {
+        "severity": "warning",
+        "location": "全文（7次）",
+        "excerpt": "'磨'动作出现7次",
+        "diagnosis": "'磨'动作7次/4次预算——超限",
+        "suggestion": "控制在4次以内，每次对应不同情绪。其余通过其他行为替代"
+      },
+      {
+        "severity": "warning",
+        "location": "全文（22次）",
+        "excerpt": "'那枚/那几枚'指代22次",
+        "diagnosis": "'那枚/那几枚'22次/6次预算——超限",
+        "suggestion": "大部分地方保留具体名词，只在情感浓度最高的段落用代称"
+      }
+    ]
+  },
+  "summary": "感知织体基本良好（81分），动作超限1项, 指代超限1项"
+}

@@ -1,0 +1,682 @@
+{
+  "file": "test/practice/chapter_001_v7.txt",
+  "total_chars": 3599,
+  "total_paragraphs": 58,
+  "imagery_stats": [
+    {
+      "word": "暗紫色",
+      "core_count": 2,
+      "budget": 8,
+      "over_budget": false,
+      "variants": {
+        "紫色的光": 1,
+        "暗光": 10,
+        "纹路": 6,
+        "暗紫": 1,
+        "发紫": 1,
+        "边缘发紫": 1,
+        "伤口边缘发紫": 1
+      },
+      "variant_total": 21,
+      "variation_ratio": 0.91,
+      "ideal_variation": 0.4,
+      "low_variation": false,
+      "total": 23,
+      "density_per_1k": 6.4,
+      "occurrences_in_paras": [
+        1
+      ]
+    },
+    {
+      "word": "碱味",
+      "core_count": 6,
+      "budget": 6,
+      "over_budget": false,
+      "variants": {
+        "干的": 2,
+        "发紧": 1,
+        "砂": 1,
+        "铁锈味": 1
+      },
+      "variant_total": 5,
+      "variation_ratio": 0.45,
+      "ideal_variation": 0.4,
+      "low_variation": false,
+      "total": 11,
+      "density_per_1k": 3.1,
+      "occurrences_in_paras": [
+        43,
+        47,
+        58
+      ]
+    },
+    {
+      "word": "铜钱",
+      "core_count": 12,
+      "budget": 15,
+      "over_budget": false,
+      "variants": {
+        "铜面": 1,
+        "三枚": 10,
+        "四枚": 1,
+        "一枚": 3,
+        "指间": 2,
+        "掌心": 9
+      },
+      "variant_total": 26,
+      "variation_ratio": 0.68,
+      "ideal_variation": 0.5,
+      "low_variation": false,
+      "total": 38,
+      "density_per_1k": 10.6,
+      "occurrences_in_paras": [
+        4,
+        7,
+        24,
+        41,
+        45,
+        52,
+        54,
+        58
+      ]
+    },
+    {
+      "word": "磨刀",
+      "core_count": 7,
+      "budget": 6,
+      "over_budget": true,
+      "variants": {
+        "磨石": 2,
+        "磨刀的手": 2
+      },
+      "variant_total": 4,
+      "variation_ratio": 0.36,
+      "ideal_variation": 0.3,
+      "low_variation": false,
+      "total": 11,
+      "density_per_1k": 3.1,
+      "occurrences_in_paras": [
+        4,
+        6,
+        10,
+        51,
+        52
+      ]
+    },
+    {
+      "word": "裂缝",
+      "core_count": 2,
+      "budget": 10,
+      "over_budget": false,
+      "variants": {
+        "界门": 5,
+        "口子": 18,
+        "城墙根": 9,
+        "石缝": 1
+      },
+      "variant_total": 33,
+      "variation_ratio": 0.94,
+      "ideal_variation": 0.4,
+      "low_variation": false,
+      "total": 35,
+      "density_per_1k": 9.7,
+      "occurrences_in_paras": [
+        1
+      ]
+    }
+  ],
+  "imagery_score": 97,
+  "para_functions": [
+    {
+      "para_num": 1,
+      "char_count": 96,
+      "function": "plain",
+      "has_punchline": false,
+      "punchline_text": "",
+      "sensory_channels": [
+        "视觉"
+      ]
+    },
+    {
+      "para_num": 2,
+      "char_count": 39,
+      "function": "plain",
+      "has_punchline": false,
+      "punchline_text": "",
+      "sensory_channels": []
+    },
+    {
+      "para_num": 3,
+      "char_count": 154,
+      "function": "dialogue",
+      "has_punchline": true,
+      "punchline_text": "城里的人不去看那道口子，看见了也当没看见。",
+      "sensory_channels": []
+    },
+    {
+      "para_num": 4,
+      "char_count": 124,
+      "function": "dialogue",
+      "has_punchline": true,
+      "punchline_text": "三枚别针是三道功勋换的军中补给，比铜钱便宜，比命贵。",
+      "sensory_channels": []
+    },
+    {
+      "para_num": 5,
+      "char_count": 15,
+      "function": "dialogue",
+      "has_punchline": false,
+      "punchline_text": "",
+      "sensory_channels": []
+    },
+    {
+      "para_num": 6,
+      "char_count": 33,
+      "function": "dialogue",
+      "has_punchline": false,
+      "punchline_text": "",
+      "sensory_channels": []
+    },
+    {
+      "para_num": 7,
+      "char_count": 184,
+      "function": "dialogue",
+      "has_punchline": true,
+      "punchline_text": "指缝间翻转，没有声音，只有金属擦过皮肤的一点凉。",
+      "sensory_channels": []
+    },
+    {
+      "para_num": 8,
+      "char_count": 24,
+      "function": "plain",
+      "has_punchline": false,
+      "punchline_text": "",
+      "sensory_channels": [
+        "视觉"
+      ]
+    },
+    {
+      "para_num": 9,
+      "char_count": 5,
+      "function": "dialogue",
+      "has_punchline": false,
+      "punchline_text": "",
+      "sensory_channels": []
+    },
+    {
+      "para_num": 10,
+      "char_count": 17,
+      "function": "dialogue",
+      "has_punchline": false,
+      "punchline_text": "",
+      "sensory_channels": []
+    },
+    {
+      "para_num": 11,
+      "char_count": 39,
+      "function": "dialogue",
+      "has_punchline": false,
+      "punchline_text": "",
+      "sensory_channels": []
+    },
+    {
+      "para_num": 12,
+      "char_count": 186,
+      "function": "plain",
+      "has_punchline": false,
+      "punchline_text": "",
+      "sensory_channels": [
+        "视觉"
+      ]
+    },
+    {
+      "para_num": 13,
+      "char_count": 12,
+      "function": "dialogue",
+      "has_punchline": false,
+      "punchline_text": "",
+      "sensory_channels": []
+    },
+    {
+      "para_num": 14,
+      "char_count": 135,
+      "function": "heavy",
+      "has_punchline": true,
+      "punchline_text": "从里面出来的东西穿着大徵的制式战袍。",
+      "sensory_channels": [
+        "视觉"
+      ]
+    },
+    {
+      "para_num": 15,
+      "char_count": 66,
+      "function": "dialogue",
+      "has_punchline": false,
+      "punchline_text": "",
+      "sensory_channels": []
+    },
+    {
+      "para_num": 16,
+      "char_count": 14,
+      "function": "dialogue",
+      "has_punchline": false,
+      "punchline_text": "",
+      "sensory_channels": []
+    },
+    {
+      "para_num": 17,
+      "char_count": 27,
+      "function": "dialogue",
+      "has_punchline": true,
+      "punchline_text": "\"我存的是他还的时候那句话。",
+      "sensory_channels": []
+    },
+    {
+      "para_num": 18,
+      "char_count": 99,
+      "function": "plain",
+      "has_punchline": false,
+      "punchline_text": "",
+      "sensory_channels": [
+        "视觉"
+      ]
+    },
+    {
+      "para_num": 19,
+      "char_count": 16,
+      "function": "dialogue",
+      "has_punchline": false,
+      "punchline_text": "",
+      "sensory_channels": []
+    },
+    {
+      "para_num": 20,
+      "char_count": 9,
+      "function": "plain",
+      "has_punchline": false,
+      "punchline_text": "",
+      "sensory_channels": [
+        "视觉"
+      ]
+    },
+    {
+      "para_num": 21,
+      "char_count": 66,
+      "function": "plain",
+      "has_punchline": false,
+      "punchline_text": "",
+      "sensory_channels": [
+        "视觉"
+      ]
+    },
+    {
+      "para_num": 22,
+      "char_count": 32,
+      "function": "plain",
+      "has_punchline": false,
+      "punchline_text": "",
+      "sensory_channels": [
+        "视觉"
+      ]
+    },
+    {
+      "para_num": 23,
+      "char_count": 82,
+      "function": "dialogue",
+      "has_punchline": false,
+      "punchline_text": "",
+      "sensory_channels": []
+    },
+    {
+      "para_num": 24,
+      "char_count": 63,
+      "function": "heavy",
+      "has_punchline": true,
+      "punchline_text": "铜钱算的是概率，杀壳靠的是手。",
+      "sensory_channels": []
+    },
+    {
+      "para_num": 25,
+      "char_count": 110,
+      "function": "dialogue",
+      "has_punchline": false,
+      "punchline_text": "",
+      "sensory_channels": []
+    },
+    {
+      "para_num": 26,
+      "char_count": 47,
+      "function": "plain",
+      "has_punchline": false,
+      "punchline_text": "",
+      "sensory_channels": [
+        "视觉"
+      ]
+    },
+    {
+      "para_num": 27,
+      "char_count": 10,
+      "function": "dialogue",
+      "has_punchline": false,
+      "punchline_text": "",
+      "sensory_channels": []
+    },
+    {
+      "para_num": 28,
+      "char_count": 83,
+      "function": "plain",
+      "has_punchline": false,
+      "punchline_text": "",
+      "sensory_channels": []
+    },
+    {
+      "para_num": 29,
+      "char_count": 63,
+      "function": "plain",
+      "has_punchline": false,
+      "punchline_text": "",
+      "sensory_channels": [
+        "视觉"
+      ]
+    },
+    {
+      "para_num": 30,
+      "char_count": 8,
+      "function": "dialogue",
+      "has_punchline": false,
+      "punchline_text": "",
+      "sensory_channels": []
+    },
+    {
+      "para_num": 31,
+      "char_count": 51,
+      "function": "plain",
+      "has_punchline": false,
+      "punchline_text": "",
+      "sensory_channels": [
+        "触感"
+      ]
+    },
+    {
+      "para_num": 32,
+      "char_count": 90,
+      "function": "plain",
+      "has_punchline": false,
+      "punchline_text": "",
+      "sensory_channels": [
+        "视觉",
+        "温度",
+        "触感"
+      ]
+    },
+    {
+      "para_num": 33,
+      "char_count": 20,
+      "function": "plain",
+      "has_punchline": false,
+      "punchline_text": "",
+      "sensory_channels": []
+    },
+    {
+      "para_num": 34,
+      "char_count": 127,
+      "function": "dialogue",
+      "has_punchline": false,
+      "punchline_text": "",
+      "sensory_channels": []
+    },
+    {
+      "para_num": 35,
+      "char_count": 133,
+      "function": "action",
+      "has_punchline": false,
+      "punchline_text": "",
+      "sensory_channels": []
+    },
+    {
+      "para_num": 36,
+      "char_count": 37,
+      "function": "plain",
+      "has_punchline": false,
+      "punchline_text": "",
+      "sensory_channels": [
+        "视觉"
+      ]
+    },
+    {
+      "para_num": 37,
+      "char_count": 5,
+      "function": "plain",
+      "has_punchline": false,
+      "punchline_text": "",
+      "sensory_channels": []
+    },
+    {
+      "para_num": 38,
+      "char_count": 38,
+      "function": "heavy",
+      "has_punchline": true,
+      "punchline_text": "边角磨得发亮，和自己的三枚一样旧。",
+      "sensory_channels": [
+        "视觉",
+        "听觉"
+      ]
+    },
+    {
+      "para_num": 39,
+      "char_count": 37,
+      "function": "plain",
+      "has_punchline": false,
+      "punchline_text": "",
+      "sensory_channels": [
+        "触感"
+      ]
+    },
+    {
+      "para_num": 40,
+      "char_count": 8,
+      "function": "plain",
+      "has_punchline": false,
+      "punchline_text": "",
+      "sensory_channels": []
+    },
+    {
+      "para_num": 41,
+      "char_count": 111,
+      "function": "dialogue",
+      "has_punchline": true,
+      "punchline_text": "手势这个东西，比字迹难仿，比指纹好认。",
+      "sensory_channels": []
+    },
+    {
+      "para_num": 42,
+      "char_count": 57,
+      "function": "sensory",
+      "has_punchline": false,
+      "punchline_text": "",
+      "sensory_channels": [
+        "温度",
+        "触感"
+      ]
+    },
+    {
+      "para_num": 43,
+      "char_count": 90,
+      "function": "plain",
+      "has_punchline": false,
+      "punchline_text": "",
+      "sensory_channels": [
+        "视觉",
+        "嗅觉",
+        "触感"
+      ]
+    },
+    {
+      "para_num": 44,
+      "char_count": 34,
+      "function": "plain",
+      "has_punchline": false,
+      "punchline_text": "",
+      "sensory_channels": [
+        "视觉"
+      ]
+    },
+    {
+      "para_num": 45,
+      "char_count": 113,
+      "function": "heavy",
+      "has_punchline": true,
+      "punchline_text": "三枚算的是浅层规则，这件事不在浅层。",
+      "sensory_channels": []
+    },
+    {
+      "para_num": 46,
+      "char_count": 30,
+      "function": "plain",
+      "has_punchline": false,
+      "punchline_text": "",
+      "sensory_channels": []
+    },
+    {
+      "para_num": 47,
+      "char_count": 94,
+      "function": "plain",
+      "has_punchline": false,
+      "punchline_text": "",
+      "sensory_channels": [
+        "视觉",
+        "听觉",
+        "嗅觉",
+        "温度"
+      ]
+    },
+    {
+      "para_num": 48,
+      "char_count": 37,
+      "function": "dialogue",
+      "has_punchline": true,
+      "punchline_text": "他看着程铖手里的东西，看了几秒。",
+      "sensory_channels": []
+    },
+    {
+      "para_num": 49,
+      "char_count": 66,
+      "function": "plain",
+      "has_punchline": false,
+      "punchline_text": "",
+      "sensory_channels": []
+    },
+    {
+      "para_num": 50,
+      "char_count": 6,
+      "function": "dialogue",
+      "has_punchline": false,
+      "punchline_text": "",
+      "sensory_channels": []
+    },
+    {
+      "para_num": 51,
+      "char_count": 62,
+      "function": "heavy",
+      "has_punchline": true,
+      "punchline_text": "他回到雉堞后面，磨刀声又起，一下一下，比刚才重。",
+      "sensory_channels": [
+        "视觉",
+        "听觉",
+        "触感"
+      ]
+    },
+    {
+      "para_num": 52,
+      "char_count": 174,
+      "function": "action",
+      "has_punchline": false,
+      "punchline_text": "",
+      "sensory_channels": [
+        "听觉",
+        "触感"
+      ]
+    },
+    {
+      "para_num": 53,
+      "char_count": 42,
+      "function": "sensory",
+      "has_punchline": false,
+      "punchline_text": "",
+      "sensory_channels": [
+        "视觉",
+        "温度"
+      ]
+    },
+    {
+      "para_num": 54,
+      "char_count": 101,
+      "function": "heavy",
+      "has_punchline": true,
+      "punchline_text": "铜钱算得出壳的弱点、界门的规则、口子的节奏，算不出一个人要攒多久才能赎回一把椅子。",
+      "sensory_channels": []
+    },
+    {
+      "para_num": 55,
+      "char_count": 63,
+      "function": "plain",
+      "has_punchline": false,
+      "punchline_text": "",
+      "sensory_channels": []
+    },
+    {
+      "para_num": 56,
+      "char_count": 29,
+      "function": "plain",
+      "has_punchline": false,
+      "punchline_text": "",
+      "sensory_channels": []
+    },
+    {
+      "para_num": 57,
+      "char_count": 6,
+      "function": "plain",
+      "has_punchline": false,
+      "punchline_text": "",
+      "sensory_channels": []
+    },
+    {
+      "para_num": 58,
+      "char_count": 80,
+      "function": "plain",
+      "has_punchline": false,
+      "punchline_text": "",
+      "sensory_channels": [
+        "视觉",
+        "嗅觉"
+      ]
+    }
+  ],
+  "function_distribution": {
+    "plain": {
+      "count": 27,
+      "ratio": 46.6
+    },
+    "dialogue": {
+      "count": 21,
+      "ratio": 36.2
+    },
+    "heavy": {
+      "count": 6,
+      "ratio": 10.3
+    },
+    "action": {
+      "count": 2,
+      "ratio": 3.4
+    },
+    "sensory": {
+      "count": 2,
+      "ratio": 3.4
+    }
+  },
+  "punchline_count": 12,
+  "punchline_density": 3.33,
+  "punchline_score": 63.3,
+  "framework_score": 76.8,
+  "summary": "意象超预算：磨刀；金句密度过高（3.3/千字）"
+}

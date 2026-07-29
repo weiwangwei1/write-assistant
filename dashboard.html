@@ -85,6 +85,22 @@
   .chapter-modal-body .error-text { text-align: center; color: var(--red); padding: 40px; }
   .view-chapter-btn { background: rgba(74,158,255,0.15); color: var(--accent); border: 1px solid rgba(74,158,255,0.3); padding: 2px 10px; border-radius: 4px; cursor: pointer; font-size: 12px; white-space: nowrap; }
   .view-chapter-btn:hover { background: rgba(74,158,255,0.3); }
+  /* 灵魂探索面板 */
+  .exp-purpose { background: rgba(156,39,176,0.1); border-left: 3px solid var(--purple); padding: 12px; margin: 8px 0; font-size: 14px; line-height: 1.6; }
+  .exp-decision { padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 13px; }
+  .exp-decision:last-child { border-bottom: none; }
+  .exp-decision .ts { color: var(--muted); font-size: 11px; margin-right: 8px; }
+  .exp-decision .impact { color: var(--accent); font-size: 12px; margin-top: 2px; }
+  .exp-version-row { display: flex; align-items: center; gap: 8px; padding: 4px 8px; font-size: 13px; flex-wrap: wrap; border-radius: 4px; transition: background 0.2s; }
+  .exp-version-row:hover { background: rgba(74,158,255,0.1); }
+  .exp-version-row .ver { font-weight: bold; min-width: 60px; }
+  .exp-version-row .note { color: var(--muted); font-size: 12px; flex: 1; }
+  .exp-asset { background: var(--bg); border: 1px solid var(--border); border-radius: 6px; padding: 8px 12px; margin: 4px 0; font-size: 13px; }
+  .exp-asset .asset-name { font-weight: bold; color: var(--orange); }
+  .exp-dimension { display: inline-block; background: rgba(74,158,255,0.1); border: 1px solid rgba(74,158,255,0.3); border-radius: 4px; padding: 4px 10px; margin: 2px; font-size: 12px; }
+  .exp-dimension .dim-id { color: var(--accent); font-weight: bold; }
+  .exp-dimension .dim-check { color: var(--muted); margin-left: 4px; font-size: 11px; }
+  .exp-pending { background: rgba(255,193,7,0.1); border: 1px solid var(--yellow); border-radius: 4px; padding: 6px 12px; margin: 4px 0; font-size: 13px; }
 </style>
 </head>
 <body>
@@ -214,24 +230,24 @@ function card(id, title, bodyHtml, collapsed = false) {
 }
 
 // ===== 渲染 =====
-function render(session, goal, foreshadowing, characters, config, dirInfo, outline, chapterSummaries) {
+function render(session, goal, foreshadowing, characters, config, dirInfo, outline, chapterSummaries, explorationData) {
   const project = getProject();
 
   // ===== 数据归一化层：兼容不同项目的 JSON 结构差异 =====
 
   // 1. project_status（兼容嵌套对象格式 和 顶层平铺格式）
   const ps = session.project_status || {
-    novel_title: session.project || session.novel_title || (outline && outline.title),
+    novel_title: session.project || session.novel_title || (config && config.title) || (outline && outline.title),
     current_phase: session.phase || session.current_phase,
     current_volume: session.current_volume,
     current_chapter: session.current_chapter,
-    total_chapters: session.total_chapters || (outline && (outline.total_chapters || (outline.volumes ? outline.volumes.reduce((s, v) => s + (v.shuang_point_distribution || []).length, 0) * 0 : 0))) || (outline && outline.total_chapters),
+    total_chapters: session.total_chapters || (config && config.total_chapters) || (outline && outline.total_chapters),
     completed_chapters: session.total_chapters_written || session.completed_chapters,
-    total_volumes: session.total_volumes || (outline && (outline.total_volumes || (outline.volumes ? outline.volumes.length : 0))),
-    style_pack: session.style_pack,
+    total_volumes: session.total_volumes || (config && config.total_volumes) || (outline && (outline.total_volumes || (outline.volumes ? outline.volumes.length : 0))),
+    style_pack: session.style_pack || (config && config.style_pack),
     outline_version: session.outline_version,
     phase_note: session.phase_note || (session.next_phase ? `下一步阶段: ${session.next_phase}` : ''),
-    chapter_word_count: session.chapter_word_count
+    chapter_word_count: session.chapter_word_count || (config && config.word_count_target && (config.word_count_target.per_chapter || config.word_count_target.golden_three_max))
   };
   // 如果 total_chapters 仍然为空，从 outline 补充
   if (!ps.total_chapters && outline) {
@@ -505,6 +521,8 @@ function render(session, goal, foreshadowing, characters, config, dirInfo, outli
       `).join(''), true)}
     </div>
 
+    ${explorationData ? renderExploration(explorationData) : ''}
+
     <div style="margin-top:24px; text-align:center; color:var(--muted); font-size:12px; padding-bottom:20px;">
       网文创作系统 - 项目进度面板 | 项目: ${project} | 数据源: ${project}/memory/*.json<br>
       启动: <code>python -m http.server 8000</code> 在 write-assistant/ 目录 | 切换项目: <code>?project=xxx</code>
@@ -559,21 +577,21 @@ async function loadChapterSummaries(completedChapters) {
   return results.filter(Boolean);
 }
 
-// 实时统计章节中文字数
-function countChineseChars(text) {
-  let count = 0;
-  for (let c of text) {
-    const code = c.charCodeAt(0);
-    if ((code >= 0x4e00 && code <= 0x9fff) || (code >= 0x0030 && code <= 0x0039)) count++;
-  }
-  return count;
+// 实时统计章节字数（所有非空白字符，含标点）
+function countWords(text) {
+  return text.replace(/\s+/g, '').length;
 }
 
 // 构建章节文件 URL
 function getChapterFilePath(chapterNum, title, filePath) {
-  if (filePath) return `${getProject()}/${filePath}`;
+  if (filePath) {
+    // test/ 路径是根级路径，不加项目前缀
+    if (filePath.startsWith('test/')) return filePath;
+    return `${getProject()}/${filePath}`;
+  }
+  // 默认路径：output/chapter_NNN.txt
   const num = String(chapterNum).padStart(3, '0');
-  return `${getProject()}/chapters/Ch${num}_${title}.md`;
+  return `${getProject()}/output/chapter_${num}.txt`;
 }
 
 // 并行加载所有已写章节的实时字数
@@ -585,7 +603,7 @@ async function loadChapterWordCounts(summaryMap) {
       const resp = await fetch(encodeURI(url));
       if (!resp.ok) return { chapter_num: s.chapter_num, word_count: null };
       const text = await resp.text();
-      return { chapter_num: s.chapter_num, word_count: countChineseChars(text) };
+      return { chapter_num: s.chapter_num, word_count: countWords(text) };
     } catch {
       return { chapter_num: s.chapter_num, word_count: null };
     }
@@ -746,34 +764,32 @@ async function viewChapterContent(chapterNum, title, filePath) {
   document.body.style.overflow = 'hidden';
   
   try {
-    // 构建文件路径：优先使用 filePath，否则从章号和标题构造
+    // 构建文件路径：优先使用 filePath，否则从章号构造默认路径
     let url;
     if (filePath) {
-      url = `${getProject()}/${filePath}`;
+      // test/ 路径是根级路径，不加项目前缀
+      url = filePath.startsWith('test/') ? filePath : `${getProject()}/${filePath}`;
     } else {
       const num = String(chapterNum).padStart(3, '0');
-      url = `${getProject()}/chapters/Ch${num}_${title}.md`;
+      url = `${getProject()}/output/chapter_${num}.txt`;
     }
     
     const resp = await fetch(encodeURI(url));
-    if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+    if (!resp.ok) throw new Error(`HTTP ${resp.status}: ${url}`);
     const text = await resp.text();
     
-    // 解析 Markdown 为 HTML
+    // 解析内容：兼容 .txt（纯文本）和 .md（Markdown）
     const lines = text.split('\n');
     let html = '';
     
     for (let line of lines) {
       const trimmed = line.trim();
       if (!trimmed) {
-        // 空行：分段
         continue;
       }
       if (trimmed.startsWith('# ')) {
-        // Markdown 标题
         html += `<div class="ch-title">${esc(trimmed.slice(2))}</div>`;
       } else {
-        // 正文段落
         html += `<p>${esc(trimmed)}</p>`;
       }
     }
@@ -799,19 +815,153 @@ document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') closeChapterModal();
 });
 
+// ===== 灵魂探索面板 =====
+function renderExploration(exp) {
+  const expHTML = `
+    <div class="card" id="exploration" style="margin-top:16px;border-color:var(--purple);">
+      <div class="card-header" onclick="toggleCard('exploration')">
+        <h2 style="color:var(--purple);">🧪 ${esc(exp.exploration_name || '探索实验')} <span class="badge badge-purple">${esc(exp.status || 'in_progress')}</span></h2>
+        <button class="toggle">▼</button>
+      </div>
+      <div class="card-body">
+        <div class="exp-purpose">
+          <strong>探索目的：</strong>${esc(exp.purpose || '—')}
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px;margin:8px 0;">
+          <div class="stat-row"><span class="stat-label">基准作者</span><span class="stat-value">${esc(exp.baseline_author || '—')}</span></div>
+          <div class="stat-row"><span class="stat-label">基准作品</span><span class="stat-value">${esc((exp.baseline_works || []).join(' / '))}</span></div>
+          <div class="stat-row"><span class="stat-label">提取原则</span><span class="stat-value">${exp.principles_count || 0} 条</span></div>
+          <div class="stat-row"><span class="stat-label">实验数</span><span class="stat-value">${(exp.experiments || []).length} 个</span></div>
+        </div>
+
+        <!-- 五维技法体系 -->
+        ${(exp.technique_dimensions || []).length > 0 ? `
+        <div style="margin:12px 0;">
+          <div style="font-size:13px;color:var(--muted);margin-bottom:6px;">五维技法体系：</div>
+          ${exp.technique_dimensions.map(d => `
+            <span class="exp-dimension">
+              <span class="dim-id">${esc(d.id)}</span> ${esc(d.name)}
+              <span class="dim-check">${esc(d.self_check || '')}</span>
+              ${d.priority === '高' ? '<span class="badge badge-red" style="margin-left:4px;font-size:10px;">高</span>' : '<span class="badge badge-yellow" style="margin-left:4px;font-size:10px;">中</span>'}
+            </span>
+          `).join('')}
+        </div>
+        ` : ''}
+
+        <!-- 章节迭代 -->
+        ${(exp.iterations || []).length > 0 ? `
+        <div style="margin:12px 0;">
+          <div style="font-size:13px;color:var(--muted);margin-bottom:6px;">章节迭代：</div>
+          ${exp.iterations.map(it => `
+            <div style="background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:10px;margin:6px 0;">
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
+                <strong style="color:var(--accent);">第${it.chapter}章 ${esc(it.title)}</strong>
+                <span class="badge badge-purple">当前: ${esc(it.current_version || '—')}</span>
+              </div>
+              <div style="font-size:12px;color:var(--muted);margin-bottom:6px;">自评: ${esc(it.self_evaluation || '—')}</div>
+              <div style="border-top:1px solid var(--border);padding-top:4px;">
+                ${it.versions.map(v => {
+                  const practicePath = v.version === 'original' 
+                    ? `${getProject()}/output/chapter_${String(it.chapter).padStart(3, '0')}.txt`
+                    : `test/practice/chapter_${String(it.chapter).padStart(3, '0')}_${v.version}.txt`;
+                  const verLabel = `${esc(it.title)} - ${esc(v.version)}`;
+                  return `
+                  <div class="exp-version-row" style="cursor:pointer;" onclick="viewChapterContent(${it.chapter}, '${verLabel.replace(/'/g, "\\'")}', '${practicePath}')">
+                    <span class="ver">${esc(v.version)}</span>
+                    <span class="badge ${v.lint_pass ? 'badge-green' : 'badge-red'}" style="font-size:10px;">${v.lint_pass ? 'L0✓' : 'L0✗'}</span>
+                    <span style="font-size:12px;color:var(--text);min-width:60px;">${esc(v.word_count || '—')}字</span>
+                    <span class="note">${esc(v.note || '')}</span>
+                    <span style="font-size:11px;color:var(--accent);">📖 查看</span>
+                  </div>
+                  `;
+                }).join('')}
+              </div>
+            </div>
+          `).join('')}
+        </div>
+        ` : ''}
+
+        <!-- 新增叙事资产 -->
+        ${(exp.new_narrative_assets || []).length > 0 ? `
+        <div style="margin:12px 0;">
+          <div style="font-size:13px;color:var(--muted);margin-bottom:6px;">新增叙事资产：</div>
+          ${exp.new_narrative_assets.map(a => `
+            <div class="exp-asset">
+              <span class="asset-name">${esc(a.asset)}</span>
+              <span style="color:var(--muted);font-size:12px;">(${esc(a.introduced_in)}引入)</span>
+              <div style="margin-top:2px;"><strong>角色：</strong>${esc(a.role)}</div>
+              <div style="font-size:12px;color:var(--accent);"><strong>后续弧线：</strong>${esc(a.future_arc)}</div>
+            </div>
+          `).join('')}
+        </div>
+        ` : ''}
+
+        <!-- 关键决策 -->
+        ${(exp.key_decisions || []).length > 0 ? `
+        <div style="margin:12px 0;">
+          <div style="font-size:13px;color:var(--muted);margin-bottom:6px;">关键决策 (${exp.key_decisions.length})：</div>
+          ${exp.key_decisions.map(d => `
+            <div class="exp-decision">
+              <span class="ts">${esc(d.timestamp || '')}</span>
+              ${esc(d.decision || '')}
+              <div class="impact">→ ${esc(d.impact || '')}</div>
+            </div>
+          `).join('')}
+        </div>
+        ` : ''}
+
+        <!-- lint 调整建议 -->
+        ${(exp.lint_adjustment_suggestions || []).length > 0 ? `
+        <div style="margin:12px 0;">
+          <div style="font-size:13px;color:var(--muted);margin-bottom:6px;">Lint 阈值调整建议：</div>
+          <table>
+            <tr><th>规则</th><th>当前</th><th>建议</th><th>理由</th></tr>
+            ${exp.lint_adjustment_suggestions.map(l => `
+              <tr>
+                <td><code>${esc(l.rule)}</code></td>
+                <td>${esc(l.current)}</td>
+                <td style="color:var(--accent);">${esc(l.suggested)}</td>
+                <td style="font-size:12px;color:var(--muted);">${esc(l.reason)}</td>
+              </tr>
+            `).join('')}
+          </table>
+        </div>
+        ` : ''}
+
+        <!-- 待决策 -->
+        ${(exp.pending_decisions || []).length > 0 ? `
+        <div style="margin:12px 0;">
+          <div style="font-size:13px;color:var(--muted);margin-bottom:6px;">待决策项：</div>
+          ${exp.pending_decisions.map(d => `<div class="exp-pending">⏳ ${esc(d)}</div>`).join('')}
+        </div>
+        ` : ''}
+
+        <!-- 下一步 -->
+        ${exp.next_step ? `
+        <div class="next-step" style="margin-top:12px;">
+          <strong>下一步：</strong>${esc(exp.next_step)}
+        </div>
+        ` : ''}
+      </div>
+    </div>
+  `;
+  return expHTML;
+}
+
 async function init() {
   if (KNOWN_PROJECTS.length === 0) {
     renderNoProject();
     return;
   }
   try {
-    const [session, goal, foreshadowing, characters, config, outline] = await Promise.all([
+    const [session, goal, foreshadowing, characters, config, outline, explorationData] = await Promise.all([
       loadJSON(dataUrl('memory/session_pointer.json')),
       loadJSON(dataUrl('memory/goal_tracker.json')),
       loadJSON(dataUrl('memory/foreshadowing_tracker.json')),
       loadJSON(dataUrl('memory/characters.json')),
       loadJSON(dataUrl('config/novel_config.json')).catch(() => ({})),
-      loadJSON(dataUrl('memory/outline.json')).catch(() => null)
+      loadJSON(dataUrl('memory/outline.json')).catch(() => null),
+      loadJSON('test/exploration_status.json').catch(() => null)
     ]);
     const completedChapters = (session.project_status && session.project_status.completed_chapters) || session.total_chapters_written || 0;
     const chapterSummaries = await loadChapterSummaries(completedChapters);
@@ -844,7 +994,7 @@ async function init() {
     // 将更新后的 chapterSummaries 传回（summary 优先的已包含实时字数）
     const updatedSummaries = chapterSummaries.map(s => summaryMap[s.chapter_num] || s);
     
-    document.getElementById('app').innerHTML = render(session, goal, foreshadowing, characters, config, null, outline, updatedSummaries);
+    document.getElementById('app').innerHTML = render(session, goal, foreshadowing, characters, config, null, outline, updatedSummaries, explorationData);
   } catch (e) {
     renderError(e.message);
   }

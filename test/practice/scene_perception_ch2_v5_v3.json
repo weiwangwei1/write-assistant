@@ -1,0 +1,177 @@
+{
+  "file": "test/practice/chapter_002_v5.txt",
+  "total_chars": 4105,
+  "total_paragraphs": 75,
+  "overall_score": 97.8,
+  "dimensions": [
+    {
+      "dim": "D1",
+      "dim_name": "信息交付段",
+      "score": 100.0,
+      "stats": {
+        "total_paragraphs_checked": 42,
+        "info_dump_count": 0,
+        "ratio": "0.0%"
+      },
+      "issues": []
+    },
+    {
+      "dim": "D2",
+      "dim_name": "叙述者翻译",
+      "score": 100,
+      "stats": {
+        "translation_count": 0
+      },
+      "issues": []
+    },
+    {
+      "dim": "D3",
+      "dim_name": "空间失锚",
+      "score": 100,
+      "stats": {
+        "drift_count": 0,
+        "action_paras_checked": 3
+      },
+      "issues": []
+    },
+    {
+      "dim": "D4",
+      "dim_name": "感官一次性",
+      "score": 100.0,
+      "stats": {
+        "oneoff_count": 0,
+        "categories_checked": 4,
+        "categories_with_sensory": 4,
+        "categories_with_recall": 4,
+        "recall_rate": "100%",
+        "recall_details": {
+          "气味": {
+            "total_appearances": 20,
+            "first_para": 0,
+            "last_para": 58,
+            "spread": 58,
+            "status": "萦绕"
+          },
+          "温度": {
+            "total_appearances": 7,
+            "first_para": 22,
+            "last_para": 58,
+            "spread": 36,
+            "status": "萦绕"
+          },
+          "声音": {
+            "total_appearances": 25,
+            "first_para": 3,
+            "last_para": 73,
+            "spread": 70,
+            "status": "萦绕"
+          },
+          "触感": {
+            "total_appearances": 5,
+            "first_para": 0,
+            "last_para": 63,
+            "spread": 63,
+            "status": "萦绕"
+          }
+        }
+      },
+      "issues": []
+    },
+    {
+      "dim": "D5",
+      "dim_name": "焦距起点",
+      "score": 95,
+      "stats": {
+        "first_sentence": "风从裂缝那边灌进来，带着碱味。",
+        "focal_level": "世界级广角",
+        "world_hits": 1,
+        "building_hits": 0,
+        "character_hits": 0
+      },
+      "issues": []
+    },
+    {
+      "dim": "D6",
+      "dim_name": "世界自转",
+      "score": 90,
+      "stats": {
+        "rotation_count": 20
+      },
+      "issues": [
+        {
+          "dim": "D6",
+          "dim_name": "世界自转",
+          "severity": "info",
+          "location": "第1段",
+          "excerpt": "风从裂缝那边灌进来，带着碱味。上城墙第四天，味变重了，干得嗓子发紧。城里的风不带这个味，城里的风带着炊烟和泔水的味道，闻...",
+          "diagnosis": "发现世界自转痕迹（天气变化：风），与角色剧情关联度低",
+          "suggestion": "保留——世界独立存在感是正面指标"
+        },
+        {
+          "dim": "D6",
+          "dim_name": "世界自转",
+          "severity": "info",
+          "location": "第2段",
+          "excerpt": "城墙根下的苔发了一夜的光，天亮后暗下去，灰白色的苔面上结了一层薄霜。程铖不知道霜从哪来的。裂缝那头是另一个位面，那边的天...",
+          "diagnosis": "发现世界自转痕迹（生物活动：苔），与角色剧情关联度低",
+          "suggestion": "保留——世界独立存在感是正面指标"
+        },
+        {
+          "dim": "D6",
+          "dim_name": "世界自转",
+          "severity": "info",
+          "location": "第3段",
+          "excerpt": "程铖把四枚铜钱在掌心排开。三旧一新。师父那枚上的血迹在暗光里发亮，他用拇指蹭了一下，蹭不掉。血渗进纹路，黏在铜面上，像纹...",
+          "diagnosis": "发现世界自转痕迹（天气变化：光,暗,亮），与角色剧情关联度低",
+          "suggestion": "保留——世界独立存在感是正面指标"
+        },
+        {
+          "dim": "D6",
+          "dim_name": "世界自转",
+          "severity": "info",
+          "location": "第4段",
+          "excerpt": "他从怀里摸出一块砂石。拇指大，灰白色，一头磨出了凹面。沈老头磨铜钱用的。这东西卖不出去，磨刀嫌软，垫桌脚嫌小，只有磨铜钱...",
+          "diagnosis": "发现世界自转痕迹（天气变化：亮），与角色剧情关联度低",
+          "suggestion": "保留——世界独立存在感是正面指标"
+        },
+        {
+          "dim": "D6",
+          "dim_name": "世界自转",
+          "severity": "info",
+          "location": "第17段",
+          "excerpt": "两个人沿着城墙根往下走，进入废弃通道。通道里没有光，只有裂缝渗进来的暗紫色。碱味在通道里更浓了，像什么东西在石壁上慢慢渗...",
+          "diagnosis": "发现世界自转痕迹（天气变化：光,暗），与角色剧情关联度低",
+          "suggestion": "保留——世界独立存在感是正面指标"
+        },
+        {
+          "dim": "D6",
+          "dim_name": "世界自转",
+          "severity": "info",
+          "location": "第24段",
+          "excerpt": "里面是一间储物室，不大，三步见方，墙上爬满暗紫色的纹路，和裂缝边的一样。角落里蜷着一个人，离门大约两步远，身上穿着战袍，...",
+          "diagnosis": "发现世界自转痕迹（生物活动：爬），与角色剧情关联度低",
+          "suggestion": "保留——世界独立存在感是正面指标"
+        },
+        {
+          "dim": "D6",
+          "dim_name": "世界自转",
+          "severity": "info",
+          "location": "第25段",
+          "excerpt": "他还没有完全变成壳。城墙上的人管这种状态叫\"半壳\"，比壳惨。壳是空的，不知道自己死了。半壳还知道，但来不及了。城墙上的兵...",
+          "diagnosis": "发现世界自转痕迹（生物活动：爬），与角色剧情关联度低",
+          "suggestion": "保留——世界独立存在感是正面指标"
+        },
+        {
+          "dim": "D6",
+          "dim_name": "世界自转",
+          "severity": "info",
+          "location": "第28段",
+          "excerpt": "就这两个词。说完他睁开眼睛。眼里一半是人的眼白，一半是暗紫色的光。他看着程铖，看了很久。嘴唇又动了一下，没发出声音。",
+          "diagnosis": "发现世界自转痕迹（天气变化：光,暗），与角色剧情关联度低",
+          "suggestion": "保留——世界独立存在感是正面指标"
+        }
+      ]
+    }
+  ],
+  "summary": "场景感知度良好（98分）。0处待优化，无严重问题。"
+}

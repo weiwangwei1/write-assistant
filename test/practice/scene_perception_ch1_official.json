@@ -1,0 +1,180 @@
+{
+  "file": "zhengzhao\\output\\chapter_001.txt",
+  "total_chars": 2424,
+  "total_paragraphs": 72,
+  "overall_score": 88.8,
+  "dimensions": [
+    {
+      "dim": "D1",
+      "dim_name": "信息交付段",
+      "score": 100.0,
+      "stats": {
+        "total_paragraphs_checked": 33,
+        "info_dump_count": 0,
+        "ratio": "0.0%"
+      },
+      "issues": []
+    },
+    {
+      "dim": "D2",
+      "dim_name": "叙述者翻译",
+      "score": 100,
+      "stats": {
+        "translation_count": 0
+      },
+      "issues": []
+    },
+    {
+      "dim": "D3",
+      "dim_name": "空间失锚",
+      "score": 100,
+      "stats": {
+        "drift_count": 0
+      },
+      "issues": []
+    },
+    {
+      "dim": "D4",
+      "dim_name": "感官一次性",
+      "score": 40,
+      "stats": {
+        "oneoff_count": 4,
+        "categories_checked": 4
+      },
+      "issues": [
+        {
+          "dim": "D4",
+          "dim_name": "感官一次性",
+          "severity": "info",
+          "location": "第63段",
+          "excerpt": "程铖把铜钱收进怀里，回到他的位置。风从裂缝那边吹过来，带着一股气味：铁锈，旧衣服压箱底的味道。...",
+          "diagnosis": "'气味'类感官（关键词'味'）引入后，后续3段内未再现——沦为信息标签而非萦绕氛围（违反P045）",
+          "suggestion": "在后续段落中让'味'再回来一次（哪怕半句），让感官萦绕不散"
+        },
+        {
+          "dim": "D4",
+          "dim_name": "感官一次性",
+          "severity": "info",
+          "location": "第41段",
+          "excerpt": "四个敌人，全倒。程铖左手手背红了一片，铜钱在掌心里发烫。...",
+          "diagnosis": "'温度'类感官（关键词'烫'）引入后，后续3段内未再现——沦为信息标签而非萦绕氛围（违反P045）",
+          "suggestion": "在后续段落中让'烫'再回来一次（哪怕半句），让感官萦绕不散"
+        },
+        {
+          "dim": "D4",
+          "dim_name": "感官一次性",
+          "severity": "info",
+          "location": "第4段",
+          "excerpt": "程铖没接话。他把三枚铜钱从左手转到右手，又转回来。铜钱在指缝间无声翻转，像算盘珠子在看不见的算盘上移动。...",
+          "diagnosis": "'声音'类感官（关键词'声'）引入后，后续3段内未再现——沦为信息标签而非萦绕氛围（违反P045）",
+          "suggestion": "在后续段落中让'声'再回来一次（哪怕半句），让感官萦绕不散"
+        },
+        {
+          "dim": "D4",
+          "dim_name": "感官一次性",
+          "severity": "info",
+          "location": "第38段",
+          "excerpt": "敌人左手抬起来的时候，老周的刀已经穿过它的喉咙。程铖的短刀同时扎进它胸口的壳缝——但偏了半寸。壳比第六批的硬，旧刀伤的位...",
+          "diagnosis": "'触感'类感官（关键词'滑'）引入后，后续3段内未再现——沦为信息标签而非萦绕氛围（违反P045）",
+          "suggestion": "在后续段落中让'滑'再回来一次（哪怕半句），让感官萦绕不散"
+        }
+      ]
+    },
+    {
+      "dim": "D5",
+      "dim_name": "焦距起点",
+      "score": 95,
+      "stats": {
+        "first_sentence": "界门开在城墙上，像一道竖着的裂缝，裂缝那头的天是红的。",
+        "focal_level": "世界级广角",
+        "world_hits": 2,
+        "building_hits": 3,
+        "character_hits": 1
+      },
+      "issues": []
+    },
+    {
+      "dim": "D6",
+      "dim_name": "世界自转",
+      "score": 90,
+      "stats": {
+        "rotation_count": 10
+      },
+      "issues": [
+        {
+          "dim": "D6",
+          "dim_name": "世界自转",
+          "severity": "info",
+          "location": "第12段",
+          "excerpt": "他走到东墙边，往下看。界门裂缝在城墙根上，像一道被撕开的伤口，切口边缘有暗紫色的纹路在蠕动。几百次了，成了伤疤。",
+          "diagnosis": "发现世界自转痕迹（生物活动：蠕动），与角色剧情关联度低",
+          "suggestion": "保留——世界独立存在感是正面指标"
+        },
+        {
+          "dim": "D6",
+          "dim_name": "世界自转",
+          "severity": "info",
+          "location": "第14段",
+          "excerpt": "从那道裂缝里涌出来的东西，身上穿着大徵的制式战袍。战袍已经和皮肉长在一起。领头的那一个，胸口有一道从左肩劈到右肋的旧刀伤...",
+          "diagnosis": "发现世界自转痕迹（天气变化：光），与角色剧情关联度低",
+          "suggestion": "保留——世界独立存在感是正面指标"
+        },
+        {
+          "dim": "D6",
+          "dim_name": "世界自转",
+          "severity": "info",
+          "location": "第21段",
+          "excerpt": "九息后，裂缝亮起。",
+          "diagnosis": "发现世界自转痕迹（天气变化：亮），与角色剧情关联度低",
+          "suggestion": "保留——世界独立存在感是正面指标"
+        },
+        {
+          "dim": "D6",
+          "dim_name": "世界自转",
+          "severity": "info",
+          "location": "第24段",
+          "excerpt": "短刀扎进去，没有血。暗紫色的光从伤口里涌出来，壳裂了，里面是空的。",
+          "diagnosis": "发现世界自转痕迹（天气变化：光,暗），与角色剧情关联度低",
+          "suggestion": "保留——世界独立存在感是正面指标"
+        },
+        {
+          "dim": "D6",
+          "dim_name": "世界自转",
+          "severity": "info",
+          "location": "第28段",
+          "excerpt": "程铖抬头。裂缝里又出来两个。但这次不一样——第七批的战袍，壳更完整，动作更快，眼睛里的光更亮。",
+          "diagnosis": "发现世界自转痕迹（天气变化：光,亮），与角色剧情关联度低",
+          "suggestion": "保留——世界独立存在感是正面指标"
+        },
+        {
+          "dim": "D6",
+          "dim_name": "世界自转",
+          "severity": "info",
+          "location": "第38段",
+          "excerpt": "敌人左手抬起来的时候，老周的刀已经穿过它的喉咙。程铖的短刀同时扎进它胸口的壳缝——但偏了半寸。壳比第六批的硬，旧刀伤的位...",
+          "diagnosis": "发现世界自转痕迹（天气变化：光,暗），与角色剧情关联度低",
+          "suggestion": "保留——世界独立存在感是正面指标"
+        },
+        {
+          "dim": "D6",
+          "dim_name": "世界自转",
+          "severity": "info",
+          "location": "第44段",
+          "excerpt": "铜钱是旧的，边角磨得发亮，上面有血。",
+          "diagnosis": "发现世界自转痕迹（天气变化：亮），与角色剧情关联度低",
+          "suggestion": "保留——世界独立存在感是正面指标"
+        },
+        {
+          "dim": "D6",
+          "dim_name": "世界自转",
+          "severity": "info",
+          "location": "第63段",
+          "excerpt": "程铖把铜钱收进怀里，回到他的位置。风从裂缝那边吹过来，带着一股气味：铁锈，旧衣服压箱底的味道。",
+          "diagnosis": "发现世界自转痕迹（天气变化：风），与角色剧情关联度低",
+          "suggestion": "保留——世界独立存在感是正面指标"
+        }
+      ]
+    }
+  ],
+  "summary": "场景感知度良好（89分）。0处待优化，无严重问题。"
+}

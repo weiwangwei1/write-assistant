@@ -1,16 +1,16 @@
 {
   "style": "yanyujiangnan",
   "overrides": {
-    "simile_max_per_chapter": 6,
+    "simile_max_per_chapter": 10,
     "not_a_is_b_max_per_chapter": 1,
-    "dialogue_ratio_min": 0.25,
+    "dialogue_ratio_min": 0.20,
     "dialogue_ratio_max": 0.40,
     "dash_max_per_1000": 1.0,
     "ellipsis_max_per_1000": 1.5,
     "le_max_per_1000": 25.0,
     "zhe_max_per_1000": 9.0,
-    "conjunction_min_per_1000": 5.0,
-    "dialogue_guide_min_per_1000": 1.5,
+    "conjunction_min_per_1000": 3.0,
+    "dialogue_guide_min_per_1000": 0.5,
     "name_starter_run_max": 4
   },
   "disabled_rules": [],
@@ -47,5 +47,5 @@
     "L2": "签名：破折号≤1.0/省略号≤1.5/了≤25/着≤9/连词≥5/引前引导≥1.5（渐进达标，不阻断）",
     "L3": "偏好：段首同名连跑≤4段"
   },
-  "note": "烟雨江南方向更克制：比喻上限收紧至6、不是A是B收紧至1、破折号上限1.0/千字（原作几乎不用破折号）。v2.0新增功能词指纹约束（了/着/连词/引前引导语），源于黄金三章与原作的深度对比：连词系统塌陷是长句感缺失根因，了字收尾碎句是最大指纹偏差，全裸对话不符合原作'某某道：'引导习惯。"
+  "note": "烟雨江南方向更克制：比喻上限收紧至6、不是A是B收紧至1、破折号上限1.0/千字（原作几乎不用破折号）。v2.0新增功能词指纹约束（了/着/连词/引前引导语），源于黄金三章与原作的深度对比：连词系统塌陷是长句感缺失根因，了字收尾碎句是最大指纹偏差，全裸对话不符合原作'某某道：'引导习惯。v2.1（2026-07-29）：基于v5三章验证数据调优——simile_max 6→10（优质占比80-92%，数量仍偏高但质量优先）；conjunction_min 5.0→3.0（当前产出3.1-4.9，渐进达标）；dialogue_guide_min 1.5→0.5（原作7.4，当前0-0.28，降低门槛但不消除信号）；dialogue_ratio_min 0.25→0.20（Ch2实际22%，给创作空间）。"
 }

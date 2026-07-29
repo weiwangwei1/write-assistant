@@ -1,0 +1,137 @@
+{
+  "file": "practice/chapter_002_v7.txt",
+  "total_chars": 3865,
+  "total_paragraphs": 74,
+  "overall_grade": "D",
+  "overall_score": 85.6,
+  "t1": {
+    "dim": "T1",
+    "dim_name": "场景具身度",
+    "score": 100,
+    "grade": "A",
+    "stats": {
+      "total_paragraphs": 74,
+      "info_dump": 0,
+      "spatial_drift": 0,
+      "focal_level": "画面级广角",
+      "unanchored_nouns": 0
+    },
+    "issues": []
+  },
+  "t2": {
+    "dim": "T2",
+    "dim_name": "叙述者介入度",
+    "score": 100,
+    "grade": "A",
+    "stats": {
+      "translation_count": 0,
+      "emotion_direct_count": 0,
+      "summary_comment_count": 0,
+      "punchline_count": 7,
+      "punchline_density": 1.81,
+      "world_rotation_count": 11
+    },
+    "issues": []
+  },
+  "t3": {
+    "dim": "T3",
+    "dim_name": "意象多样性",
+    "score": 52.0,
+    "grade": "D",
+    "stats": {
+      "discovered_words": 30,
+      "imagery_words": 5,
+      "filtered_out": [
+        "程铖",
+        "老周",
+        "师父",
+        "城墙",
+        "砂石",
+        "东西",
+        "声音",
+        "干涩",
+        "掌心",
+        "血迹"
+      ],
+      "imagery_details": [
+        {
+          "word": "口子",
+          "total": 15,
+          "channel_distribution": {
+            "嗅觉": 3,
+            "未检测": 2,
+            "效应": 4,
+            "视觉": 5,
+            "听觉": 1
+          },
+          "coverage_ratio": 0.53,
+          "score": 100
+        },
+        {
+          "word": "铜钱",
+          "total": 14,
+          "channel_distribution": {
+            "视觉": 3,
+            "听觉": 9,
+            "效应": 1,
+            "未检测": 1
+          },
+          "coverage_ratio": 0.71,
+          "score": 100
+        },
+        {
+          "word": "纹路",
+          "total": 13,
+          "channel_distribution": {
+            "视觉": 13
+          },
+          "coverage_ratio": 0.0,
+          "score": 20
+        },
+        {
+          "word": "暗色",
+          "total": 7,
+          "channel_distribution": {
+            "视觉": 7
+          },
+          "coverage_ratio": 0.0,
+          "score": 20
+        },
+        {
+          "word": "暗光",
+          "total": 5,
+          "channel_distribution": {
+            "视觉": 5
+          },
+          "coverage_ratio": 0.0,
+          "score": 20
+        }
+      ],
+      "sensory_oneoff_count": 0
+    },
+    "issues": [
+      {
+        "severity": "warning",
+        "location": "全文（13次出现）",
+        "excerpt": "'纹路'",
+        "diagnosis": "'纹路'共13次出现，视觉通道占13次，非视觉覆盖率0%——感知维度严重单一",
+        "suggestion": "不换词，换感知方式：第5次写风声（听觉），第9次写温度（触觉），第13次写气味（嗅觉）"
+      },
+      {
+        "severity": "warning",
+        "location": "全文（7次出现）",
+        "excerpt": "'暗色'",
+        "diagnosis": "'暗色'共7次出现，视觉通道占7次，非视觉覆盖率0%——感知维度严重单一",
+        "suggestion": "不换词，换感知方式：第5次写风声（听觉），第9次写温度（触觉），第13次写气味（嗅觉）"
+      },
+      {
+        "severity": "warning",
+        "location": "全文（5次出现）",
+        "excerpt": "'暗光'",
+        "diagnosis": "'暗光'共5次出现，视觉通道占5次，非视觉覆盖率0%——感知维度严重单一",
+        "suggestion": "不换词，换感知方式：第5次写风声（听觉），第9次写温度（触觉），第13次写气味（嗅觉）"
+      }
+    ]
+  },
+  "summary": "感知织体基本良好（D级/86分），意象感知单一3组"
+}
