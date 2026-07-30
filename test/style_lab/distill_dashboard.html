@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>深度文风蒸馏实验室</title>
+<style>
+  :root {
+    --bg: #0a0c12; --card: #151821; --card2: #1a1e2a; --border: #2a2e3d;
+    --text: #dfe1e6; --muted: #7a7e8a; --accent: #4a9eff;
+    --green: #4caf50; --yellow: #ffc107; --red: #f44336;
+    --orange: #ff9800; --purple: #9c27b0; --cyan: #00bcd4;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg); color: var(--text);
+    font-family: "Noto Sans CJK SC", "WenQuanYi Micro Hei", "Microsoft YaHei", sans-serif;
+    padding: 20px; min-height: 100vh;
+  }
+  .header {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px solid var(--border);
+    flex-wrap: wrap; gap: 12px;
+  }
+  .header h1 { font-size: 22px; }
+  .header h1 .lab { color: var(--accent); }
+  .header .meta { font-size: 13px; color: var(--muted); margin-top: 4px; }
+  .status-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 4px 12px; border-radius: 4px; font-size: 13px; font-weight: bold;
+  }
+  .status-idle { background: rgba(122,126,138,0.15); color: var(--muted); }
+  .status-running { background: rgba(74,158,255,0.15); color: var(--accent); }
+  .status-completed { background: rgba(76,175,80,0.15); color: var(--green); }
+  .status-error { background: rgba(244,67,54,0.15); color: var(--red); }
+  .pulse { width: 8px; height: 8px; border-radius: 50%; background: currentColor; animation: pulse 1.5s infinite; }
+  @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+  .progress-section {
+    background: var(--card); border: 1px solid var(--border); border-radius: 8px;
+    padding: 16px; margin-bottom: 20px;
+  }
+  .progress-bar {
+    background: var(--border); border-radius: 6px; height: 28px; overflow: hidden;
+    margin: 8px 0; position: relative;
+  }
+  .progress-fill {
+    background: linear-gradient(90deg, var(--purple), var(--accent));
+    height: 100%; transition: width 0.6s; display: flex; align-items: center;
+    justify-content: center; font-size: 12px; color: #fff; font-weight: bold;
+  }
+  .progress-info { display: flex; justify-content: space-between; font-size: 13px; color: var(--muted); }
+
+  .phase-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 12px; margin-bottom: 20px;
+  }
+  .phase-card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 8px;
+    padding: 12px; cursor: pointer; transition: border-color 0.2s;
+  }
+  .phase-card:hover { border-color: var(--accent); }
+  .phase-card.active { border-color: var(--accent); box-shadow: 0 0 12px rgba(74,158,255,0.2); }
+  .phase-card .pid { font-size: 11px; color: var(--muted); }
+  .phase-card .pname { font-size: 15px; font-weight: bold; margin: 4px 0; }
+  .phase-card .pdesc { font-size: 11px; color: var(--muted); line-height: 1.4; }
+  .phase-status {
+    display: inline-block; width: 8px; height: 8px; border-radius: 50%;
+    margin-right: 4px;
+  }
+  .ps-pending { background: var(--border); }
+  .ps-running { background: var(--accent); animation: pulse 1.5s infinite; }
+  .ps-completed { background: var(--green); }
+  .ps-error { background: var(--red); }
+
+  .section-title {
+    font-size: 16px; color: var(--accent); margin: 24px 0 12px;
+    padding-bottom: 8px; border-bottom: 1px solid var(--border);
+  }
+
+  .author-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+    gap: 16px; margin-bottom: 20px;
+  }
+  .author-card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 8px;
+    overflow: hidden; border-left: 3px solid var(--accent);
+  }
+  .author-card .ac-header { padding: 12px 16px; border-bottom: 1px solid var(--border); }
+  .author-card .ac-name { font-size: 16px; font-weight: bold; }
+  .author-card .ac-label { font-size: 12px; color: var(--muted); margin-top: 2px; }
+  .author-card .ac-body { padding: 12px 16px; }
+  .author-card .ac-stats {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 6px; font-size: 12px;
+  }
+  .ac-stat { display: flex; justify-content: space-between; padding: 3px 0; border-bottom: 1px solid var(--border); }
+  .ac-stat .label { color: var(--muted); }
+  .ac-stat .value { font-weight: bold; }
+  .ac-sensory { margin-top: 8px; }
+  .ac-sensory .bar-row { display: flex; align-items: center; gap: 6px; margin: 3px 0; font-size: 11px; }
+  .ac-sensory .bar-label { width: 30px; color: var(--muted); flex-shrink: 0; }
+  .ac-sensory .bar-track { flex: 1; height: 12px; background: var(--border); border-radius: 3px; overflow: hidden; }
+  .ac-sensory .bar-fill { height: 100%; transition: width 0.5s; }
+  .ac-sensory .bar-val { width: 36px; text-align: right; color: var(--muted); flex-shrink: 0; }
+
+  .comparison-section {
+    background: var(--card); border: 1px solid var(--border); border-radius: 8px;
+    padding: 16px; margin-bottom: 20px;
+  }
+  .radar-container { display: flex; justify-content: center; padding: 20px 0; overflow-x: auto; }
+  .radar-svg { max-width: 600px; width: 100%; height: auto; }
+
+  .distance-table { width: 100%; border-collapse: collapse; font-size: 12px; margin-top: 12px; }
+  .distance-table th, .distance-table td { padding: 6px 8px; text-align: center; border-bottom: 1px solid var(--border); }
+  .distance-table th { color: var(--muted); font-weight: normal; }
+  .distance-table .diag { color: var(--muted); }
+
+  .distinctive-list { font-size: 12px; }
+  .distinctive-item { padding: 4px 0; border-bottom: 1px solid var(--border); }
+  .distinctive-item:last-child { border-bottom: none; }
+  .distinctive-item .di-name { color: var(--accent); }
+  .distinctive-item .di-dims { color: var(--muted); margin-top: 2px; }
+
+  .detail-section {
+    background: var(--card); border: 1px solid var(--border); border-radius: 8px;
+    margin-bottom: 12px; overflow: hidden;
+  }
+  .detail-header {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 10px 16px; cursor: pointer; user-select: none; border-bottom: 1px solid var(--border);
+  }
+  .detail-header h3 { font-size: 14px; color: var(--accent); }
+  .detail-header .toggle { color: var(--muted); transition: transform 0.2s; }
+  .detail-section.collapsed .toggle { transform: rotate(-90deg); }
+  .detail-section.collapsed .detail-body { display: none; }
+  .detail-body { padding: 12px 16px; }
+
+  .data-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+  .data-table th, .data-table td { padding: 5px 8px; text-align: left; border-bottom: 1px solid var(--border); }
+  .data-table th { color: var(--muted); font-weight: normal; }
+  .data-table .num { text-align: right; font-family: "Consolas", monospace; }
+
+  .pie-chart { display: inline-block; vertical-align: top; margin: 8px; }
+  .legend { font-size: 11px; color: var(--muted); margin-top: 4px; }
+  .legend-item { display: inline-block; margin-right: 8px; }
+  .legend-dot { display: inline-block; width: 8px; height: 8px; border-radius: 2px; margin-right: 3px; }
+
+  .loading-msg { text-align: center; color: var(--muted); padding: 60px 20px; font-size: 14px; }
+  .error-msg { background: rgba(244,67,54,0.08); border: 1px solid var(--red); border-radius: 8px; padding: 16px; margin: 12px 0; font-size: 13px; }
+  .empty-msg { color: var(--muted); font-size: 13px; padding: 20px; text-align: center; }
+
+  .refresh-indicator {
+    font-size: 11px; color: var(--muted);
+    display: flex; align-items: center; gap: 4px;
+  }
+  .refresh-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); }
+  .refresh-dot.inactive { background: var(--muted); }
+
+  .tab-bar { display: flex; gap: 4px; margin-bottom: 12px; flex-wrap: wrap; }
+  .tab {
+    padding: 4px 12px; border-radius: 4px; font-size: 12px; cursor: pointer;
+    background: var(--border); color: var(--muted); border: 1px solid transparent;
+  }
+  .tab.active { background: var(--accent); color: #fff; }
+
+  .current-activity {
+    background: rgba(74,158,255,0.08); border-left: 3px solid var(--accent);
+    padding: 12px; margin-bottom: 16px; font-size: 14px; border-radius: 4px;
+  }
+  .current-activity .ca-label { color: var(--muted); font-size: 12px; }
+  .current-activity .ca-value { font-weight: bold; }
+
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 768px) { .grid-2 { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<div id="app">
+  <!-- Header -->
+  <div class="header">
+    <div>
+      <h1><span class="lab">深度文风蒸馏实验室</span> v1.0</h1>
+      <div class="meta" id="meta">等待启动...</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:12px;">
+      <div class="refresh-indicator">
+        <div class="refresh-dot" id="refreshDot"></div>
+        <span id="refreshText">自动刷新</span>
+      </div>
+      <div class="status-badge status-idle" id="statusBadge">
+        <span>IDLE</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Progress -->
+  <div class="progress-section">
+    <div class="progress-info">
+      <span id="progressPhase">尚未启动</span>
+      <span id="progressPercent">0%</span>
+    </div>
+    <div class="progress-bar">
+      <div class="progress-fill" id="progressFill" style="width:0%">0%</div>
+    </div>
+    <div class="progress-info">
+      <span id="startTime">开始时间: -</span>
+      <span id="updateTime">最后更新: -</span>
+    </div>
+  </div>
+
+  <!-- Current Activity -->
+  <div id="currentActivity" style="display:none;" class="current-activity">
+    <div class="ca-label">当前活动</div>
+    <div class="ca-value" id="activityText">-</div>
+  </div>
+
+  <!-- Phase Grid -->
+  <div class="section-title">蒸馏阶段</div>
+  <div class="phase-grid" id="phaseGrid"></div>
+
+  <!-- Author Cards -->
+  <div class="section-title">作者画像</div>
+  <div class="author-grid" id="authorGrid"></div>
+
+  <!-- Comparison -->
+  <div id="comparisonSection" style="display:none;">
+    <div class="section-title">跨作者对比</div>
+    <div class="comparison-section">
+      <div class="tab-bar" id="compareTabs">
+        <div class="tab active" data-tab="radar">指纹雷达</div>
+        <div class="tab" data-tab="distance">风格距离</div>
+        <div class="tab" data-tab="distinctive">特征签名</div>
+        <div class="tab" data-tab="dialogue">对话风格</div>
+        <div class="tab" data-tab="sensory">感官通道</div>
+      </div>
+      <div id="compareRadar" class="compare-panel"></div>
+      <div id="compareDistance" class="compare-panel" style="display:none;"></div>
+      <div id="compareDistinctive" class="compare-panel" style="display:none;"></div>
+      <div id="compareDialogue" class="compare-panel" style="display:none;"></div>
+      <div id="compareSensory" class="compare-panel" style="display:none;"></div>
+    </div>
+  </div>
+
+  <!-- Phase Details -->
+  <div class="section-title">阶段详情</div>
+  <div id="detailContainer"></div>
+</div>
+
+<script>
+// ============================================================
+// 配置
+// ============================================================
+const STATE_URL = 'distill_state.json';
+const REFRESH_INTERVAL = 3000;
+const AUTHOR_COLORS = {
+  yanyujiangnan: '#9c27b0', chendong: '#ff5722', jiangnan: '#4a9eff',
+  maibao: '#4caf50', wuzei: '#ff9800', jinhezai: '#e91e63'
+};
+const DIM_LABELS = {
+  sent_len_mean: '句长', short_sent_ratio: '短句%', long_sent_ratio: '长句%',
+  para_len_mean: '段长', short_para_ratio: '短段%', dialogue_ratio: '对话%',
+  comma_period_ratio: '逗句比', dash_per_1000: '破折号', ellipsis_per_1000: '省略号',
+  metaphor_per_1000: '比喻', conjunction_starter_ratio: '连词起句',
+  dialogue_guide_per_1000: '引前引导', le_ending_ratio: '了字收尾'
+};
+const SENSORY_COLORS = {
+  '视觉': '#4a9eff', '听觉': '#4caf50', '嗅觉': '#ff9800',
+  '触觉': '#e91e63', '味觉': '#9c27b0'
+};
+const PHASE_INFO = [
+  {id:'p1', name:'基础指纹', desc:'16标量+2向量维度'},
+  {id:'p2', name:'句式模式', desc:'起始类型·长短句·句尾'},
+  {id:'p3', name:'段落节奏', desc:'类型分布·序列·段长'},
+  {id:'p4', name:'意象通道', desc:'感官·意象词·叠加深度'},
+  {id:'p5', name:'对话风格', desc:'长度·引导·裸对话'},
+  {id:'p6', name:'修辞比喻', desc:'密度·喻体域·修辞'},
+  {id:'p7', name:'叙述技法', desc:'开篇·章末·世界自转'},
+  {id:'p8', name:'跨作者对比', desc:'雷达·距离·签名'},
+];
+
+let currentState = null;
+let refreshTimer = null;
+
+// ============================================================
+// 数据加载
+// ============================================================
+async function loadState() {
+  try {
+    const resp = await fetch(STATE_URL + '?t=' + Date.now());
+    if (!resp.ok) throw new Error('HTTP ' + resp.status);
+    currentState = await resp.json();
+    render();
+  } catch (e) {
+    document.getElementById('meta').textContent = '无法加载状态文件: ' + e.message + ' (需通过 HTTP 服务器访问)';
+    document.getElementById('refreshText').textContent = '连接失败';
+    document.getElementById('refreshDot').classList.add('inactive');
+  }
+}
+
+function startAutoRefresh() {
+  if (refreshTimer) clearInterval(refreshTimer);
+  refreshTimer = setInterval(loadState, REFRESH_INTERVAL);
+}
+
+// ============================================================
+// 渲染
+// ============================================================
+function render() {
+  if (!currentState) return;
+  renderHeader();
+  renderProgress();
+  renderPhases();
+  renderAuthors();
+  renderComparison();
+  renderDetails();
+
+  // 运行中持续刷新
+  if (currentState.status === 'running') {
+    document.getElementById('refreshDot').classList.remove('inactive');
+    document.getElementById('refreshText').textContent = '刷新中 (' + (REFRESH_INTERVAL/1000) + 's)';
+  } else {
+    document.getElementById('refreshDot').classList.add('inactive');
+    document.getElementById('refreshText').textContent = '已完成';
+  }
+}
+
+function renderHeader() {
+  const s = currentState;
+  document.getElementById('meta').textContent =
+    `${s.total_authors || 6} 位作者 · ${s.total_phases || 8} 阶段 · v${s.version}`;
+  const badge = document.getElementById('statusBadge');
+  badge.className = 'status-badge status-' + s.status;
+  const statusText = {idle: '等待启动', running: '运行中', completed: '已完成', error: '错误'}[s.status] || s.status;
+  badge.innerHTML = s.status === 'running' ? '<div class="pulse"></div>' + statusText : statusText;
+}
+
+function renderProgress() {
+  const s = currentState;
+  document.getElementById('progressFill').style.width = (s.progress || 0) + '%';
+  document.getElementById('progressFill').textContent = (s.progress || 0) + '%';
+  document.getElementById('progressPercent').textContent = (s.progress || 0) + '%';
+  document.getElementById('progressPhase').textContent =
+    s.current_phase ? `阶段: ${s.current_phase}` + (s.current_author ? ` · ${s.current_author}` : '') : '等待启动';
+  document.getElementById('startTime').textContent = '开始: ' + (s.started_at || '-');
+  document.getElementById('updateTime').textContent = '更新: ' + (s.last_updated || '-');
+
+  const ca = document.getElementById('currentActivity');
+  if (s.status === 'running' && s.current_phase) {
+    ca.style.display = 'block';
+    document.getElementById('activityText').textContent =
+      `${s.current_phase}` + (s.current_author ? ` → ${s.current_author}` : '');
+  } else {
+    ca.style.display = 'none';
+  }
+}
+
+function renderPhases() {
+  const grid = document.getElementById('phaseGrid');
+  const phases = currentState.phases || {};
+  grid.innerHTML = PHASE_INFO.map(p => {
+    const ph = phases[p.id] || {};
+    const status = ph.status || 'pending';
+    const statusClass = 'ps-' + status;
+    return `<div class="phase-card ${status === 'in_progress' ? 'active' : ''}">
+      <div class="pid">${p.id.toUpperCase()} <span class="phase-status ${statusClass}"></span></div>
+      <div class="pname">${p.name}</div>
+      <div class="pdesc">${p.desc}</div>
+    </div>`;
+  }).join('');
+}
+
+function renderAuthors() {
+  const grid = document.getElementById('authorGrid');
+  const authors = currentState.authors || {};
+  const names = Object.keys(authors);
+  if (names.length === 0) {
+    grid.innerHTML = '<div class="empty-msg">尚无作者数据（等待 P1 阶段完成）</div>';
+    return;
+  }
+  grid.innerHTML = names.map(name => {
+    const a = authors[name];
+    const phases = a.phases || {};
+    const p1 = phases.p1 || {};
+    const p4 = phases.p4 || {};
+    const color = a.color || AUTHOR_COLORS[name] || '#4a9eff';
+
+    // 基础指纹表
+    const stats = [
+      ['句长', p1.sent_len_mean], ['短句%', (p1.short_sent_ratio*100).toFixed(1)+'%'],
+      ['段长', p1.para_len_mean], ['对话%', (p1.dialogue_ratio*100).toFixed(1)+'%'],
+      ['逗句比', p1.comma_period_ratio], ['比喻/千字', p1.metaphor_per_1000],
+      ['连词起句%', (p1.conjunction_starter_ratio*100).toFixed(1)+'%'], ['引前引导', p1.dialogue_guide_per_1000],
+      ['了字收尾%', (p1.le_ending_ratio*100).toFixed(1)+'%'], ['采样字数', (a.sample_chars||0).toLocaleString()],
+    ].filter(s => s[1] !== undefined && s[1] !== null);
+
+    const statsHtml = stats.map(s =>
+      `<div class="ac-stat"><span class="label">${s[0]}</span><span class="value">${s[1]}</span></div>`
+    ).join('');
+
+    // 感官通道条
+    const sensory = p4.sensory_pct || p1.sensory_dist || {};
+    const sensoryKeys = ['视觉','听觉','嗅觉','触觉','味觉'];
+    const maxSensory = Math.max(...sensoryKeys.map(k => sensory[k] || 0), 1);
+    const sensoryHtml = p4.sensory_pct ? sensoryKeys.map(k => {
+      const v = sensory[k] || 0;
+      const pct = (v / maxSensory * 100).toFixed(1);
+      return `<div class="bar-row">
+        <span class="bar-label">${k}</span>
+        <div class="bar-track"><div class="bar-fill" style="width:${pct}%;background:${SENSORY_COLORS[k]}"></div></div>
+        <span class="bar-val">${v.toFixed(1)}%</span>
+      </div>`;
+    }).join('') : '';
+
+    // 阶段完成度
+    const phaseStatus = PHASE_INFO.slice(0,7).map(p => {
+      const st = (phases[p.id] || {}).status || 'pending';
+      const colors = {completed:'var(--green)', in_progress:'var(--accent)', pending:'var(--border)', error:'var(--red)'};
+      return `<span class="phase-status" style="background:${colors[st]||'var(--border)'}"></span>`;
+    }).join(' ');
+
+    return `<div class="author-card" style="border-left-color:${color}">
+      <div class="ac-header">
+        <div class="ac-name" style="color:${color}">${a.display_name}</div>
+        <div class="ac-label">${a.label || ''} ${phaseStatus}</div>
+      </div>
+      <div class="ac-body">
+        <div class="ac-stats">${statsHtml}</div>
+        ${sensoryHtml ? '<div class="ac-sensory">' + sensoryHtml + '</div>' : ''}
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// ============================================================
+// 对比面板
+// ============================================================
+function renderComparison() {
+  const cmp = currentState.comparison;
+  const section = document.getElementById('comparisonSection');
+  if (!cmp || cmp.error) {
+    section.style.display = 'none';
+    return;
+  }
+  section.style.display = 'block';
+  renderRadar(cmp);
+  renderDistance(cmp);
+  renderDistinctive(cmp);
+  renderDialogueCompare(cmp);
+  renderSensoryCompare(cmp);
+}
+
+function renderRadar(cmp) {
+  const dims = cmp.radar_dims || cmp.dimensions || [];
+  const data = cmp.radar_data || {};
+  const names = Object.keys(data);
+  if (names.length === 0 || dims.length === 0) {
+    document.getElementById('compareRadar').innerHTML = '<div class="empty-msg">无雷达数据</div>';
+    return;
+  }
+
+  const size = 520, cx = size/2, cy = size/2, R = 180;
+  const n = dims.length;
+  const angle = i => -Math.PI/2 + i * 2 * Math.PI / n;
+
+  // 网格
+  let grid = '';
+  for (let r = 1; r <= 4; r++) {
+    const rr = R * r / 4;
+    const pts = dims.map((_,i) => `${cx+rr*Math.cos(angle(i))},${cy+rr*Math.sin(angle(i))}`).join(' ');
+    grid += `<polygon points="${pts}" fill="none" stroke="var(--border)" stroke-width="0.5" />`;
+  }
+  // 轴线 + 标签
+  let axes = '';
+  dims.forEach((d, i) => {
+    const x2 = cx + R * Math.cos(angle(i));
+    const y2 = cy + R * Math.sin(angle(i));
+    const lx = cx + (R+20) * Math.cos(angle(i));
+    const ly = cy + (R+20) * Math.sin(angle(i));
+    axes += `<line x1="${cx}" y1="${cy}" x2="${x2}" y2="${y2}" stroke="var(--border)" stroke-width="0.5"/>`;
+    axes += `<text x="${lx}" y="${ly}" fill="var(--muted)" font-size="10" text-anchor="middle" dy="0.35em">${DIM_LABELS[d]||d}</text>`;
+  });
+  // 作者多边形
+  let polys = '';
+  let legend = '';
+  names.forEach(name => {
+    const color = AUTHOR_COLORS[name] || '#4a9eff';
+    const vals = data[name];
+    const pts = vals.map((v, i) => {
+      const r = v * R;
+      return `${cx+r*Math.cos(angle(i))},${cy+r*Math.sin(angle(i))}`;
+    }).join(' ');
+    polys += `<polygon points="${pts}" fill="${color}" fill-opacity="0.1" stroke="${color}" stroke-width="1.5"/>`;
+    const authorInfo = (currentState.authors || {})[name] || {};
+    legend += `<span class="legend-item"><span class="legend-dot" style="background:${color}"></span>${authorInfo.display_name || name}</span>`;
+  });
+
+  document.getElementById('compareRadar').innerHTML =
+    `<div class="radar-container"><svg class="radar-svg" viewBox="0 0 ${size} ${size}">
+      ${grid}${axes}${polys}
+    </svg></div>
+    <div class="legend" style="text-align:center">${legend}</div>`;
+}
+
+function renderDistance(cmp) {
+  const dm = cmp.distance_matrix || {};
+  const names = Object.keys(dm);
+  if (names.length === 0) {
+    document.getElementById('compareDistance').innerHTML = '<div class="empty-msg">无距离数据</div>';
+    return;
+  }
+  let html = '<table class="distance-table"><thead><tr><th></th>';
+  names.forEach(n => {
+    const a = currentState.authors[n] || {};
+    html += `<th>${a.display_name || n}</th>`;
+  });
+  html += '</tr></thead><tbody>';
+  names.forEach(n1 => {
+    const a1 = currentState.authors[n1] || {};
+    html += `<tr><td style="color:${AUTHOR_COLORS[n1]||'var(--accent)'};font-weight:bold">${a1.display_name||n1}</td>`;
+    names.forEach(n2 => {
+      const v = dm[n1][n2];
+      if (n1 === n2) {
+        html += `<td class="diag">—</td>`;
+      } else {
+        const intensity = Math.min(1, v / 0.5);
+        const bg = `rgba(244,67,54,${intensity*0.3})`;
+        html += `<td style="background:${bg}">${v.toFixed(3)}</td>`;
+      }
+    });
+    html += '</tr>';
+  });
+  html += '</tbody></table>';
+  html += '<div style="font-size:11px;color:var(--muted);margin-top:8px">数值越小=风格越接近，越大=差异越大</div>';
+  document.getElementById('compareDistance').innerHTML = html;
+}
+
+function renderDistinctive(cmp) {
+  const dist = cmp.distinctive_features || {};
+  const names = Object.keys(dist);
+  if (names.length === 0) {
+    document.getElementById('compareDistinctive').innerHTML = '<div class="empty-msg">无特征数据</div>';
+    return;
+  }
+  let html = '';
+  names.forEach(name => {
+    const a = currentState.authors[name] || {};
+    const color = AUTHOR_COLORS[name] || '#4a9eff';
+    const features = dist[name] || [];
+    html += `<div class="distinctive-item">
+      <span class="di-name" style="color:${color}">${a.display_name || name}</span> 的签名特征:
+      <div class="di-dims">${features.map(f => `${DIM_LABELS[f.dim]||f.dim}: ${f.value} (均值 ${f.avg})`).join(' · ')}</div>
+    </div>`;
+  });
+  document.getElementById('compareDistinctive').innerHTML = html;
+}
+
+function renderDialogueCompare(cmp) {
+  const dc = cmp.dialogue_compare || {};
+  const names = Object.keys(dc);
+  if (names.length === 0) {
+    document.getElementById('compareDialogue').innerHTML = '<div class="empty-msg">无对话数据</div>';
+    return;
+  }
+  let html = '<table class="data-table"><thead><tr><th>作者</th><th class="num">裸对话率</th><th class="num">对话密度/千字</th><th class="num">平均对话长度</th></tr></thead><tbody>';
+  names.forEach(name => {
+    const a = currentState.authors[name] || {};
+    const d = dc[name];
+    html += `<tr>
+      <td style="color:${AUTHOR_COLORS[name]||'var(--accent)'}">${a.display_name||name}</td>
+      <td class="num">${d.bare_ratio}%</td>
+      <td class="num">${d.dial_density}</td>
+      <td class="num">${d.dial_mean_len}</td>
+    </tr>`;
+  });
+  html += '</tbody></table>';
+  document.getElementById('compareDialogue').innerHTML = html;
+}
+
+function renderSensoryCompare(cmp) {
+  const sc = cmp.sensory_compare || {};
+  const names = Object.keys(sc);
+  if (names.length === 0) {
+    document.getElementById('compareSensory').innerHTML = '<div class="empty-msg">无感官数据</div>';
+    return;
+  }
+  const channels = ['视觉','听觉','嗅觉','触觉','味觉'];
+  let html = '<table class="data-table"><thead><tr><th>作者</th>';
+  channels.forEach(ch => html += `<th class="num">${ch}</th>`);
+  html += '</tr></thead><tbody>';
+  names.forEach(name => {
+    const a = currentState.authors[name] || {};
+    const d = sc[name] || {};
+    html += `<tr><td style="color:${AUTHOR_COLORS[name]||'var(--accent)'}">${a.display_name||name}</td>`;
+    channels.forEach(ch => {
+      const v = d[ch] || 0;
+      const bg = `rgba(74,158,255,${v/100*0.4})`;
+      html += `<td class="num" style="background:${bg}">${v.toFixed(1)}%</td>`;
+    });
+    html += '</tr>';
+  });
+  html += '</tbody></table>';
+  document.getElementById('compareSensory').innerHTML = html;
+}
+
+// ============================================================
+// 阶段详情
+// ============================================================
+function renderDetails() {
+  const container = document.getElementById('detailContainer');
+  const authors = currentState.authors || {};
+  const phases = currentState.phases || {};
+  let html = '';
+
+  PHASE_INFO.slice(0, 7).forEach(pi => {
+    const ph = phases[pi.id] || {};
+    if (ph.status !== 'completed' && ph.status !== 'in_progress') return;
+
+    let body = '';
+    Object.keys(authors).forEach(name => {
+      const a = authors[name];
+      const data = (a.phases || {})[pi.id];
+      if (!data) return;
+      body += renderPhaseDetail(pi.id, name, a, data);
+    });
+
+    if (!body) return;
+
+    html += `<div class="detail-section" id="detail-${pi.id}">
+      <div class="detail-header" onclick="toggleDetail('${pi.id}')">
+        <h3>${pi.id.toUpperCase()} ${pi.name}</h3>
+        <span class="toggle">▼</span>
+      </div>
+      <div class="detail-body">${body}</div>
+    </div>`;
+  });
+
+  container.innerHTML = html || '<div class="empty-msg">暂无详情数据</div>';
+}
+
+function renderPhaseDetail(pid, name, author, data) {
+  const color = author.color || AUTHOR_COLORS[name] || '#4a9eff';
+  let html = `<div style="margin-bottom:16px;"><div style="color:${color};font-weight:bold;margin-bottom:6px;">${author.display_name}</div>`;
+
+  if (pid === 'p1') {
+    const dims = ['sent_len_mean','short_sent_ratio','long_sent_ratio','para_len_mean','short_para_ratio',
+      'dialogue_ratio','comma_period_ratio','dash_per_1000','ellipsis_per_1000','metaphor_per_1000',
+      'conjunction_starter_ratio','dialogue_guide_per_1000','le_ending_ratio'];
+    html += '<table class="data-table"><tbody>';
+    dims.forEach(d => {
+      const v = data[d];
+      if (v !== undefined) {
+        const pct = ['short_sent_ratio','long_sent_ratio','short_para_ratio','dialogue_ratio','conjunction_starter_ratio','le_ending_ratio'].includes(d);
+        html += `<tr><td>${DIM_LABELS[d]||d}</td><td class="num">${pct ? (v*100).toFixed(2)+'%' : v}</td></tr>`;
+      }
+    });
+    html += '</tbody></table>';
+    if (data.imagery_top20 && data.imagery_top20.length > 0) {
+      html += '<div style="margin-top:6px;font-size:11px;color:var(--muted)">意象Top10: ' +
+        data.imagery_top20.slice(0,10).map(i => `${i.word}(${i.count})`).join(' ') + '</div>';
+    }
+  } else if (pid === 'p2') {
+    html += '<table class="data-table"><tbody>';
+    html += `<tr><td colspan="2" style="color:var(--accent)">起始类型</td></tr>`;
+    Object.entries(data.opener_dist || {}).forEach(([k,v]) => html += `<tr><td>${k}</td><td class="num">${v}%</td></tr>`);
+    html += `<tr><td colspan="2" style="color:var(--accent)">句长分布</td></tr>`;
+    Object.entries(data.length_hist || {}).forEach(([k,v]) => html += `<tr><td>${k}</td><td class="num">${v}%</td></tr>`);
+    html += `<tr><td colspan="2" style="color:var(--accent)">句尾模式</td></tr>`;
+    Object.entries(data.ending_dist || {}).forEach(([k,v]) => html += `<tr><td>${k}</td><td class="num">${v}%</td></tr>`);
+    html += `<tr><td>单句比例</td><td class="num">${data.simple_sent_ratio}%</td></tr>`;
+    html += `<tr><td>复句比例</td><td class="num">${data.multi_clause_ratio}%</td></tr>`;
+    html += '</tbody></table>';
+  } else if (pid === 'p3') {
+    html += '<table class="data-table"><tbody>';
+    html += `<tr><td colspan="2" style="color:var(--accent)">段落类型</td></tr>`;
+    Object.entries(data.type_dist || {}).forEach(([k,v]) => html += `<tr><td>${k}</td><td class="num">${v}%</td></tr>`);
+    html += `<tr><td colspan="2" style="color:var(--accent)">段长分布</td></tr>`;
+    Object.entries(data.length_hist || {}).forEach(([k,v]) => html += `<tr><td>${k}</td><td class="num">${v}%</td></tr>`);
+    html += `<tr><td>单句段占比</td><td class="num">${data.single_sent_ratio}%</td></tr>`;
+    html += `<tr><td>平均段长</td><td class="num">${data.para_len_mean}</td></tr>`;
+    html += '</tbody></table>';
+  } else if (pid === 'p4') {
+    html += '<table class="data-table"><tbody>';
+    html += `<tr><td colspan="2" style="color:var(--accent)">感官通道(/千字)</td></tr>`;
+    Object.entries(data.sensory_per_1000 || {}).forEach(([k,v]) => html += `<tr><td>${k}</td><td class="num">${v}</td></tr>`);
+    html += `<tr><td colspan="2" style="color:var(--accent)">通道叠加深度</td></tr>`;
+    Object.entries(data.layer_dist || {}).forEach(([k,v]) => html += `<tr><td>${k}通道</td><td class="num">${v}%</td></tr>`);
+    html += `<tr><td colspan="2" style="color:var(--accent)">意象位置分布</td></tr>`;
+    Object.entries(data.position_dist || {}).forEach(([k,v]) => html += `<tr><td>${k}</td><td class="num">${v}%</td></tr>`);
+    html += '</tbody></table>';
+    if (data.imagery_top15 && data.imagery_top15.length > 0) {
+      html += '<div style="margin-top:6px;font-size:11px;color:var(--muted)">意象Top10: ' +
+        data.imagery_top15.slice(0,10).map(i => `${i.word}(${i.per_1000})`).join(' ') + '</div>';
+    }
+  } else if (pid === 'p5') {
+    html += '<table class="data-table"><tbody>';
+    html += `<tr><td>对话总数</td><td class="num">${data.total_dialogues}</td></tr>`;
+    html += `<tr><td>对话密度/千字</td><td class="num">${data.dial_density_per_1000}</td></tr>`;
+    html += `<tr><td>裸对话率</td><td class="num">${data.bare_dialogue_ratio}%</td></tr>`;
+    html += `<tr><td>平均对话长度</td><td class="num">${data.length_stats.mean}</td></tr>`;
+    html += `<tr><td colspan="2" style="color:var(--accent)">引导模式</td></tr>`;
+    Object.entries(data.guide_patterns || {}).forEach(([k,v]) => html += `<tr><td>${k}</td><td class="num">${v}</td></tr>`);
+    html += `<tr><td colspan="2" style="color:var(--accent)">对话长度分布</td></tr>`;
+    Object.entries(data.length_hist || {}).forEach(([k,v]) => html += `<tr><td>${k}</td><td class="num">${v}%</td></tr>`);
+    html += '</tbody></table>';
+  } else if (pid === 'p6') {
+    html += '<table class="data-table"><tbody>';
+    html += `<tr><td>比喻总数</td><td class="num">${data.total_metaphors}</td></tr>`;
+    html += `<tr><td>比喻密度/千字</td><td class="num">${data.metaphor_density}</td></tr>`;
+    html += `<tr><td colspan="2" style="color:var(--accent)">喻体域分布</td></tr>`;
+    Object.entries(data.vehicle_dist || {}).forEach(([k,v]) => html += `<tr><td>${k}</td><td class="num">${v}%</td></tr>`);
+    html += `<tr><td colspan="2" style="color:var(--accent)">修辞/千字</td></tr>`;
+    Object.entries(data.rhetoric_per_1000 || {}).forEach(([k,v]) => html += `<tr><td>${k}</td><td class="num">${v}</td></tr>`);
+    html += '</tbody></table>';
+    if (data.metaphor_examples && data.metaphor_examples.length > 0) {
+      html += '<div style="margin-top:6px;font-size:11px;color:var(--muted)">比喻示例:<br>' +
+        data.metaphor_examples.map(e => '"' + e + '"').join('<br>') + '</div>';
+    }
+  } else if (pid === 'p7') {
+    html += '<table class="data-table"><tbody>';
+    html += `<tr><td colspan="2" style="color:var(--accent)">开篇模式</td></tr>`;
+    Object.entries(data.opening_dist || {}).forEach(([k,v]) => html += `<tr><td>${k}</td><td class="num">${v}%</td></tr>`);
+    html += `<tr><td colspan="2" style="color:var(--accent)">章末模式</td></tr>`;
+    Object.entries(data.closing_dist || {}).forEach(([k,v]) => html += `<tr><td>${k}</td><td class="num">${v}%</td></tr>`);
+    html += `<tr><td>世界自转/千字</td><td class="num">${data.world_rotation_density}</td></tr>`;
+    html += `<tr><td>物件叙事/千字</td><td class="num">${data.object_narrative_density}</td></tr>`;
+    html += `<tr><td>延迟兑现/千字</td><td class="num">${data.delayed_gratification_density}</td></tr>`;
+    html += `<tr><td>分析章数</td><td class="num">${data.chapters_analyzed}</td></tr>`;
+    html += '</tbody></table>';
+    if (data.opening_examples && data.opening_examples.length > 0) {
+      html += '<div style="margin-top:6px;font-size:11px;color:var(--muted)">开篇示例:<br>' +
+        data.opening_examples.map(e => `[${e.type}] ${e.text}`).join('<br>') + '</div>';
+    }
+  }
+
+  html += '</div>';
+  return html;
+}
+
+function toggleDetail(pid) {
+  const el = document.getElementById('detail-' + pid);
+  if (el) el.classList.toggle('collapsed');
+}
+
+// Tab 切换
+document.getElementById('compareTabs').addEventListener('click', e => {
+  if (!e.target.classList.contains('tab')) return;
+  const tab = e.target.dataset.tab;
+  document.querySelectorAll('#compareTabs .tab').forEach(t => t.classList.remove('active'));
+  e.target.classList.add('active');
+  document.querySelectorAll('.compare-panel').forEach(p => p.style.display = 'none');
+  const panel = document.getElementById('compare' + tab.charAt(0).toUpperCase() + tab.slice(1));
+  if (panel) panel.style.display = 'block';
+});
+
+// 启动
+loadState();
+startAutoRefresh();
+</script>
+</body>
+</html>

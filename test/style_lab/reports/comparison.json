@@ -1,0 +1,446 @@
+{
+  "dimensions": [
+    "sent_len_mean",
+    "short_sent_ratio",
+    "long_sent_ratio",
+    "para_len_mean",
+    "short_para_ratio",
+    "dialogue_ratio",
+    "comma_period_ratio",
+    "dash_per_1000",
+    "ellipsis_per_1000",
+    "metaphor_per_1000",
+    "conjunction_starter_ratio",
+    "dialogue_guide_per_1000",
+    "le_ending_ratio"
+  ],
+  "normalized": {
+    "yanyujiangnan": {
+      "sent_len_mean": 0.7396,
+      "short_sent_ratio": 0.2177,
+      "long_sent_ratio": 0.4837,
+      "para_len_mean": 0.9067,
+      "short_para_ratio": 0.2851,
+      "dialogue_ratio": 0.3921,
+      "comma_period_ratio": 0.689,
+      "dash_per_1000": 0.0,
+      "ellipsis_per_1000": 0.0722,
+      "metaphor_per_1000": 0.3025,
+      "conjunction_starter_ratio": 1.0,
+      "dialogue_guide_per_1000": 1.0,
+      "le_ending_ratio": 0.375
+    },
+    "chendong": {
+      "sent_len_mean": 0.9151,
+      "short_sent_ratio": 0.2354,
+      "long_sent_ratio": 0.8621,
+      "para_len_mean": 0.56,
+      "short_para_ratio": 0.4654,
+      "dialogue_ratio": 0.3289,
+      "comma_period_ratio": 1.0,
+      "dash_per_1000": 0.0,
+      "ellipsis_per_1000": 0.0,
+      "metaphor_per_1000": 0.6164,
+      "conjunction_starter_ratio": 0.9081,
+      "dialogue_guide_per_1000": 0.1653,
+      "le_ending_ratio": 0.3211
+    },
+    "jiangnan": {
+      "sent_len_mean": 0.6989,
+      "short_sent_ratio": 0.5113,
+      "long_sent_ratio": 0.519,
+      "para_len_mean": 1.0,
+      "short_para_ratio": 0.4918,
+      "dialogue_ratio": 0.717,
+      "comma_period_ratio": 0.6757,
+      "dash_per_1000": 0.0381,
+      "ellipsis_per_1000": 0.203,
+      "metaphor_per_1000": 1.0,
+      "conjunction_starter_ratio": 0.1838,
+      "dialogue_guide_per_1000": 0.0308,
+      "le_ending_ratio": 0.5151
+    },
+    "maibao": {
+      "sent_len_mean": 0.6486,
+      "short_sent_ratio": 0.4525,
+      "long_sent_ratio": 0.3905,
+      "para_len_mean": 0.4576,
+      "short_para_ratio": 0.7731,
+      "dialogue_ratio": 0.6431,
+      "comma_period_ratio": 0.6523,
+      "dash_per_1000": 0.0801,
+      "ellipsis_per_1000": 0.0057,
+      "metaphor_per_1000": 0.4267,
+      "conjunction_starter_ratio": 0.512,
+      "dialogue_guide_per_1000": 0.631,
+      "le_ending_ratio": 0.5237
+    },
+    "wuzei": {
+      "sent_len_mean": 1.0,
+      "short_sent_ratio": 0.3541,
+      "long_sent_ratio": 1.0,
+      "para_len_mean": 0.6171,
+      "short_para_ratio": 0.5788,
+      "dialogue_ratio": 0.619,
+      "comma_period_ratio": 0.9409,
+      "dash_per_1000": 0.2916,
+      "ellipsis_per_1000": 0.744,
+      "metaphor_per_1000": 0.5733,
+      "conjunction_starter_ratio": 0.6149,
+      "dialogue_guide_per_1000": 0.2666,
+      "le_ending_ratio": 0.2565
+    },
+    "jinhezai": {
+      "sent_len_mean": 0.4586,
+      "short_sent_ratio": 1.0,
+      "long_sent_ratio": 0.2191,
+      "para_len_mean": 0.451,
+      "short_para_ratio": 1.0,
+      "dialogue_ratio": 1.0,
+      "comma_period_ratio": 0.599,
+      "dash_per_1000": 1.0,
+      "ellipsis_per_1000": 1.0,
+      "metaphor_per_1000": 0.1674,
+      "conjunction_starter_ratio": 0.256,
+      "dialogue_guide_per_1000": 0.3972,
+      "le_ending_ratio": 1.0
+    }
+  },
+  "distance_matrix": {
+    "yanyujiangnan": {
+      "yanyujiangnan": 0.0,
+      "chendong": 1.1133,
+      "jiangnan": 1.5416,
+      "maibao": 0.9995,
+      "wuzei": 1.3957,
+      "jinhezai": 2.2459
+    },
+    "chendong": {
+      "yanyujiangnan": 1.1133,
+      "chendong": 0.0,
+      "jiangnan": 1.2086,
+      "maibao": 1.0595,
+      "wuzei": 0.9407,
+      "jinhezai": 2.2928
+    },
+    "jiangnan": {
+      "yanyujiangnan": 1.5416,
+      "chendong": 1.2086,
+      "jiangnan": 0.0,
+      "maibao": 1.1132,
+      "wuzei": 1.1951,
+      "jinhezai": 1.9132
+    },
+    "maibao": {
+      "yanyujiangnan": 0.9995,
+      "chendong": 1.0595,
+      "jiangnan": 1.1132,
+      "maibao": 0.0,
+      "wuzei": 1.2156,
+      "jinhezai": 1.6722
+    },
+    "wuzei": {
+      "yanyujiangnan": 1.3957,
+      "chendong": 0.9407,
+      "jiangnan": 1.1951,
+      "maibao": 1.2156,
+      "wuzei": 0.0,
+      "jinhezai": 1.7939
+    },
+    "jinhezai": {
+      "yanyujiangnan": 2.2459,
+      "chendong": 2.2928,
+      "jiangnan": 1.9132,
+      "maibao": 1.6722,
+      "wuzei": 1.7939,
+      "jinhezai": 0.0
+    }
+  },
+  "distinctive_features": {
+    "yanyujiangnan": [
+      {
+        "dim": "dialogue_guide_per_1000",
+        "value": 1.0,
+        "avg": 0.4151
+      },
+      {
+        "dim": "conjunction_starter_ratio",
+        "value": 1.0,
+        "avg": 0.5791
+      },
+      {
+        "dim": "short_para_ratio",
+        "value": 0.2851,
+        "avg": 0.599
+      }
+    ],
+    "chendong": [
+      {
+        "dim": "ellipsis_per_1000",
+        "value": 0.0,
+        "avg": 0.3375
+      },
+      {
+        "dim": "conjunction_starter_ratio",
+        "value": 0.9081,
+        "avg": 0.5791
+      },
+      {
+        "dim": "dialogue_ratio",
+        "value": 0.3289,
+        "avg": 0.6167
+      }
+    ],
+    "jiangnan": [
+      {
+        "dim": "metaphor_per_1000",
+        "value": 1.0,
+        "avg": 0.5144
+      },
+      {
+        "dim": "conjunction_starter_ratio",
+        "value": 0.1838,
+        "avg": 0.5791
+      },
+      {
+        "dim": "dialogue_guide_per_1000",
+        "value": 0.0308,
+        "avg": 0.4151
+      }
+    ],
+    "maibao": [
+      {
+        "dim": "ellipsis_per_1000",
+        "value": 0.0057,
+        "avg": 0.3375
+      },
+      {
+        "dim": "dialogue_guide_per_1000",
+        "value": 0.631,
+        "avg": 0.4151
+      },
+      {
+        "dim": "para_len_mean",
+        "value": 0.4576,
+        "avg": 0.6654
+      }
+    ],
+    "wuzei": [
+      {
+        "dim": "long_sent_ratio",
+        "value": 1.0,
+        "avg": 0.5791
+      },
+      {
+        "dim": "ellipsis_per_1000",
+        "value": 0.744,
+        "avg": 0.3375
+      },
+      {
+        "dim": "sent_len_mean",
+        "value": 1.0,
+        "avg": 0.7435
+      }
+    ],
+    "jinhezai": [
+      {
+        "dim": "dash_per_1000",
+        "value": 1.0,
+        "avg": 0.235
+      },
+      {
+        "dim": "ellipsis_per_1000",
+        "value": 1.0,
+        "avg": 0.3375
+      },
+      {
+        "dim": "short_sent_ratio",
+        "value": 1.0,
+        "avg": 0.4618
+      }
+    ]
+  },
+  "dialogue_compare": {
+    "yanyujiangnan": {
+      "bare_ratio": 0.0,
+      "dial_density": 0.0,
+      "dial_mean_len": 0
+    },
+    "chendong": {
+      "bare_ratio": 0.0,
+      "dial_density": 0.0,
+      "dial_mean_len": 0
+    },
+    "jiangnan": {
+      "bare_ratio": 0.0,
+      "dial_density": 0.0,
+      "dial_mean_len": 0
+    },
+    "maibao": {
+      "bare_ratio": 0.0,
+      "dial_density": 0.0,
+      "dial_mean_len": 0
+    },
+    "wuzei": {
+      "bare_ratio": 0.0,
+      "dial_density": 0.0,
+      "dial_mean_len": 0
+    },
+    "jinhezai": {
+      "bare_ratio": 0.0,
+      "dial_density": 0.0,
+      "dial_mean_len": 0
+    }
+  },
+  "sensory_compare": {
+    "yanyujiangnan": {
+      "视觉": 63.6,
+      "听觉": 18.2,
+      "嗅觉": 3.5,
+      "触觉": 11.4,
+      "味觉": 3.3
+    },
+    "chendong": {
+      "视觉": 58.7,
+      "听觉": 22.8,
+      "嗅觉": 3.7,
+      "触觉": 13.2,
+      "味觉": 1.6
+    },
+    "jiangnan": {
+      "视觉": 49.6,
+      "听觉": 28.5,
+      "嗅觉": 3.1,
+      "触觉": 16.1,
+      "味觉": 2.7
+    },
+    "maibao": {
+      "视觉": 53.8,
+      "听觉": 26.0,
+      "嗅觉": 5.3,
+      "触觉": 11.8,
+      "味觉": 3.1
+    },
+    "wuzei": {
+      "视觉": 67.2,
+      "听觉": 17.3,
+      "嗅觉": 3.7,
+      "触觉": 9.6,
+      "味觉": 2.2
+    },
+    "jinhezai": {
+      "视觉": 52.6,
+      "听觉": 33.4,
+      "嗅觉": 2.4,
+      "触觉": 8.8,
+      "味觉": 2.8
+    }
+  },
+  "radar_dims": [
+    "sent_len_mean",
+    "short_sent_ratio",
+    "long_sent_ratio",
+    "para_len_mean",
+    "short_para_ratio",
+    "dialogue_ratio",
+    "comma_period_ratio",
+    "dash_per_1000",
+    "ellipsis_per_1000",
+    "metaphor_per_1000",
+    "conjunction_starter_ratio",
+    "dialogue_guide_per_1000",
+    "le_ending_ratio"
+  ],
+  "radar_data": {
+    "yanyujiangnan": [
+      0.7396,
+      0.2177,
+      0.4837,
+      0.9067,
+      0.2851,
+      0.3921,
+      0.689,
+      0.0,
+      0.0722,
+      0.3025,
+      1.0,
+      1.0,
+      0.375
+    ],
+    "chendong": [
+      0.9151,
+      0.2354,
+      0.8621,
+      0.56,
+      0.4654,
+      0.3289,
+      1.0,
+      0.0,
+      0.0,
+      0.6164,
+      0.9081,
+      0.1653,
+      0.3211
+    ],
+    "jiangnan": [
+      0.6989,
+      0.5113,
+      0.519,
+      1.0,
+      0.4918,
+      0.717,
+      0.6757,
+      0.0381,
+      0.203,
+      1.0,
+      0.1838,
+      0.0308,
+      0.5151
+    ],
+    "maibao": [
+      0.6486,
+      0.4525,
+      0.3905,
+      0.4576,
+      0.7731,
+      0.6431,
+      0.6523,
+      0.0801,
+      0.0057,
+      0.4267,
+      0.512,
+      0.631,
+      0.5237
+    ],
+    "wuzei": [
+      1.0,
+      0.3541,
+      1.0,
+      0.6171,
+      0.5788,
+      0.619,
+      0.9409,
+      0.2916,
+      0.744,
+      0.5733,
+      0.6149,
+      0.2666,
+      0.2565
+    ],
+    "jinhezai": [
+      0.4586,
+      1.0,
+      0.2191,
+      0.451,
+      1.0,
+      1.0,
+      0.599,
+      1.0,
+      1.0,
+      0.1674,
+      0.256,
+      0.3972,
+      1.0
+    ]
+  }
+}

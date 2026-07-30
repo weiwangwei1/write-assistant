@@ -154,7 +154,7 @@ powershell -ExecutionPolicy Bypass -File auto-runner/generate_task_config.ps1 # 
 
 ## 九、当前进度快照
 
-**当前状态**：《征诏之界》在产中。征调/副本流/无限流变体，yanyujiangnan 文风包，400 章 / 6 卷，2400-2600 字/章，黄金三章≤2600。立项完成——选题预筛 + 大纲设计 + 角色设计（7 张角色卡+关系网）+ 黄金三章 Ch1-3 已完成全流水线审核并 published（style_lint 全绿，detail-review 33 项修复，de-ai ai_score 1.3/1.3/1.9，终审 9.05/9.06/9.04 策略性放行，fanqie-adapter ready_to_publish）。框架升级至 v3.2.5（chapter-writer v3.2.2 H3 新增精算失效时刻要求、detail-reviewer v1.11、style_lint 新增规则）。关键设定变更：师父姓名乔老头→沈老头/沈问机；苏眠能力入梦→读心（看情感意图非记忆）+ 代价丢记忆。下一步：Ch4 beat sheet 细化 + 开写（Ch4-6 方向：调查师父下落 + 苏眠正式出场 + 程家旧宅赵家冲突）。
+**当前状态**：《征诏之界》在产中。征调/副本流/无限流变体，yanyujiangnan 文风包，400 章 / 6 卷，2400-2600 字/章，黄金三章≤2600。立项完成——选题预筛 + 大纲设计 + 角色设计（7 张角色卡+关系网）+ 黄金三章 Ch1-3 已完成全流水线审核并 published（style_lint 全绿，detail-review 33 项修复，de-ai ai_score 1.3/1.3/1.9，终审 9.05/9.06/9.04 策略性放行，fanqie-adapter ready_to_publish）。框架升级至 v3.2.5（chapter-writer v3.2.2 H3 新增精算失效时刻要求、detail-reviewer v1.11、style_lint 新增规则）。关键设定变更：师父姓名乔老头→沈老头/沈问机；苏眠能力入梦→读心（看情感意图非记忆）+ 代价丢记忆。测试区完成烟雨江南 12 维韵味蒸馏（`test/style_lab/flavor_distill.py` + `flavor_check.py` + `style_essence_card.json`），基于框架重写黄金三章存于 `test/flavor_rewrite/`，校验 11 项改进 2 项退步。下一步：Ch4 beat sheet 细化 + 开写（Ch4-6 方向：调查师父下落 + 苏眠正式出场 + 程家旧宅赵家冲突）。
 
 **项目进度面板**：`dashboard.html`（位于 `write-assistant/` 根目录，作为通用工具不绑定具体项目，避免项目归档时被删除）提供实时可视化监控（进度/质量趋势/角色状态/伏笔追踪/悬念窗口/反派梯队/下一步动作/目录信息/章节目录）。支持项目选择器（URL 参数 `?project=<项目名>`）、模块展开/折叠、章节目录按卷分组。启动方式：在 `write-assistant/` 目录下运行 `python -m http.server 8000`，访问 `http://localhost:8000/dashboard.html?project=征诏之界`。数据源为各项目 `memory/*.json`。**当 `KNOWN_PROJECTS` 数组为空时面板会显示"暂无在产项目"提示；新项目立项后须在 `dashboard.html` 的 `KNOWN_PROJECTS` 数组中追加项目名，刷新浏览器即可看到最新状态**。
 
