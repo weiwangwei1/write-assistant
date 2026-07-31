@@ -1,0 +1,328 @@
+{
+  "card_type": "style_fingerprint_baseline",
+  "metric_version": "2.0",
+  "status": "ready",
+  "confidence": "high",
+  "note": "",
+  "metrics": {
+    "author": "烟雨江南",
+    "source": ".trae/skills/writer-styles/yanyujiangnan/reference/原作_utf8/亵渎.txt",
+    "sample_chars": 2180376,
+    "sample_sents": 82369,
+    "sample_paras": 38271,
+    "func_words_per_1000": {
+      "的": 44.297,
+      "了": 19.174,
+      "在": 11.485,
+      "是": 14.705,
+      "不": 14.063,
+      "他": 7.708,
+      "她": 4.048,
+      "我": 6.174,
+      "你": 4.444,
+      "也": 4.361,
+      "都": 3.918,
+      "就": 5.498,
+      "又": 2.068,
+      "还": 2.826,
+      "与": 1.404,
+      "和": 2.572,
+      "或": 0.299,
+      "着": 6.528,
+      "过": 3.762,
+      "把": 1.155,
+      "被": 1.532,
+      "向": 1.993,
+      "从": 1.801,
+      "但": 1.924,
+      "而": 3.135,
+      "却": 0.727,
+      "只": 3.139,
+      "已": 3.691,
+      "曾": 0.307,
+      "将": 1.99
+    },
+    "sent_len_mean": 26.47,
+    "sent_len_stdev": 15.68,
+    "short_sent_ratio": 0.0917,
+    "long_sent_ratio": 0.1564,
+    "para_len_mean": 56.97,
+    "short_para_ratio": 0.1085,
+    "dialogue_ratio": 0.2305,
+    "comma_period_ratio": 1.907,
+    "dash_per_1000": 0.001,
+    "ellipsis_per_1000": 1.33,
+    "sensory_dist": {
+      "视觉": 15.021,
+      "听觉": 4.933,
+      "嗅觉": 0.795,
+      "触觉": 4.398,
+      "味觉": 0.822
+    },
+    "metaphor_per_1000": 0.75,
+    "conjunction_starter_ratio": 0.0343,
+    "dialogue_guide_per_1000": 2.949,
+    "le_ending_ratio": 0.0226,
+    "imagery_top20": [
+      {
+        "word": "魔法",
+        "count": 4833,
+        "per_1000": 2.217
+      },
+      {
+        "word": "没有",
+        "count": 3606,
+        "per_1000": 1.654
+      },
+      {
+        "word": "风月",
+        "count": 3565,
+        "per_1000": 1.635
+      },
+      {
+        "word": "自己",
+        "count": 3331,
+        "per_1000": 1.528
+      },
+      {
+        "word": "精灵",
+        "count": 3278,
+        "per_1000": 1.503
+      },
+      {
+        "word": "知道",
+        "count": 2991,
+        "per_1000": 1.372
+      },
+      {
+        "word": "胖子",
+        "count": 2533,
+        "per_1000": 1.162
+      },
+      {
+        "word": "起来",
+        "count": 2448,
+        "per_1000": 1.123
+      },
+      {
+        "word": "骑士",
+        "count": 2142,
+        "per_1000": 0.982
+      },
+      {
+        "word": "力量",
+        "count": 2139,
+        "per_1000": 0.981
+      },
+      {
+        "word": "安德",
+        "count": 2109,
+        "per_1000": 0.967
+      },
+      {
+        "word": "德罗",
+        "count": 1974,
+        "per_1000": 0.905
+      },
+      {
+        "word": "法师",
+        "count": 1862,
+        "per_1000": 0.854
+      },
+      {
+        "word": "虽然",
+        "count": 1841,
+        "per_1000": 0.844
+      },
+      {
+        "word": "大人",
+        "count": 1777,
+        "per_1000": 0.815
+      },
+      {
+        "word": "罗妮",
+        "count": 1754,
+        "per_1000": 0.804
+      },
+      {
+        "word": "安德罗",
+        "count": 1754,
+        "per_1000": 0.804
+      },
+      {
+        "word": "德罗妮",
+        "count": 1748,
+        "per_1000": 0.802
+      },
+      {
+        "word": "忽然",
+        "count": 1683,
+        "per_1000": 0.772
+      },
+      {
+        "word": "完全",
+        "count": 1624,
+        "per_1000": 0.745
+      }
+    ]
+  },
+  "n_groups": 25,
+  "chapter_stats": {
+    "sent_len_mean": {
+      "mean": 26.6648,
+      "stdev": 2.1989,
+      "p5": 23.98,
+      "p95": 30.792,
+      "cv": 0.0825
+    },
+    "sent_len_stdev": {
+      "mean": 14.9712,
+      "stdev": 2.7011,
+      "p5": 11.002,
+      "p95": 17.288,
+      "cv": 0.1804
+    },
+    "short_sent_ratio": {
+      "mean": 0.0838,
+      "stdev": 0.0343,
+      "p5": 0.0049,
+      "p95": 0.124,
+      "cv": 0.4088
+    },
+    "long_sent_ratio": {
+      "mean": 0.1539,
+      "stdev": 0.0419,
+      "p5": 0.0822,
+      "p95": 0.2307,
+      "cv": 0.2724
+    },
+    "para_len_mean": {
+      "mean": 56.326,
+      "stdev": 10.0794,
+      "p5": 40.894,
+      "p95": 74.658,
+      "cv": 0.1789
+    },
+    "short_para_ratio": {
+      "mean": 0.1033,
+      "stdev": 0.0352,
+      "p5": 0.0445,
+      "p95": 0.1662,
+      "cv": 0.3409
+    },
+    "dialogue_ratio": {
+      "mean": 0.226,
+      "stdev": 0.0876,
+      "p5": 0.0651,
+      "p95": 0.363,
+      "cv": 0.3878
+    },
+    "comma_period_ratio": {
+      "mean": 1.8733,
+      "stdev": 0.2462,
+      "p5": 1.5538,
+      "p95": 2.2744,
+      "cv": 0.1314
+    },
+    "dash_per_1000": {
+      "mean": 0.0002,
+      "stdev": 0.0012,
+      "p5": 0.0,
+      "p95": 0.0,
+      "cv": 0.0059
+    },
+    "ellipsis_per_1000": {
+      "mean": 1.1944,
+      "stdev": 0.7036,
+      "p5": 0.0,
+      "p95": 2.1544,
+      "cv": 0.5891
+    },
+    "metaphor_per_1000": {
+      "mean": 0.8284,
+      "stdev": 0.4139,
+      "p5": 0.3842,
+      "p95": 1.7822,
+      "cv": 0.4996
+    },
+    "conjunction_starter_ratio": {
+      "mean": 0.0306,
+      "stdev": 0.0242,
+      "p5": 0.0,
+      "p95": 0.077,
+      "cv": 0.7907
+    },
+    "dialogue_guide_per_1000": {
+      "mean": 2.6268,
+      "stdev": 1.1006,
+      "p5": 1.0418,
+      "p95": 4.6094,
+      "cv": 0.419
+    },
+    "le_ending_ratio": {
+      "mean": 0.0205,
+      "stdev": 0.0108,
+      "p5": 0.0,
+      "p95": 0.0359,
+      "cv": 0.5269
+    },
+    "func_words_cosine": {
+      "mean": 0.0148,
+      "stdev": 0.0172,
+      "p5": 0.0015,
+      "p95": 0.0493
+    },
+    "sensory_cosine": {
+      "mean": 0.0278,
+      "stdev": 0.0804,
+      "p5": 0.0002,
+      "p95": 0.0562
+    }
+  },
+  "tolerance": {
+    "func_words_cosine": 0.08,
+    "sent_len_mean": 0.25,
+    "sent_len_stdev": 0.361,
+    "short_sent_ratio": 0.818,
+    "long_sent_ratio": 0.545,
+    "para_len_mean": 0.358,
+    "short_para_ratio": 0.682,
+    "dialogue_ratio": 0.776,
+    "comma_period_ratio": 0.35,
+    "dash_per_1000": 0.6,
+    "ellipsis_per_1000": 1.0,
+    "sensory_cosine": 0.15,
+    "metaphor_per_1000": 0.999,
+    "conjunction_starter_ratio": 1.0,
+    "dialogue_guide_per_1000": 0.838,
+    "le_ending_ratio": 1.0
+  },
+  "tolerance_source": {
+    "sent_len_mean": "default_floor",
+    "sent_len_stdev": "derived_2cv",
+    "short_sent_ratio": "derived_2cv",
+    "long_sent_ratio": "derived_2cv",
+    "para_len_mean": "derived_2cv",
+    "short_para_ratio": "derived_2cv",
+    "dialogue_ratio": "derived_2cv",
+    "comma_period_ratio": "default_floor",
+    "dash_per_1000": "default_floor",
+    "ellipsis_per_1000": "derived_2cv",
+    "metaphor_per_1000": "derived_2cv",
+    "conjunction_starter_ratio": "derived_2cv",
+    "dialogue_guide_per_1000": "derived_2cv",
+    "le_ending_ratio": "derived_2cv",
+    "func_words_cosine": "default_floor",
+    "sensory_cosine": "default_floor"
+  },
+  "exclude_names": [
+    "罗格",
+    "苏菲",
+    "芙萝娅",
+    "奥菲罗克",
+    "格雷夫斯",
+    "贝利",
+    "凯特",
+    "理查"
+  ]
+}
