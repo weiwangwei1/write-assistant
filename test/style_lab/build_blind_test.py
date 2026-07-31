@@ -7,7 +7,7 @@
 import json, io, sys, random, re
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
 
-random.seed(20260731)
+random.seed(20260801)  # v2 轮：换 seed 重新混排
 BASE = 'test/style_lab'
 
 def load(p):
@@ -29,6 +29,8 @@ def load_book(name):
             continue
     raise RuntimeError('decode failed')
 
+sm, ez, yy = load_book('狩魔'), load_book('罪恶'), load_book('永夜')
+
 # ---- 读仿写 6 段（去掉标题行） ----
 with open(f'{BASE}/blind_imitations.md', encoding='utf-8') as f:
     imit_md = f.read()
@@ -42,9 +44,7 @@ for s in sections:
         lines.pop(0)
     imit.append('\n'.join(lines).strip())
 
-# ---- 读原作 6 段 ----
-sm, ez, yy = load_book('狩魔'), load_book('罪恶'), load_book('永夜')
-
+# ---- 读原作 6 段（v2 轮：全新场景） ----
 def cut_book(text, marker, max_len=620):
     i = text.find(marker)
     if i < 0:
@@ -54,20 +54,23 @@ def cut_book(text, marker, max_len=620):
     k = seg.rfind('。', 0, len(seg))
     if k > max_len * 0.7:
         seg = seg[:k + 1]
-    return seg.strip()
+    return seg.strip().replace('　', '')  # 格式归一化：去全角缩进
+
+def load_samples(scene):
+    d = load(f'{BASE}/few_shot_samples/yanyujiangnan/{scene}.json')
+    return [dict(s, text=s['text'].replace('　', '')) for s in d['samples']]
 
 samples = {}
 for scene in ['battle', 'dialogue', 'environment', 'psychology']:
-    d = load(f'{BASE}/few_shot_samples/yanyujiangnan/{scene}.json')
-    samples[scene] = d['samples']
+    samples[scene] = load_samples(scene)
 
 orig = [
-    samples['battle'][5]['text'].strip(),                     # 1. 狼人刺宋子宁
-    samples['psychology'][0]['text'].strip(),                 # 2. 夜瞳/青之君王
-    cut_book(sm, '这样一片地方，五十年前叫做废墟', 600),      # 3. 废墟萤火
-    samples['psychology'][2]['text'].strip(),                 # 4. 朱姬走神
-    cut_book(sm, '女人冲了进来', 620),                        # 5. 母亲之死
-    cut_book(ez, '伊兰妮忽然站了起来，说', 560),              # 6. 歌顿篝火
+    cut_book(ez, '重装骑士开始冲锋，沉重的蹄音压制了一切声音', 600),   # 1. battle：歌顿冲阵
+    samples['dialogue'][1]['text'].strip(),                          # 2. dialogue：威廉种族平等
+    cut_book(sm, '咣当、咣当！阵阵嘈杂的噪音打破了清晨的宁静', 580),  # 3. environment：老汉斯上工
+    samples['psychology'][5]['text'].strip(),                        # 4. psychology：朱姬喷水
+    cut_book(yy, '对不起，我小小的打破了一下自己的承诺', 580),        # 5. death：千夜杀齐岳
+    cut_book(yy, '千夜张开光翼，纵身而起', 480),                      # 6. ending：千夜俯瞰铁幕
 ]
 
 labels = ['battle', 'dialogue', 'environment', 'psychology', 'death', 'ending']
