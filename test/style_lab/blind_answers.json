@@ -1,0 +1,44 @@
+[
+  {
+    "id": 1,
+    "scene": "psychology",
+    "a_is_original": true,
+    "a_chars": 549,
+    "b_chars": 502
+  },
+  {
+    "id": 2,
+    "scene": "ending",
+    "a_is_original": false,
+    "a_chars": 436,
+    "b_chars": 475
+  },
+  {
+    "id": 3,
+    "scene": "death",
+    "a_is_original": true,
+    "a_chars": 463,
+    "b_chars": 439
+  },
+  {
+    "id": 4,
+    "scene": "dialogue",
+    "a_is_original": false,
+    "a_chars": 470,
+    "b_chars": 532
+  },
+  {
+    "id": 5,
+    "scene": "environment",
+    "a_is_original": true,
+    "a_chars": 557,
+    "b_chars": 486
+  },
+  {
+    "id": 6,
+    "scene": "battle",
+    "a_is_original": true,
+    "a_chars": 472,
+    "b_chars": 392
+  }
+]
