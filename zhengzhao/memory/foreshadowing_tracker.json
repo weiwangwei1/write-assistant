@@ -1,6 +1,6 @@
 {
   "project": "征诏之界",
-  "updated_at": "2026-07-28T23:30:00+08:00",
+  "updated_at": "2026-07-31T22:45:00+08:00",
   "foreshadowings": [
     {
       "id": "F1",
@@ -47,9 +47,10 @@
       "notes": "血与铜钱本是一体——铜钱需要血来激活/认主",
       "actual_progress": [
         {"chapter": 2, "action": "血迹'黏不进铜钱表面，渗进了纹路里，像纹路本来就该是红的'——血迹开始与铜钱融合"},
-        {"chapter": 3, "action": "血迹'比之前淡了一点，像血在慢慢渗进纹路里，和铜钱融为一体'——融合加深"}
+        {"chapter": 3, "action": "血迹'比之前淡了一点，像血在慢慢渗进纹路里，和铜钱融为一体'——融合加深"},
+        {"chapter": 4, "action": "血迹'比昨天又淡了一层，纹路里的颜色更重，像血正在被铜钱吃掉'——融合加速，意象从'渗入'升级为'被吃掉'（铜钱主动性的暗示）"}
       ],
-      "current_status": "planted——血迹从Ch1'三天内新鲜血'→Ch2'渗入纹路'→Ch3'变淡融合'，渐进式融合过程明确",
+      "current_status": "planted——血迹从Ch1'三天内新鲜血'→Ch2'渗入纹路'→Ch3'变淡融合'→Ch4'被铜钱吃掉'，融合过程明确且加速，铜钱需要血来激活/认主的暗示加深",
       "chapters_since_last_action": 0,
       "next_milestone": "Ch10-15：揭示血与铜钱本是一体，铜钱需要血来激活/认主"
     },
@@ -93,13 +94,15 @@
       "planted_chapter": 4,
       "planted_by": "苏眠正式出场时展示",
       "expected_reveal_chapter": "20-30",
-      "status": "pending",
+      "status": "planted",
       "type": "character",
-      "notes": "两人能力协同可以覆盖规则+人心两个维度。苏眠推迟至Ch4出场，此伏笔尚未植入",
-      "actual_progress": [],
-      "current_status": "pending——苏眠推迟至Ch4出场，互补关系伏笔尚未植入",
+      "notes": "两人能力协同可以覆盖规则+人心两个维度。Ch4已植入：读心展示（看情感意图非记忆）+代价（丢记忆）+她认得界门烫（与程铖界门线交集）。互补关系本身未点破，留待能力协同场景揭示",
+      "actual_progress": [
+        {"chapter": 4, "action": "苏眠正式出场：触痂读心（'你算过账……没有把这笔算进去'——情感意图非记忆的规则展示），代价丢记忆（忘锁门）；'界门烫，她认得这种伤'——她与界门线的交集首次暗示"}
+      ],
+      "current_status": "planted——读心能力+代价已展示，'认得界门烫'埋下与程铖（铜钱算规则）互补的接口，协同关系未点破",
       "chapters_since_last_action": 0,
-      "next_milestone": "Ch4：苏眠正式出场，展示读心能力+代价（丢记忆），互补关系首次暗示"
+      "next_milestone": "Ch20-30：能力协同场景揭示互补关系（铜钱算规则+苏眠看人心=规则与人心双维度）"
     },
     {
       "id": "F7",
@@ -127,17 +130,18 @@
       "type": "conflict",
       "notes": "赵家占据程家旧宅，程铖需要赎回家产",
       "actual_progress": [
-        {"chapter": 3, "action": "赵家管家递烫金请柬'赵家少主请您明天去喝茶'，程铖三连怼回'告诉他，我明天没空。后天也没空。大后天也不一定有空。要不你让他写个申请，我看看日程'"}
+        {"chapter": 3, "action": "赵家管家递烫金请柬'赵家少主请您明天去喝茶'，程铖三连怼回'告诉他，我明天没空。后天也没空。大后天也不一定有空。要不你让他写个申请，我看看日程'"},
+        {"chapter": 4, "action": "茶会兑现（S6闭环）：'物归原主'话术被'坐得起，买不起'顶回；少主改抛界门交易'明晚赵某手上有几样界门的物件，请程少爷掌掌眼'——赵家要界门的东西；程铖应约明晚"}
       ],
-      "current_status": "planted——冲突预告明确，赵家少主尚未出场，程铖已主动挑衅",
+      "current_status": "planted——冲突已从预告升级为交易线：少主占椅三年+抛界门交易（动机不明），程铖'赵家的茶，不是白喝的'判断成立，明晚掌眼为Ch5必兑现期待锚",
       "chapters_since_last_action": 0,
-      "next_milestone": "Ch4-7：赵家少主赵阙上门挑衅，程铖铜钱卜算反制"
+      "next_milestone": "Ch5：明晚掌眼兑现——界门物件展示+少主动机部分答案；少主名字'赵阙'登名时机"
     }
   ],
-  "total_planted": 7,
+  "total_planted": 8,
   "total_resolved": 0,
   "total_partial_revealed": 1,
-  "total_pending": 1,
+  "total_pending": 0,
   "next_review_chapter": 10,
-  "review_note": "黄金三章共埋设7条伏笔（F1-F5,F7-F8），F6（苏眠互补线）推迟至Ch4植入。全部status=planted或partial_revealed，无提前揭示。F4已部分揭示（确认为一群但身份未知）。活跃悬念线控制在6条以内，不过载。下一审查点：Ch10。"
+  "review_note": "Ch4入库：F6（苏眠互补线）正式植入（读心+代价+'认得界门烫'），pending→planted；F3（血迹融合）推进（'被铜钱吃掉'意象升级）；F8（赵家冲突）兑现升级（茶会→界门交易线）。全部status=planted或partial_revealed，无提前揭示。活跃悬念线5条（S6已闭环）。下一审查点：Ch10。"
 }
