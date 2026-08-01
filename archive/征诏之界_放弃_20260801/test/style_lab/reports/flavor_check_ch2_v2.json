@@ -1,0 +1,301 @@
+{
+  "generated_at": "2026-07-30 15:52:39",
+  "original": {
+    "path": "zhengzhao/output/chapter_002.txt",
+    "chars": 2252
+  },
+  "rewrite": {
+    "path": "test/flavor_rewrite/chapter_002_flavor.txt",
+    "chars": 2952
+  },
+  "dimensions": {
+    "F1": {
+      "name": "苍凉底色",
+      "metric_label": "苍凉词/千字",
+      "baseline": 1.54,
+      "original": 0.44,
+      "rewrite": 1.69,
+      "orig_proximity": 0.286,
+      "rewrite_proximity": 1.0,
+      "improvement": 0.714,
+      "status": "improved",
+      "direction": "越高越好",
+      "extra_metrics": [
+        {
+          "label": "苍凉段落占比%",
+          "original": 0.0,
+          "rewrite": 2.38
+        },
+        {
+          "label": "苍凉词总数",
+          "original": 1,
+          "rewrite": 5
+        }
+      ],
+      "orig_observation": "苍凉词密度 0.44/千字，0.0% 的段落含≥2个苍凉词。高频词以「废弃」为主，构建出一个文明衰退、物质匮乏、力量耗散的世界底色。苍凉不是情绪宣泄，而是通过物件和环境的常态呈现。",
+      "rewrite_observation": "苍凉词密度 1.69/千字，2.38% 的段落含≥2个苍凉词。高频词以「废弃/黑暗/荒凉/冰冷/古老」为主，构建出一个文明衰退、物质匮乏、力量耗散的世界底色。苍凉不是情绪宣泄，而是通过物件和环境的常态呈现。"
+    },
+    "F2": {
+      "name": "克制美学",
+      "metric_label": "克制比(%)",
+      "baseline": 99.24,
+      "original": 100.0,
+      "rewrite": 100.0,
+      "orig_proximity": 1.0,
+      "rewrite_proximity": 1.0,
+      "improvement": 0.0,
+      "status": "unchanged",
+      "direction": "越高越好",
+      "extra_metrics": [
+        {
+          "label": "身体反应/千字",
+          "original": 1.78,
+          "rewrite": 2.03
+        },
+        {
+          "label": "情绪→世界转场%",
+          "original": 12.5,
+          "rewrite": 27.27
+        },
+        {
+          "label": "沉默词/千字",
+          "original": 1.78,
+          "rewrite": 2.37
+        }
+      ],
+      "orig_observation": "直接情感陈述仅 0.0/千字，身体反应词 1.78/千字，克制比 100.0%（身体反应远多于直接陈述）。情绪→世界转场率 12.5%——情感重击后，叙事倾向于让世界继续运转（感官描写）而非进入心理独白。沉默（1.78/千字）是烟雨江南最重要的情绪容器——不说话比说话更重。",
+      "rewrite_observation": "直接情感陈述仅 0.0/千字，身体反应词 2.03/千字，克制比 100.0%（身体反应远多于直接陈述）。情绪→世界转场率 27.27%——情感重击后，叙事倾向于让世界继续运转（感官描写）而非进入心理独白。沉默（2.37/千字）是烟雨江南最重要的情绪容器——不说话比说话更重。"
+    },
+    "F3": {
+      "name": "暴力重量",
+      "metric_label": "后果/伤口(%)",
+      "baseline": 303.65,
+      "original": 100.0,
+      "rewrite": 75.0,
+      "orig_proximity": 0.329,
+      "rewrite_proximity": 0.247,
+      "improvement": -0.082,
+      "status": "regressed",
+      "direction": "越高越好",
+      "orig_observation": "伤口词 1.33/千字，后果词 1.33/千字，暴力后果比 100.0%（每写一个伤口附带 1.0 个身体后果描写）。代价消解仅 0.0/千字——暴力有持久重量，不靠药膏抹平。战斗段中 0.0% 含身体反应，暴力不是动作清单而是物理后果链。",
+      "rewrite_observation": "伤口词 1.36/千字，后果词 1.02/千字，暴力后果比 75.0%（每写一个伤口附带 0.8 个身体后果描写）。代价消解仅 0.0/千字——暴力有持久重量，不靠药膏抹平。战斗段中 0.0% 含身体反应，暴力不是动作清单而是物理后果链。"
+    },
+    "F4": {
+      "name": "世界质感",
+      "metric_label": "材质词/千字",
+      "baseline": 3.75,
+      "original": 37.74,
+      "rewrite": 37.6,
+      "orig_proximity": 1.0,
+      "rewrite_proximity": 1.0,
+      "improvement": 0.0,
+      "status": "unchanged",
+      "direction": "越高越好",
+      "extra_metrics": [
+        {
+          "label": "磨损词/千字",
+          "original": 32.42,
+          "rewrite": 31.17
+        },
+        {
+          "label": "物件/千字",
+          "original": 13.77,
+          "rewrite": 13.21
+        }
+      ],
+      "orig_observation": "材质词 37.74/千字，磨损词 32.42/千字，经济词 27.98/千字——世界由具体的铁、铜、木、石构成，且一切都在磨损（32.81% 的段落同时出现材质与磨损标记）。物件密度 13.77/千字，经济系统渗透日常描写——面包有价格，刀剑有锈迹，世界有物质重量。",
+      "rewrite_observation": "材质词 37.6/千字，磨损词 31.17/千字，经济词 23.37/千字——世界由具体的铁、铜、木、石构成，且一切都在磨损（33.33% 的段落同时出现材质与磨损标记）。物件密度 13.21/千字，经济系统渗透日常描写——面包有价格，刀剑有锈迹，世界有物质重量。"
+    },
+    "F5": {
+      "name": "时间纵深",
+      "metric_label": "物件变化/千字",
+      "baseline": 0.02,
+      "original": 0.0,
+      "rewrite": 0.0,
+      "orig_proximity": 0.0,
+      "rewrite_proximity": 0.0,
+      "improvement": 0.0,
+      "status": "unchanged",
+      "direction": "越高越好",
+      "orig_observation": "直接时间标记 0.89/千字，物件变化标记 0.0/千字，历史感词 0.0/千字。时间通过物件度 0.0%——烟雨江南倾向用物件磨损（杂志变薄、刀剑生锈、城墙龟裂）替代数字时间，历史不是被告知而是被看见。时间感来自材质的老化，不是日历的翻页。",
+      "rewrite_observation": "直接时间标记 0.68/千字，物件变化标记 0.0/千字，历史感词 0.34/千字。时间通过物件度 0.0%——烟雨江南倾向用物件磨损（杂志变薄、刀剑生锈、城墙龟裂）替代数字时间，历史不是被告知而是被看见。时间感来自材质的老化，不是日历的翻页。"
+    },
+    "F6": {
+      "name": "意象变奏",
+      "metric_label": "意象数×2",
+      "baseline": 20,
+      "original": null,
+      "rewrite": null,
+      "orig_proximity": null,
+      "rewrite_proximity": null,
+      "improvement": null,
+      "status": "n/a",
+      "direction": "参考",
+      "orig_observation": "核心意象以「血/光/刀」为骨架，意象在全书各段分布不均——前段建立意象的物质意义，中段赋予功能意义，后段翻转或升华。同一意象在不同上下文中呈现不同语义层级（物→工具→概念→命运），这是烟雨江南意象系统的核心特征。",
+      "rewrite_observation": "核心意象以「黑暗/血/光/刀」为骨架，意象在全书各段分布不均——前段建立意象的物质意义，中段赋予功能意义，后段翻转或升华。同一意象在不同上下文中呈现不同语义层级（物→工具→概念→命运），这是烟雨江南意象系统的核心特征。"
+    },
+    "F7": {
+      "name": "对话暗流",
+      "metric_label": "暗流词/千字",
+      "baseline": 0.96,
+      "original": 2.22,
+      "rewrite": 2.03,
+      "orig_proximity": 1.0,
+      "rewrite_proximity": 1.0,
+      "improvement": 0.0,
+      "status": "unchanged",
+      "direction": "越高越好",
+      "extra_metrics": [
+        {
+          "label": "动作打断%",
+          "original": 10.0,
+          "rewrite": 12.5
+        },
+        {
+          "label": "沉默打断%",
+          "original": 10.0,
+          "rewrite": 12.5
+        },
+        {
+          "label": "短对话%",
+          "original": 84.62,
+          "rewrite": 84.62
+        },
+        {
+          "label": "裸对话%",
+          "original": 192.31,
+          "rewrite": 200.0
+        }
+      ],
+      "orig_observation": "对话间动作打断率 10.0%，沉默打断率 10.0%，短对话（≤8字）占比 84.62%，裸对话（无引导语）192.31%。对话总数 26 段，暗流词密度 2.22/千字——对话的核心不在台词而在台词之间。沉默、动作打断、短句对话构成权力暗流，谁沉默谁有权，谁打断谁控场。",
+      "rewrite_observation": "对话间动作打断率 12.5%，沉默打断率 12.5%，短对话（≤8字）占比 84.62%，裸对话（无引导语）200.0%。对话总数 26 段，暗流词密度 2.03/千字——对话的核心不在台词而在台词之间。沉默、动作打断、短句对话构成权力暗流，谁沉默谁有权，谁打断谁控场。"
+    },
+    "F8": {
+      "name": "章末余响",
+      "metric_label": "余响型章末(%)",
+      "baseline": 71.67,
+      "original": null,
+      "rewrite": null,
+      "orig_proximity": null,
+      "rewrite_proximity": null,
+      "improvement": null,
+      "status": "n/a",
+      "direction": "越高越好",
+      "orig_observation": "",
+      "rewrite_observation": ""
+    },
+    "F9": {
+      "name": "空间纵深",
+      "metric_label": "镜头切换率(%)",
+      "baseline": 63.45,
+      "original": 42.86,
+      "rewrite": 48.28,
+      "orig_proximity": 0.675,
+      "rewrite_proximity": 0.761,
+      "improvement": 0.085,
+      "status": "improved",
+      "direction": "越高越好",
+      "extra_metrics": [
+        {
+          "label": "推近次数",
+          "original": 5,
+          "rewrite": 8
+        },
+        {
+          "label": "拉回次数",
+          "original": 4,
+          "rewrite": 6
+        }
+      ],
+      "orig_observation": "镜头切换率 42.86%，推近 5 次 / 拉回 4 次。广角（位面/大陆级）词频 0.44/千字，极近景词频 4.88/千字。烟雨江南的空间叙事呈'漏斗型'——从大陆级广角起笔，九级变焦推到一滴血/一道裂纹，再拉回世界继续运转。空间有纵深，不是平面的布景板。",
+      "rewrite_observation": "镜头切换率 48.28%，推近 8 次 / 拉回 6 次。广角（位面/大陆级）词频 0.34/千字，极近景词频 5.08/千字。烟雨江南的空间叙事呈'漏斗型'——从大陆级广角起笔，九级变焦推到一滴血/一道裂纹，再拉回世界继续运转。空间有纵深，不是平面的布景板。"
+    },
+    "F10": {
+      "name": "代价经济学",
+      "metric_label": "代价词/千字",
+      "baseline": 4.45,
+      "original": 2.66,
+      "rewrite": 3.39,
+      "orig_proximity": 0.598,
+      "rewrite_proximity": 0.762,
+      "improvement": 0.164,
+      "status": "improved",
+      "direction": "越高越好",
+      "extra_metrics": [
+        {
+          "label": "价格词/千字",
+          "original": 27.98,
+          "rewrite": 23.04
+        },
+        {
+          "label": "代价先行次数",
+          "original": 0,
+          "rewrite": 0
+        },
+        {
+          "label": "善意标价率%",
+          "original": 100.0,
+          "rewrite": 100.0
+        }
+      ],
+      "orig_observation": "代价词 2.66/千字，价格词 27.98/千字，牺牲词 0.44/千字。代价先行模式（'已经付了'而非'可能会付'）出现 0 次。善意标价率 100.0%——世界中的善意几乎不免费，面包有价格，帮助有代价，力量的使用消耗生命。代价是已支付的事实而非未来的可能，这是'狠'的第一条法则。",
+      "rewrite_observation": "代价词 3.39/千字，价格词 23.04/千字，牺牲词 0.68/千字。代价先行模式（'已经付了'而非'可能会付'）出现 0 次。善意标价率 100.0%——世界中的善意几乎不免费，面包有价格，帮助有代价，力量的使用消耗生命。代价是已支付的事实而非未来的可能，这是'狠'的第一条法则。"
+    },
+    "F11": {
+      "name": "叙事呼吸",
+      "metric_label": "句长变异系数",
+      "baseline": 0.544,
+      "original": 0.715,
+      "rewrite": 0.696,
+      "orig_proximity": 1.0,
+      "rewrite_proximity": 1.0,
+      "improvement": 0.0,
+      "status": "unchanged",
+      "direction": "越高越好",
+      "extra_metrics": [
+        {
+          "label": "均句长",
+          "original": 14.91,
+          "rewrite": 14.83
+        },
+        {
+          "label": "呼吸模式/千句",
+          "original": 6.62,
+          "rewrite": 0.0
+        },
+        {
+          "label": "段落波浪%",
+          "original": 4.69,
+          "rewrite": 7.14
+        },
+        {
+          "label": "急刹车%",
+          "original": 9.38,
+          "rewrite": 11.9
+        }
+      ],
+      "orig_observation": "句长变异系数 0.715（高变异=强呼吸感），均值 14.9 字 / 中位 13 字。呼吸模式密度 6.62/千句（连续短句后跟长句的'呼气→吸气'），段落波浪 4.69%，急刹车切换 9.38%。叙事呼吸呈现'长段铺垫→短段爆发→极短段凝固'的三级呼吸节奏，节奏切换不写过渡段——落差本身就是节奏。",
+      "rewrite_observation": "句长变异系数 0.696（高变异=强呼吸感），均值 14.8 字 / 中位 13 字。呼吸模式密度 0.0/千句（连续短句后跟长句的'呼气→吸气'），段落波浪 7.14%，急刹车切换 11.9%。叙事呼吸呈现'长段铺垫→短段爆发→极短段凝固'的三级呼吸节奏，节奏切换不写过渡段——落差本身就是节奏。"
+    },
+    "F12": {
+      "name": "视角策略",
+      "metric_label": "旁观者段落(%)",
+      "baseline": 17.59,
+      "original": 10.94,
+      "rewrite": 20.24,
+      "orig_proximity": 0.622,
+      "rewrite_proximity": 1.0,
+      "improvement": 0.378,
+      "status": "improved",
+      "direction": "越高越好",
+      "orig_observation": "代词分布：他 84.31%，她 1.96%，我 5.88%。旁观者段落（无代词+有感官）占比 10.94%，每章平均视角切换 0 次。烟雨江南采用多视角第三人称叙事，允许世界在主角不看它的时候存在。旁观者段落让世界显得独立于剧情，而非围着主角转的布景。",
+      "rewrite_observation": "代词分布：他 82.98%，她 2.13%，我 6.38%。旁观者段落（无代词+有感官）占比 20.24%，每章平均视角切换 0 次。烟雨江南采用多视角第三人称叙事，允许世界在主角不看它的时候存在。旁观者段落让世界显得独立于剧情，而非围着主角转的布景。"
+    }
+  },
+  "summary": {
+    "improved": 4,
+    "regressed": 1,
+    "unchanged": 5,
+    "n_a": 2
+  }
+}

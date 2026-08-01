@@ -1,0 +1,215 @@
+{
+  "file": "practice/chapter_003_v7.txt",
+  "total_chars": 4478,
+  "total_paragraphs": 82,
+  "overall_score": 81.4,
+  "t1": {
+    "dim": "T1",
+    "dim_name": "具身感知度",
+    "score": 60.4,
+    "stats": {
+      "total_checked": 61,
+      "embodied": 18,
+      "info_dump": 0,
+      "partial": 2,
+      "weak": 23,
+      "embodied_ratio": "29.5%",
+      "focal_level": "画面级广角",
+      "unanchored_nouns": 1
+    },
+    "issues": [
+      {
+        "severity": "warning",
+        "location": "第12段",
+        "excerpt": "两年。教我们找废弃通道，躲改造征调者。后来便走了。\" \"去哪？\" ",
+        "diagnosis": "专名'征调者'首次出现时无锚定信息——读者不知道'征调者'是什么",
+        "suggestion": "在'征调者'首次出现时补一句锚定：如'征调者是...的...'或用上下文暗示其性质"
+      }
+    ]
+  },
+  "t2": {
+    "dim": "T2",
+    "dim_name": "叙述者退场度",
+    "score": 100,
+    "stats": {
+      "translation_count": 0,
+      "punchline_count": 14,
+      "punchline_density": 3.13,
+      "world_rotation_count": 15
+    },
+    "issues": [
+      {
+        "severity": "info",
+        "location": "第1段",
+        "excerpt": "程铖见过很多种亮，暗光的是壳的，空洞的是死人的，这个人的亮带着喘息，带着怕，带着想活。",
+        "diagnosis": "金句收尾（密度3.1/千字）——叙述者介入",
+        "suggestion": "减少哲理收尾句，让场景自己说话"
+      },
+      {
+        "severity": "info",
+        "location": "第2段",
+        "excerpt": "活人从口子里出来比壳从口子里出来更麻烦。",
+        "diagnosis": "金句收尾（密度3.1/千字）——叙述者介入",
+        "suggestion": "减少哲理收尾句，让场景自己说话"
+      },
+      {
+        "severity": "info",
+        "location": "第7段",
+        "excerpt": "三年前第七批征调，征诏令上写的是任务成功，全员归来。",
+        "diagnosis": "金句收尾（密度3.1/千字）——叙述者介入",
+        "suggestion": "减少哲理收尾句，让场景自己说话"
+      },
+      {
+        "severity": "info",
+        "location": "第11段",
+        "excerpt": "锁链碰在一起又响了一声，和刚才刮石砖的声音一样碎。",
+        "diagnosis": "金句收尾（密度3.1/千字）——叙述者介入",
+        "suggestion": "减少哲理收尾句，让场景自己说话"
+      },
+      {
+        "severity": "info",
+        "location": "第15段",
+        "excerpt": "风从那边灌过来，干热的，干涩的气比昨天重了半分。",
+        "diagnosis": "金句收尾（密度3.1/千字）——叙述者介入",
+        "suggestion": "减少哲理收尾句，让场景自己说话"
+      },
+      {
+        "severity": "info",
+        "location": "第22段",
+        "excerpt": "师父的话和铜钱的话，谁说了算，程铖不知道。",
+        "diagnosis": "金句收尾（密度3.1/千字）——叙述者介入",
+        "suggestion": "减少哲理收尾句，让场景自己说话"
+      },
+      {
+        "severity": "info",
+        "location": "第26段",
+        "excerpt": "铜钱不认他这件事，比沈缺带来的任何消息都重。",
+        "diagnosis": "金句收尾（密度3.1/千字）——叙述者介入",
+        "suggestion": "减少哲理收尾句，让场景自己说话"
+      },
+      {
+        "severity": "info",
+        "location": "第36段",
+        "excerpt": "沈老头没告诉过他代价的事，不告诉他的事情很多。",
+        "diagnosis": "金句收尾（密度3.1/千字）——叙述者介入",
+        "suggestion": "减少哲理收尾句，让场景自己说话"
+      },
+      {
+        "severity": "info",
+        "location": "第40段",
+        "excerpt": "不够也得守，守不住也得守。",
+        "diagnosis": "金句收尾（密度3.1/千字）——叙述者介入",
+        "suggestion": "减少哲理收尾句，让场景自己说话"
+      },
+      {
+        "severity": "info",
+        "location": "第49段",
+        "excerpt": "笑还是那种攒很久才攒出来的笑，但这一次笑里有一点别的东西。",
+        "diagnosis": "金句收尾（密度3.1/千字）——叙述者介入",
+        "suggestion": "减少哲理收尾句，让场景自己说话"
+      },
+      {
+        "severity": "info",
+        "location": "第56段",
+        "excerpt": "口子消失的位置什么都没有，只有一道浅浅的疤，像旧伤愈合后留下的痕。",
+        "diagnosis": "金句收尾（密度3.1/千字）——叙述者介入",
+        "suggestion": "减少哲理收尾句，让场景自己说话"
+      },
+      {
+        "severity": "info",
+        "location": "第57段",
+        "excerpt": "它们不知道界门关了，天黑了就出来，和每天一样。",
+        "diagnosis": "金句收尾（密度3.1/千字）——叙述者介入",
+        "suggestion": "减少哲理收尾句，让场景自己说话"
+      },
+      {
+        "severity": "info",
+        "location": "第78段",
+        "excerpt": "赵家的请柬用的是上好的烫金纸，纸比功勋牌贵。",
+        "diagnosis": "金句收尾（密度3.1/千字）——叙述者介入",
+        "suggestion": "减少哲理收尾句，让场景自己说话"
+      },
+      {
+        "severity": "info",
+        "location": "第79段",
+        "excerpt": "偏房不大，一张床，一张桌，墙上有一道口子，和城墙上的不一样，这道不发光。",
+        "diagnosis": "金句收尾（密度3.1/千字）——叙述者介入",
+        "suggestion": "减少哲理收尾句，让场景自己说话"
+      }
+    ]
+  },
+  "t3": {
+    "dim": "T3",
+    "dim_name": "意象感知多样性",
+    "score": 85.0,
+    "stats": {
+      "discovered_groups": 1,
+      "groups_detail": [
+        {
+          "noun": "干涩的气",
+          "total": 6,
+          "channel_distribution": {
+            "听觉": 1,
+            "嗅觉": 5
+          },
+          "coverage_ratio": 1.0,
+          "score": 85,
+          "transfer": "退步"
+        }
+      ],
+      "sensory_oneoff_count": 0
+    },
+    "issues": []
+  },
+  "t4": {
+    "dim": "T4",
+    "dim_name": "节律控制",
+    "score": 85,
+    "stats": {
+      "action_patterns": [
+        {
+          "verb": "抖",
+          "count": 3,
+          "budget": 4,
+          "over_limit": false
+        }
+      ],
+      "ref_patterns": [
+        {
+          "name": "那枚/那几枚",
+          "count": 10,
+          "threshold": 6,
+          "over_limit": true
+        },
+        {
+          "name": "这枚/这几枚",
+          "count": 5,
+          "threshold": 6,
+          "over_limit": false
+        },
+        {
+          "name": "它",
+          "count": 0,
+          "threshold": 10,
+          "over_limit": false
+        },
+        {
+          "name": "掌中之物",
+          "count": 0,
+          "threshold": 3,
+          "over_limit": false
+        }
+      ]
+    },
+    "issues": [
+      {
+        "severity": "warning",
+        "location": "全文（10次）",
+        "excerpt": "'那枚/那几枚'指代10次",
+        "diagnosis": "'那枚/那几枚'10次/6次预算——超限",
+        "suggestion": "大部分地方保留具体名词，只在情感浓度最高的段落用代称"
+      }
+    ]
+  },
+  "summary": "感知织体基本良好（81分），金句密度3.1/千字, 指代超限1项"
+}

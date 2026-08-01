@@ -1,0 +1,279 @@
+{
+  "file": "practice/chapter_003_v7.txt",
+  "total_chars": 4478,
+  "total_paragraphs": 82,
+  "overall_score": 56.7,
+  "t1": {
+    "dim": "T1",
+    "dim_name": "具身感知度",
+    "score": 60.1,
+    "stats": {
+      "total_checked": 61,
+      "embodied": 18,
+      "info_dump": 0,
+      "partial": 22,
+      "weak": 16,
+      "embodied_ratio": "29.5%",
+      "focal_level": "画面级广角",
+      "unanchored_nouns": 1
+    },
+    "issues": [
+      {
+        "severity": "warning",
+        "location": "第12段",
+        "excerpt": "两年。教我们找废弃通道，躲改造征调者。后来便走了。\" \"去哪？\" ",
+        "diagnosis": "专名'征调者'首次出现时无锚定信息——读者不知道'征调者'是什么",
+        "suggestion": "在'征调者'首次出现时补一句锚定：如'征调者是...的...'或用上下文暗示其性质"
+      }
+    ]
+  },
+  "t2": {
+    "dim": "T2",
+    "dim_name": "叙述者退场度",
+    "score": 100,
+    "stats": {
+      "translation_count": 0,
+      "punchline_count": 9,
+      "punchline_density": 2.01,
+      "world_rotation_count": 10
+    },
+    "issues": []
+  },
+  "t3": {
+    "dim": "T3",
+    "dim_name": "意象感知多样性",
+    "score": 66.7,
+    "stats": {
+      "discovered_groups": 15,
+      "groups_detail": [
+        {
+          "noun": "程铖",
+          "total": 39,
+          "channel_distribution": {
+            "视觉": 5,
+            "未检测": 21,
+            "效应": 3,
+            "听觉": 2,
+            "触觉": 1
+          },
+          "coverage_ratio": 0.19,
+          "score": 35,
+          "transfer": "退步"
+        },
+        {
+          "noun": "城墙",
+          "total": 25,
+          "channel_distribution": {
+            "听觉": 3,
+            "嗅觉": 3,
+            "视觉": 5,
+            "未检测": 7,
+            "效应": 2
+          },
+          "coverage_ratio": 0.4,
+          "score": 100,
+          "transfer": "有效转移"
+        },
+        {
+          "noun": "沈缺",
+          "total": 25,
+          "channel_distribution": {
+            "未检测": 16,
+            "效应": 2,
+            "听觉": 2,
+            "视觉": 5
+          },
+          "coverage_ratio": 0.16,
+          "score": 50,
+          "transfer": "有效转移"
+        },
+        {
+          "noun": "老周",
+          "total": 20,
+          "channel_distribution": {
+            "效应": 1,
+            "未检测": 6,
+            "听觉": 3,
+            "视觉": 3,
+            "触觉": 1
+          },
+          "coverage_ratio": 0.36,
+          "score": 65,
+          "transfer": "退步"
+        },
+        {
+          "noun": "口子",
+          "total": 19,
+          "channel_distribution": {
+            "听觉": 1,
+            "未检测": 6,
+            "视觉": 8,
+            "效应": 2
+          },
+          "coverage_ratio": 0.18,
+          "score": 35,
+          "transfer": "退步"
+        },
+        {
+          "noun": "功勋",
+          "total": 22,
+          "channel_distribution": {
+            "未检测": 12,
+            "视觉": 1,
+            "触觉": 4
+          },
+          "coverage_ratio": 0.24,
+          "score": 50,
+          "transfer": "有效转移"
+        },
+        {
+          "noun": "铜钱",
+          "total": 14,
+          "channel_distribution": {
+            "听觉": 2,
+            "未检测": 7,
+            "嗅觉": 1,
+            "效应": 2
+          },
+          "coverage_ratio": 0.42,
+          "score": 85,
+          "transfer": "退步"
+        },
+        {
+          "noun": "师父",
+          "total": 14,
+          "channel_distribution": {
+            "未检测": 11,
+            "触觉": 1,
+            "视觉": 1
+          },
+          "coverage_ratio": 0.08,
+          "score": 10,
+          "transfer": "同通道平移"
+        },
+        {
+          "noun": "征调",
+          "total": 26,
+          "channel_distribution": {
+            "效应": 5,
+            "未检测": 10,
+            "听觉": 1,
+            "嗅觉": 1,
+            "视觉": 1
+          },
+          "coverage_ratio": 0.39,
+          "score": 80,
+          "transfer": "有效转移"
+        },
+        {
+          "noun": "界门",
+          "total": 15,
+          "channel_distribution": {
+            "效应": 8,
+            "未检测": 3,
+            "视觉": 3
+          },
+          "coverage_ratio": 0.57,
+          "score": 100,
+          "transfer": "有效转移"
+        }
+      ],
+      "sensory_oneoff_count": 0
+    },
+    "issues": [
+      {
+        "severity": "critical",
+        "location": "全文（39次出现）",
+        "excerpt": "'程铖' + 变体[]",
+        "diagnosis": "'程铖'共39次出现，未检测通道占21次，非视觉覆盖率19%——感知维度单一",
+        "suggestion": "不换词，换感知方式：第5次写风声（听觉），第9次写温度（触觉），第13次写气味（嗅觉）"
+      },
+      {
+        "severity": "critical",
+        "location": "全文（25次出现）",
+        "excerpt": "'沈缺' + 变体['沈老']",
+        "diagnosis": "'沈缺'共25次出现，未检测通道占16次，非视觉覆盖率16%——感知维度单一",
+        "suggestion": "不换词，换感知方式：第5次写风声（听觉），第9次写温度（触觉），第13次写气味（嗅觉）"
+      },
+      {
+        "severity": "critical",
+        "location": "全文（19次出现）",
+        "excerpt": "'口子' + 变体['子深']",
+        "diagnosis": "'口子'共19次出现，视觉通道占8次，非视觉覆盖率18%——感知维度单一",
+        "suggestion": "不换词，换感知方式：第5次写风声（听觉），第9次写温度（触觉），第13次写气味（嗅觉）"
+      },
+      {
+        "severity": "critical",
+        "location": "全文（22次出现）",
+        "excerpt": "'功勋' + 变体['勋牌']",
+        "diagnosis": "'功勋'共22次出现，未检测通道占12次，非视觉覆盖率24%——感知维度单一",
+        "suggestion": "不换词，换感知方式：第5次写风声（听觉），第9次写温度（触觉），第13次写气味（嗅觉）"
+      },
+      {
+        "severity": "warning",
+        "location": "全文（14次出现）",
+        "excerpt": "'师父' + 变体[]",
+        "diagnosis": "'师父'共14次出现，未检测通道占11次，非视觉覆盖率8%——感知维度严重单一",
+        "suggestion": "不换词，换感知方式：第5次写风声（听觉），第9次写温度（触觉），第13次写气味（嗅觉）"
+      },
+      {
+        "severity": "info",
+        "location": "全文",
+        "excerpt": "'砂石' → ['石砖']",
+        "diagnosis": "替代词'石砖'与原词'砂石'走同一通道——换词不换感知",
+        "suggestion": "不换词，换感知方式。或让替代词走不同通道"
+      }
+    ]
+  },
+  "t4": {
+    "dim": "T4",
+    "dim_name": "节律控制",
+    "score": 85,
+    "stats": {
+      "action_patterns": [
+        {
+          "verb": "抖",
+          "count": 3,
+          "budget": 4,
+          "over_limit": false
+        }
+      ],
+      "ref_patterns": [
+        {
+          "name": "那枚/那几枚",
+          "count": 10,
+          "threshold": 6,
+          "over_limit": true
+        },
+        {
+          "name": "这枚/这几枚",
+          "count": 5,
+          "threshold": 6,
+          "over_limit": false
+        },
+        {
+          "name": "它",
+          "count": 0,
+          "threshold": 10,
+          "over_limit": false
+        },
+        {
+          "name": "掌中之物",
+          "count": 0,
+          "threshold": 3,
+          "over_limit": false
+        }
+      ]
+    },
+    "issues": [
+      {
+        "severity": "warning",
+        "location": "全文（10次）",
+        "excerpt": "'那枚/那几枚'指代10次",
+        "diagnosis": "'那枚/那几枚'10次/6次预算——超限",
+        "suggestion": "大部分地方保留具体名词，只在情感浓度最高的段落用代称"
+      }
+    ]
+  },
+  "summary": "感知织体中等（57分），意象感知单一5组, 指代超限1项，需优化"
+}

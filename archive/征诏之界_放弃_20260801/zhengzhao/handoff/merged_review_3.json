@@ -1,0 +1,121 @@
+{
+  "card_type": "merged_review",
+  "chapter_num": 3,
+  "chapter_title": "界门那边",
+  "timestamp": "2026-07-28T20:00:00+08:00",
+  "merge_rule": "detail优先原则：冲突项以detail-reviewer判定为准；de-ai建议作为语言层补充",
+  "user_decisions": {
+    "ch3_ending": "承诺视角收束（改为回扣'下次来，带你们全部出去'的承诺）",
+    "master_name": "统一为沈姓，正文'乔老头'→'沈老头'",
+    "coin_count": "程铖现有4枚（3旧+1师父的），沈缺给的第5枚已还回，所以结尾仍为4枚"
+  },
+  "modifications": [
+    {
+      "id": "M3-01",
+      "source": "detail_review",
+      "severity": "critical",
+      "category": "ending_repetition",
+      "location": "第143行",
+      "issue": "Ch2/Ch3结尾完全相同：'界门那边。师父在那边。还活着。'连续两章以完全一致的三句收束",
+      "fix_instruction": "改为承诺视角收束：'三十天。下次征调，三十天后。他要在那之前，把这笔账算完。'或'三十天后，他还会来。带他们全部出去。'——回扣F7承诺，避免与Ch2结尾重复",
+      "resolution": "用户裁定：承诺视角收束"
+    },
+    {
+      "id": "M3-02",
+      "source": "detail_review",
+      "severity": "major",
+      "category": "continuity",
+      "location": "第1-9行",
+      "issue": "Ch2结尾沈缺已说出'铜钱别算第四枚'（M2-04改为'第五枚'），Ch3开头重复'你是程铖？'且对话完全脱节，关键线索在Ch3零回应",
+      "fix_instruction": "在Ch3开头程铖验证沈缺时，补内心反应：'第五枚。昨天那人说的——别算第五枚。但沈缺手里这枚，是第六枚。'一行字解决衔接和铜钱数量"
+    },
+    {
+      "id": "M3-03",
+      "source": "detail_review",
+      "severity": "major",
+      "category": "beat_deviation",
+      "location": "第91行",
+      "issue": "F7承诺beat偏差：大纲要求程铖先说'带不了'再承诺'下次来带你们全部出去'（嘴毒心软的对比），实际跳过拒绝直接承诺",
+      "fix_instruction": "在承诺前加拒绝beat：沈缺问能否带人走→程铖说'带不了。界门过不去'→停顿→'但下次我来。带你们全部出去。'"
+    },
+    {
+      "id": "M3-04",
+      "source": "detail_review",
+      "severity": "major",
+      "category": "character_consistency",
+      "location": "第91行附近",
+      "issue": "老周key_moment缺失：角色卡要求Ch3老周说'我跟你一起'，实际未出现",
+      "fix_instruction": "在程铖承诺后加老周表态：老周用右手摸了摸左肩的锈别针，说'我也来。'——简短有力，符合沉默寡言人设"
+    },
+    {
+      "id": "M3-05",
+      "source": "de_ai_analysis",
+      "severity": "major",
+      "category": "word_repetition",
+      "location": "第9/41/61/89/125/139行",
+      "issue": "'把铜钱在指间转了一圈'6次完全相同表达",
+      "fix_instruction": "保留3次（开头/中段/结尾各1），其余替换为：'铜钱在指间翻了一圈'/'他把铜钱捻了一遍'/'铜钱在掌心转了半圈'/'三枚铜钱碰在一起，响了一声'"
+    },
+    {
+      "id": "M3-06",
+      "source": "de_ai_analysis",
+      "severity": "major",
+      "category": "dialogue_written",
+      "location": "第43行",
+      "issue": "沈缺'你师父帮人是因为他好，你帮人是因为你算过。但结果是一样的'哲理化对称句式，与三年被流放者的疲惫语气矛盾",
+      "fix_instruction": "改为口语化碎片：'你师父帮人，他心好。你不一样，你算过。'顿了顿。'但一样。'"
+    },
+    {
+      "id": "M3-07",
+      "source": "de_ai_analysis",
+      "severity": "major",
+      "category": "character_telling",
+      "location": "第81行",
+      "issue": "'嘴毒，心软，算账精到个位'直接列举性格形容词，等同于角色卡字段搬入对话",
+      "fix_instruction": "改为行为展示：'你师父说过你。'沈缺把锁链绕紧。'说你会把功勋分给断了胳膊的老兵。'或删除性格列举，只保留'他没说你会赌。'"
+    },
+    {
+      "id": "M3-08",
+      "source": "de_ai_analysis",
+      "severity": "minor",
+      "category": "sentence_uniformity",
+      "location": "第143行",
+      "issue": "章末三短句轻微工整",
+      "fix_instruction": "与M3-01联动，改为承诺视角后此问题自动消除"
+    },
+    {
+      "id": "M3-09",
+      "source": "de_ai_analysis",
+      "severity": "minor",
+      "category": "word_repetition",
+      "location": "第12行内",
+      "issue": "'铜钱算的是规则，不是命'12行内完整重复2次（乔老头转述+程铖复述）",
+      "fix_instruction": "第二次改为不完整复述：沈缺转述'铜钱算的是规则，不是命'→程铖内心'规则是死的。人是活的。'不重复原话"
+    },
+    {
+      "id": "M3-10",
+      "source": "detail_review",
+      "severity": "minor",
+      "category": "number_plausibility",
+      "location": "第69行",
+      "issue": "沈缺说'三十七个人，还剩九个'，加上沈缺自己=十个，但沈缺说'还剩九个'把自己算漏了",
+      "fix_instruction": "确认：沈缺说'还剩九个'时是否包括自己？如包括=九个含沈缺；如不包括=九个+沈缺=十个。建议正文明确：'三十七个人。还剩九个。算上我，十个。'"
+    },
+    {
+      "id": "M3-11",
+      "source": "detail_review",
+      "severity": "minor",
+      "category": "sentence",
+      "location": "第1行",
+      "issue": "Ch3开头重复Ch2结尾的'你是程铖？'对话",
+      "fix_instruction": "Ch3开头改为从程铖视角接续（如'程铖把铜钱握在掌心。老周站在他右侧，刀握在右手。'），避免与Ch2结尾完全重复"
+    }
+  ],
+  "summary": {
+    "total_modifications": 11,
+    "critical": 1,
+    "major": 6,
+    "minor": 4,
+    "fix_priority": ["M3-01 Ch3结尾改承诺视角", "M3-02 衔接断裂修复", "M3-03+M3-04 承诺beat+老周表态"]
+  }
+}

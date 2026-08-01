@@ -1,0 +1,899 @@
+{
+  "file": "test/practice/chapter_002_v5.txt",
+  "total_chars": 4105,
+  "total_paragraphs": 75,
+  "imagery_stats": [
+    {
+      "word": "暗紫色",
+      "core_count": 16,
+      "budget": 8,
+      "over_budget": true,
+      "variants": {
+        "紫色的光": 2,
+        "暗光": 2,
+        "纹路": 13,
+        "纹路蠕动": 1,
+        "暗紫": 10
+      },
+      "variant_total": 28,
+      "variation_ratio": 0.64,
+      "ideal_variation": 0.4,
+      "low_variation": false,
+      "total": 44,
+      "density_per_1k": 10.7,
+      "occurrences_in_paras": [
+        17,
+        24,
+        28,
+        33,
+        59,
+        64,
+        68,
+        71
+      ]
+    },
+    {
+      "word": "碱味",
+      "core_count": 20,
+      "budget": 6,
+      "over_budget": true,
+      "variants": {
+        "干的": 1,
+        "发涩": 2,
+        "发紧": 1,
+        "嗓子眼": 3,
+        "砂": 18,
+        "砂粒": 1,
+        "焦糊味": 3,
+        "焦糊": 3,
+        "炊烟": 1,
+        "泔水": 1
+      },
+      "variant_total": 34,
+      "variation_ratio": 0.63,
+      "ideal_variation": 0.4,
+      "low_variation": false,
+      "total": 54,
+      "density_per_1k": 13.2,
+      "occurrences_in_paras": [
+        1,
+        17,
+        23,
+        26,
+        34,
+        53,
+        59
+      ]
+    },
+    {
+      "word": "铜钱",
+      "core_count": 69,
+      "budget": 15,
+      "over_budget": true,
+      "variants": {
+        "铜面": 3,
+        "铜屑": 1,
+        "三枚": 10,
+        "四枚": 7,
+        "一枚": 5,
+        "旧铜钱": 5,
+        "掌心": 8
+      },
+      "variant_total": 39,
+      "variation_ratio": 0.36,
+      "ideal_variation": 0.5,
+      "low_variation": true,
+      "total": 108,
+      "density_per_1k": 26.3,
+      "occurrences_in_paras": [
+        3,
+        4,
+        5,
+        6,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        17,
+        18,
+        26,
+        32,
+        35,
+        48,
+        51,
+        54,
+        55,
+        56,
+        57,
+        58,
+        62,
+        63,
+        70,
+        71,
+        74
+      ]
+    },
+    {
+      "word": "磨刀",
+      "core_count": 12,
+      "budget": 6,
+      "over_budget": true,
+      "variants": {
+        "磨石": 1,
+        "磨刀的手": 2,
+        "磨刀的速度": 2,
+        "磨刀的人": 1
+      },
+      "variant_total": 6,
+      "variation_ratio": 0.33,
+      "ideal_variation": 0.3,
+      "low_variation": false,
+      "total": 18,
+      "density_per_1k": 4.4,
+      "occurrences_in_paras": [
+        4,
+        5,
+        7,
+        11,
+        34,
+        53,
+        60
+      ]
+    },
+    {
+      "word": "裂缝",
+      "core_count": 20,
+      "budget": 10,
+      "over_budget": true,
+      "variants": {
+        "界门": 1,
+        "城墙根": 2
+      },
+      "variant_total": 3,
+      "variation_ratio": 0.13,
+      "ideal_variation": 0.4,
+      "low_variation": true,
+      "total": 23,
+      "density_per_1k": 5.6,
+      "occurrences_in_paras": [
+        1,
+        2,
+        14,
+        17,
+        24,
+        33,
+        48,
+        53,
+        58,
+        59,
+        62,
+        64,
+        68
+      ]
+    }
+  ],
+  "imagery_score": 8.0,
+  "para_functions": [
+    {
+      "para_num": 1,
+      "char_count": 153,
+      "function": "sensory",
+      "has_punchline": false,
+      "punchline_text": "",
+      "sensory_channels": [
+        "嗅觉",
+        "触感"
+      ]
+    },
+    {
+      "para_num": 2,
+      "char_count": 141,
+      "function": "plain",
+      "has_punchline": false,
+      "punchline_text": "",
+      "sensory_channels": [
+        "视觉"
+      ]
+    },
+    {
+      "para_num": 3,
+      "char_count": 174,
+      "function": "action",
+      "has_punchline": false,
+      "punchline_text": "",
+      "sensory_channels": [
+        "视觉"
+      ]
+    },
+    {
+      "para_num": 4,
+      "char_count": 212,
+      "function": "dialogue",
+      "has_punchline": true,
+      "punchline_text": "砂石不是给他的，是给铜钱的。",
+      "sensory_channels": []
+    },
+    {
+      "para_num": 5,
+      "char_count": 61,
+      "function": "action",
+      "has_punchline": false,
+      "punchline_text": "",
+      "sensory_channels": [
+        "听觉"
+      ]
+    },
+    {
+      "para_num": 6,
+      "char_count": 11,
+      "function": "dialogue",
+      "has_punchline": false,
+      "punchline_text": "",
+      "sensory_channels": []
+    },
+    {
+      "para_num": 7,
+      "char_count": 22,
+      "function": "dialogue",
+      "has_punchline": false,
+      "punchline_text": "",
+      "sensory_channels": []
+    },
+    {
+      "para_num": 8,
+      "char_count": 6,
+      "function": "dialogue",
+      "has_punchline": false,
+      "punchline_text": "",
+      "sensory_channels": []
+    },
+    {
+      "para_num": 9,
+      "char_count": 29,
+      "function": "dialogue",
+      "has_punchline": false,
+      "punchline_text": "",
+      "sensory_channels": []
+    },
+    {
+      "para_num": 10,
+      "char_count": 20,
+      "function": "dialogue",
+      "has_punchline": false,
+      "punchline_text": "",
+      "sensory_channels": []
+    },
+    {
+      "para_num": 11,
+      "char_count": 67,
+      "function": "sensory",
+      "has_punchline": false,
+      "punchline_text": "",
+      "sensory_channels": [
+        "视觉",
+        "听觉"
+      ]
+    },
+    {
+      "para_num": 12,
+      "char_count": 105,
+      "function": "dialogue",
+      "has_punchline": false,
+      "punchline_text": "",
+      "sensory_channels": []
+    },
+    {
+      "para_num": 13,
+      "char_count": 10,
+      "function": "plain",
+      "has_punchline": false,
+      "punchline_text": "",
+      "sensory_channels": []
+    },
+    {
+      "para_num": 14,
+      "char_count": 160,
+      "function": "heavy",
+      "has_punchline": true,
+      "punchline_text": "铜钱算得出壳的弱点、界门的规则、裂缝的节奏，算不出人。",
+      "sensory_channels": [
+        "触感"
+      ]
+    },
+    {
+      "para_num": 15,
+      "char_count": 5,
+      "function": "dialogue",
+      "has_punchline": false,
+      "punchline_text": "",
+      "sensory_channels": []
+    },
+    {
+      "para_num": 16,
+      "char_count": 111,
+      "function": "heavy",
+      "has_punchline": true,
+      "punchline_text": "老周数东西的习惯和程铖数人一样，数完不说，闷在嘴里。",
+      "sensory_channels": [
+        "视觉",
+        "触感"
+      ]
+    },
+    {
+      "para_num": 17,
+      "char_count": 110,
+      "function": "heavy",
+      "has_punchline": true,
+      "punchline_text": "通道里没有光，只有裂缝渗进来的暗紫色。",
+      "sensory_channels": [
+        "视觉",
+        "嗅觉",
+        "触感"
+      ]
+    },
+    {
+      "para_num": 18,
+      "char_count": 62,
+      "function": "plain",
+      "has_punchline": false,
+      "punchline_text": "",
+      "sensory_channels": [
+        "视觉"
+      ]
+    },
+    {
+      "para_num": 19,
+      "char_count": 15,
+      "function": "heavy",
+      "has_punchline": true,
+      "punchline_text": "老周用右手推了一下门，门没动。",
+      "sensory_channels": []
+    },
+    {
+      "para_num": 20,
+      "char_count": 17,
+      "function": "dialogue",
+      "has_punchline": false,
+      "punchline_text": "",
+      "sensory_channels": []
+    },
+    {
+      "para_num": 21,
+      "char_count": 24,
+      "function": "dialogue",
+      "has_punchline": false,
+      "punchline_text": "",
+      "sensory_channels": []
+    },
+    {
+      "para_num": 22,
+      "char_count": 9,
+      "function": "dialogue",
+      "has_punchline": false,
+      "punchline_text": "",
+      "sensory_channels": []
+    },
+    {
+      "para_num": 23,
+      "char_count": 49,
+      "function": "plain",
+      "has_punchline": false,
+      "punchline_text": "",
+      "sensory_channels": [
+        "嗅觉",
+        "温度",
+        "触感"
+      ]
+    },
+    {
+      "para_num": 24,
+      "char_count": 119,
+      "function": "heavy",
+      "has_punchline": true,
+      "punchline_text": "里面是一间储物室，不大，三步见方，墙上爬满暗紫色的纹路，和裂缝边的一样。",
+      "sensory_channels": [
+        "视觉"
+      ]
+    },
+    {
+      "para_num": 25,
+      "char_count": 114,
+      "function": "dialogue",
+      "has_punchline": false,
+      "punchline_text": "",
+      "sensory_channels": []
+    },
+    {
+      "para_num": 26,
+      "char_count": 117,
+      "function": "plain",
+      "has_punchline": false,
+      "punchline_text": "",
+      "sensory_channels": [
+        "听觉",
+        "嗅觉",
+        "触感"
+      ]
+    },
+    {
+      "para_num": 27,
+      "char_count": 32,
+      "function": "dialogue",
+      "has_punchline": false,
+      "punchline_text": "",
+      "sensory_channels": []
+    },
+    {
+      "para_num": 28,
+      "char_count": 58,
+      "function": "plain",
+      "has_punchline": false,
+      "punchline_text": "",
+      "sensory_channels": [
+        "视觉",
+        "听觉"
+      ]
+    },
+    {
+      "para_num": 29,
+      "char_count": 79,
+      "function": "heavy",
+      "has_punchline": true,
+      "punchline_text": "城墙上的人说将死之人最后看见的是一生里最重要的画面。",
+      "sensory_channels": [
+        "视觉"
+      ]
+    },
+    {
+      "para_num": 30,
+      "char_count": 46,
+      "function": "plain",
+      "has_punchline": false,
+      "punchline_text": "",
+      "sensory_channels": [
+        "视觉"
+      ]
+    },
+    {
+      "para_num": 31,
+      "char_count": 3,
+      "function": "heavy",
+      "has_punchline": true,
+      "punchline_text": "安静。",
+      "sensory_channels": []
+    },
+    {
+      "para_num": 32,
+      "char_count": 64,
+      "function": "sensory",
+      "has_punchline": true,
+      "punchline_text": "他没看那个人的脸，看的是自己的掌心。",
+      "sensory_channels": [
+        "视觉",
+        "温度",
+        "触感"
+      ]
+    },
+    {
+      "para_num": 33,
+      "char_count": 100,
+      "function": "sensory",
+      "has_punchline": true,
+      "punchline_text": "这是裂缝那头的东西最阴损的地方，它把死亡涂成暖色。",
+      "sensory_channels": [
+        "视觉",
+        "温度",
+        "触感"
+      ]
+    },
+    {
+      "para_num": 34,
+      "char_count": 45,
+      "function": "plain",
+      "has_punchline": false,
+      "punchline_text": "",
+      "sensory_channels": [
+        "听觉",
+        "嗅觉",
+        "温度"
+      ]
+    },
+    {
+      "para_num": 35,
+      "char_count": 40,
+      "function": "action",
+      "has_punchline": false,
+      "punchline_text": "",
+      "sensory_channels": []
+    },
+    {
+      "para_num": 36,
+      "char_count": 121,
+      "function": "plain",
+      "has_punchline": false,
+      "punchline_text": "",
+      "sensory_channels": []
+    },
+    {
+      "para_num": 37,
+      "char_count": 48,
+      "function": "dialogue",
+      "has_punchline": false,
+      "punchline_text": "",
+      "sensory_channels": []
+    },
+    {
+      "para_num": 38,
+      "char_count": 105,
+      "function": "heavy",
+      "has_punchline": true,
+      "punchline_text": "七块布，七个人，七句没带回去的话。",
+      "sensory_channels": [
+        "视觉"
+      ]
+    },
+    {
+      "para_num": 39,
+      "char_count": 20,
+      "function": "plain",
+      "has_punchline": false,
+      "punchline_text": "",
+      "sensory_channels": [
+        "触感"
+      ]
+    },
+    {
+      "para_num": 40,
+      "char_count": 4,
+      "function": "dialogue",
+      "has_punchline": false,
+      "punchline_text": "",
+      "sensory_channels": []
+    },
+    {
+      "para_num": 41,
+      "char_count": 5,
+      "function": "heavy",
+      "has_punchline": true,
+      "punchline_text": "程铖没动。",
+      "sensory_channels": []
+    },
+    {
+      "para_num": 42,
+      "char_count": 56,
+      "function": "dialogue",
+      "has_punchline": false,
+      "punchline_text": "",
+      "sensory_channels": []
+    },
+    {
+      "para_num": 43,
+      "char_count": 61,
+      "function": "heavy",
+      "has_punchline": true,
+      "punchline_text": "老周提起闺女的时候脸上什么表情都没有，和提起魏东的半壶酒一样。",
+      "sensory_channels": [
+        "视觉"
+      ]
+    },
+    {
+      "para_num": 44,
+      "char_count": 18,
+      "function": "plain",
+      "has_punchline": false,
+      "punchline_text": "",
+      "sensory_channels": []
+    },
+    {
+      "para_num": 45,
+      "char_count": 24,
+      "function": "dialogue",
+      "has_punchline": false,
+      "punchline_text": "",
+      "sensory_channels": []
+    },
+    {
+      "para_num": 46,
+      "char_count": 12,
+      "function": "dialogue",
+      "has_punchline": false,
+      "punchline_text": "",
+      "sensory_channels": []
+    },
+    {
+      "para_num": 47,
+      "char_count": 26,
+      "function": "dialogue",
+      "has_punchline": false,
+      "punchline_text": "",
+      "sensory_channels": []
+    },
+    {
+      "para_num": 48,
+      "char_count": 124,
+      "function": "action",
+      "has_punchline": false,
+      "punchline_text": "",
+      "sensory_channels": [
+        "听觉",
+        "触感"
+      ]
+    },
+    {
+      "para_num": 49,
+      "char_count": 7,
+      "function": "heavy",
+      "has_punchline": true,
+      "punchline_text": "像在回应什么。",
+      "sensory_channels": []
+    },
+    {
+      "para_num": 50,
+      "char_count": 11,
+      "function": "dialogue",
+      "has_punchline": false,
+      "punchline_text": "",
+      "sensory_channels": []
+    },
+    {
+      "para_num": 51,
+      "char_count": 56,
+      "function": "plain",
+      "has_punchline": false,
+      "punchline_text": "",
+      "sensory_channels": []
+    },
+    {
+      "para_num": 52,
+      "char_count": 5,
+      "function": "dialogue",
+      "has_punchline": false,
+      "punchline_text": "",
+      "sensory_channels": []
+    },
+    {
+      "para_num": 53,
+      "char_count": 73,
+      "function": "heavy",
+      "has_punchline": true,
+      "punchline_text": "磨刀声比平时重了一拍。",
+      "sensory_channels": [
+        "听觉",
+        "嗅觉"
+      ]
+    },
+    {
+      "para_num": 54,
+      "char_count": 142,
+      "function": "heavy",
+      "has_punchline": true,
+      "punchline_text": "磨深了也不说，不说比说重。",
+      "sensory_channels": [
+        "视觉",
+        "听觉"
+      ]
+    },
+    {
+      "para_num": 55,
+      "char_count": 114,
+      "function": "heavy",
+      "has_punchline": true,
+      "punchline_text": "师父留东西的方式和说话的方式一样：说一半，留一半，留的那一半要你自己去碰。",
+      "sensory_channels": [
+        "触感"
+      ]
+    },
+    {
+      "para_num": 56,
+      "char_count": 109,
+      "function": "dialogue",
+      "has_punchline": false,
+      "punchline_text": "",
+      "sensory_channels": []
+    },
+    {
+      "para_num": 57,
+      "char_count": 65,
+      "function": "plain",
+      "has_punchline": false,
+      "punchline_text": "",
+      "sensory_channels": [
+        "听觉",
+        "触感"
+      ]
+    },
+    {
+      "para_num": 58,
+      "char_count": 18,
+      "function": "heavy",
+      "has_punchline": true,
+      "punchline_text": "和昨天一样。",
+      "sensory_channels": []
+    },
+    {
+      "para_num": 59,
+      "char_count": 66,
+      "function": "heavy",
+      "has_punchline": true,
+      "punchline_text": "风从裂缝那边吹过来，碱味比昨天重。",
+      "sensory_channels": [
+        "视觉",
+        "嗅觉",
+        "温度"
+      ]
+    },
+    {
+      "para_num": 60,
+      "char_count": 14,
+      "function": "dialogue",
+      "has_punchline": false,
+      "punchline_text": "",
+      "sensory_channels": []
+    },
+    {
+      "para_num": 61,
+      "char_count": 15,
+      "function": "dialogue",
+      "has_punchline": false,
+      "punchline_text": "",
+      "sensory_channels": []
+    },
+    {
+      "para_num": 62,
+      "char_count": 33,
+      "function": "plain",
+      "has_punchline": false,
+      "punchline_text": "",
+      "sensory_channels": []
+    },
+    {
+      "para_num": 63,
+      "char_count": 10,
+      "function": "heavy",
+      "has_punchline": true,
+      "punchline_text": "像在回应另一枚铜钱。",
+      "sensory_channels": []
+    },
+    {
+      "para_num": 64,
+      "char_count": 47,
+      "function": "plain",
+      "has_punchline": false,
+      "punchline_text": "",
+      "sensory_channels": [
+        "视觉",
+        "听觉",
+        "触感"
+      ]
+    },
+    {
+      "para_num": 65,
+      "char_count": 12,
+      "function": "plain",
+      "has_punchline": false,
+      "punchline_text": "",
+      "sensory_channels": []
+    },
+    {
+      "para_num": 66,
+      "char_count": 9,
+      "function": "dialogue",
+      "has_punchline": false,
+      "punchline_text": "",
+      "sensory_channels": []
+    },
+    {
+      "para_num": 67,
+      "char_count": 14,
+      "function": "plain",
+      "has_punchline": false,
+      "punchline_text": "",
+      "sensory_channels": [
+        "触感"
+      ]
+    },
+    {
+      "para_num": 68,
+      "char_count": 78,
+      "function": "plain",
+      "has_punchline": false,
+      "punchline_text": "",
+      "sensory_channels": [
+        "视觉"
+      ]
+    },
+    {
+      "para_num": 69,
+      "char_count": 3,
+      "function": "plain",
+      "has_punchline": false,
+      "punchline_text": "",
+      "sensory_channels": []
+    },
+    {
+      "para_num": 70,
+      "char_count": 86,
+      "function": "heavy",
+      "has_punchline": true,
+      "punchline_text": "铜钱算不出的东西只有两种：规则之外，规则之上。",
+      "sensory_channels": [
+        "听觉",
+        "触感"
+      ]
+    },
+    {
+      "para_num": 71,
+      "char_count": 47,
+      "function": "heavy",
+      "has_punchline": true,
+      "punchline_text": "那个人抬起头，满脸是血，但眼睛是亮的，没有暗紫色，只有人的光。",
+      "sensory_channels": [
+        "视觉"
+      ]
+    },
+    {
+      "para_num": 72,
+      "char_count": 7,
+      "function": "dialogue",
+      "has_punchline": false,
+      "punchline_text": "",
+      "sensory_channels": []
+    },
+    {
+      "para_num": 73,
+      "char_count": 6,
+      "function": "plain",
+      "has_punchline": false,
+      "punchline_text": "",
+      "sensory_channels": []
+    },
+    {
+      "para_num": 74,
+      "char_count": 35,
+      "function": "plain",
+      "has_punchline": false,
+      "punchline_text": "",
+      "sensory_channels": [
+        "听觉",
+        "触感"
+      ]
+    },
+    {
+      "para_num": 75,
+      "char_count": 9,
+      "function": "dialogue",
+      "has_punchline": false,
+      "punchline_text": "",
+      "sensory_channels": []
+    }
+  ],
+  "function_distribution": {
+    "dialogue": {
+      "count": 27,
+      "ratio": 36.0
+    },
+    "plain": {
+      "count": 21,
+      "ratio": 28.0
+    },
+    "heavy": {
+      "count": 19,
+      "ratio": 25.3
+    },
+    "sensory": {
+      "count": 4,
+      "ratio": 5.3
+    },
+    "action": {
+      "count": 4,
+      "ratio": 5.3
+    }
+  },
+  "punchline_count": 22,
+  "punchline_density": 5.36,
+  "punchline_score": 19.3,
+  "framework_score": 14.8,
+  "summary": "意象超预算：暗紫色, 碱味, 铜钱, 磨刀, 裂缝；变体不足：铜钱, 裂缝；金句密度过高（5.4/千字）"
+}

@@ -1,0 +1,147 @@
+{
+  "project": "征诏之界",
+  "updated_at": "2026-07-31T22:45:00+08:00",
+  "foreshadowings": [
+    {
+      "id": "F1",
+      "description": "铜钱共九枚，程铖现有四枚，需收集剩余五枚",
+      "planted_chapter": 2,
+      "planted_by": "杨铁（改造征调者遗言）",
+      "expected_reveal_chapter": "30-40",
+      "status": "planted",
+      "type": "main_plot",
+      "notes": "九枚铜钱=征诏令控制核心，分散在九个人手中。集齐九枚可算征诏令本身的规则——推翻/改写征诏令的可能",
+      "actual_progress": [
+        {"chapter": 2, "action": "杨铁遗言'九枚...共有九枚...'首次揭示铜钱总数"},
+        {"chapter": 3, "action": "沈缺确认师父只有三枚，铜钱需要九枚，剩余在更深的地方（界门那边）。师父遗言：'九枚齐了，就能算征诏令本身的规则'——收集线终点预期建立"}
+      ],
+      "current_status": "planted——铜钱总数已确认（九枚），师父的三枚+程铖的三枚+沈缺处一枚（已归还）=程铖现有四枚（三旧一师父的），第五枚在界门那边",
+      "chapters_since_last_action": 0,
+      "next_milestone": "Ch10-12：第十次征调乙级子位面'镜海'，获得第四枚铜钱，解锁铜钱引"
+    },
+    {
+      "id": "F2",
+      "description": "三年前同一时间点多人被征调（师父/杨铁/沈缺），不是随机",
+      "planted_chapter": 2,
+      "planted_by": "程铖（精算发现）",
+      "expected_reveal_chapter": "15-20",
+      "status": "planted",
+      "type": "conspiracy",
+      "notes": "暗示三年前的征调有针对性的筛选标准",
+      "actual_progress": [
+        {"chapter": 2, "action": "程铖发现杨铁（第七营第四批）三年前被征调，与师父同期，'账算不平'"},
+        {"chapter": 3, "action": "沈缺也是三年前被征调（第七批），程铖追问'三年前那次征调，到底征了多少人？'"}
+      ],
+      "current_status": "planted——三年前同期征调名单持续扩大（师父/杨铁/沈缺），阴谋暗示加深",
+      "chapters_since_last_action": 0,
+      "next_milestone": "Ch15-20：揭示三年前征调的筛选标准与七大家族的关系"
+    },
+    {
+      "id": "F3",
+      "description": "铜钱上的血在慢慢渗入纹路，和铜钱融为一体",
+      "planted_chapter": 3,
+      "planted_by": "程铖（观察）",
+      "expected_reveal_chapter": "10-15",
+      "status": "planted",
+      "type": "ability",
+      "notes": "血与铜钱本是一体——铜钱需要血来激活/认主",
+      "actual_progress": [
+        {"chapter": 2, "action": "血迹'黏不进铜钱表面，渗进了纹路里，像纹路本来就该是红的'——血迹开始与铜钱融合"},
+        {"chapter": 3, "action": "血迹'比之前淡了一点，像血在慢慢渗进纹路里，和铜钱融为一体'——融合加深"},
+        {"chapter": 4, "action": "血迹'比昨天又淡了一层，纹路里的颜色更重，像血正在被铜钱吃掉'——融合加速，意象从'渗入'升级为'被吃掉'（铜钱主动性的暗示）"}
+      ],
+      "current_status": "planted——血迹从Ch1'三天内新鲜血'→Ch2'渗入纹路'→Ch3'变淡融合'→Ch4'被铜钱吃掉'，融合过程明确且加速，铜钱需要血来激活/认主的暗示加深",
+      "chapters_since_last_action": 0,
+      "next_milestone": "Ch10-15：揭示血与铜钱本是一体，铜钱需要血来激活/认主"
+    },
+    {
+      "id": "F4",
+      "description": "裂缝深处的观察者——一群在学在观察，在等更多接触主位面的机会",
+      "planted_chapter": 1,
+      "planted_by": "程铖（铜钱三算）",
+      "expected_reveal_chapter": "25-30",
+      "status": "partial_revealed",
+      "type": "world_building",
+      "notes": "可能是征诏令的'意识'或最早的被改造者",
+      "actual_progress": [
+        {"chapter": 1, "action": "铜钱三算——'裂缝那头有什么东西。在观察。在等。'+'是活的，而且认识这枚铜钱'"},
+        {"chapter": 2, "action": "间接呼应——铜钱算不出裂缝对面是什么，'不在规则里，在规则的缝隙里'"},
+        {"chapter": 3, "action": "沈缺警告'它发现你们了，想把界门提前关上'；程铖第三算确认'在学，在观察，在等更多征调者，更多界门，更多接触主位面的机会'"}
+      ],
+      "current_status": "partial_revealed——确认为一群，在学在观察在等，但身份未知（铜钱算不出，不在规则里）",
+      "chapters_since_last_action": 0,
+      "next_milestone": "Ch25-30：铁城界门发现时进一步揭示观察者身份"
+    },
+    {
+      "id": "F5",
+      "description": "征诏令说谎——任务失败的人回不去，死在这边的人连名字都不会被记住",
+      "planted_chapter": 3,
+      "planted_by": "沈缺（口述）",
+      "expected_reveal_chapter": "15-20",
+      "status": "planted",
+      "type": "conspiracy",
+      "notes": "征诏令管理机构系统性造假，掩盖征调者死亡",
+      "actual_progress": [
+        {"chapter": 3, "action": "沈缺以亲历者身份揭示：'征诏令说谎。任务失败的人回不去。死在这边的人，连名字都不会被记住'；老周确认'征诏令说任务成功，全员归来'"}
+      ],
+      "current_status": "planted——征诏令系统性造假由亲历者沈缺揭示，老周佐证官方记录说谎",
+      "chapters_since_last_action": 0,
+      "next_milestone": "Ch15-20：改造征调者说出'征诏令不是天道的'——世界观裂缝出现"
+    },
+    {
+      "id": "F6",
+      "description": "苏眠的读心能力与程铖铜钱卜算是互补的——铜钱算规则，苏眠看人心意图",
+      "planted_chapter": 4,
+      "planted_by": "苏眠正式出场时展示",
+      "expected_reveal_chapter": "20-30",
+      "status": "planted",
+      "type": "character",
+      "notes": "两人能力协同可以覆盖规则+人心两个维度。Ch4已植入：读心展示（看情感意图非记忆）+代价（丢记忆）+她认得界门烫（与程铖界门线交集）。互补关系本身未点破，留待能力协同场景揭示",
+      "actual_progress": [
+        {"chapter": 4, "action": "苏眠正式出场：触痂读心（'你算过账……没有把这笔算进去'——情感意图非记忆的规则展示），代价丢记忆（忘锁门）；'界门烫，她认得这种伤'——她与界门线的交集首次暗示"}
+      ],
+      "current_status": "planted——读心能力+代价已展示，'认得界门烫'埋下与程铖（铜钱算规则）互补的接口，协同关系未点破",
+      "chapters_since_last_action": 0,
+      "next_milestone": "Ch20-30：能力协同场景揭示互补关系（铜钱算规则+苏眠看人心=规则与人心双维度）"
+    },
+    {
+      "id": "F7",
+      "description": "程铖承诺下次来带全部被流放者出去",
+      "planted_chapter": 3,
+      "planted_by": "程铖（承诺）",
+      "expected_reveal_chapter": "10-12",
+      "status": "planted",
+      "type": "character",
+      "notes": "第十次征调时需兑现，建立程铖言出必行的形象",
+      "actual_progress": [
+        {"chapter": 3, "action": "程铖先说'带不了'再承诺'但下次我来。带你们全部出去'——精算者做出的非精算决策；老周表态'我也来'"}
+      ],
+      "current_status": "planted——承诺已做出，时间锚（三十天后下一轮征调）+行动锚（带全部被流放者出去）双重建立",
+      "chapters_since_last_action": 0,
+      "next_milestone": "Ch10-12：第十次征调时兑现承诺，带被流放者出去"
+    },
+    {
+      "id": "F8",
+      "description": "赵家少主请程铖明天喝茶——首次正面冲突预告",
+      "planted_chapter": 3,
+      "planted_by": "赵家管家",
+      "expected_reveal_chapter": "4-7",
+      "status": "planted",
+      "type": "conflict",
+      "notes": "赵家占据程家旧宅，程铖需要赎回家产",
+      "actual_progress": [
+        {"chapter": 3, "action": "赵家管家递烫金请柬'赵家少主请您明天去喝茶'，程铖三连怼回'告诉他，我明天没空。后天也没空。大后天也不一定有空。要不你让他写个申请，我看看日程'"},
+        {"chapter": 4, "action": "茶会兑现（S6闭环）：'物归原主'话术被'坐得起，买不起'顶回；少主改抛界门交易'明晚赵某手上有几样界门的物件，请程少爷掌掌眼'——赵家要界门的东西；程铖应约明晚"}
+      ],
+      "current_status": "planted——冲突已从预告升级为交易线：少主占椅三年+抛界门交易（动机不明），程铖'赵家的茶，不是白喝的'判断成立，明晚掌眼为Ch5必兑现期待锚",
+      "chapters_since_last_action": 0,
+      "next_milestone": "Ch5：明晚掌眼兑现——界门物件展示+少主动机部分答案；少主名字'赵阙'登名时机"
+    }
+  ],
+  "total_planted": 8,
+  "total_resolved": 0,
+  "total_partial_revealed": 1,
+  "total_pending": 0,
+  "next_review_chapter": 10,
+  "review_note": "Ch4入库：F6（苏眠互补线）正式植入（读心+代价+'认得界门烫'），pending→planted；F3（血迹融合）推进（'被铜钱吃掉'意象升级）；F8（赵家冲突）兑现升级（茶会→界门交易线）。全部status=planted或partial_revealed，无提前揭示。活跃悬念线5条（S6已闭环）。下一审查点：Ch10。"
+}

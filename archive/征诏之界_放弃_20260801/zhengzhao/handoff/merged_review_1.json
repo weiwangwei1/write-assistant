@@ -1,0 +1,123 @@
+{
+  "card_type": "merged_review",
+  "chapter_num": 1,
+  "chapter_title": "第七征营",
+  "timestamp": "2026-07-28T20:00:00+08:00",
+  "merge_rule": "detail优先原则：冲突项以detail-reviewer判定为准；de-ai建议作为语言层补充",
+  "user_decisions": {
+    "master_name": "统一为沈姓，正文'乔老头'→'沈老头'",
+    "coin_source": "父亲留下母亲转交（程铖.json版本为准）",
+    "ch3_ending": "承诺视角收束"
+  },
+  "modifications": [
+    {
+      "id": "M1-01",
+      "source": "detail_review",
+      "severity": "major",
+      "category": "cross_card_consistency",
+      "location": "第23/91/95行",
+      "issue": "师父姓名跨角色卡矛盾：正文用'乔老头'，师父角色卡为'沈问机'",
+      "fix_instruction": "将正文中所有'乔老头'替换为'沈老头'（共3处：第23行'乔老头说过'、第91行'乔老头磨的'、第95行'乔老头被征调'）",
+      "resolution": "用户裁定：统一为沈姓"
+    },
+    {
+      "id": "M1-02",
+      "source": "detail_review",
+      "severity": "major",
+      "category": "logic",
+      "location": "第41行/第63行",
+      "issue": "铜钱卜算说每次放3-5个敌人，但第二波（第七批）仅出来2个，低于下限，未做交代",
+      "fix_instruction": "在第二波敌人出现时补一句程铖内心反应，如'两个。铜钱说三到五个。少了——或者多了。'将偏差纳入七成精度的角色认知",
+      "resolution": "化解数量矛盾"
+    },
+    {
+      "id": "M1-03",
+      "source": "de_ai_analysis",
+      "severity": "major",
+      "category": "sentence_uniformity",
+      "location": "第37-43行",
+      "issue": "'铜钱告诉他的第一件事/第二件事/第三件事'三段同构枚举排比，是AI最典型的结构化输出",
+      "fix_instruction": "打破模板：第一件直接陈述（保留），第二件融入动作（如'铜钱翻了个面。裂缝六十息开一次，每次三到五个。九息后。'），第三件保留未完成感（'他翻回正面。第三件事没算出来。但轮廓模糊——裂缝那头有什么东西。在观察。在等。'）"
+    },
+    {
+      "id": "M1-04",
+      "source": "de_ai_analysis",
+      "severity": "major",
+      "category": "word_repetition",
+      "location": "全章",
+      "issue": "'暗紫色'全章7次，视觉词过载",
+      "fix_instruction": "保留首尾各1次+战斗中1次（共3次），中间用替代描写：'纹路在动''裂缝边缘的光''紫色的蠕动'等"
+    },
+    {
+      "id": "M1-05",
+      "source": "de_ai_analysis",
+      "severity": "major",
+      "category": "dialogue_written",
+      "location": "第33行",
+      "issue": "老周台词'第六批征调的人，我认识那个领头的。他叫魏东，第六营的，三年前被征调后没回来'句式完整、信息密集，像念简历",
+      "fix_instruction": "拆碎为短句碎片：'第六批。'老周站起来，刀握在右手。'我认识那个领头的。魏东。第六营。三年前没回来。'——符合沉默寡言+咬嘴唇的人设"
+    },
+    {
+      "id": "M1-06",
+      "source": "de_ai_analysis",
+      "severity": "major",
+      "category": "logic_chain",
+      "location": "第67行（180字段落）",
+      "issue": "老周算功勋→程铖算铜钱→留第三次→还有敌人→评级丁级→敌人在升级→机构不管→死了白死，每句因果/转折连接，像论文论证",
+      "fix_instruction": "拆段插入动作切换：在'老周咬了咬嘴唇'后插入'程铖把铜钱翻了一面'动作切换，将因果链打碎为2-3个短段"
+    },
+    {
+      "id": "M1-07",
+      "source": "detail_review",
+      "severity": "minor",
+      "category": "sentence",
+      "location": "第5行",
+      "issue": "'不抬头'语义重复（同一句出现两次）",
+      "fix_instruction": "删除第二个'头也不抬'，改为'他说话的时候不抬头，磨刀声也不停：'
+"
+    },
+    {
+      "id": "M1-08",
+      "source": "detail_review",
+      "severity": "minor",
+      "category": "logic",
+      "location": "第79行",
+      "issue": "'两刀同一点'——喉咙与胸口位置不同",
+      "fix_instruction": "改为'两刀同时'或'两刀一上一下'，消除位置矛盾"
+    },
+    {
+      "id": "M1-09",
+      "source": "detail_review",
+      "severity": "minor",
+      "category": "foreshadowing",
+      "location": "第93行",
+      "issue": "'血是三天内的'判定方法未交代——核心悬念信息链断口",
+      "fix_instruction": "补一句判定依据，如铜钱卜算血迹新鲜度，或程铖用拇指蹭血判断黏度"
+    },
+    {
+      "id": "M1-10",
+      "source": "de_ai_analysis",
+      "severity": "minor",
+      "category": "four_char_idiom",
+      "location": "第95行",
+      "issue": "'杳无音讯'四字词组",
+      "fix_instruction": "改为'再没回来过'或'没了消息'"
+    },
+    {
+      "id": "M1-11",
+      "source": "de_ai_analysis",
+      "severity": "minor",
+      "category": "character_telling",
+      "location": "第47/109行",
+      "issue": "'第七营的规矩：程铖说了，就照做'——Tell式总结出现2次",
+      "fix_instruction": "第一次保留（建立规则），第二次改为行为展示（如老周直接照做不问）"
+    }
+  ],
+  "summary": {
+    "total_modifications": 11,
+    "critical": 0,
+    "major": 6,
+    "minor": 5,
+    "fix_priority": ["M1-01 师父姓名统一", "M1-03 枚举排比打破", "M1-02 数量矛盾化解"]
+  }
+}

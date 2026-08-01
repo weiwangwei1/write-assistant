@@ -123,7 +123,8 @@
 
 <script>
 // ===== 配置 =====
-const KNOWN_PROJECTS = ['zhengzhao']; // 已知有 memory 系统的项目（2026-07-28《镜渊》已放弃归档至 archive/镜渊_20260728）
+const KNOWN_PROJECTS = []; // 已知有 memory 系统的项目（2026-08-01《征诏之界》已放弃归档至 archive/征诏之界_放弃_20260801；2026-07-28《镜渊》已放弃归档至 archive/镜渊_20260728）
+const PROJECT_DISPLAY_NAMES = {}; // 目录名 → 书名映射（下拉框展示用）
 
 function getProject() {
   const params = new URLSearchParams(location.search);
@@ -202,6 +203,16 @@ function esc(s) {
   return String(s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 }
 
+// 简化终审判定词用于徽章展示
+function simplifyVerdict(v) {
+  if (!v) return '';
+  if (v === 'approved' || v.includes('approved')) return 'approved';
+  if (v.includes('策略性放行')) return '策略性放行';
+  if (v.includes('重写') || v.includes('需修改')) return '需修改';
+  if (v.includes('待')) return '待处理';
+  return v.slice(0, 12);
+}
+
 // ===== 折叠/展开 =====
 function toggleCard(id) {
   const card = document.getElementById(id);
@@ -265,6 +276,7 @@ function render(session, goal, foreshadowing, characters, config, dirInfo, outli
   const qt = session.quality_trend || {};
 
   // 3. chapter_health（兼容对象格式 {"chapter_001":"pass"} 和数组格式 [{chapter:1,...}]）
+  // 同时用 session.chapters 的终审数据丰富（分数/verdict/ai_score）
   const chRaw = session.chapter_health || [];
   const ch = Array.isArray(chRaw) ? chRaw : Object.entries(chRaw).map(([k, v]) => ({
     chapter: parseInt(k.replace('chapter_', '')),
@@ -272,6 +284,20 @@ function render(session, goal, foreshadowing, characters, config, dirInfo, outli
     word_count: 0,
     quality_review: typeof v === 'string' ? v : (v.quality_review || 'pass')
   }));
+  // 用 session.chapters 丰富终审数据
+  if (session.chapters) {
+    ch.forEach(c => {
+      const chKey = `chapter_${String(c.chapter).padStart(3, '0')}`;
+      const cd = session.chapters[chKey];
+      if (cd) {
+        c.title = cd.title || c.title;
+        c.word_count = cd.word_count || c.word_count;
+        c.final_review_score = cd.final_review_score;
+        c.final_review_verdict = cd.final_review_verdict;
+        c.ai_score = cd.ai_score;
+      }
+    });
+  }
 
   // 4. character_quick_state（兼容对象格式、数组格式 和 active_characters 字符串数组）
   let csRaw = session.character_quick_state || [];
@@ -317,7 +343,12 @@ function render(session, goal, foreshadowing, characters, config, dirInfo, outli
     activeGoals = [{ id: 'MQ', description: goal.main_quest.name, status: goal.main_quest.status, note: goal.main_quest.progress }];
     if (goal.character_goals) {
       Object.entries(goal.character_goals).forEach(([name, g]) => {
-        activeGoals.push({ id: name, description: g.short_term || '', status: 'active', note: g.progress || '' });
+        // short_term 可能是字符串或数组（程铖为数组格式 [{goal, status, progress}]）
+        let desc = g.short_term || '';
+        if (Array.isArray(desc)) {
+          desc = desc.map(s => typeof s === 'string' ? s : (s.goal || JSON.stringify(s))).join('；');
+        }
+        activeGoals.push({ id: name, description: desc, status: 'active', note: g.progress || g.long_term || '' });
       });
     }
   }
@@ -397,7 +428,7 @@ function render(session, goal, foreshadowing, characters, config, dirInfo, outli
         <div class="project-selector">
           <label>项目:</label>
           <select onchange="switchProject(this.value)">
-            ${KNOWN_PROJECTS.map(p => `<option value="${p}" ${p === project ? 'selected' : ''}>${p}</option>`).join('')}
+            ${KNOWN_PROJECTS.map(p => `<option value="${p}" ${p === project ? 'selected' : ''}>${PROJECT_DISPLAY_NAMES[p] || p}</option>`).join('')}
           </select>
         </div>
         <button class="expand-all-btn" onclick="expandAll(true)">全部展开</button>
@@ -428,15 +459,14 @@ function render(session, goal, foreshadowing, characters, config, dirInfo, outli
 
       ${card('quality', '质量趋势', `
         <table>
-          <thead><tr><th>章节</th><th>技术分</th><th>追读</th><th>verdict</th></tr></thead>
+          <thead><tr><th>章节</th><th>终审分</th><th>AI分</th><th>verdict</th></tr></thead>
           <tbody>
             ${ch.map(c => {
-              const q = (c.residual || '').match(/(\d+\.\d+)\/(\d+\.\d+)/);
-              const tech = q ? q[1] : '—';
-              const read = q ? q[2] : '—';
-              const v = c.status || '';
-              const vType = v.includes('待') || v.includes('重写') ? 'red' : v.includes('优化') ? 'yellow' : 'green';
-              return `<tr><td>Ch${c.chapter}</td><td>${tech}</td><td>${read}</td><td>${badge(esc(v), vType)}</td></tr>`;
+              const tech = c.final_review_score != null ? c.final_review_score : '—';
+              const ai = c.ai_score != null ? c.ai_score : '—';
+              const v = simplifyVerdict(c.final_review_verdict);
+              const vType = v.includes('需修改') || v.includes('待') ? 'red' : v.includes('放行') ? 'yellow' : v ? 'green' : 'muted';
+              return `<tr><td>Ch${c.chapter}${c.title ? ' ' + esc(c.title) : ''}</td><td>${tech}</td><td>${ai}</td><td>${badge(esc(v || '—'), vType)}</td></tr>`;
             }).join('')}
           </tbody>
         </table>
@@ -538,7 +568,7 @@ function renderError(msg) {
       <div class="project-selector">
         <label>项目:</label>
         <select onchange="switchProject(this.value)">
-          ${KNOWN_PROJECTS.map(p => `<option value="${p}" ${p === project ? 'selected' : ''}>${p}</option>`).join('')}
+          ${KNOWN_PROJECTS.map(p => `<option value="${p}" ${p === project ? 'selected' : ''}>${PROJECT_DISPLAY_NAMES[p] || p}</option>`).join('')}
         </select>
         <button class="refresh-btn" onclick="location.reload()">刷新</button>
       </div>
@@ -696,9 +726,10 @@ function renderChapterCatalog(outline, chapterSummaries, currentVolume, chapterH
           const q = summary.quality_status || {};
           let qBadge = '';
           if (q.verdict) {
-            const vType = (q.verdict.includes('重写') || q.verdict.includes('待')) ? 'red'
-              : q.verdict.includes('优化') ? 'yellow' : 'green';
-            qBadge = badge(q.verdict, vType);
+            const vShort = simplifyVerdict(q.verdict);
+            const vType = vShort.includes('需修改') || vShort.includes('待') ? 'red'
+              : vShort.includes('放行') ? 'yellow' : 'green';
+            qBadge = badge(vShort, vType);
           }
           const tech = q.technical_score ? `${q.technical_score}/${q.reader_retention}` : '';
           const chTitle = esc(summary.title || '—');
@@ -965,6 +996,19 @@ async function init() {
     ]);
     const completedChapters = (session.project_status && session.project_status.completed_chapters) || session.total_chapters_written || 0;
     const chapterSummaries = await loadChapterSummaries(completedChapters);
+    // 用 session.chapters 的终审数据丰富 chapterSummaries（补 quality_status）
+    if (session.chapters) {
+      chapterSummaries.forEach(s => {
+        const chKey = `chapter_${String(s.chapter_num).padStart(3, '0')}`;
+        const cd = session.chapters[chKey];
+        if (cd) {
+          s.quality_status = s.quality_status || {};
+          if (!s.quality_status.verdict) s.quality_status.verdict = cd.final_review_verdict || '';
+          if (!s.quality_status.technical_score) s.quality_status.technical_score = cd.final_review_score;
+          if (s.quality_status.reader_retention == null) s.quality_status.reader_retention = cd.ai_score;
+        }
+      });
+    }
     const chapterHealthRaw = session.chapter_health || [];
     // 兼容 chapter_health 为对象格式 {"chapter_001": "pass"} 或数组格式 [{chapter:1,...}]
     const chapterHealth = Array.isArray(chapterHealthRaw) ? chapterHealthRaw : Object.entries(chapterHealthRaw).map(([k, v]) => ({

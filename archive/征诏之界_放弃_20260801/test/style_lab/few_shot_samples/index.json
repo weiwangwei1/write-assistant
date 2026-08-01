@@ -1,0 +1,68 @@
+{
+  "description": "Few-shot 样本库 — 按场景类型分类的原文样本，供 LLM 上下文学习使用",
+  "scene_types": [
+    "battle",
+    "dialogue",
+    "environment",
+    "psychology",
+    "full_chapter"
+  ],
+  "usage": "生成时按当前场景类型从对应 JSON 中选取 2-3 段原文作为风格锚点注入上下文",
+  "authors": {
+    "yanyujiangnan": {
+      "display_name": "烟雨江南",
+      "total_samples": 35,
+      "by_type": {
+        "battle": 8,
+        "dialogue": 8,
+        "environment": 8,
+        "psychology": 8,
+        "full_chapter": 3
+      }
+    },
+    "chendong": {
+      "display_name": "辰东",
+      "total_samples": 35,
+      "by_type": {
+        "battle": 8,
+        "dialogue": 8,
+        "environment": 8,
+        "psychology": 8,
+        "full_chapter": 3
+      }
+    },
+    "jiangnan": {
+      "display_name": "江南",
+      "total_samples": 35,
+      "by_type": {
+        "battle": 8,
+        "dialogue": 8,
+        "environment": 8,
+        "psychology": 8,
+        "full_chapter": 3
+      }
+    },
+    "maibao": {
+      "display_name": "卖报小郎君",
+      "total_samples": 35,
+      "by_type": {
+        "battle": 8,
+        "dialogue": 8,
+        "environment": 8,
+        "psychology": 8,
+        "full_chapter": 3
+      }
+    },
+    "wuzei": {
+      "display_name": "爱潜水的乌贼",
+      "total_samples": 33,
+      "by_type": {
+        "battle": 8,
+        "dialogue": 8,
+        "environment": 8,
+        "psychology": 8,
+        "full_chapter": 1
+      }
+    }
+  }
+}
