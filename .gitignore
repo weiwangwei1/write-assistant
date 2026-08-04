@@ -21,3 +21,7 @@ __pycache__/
 .qoder/
 cherry-studio/
 
+# 蒸馏语料原文（超大 txt，已迁移至 d:\personFile\corpus\，不入库）
+.trae/skills/writer-styles/*/reference/原作/
+.trae/skills/writer-styles/*/reference/原作_utf8/
+

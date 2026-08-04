@@ -107,7 +107,8 @@ python style_lint.py output/ --style yanyujiangnan        # 目录模式含跨�
 python fix_auditor.py handoff/pre_lint_ch15.txt output/chapter_015.txt --json handoff/fix_audit_ch15.json
 
 # 文体指纹：从原作建基线 / 校验章节偏差（退出码 0=通过 1=超阈 2=基线不可用）
-python style_fingerprint.py build 原作1.txt 原作2.txt --author 作者名 --exclude-names 主角名 --out fingerprint.json
+# 原作语料已移出仓库，存放在 d:\personFile\corpus\writer-styles\<作者名>\原作[_utf8]\
+python style_fingerprint.py build "d:\personFile\corpus\writer-styles\作者名\原作_utf8\原作1.txt" "d:\personFile\corpus\writer-styles\作者名\原作_utf8\原作2.txt" --author 作者名 --exclude-names 主角名 --out fingerprint.json
 python style_fingerprint.py check chapter_013.txt --baseline fingerprint.json --json check.json
 python style_fingerprint.py selfcheck --baseline fingerprint.json   # 容差健康度：原作章节应高比例通过
 python style_pack_check.py --all                                    # 风格包入库验收清单（FAIL 禁止入库）
@@ -142,7 +143,7 @@ powershell -ExecutionPolicy Bypass -File auto-runner/generate_task_config.ps1 # 
 
 ## 七、文风包（writer-styles）
 
-`.trae/skills/writer-styles/` 收录蒸馏的作者文风，每包三件套：`style_card.md`（决策卡，每章注入写手）+ `fingerprint.json`（指纹基线）+ `lint_overlay.json`（lint 阈值覆盖/签名手法豁免/专属违禁词）。已收录 6 位作者：`yanyujiangnan`（烟雨江南，当前挂载）、`chendong`、`jiangnan`、`jinhezai`、`maibao`、`wuzei`，指纹基线均为 v2.0 口径 ready。挂载方式：`config/novel_config.json` 设 `"style_pack": "<名称>"`，一本书只挂一个包。覆盖层只能调阈值与豁免签名手法，**不能关闭通用反 AI 红线**。蒸馏新作者的四阶段流程、style_card 模板与入库验收见该目录 `README.md` 与 `docs/style-distillation/`。指纹口径 v2.0（2026-07-26 重建）：分句只按句末标点、破折号去重计数（数值约为 v1 的 1/3）、对话占比按引号内字数（低于 v1 口径）、容差由章际波动推导；校验判读：1-2 个轻微超阈≈正常章际波动，≥3 个超阈才需修。
+`.trae/skills/writer-styles/` 收录蒸馏的作者文风，每包三件套：`style_card.md`（决策卡，每章注入写手）+ `fingerprint.json`（指纹基线）+ `lint_overlay.json`（lint 阈值覆盖/签名手法豁免/专属违禁词）。已收录 6 位作者：`yanyujiangnan`（烟雨江南，当前挂载）、`chendong`、`jiangnan`、`jinhezai`、`maibao`、`wuzei`，指纹基线均为 v2.0 口径 ready。挂载方式：`config/novel_config.json` 设 `"style_pack": "<名称>"`，一本书只挂一个包。覆盖层只能调阈值与豁免签名手法，**不能关闭通用反 AI 红线**。蒸馏新作者的四阶段流程、style_card 模板与入库验收见该目录 `README.md` 与 `docs/style-distillation/`。**原作语料（226MB txt）已移出仓库，存放在 `d:\personFile\corpus\writer-styles\<作者名>\原作[_utf8]\`，fingerprint.json 的 `source` 字段已更新为绝对路径**。指纹口径 v2.0（2026-07-26 重建）：分句只按句末标点、破折号去重计数（数值约为 v1 的 1/3）、对话占比按引号内字数（低于 v1 口径）、容差由章际波动推导；校验判读：1-2 个轻微超阈≈正常章际波动，≥3 个超阈才需修。
 
 ## 八、安全与合规注意事项
 

@@ -33,9 +33,11 @@
 
 ## 蒸馏新作者（四阶段流程，方法论见 docs/style-distillation/）
 
+> **原作语料位置**：原作 txt 已从仓库移出，存放在 `d:\personFile\corpus\writer-styles\<作者名>\原作[_utf8]\`。蒸馏时用绝对路径引用。
+
 ```bash
 # ① 指纹基线（需原作≥3万字，禁用蒸馏产物充当原作；--exclude-names 过滤主角名防意象污染）
-python style_fingerprint.py build 原作1.txt 原作2.txt --author 作者名 \
+python style_fingerprint.py build "d:\personFile\corpus\writer-styles\作者名\原作_utf8\原作1.txt" "d:\personFile\corpus\writer-styles\作者名\原作_utf8\原作2.txt" --author 作者名 \
     --exclude-names 主角名1,主角名2 \
     --out .trae/skills/writer-styles/作者名/fingerprint.json
 # ② 结构化三层提取（画像层/语言层/决策层）→ 初版 style_card（模板见下）
