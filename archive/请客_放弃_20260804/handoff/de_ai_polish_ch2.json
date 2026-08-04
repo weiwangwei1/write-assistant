@@ -1,0 +1,43 @@
+{
+  "card_type": "de_ai_polish",
+  "timestamp": "2026-08-03T12:15:00+08:00",
+  "from_agent": "de-ai-processor",
+  "to_agent": "quality-reviewer",
+  "status": "ready",
+  "content": {
+    "chapter_num": 2,
+    "title": "送客宴（二）",
+    "draft_ref": "output/chapter_002_draft.txt",
+    "ai_score_before": 2.2,
+    "ai_score_after": 1.8,
+    "changes_made": [
+      {
+        "category": "emotion_telling",
+        "location": "第77行",
+        "original": "那汉子回头，又惊又怕地看了他一眼，又看了门边那老人一眼，像要说什么，到底没说，只一扎头，钻进外头的夜色里去了。",
+        "polished": "那汉子回头，看了他一眼，又看了门边那老人一眼，像要说什么，到底没说，只一扎头，钻进外头的夜色里去了。",
+        "reason": "删除情绪直说副词'又惊又怕'，改为动作自足（'看了他一眼，又看了门边那老人一眼'已传递惊惧），让读者自己感受而非被告知。"
+      }
+    ],
+    "stats": {
+      "total_changes": 1,
+      "by_category": {
+        "emotion_telling": 1,
+        "sentence_uniformity": 0,
+        "de_density": 0,
+        "formal_transition": 0,
+        "word_repetition": 0,
+        "dialogue_written": 0,
+        "four_char_idiom": 0,
+        "precise_number": 0,
+        "paragraph_uniformity": 0,
+        "over_connection": 0,
+        "summary_ending": 0,
+        "over_describe": 0,
+        "character_telling": 0,
+        "logic_chain": 0
+      }
+    },
+    "notes": "本章经 detail-reviewer 微观打磨后 AI 痕迹已极低，仅剩1处情绪直说需净化。'不敢'两处（第31行'不敢往前'、第67行'不敢碰'）属行为限定且情节合理（汉子惧局头），非情绪直说，保留。章末'一截枯木/枯指搭着桌沿'等意象已由 detail 层去重，de-ai 层不重复处理。"
+  }
+}

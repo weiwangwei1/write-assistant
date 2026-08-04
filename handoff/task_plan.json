@@ -1,0 +1,19 @@
+{
+  "novel_title": "请客",
+  "phase": "init",
+  "current_chapter": 1,
+  "completed_chapters": [],
+  "daily_target": 1,
+  "daily_completed": 0,
+  "current_date": "2026-08-02",
+  "rewrite_count": {},
+  "errors": [
+    {
+      "chapter": 0,
+      "stage": "topic_screening",
+      "message": "《征诏之界》2026-08-01 归档，新书《请客》重新立项",
+      "resolved": true
+    }
+  ],
+  "last_updated": "2026-08-02T22:30:00+08:00"
+}

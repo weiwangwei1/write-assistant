@@ -1,0 +1,78 @@
+{
+  "card_type": "chapter_draft",
+  "from_agent": "chapter-writer",
+  "to_agent": "detail-reviewer",
+  "status": "ready",
+  "content": {
+    "chapter_num": 3,
+    "title": "送客宴（三）",
+    "word_count": 2530,
+    "draft_ref": "output/chapter_003_draft.txt",
+    "opening_type": "氛围开头",
+    "ending_type": "留白反转",
+    "hook_sentence": "他忽然觉得，自己这一辈子，头一回，要去看一场自己心里那个从没翻开过的名字。",
+    "style_lint_ref": "handoff/style_lint_ch3_rewrite.json",
+    "fix_audit_ref": "handoff/fix_audit_ch3_rewrite.json",
+    "style_pack": "yanyujiangnan",
+    "style_plan": {
+      "metaphor_plan": [
+        {"position": "白霜离场", "target": "银耳铛的响声", "metaphor": "像替他敲了一声堂鼓", "function": "戏班意象收束白霜线"},
+        {"position": "认命笑", "target": "顾衡的语气", "metaphor": "认了命似的坦然", "function": "外化从掌控者到被揭示者的翻转"},
+        {"position": "续命", "target": "身上压住的东西松开", "metaphor": "像一只绷了太久的弦，松半扣", "function": "外化续命的体感"}
+      ],
+      "dialogue_plan": {
+        "confrontation_scenes": ["顾衡与老人关于最恨之人/等了多久/替谁设局的交锋"],
+        "format": "直接对话",
+        "reason": "终极揭示场景，面对面才有重量"
+      }
+    },
+    "beat_sheet": {
+      "beats": [
+        {"beat_id": 1, "summary": "人都走了，顾衡独坐空席嚼花生米，残席氛围", "purpose": "氛围铺垫", "weight": "minor", "shuang_type": null, "info_delivery": "sensory"},
+        {"beat_id": 2, "summary": "最后一道菜上桌——老卤豆腐，老人说给最恨之人，顾衡发现是他自己", "purpose": "反转", "weight": "major", "shuang_type": "reveal", "info_delivery": "dialogue"},
+        {"beat_id": 3, "summary": "顾衡自嘲我恨我恨得好+吃豆腐续命+老人端热茶", "purpose": "角色深度", "weight": "major", "shuang_type": null, "info_delivery": "action"},
+        {"beat_id": 4, "summary": "翻账册发现名字在被欠栏+身世暗线反向钩（童年凉粥记忆）", "purpose": "伏笔", "weight": "major", "shuang_type": null, "info_delivery": "discovery"}
+      ],
+      "cross_chapter_facts": {
+        "names": ["顾衡", "老人（局头）", "白霜（离场）"],
+        "numbers": ["九道菜已上齐", "这道豆腐上了三遍", "替八个人销八笔账", "碗底刻字'记'"],
+        "positions": ["顾衡在主位", "老人在门槛/灶间", "白霜已离场"],
+        "known_info": [
+          "最后一道菜=给最恨之人的菜=给顾衡的",
+          "吃豆腐=续命（做成一局命续一段）",
+          "账册上顾衡的名字在'被欠'栏，不在'欠'栏",
+          "局头欠顾衡的，不是顾衡欠局头的",
+          "老人替顾衡记了一辈子账",
+          "童年高烧醒来床边有凉粥，碗口磕一道小豁"
+        ],
+        "certainty_state": {
+          "顾衡": {"对自己是被欠者": "full——亲眼看见账册'被欠'栏的名字", "对老人的身份": "partial——知道老人替他记账一辈子，但不知老人是谁", "对童年凉粥": "partial——怀疑是老人搁的，但不确定"}
+        }
+      },
+      "character_internal": {
+        "顾衡": {
+          "inner_conflict": "掌控本能vs被揭示——他看一辈子人，头一回被人把菜端到面前告诉他你就是那个人（引用角色卡conflicts: 享受掌控vs发现自己也是这场局里被读的一页）",
+          "desire_this_chapter": "看清最后一道菜给谁→发现是自己→看清账册→理解自己不是欠的是被欠的",
+          "emotion_arc": "独坐空席（静）→菜端上来（困惑）→被告知是最恨之人（慌）→自嘲（冷幽默化解）→吃豆腐续命（接受）→翻账册（震动）→童年记忆（柔软）→走进夜色（绷紧）",
+          "vulnerability_beat": "beat_id=2，weight=major，purpose=角色深度——慌了，跟被人看穿的慌不一样，另一种更深，像一脚踩空却不知道底下有多深。精算失效时刻：他看一辈子人，头一回被人告诉他你就是那个人",
+          "dna_outlets_used": [
+            "看透强迫症：盯住老人的手→顺手往上看眼——'他顺那双手往上看，看老人的眼'",
+            "失控即失态：手摸向破碗——'他的手不自觉摸向怀里那只破碗，碗口那道豁在指腹下硌了一下'",
+            "穷体面：随身带磕口粗瓷碗——'从怀里掏出那只磕了口的破碗，摸一粒花生米搁嘴里嚼'",
+            "越压越冷：最紧时说最轻松的话——'我恨我恨得好'"
+          ]
+        }
+      },
+      "human_flavor_check": {
+        "private_detail": "掏破碗嚼花生米——'从怀里掏出那只磕了口的破碗，摸一粒花生米搁嘴里嚼，慢慢嚼，嚼出味来才咽'",
+        "absurd_contrast": "独坐空席+最恨之人的菜端给自己——'他以为自己是来替人收账的。可这一道菜，端到了他面前'",
+        "dark_humor_control": "我恨我恨得好——幽默解构恐惧，在被揭示身份的极端时刻用自嘲确立掌控",
+        "action_over_monologue": "手摸向破碗——不说'他慌了'，用'手不自觉摸向怀里那只破碗，碗口那道豁在指腹下硌了一下'表达"
+      },
+      "shuang_types": ["reveal"],
+      "suspense_budget_check": "闭环悬念1：最后一道菜是什么→给最恨之人的菜=给顾衡的。闭环悬念2：局头账目有鬼→顾衡的名字在被欠栏。新开悬念3：老人是谁/替顾衡记了一辈子/童年凉粥是不是他搁的",
+      "opponent_rebuttals": []
+    },
+    "timeline_clues_confirmed": true
+  }
+}

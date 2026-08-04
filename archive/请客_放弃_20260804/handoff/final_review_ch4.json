@@ -1,0 +1,96 @@
+{
+  "card_type": "final_review",
+  "timestamp": "2026-08-04T04:20:00+08:00",
+  "from_agent": "final-reviewer",
+  "chapter_num": 4,
+  "chapter_title": "凉粥",
+  "verdict": "approved",
+  "overall_score": 8.95,
+  "pass_threshold": 9.5,
+  "release_basis": "用户决策放行（2026-08-04）：Ch4 为'独处铺垫过渡章'，技术分8.85未达9.5门槛系结构性上限（无对话/无打脸对象），用户明确选择'按铺垫章放行'，进入发布流程。终审如实记录技术指标，放行以用户决策为准。",
+  "dimensions": [
+    {
+      "dimension": "故事吸引力",
+      "score": 9.0,
+      "findings": ["开头前300字明确'回旧宅查清楚'，主动追查；结尾'孟守拙+城南茶馆东窗下代笔穷秀才'给出具体行动锚，追读驱动力强", "双高型期待（既在乎顾衡为何被记挂，又知道下章去哪追）"],
+      "risks": ["独处章无角色互动，小迷/阿爽期待活人出现"]
+    },
+    {
+      "dimension": "逻辑自洽性",
+      "score": 9.0,
+      "findings": ["两页纸笔锋比对+纸背深折痕物证，'同一个人的手写了两遍'从猜测升级为确认", "二十七年与顾衡27岁自洽", "Ch3'整本账只有他一页有字'与Ch4怀里那页衔接一致"],
+      "risks": ["'孟守拙'是顾衡本名还是守着的人，作悬念留白，留待Ch50揭示"]
+    },
+    {
+      "dimension": "语言质感",
+      "score": 9.0,
+      "findings": ["ai_score_before=2.0/after=1.8，克制文笔、世界自转、不说破", "烟雨江南风格到位"],
+      "risks": []
+    },
+    {
+      "dimension": "角色立体度",
+      "score": 9.0,
+      "findings": ["顾衡'头一回连一个字都读不穿'死穴立住，主动追查贴掌控欲人设", "布老虎/磕口碗/铜烛台细节有温度"],
+      "risks": []
+    },
+    {
+      "dimension": "平台适配度",
+      "score": 9.5,
+      "findings": ["无敏感词，合规", "每句一段排版符合番茄移动端", "字数2406在2400-2600区间"],
+      "risks": []
+    },
+    {
+      "dimension": "商业潜力",
+      "score": 9.0,
+      "findings": ["章末钩子'孟守拙+城南茶馆'追读驱动力强", "民俗烟火气+悬念契合番茄读者", "Ch5需引入活人互动兑现事件，否则爽点断档"],
+      "risks": ["铺垫章爽点密度偏低，依赖Ch5兑现"]
+    },
+    {
+      "dimension": "读者体验",
+      "score": 8.5,
+      "findings": ["画师9/老缜8.5/老书虫8认可克制质感", "地铁客弃书40%（中段旧宅物件罗列偏密）"],
+      "risks": ["中段物件罗列（碗/草/灰/蜡烛/布老虎/水缸逐样看）地铁客耐性不足；字数2406贴近下限无法再删"]
+    },
+    {
+      "dimension": "跨章一致性",
+      "score": 9.5,
+      "findings": ["Ch3章末'走出送客宴门口'与Ch4开头衔接一致", "F-P3反向钩近期呼应（旧宅孟守拙纸），未提前透支Ch50半揭", "顾衡current_state（从送客宴离开、读不清自己）延续"],
+      "risks": []
+    }
+  ],
+  "cross_check": {
+    "dialogue_logic": "通过（独处章无对话，无对话自洽问题）",
+    "terminology_consistency": "通过（无新废弃术语；'孟守拙'为专名，一致性待Ch50揭示）",
+    "cross_chapter_consistency": "通过（Ch3账本'只有他一页有字'→Ch4怀里那页衔接；二十七年/27岁自洽；顾衡状态延续）",
+    "foreshadowing_check": "通过（F-P1 half_revealed未动；F-P3近期呼应做'旧宅确认有人守'的推进，半揭仍留Ch50，未透支；S004悬念'谁替他记的账'在Ch4获得物证确认但未揭底）"
+  },
+  "abandonment_risk_scan": [
+    {
+      "location": "中段旧宅翻找（第41-63行）",
+      "risk_type": "pace_drop",
+      "severity": "medium",
+      "description": "碗/草/灰/蜡烛/布老虎/水缸逐样看，地铁客弃书40%，看到'孟守拙'名字才提神",
+      "suggestion": "字数2406贴近下限无法再删；Ch5需快速引入活人互动（顾衡去城南茶馆问认得孟守拙的人），以事件兑现缓解节奏"
+    },
+    {
+      "location": "全章",
+      "risk_type": "pace_drop",
+      "severity": "medium",
+      "description": "独处铺垫章无爽点（S/A/B/C=0），阿爽追读6.5靠结尾钩子支撑",
+      "suggestion": "Ch5必须兑现（顾衡遇见活人+事实验证），否则触发3章滚动S/A硬指标（Ch2-4需≥1个S/A）"
+    }
+  ],
+  "commercial_assessment": {
+    "retention_prediction": "中",
+    "chase_drive": "强",
+    "shuang_density": "偏低",
+    "platform_fit": "高"
+  },
+  "rework_instructions": {
+    "needed": false,
+    "reason": "用户决策'按铺垫章放行'，终审基于此裁决。技术指标如实记录：overall 8.95 < 9.5，但为独处铺垫章结构性上限，非可修复缺陷。",
+    "target_agents": [],
+    "priority_fixes": []
+  },
+  "summary": "终审通过（用户决策放行铺垫章）。均分8.95（未达9.5为结构性上限，非缺陷）。四维终审补充分：商业潜力9.0/读者弃书风险8.5/平台合规9.5/跨章一致性9.5。交叉终检四项全通过，无high级弃书风险，无敏感词。核心风险：Ch5必须安排顾衡遇见活人+事实验证兑现，否则断爽点、触发3章滚动S/A硬指标。可发布，memory-manager 入库。"
+}

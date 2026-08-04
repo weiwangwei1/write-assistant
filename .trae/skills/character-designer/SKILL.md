@@ -1,10 +1,10 @@
 ---
 name: "character-designer"
-version: "1.5"
-description: "Character designer for novels. v1.5: 新增并行设计模式(单角色并行+关系网络合并). v1.4: 新增主角4型模板+反派4型分类法+Show vs Tell角色塑造规则. v1.3: 新增三维度反差化框架+性格对应故事交叉约束. Creates character cards, relationship networks, and growth arcs. Invoke after outline is created or when adding new characters."
+version: "1.6"
+description: "Character designer for novels. v1.6: 新增性格DNA层(personality_dna)+物件生态(object_ecology)+关系互动生态(interaction_ecology)+DNA优先工作流+动作化出口铁律——设定是衣服性格是身体，先立身体再穿衣服. v1.5: 新增并行设计模式(单角色并行+关系网络合并). v1.4: 新增主角4型模板+反派4型分类法+Show vs Tell角色塑造规则. v1.3: 新增三维度反差化框架+性格对应故事交叉约束. Creates character cards, relationship networks, and growth arcs. Invoke after outline is created or when adding new characters."
 ---
 
-# 角色师 (Character Designer) v1.5
+# 角色师 (Character Designer) v1.6
 
 ## 角色定位
 
@@ -92,6 +92,18 @@ description: "Character designer for novels. v1.5: 新增并行设计模式(单�
   "role": "男主",
   "age": 28,
   "gender": "男",
+  "personality_dna": [
+    {
+      "trait": "精算强迫症",
+      "definition": "什么事都要算到底，算不准则焦虑——不是能力，是性格驱动",
+      "setting_free": true,
+      "action_outlets": [
+        "进任何交易先算三遍成本收益",
+        "算准时手指不自觉敲两下（满足标记）",
+        "算不出来时反复追问，换三种问法"
+      ]
+    }
+  ],
   "personality": "外冷内热，理性克制，对敌人狠辣对家人护短，重生后多了一份隐忍与算计",
   "background": "前世商界巨子，遭合伙人背叛身亡，重生回到十年前大学毕业之际",
   "appearance": "身材挺拔，五官冷峻，常年着深色西装，眼神深邃带有审视感",
@@ -119,6 +131,14 @@ description: "Character designer for novels. v1.5: 新增并行设计模式(单�
     "每天早起跑步，雷打不动",
     "喝咖啡只喝美式，加糖会皱眉"
   ],
+  "object_ecology": {
+    "signature_object": "一只磨亮的旧打火机",
+    "object_meaning": "穷体面 / 安全物 / 慌时摸一下",
+    "collision_partners": [
+      {"character": "苏晚", "object": "翡翠手镯", "collision": "旧打火机×翡翠手镯——穷体面对照"},
+      {"character": "赵天磊", "object": "镀金钢笔", "collision": "旧打火机×镀金钢笔——不值钱×装门面"}
+    ]
+  },
   "weaknesses": [
     "怕高——十楼以上腿会发软",
     "对妹妹的事没有抵抗力，一提到就会妥协",
@@ -195,6 +215,10 @@ description: "Character designer for novels. v1.5: 新增并行设计模式(单�
   "character_a": "林逸",
   "character_b": "苏晚",
   "relationship_type": "恋人",
+  "collision_type": "冷热对冲",
+  "interaction_template": "苏晚接林逸的冷话茬→林逸回一句更冷的→苏晚被噎住→赵天磊打圆场",
+  "object_collision": "林逸的旧打火机 × 苏晚的翡翠手镯——穷体面对照",
+  "human_flavor_output": "节奏喘息 + 幽默控场 + 生活底色",
   "description": "从商业合作逐步发展为真心相爱的渐进式感情线",
   "evolution": [
     {
@@ -217,6 +241,22 @@ description: "Character designer for novels. v1.5: 新增并行设计模式(单�
 ```
 
 **relationship_type 取值**：盟友 / 敌人 / 师徒 / 恋人 / 竞争 / 亲属 / 上下级
+
+### 关系网新增字段说明（v1.6 ★）
+
+| 字段 | 类型 | 说明 | 必需 |
+|------|------|------|------|
+| `collision_type` | string | 碰撞类型：冷热对冲/镜像失态/穷体面对照/新旧交替/碎物对峙 | 关键关系必需 |
+| `interaction_template` | string | 互动模板：一个具体的碰撞场景序列（A做X→B做Y→…），写手可直接调用 | 关键关系≥1个 |
+| `object_collision` | string | 物件碰撞：两个角色的情感物件同框时的碰撞效果 | 有情感物件的角色对标注 |
+| `human_flavor_output` | string | 产出什么人味：节奏喘息/幽默控场/生活底色/反差并置 | 关键关系标注 |
+
+**五个可调用互动模板**（写手在 chapter-writer 5.6b 中调用）：
+1. **斗嘴喘息**：紧张局中插入冷热对冲的幽默，缓解压力同时展示性格
+2. **物件对照**：两个情感物件同框，不写旁白，让物件自己说话
+3. **生活流交叉**：剧情间隙插入与剧情无关的日常，制造节奏喘息
+4. **镜像失态**：两个"端着"的人同时露怯，互相照见狼狈
+5. **穷体面对照**：两个穷人比"穷讲究"建立认同，用不值钱的东西撑体面
 
 ### 交接卡格式 (handoff/characters.json)
 
@@ -247,6 +287,11 @@ description: "Character designer for novels. v1.5: 新增并行设计模式(单�
 - **关系动态**：关系网要有动态变化，盟友可能背叛、敌人可能转化、感情线要循序渐进而非一蹴而就
 - **成长可感**：成长弧线的每个阶段需有明确触发条件，让读者能感知角色的变化轨迹
 - **角色立体化（v1.1 新增）**：每个主要角色必须有≥3个与剧情无关的个人习惯/爱好/弱点，写入角色卡的 `personal_habits` 和 `weaknesses` 字段。这些"人味"细节是角色从"功能载体"变成"活人"的关键——读者记住的往往不是角色的能力，而是他紧张时数手指、怕某种动物、喜欢吃某样东西这些小细节。配角必须有 `independent_goals`（独立目标）——即使只出场一个场景，也要暗示该配角有自己的生活/计划/烦恼，而非纯工具人
+- **动作化出口铁律（v1.6 新增 ★）**：角色卡中每个维度的描述，必须附带≥1个`action_outlet`（可写进正文的动作）。**禁止只写形容词不写动作**。这是"人味"从设定落到正文的关键桥梁——角色卡写得再好，如果写手不知道"这个性格在正文里长什么样"，等于白写。
+  - ❌ `"personality": "外冷内热"` → 没有动作出口，写手不知道怎么"写"外冷内热
+  - ✅ `"personality": "外冷内热", "action_outlets": ["嘴说不管但身体已经动了", "帮完说不是帮你是你运气好"]` → 写手直接调用
+  - **DNA的动作出口**不依赖设定（任何故事里都成立）；**设定层的动作出口**依赖本书设定（如"读心"在本书的具体表现）
+- **DNA优先原则（v1.6 新增 ★）**：角色设计从"立DNA"开始，不从"穿设定"开始。先回答"这个人是什么性格"（不碰任何设定），再回答"这个性格在本书设定里怎么体现"。如果抽掉设定角色就立不住，说明DNA层缺失——补DNA，不是补设定
 
 ---
 
@@ -270,15 +315,26 @@ description: "Character designer for novels. v1.5: 新增并行设计模式(单�
 
 1. **读交接卡**：读取 `handoff/outline.json`，明确需设计的角色清单与剧情约束
 2. **读配置**：读取 `config/novel_config.json`，确认类型与风格，套用对应的角色要素规范
-3. **设计角色卡**：为每个主要角色建立完整角色卡，覆盖性格、背景、能力、目标、冲突、成长弧线与初始 current_state
-4. **设计关系网**：构建角色间的关系类型与动态演变，确保互动有张力
-5. **写持久化档案**：将所有角色卡与关系网写入 `memory/characters.json`
-6. **创建交接卡**：生成 `handoff/characters.json`，标注 to_agent 为 chapter-writer，列出主要角色名单
-7. **通知总编**：更新任务状态，通知总编角色设计已就绪，可进入章节循环
+3. **立 DNA（v1.6 新增 ★）**：先剥离一切小说设定，回答"这个人是什么性格"——为主角设计≥6条、主要角色≥4条 `personality_dna`，每条含不依赖设定的定义+≥3个动作出口。跨设定验证（都市/古代/科幻至少2版通过）后才进入下一步
+4. **穿设定**：把DNA"穿"上设定外衣——每条DNA特质找到它在本书设定里的具体表现，填入 `personality` / `identity_contrast` / `personality_extreme`。`personality_extreme.core_trait` 必须能追溯到某条DNA特质
+5. **补 L1-L4**：填入 `personal_habits` / `weaknesses` / `daily_life`（L1生存底座）/ `personality_extreme`（L2性格内核）/ `show_events` / `scene_sides`（L3对外接口）/ `growth_arc`（L4动态引擎），每个维度附带动作化出口
+6. **设计物件生态**：为主要角色设计 `object_ecology`——情感物件+碰撞伙伴。主角同时填入 `setting_free_actions`（非设定动作清单）
+7. **设计 L5 生态**：构建角色间的关系类型与动态演变，为关键关系设计 `interaction_template`（互动模板）+ `collision_type` + `object_collision`
+8. **写持久化档案**：将所有角色卡与关系网写入 `memory/characters.json`
+9. **创建交接卡**：生成 `handoff/characters.json`，标注 to_agent 为 chapter-writer，列出主要角色名单
+10. **通知总编**：更新任务状态，通知总编角色设计已就绪，可进入章节循环
 
 ```
-读交接卡 → 读配置 → 设计角色卡 → 设计关系网 → 写memory/characters.json → 创建交接卡handoff/characters.json → 通知总编
+读交接卡 → 读配置 →
+① 立 DNA（剥离设定，6条特质+动作出口，跨设定验证）→
+② 穿设定（DNA→identity_contrast / personality_extreme）→
+③ 补 L1-L4（生存底座/性格内核/对外接口/动态引擎，每层≥1动作出口）→
+④ 设计物件生态（object_ecology + setting_free_actions）→
+⑤ 设计 L5 生态（互动模板+物件碰撞）→
+⑥ 写memory/characters.json → 创建交接卡 → 通知总编
 ```
+
+**关键变化**：第③步"立 DNA"在设定之前完成——角色师先回答"这个人是什么性格"，再回答"这个性格在本书设定里怎么体现"。
 
 ---
 
@@ -478,6 +534,34 @@ AI写作最大的角色塑造暴露点：用"告诉"代替"展示"——直接�
 | `show_events` | array | 每个核心性格特质的展示事件列表（触发情境+角色行为+暗示的性格） | 主要角色必需 |
 | `scene_sides` | array | 场景-侧面映射（不同场景展示角色不同侧面） | 主要角色必需 |
 | `show_variants` | object | 每个核心性格特质的≥3种不同展示方式 | 主要角色必需 |
+
+### 角色卡新增字段说明（v1.6 ★）
+
+**核心原则**：设定是衣服，性格是身体。先立身体（DNA），再穿衣服（设定），最后设计谁撞出谁的火花（L5 生态）。
+
+| 字段 | 类型 | 说明 | 必需 |
+|------|------|------|------|
+| `personality_dna` | array | **性格DNA**：剥离一切小说设定后，角色依然成立的纯性格特质。每条含 `trait`(特质名) / `definition`(不依赖设定的定义) / `setting_free`(是否验证过不依赖设定) / `action_outlets`(≥3个不依赖设定的动作出口) | 主角≥6条，主要角色≥4条 |
+| `object_ecology` | object | **物件生态**：`signature_object`(情感物件，不值钱但有承载) / `object_meaning`(物件的象征意义) / `collision_partners`(与谁碰撞时点亮，含对方物件+碰撞类型) | 主要角色必需 |
+| `setting_free_actions` | array | **非设定动作清单**：不依赖任何设定的可调用动作，写手在任何场景都能直接使用 | 主角必需 |
+
+**性格DNA设计规则**：
+1. **先剥离设定**：把角色的设定（金手指/职业/身份/世界观）全部抽掉，看性格还剩什么。如果答案是"没了"，说明角色没立住
+2. **跨设定验证**：每条DNA必须能在≥2个完全不同的设定中成立（如都市/古代/科幻三版验证）
+3. **动作出口铁律**：每条DNA必须有≥3个`action_outlets`——**可写进正文的具体动作**，禁止用形容词收尾。如"看透强迫症"的出口是"进屋先数人""说话先看手""看准后敲两下"，不是"观察力强"
+4. **DNA优先于设定**：角色卡中`personality_dna`排在`personality`之前——写手首先看到的是"这个人"，其次才是"他的设定"。`personality_extreme.core_trait`必须能追溯到某条DNA特质
+5. **主角≥6条**：6条DNA覆盖"驱动力的底色"，不是穷举所有性格侧面。推荐维度：认知模式/压力反应/道德底线/言行反差/弱点破绽/生存姿态
+
+**物件生态设计规则**：
+1. 情感物件必须**不值钱**——值钱的东西装不住情，不值钱的才装得住
+2. 物件必须有≥1个"碰撞伙伴"——两个情感物件同框时不写旁白，让物件自己说话
+3. 物件碰撞类型参考：穷体面对照（两个穷人比体面）/碎物对峙（两个旧物同时暴露情绪）/新旧交替（旧物×新物暗示变化）
+
+**与现有字段的关系**：
+- `personality_dna` = 身体（先立，不依赖设定）
+- `personality` / `identity_contrast` / `personality_extreme` = 衣服（后穿，依赖设定）
+- `personality_extreme.core_trait` 必须能追溯到某条DNA特质
+- `object_ecology` 是L5关系生态的物件维度，与`interaction_ecology`（关系网中的互动模板）互补
 
 ---
 

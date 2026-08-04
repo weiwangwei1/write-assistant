@@ -1,0 +1,10 @@
+{
+  "chapter_len_min": 2400,
+  "chapter_len_max": 2600,
+  "golden_three_chapter_len_max": 2600,
+  "golden_three_beat_max": 4,
+  "golden_three_major_beat_max": 3,
+  "regular_beat_max": 5,
+  "regular_major_beat_max": 3,
+  "note": "《请客》篇幅配置（2026-08-03 建）：novel_config chapter_word_count 2500，区间2400-2600；黄金三章≤2600字（ensure 新读者完读），beat≤4(major≤3)；H1 篇幅硬检经 --config 注入"
+}

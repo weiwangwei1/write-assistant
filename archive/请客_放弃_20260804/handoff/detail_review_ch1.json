@@ -1,0 +1,112 @@
+{
+  "card_type": "detail_review",
+  "timestamp": "2026-08-03T04:40:00+08:00",
+  "from_agent": "detail-reviewer",
+  "to_agent": "chapter-writer",
+  "chapter_num": 1,
+  "chapter_title": "送客宴（一）",
+  "overall_verdict": "polished",
+  "sentence_level": [
+    {
+      "location": "第2段",
+      "original": "四张空椅，四副碗筷，四双眼睛似的望着满桌还没动过的菜。",
+      "issue": "意象指代模糊：'四双眼睛'究竟是四椅还是四筷？拟人主体不明，读者需自行补足。",
+      "severity": "minor",
+      "suggestion": "将'四双眼睛似的'移到主语后作状语，明确拟人对象为空椅空座。",
+      "revised": "四张空椅，四副碗筷，像四双眼睛似的，盯着满桌还没动过的菜。"
+    },
+    {
+      "location": "第32段（顾衡坐主位内心独白）",
+      "original": "他坐主位，这是局头给他递的一根杆子。",
+      "issue": "视角漂移：顾衡此时不知老人叫'局头'，该称呼是作者视角/读者统一标注，非顾衡认知内的词。内心独白应使用顾衡掌握的对方式称呼。",
+      "severity": "minor",
+      "suggestion": "改用顾衡认知内的称呼（这老人/东家），'局头'留给叙述层或读者从后续章节习得。",
+      "revised": "他坐主位，这是那老人给他递的一根杆子。"
+    },
+    {
+      "location": "第3段",
+      "original": "枯瘦得像一张放久了的旧账本，人却站得很稳。",
+      "issue": "无问题，AA级精准比喻（旧账本喻体+人却站得稳的反差），metaphor_plan 有规划，予以保留。",
+      "severity": "minor",
+      "suggestion": "保留。",
+      "revised": ""
+    }
+  ],
+  "meme_level": [
+    {
+      "location": "全章",
+      "meme": "算账梗（主角职业病专属）/荒诞规则反讽",
+      "issue": "本章幽默品类为'算账梗'（报菜名报成报账、吃菜=核账），符合 humor_catalog golden3_humor_points ch1 规划（报菜名报成报账），无网络梗、无时效性问题、无严肃场景误用。",
+      "severity": "minor",
+      "suggestion": "通过。"
+    }
+  ],
+  "foreshadowing_level": [
+    {
+      "foreshadowing_id": "F-P1",
+      "location": "第55-59段",
+      "issue": "最后一道菜留给'最恨之人'，结尾'人还没齐'强钩，符合大纲 golden_three_chapters ch1 ending_hook（最后一道菜还没上，人还没齐）。半揭到位：交代'那个人欠我最多恨我最多'，形成'想知道谁'的驱动力。",
+      "severity": "minor",
+      "suggestion": "通过。"
+    },
+    {
+      "foreshadowing_id": "F-P2",
+      "location": "第36-45段",
+      "issue": "局头账目有鬼（当铺豆腐/绸缎庄熏鱼两道'已销旧账'仍上桌），呼应大纲 ch2 ending_hook（局头记的账和主角算的对不上）。属本副本渐进揭示，不越级。",
+      "severity": "minor",
+      "suggestion": "通过。"
+    },
+    {
+      "foreshadowing_id": "F-P3",
+      "location": "第61-62段",
+      "issue": "顾衡想问'这满桌账谁替我记的'又按回去，身世暗线反向钩，呼应大纲 ch3 ending_hook（账本上'欠款人'栏主角是被欠的）前奏。dragging 得当，不提前展开。",
+      "severity": "minor",
+      "suggestion": "通过。"
+    }
+  ],
+  "logic_level": [
+    {
+      "location": "第36段",
+      "issue": "当铺账数字验算：本金一两八+利息二钱=二两，滚三年成三两二。自洽（剧情设定，非物理验算），'五年前张家亲自销账'时间线合理。",
+      "severity": "minor",
+      "suggestion": "通过。"
+    },
+    {
+      "location": "第57-59段",
+      "issue": "对话追问链自洽：顾衡问'谁欠谁的账'→局头答规则；问'都有主吗'→'道道有主'；问'坐主的是谁'→'先生坐的那张就是主的座'。回答范围精确匹配问话。",
+      "severity": "minor",
+      "suggestion": "通过。"
+    }
+  ],
+  "consistency_check": {
+    "character_voice": "顾衡台词符合语言指纹（断账职业病：'先问谁欠谁'/'这账您认不得我也认不得'/'替人把销掉的那一份'）；局头台词符合'收账欲+滴水不漏'（'道道有主一菜一主一筷一销'/'吃不完反过来是你欠他的'）。无串味。",
+    "setting_consistency": "菜=债规则、裁决权边界（只对理得清的账下断语）、不收命只销账均一致。",
+    "timeline_check": "香燃半截贯穿全章，时间线自洽。",
+    "previous_chapter_continuity": "首章，无前章衔接。",
+    "dialogue_logic": "对话自洽，追问链一致，无自相矛盾。",
+    "behavior_consistency": "顾衡冷静→尝出旧账警觉→反将一军→按回念头，情绪递进有因果；局头客气→被看穿时笑意褪→点出最后一道菜，转折有桥接。",
+    "number_plausibility": "当铺账数字自洽，十二道菜/四椅四筷数量一致。",
+    "terminology_check": "首章无正式术语需核；'局头'为反派统一称呼，正文顾衡视角使用处标 minor（见 sentence_level）。",
+    "metaphor_consistency": "核心意象统一在'账'（旧账本/算盘/记账/销账/核账），无异质隐喻。",
+    "scene_repetition": "无逐字/近似重复。",
+    "reference_ambiguity": "无术语指代歧义。",
+    "cross_chapter_facts": "专名（顾衡/局头/张家/绸缎庄）一致；数字（一两八+二钱=二两/滚三年三两二/五年前销账）验算自洽；位置接续（顾衡主位/局头门边）与交接卡一致；已知信息防重发现：首章无前文。",
+    "foreshadowing_pacing": "首章无 foreshadowing_tracker 基线；3处伏笔均为大纲计划内新埋设（ch1 最后一道菜/局头账目有鬼/ch3 身世反向钩前奏），无提前、无跳级。pass。",
+    "certainty_match": "顾衡对'最后一道菜归属'为 partial，正文用'兴许，就轮到您了'推测语气，匹配；对'局规则'为 full，用'吃不完反过来是你欠他的'确定语气，匹配。局头对'那道菜'为 full，用'是留给一个最不该来的人'确定语气，匹配。无视角漂移。",
+    "overcorrection_check": "fix_audit 证据逐条核对：11处功能词减少多为局部 diff 假象（'顾衡端着茶碗的手停在半空'/'鸿门宴好歹还有个逃的机会'等核心句在正文实际保留）；删除的是'下意识地'（tell_marker 违禁词）、'顾衡：……'（沉默改动作，属改进）等正确修正。无语法残缺、无比喻退步、无对话失现场感、无 Hack 绕过。判定：无过度矫正。",
+    "l1_advisory_response": [
+      {"rule": "simile_total", "lint_message": "像字比喻11处>上限10（优质11/陈词0，优质占比100%）", "decision": "accept", "reason": "11处全部为精准比喻，3处（旧账本/拨不存在的算盘/答应一声的椅子）有 metaphor_plan 规划，优质占比100%，无陈词喻体。删最优比喻留平叙是过度矫正，故 accept。"},
+      {"rule": "dialogue_ratio", "lint_message": "对话占比41%>上限40%", "decision": "accept", "reason": "本章为面对面交锋/谈判场景（顾衡与局头断账对质），对话占比高于上限符合作战/谈判场景判定（判例集：交锋场景可高于上限）。"},
+      {"rule": "le_overuse", "lint_message": "了29.38/千字>上限25.0（参考指标）", "decision": "accept", "reason": "le_pattern 为自然时态助词（'滚了三年''缓缓放回桌上'），非 AI 腔短句'了'收尾模式；le_overuse 标注为参考指标，本案未形成 AI 腔模式。"},
+      {"rule": "zhe_overuse", "lint_message": "着10.06/千字>上限9.0", "decision": "accept", "reason": "轻微超阈（10.06 vs 9.0），'着'用法自然（'端着茶碗''望着''等着'），无堆叠感，为风格正常波动。"},
+      {"rule": "dialogue_guide_underuse", "lint_message": "对话引前引导(某某道：)0.0/千字<下限0.5", "decision": "accept", "reason": "正文虽引前引导（某某道：）少，但引语后/中引导（'老人说''顾衡道''他开口''顾衡答得干脆'）充足，阅读流畅；本章为交错对话场景，强行加引前引导会破坏机锋节奏。留待 de-ai-processor 措辞微调时权衡。"}
+    ]
+  },
+  "summary": {
+    "total_issues": 3,
+    "critical_count": 0,
+    "major_count": 0,
+    "minor_count": 3,
+    "polish_priority": ["第2段'四双眼睛似的'意象指代模糊（minor）", "第32段顾衡视角用'局头'称呼（minor）", "对话引导虽 accept 但留意 de-ai 阶段措辞"]
+  }
+}

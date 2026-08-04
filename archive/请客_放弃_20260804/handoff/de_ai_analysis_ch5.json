@@ -1,0 +1,52 @@
+{
+  "card_type": "de_ai_analysis",
+  "mode": "analysis_mode",
+  "timestamp": "2026-08-04T11:00:00+08:00",
+  "from_agent": "de-ai-processor",
+  "to_agent": "review-merger",
+  "chapter_num": 5,
+  "ai_score_before": 2.3,
+  "detected_issues": [
+    {
+      "category": "character_telling",
+      "location": "第7段",
+      "original": "旁边坐着个满脸晦气的当铺伙计",
+      "severity": "minor",
+      "suggestion": "'满脸晦气'是标签式形容，改为具体神态（眼皮肿/嘴角耷拉/眼圈青）更展示",
+      "revised": "旁边坐着个当铺伙计，眼皮肿着，嘴角往下耷"
+    },
+    {
+      "category": "character_telling",
+      "location": "第33段",
+      "original": "穷秀才抬起头，推了推滑到鼻尖的眼镜，打量了顾衡两眼，迟疑道",
+      "severity": "minor",
+      "suggestion": "'迟疑道'是情绪直说副词，改为动作前置（嘴唇动了动/手指在桌上蹭了蹭）+ 直接说话",
+      "revised": "穷秀才抬起头，推了推滑到鼻尖的眼镜，打量了顾衡两眼，嘴唇动了动：'顾先生？'"
+    },
+    {
+      "category": "word_repetition",
+      "location": "第101段",
+      "original": "三页纸，都在怀里。一页二三十年前的，一页昨夜的，一页刚递过来的。三页纸，一个人的字，写了他一辈子。",
+      "severity": "minor",
+      "suggestion": "两句'三页纸'开头的排比太工整，AI 感。第二句改个起头，节奏破一下",
+      "revised": "三页纸，都在怀里。一页二三十年前的，一页昨夜的，一页刚递过来的。都是一个人的字。写了他一辈子。"
+    },
+    {
+      "category": "dialogue_written",
+      "location": "第67段",
+      "original": "每次来写一封，写完就揣走，从不寄，也不留地址",
+      "severity": "minor",
+      "suggestion": "穷秀才口语偏书面化'从不寄也不留地址'，加个口语停顿或语气词更真实",
+      "revised": "每次来写一封，写完就揣走，不寄，也不留地址"
+    }
+  ],
+  "stats": {
+    "total_issues": 4,
+    "by_category": {
+      "character_telling": 2,
+      "word_repetition": 1,
+      "dialogue_written": 1
+    }
+  },
+  "overall_assessment": "整体AI痕迹很轻（ai_score=2.3），detail-reviewer已修掉主要show-don't-tell问题。剩余均为minor级语言微调，不影响质量。建议合并修改后 ai_score 可降至 1.5 左右。"
+}

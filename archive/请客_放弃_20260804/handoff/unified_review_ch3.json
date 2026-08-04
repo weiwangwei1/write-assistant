@@ -1,0 +1,51 @@
+{
+  "card_type": "unified_review",
+  "timestamp": "2026-08-03T16:10:00+08:00",
+  "from_agent": "quality-reviewer",
+  "to_agent": "final-reviewer",
+  "chapter_num": 3,
+  "chapter_title": "送客宴（三）",
+  "verdict": "approved",
+  "issue_management": {
+    "mode": "问题清单制",
+    "critical_remaining": 0,
+    "major_remaining": 0,
+    "minor_remaining": 0,
+    "notes": "lint L0/L1 critical 全0；detail 5项minor + de_ai 3项已全部应用并复跑通过；L1 7项minor逐条accept（见detail_review_ch3.l1_advisory_response）"
+  },
+  "scoring": {
+    "unified_score": 9.5,
+    "quality_technical_score": 9.5,
+    "breakdown": {
+      "structure": 9.5,
+      "pacing": 9.5,
+      "character": 9.6,
+      "conflict": 9.5,
+      "dialogue": 9.4,
+      "foreshadowing": 9.6,
+      "narration": 9.5,
+      "reader_retention": 9.5
+    },
+    "retention_index": 9.0,
+    "dropout_rate": 12
+  },
+  "dimension_notes": {
+    "structure": "黄金三章收束章，4 beat（3 major/1 minor）符合H4上限；开篇对话承接Ch2结尾，中段反转（被钉成坐席的）→自嘲→续命兑现→章末反向钩，节奏递进合理",
+    "pacing": "张弛有度：送客/收拢碗筷的仪式感减速，点破'你就是最后那个'的瞬间提速，续命数脉的静场，章末账本+欠字的反向钩收束；无拖沓",
+    "character": "顾衡精算失效时刻（对着一笔自己算不清的账只能苦笑认账）以场景呈现非旁白，符合H3 character_internal；局头'恨被一场等磨平'的守关人可悲相立住，二人独立性完整",
+    "conflict": "核心冲突从'替人销账'翻转为'自己才是那笔没人管的账'，由表及里；'我恨我恨得好'自嘲点破黑色幽默，无廉价打脸",
+    "dialogue": "对话占比28%低于下限但属收束章独处场景（L1 accept）；局头'先生'客气滴水不漏、顾衡冷面自带逗趣，语言指纹清晰；自嘲与对答有潜台词",
+    "foreshadowing": "F-P2 full_reveal（账本欠款人=顾衡）按计划Ch3兑现；F-P1 half_reveal（菜=顾衡自己）按计划Ch3兑现；F-P3反向钩非half_reveal，未提前透支；全揭后S004在场无真空",
+    "narration": "账/菜/席/欠字核心意象贯穿，'像一潭没底的井''像一只绷了太久的弦'等比喻有叙事功能；碗底'欠'字结尾余韵克制动人",
+    "reader_retention": "章末反向钩'有人趁他不知情替他记了一笔'制造强烈'想知道谁记的'驱动，指向身世暗线；续读Ch4意图明确"
+  },
+  "cross_chapter_consistency": {
+    "characters": "顾衡/局头/当铺豆腐（老卤半两陈皮）与前文一致，无二名一物",
+    "settings": "菜=债规则、局头受庄家指派设席、续命=做成一局兑一段，符合outline core_settings",
+    "timeline": "延续前章夜晚，半截香/灯焰延续，无时间跳跃",
+    "positions": "顾衡主位、局头门槛、菜端到顾衡面前，位置接续无断裂",
+    "known_info": "当铺豆腐为Ch1'头一筷子尝的'引用，非重新发现"
+  },
+  "suspense_budget_check": "active从2降到1（S004谁替他记的账），闭环S001→置换S003→S004，max_active=3合规",
+  "recommendation": "Ch3 approved，可流转final-reviewer终审；memory-manager入库时须将F-P3记为'反向钩（C7）'而非half_reveal，避免误标提前"
+}

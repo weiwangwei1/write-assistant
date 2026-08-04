@@ -1,0 +1,73 @@
+{
+  "card_type": "chapter_draft",
+  "from_agent": "chapter-writer",
+  "to_agent": "detail-reviewer",
+  "status": "ready",
+  "content": {
+    "chapter_num": 1,
+    "title": "送客宴（一）",
+    "word_count": 2450,
+    "draft_ref": "output/chapter_001_draft.txt",
+    "opening_type": "场景动作开头",
+    "ending_type": "悬念",
+    "hook_sentence": "他忽然觉得，这席才刚开。",
+    "style_lint_ref": "handoff/style_lint_ch1_rewrite.json",
+    "fix_audit_ref": "handoff/fix_audit_ch1_rewrite.json",
+    "style_pack": "yanyujiangnan",
+    "style_plan": {
+      "metaphor_plan": [
+        {"position": "第7段", "target": "老人的枯眼", "metaphor": "沉得像一口老井", "function": "外化看不透的压迫感"},
+        {"position": "第11段", "target": "碗底刻字", "metaphor": "旧得像写一辈子又磨一辈子", "function": "暗示旧账年代久远"},
+        {"position": "末段", "target": "破碗碗口豁", "metaphor": "像一张没合拢的嘴", "function": "暗示未说出口的秘密"}
+      ],
+      "dialogue_plan": {
+        "confrontation_scenes": ["顾衡与老人关于席面差两道菜的交锋"],
+        "format": "直接对话",
+        "reason": "面对面试探，转述会失去现场张力"
+      }
+    },
+    "beat_sheet": {
+      "beats": [
+        {"beat_id": 1, "summary": "蹲台阶倒破碗雨水+推门进屋数人", "purpose": "氛围铺垫", "weight": "minor", "shuang_type": null, "info_delivery": "action"},
+        {"beat_id": 2, "summary": "报菜名报成报账——逐道尝菜估价，点出九道菜备七道差两道", "purpose": "爽点", "weight": "major", "shuang_type": "B", "info_delivery": "action"},
+        {"beat_id": 3, "summary": "供桌神像观察+与老人交锋——看出老人不是东家是守席人", "purpose": "信息传递", "weight": "major", "shuang_type": null, "info_delivery": "discovery"},
+        {"beat_id": 4, "summary": "第八道菜上桌+碗底刻字记+最后一道菜等人齐", "purpose": "伏笔", "weight": "major", "shuang_type": null, "info_delivery": "sensory"}
+      ],
+      "cross_chapter_facts": {
+        "names": ["顾衡", "老人（局头/东家，未给真名）"],
+        "numbers": ["九道菜（冷盘四碟+热菜六道+砂锅一只）", "备七道", "已上八道", "差两道", "城里五文一盘笋干", "半两糖"],
+        "positions": ["顾衡坐在主位（正对门口的位子）", "老人在门边/门槛", "堂屋深处供一尊神像", "碗筷只一副"],
+        "known_info": ["送客宴规则：菜=债，头遍请客第二遍还账，吃完九道账清", "老人不是东家是守席人", "碗底刻字'记'被磨得只剩浅痕", "最后一道菜得等人都齐才上"],
+        "certainty_state": {
+          "顾衡": {"对老人身份": "partial——看出不是东家是守席人，但看不透老人在等谁", "对席面规则": "full——老人明确告知吃菜=还账", "对碗底刻字": "partial——看见'记'字但没认出全貌"}
+        }
+      },
+      "character_internal": {
+        "顾衡": {
+          "inner_conflict": "掌控本能vs看不透——他进门第一眼先把屋里数一遍，数完心里反倒没底（引用角色卡conflicts: 掌控本能vs明知有些心读不清）",
+          "desire_this_chapter": "看清这桌席的来路、老人在等谁",
+          "emotion_arc": "从容数人→职业病估价→看出老人身份→看不透老人→慌了一瞬→用幽默化解→被碗底刻字震动",
+          "vulnerability_beat": "beat_id=3，weight=major，purpose=角色深度——看不透老人时心里没底，手摸向破碗",
+          "dna_outlets_used": [
+            "看透强迫症：进屋先数人——'拢共一盏灯，一个人，一张桌，他数完才扫一眼桌上的席面'",
+            "看透强迫症：看人先看手再看眼听呼吸——'他看人先看手，再看眼，最后听呼吸'",
+            "看透强迫症：看准后手指叩两下——'指尖在桌沿上不轻不重地叩两下，那两下叩得稳'",
+            "穷体面：随身带磕口粗瓷碗——'碗磕口他不换，穷人的东西用久有分寸'",
+            "失控即失态：看不透时心里没底——'数完心里反倒没底。这屋太静，静得像一桩还没翻开的旧账，他看不透'",
+            "越压越冷：不合时宜的吐槽——'我这人吃菜不付账'"
+          ]
+        }
+      },
+      "human_flavor_check": {
+        "private_detail": "蹲台阶倒破碗雨水——'顾衡在门槛外蹲下来，把怀里那只磕口的粗瓷碗搁上台阶，碗底积半指深的雨水，他歪起碗沿，慢慢往青石板上倒'",
+        "absurd_contrast": "穷得只剩一只磕口碗的人，坐在一桌没上全的席面前替摆席的人算账——'他忽然觉得这画面有点好笑'",
+        "dark_humor_control": "我这人吃菜不付账——幽默服务控场，化解被老人看穿的紧张",
+        "action_over_monologue": "指尖在桌沿上叩两下——不说'他心里有了底'，用叩两下表达确信"
+      },
+      "shuang_types": ["B"],
+      "suspense_budget_check": "新开悬念1：最后一道菜是什么/人还没齐谁没来。无闭环（首章）",
+      "opponent_rebuttals": []
+    },
+    "timeline_clues_confirmed": true
+  }
+}

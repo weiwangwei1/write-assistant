@@ -1,0 +1,30 @@
+{
+  "card_type": "outline",
+  "timestamp": "2026-08-02T22:45:00+08:00",
+  "from_agent": "plot-architect",
+  "to_agent": "skeptic",
+  "status": "ready",
+  "outline_ref": "please/memory/outline.json",
+  "content": {
+    "title": "请客",
+    "genre": "无限流/系统流·民俗悬念·黑色幽默智斗",
+    "total_chapters": 300,
+    "total_volumes": 6,
+    "main_plot_line": "主角从'续命求生'到'清算庄家'，核心张力=他欠庄家一笔账 vs 庄家欠所有人一笔账的立场翻转",
+    "key_roles_needed": ["将死主角", "局头（第一副本反派）", "庄家（终极对手，后期揭示）", "同伴1-2名（各有想清的账）", "身世暗线关键人"],
+    "topic_screening_promise": [
+      "爽感必须1-2步直接",
+      "暗基调必须有持续幽默对冲（每章≥1释放点）",
+      "前3章只讲1个规则、庄家机制后置",
+      "黄金三章兑现'一桌送客宴'一个具象局"
+    ],
+    "note": "大纲已通过 skeptic 五轮质疑（C1-C16 全部关闭，5轮迭代）。plot-architect 落地全部4项补强后，outline-editor 复审 passed（9.05 达通过线）。大纲定稿，可进 character-designer。详见 handoff/outline_review.json。注：v1.1 高门槛9.5，当前9.05，是否拔分待用户裁定。"
+  },
+  "outline_review": {
+    "status": "passed",
+    "round": 2,
+    "total_score": 9.05,
+    "round2_verdict": "复审通过——4项补强全部命中原始风险项，节奏维度硬伤消除（8.0→9.5），商业/设定/平台风险均关闭",
+    "next_agent": "character-designer (大纲已定稿，可开始角色设计)"
+  }
+}

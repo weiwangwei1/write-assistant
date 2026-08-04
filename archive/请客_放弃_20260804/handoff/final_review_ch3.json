@@ -1,0 +1,35 @@
+{
+  "card_type": "final_review",
+  "timestamp": "2026-08-03T16:20:00+08:00",
+  "from_agent": "final-reviewer",
+  "to_agent": "memory-manager",
+  "chapter_num": 3,
+  "chapter_title": "送客宴（三）",
+  "verdict": "approved",
+  "references": {
+    "quality_review": "unified_review_ch3.json（quality_technical_score 9.5，retention 9.0）",
+    "detail_review": "detail_review_ch3.json（polished，5项minor已应用）",
+    "de_ai": "de_ai_analysis_ch3.json（'他忽然'5次→2次）",
+    "lint": "style_lint_ch3_final.json（L0/L1 critical 0，7项L1 minor逐条accept）"
+  },
+  "final_score": {
+    "overall": 9.5,
+    "quality": 9.5,
+    "commercial_potential": 9.4,
+    "reader_experience": 9.5,
+    "platform_compliance": 9.5,
+    "abandonment_risk": 9.4
+  },
+  "extra_dimensions": {
+    "commercial_potential": "黄金三章收束完成，反向钩'谁替你记的账'直指身世暗线（F-P3），形成强续读意图；顾衡'我恨我恨得好'自嘲+局头'这世道欠您的多'点题，黑幽默与宿命感叠加，符合番茄读者对'简开+爽感+悬念'的偏好；无新设定负担，认知门槛低",
+    "reader_experience": "章末'碗底欠字'+'有人趁他不知情替他记了一笔'双反转，画面感强、余韵克制，无总结式收尾；'他头一筷子替人销账，这一筷子替自己认账'对仗直击人心，留下'必知答案'冲动",
+    "platform_compliance": "无敏感词、无暴力嗜血细节、无政治/宗教争议；'续命=做成一局兑一段'为设定性隐喻，无涉违规；自嘲/宿命基调符合番茄主流向，无暗基调红线（本章有顾衡幽默+情绪释放点，补偿项通过）",
+    "abandonment_risk": "黄金三章完成闭环（悬念S001闭环、S004新开），无目标断头（G001 Ch3兑现、续命初步实现）；反派梯子局头Ch3收束、庄家/总账房待启，长线驱动清晰；弃书风险低"
+  },
+  "quality_reference": "引用quality-reviewer已评维度：角色一致性（顾衡精算失效/局头守关人可悲相）、世界观一致性（菜=债/续命兑段）、文笔质量（账菜席欠意象贯穿）均已通过，本层不重复评分",
+  "release_conditions": {
+    "met": true,
+    "notes": "均分9.5≥9.5放行；word_count 2449（2400-2600达标）；lint L0全绿；审核不可跳过要求已满足（独立quality_review卡存在）"
+  },
+  "handoff": "approved，可发布+memory-manager入库。入库要点：①F-P3记为'反向钩（C7）'非half_reveal；②G001关账、MQ001续命初兑现；③S004新开（谁替他记的账）"
+}

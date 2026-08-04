@@ -1,0 +1,112 @@
+{
+  "card_type": "chapter_draft",
+  "from_agent": "chapter-writer",
+  "to_agent": "detail-reviewer",
+  "status": "ready",
+  "content": {
+    "chapter_num": 5,
+    "title": "代笔",
+    "word_count": 2446,
+    "draft_ref": "output/chapter_005_draft.txt",
+    "opening_type": "动作开头",
+    "ending_type": "悬念",
+    "hook_sentence": "是他忽然想起，七岁那年，窗台上那碗凉粥。到底是谁，搁的。",
+    "style_lint_ref": "handoff/style_lint_ch5.json",
+    "fix_audit_ref": "handoff/fix_audit_ch5.json",
+    "style_pack": "yanyujiangnan",
+    "style_plan": {
+      "metaphor_plan": [
+        {"position": "第7段", "target": "穷秀才外形", "metaphor": "瘦得像麻秆", "function": "人物外形速写，市井辨识度"},
+        {"position": "第91段", "target": "信封的重量", "metaphor": "像捏着一片二十七年的风", "function": "外化时间的重量与虚无感"}
+      ],
+      "dialogue_plan": {
+        "confrontation_scenes": ["当铺伙计被顾衡读穿", "穷秀才透露孟守拙写信事"],
+        "format": "直接对话",
+        "reason": "茶馆面对面交锋，用直接对话保持现场感和节奏张力；穷秀才场景用对话逐步释放信息，制造层层递进的身世暗线推进感"
+      }
+    },
+    "beat_sheet": {
+      "beats": [
+        {
+          "beat_id": 1,
+          "summary": "顾衡进城南茶馆，先数全场人，读心看穿当铺伙计偷了当铺银子自己写状子报官。伙计跳起来骂，顾衡三句点破枕头里的银子，伙计狼狈溜走。茶馆众人反应（挑夫嗤笑/账房停手/掌柜端茶）侧面展示顾衡读心威名。",
+          "purpose": "爽点·认知碾压",
+          "weight": "major",
+          "shuang_type": "S",
+          "info_delivery": "action+dialogue",
+          "opponent_rebuttal": "伙计梗着脖子反问'你看什么'→顾衡用枕头银子+摸了三遍+蹭布面的精准细节回击→伙计脸白溜走，打脸闭环"
+        },
+        {
+          "beat_id": 2,
+          "summary": "顾衡坐东窗下，穷秀才认出他是顾先生。顾衡把孟守拙的纸推过去，穷秀才一眼认出这字——孟先生每隔两三个月来一次，找他代写一封信。",
+          "purpose": "过渡·信息启动",
+          "weight": "minor",
+          "shuang_type": null,
+          "info_delivery": "dialogue"
+        },
+        {
+          "beat_id": 3,
+          "summary": "穷秀才透露：信写给一个七岁没了爹娘的孩子，姓顾，叫顾衡。写了十五年，每次写完就揣走，从不寄。孟先生说'孩子还小，不急'，可孩子该有二十七八了。",
+          "purpose": "信息揭示·身世暗线推进",
+          "weight": "major",
+          "shuang_type": "reveal",
+          "info_delivery": "dialogue"
+        },
+        {
+          "beat_id": 4,
+          "summary": "顾衡听着，指尖在杯沿上画圈。他替人算了一辈子账从不算错，可这一笔算不出来。一百封信不寄、二十七年屋不住、一辈子名字不说——他读不懂孟守拙。精算失效场景：指尖画到第三圈停住了。",
+          "purpose": "角色深度·精算失效",
+          "weight": "minor",
+          "shuang_type": "na",
+          "info_delivery": "action"
+        },
+        {
+          "beat_id": 5,
+          "summary": "穷秀才从抽屉最底下拿出一封信：孟先生留的，说有姓顾的年轻人来找就给他，不来就烧了。顾衡接过信没拆。问孟先生长什么样，穷秀才说瘦、背驼、每次来带一碗凉粥坐在门槛上吃完才写信、鞋磨得很厉害。顾衡僵了一下，走出去。章末：信没拆，想起七岁那碗凉粥到底是谁搁的。",
+          "purpose": "伏笔核心·章末钩",
+          "weight": "major",
+          "shuang_type": "reveal",
+          "info_delivery": "dialogue+action"
+        }
+      ],
+      "cross_chapter_facts": {
+        "names": ["顾衡", "孟守拙", "城南茶馆", "东窗下代笔穷秀才", "当铺伙计"],
+        "numbers": [
+          "二十七年（顾衡七岁离开旧宅至今，与Ch4一致）",
+          "十五年（穷秀才在茶馆坐的年数）",
+          "每隔两三个月（孟守拙来写信的频率）",
+          "一百封信（约数，十五年×每年4-5次≈75-100封，合理估算）"
+        ],
+        "positions": [
+          "顾衡：从城南旧宅出发→城南茶馆东窗下",
+          "孟守拙：未出场，通过穷秀才的描述侧面出现（瘦、背驼、带凉粥、鞋磨得厉害）",
+          "穷秀才：城南茶馆东窗下，代笔为生"
+        ],
+        "known_info": [
+          "孟守拙这个名字（Ch4在旧宅床沿下发现）",
+          "顾衡七岁爹娘病故，被远房亲戚接走（Ch4）",
+          "有人替顾衡守了二十七年旧宅（Ch4）",
+          "局头=守了一辈子账的老人，递出写着顾衡名字的旧纸（Ch3）",
+          "局头与孟守拙是否同一人：未确认（伏笔，留给Ch50）"
+        ],
+        "certainty_state": {
+          "顾衡对孟守拙": "partial——知道名字、知道有人替他守屋写信、知道那人带凉粥，但不知道身份/动机/与自己的关系，用'他算不出来''读不懂'表达不确定"
+        }
+      },
+      "character_internal": {
+        "顾衡": {
+          "inner_conflict": "引用角色卡conflicts：'掌控本能（只想把一切读准捏住）vs 明知有些心读不清'——孟守拙是他读不清的第一个人，精算失效",
+          "desire_this_chapter": "想查明孟守拙是谁、为什么替他记了27年",
+          "emotion_arc": "掌控状态（进茶馆读心清结）→ 信息冲击（信写给顾衡）→ 精算失效（算不出孟守拙的动机）→ 克制承接（接过信不拆，留到下一章）",
+          "vulnerability_beat": "beat_id=4，weight=minor，purpose=角色深度"
+        }
+      },
+      "shuang_types": ["S（当铺伙计认知碾压打脸）", "reveal（孟守拙写信给顾衡）", "reveal（信+凉粥线索）"],
+      "suspense_budget_check": "S004（身世暗线反向钩）维持、S005（孟守拙是谁）推进；新开S006（信里写了什么/凉粥是不是孟守拙搁的）→ active=3，未超max_active=3阈值",
+      "opponent_rebuttals": [
+        {"beat_id": 1, "opponent": "当铺伙计", "rebuttal": "'你看什么？'梗着脖子硬撑", "comeback": "顾衡精准点破枕头银子+摸了三遍+蹭布面细节，伙计心理防线崩溃溜走"}
+      ]
+    },
+    "timeline_clues_confirmed": true
+  }
+}

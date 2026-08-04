@@ -1,0 +1,39 @@
+{
+  "card_type": "final",
+  "timestamp": "2026-08-04T04:10:00+08:00",
+  "from_agent": "fanqie-adapter",
+  "to_agent": "memory-manager",
+  "content": {
+    "chapter_num": 4,
+    "title": "凉粥",
+    "final_text_ref": "output/chapter_004.txt",
+    "word_count": 2406,
+    "adaptations": [
+      {
+        "type": "sensitive_filter",
+        "description": "检查通过，无需调整。本章为民俗宅院旧宅回忆场景，无血腥/色情/政治/违法/迷信敏感内容。"
+      },
+      {
+        "type": "shuang_enhancement",
+        "description": "检查通过，无需补充。本章为'独处铺垫章'（用户决策放行），无打脸对象可强化爽点；已提供'纸背折痕物证'小兑现。Ch5 需安排顾衡遇见活人做事件兑现。"
+      },
+      {
+        "type": "chapter_hook",
+        "description": "保留原钩子。章末'孟守拙。城南茶馆，东窗下那张桌，代笔穷秀才'为期待型+具体行动锚钩子，与Ch5（顾衡去问认得孟守拙的人）衔接明确，且与Ch3反转收束型钩子类型不同（换型合规）。"
+      },
+      {
+        "type": "pacing_adjustment",
+        "description": "已在前轮压缩。开头主动追查（前300字内明确'回旧宅查清楚'），中段旧宅物件因字数下限2406无法再删，接受为铺垫章最优。"
+      },
+      {
+        "type": "style_unification",
+        "description": "烟雨江南克制文笔风格达标：短句碎片、动作暗示、不说破、世界自转。与Ch1-3文风一致。"
+      },
+      {
+        "type": "format_adjustment",
+        "description": "排版已符合番茄移动端：每句一段、短段为主、段落间空行。终稿已输出 output/chapter_004.txt。"
+      }
+    ],
+    "ready_to_publish": true
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "title": "请客",
+  "genre": "无限流/系统流·民俗悬念·黑色幽默智斗",
+  "author": "AI写作团队",
+  "platform": "fanqie",
+  "total_chapters": 300,
+  "volume_plan_hint": "待 plot-architect 设计后回填；参考口径 6 卷",
+  "chapter_word_count": 2500,
+  "chapter_word_count_range": [2400, 2600],
+  "daily_target_chapters": 1,
+  "daily_target_words": 2500,
+  "style": "黑色幽默智斗·民间烟火气·克制文笔",
+  "style_pack": "yanyujiangnan",
+  "core_concept": "一个人死到临头，被'庄家'拉进生死局：每做成一局任务，才给你续一段命。初期他只为活下去，在局里做最干净、最漂亮、最不要命的收尾，换取命数；攒够本、抬起头，才发现庄家圈养的不是他一个将死人——背后有一套更大的账要算。",
+  "does_living": {
+    "declaration": "世道的账烂在那里没人管。我认我的那份——认了，就得清。",
+    "pose": "一个在脏局里认账认到底的体面人：不收命，收'欠'；别人躲账赖账，他不让账烂。",
+    "why_to_live": "将死续命（无尽武装式开局），后期清算庄家"
+  },
+  "first_replica": {
+    "name": "请客",
+    "scene": "民国老宅，局头生前开账局，死前要请齐所有'欠过他'的人吃最后一顿'送客宴'。",
+    "rule": "桌上每道菜对应生前一笔债；吃完账销，吃不完你反过来欠他。",
+    "hook": "最后一道菜留给'他最恨的人'，众人以为是给主角，实则是主角自己的。",
+    "dark_humor": "丧事喜办成鸿门宴，越客气越瘆人；主角越死局越嘴硬，边夹菜边算命"
+  },
+  "tone": "黑色幽默智斗（暗基调+持续幽默对冲）",
+  "quality_gate": {
+    "technical_score": 9.5,
+    "retention_index": 8.5,
+    "final_score": 9.5
+  },
+  "product": "每章2390-2610字；初稿写长宁删勿补；分段排版；单段≤200字",
+  "volume_plan": [],
+  "opening_drive": "初期活命（无尽武装式），后期清算庄家（收束) "
+}

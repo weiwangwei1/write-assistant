@@ -1,0 +1,770 @@
+{
+  "card_type": "fix_audit",
+  "from_agent": "fix_auditor(script)",
+  "to_agent": "detail-reviewer",
+  "note": "本卡只含 diff 证据，不做判定——是否构成过度矫正由 detail-reviewer 第8层判断",
+  "pre_ref": "please/handoff/pre_lint_ch2_rewrite.txt",
+  "post_ref": "please/output/chapter_002_draft.txt",
+  "summary": {
+    "simile_changes": 1,
+    "function_word_reductions": 55,
+    "dialogue_loss_candidates": 7,
+    "removed_sentences": 6,
+    "lint_issues_before": 5,
+    "lint_issues_after": 1
+  },
+  "evidence": {
+    "simile_changes": [
+      {
+        "kind": "removed",
+        "before": "那汉子的手在抖，眼在躲，呼吸虚得像一根快断的线。",
+        "after": "他看人先看手，再看眼，最后听呼吸，这是多年的习惯，改不掉，也不想改。",
+        "context": "replace块[11:16]→[12:21]"
+      }
+    ],
+    "function_word_reductions": [
+      {
+        "reduced_words": {
+          "了": {
+            "before": 1,
+            "after": 0
+          },
+          "的": {
+            "before": 2,
+            "after": 0
+          }
+        },
+        "before": "他见过踩虚了脚的人，都有心事，踩得这么虚的，心事不轻。",
+        "after": "顾衡握住茶碗，没抬眼。",
+        "context": "replace块[0:6]→[0:7]"
+      },
+      {
+        "reduced_words": {
+          "了": {
+            "before": 1,
+            "after": 0
+          },
+          "着": {
+            "before": 1,
+            "after": 0
+          },
+          "地": {
+            "before": 1,
+            "after": 0
+          }
+        },
+        "before": "那汉子垂着手不敢抬眼，只用眼角的余光飞快地把屋里扫了一圈。",
+        "after": "他见过踩虚脚的人，却都有心事，踩得这么虚的，心事不轻。",
+        "context": "replace块[0:6]→[0:7]"
+      },
+      {
+        "reduced_words": {
+          "了": {
+            "before": 1,
+            "after": 0
+          }
+        },
+        "before": "\"这位爷，\"顾衡说，\"您进门先扫了一圈人，您是在找人。",
+        "after": "\"这位爷，\"顾衡说，\"您进门先扫一圈人，您是在找人。",
+        "context": "replace块[7:8]→[8:9]"
+      },
+      {
+        "reduced_words": {
+          "了": {
+            "before": 1,
+            "after": 0
+          }
+        },
+        "before": "那汉子浑身一僵，喉结滚了滚。",
+        "after": "那汉子浑身一僵，喉结滚动两下，攥紧衣角的手又紧几分。",
+        "context": "replace块[11:16]→[12:21]"
+      },
+      {
+        "reduced_words": {
+          "了": {
+            "before": 1,
+            "after": 0
+          }
+        },
+        "before": "顾衡的指尖在碗沿上轻轻叩了两下，他看人先看手，再看眼，最后听呼吸。",
+        "after": "顾衡的指尖在碗沿上轻轻叩两下。",
+        "context": "replace块[11:16]→[12:21]"
+      },
+      {
+        "reduced_words": {
+          "的": {
+            "before": 2,
+            "after": 1
+          }
+        },
+        "before": "那汉子的手在抖，眼在躲，呼吸虚得像一根快断的线。",
+        "after": "他看人先看手，再看眼，最后听呼吸，这是多年的习惯，改不掉，也不想改。",
+        "context": "replace块[11:16]→[12:21]"
+      },
+      {
+        "reduced_words": {
+          "的": {
+            "before": 1,
+            "after": 0
+          }
+        },
+        "before": "\"您这一趟，\"顾衡说，\"是冲着一个人来的。",
+        "after": "眼在躲，目光往地上落，却又往上飘，像怕屋里某个角落里坐着什么人。",
+        "context": "replace块[11:16]→[12:21]"
+      },
+      {
+        "reduced_words": {
+          "了": {
+            "before": 1,
+            "after": 0
+          }
+        },
+        "before": "那汉子嘴唇抖了抖，半晌才憋出一句：\"你……你怎么知道？",
+        "after": "那汉子嘴唇颤两颤，半晌才憋出一句：\"你……你怎么知道？",
+        "context": "replace块[19:20]→[24:25]"
+      },
+      {
+        "reduced_words": {
+          "了": {
+            "before": 1,
+            "after": 0
+          }
+        },
+        "before": "\"顾衡端起茶碗，喝了一口，搁下，\"您的脚告诉我的。",
+        "after": "\"顾衡端起茶碗，喝一口，搁下，\"您的脚告诉我的。",
+        "context": "replace块[22:23]→[27:28]"
+      },
+      {
+        "reduced_words": {
+          "了": {
+            "before": 1,
+            "after": 0
+          }
+        },
+        "before": "\"哟，\"一个女声拖长了腔调，\"算账的还能算走神？",
+        "after": "\"哟，\"一个女声拖长腔调，抑扬顿挫地起一个花腔，\"算账的还能算走神？",
+        "context": "replace块[24:26]→[29:31]"
+      },
+      {
+        "reduced_words": {
+          "了": {
+            "before": 1,
+            "after": 0
+          }
+        },
+        "before": "顾衡偏头看了一眼。",
+        "after": "顾衡偏头看一眼。",
+        "context": "replace块[27:29]→[32:34]"
+      },
+      {
+        "reduced_words": {
+          "了": {
+            "before": 2,
+            "after": 0
+          },
+          "着": {
+            "before": 1,
+            "after": 0
+          }
+        },
+        "before": "角落里坐着个年轻女子，褪了色的水袖拂过洗得发白的旧衫，领口绣纹盘得起了毛边。",
+        "after": "角落里坐个年轻女子，褪色的水袖拂过洗得发白的旧衫，领口绣纹盘得起毛边，袖口磨出几根线头。",
+        "context": "replace块[27:29]→[32:34]"
+      },
+      {
+        "reduced_words": {
+          "着": {
+            "before": 1,
+            "after": 0
+          },
+          "的": {
+            "before": 1,
+            "after": 0
+          }
+        },
+        "before": "她一直坐在那儿，顾衡进门时数过一遍，一盏灯，一个人，一张桌，这女人是什么时候来的，他没数着。",
+        "after": "她一直坐在那儿，顾衡进门时数过一遍，一盏灯，一个人，一张桌。",
+        "context": "replace块[30:33]→[35:39]"
+      },
+      {
+        "reduced_words": {
+          "了": {
+            "before": 1,
+            "after": 0
+          }
+        },
+        "before": "他扫了一眼那女子，没接茬。",
+        "after": "这女人是什么时候来的，他没数清。",
+        "context": "replace块[30:33]→[35:39]"
+      },
+      {
+        "reduced_words": {
+          "了": {
+            "before": 1,
+            "after": 0
+          }
+        },
+        "before": "\"我说姑娘，\"他收回目光，\"您这一嗓子，差点把我这桩生意搅了。",
+        "after": "他扫一眼那女子，没接茬。",
+        "context": "replace块[30:33]→[35:39]"
+      },
+      {
+        "reduced_words": {
+          "了": {
+            "before": 1,
+            "after": 0
+          }
+        },
+        "before": "\"你那生意，\"白霜理了理水袖，下巴微抬，\"一进门就拆人台子，不算生意，算劫道。",
+        "after": "\"你那生意，\"白霜理一理水袖，下巴微抬，指尖在袖口上捻一下，那是她上台前定神的动作，\"一进门就拆人台子，不算生意，算劫道。",
+        "context": "replace块[34:35]→[40:41]"
+      },
+      {
+        "reduced_words": {
+          "了": {
+            "before": 1,
+            "after": 0
+          }
+        },
+        "before": "顾衡挑眉，还没回话，白霜又接了一句。",
+        "after": "顾衡挑眉，还没回话，白霜又接一句。",
+        "context": "replace块[36:38]→[42:44]"
+      },
+      {
+        "reduced_words": {
+          "了": {
+            "before": 2,
+            "after": 1
+          }
+        },
+        "before": "\"再说了，你这人说话跟报丧似的，人家还没坐下呢，你就把人棺材板掀了。",
+        "after": "\"再说了，你这人说话跟报丧似的，人家还没坐下呢，你就把人棺材板掀开。",
+        "context": "replace块[36:38]→[42:44]"
+      },
+      {
+        "reduced_words": {
+          "了": {
+            "before": 2,
+            "after": 0
+          }
+        },
+        "before": "\"我替他掀的，\"顾衡说，\"是他自己搁里头憋了太久，该透透气了。",
+        "after": "\"我替他掀的，\"顾衡说，\"是他自己搁里头憋太久，该透透气。",
+        "context": "replace块[39:40]→[45:46]"
+      },
+      {
+        "reduced_words": {
+          "了": {
+            "before": 2,
+            "after": 0
+          }
+        },
+        "before": "白霜被噎了一下，嘴唇动了动，没找到话还回去。",
+        "after": "白霜被噎一下，嘴唇动两下，没找到话还回去，拿指甲弹一下桌沿，发出一声脆响。",
+        "context": "replace块[41:44]→[47:62]"
+      },
+      {
+        "reduced_words": {
+          "了": {
+            "before": 4,
+            "after": 0
+          }
+        },
+        "before": "老人在门边咳了一声，白霜这才收了声，拿手拢了拢耳边的碎发，指尖碰到那枚旧银耳铛，叮地响了一下。",
+        "after": "\"你这嘴，\"她哼一声，半真半假地起个腔，\"比我们戏班里的丑角还损，丑角好歹留三分脸，你是一分不给。",
+        "context": "replace块[41:44]→[47:62]"
+      },
+      {
+        "reduced_words": {
+          "了": {
+            "before": 1,
+            "after": 0
+          },
+          "着": {
+            "before": 1,
+            "after": 0
+          },
+          "的": {
+            "before": 2,
+            "after": 0
+          }
+        },
+        "before": "顾衡的目光落在那枚耳铛上，又看了一眼自己怀里揣着的磕口破碗。",
+        "after": "\"",
+        "context": "replace块[41:44]→[47:62]"
+      },
+      {
+        "reduced_words": {
+          "了": {
+            "before": 1,
+            "after": 0
+          }
+        },
+        "before": "他收回目光，没吭声，转头看向那汉子，放缓了声音。",
+        "after": "他收回目光，没吭声，转头看向那汉子，放缓声音。",
+        "context": "replace块[45:47]→[63:65]"
+      },
+      {
+        "reduced_words": {
+          "了": {
+            "before": 1,
+            "after": 0
+          },
+          "的": {
+            "before": 2,
+            "after": 1
+          }
+        },
+        "before": "顾衡站起来，拿起筷子，夹了一块冷盘里的卤肉，搁在那汉子面前的碟子里。",
+        "after": "顾衡站起来，拿起筷子，夹一块冷盘里的卤肉。",
+        "context": "replace块[49:50]→[67:70]"
+      },
+      {
+        "reduced_words": {
+          "了": {
+            "before": 1,
+            "after": 0
+          }
+        },
+        "before": "那汉子盯着那块肉，喉结滚了滚，不敢碰。",
+        "after": "那汉子盯着那块肉，喉结滚动两下，不敢碰。",
+        "context": "replace块[53:56]→[73:77]"
+      },
+      {
+        "reduced_words": {
+          "着": {
+            "before": 1,
+            "after": 0
+          }
+        },
+        "before": "\"您当年，\"顾衡说，\"在河边，看着一个人在水里，没伸手。",
+        "after": "那酱色的卤肉搁在白瓷碟里，油衣上映灯焰，像一只眨也不眨的眼。",
+        "context": "replace块[53:56]→[73:77]"
+      },
+      {
+        "reduced_words": {
+          "了": {
+            "before": 1,
+            "after": 0
+          }
+        },
+        "before": "\"您躲了这些年，是怕坐在这席上让那人把您认出来。",
+        "after": "\"您躲这些年，是怕坐在这席上让那人把您认出来。",
+        "context": "replace块[57:58]→[78:79]"
+      },
+      {
+        "reduced_words": {
+          "了": {
+            "before": 1,
+            "after": 0
+          }
+        },
+        "before": "\"他就那么，没了。",
+        "after": "\"水响好一阵，后来就没声。",
+        "context": "replace块[63:64]→[85:87]"
+      },
+      {
+        "reduced_words": {
+          "着": {
+            "before": 2,
+            "after": 0
+          },
+          "的": {
+            "before": 1,
+            "after": 0
+          }
+        },
+        "before": "顾衡没接话，他垂着眼看着那汉子攥在一处的手。",
+        "after": "\"他就那么沉下去，再没上来。",
+        "context": "replace块[65:66]→[88:91]"
+      },
+      {
+        "reduced_words": {
+          "着": {
+            "before": 2,
+            "after": 0
+          }
+        },
+        "before": "他见过太多人跪着认罪，头一回见人站着认。",
+        "after": "他见过太多人跪下认罪，头一回见人不跪而认。",
+        "context": "replace块[67:68]→[92:93]"
+      },
+      {
+        "reduced_words": {
+          "了": {
+            "before": 3,
+            "after": 1
+          }
+        },
+        "before": "那汉子一愣，半晌才说：\"我记不清了，我躲了他这么多年，反倒把他的脸躲没了。",
+        "after": "那汉子一愣，半晌才说：\"记不清了，我躲他这么多年，反倒把他的脸躲没。",
+        "context": "replace块[70:71]→[95:96]"
+      },
+      {
+        "reduced_words": {
+          "着": {
+            "before": 1,
+            "after": 0
+          }
+        },
+        "before": "\"您记不清他的脸，\"顾衡说，\"可您这一辈子，脚底都踩着他的影。",
+        "after": "\"您记不清他的脸，\"顾衡说，\"可您这一辈子，脚底都踩他的影。",
+        "context": "replace块[72:73]→[97:98]"
+      },
+      {
+        "reduced_words": {
+          "了": {
+            "before": 1,
+            "after": 0
+          }
+        },
+        "before": "\"我记性差，自己姓什么都常记岔，您倒好，把没伸手那点事记了一辈子。",
+        "after": "\"我记性差，自己姓什么都常记岔，您倒好，把没伸手那点事记一辈子，这一桩，您亏得太大。",
+        "context": "replace块[74:75]→[99:100]"
+      },
+      {
+        "reduced_words": {
+          "了": {
+            "before": 1,
+            "after": 0
+          }
+        },
+        "before": "\"这一桩，您亏大了。",
+        "after": "那汉子猛地抬头，眼里那点光晃两晃。",
+        "context": "replace块[76:77]→[101:104]"
+      },
+      {
+        "reduced_words": {
+          "了": {
+            "before": 1,
+            "after": 0
+          },
+          "地": {
+            "before": 1,
+            "after": 0
+          }
+        },
+        "before": "那汉子猛地抬头，眼里那点光晃了晃。",
+        "after": "那汉子盯着那碟肉，半晌，端起来，手抖得碟子碰在桌沿上响一声，往嘴里送一口。",
+        "context": "replace块[78:89]→[105:110]"
+      },
+      {
+        "reduced_words": {
+          "了": {
+            "before": 1,
+            "after": 0
+          }
+        },
+        "before": "顾衡没再逼他，拿筷子又夹了一块肉搁在那汉子碟里。",
+        "after": "嚼两下，眼泪淌出来，混卤汁，咸的咸，淡的淡。",
+        "context": "replace块[78:89]→[105:110]"
+      },
+      {
+        "reduced_words": {
+          "的": {
+            "before": 1,
+            "after": 0
+          }
+        },
+        "before": "\"吃啊，\"他说，\"这道菜是还您那桩账的。",
+        "after": "他低头一抽一抽地吃完，慢慢站起身。",
+        "context": "replace块[78:89]→[105:110]"
+      },
+      {
+        "reduced_words": {
+          "了": {
+            "before": 2,
+            "after": 0
+          }
+        },
+        "before": "\"吃完了，您该走了。",
+        "after": "他说：\"这位先生，我这一辈子，头一回有人替我把心里那桩事翻篇。",
+        "context": "replace块[78:89]→[105:110]"
+      },
+      {
+        "reduced_words": {
+          "了": {
+            "before": 1,
+            "after": 0
+          }
+        },
+        "before": "那汉子没再回头，走出门，影子在风灯下拉得很长，一扎头钻进外头的夜色里去了。",
+        "after": "那汉子没再回头，走出门，影子在风灯下拉得很长，一扎头钻进外头的夜色里去。",
+        "context": "replace块[94:96]→[115:117]"
+      },
+      {
+        "reduced_words": {
+          "着": {
+            "before": 1,
+            "after": 0
+          }
+        },
+        "before": "白霜在角落里看着那道背影消失，忽然开口。",
+        "after": "白霜在角落里看那道背影消失，忽然开口。",
+        "context": "replace块[94:96]→[115:117]"
+      },
+      {
+        "reduced_words": {
+          "了": {
+            "before": 1,
+            "after": 0
+          }
+        },
+        "before": "\"一块卤肉就打发了一条命，便宜。",
+        "after": "\"一块卤肉就打发一条命，便宜。",
+        "context": "replace块[98:99]→[119:120]"
+      },
+      {
+        "reduced_words": {
+          "了": {
+            "before": 2,
+            "after": 0
+          }
+        },
+        "before": "\"他欠的那个人还不上了，我替他收了这桩心结，算两清。",
+        "after": "\"他欠的那个人还不清，我替他收这桩心结，算两清。",
+        "context": "replace块[102:103]→[123:124]"
+      },
+      {
+        "reduced_words": {
+          "了": {
+            "before": 1,
+            "after": 0
+          }
+        },
+        "before": "白霜哼了一声，没再说话。",
+        "after": "白霜哼一声，没再说话，手指却不自觉地在桌面上敲一下。",
+        "context": "replace块[104:108]→[125:129]"
+      },
+      {
+        "reduced_words": {
+          "了": {
+            "before": 1,
+            "after": 0
+          },
+          "着": {
+            "before": 1,
+            "after": 0
+          }
+        },
+        "before": "顾衡转身走回桌边，顺手把那汉子吃剩的半碟花生米拨进怀里揣着的那只破碗里，拿袖口一抹碗沿，揣好了。",
+        "after": "顾衡转身走回桌边，顺手把那汉子吃剩的半碟花生米拨进怀里揣的那只破碗里，拿袖口一抹碗沿，揣好。",
+        "context": "replace块[104:108]→[125:129]"
+      },
+      {
+        "reduced_words": {
+          "了": {
+            "before": 2,
+            "after": 0
+          }
+        },
+        "before": "他坐下来，端起茶碗喝了一口，忽然停住了。",
+        "after": "他坐下来，端起茶碗喝一口，忽然停住。",
+        "context": "replace块[104:108]→[125:129]"
+      },
+      {
+        "reduced_words": {
+          "了": {
+            "before": 1,
+            "after": 0
+          }
+        },
+        "before": "茶凉了，可那不是让他停住的原因。",
+        "after": "茶凉透，但那不是让他停住的原因。",
+        "context": "replace块[104:108]→[125:129]"
+      },
+      {
+        "reduced_words": {
+          "了": {
+            "before": 2,
+            "after": 0
+          }
+        },
+        "before": "\"东家，\"他说，\"方才那汉子，吃了一道菜，您记了一笔账。",
+        "after": "\"东家，\"他说，\"方才那汉子，吃一道菜，您记一笔账。",
+        "context": "replace块[109:110]→[130:131]"
+      },
+      {
+        "reduced_words": {
+          "了": {
+            "before": 1,
+            "after": 0
+          }
+        },
+        "before": "\"可我这桌上的菜，他动了两筷。",
+        "after": "\"可我这桌上的菜，他动两筷。",
+        "context": "replace块[111:112]→[132:133]"
+      },
+      {
+        "reduced_words": {
+          "了": {
+            "before": 5,
+            "after": 0
+          }
+        },
+        "before": "顾衡的指尖在桌沿上停了一下，他方才数过，这桌席九道菜，备了七道，上了八道，那汉子吃了两筷，账上记了一道。",
+        "after": "顾衡的指尖在桌沿上停一下。",
+        "context": "replace块[116:119]→[137:143]"
+      },
+      {
+        "reduced_words": {
+          "的": {
+            "before": 2,
+            "after": 0
+          }
+        },
+        "before": "局头记的账，和他算的，对不上。",
+        "after": "他方才数过，这桌席九道菜，备七道，已上八道。",
+        "context": "replace块[116:119]→[137:143]"
+      },
+      {
+        "reduced_words": {
+          "了": {
+            "before": 1,
+            "after": 0
+          }
+        },
+        "before": "\"东家，\"他声音不高，\"您是不是也赖了点账？",
+        "after": "第一道冷盘花生米，那汉子没碰，碟子原样端下去；第二道卤肉，他夹两筷，是今晚唯一动过的荤腥；第三道酱肘子，没动；第四道醋鱼，没动；第五道白切鸡，没动；第六道素三鲜，没动；第七道蒸蛋，没动；第八道还没上齐，空一个碟位；第九道连影子都没见。",
+        "context": "replace块[116:119]→[137:143]"
+      },
+      {
+        "reduced_words": {
+          "了": {
+            "before": 1,
+            "after": 0
+          }
+        },
+        "before": "老人望着他，那双枯眼沉了一沉，没答。",
+        "after": "老人望着他，那双枯眼沉一沉，没答。",
+        "context": "replace块[120:122]→[144:146]"
+      },
+      {
+        "reduced_words": {
+          "了": {
+            "before": 3,
+            "after": 0
+          }
+        },
+        "before": "白霜在角落里抬了一下眼，又垂下去了，手指不自觉地在桌面上敲了一下。",
+        "after": "白霜在角落里抬一下眼，又垂下去，手指不自觉地在桌面上敲一下。",
+        "context": "replace块[120:122]→[144:146]"
+      },
+      {
+        "reduced_words": {
+          "了": {
+            "before": 1,
+            "after": 0
+          }
+        },
+        "before": "门外巷子里，风又灌进来，灯焰晃了晃。",
+        "after": "门外巷子里，风又灌进来，灯焰晃两晃，把那道空碟位的影子拉到顾衡脚边。",
+        "context": "replace块[123:124]→[147:148]"
+      },
+      {
+        "reduced_words": {
+          "了": {
+            "before": 1,
+            "after": 0
+          },
+          "着": {
+            "before": 2,
+            "after": 1
+          }
+        },
+        "before": "顾衡低头看了一眼自己怀里揣着的那只破碗，花生米搁在碗底，硌着肋骨。",
+        "after": "顾衡低头看一眼自己怀里揣的那只破碗，花生米搁在碗底，硌着肋骨。",
+        "context": "replace块[125:126]→[149:150]"
+      }
+    ],
+    "dialogue_loss_candidates": [
+      {
+        "before": "\"您这一趟，\"顾衡说，\"是冲着一个人来的。",
+        "after": "眼在躲，目光往地上落，却又往上飘，像怕屋里某个角落里坐着什么人。",
+        "context": "replace块[11:16]→[12:21]"
+      },
+      {
+        "before": "\"我说姑娘，\"他收回目光，\"您这一嗓子，差点把我这桩生意搅了。",
+        "after": "他扫一眼那女子，没接茬。",
+        "context": "replace块[30:33]→[35:39]"
+      },
+      {
+        "before": "\"您当年，\"顾衡说，\"在河边，看着一个人在水里，没伸手。",
+        "after": "那酱色的卤肉搁在白瓷碟里，油衣上映灯焰，像一只眨也不眨的眼。",
+        "context": "replace块[53:56]→[73:77]"
+      },
+      {
+        "before": "\"这一桩，您亏大了。",
+        "after": "那汉子猛地抬头，眼里那点光晃两晃。",
+        "context": "replace块[76:77]→[101:104]"
+      },
+      {
+        "before": "\"吃啊，\"他说，\"这道菜是还您那桩账的。",
+        "after": "他低头一抽一抽地吃完，慢慢站起身。",
+        "context": "replace块[78:89]→[105:110]"
+      },
+      {
+        "before": "\"",
+        "after": "走到门口又站住，回头看顾衡一眼。",
+        "context": "replace块[78:89]→[105:110]"
+      },
+      {
+        "before": "\"东家，\"他声音不高，\"您是不是也赖了点账？",
+        "after": "第一道冷盘花生米，那汉子没碰，碟子原样端下去；第二道卤肉，他夹两筷，是今晚唯一动过的荤腥；第三道酱肘子，没动；第四道醋鱼，没动；第五道白切鸡，没动；第六道素三鲜，没动；第七道蒸蛋，没动；第八道还没上齐，空一个碟位；第九道连影子都没见。",
+        "context": "replace块[116:119]→[137:143]"
+      }
+    ],
+    "removed_sentences": [
+      {
+        "sentence": "\"",
+        "had_simile": false,
+        "had_dialogue": true
+      },
+      {
+        "sentence": "那汉子盯着那碟肉，半晌，端起来，手抖着，往嘴里送了一口。",
+        "had_simile": false,
+        "had_dialogue": false
+      },
+      {
+        "sentence": "嚼了两下，眼泪就下来了。",
+        "had_simile": false,
+        "had_dialogue": false
+      },
+      {
+        "sentence": "他低着头一抽一抽地吃完，慢慢站起身。",
+        "had_simile": false,
+        "had_dialogue": false
+      },
+      {
+        "sentence": "走到门口又站住，回头看了顾衡一眼。",
+        "had_simile": false,
+        "had_dialogue": false
+      },
+      {
+        "sentence": "\"这位先生，\"他说，\"我这一辈子，头一回有人替我把心里那桩事翻了篇。",
+        "had_simile": false,
+        "had_dialogue": true
+      }
+    ]
+  },
+  "lint_diff": {
+    "before": {
+      "le_pattern": 5
+    },
+    "after": {
+      "simile_total": 1
+    },
+    "increased_or_new": {
+      "simile_total": {
+        "before": 0,
+        "after": 1
+      }
+    },
+    "resolved": {
+      "le_pattern": {
+        "before": 5,
+        "after": 0
+      }
+    }
+  }
+}

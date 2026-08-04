@@ -1,0 +1,134 @@
+{
+  "card_type": "detail_review",
+  "timestamp": "2026-08-03T15:30:00+08:00",
+  "from_agent": "detail-reviewer",
+  "to_agent": "chapter-writer",
+  "chapter_num": 3,
+  "chapter_title": "送客宴（三）",
+  "overall_verdict": "polished",
+  "revision_log": "5处minor全部由chapter-writer按merged_review_ch3.json应用；重跑style_lint_ch3_final.json L0/L1 critical全0（7项L1 minor逐条accept见l1_advisory_response）；字数2449（2400-2600达标）。",
+  "sentence_level": [
+    {
+      "location": "第61段",
+      "original": "他这人有个改不掉的毛病，每次兑命，都要先算清自己还能活多久。",
+      "issue": "跨章句式逐字重复：Ch1第11段已有'他这人有个改不掉的毛病，见什么都要先过一遍账'，本章以同一引导句开头。虽属顾衡signature_pattern（兑命算寿命），但引导句'他这人有个改不掉的毛病'逐字重复，违反signature_lines跨章去重精神",
+      "severity": "minor",
+      "suggestion": "微调引导句避免逐字重复，保留'兑命算寿命'的签名行为即可",
+      "revised": "他还有个改不掉的毛病，每次兑命，都要先算清自己还能活多久。"
+    },
+    {
+      "location": "第85段 + 第103段",
+      "original": "他坐回主位，望着满堂空席，忽然觉得…… / 他放下碗，望着满堂空席，忽然笑了……",
+      "issue": "同章'望着满堂空席'意象重复两次（85段、103段），且'忽然觉得/忽然笑了'收束句式重复。虽为收束呼应，但两处同章贴身重复削弱了第二次的余韵",
+      "severity": "minor",
+      "suggestion": "第103段换一个空席之外的意象，把'满堂空席'留给一处；或第85段改为'望着那排空碗'，避免与章末撞词",
+      "revised": "他放下碗，望着那排空空的碗筷，忽然笑了。"
+    },
+    {
+      "location": "第87段 + 第103段",
+      "original": "他不收命，只收欠。可这辈子，他头一回，欠得不清不楚。 / 他这辈子，欠的账，早就还不清了。",
+      "issue": "章末两处'账算不清/还不清'的收束句叠加（87段'欠得不清不楚'、103段'欠的账早就还不清了'），加上93段'最说不清的一笔'，三连强调同义，收束句密度过高，削弱各自力度",
+      "severity": "minor",
+      "suggestion": "保留87段（活法立场落地）与103段，但103段落点应聚焦'记到他自己都忘了'（新信息），淡化'还不清'的旧义表述",
+      "revised": "可也直到这一刻，他才看清，他这辈子，有一笔账，早就记到他看不见了。"
+    },
+    {
+      "location": "第39段",
+      "original": "他第一筷子尝的，是替人销账；这一筷子，是替自己认账。",
+      "issue": "'第一筷子尝的'与'是替人销账'搭配略跳（'尝的'是事物，后接'是替人销账'为目的），对仗工整但语义衔接可更顺",
+      "severity": "minor",
+      "suggestion": "微调主语，使对仗更顺畅、无歧义",
+      "revised": "他头一筷子，是替人销账；这一筷子，是替自己认账。"
+    },
+    {
+      "location": "第67段",
+      "original": "局头说，'您那笔账，还欠着谁，还没人跟您说。'",
+      "issue": "'还欠着谁，还没人跟您说'语义略绕——'还欠着谁'指还欠着谁的账，'还没人跟您说'指无人告知，两段连读需停顿才能消化",
+      "severity": "minor",
+      "suggestion": "拆开或补足，让'欠着谁的账'与'没人告诉您'两层意思更顺",
+      "revised": "局头说，'您那笔账，还欠着谁——没人跟您说。'"
+    }
+  ],
+  "meme_level": [
+    {
+      "location": "第45段",
+      "meme": "自嘲'我恨我恨得好'",
+      "issue": "本章唯一幽默点，属自嘲品类（大纲golden3_humor_points.ch3指定），非网络梗，无时效/场景问题。核对meme_library：本章未使用任何网络梗，符合收束章基调（黑幽默靠自嘲而非玩梗）",
+      "severity": "pass",
+      "suggestion": "保留"
+    }
+  ],
+  "foreshadowing_level": [
+    {
+      "foreshadowing_id": "F-P1",
+      "location": "第21段",
+      "issue": "最后一道菜留给'最恨之人'：本章half_reveal（局头点破'先生就是那最后一个'+菜端上顾衡面前），兑现大纲Ch3计划。埋设自然，显隐度适中",
+      "severity": "pass",
+      "suggestion": "保留"
+    },
+    {
+      "foreshadowing_id": "F-P2",
+      "location": "第75段",
+      "issue": "局头账目有鬼：本章full_reveal（账本'欠款人'栏记着顾衡名字，顾衡才是被欠的），兑现大纲Ch3计划。揭示干净，反向钩成立",
+      "severity": "pass",
+      "suggestion": "保留"
+    },
+    {
+      "foreshadowing_id": "F-P3",
+      "location": "第75-105段",
+      "issue": "身世反向钩：本章只做反向钩（账本欠款人=顾衡，'谁替他记的'仍悬），未揭示真相。符合大纲Ch3 ending_hook（C7反向线索，线头直指身世暗线续接Ch4）；half_reveal仍在Ch50，未提前透支",
+      "severity": "pass",
+      "suggestion": "保留；memory-manager入库时须将F-P3的line记为'反向钩（C7）'而非half_reveal，避免误标提前"
+    }
+  ],
+  "logic_level": [
+    {
+      "location": "第11段",
+      "issue": "顾衡'把那几道没主的菜端到门边摆在那老人面前'——Ch2确立四道没主菜是'再也来不了的人'，顾衡此举（端到门边/送到老人面前）逻辑自洽，是'送走该走的人'的收束动作，无矛盾",
+      "severity": "pass"
+    },
+    {
+      "location": "第21-35段",
+      "issue": "局头从'人还没齐/那道菜还热在锅里'到点破'先生就是那最后一个'+端菜——行为转折有桥接（顾衡坚持'账得对完'、送走所有人、收拢碗筷，局头被推动承认'能走的都让您送走了'+'您是最后那个'），无突兀",
+      "severity": "pass"
+    },
+    {
+      "location": "第39段",
+      "issue": "'当铺那块豆腐，是他头一筷子尝的'——Ch1确立顾衡第一口尝的就是豆腐（'先来第一道……把离他最近的一盘豆腐夹了一筷'），此处为引用非重新发现，已知信息防重发现通过",
+      "severity": "pass"
+    }
+  ],
+  "consistency_check": {
+    "character_voice": "顾衡冷面之下逗趣（'够我走出这道门槛了''我恨我恨得好'），符合角色卡personality；局头客气滴水不漏、枯指搭桌沿（signature行为），符合角色卡。无串味",
+    "setting_consistency": "菜=债规则、局头受庄家指派设席、断账人裁决权边界，均与outline core_settings一致；'续命=做成一局兑一段'首次兑现，符合生命稀缺阶梯stage1",
+    "timeline_check": "本章延续前章夜晚（香燃半截、夜风、灯焰），无时间跳跃；无相对时间矛盾",
+    "previous_chapter_continuity": "Ch3开头'顾衡没接那话'承接Ch2结尾局头'我这本账是记给死人看的'，衔接自然；顾衡主位、局头门槛位置延续；四副碗筷、十二道菜、半截香等物件延续",
+    "dialogue_logic": "对话链自洽：顾衡问'我欠你什么'→局头答'先生不欠我'→顾衡问'那这道菜怎么是我'→局头端菜；顾衡问'我这一席做完了'→局头答'做完了，这局了了'。追问链一致，无自相矛盾",
+    "behavior_consistency": "顾衡情绪连续（镇定→被钉错愕→愣住→自嘲→续命放松→发现被欠震动→怅然）；局头情绪连续（守席→道破→卸重→交账）。转折均有桥接",
+    "number_plausibility": "十二道菜、四副碗筷、半两陈皮、半截香均与前文一致；续命'够我走出这道门槛'为定性表达无具体数字，合理",
+    "terminology_check": "本章无新命名术语；'账/菜/席/欠'沿用核心意象，术语跨章一致",
+    "metaphor_consistency": "本章比喻（如'像一潭没底的井''像一只绷了太久的弦''入口却像搁着一桩心事'）以'账/心事'为核心根，与全书'账'核心意象一致；'绷了太久的弦'为命数紧绷的具象，有叙事功能，未引入异质体系",
+    "scene_repetition": "'望着满堂空席'同章重复两次（85/103段），详见sentence_level第2条；'枯指搭着桌沿'为局头signature行为，跨章重复属刻意，不判",
+    "reference_ambiguity": "'那本账'指代明确（局头怀里那本记给死人看的账）；'这道菜'指代明确（最后那道豆腐）。无指代歧义",
+    "cross_chapter_facts": "专名核验：顾衡/局头/当铺豆腐（老卤半两陈皮）一致；数字核验：十二道菜、四副碗筷、半两陈皮、半截香均与前文一致；位置核验：顾衡主位、局头门槛延续；已知信息防重发现：当铺豆腐为Ch1引用的'头一筷子尝的'，非重演；新引入'碗底欠字'有叙事功能。交接卡cross_chapter_facts字段完整，无漏项",
+    "foreshadowing_pacing": "F-P2 full_reveal实际Ch3=计划Ch3，节奏正常；F-P1 half_reveal实际Ch3=计划Ch3，节奏正常；F-P3反向钩（非half_reveal，计划half_reveal在Ch50）未提前。全揭后悬念：S004（谁替他记的账）在场，无真空。→ 全pass",
+    "certainty_match": "顾衡对'我是最后一个/那道菜是我'为full（局头点破+菜端上，本章确证），用确定语气合理；局头对'顾衡是最后那个人'为full（他等了一辈子），lint的certain_marker_mismatch（'先生，您就是'）是局头视角，局头full，非first_encounter，判定合理",
+    "overcorrection_check": "本章无修复轮次（fix_audit_ref=null），不适用",
+    "l1_advisory_response": [
+      {"rule": "dialogue_ratio", "lint_message": "对话占比28% < 下限35%", "decision": "accept", "reason": "黄金三章收束章，顾衡独坐空席与局头对谈的场景对话对象少、大量内心独白与动作描写，硬塞对话反而失真；且本章含续命兑现/自嘲等关键情绪点需内心独白承载"},
+      {"rule": "le_pattern", "lint_message": "短句以'了'收尾共15处 > 上限3", "decision": "accept", "reason": "15处'了'收尾全部位于角色对话（'都走了''他来了''替我把账销干净了'等），是对话语气词的自然收尾，非旁白堆砌；yanyujiangnan风格包含克制文笔，对话中'了'是人物口吻，属主动合规而非AI腔"},
+      {"rule": "certain_marker_mismatch", "lint_message": "观察+确定语气'就是'——局头'先生，您就是那最后一个'", "decision": "accept", "reason": "局头对顾衡是full状态（他等了一辈子，确知最后一个就是顾衡），非first_encounter；用确定语气'就是'符合角色既定认知，非视角漂移"}
+    ]
+  },
+  "summary": {
+    "total_issues": 5,
+    "critical_count": 0,
+    "major_count": 0,
+    "minor_count": 5,
+    "polish_priority": [
+      "第61段'他这人有个改不掉的毛病'引导句与Ch1逐字重复→微调",
+      "第103段'望着满堂空席'与第85段同章重复→换意象",
+      "第103段'欠的账早就还不清了'与第87段'欠得不清不楚'、第93段'最说不清的一笔'收束句叠加→聚焦'记到他自己都忘了'"
+    ]
+  }
+}

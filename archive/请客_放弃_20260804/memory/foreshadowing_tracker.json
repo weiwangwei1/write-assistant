@@ -1,0 +1,46 @@
+{
+  "card_type": "foreshadowing_tracker",
+  "project": "请客",
+  "last_updated_chapter": 5,
+  "rewrite_note": "2026-08-04 重写黄金三章：主角彻底从'断账人'改为'读心人'，移除算账/账本/销账框架。伏笔同步重构：F-P2'局头账目有鬼'随算账框架删除；F-P1/F-P3 保留并改写为读心语义。",
+  "foreshadowings": [
+    {
+      "id": "F-P1",
+      "title": "那双没落座的手 / 人还没齐（最后一道菜留给谁）",
+      "plan_from_outline": {
+        "plant_chapter": 1,
+        "half_reveal_chapter": 3,
+        "full_reveal_chapter": 50
+      },
+      "actual_progress": [
+        {"chapter": 1, "action": "planted", "detail": "局头道破'人还没齐，那道菜还在灶上温着'；顾衡读老人等一个要紧的人，却独独没看穿老人等的会不会正是他自己；章末'那双还没来得及落座的手'", "status": "completed"},
+        {"chapter": 3, "action": "half_revealed", "detail": "最后那道菜（当铺豆腐）端上顾衡面前——同一道菜是他进门尝的第一口，如今把满桌的席绕回了自己身上；局头点破'认得，您一进门我就认出来了'，黄金三章收束", "status": "completed"}
+      ],
+      "current_status": "half_revealed",
+      "next_milestone": {"chapter": 50, "action": "full_reveal", "detail": "卷1高潮：那道菜真是给顾衡的+身世暗线首揭（全揭）"},
+      "overdue": false,
+      "chapters_since_last_action": 2
+    },
+    {
+      "id": "F-P3",
+      "title": "身世反向钩：谁记了我一辈子（局头守着一页写着他名字的旧纸等了他一辈子）",
+      "plan_from_outline": {
+        "plant_chapter": 1,
+        "half_reveal_chapter": 50,
+        "full_reveal_chapter": 200
+      },
+      "actual_progress": [
+        {"chapter": 1, "action": "planted", "detail": "顾衡追问'这桌席等的那个人究竟是谁'又按回，'有些话问得早了，就再也等不到回音'，身世暗线首悬", "status": "completed"},
+        {"chapter": 3, "action": "reverse_hook", "detail": "反向钩（C7）：局头掏出一页写着他名字的旧纸，'守了一辈子，写给一个我记了一辈子的人'——有一个记了他一辈子的人在等他；谁记着我、我为什么值得被记，仍悬；是反向钩而非half_reveal，半揭仍计划Ch50，未提前透支", "status": "completed"},
+        {"chapter": 4, "action": "deepened", "detail": "名字落地：那个守了他一辈子的人叫孟守拙。旧宅是他七岁前住处，有人替他守了二十七年（床/结壳凉粥/磕口碗/布老虎/铜烛台/掸灰），床沿底下压着二三十年前写着他名字的旧纸，与昨夜老人递的那页同一人手笔。孟守拙是谁/为何记他/与顾衡什么渊源仍悬（半揭仍计划Ch50，未提前透支）", "status": "completed"},
+        {"chapter": 5, "action": "deepened_plus", "detail": "身世暗线再推一层：孟守拙每隔两三个月找穷秀才写一封信给顾衡，写了十五年从不寄；每次带一碗凉粥坐门槛吃完才写信；鞋磨得薄（走了不少路）；留了一封信给顾衡（不来就烧）；顾衡今年二十七岁，宅子空了二十七年——暗示孟守拙从他出生就开始守。核心悬念（孟守拙是谁/为何记他一辈子/与顾衡什么渊源）仍悬，半揭仍计划Ch50，未提前透支。", "status": "completed"}
+      ],
+      "current_status": "deepened_plus",
+      "next_milestone": {"chapter": 50, "action": "half_reveal", "detail": "卷1高潮：孟守拙身份半揭+顾衡身世首揭"},
+      "overdue": false,
+      "chapters_since_last_action": 0
+    }
+  ],
+  "last_updated_chapter": 5,
+  "overdue_alerts": []
+}

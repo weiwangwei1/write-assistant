@@ -1,0 +1,85 @@
+{
+  "card_type": "merged_review",
+  "phase": "Phase 1 (Merge)",
+  "timestamp": "2026-08-03T15:50:00+08:00",
+  "from_agent": "unified-reviewer",
+  "chapter": 3,
+  "chapter_title": "送客宴（三）",
+  "inputs": ["detail_review_ch3.json", "de_ai_analysis_ch3.json"],
+  "output_text": "output/chapter_003_draft.txt",
+  "conflict_resolution": {
+    "same_loc_diff_cause": "take higher severity",
+    "same_loc_conflict": "detail priority",
+    "one_sided": "keep"
+  },
+  "fix_order": ["critical", "major"],
+  "applied_changes": [
+    {
+      "source": "detail_review",
+      "loc": "第61段（他这人有个改不掉的毛病）",
+      "severity": "minor",
+      "action": "采纳——'他这人有个改不掉的毛病'引导句与Ch1逐字重复，改为'他还有个改不掉的毛病'，保留'兑命算寿命'签名行为"
+    },
+    {
+      "source": "detail_review",
+      "loc": "第85段/第103段（满堂空席重复）",
+      "severity": "minor",
+      "action": "采纳——第85段'望着满堂空席'改为'望着那排空空的碗筷'，第103段保留'满堂空席'+'忽然笑了'（收束情绪高点，de_ai建议保留），解决同章重复"
+    },
+    {
+      "source": "detail_review",
+      "loc": "第103段（收束句叠加）",
+      "severity": "minor",
+      "action": "采纳——第103段'欠的账早就还不清了'与第87段'欠得不清不楚'、第93段'最说不清的一笔'叠加，改为'有一笔账，早就记到他看不见了'，落点聚焦'记到他自己都忘了'（新信息），保留第87段活法立场"
+    },
+    {
+      "source": "detail_review",
+      "loc": "第39段（第一筷子尝的）",
+      "severity": "minor",
+      "action": "采纳——'他第一筷子尝的，是替人销账'搭配略跳，改为'他头一筷子，是替人销账'，对仗更顺"
+    },
+    {
+      "source": "detail_review",
+      "loc": "第67段（还欠着谁，还没人跟您说）",
+      "severity": "minor",
+      "action": "采纳——语义略绕，改为'还欠着谁——没人跟您说'，破折号分隔两层意思"
+    },
+    {
+      "source": "de_ai_analysis",
+      "loc": "第45/85/89/95/103段（他忽然5次）",
+      "severity": "major",
+      "action": "采纳——'他忽然'全章5次为AI腔。保留第45段（自嘲情绪高点）与第103段（收束情绪高点）的'忽然笑了'；第85段改'心说'、第89段改'心里浮起一个念头'、第95段改'张了张嘴，想再问一句'"
+    },
+    {
+      "source": "de_ai_analysis",
+      "loc": "第53段（他忽然明白）",
+      "severity": "minor",
+      "action": "采纳——去'忽然明白'认知引导，改为'他望着这老人，心里那笔恨'，直接呈现看穿结果"
+    },
+    {
+      "source": "de_ai_analysis",
+      "loc": "第77段（逻辑链）",
+      "severity": "minor",
+      "action": "采纳——反转揭示段'却原来/又被'解释链打碎为碎片列举，分句断句，让读者自己连线"
+    }
+  ],
+  "conflict_resolved": [
+    {
+      "loc": "第85段",
+      "detail_proposal": "改'望着满堂空席'→'望着那排空碗'（解决满堂空席重复）",
+      "deai_proposal": "改'忽然觉得'→换动作过渡（解决忽然5次）",
+      "lint_proposal": "无",
+      "resolved_by": "detail优先（same_loc递增detail）+采纳deai动作过渡",
+      "reason": "第85段同时承受两个问题（满堂空席重复+忽然过密），合并为'他坐回主位，望着那排空空的碗筷，心说……'，一举解决两处"
+    },
+    {
+      "loc": "第103段",
+      "detail_proposal": "改'望着满堂空席'→'望着那排空空的碗筷'（解决重复）",
+      "deai_proposal": "保留'忽然笑了'（收束情绪高点）",
+      "lint_proposal": "无",
+      "resolved_by": "detail优先+deai保留意见折中",
+      "reason": "第85段已改'空碗筷'，第103段若再改'空碗筷'会二次重复；故第103段保留'满堂空席'+'忽然笑了'，仅改收束句聚焦'记到他自己都忘了'"
+    }
+  ],
+  "merge_summary": "共应用 8 条修改，其中 critical 0 条、major 1 条（de_ai'他忽然5次'）、minor 7 条；冲突解决 2 处（第85段/第103段）。detail_review 5 处全部采纳；de_ai_analysis 3 处全部采纳。合并后正文较草稿修正'他忽然'过密、'满堂空席'重复、跨章句式重复、收束句叠加等，AI痕迹进一步降低。修改后需重跑 style_lint 确认 L0 仍 PASS，字数仍达标。"
+}

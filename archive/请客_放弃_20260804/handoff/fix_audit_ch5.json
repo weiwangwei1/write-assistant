@@ -1,0 +1,135 @@
+{
+  "card_type": "fix_audit",
+  "from_agent": "fix_auditor(script)",
+  "to_agent": "detail-reviewer",
+  "note": "本卡只含 diff 证据，不做判定——是否构成过度矫正由 detail-reviewer 第8层判断",
+  "pre_ref": "d:\\personFile\\write-assistant\\please\\handoff\\pre_lint_ch5.txt",
+  "post_ref": "d:\\personFile\\write-assistant\\please\\output\\chapter_005_draft.txt",
+  "summary": {
+    "simile_changes": 1,
+    "function_word_reductions": 5,
+    "dialogue_loss_candidates": 4,
+    "removed_sentences": 0,
+    "lint_issues_before": 5,
+    "lint_issues_after": 1
+  },
+  "evidence": {
+    "simile_changes": [
+      {
+        "kind": "removed",
+        "before": "三桌客人：靠窗两个挑夫捧着大碗喝粥，腮帮子鼓鼓的；中间一桌坐着个穿短衫的账房先生，手指在桌上敲，像在心里打小算盘；东窗下那张桌，一个瘦得像麻秆的穷秀才低着头，笔尖在纸上沙沙走，旁边坐着个满脸晦气的当铺伙计。",
+        "after": "三桌客人：靠窗两个挑夫捧着大碗喝粥，腮帮子鼓鼓的；中间一桌坐着个穿短衫的账房先生，手指在桌上敲，算着什么账。",
+        "context": "replace块[3:6]→[3:7]"
+      }
+    ],
+    "function_word_reductions": [
+      {
+        "reduced_words": {
+          "着": {
+            "before": 4,
+            "after": 3
+          },
+          "的": {
+            "before": 4,
+            "after": 2
+          }
+        },
+        "before": "三桌客人：靠窗两个挑夫捧着大碗喝粥，腮帮子鼓鼓的；中间一桌坐着个穿短衫的账房先生，手指在桌上敲，像在心里打小算盘；东窗下那张桌，一个瘦得像麻秆的穷秀才低着头，笔尖在纸上沙沙走，旁边坐着个满脸晦气的当铺伙计。",
+        "after": "三桌客人：靠窗两个挑夫捧着大碗喝粥，腮帮子鼓鼓的；中间一桌坐着个穿短衫的账房先生，手指在桌上敲，算着什么账。",
+        "context": "replace块[3:6]→[3:7]"
+      },
+      {
+        "reduced_words": {
+          "的": {
+            "before": 2,
+            "after": 1
+          }
+        },
+        "before": "那伙计抬眼，正好撞上他的目光，浑身一僵，嘴里的茶差点喷出来。",
+        "after": "顾衡数完，走过去，却在东窗下的另一头坐下。",
+        "context": "replace块[3:6]→[3:7]"
+      },
+      {
+        "reduced_words": {
+          "了": {
+            "before": 2,
+            "after": 1
+          }
+        },
+        "before": "\"写了多少封了？",
+        "after": "\"写了多少封？",
+        "context": "replace块[47:49]→[48:50]"
+      },
+      {
+        "reduced_words": {
+          "地": {
+            "before": 1,
+            "after": 0
+          }
+        },
+        "before": "茶馆外头，梆子声\"咚——咚——\"地敲了两下。",
+        "after": "茶馆外头，梆子声咚、咚，敲了两下。",
+        "context": "replace块[79:81]→[80:82]"
+      },
+      {
+        "reduced_words": {
+          "了": {
+            "before": 1,
+            "after": 0
+          }
+        },
+        "before": "正午了。",
+        "after": "正午时分。",
+        "context": "replace块[79:81]→[80:82]"
+      }
+    ],
+    "dialogue_loss_candidates": [
+      {
+        "before": "伙计的脸\"唰\"地白了。",
+        "after": "伙计的脸，唰地失了血色。",
+        "context": "replace块[11:12]→[12:13]"
+      },
+      {
+        "before": "他\"腾\"地站起来，撞翻了板凳，也不扶，低着头就往外走，走得比进来时还快。",
+        "after": "他腾地站起来，撞翻了板凳，也不扶，低着头就往外走，走得比进来时还快。",
+        "context": "replace块[15:16]→[16:17]"
+      },
+      {
+        "before": "顾衡\"嗯\"了一声，把那页纸从怀里摸出来，摊在桌上，推了过去。",
+        "after": "顾衡嗯了一声，把那页纸从怀里摸出来，摊在桌上，推了过去。",
+        "context": "replace块[21:22]→[22:23]"
+      },
+      {
+        "before": "茶馆外头，梆子声\"咚——咚——\"地敲了两下。",
+        "after": "茶馆外头，梆子声咚、咚，敲了两下。",
+        "context": "replace块[79:81]→[80:82]"
+      }
+    ],
+    "removed_sentences": []
+  },
+  "lint_diff": {
+    "before": {
+      "simile_stacked": 1,
+      "le_pattern": 4
+    },
+    "after": {
+      "dialogue_ratio": 1
+    },
+    "increased_or_new": {
+      "dialogue_ratio": {
+        "before": 0,
+        "after": 1
+      }
+    },
+    "resolved": {
+      "simile_stacked": {
+        "before": 1,
+        "after": 0
+      },
+      "le_pattern": {
+        "before": 4,
+        "after": 0
+      }
+    }
+  }
+}

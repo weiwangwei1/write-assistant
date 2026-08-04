@@ -17,3 +17,7 @@ Thumbs.db
 __pycache__/
 *.pyc
 
+# IDE/工具目录
+.qoder/
+cherry-studio/
+

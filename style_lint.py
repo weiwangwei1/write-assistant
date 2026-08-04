@@ -260,7 +260,7 @@ def lint_chapter(ch, cfg, disabled, custom_bans, rule_levels=None):
         add("ranhou", "minor", 0, "", f"叙事“然后”{ranhou}处 > 上限{cfg['ranhou_max_per_chapter']}")
 
     # 对话占比（H9）
-    dia = sum(han_len(p) for p in ch.paras if re.search(r"[\"""「]", p))
+    dia = sum(han_len(p) for p in ch.paras if re.search(r"[\"“」「]", p))
     dr = dia / max(1, sum(han_len(p) for p in ch.paras))
     if dr < cfg["dialogue_ratio_min"]:
         add("dialogue_ratio", "minor", 0, "", f"对话占比{dr*100:.0f}% < 下限{cfg['dialogue_ratio_min']*100:.0f}%")

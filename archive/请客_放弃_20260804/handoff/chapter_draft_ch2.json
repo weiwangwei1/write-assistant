@@ -1,0 +1,74 @@
+{
+  "card_type": "chapter_draft",
+  "from_agent": "chapter-writer",
+  "to_agent": "detail-reviewer",
+  "status": "ready",
+  "content": {
+    "chapter_num": 2,
+    "title": "送客宴（二）",
+    "word_count": 2432,
+    "draft_ref": "output/chapter_002_draft.txt",
+    "opening_type": "动作开头",
+    "ending_type": "信息揭示",
+    "hook_sentence": "他忽然觉得，这桌上每一道菜，都像一笔账，而他还没看清，这账到底记在谁头上。",
+    "style_lint_ref": "handoff/style_lint_ch2_rewrite.json",
+    "fix_audit_ref": "handoff/fix_audit_ch2_rewrite.json",
+    "style_pack": "yanyujiangnan",
+    "style_plan": {
+      "metaphor_plan": [
+        {"position": "白霜出场", "target": "白霜的笑声", "metaphor": "像一枚铜钱掉在石板上", "function": "建立白霜戏班气质的听觉标识"},
+        {"position": "卤肉场景", "target": "卤肉油衣上映的灯焰", "metaphor": "像一只眨也不眨的眼", "function": "外化汉子被看穿的压迫感"},
+        {"position": "物件对照", "target": "破碗与银耳铛", "metaphor": "无比喻，直叙对照", "function": "穷体面对照——用物件代替叙述"}
+      ],
+      "dialogue_plan": {
+        "confrontation_scenes": ["顾衡读穿汉子心事", "顾衡与白霜冷热对冲斗嘴"],
+        "format": "直接对话",
+        "reason": "面对面交锋+戏班腔调对冲，转述会失去节奏感"
+      }
+    },
+    "beat_sheet": {
+      "beats": [
+        {"beat_id": 1, "summary": "亏心汉子进门，顾衡三层读人（手→眼→呼吸）看穿他在找人", "purpose": "信息传递", "weight": "major", "shuang_type": null, "info_delivery": "action"},
+        {"beat_id": 2, "summary": "白霜出场与顾衡冷热对冲斗嘴（人味催化剂），物件对照破碗×银耳铛", "purpose": "氛围铺垫", "weight": "minor", "shuang_type": null, "info_delivery": "dialogue", "interaction_template": "斗嘴喘息+穷体面对照"},
+        {"beat_id": 3, "summary": "替仇人夹卤肉劝吃啊别浪费——汉子认罪（河边见死不救），吃完走人", "purpose": "爽点", "weight": "major", "shuang_type": "A", "info_delivery": "action"},
+        {"beat_id": 4, "summary": "顾衡发现局头记的账与他算的对不上——九道菜汉子吃两筷账上记一道", "purpose": "伏笔", "weight": "major", "shuang_type": null, "info_delivery": "discovery"}
+      ],
+      "cross_chapter_facts": {
+        "names": ["顾衡", "老人（局头）", "白霜（首次出场）", "亏心汉子（未给名）"],
+        "numbers": ["九道菜", "备七道已上八道", "汉子吃两筷账上记一道", "差一道"],
+        "positions": ["顾衡在主位", "白霜在角落", "老人在门边", "汉子进门后站在门槛"],
+        "known_info": ["白霜是戏班小旦角，坠旧银耳铛", "汉子曾在河边见死不救", "顾衡替汉子销账（夹菜=还账）", "局头的账与顾衡算的差一道"],
+        "certainty_state": {
+          "顾衡": {"对汉子心事": "full——看穿他在找人、不敢认、亏心多年", "对白霜身份": "partial——看出是戏班的，但不知她何时来的", "对局头账目": "partial——发现差一道但不知记在谁头上"},
+          "白霜": {"对顾衡": "partial——嘴上损他但暗中观察，也在数菜"}
+        }
+      },
+      "character_internal": {
+        "顾衡": {
+          "inner_conflict": "嘴硬手软——嘴上不饶人，手上替人夹菜销账（引用角色卡personality_extreme: 嘴硬心软）",
+          "desire_this_chapter": "替汉子解心结送他走+看清局头的账有没有鬼",
+          "emotion_arc": "冷面读人→与白霜斗嘴（松弛）→替仇人夹菜（客气越瘆人）→送走汉子→发现账目不对（警觉）",
+          "vulnerability_beat": "beat_id=4，weight=major，purpose=角色深度——发现账目不对时手指停住，他没算到局头也在赖账",
+          "dna_outlets_used": [
+            "看透强迫症：进门先数人——'顾衡进门时数过一遍，一盏灯，一个人，一张桌'",
+            "看透强迫症：看人先看手再看眼听呼吸——'他看人先看手，再看眼，最后听呼吸'",
+            "看透强迫症：看准后手指叩两下——'顾衡的指尖在碗沿上轻轻叩两下'",
+            "嘴硬手软：嘴上不饶人手上替人夹菜——'顾衡站起来，拿起筷子，夹一块冷盘里的卤肉'",
+            "穷体面：随身带磕口粗瓷碗——'把那汉子吃剩的半碟花生米拨进怀里揣的那只破碗里'",
+            "越压越冷：局面越紧说越轻松的话——'吃啊，别浪费'"
+          ]
+        }
+      },
+      "human_flavor_check": {
+        "private_detail": "拨花生米进破碗——'顺手把那汉子吃剩的半碟花生米拨进怀里揣的那只破碗里，拿袖口一抹碗沿，揣好'",
+        "absurd_contrast": "替仇人夹菜劝吃——场面越客气越瘆人，'那语气客气得不像话，像在请一个远道而来的客人尝一口家常菜'",
+        "dark_humor_control": "吃啊别浪费——幽默服务控场，用客气语气包裹刀子般的话",
+        "action_over_monologue": "夹卤肉搁碟里——不说'他决定替汉子销账'，用夹菜动作表达"
+      },
+      "shuang_types": ["A"],
+      "suspense_budget_check": "悬念1（Ch1末尾）持续：最后一道菜是什么。新开悬念2：局头账目有鬼/差的那道记在谁头上。无闭环",
+      "opponent_rebuttals": []
+    },
+    "timeline_clues_confirmed": true
+  }
+}

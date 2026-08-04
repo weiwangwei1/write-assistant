@@ -1,0 +1,97 @@
+{
+  "card_type": "review",
+  "timestamp": "2026-08-03T13:30:00+08:00",
+  "from_agent": "quality-reviewer",
+  "to_agent": "chapter-writer",
+  "content": {
+    "chapter_num": 2,
+    "title": "送客宴（二）",
+    "review_round": 2,
+    "round_1_total_score": 9.35,
+    "round_1_read_index": 8.28,
+    "scores": {
+      "plot_consistency": 9.5,
+      "character_consistency": 9.5,
+      "logical_rationality": 9.5,
+      "writing_quality": 9.5,
+      "shuang_density": 9.5,
+      "pacing_control": 9.5,
+      "chapter_hook": 9.5,
+      "attractiveness": 9.5
+    },
+    "total_score": 9.5,
+    "quality_technical_score": 9.5,
+    "passed": true,
+    "round_1_issues_resolved": [
+      {
+        "type": "shuang_density",
+        "round_1_severity": "medium",
+        "resolution": "round_1 建议'压缩 beat1 三笔不对劲，让看穿更早落地'。已执行：'三笔不对劲'由逐笔展开（约250字）合并为'头一笔…这两笔，都指向一个理：有人把本该来的客，记漏了。第三笔，他压在心底'（约150字），'看穿有人把客记漏'提前到前300字；'四副碗筷vs十二道菜'破绽点破（一人一席各吃各的）在第23行即落地。同时 beat2 打脸增强：点破五分利后新增局头'枯指往下按了一下又松开，像被什么烫了一下'、汉子'张了张嘴，说不出话，他这辈子头一回听人把他的账算得这么清'，打脸重量与兑现感提升。"
+      },
+      {
+        "type": "pacing_control",
+        "round_1_severity": "medium",
+        "resolution": "round_1 建议'压缩中后段第91-99行反思1-2句，让替那汉子吃下那道菜直接推向章末记给死人看的账转折'。已执行：将三重重复推理（原91/107/109行）删减为仅保留第89行一次完整推演+第91行'头一道'洞见+第93行'替那汉子吃下那道菜'落点，第95-105行直接收束到'他们，大概是再也来不了了'，导入章末转折。中段反思由平缓顿挫转为紧凑收束。"
+      }
+    ],
+    "reader_reactions": {
+      "追读指数": 9.0,
+      "综合弃书率": "12%",
+      "readers": [
+        {
+          "name": "爽感猎人·阿爽",
+          "追读意愿": 9,
+          "弃书概率": "10%",
+          "verdict": "追读",
+          "feedback": "开场三笔不对劲合并后，看穿'有人把客记漏了'来得快，第几百字就对上脑子了。点破五分利多算三成那段打脸够劲，局头枯指被烫那下细节到位。"
+        },
+        {
+          "name": "逻辑警察·老缜",
+          "追读意愿": 9,
+          "弃书概率": "10%",
+          "verdict": "追读",
+          "feedback": "账算得干净，两分利对五分利差三成、剩半斗，数字全对得上。局头也在赖账的反转埋得准，章末'记给死人看的账第一页是谁'钩子毒。"
+        },
+        {
+          "name": "角色粉·小迷",
+          "追读意愿": 9,
+          "弃书概率": "10%",
+          "verdict": "追读",
+          "feedback": "顾衡给那汉子夹菜那下心软了，汉子眼眶一红戳我。局头枯指收拢、'那老人的眼一直没从他身上移开'，可悲感拉满，不是纯工具反派。"
+        },
+        {
+          "name": "氛围党·画师",
+          "追读意愿": 9,
+          "弃书概率": "8%",
+          "verdict": "追读",
+          "feedback": "'像一截枯木'、'枯指搭着桌沿'、'半截香落灰'、'灯焰把影子拉长'，画面感强，烟雨江南的克制恐怖味很正。章末空碗筷'谁也不来动'很有余韵。"
+        },
+        {
+          "name": "碎片党·地铁客",
+          "追读意愿": 9,
+          "弃书概率": "10%",
+          "verdict": "追读",
+          "feedback": "开头几行就进账，不磨叽。销账、送人、章末反转一气呵成，'记给死人看的账第一页是谁'，想知道答案，追。"
+        },
+        {
+          "name": "老书虫·毒舌",
+          "追读意愿": 9,
+          "弃书概率": "15%",
+          "verdict": "追读",
+          "feedback": "断账人这个路子有点意思，送客宴民俗+账目清算有新鲜感。章末空碗筷'谁也不来动'、'数不清坐过几个人'，恐怖氛围正。"
+        }
+      ],
+      "market_risk": false,
+      "risk_readers": [],
+      "summary": "追读指数9.0，无单画像弃书超15%，整体健康。双高期待（情绪渴望替人清账+事件预期章末账目反转）成立且更紧密。round_1 两问题已解决：开场爽点提前（阿爽/地铁客认可）、中段反思收束（节奏更紧凑）。"
+    },
+    "process_compliance": {
+      "l1_advisory_response": "pass：style_lint 10个非阻断项（simile_total/dialogue_ratio/le_overuse/le_pattern/zhe_overuse/dialogue_guide_underuse）detail_review 已逐条 accept 并附理由，无未回应项。",
+      "style_plan_follow": "pass：metaphor_plan 3处（过账/拨算盘/枯木）均落实于正文且服务叙事功能；dialogue_plan 交锋场景用直接对话，现场感成立。",
+      "fix_audit_closed_loop": "pass：fix_audit_ref=null，本章无 lint 修复轮次，不适用。"
+    },
+    "issues": [],
+    "rewrite_instructions": "",
+    "next_agent": "de-ai-processor"
+  }
+}

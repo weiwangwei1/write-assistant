@@ -1,0 +1,58 @@
+{
+  "card_type": "chapter_draft",
+  "from_agent": "chapter-writer",
+  "to_agent": "quality-reviewer",
+  "status": "ready",
+  "content": {
+    "chapter_num": 4,
+    "title": "凉粥",
+    "word_count": 2414,
+    "draft_ref": "please/output/chapter_004_draft.txt",
+    "opening_type": "动作开头",
+    "ending_type": "悬念",
+    "hook_sentence": "他决定，从最早认得他名字的那个人问起。",
+    "style_lint_ref": "please/handoff/style_lint_ch4.json",
+    "fix_audit_ref": null,
+    "style_pack": "yanyujiangnan",
+    "style_plan": {
+      "metaphor_plan": [
+        {"position": "第5段", "target": "那页纸引着顾衡回去", "metaphor": "那名字底下的那个人，藏在这页纸的另一头", "function": "把'回旧宅'从被动勾回改为主动追查的动机锚"},
+        {"position": "第79行", "target": "凉粥碗触感", "metaphor": "凉得像搁了二十七年", "function": "强化时间沉淀的冷意"},
+        {"position": "孟守拙段落", "target": "确认'有人记了他二十七年'", "metaphor": "纸背深折痕=被人翻看过千万遍", "function": "名字端倪的小兑现：从'又多了个谜'升级为'确认了某件事'（可确认物证）"}
+      ],
+      "dialogue_plan": null
+    },
+    "beat_sheet": {
+      "beats": [
+        {"beat_id": 1, "summary": "顾衡走出来：局头让走，他走出那道门，摸到怀里那页纸，本想撕了扔了，指头捻了捻没舍得（不重复Ch3续命段落）", "purpose": "场景转出送客宴", "weight": "minor", "info_delivery": "sensory", "shuang_type": null},
+        {"beat_id": 2, "summary": "主动追查：他改了主意不撕，顺着那页纸回城南旧宅——'那老人说守了一辈子，写给一个他记了一辈子的人，那是谁'；被动被粥勾回改为主动要查清白（替代原'粥勾回'）", "purpose": "主动追查动机浮出（评审优化点3）", "weight": "major", "info_delivery": "action", "shuang_type": null},
+        {"beat_id": 3, "summary": "路上遇粥（半句提点，不重演）：路过早起生火人家闻到粥气，昨夜那碗粥从心里翻上来，他只记得凉、米粒沉在碗底；他脚下顿了顿，没让粥拖住，继续往旧宅走", "purpose": "勾连身世暗线伏笔（引用已锚定旧记忆，不重演发现）", "weight": "minor", "info_delivery": "sensory", "shuang_type": null},
+        {"beat_id": 4, "summary": "回旧宅：数着步子走到城南小时候住的地方，从前绕开走；院门虚掩，门环磨得发亮还有一道新磨的印子，他伸手又缩回", "purpose": "氛围铺垫+悬念加深", "weight": "major", "info_delivery": "action", "shuang_type": null},
+        {"beat_id": 5, "summary": "床边的碗：推开门看见旧床，床边还是那只磕了口的碗，碗底粥渍结了壳；记起磕口来历；灶膛干柴码齐、水缸半缸水、旧木箱锁着钥匙插着、枕头底下压着布老虎、铜烛台擦得锃亮——有人一直打扫着这间屋", "purpose": "揭示二十七年守候事实", "weight": "major", "info_delivery": "discovery", "shuang_type": "reveal"},
+        {"beat_id": 6, "summary": "名字出现+小兑现：床沿底下翻出一页旧纸，写着孟守拙；与怀里那页（老人昨夜递的）比对，笔锋是同一个人的手，但床沿这页墨色浸得深、纸黄得透，是二三十年前写的；纸背被反复摩挲出深折痕——确认这名字不是老人昨夜才起的，是有人在他睡这张床时就写好、这些年一遍遍翻过（将'名字端倪'从纯揭演示升级为有物证的确认）", "purpose": "章末悬念钩+小兑现（评审优化点2）", "weight": "major", "info_delivery": "discovery", "shuang_type": "reveal"}
+      ],
+      "cross_chapter_facts": {
+        "names": ["顾衡", "孟守拙", "局头"],
+        "numbers": ["二十七年（守候年数，顾衡27岁，从出生起算）", "二三十年前（那页纸写下时，lint提示'三十年'指此，已比照顾衡年龄确认自洽）"],
+        "positions": ["顾衡：离开送客宴，走到城南旧宅", "局头：留在送客宴，副本收束"],
+        "known_info": ["顾衡才是被欠的那笔账", "局头守了一辈子一页写着顾衡名字的纸", "那碗凉粥（Ch3已锚定：发烧→床边一碗凉粥→以为邻居放的，本章只引用不重演）"],
+        "certainty_state": {
+          "顾衡": "partial：知道有人记了他二十七年，知道名字，确认这名字是二三十年前写下的，还不知道这个人是谁",
+          "读者": "partial：身世暗线只揭了'有人记了二十七年'这层，'孟守拙是谁''是否=局头'仍是悬念"
+        }
+      },
+      "character_internal": {
+        "顾衡": {
+          "inner_conflict": "他一辈子享受把一切算准捏死的掌控感，可这二十七年的记挂，从他出生就一直在，他自己却半点不知道——这种'全在别人算里'的失控感，是他这辈子头一回遇见",
+          "desire_this_chapter": "顺着那页纸查清楚，是谁记了他二十七年",
+          "emotion_arc": "笃定→主动追查→疑心→恍然沉落，从绝对掌控落到被动被记挂的失控",
+          "vulnerability_beat": "beat_id=2，weight=minor，purpose=角色深度（他本想走远就撕了那张纸，却舍不得扔——精算失效/被迫选择）"
+        }
+      },
+      "shuang_types": ["reveal"],
+      "suspense_budget_check": "S004保持active（谁替他记的账），本章仅深化（孟守拙名字端倪+物证），无新开；闭环0",
+      "opponent_rebuttals": []
+    },
+    "timeline_clues_confirmed": true
+  }
+}

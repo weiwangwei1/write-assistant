@@ -1,0 +1,682 @@
+{
+  "card_type": "fix_audit",
+  "from_agent": "fix_auditor(script)",
+  "to_agent": "detail-reviewer",
+  "note": "本卡只含 diff 证据，不做判定——是否构成过度矫正由 detail-reviewer 第8层判断",
+  "pre_ref": "please/handoff/pre_lint_ch3_rewrite.txt",
+  "post_ref": "please/output/chapter_003_draft.txt",
+  "summary": {
+    "simile_changes": 2,
+    "function_word_reductions": 48,
+    "dialogue_loss_candidates": 3,
+    "removed_sentences": 3,
+    "lint_issues_before": 11,
+    "lint_issues_after": 2
+  },
+  "evidence": {
+    "simile_changes": [
+      {
+        "kind": "removed",
+        "before": "不是那种被人看穿的慌，是另一种，更深，像一脚踩空了却不知道底下有多深。",
+        "after": "他看一辈子人，头一回，被人把菜端到自己面前，告诉他，你就是那个人。",
+        "context": "replace块[36:44]→[61:67]"
+      },
+      {
+        "kind": "removed",
+        "before": "像一只绷了太久的弦，松了半扣。",
+        "after": "他做成一局，命续上一段。",
+        "context": "replace块[46:52]→[69:74]"
+      }
+    ],
+    "function_word_reductions": [
+      {
+        "reduced_words": {
+          "了": {
+            "before": 4,
+            "after": 3
+          }
+        },
+        "before": "白霜是倒数第二个走的，临走前回头看了他一眼，没说话，只把那枚旧银耳铛在指上转了一圈，叮地响了一下，像替他敲了一声堂鼓。",
+        "after": "白霜是倒数第二个走的，临走前回头看他一眼，没说话，只把那枚旧银耳铛在指上转了一圈，叮地响了一下，像替他敲了一声堂鼓。",
+        "context": "replace块[0:3]→[0:3]"
+      },
+      {
+        "reduced_words": {
+          "了": {
+            "before": 3,
+            "after": 0
+          },
+          "着": {
+            "before": 1,
+            "after": 0
+          }
+        },
+        "before": "冷盘空了两碟，热菜凉了三道，砂锅见了底，汤面上飘着几片陈皮，泡得发白。",
+        "after": "那半截香烧到底，香灰落在杯沿上，一粒，没动。",
+        "context": "replace块[4:7]→[4:9]"
+      },
+      {
+        "reduced_words": {
+          "了": {
+            "before": 1,
+            "after": 0
+          }
+        },
+        "before": "那半截香烧到了底，香灰落在杯沿上，一粒，没动。",
+        "after": "屋里还留酒气和荤腥混在一起的闷热，菜凉之后那股味更沉，压在屋顶底下散不出去。",
+        "context": "replace块[4:7]→[4:9]"
+      },
+      {
+        "reduced_words": {
+          "了": {
+            "before": 4,
+            "after": 1
+          }
+        },
+        "before": "他坐在主位上，从怀里掏出那只磕了口的破碗，摸了一粒花生米搁嘴里嚼了，慢慢嚼，嚼出味来才咽了。",
+        "after": "他坐在主位上，从怀里掏出那只磕了口的破碗，摸一粒花生米搁嘴里嚼，慢慢嚼，嚼出味来才咽。",
+        "context": "replace块[8:11]→[10:13]"
+      },
+      {
+        "reduced_words": {
+          "了": {
+            "before": 2,
+            "after": 0
+          }
+        },
+        "before": "他这一晚替人看了一晚上的心，送走了一屋子的人，如今就剩他一个吃客，和一个守席的老人。",
+        "after": "他这一晚替人看一晚上的心，送走一屋子的人，如今就剩他一个吃客，和一个守席的老人。",
+        "context": "replace块[8:11]→[10:13]"
+      },
+      {
+        "reduced_words": {
+          "了": {
+            "before": 2,
+            "after": 1
+          }
+        },
+        "before": "锅铲碰了一声碗沿，水声响了一下，然后是极长的安静。",
+        "after": "锅铲碰一声碗沿，水声响了一下，随后是极长的安静。",
+        "context": "replace块[13:17]→[15:19]"
+      },
+      {
+        "reduced_words": {
+          "着": {
+            "before": 1,
+            "after": 0
+          }
+        },
+        "before": "老人再出来时，手里端着一只砂锅，搁在顾衡面前，稳稳落桌，连汤都没晃一下。",
+        "after": "老人再出来时，手里端一只砂锅，搁在顾衡面前，稳稳落桌，连汤都没晃一下。",
+        "context": "replace块[13:17]→[15:19]"
+      },
+      {
+        "reduced_words": {
+          "着": {
+            "before": 1,
+            "after": 0
+          }
+        },
+        "before": "老卤点的豆腐，上头搁着半两陈皮。",
+        "after": "老卤点的豆腐，上头搁半两陈皮。",
+        "context": "replace块[18:19]→[20:21]"
+      },
+      {
+        "reduced_words": {
+          "了": {
+            "before": 1,
+            "after": 0
+          }
+        },
+        "before": "顾衡的手，在桌沿上停住了。",
+        "after": "顾衡的手在桌沿上停住，没动。",
+        "context": "replace块[25:27]→[27:29]"
+      },
+      {
+        "reduced_words": {
+          "了": {
+            "before": 3,
+            "after": 0
+          }
+        },
+        "before": "他看了一辈子人，替人解了一辈子的结，送走了一屋子的人。",
+        "after": "他看一辈子人，替人解一辈子的结，送走一屋子的人。",
+        "context": "replace块[25:27]→[27:29]"
+      },
+      {
+        "reduced_words": {
+          "着": {
+            "before": 2,
+            "after": 0
+          }
+        },
+        "before": "顾衡低头看着那道豆腐，热气散开，他看见碗底刻着一个字，被磨得只剩一道浅痕。",
+        "after": "顾衡盯住老人的手。",
+        "context": "replace块[32:34]→[34:49]"
+      },
+      {
+        "reduced_words": {
+          "了": {
+            "before": 2,
+            "after": 0
+          }
+        },
+        "before": "他看了半天，这回看清了。",
+        "after": "那双手枯瘦，指节粗大，指甲缝里嵌满洗不掉的陈年油垢，是灶上人的手。",
+        "context": "replace块[32:34]→[34:49]"
+      },
+      {
+        "reduced_words": {
+          "了": {
+            "before": 1,
+            "after": 0
+          },
+          "的": {
+            "before": 1,
+            "after": 0
+          }
+        },
+        "before": "不是那种被人看穿的慌，是另一种，更深，像一脚踩空了却不知道底下有多深。",
+        "after": "他看一辈子人，头一回，被人把菜端到自己面前，告诉他，你就是那个人。",
+        "context": "replace块[36:44]→[61:67]"
+      },
+      {
+        "reduced_words": {
+          "了": {
+            "before": 1,
+            "after": 0
+          }
+        },
+        "before": "他看了一辈子人，头一回，被人把菜端到自己面前，告诉他，你就是那个人。",
+        "after": "他忽然笑起来，道：\"我恨我恨得好。",
+        "context": "replace块[36:44]→[61:67]"
+      },
+      {
+        "reduced_words": {
+          "了": {
+            "before": 1,
+            "after": 0
+          }
+        },
+        "before": "他忽然笑了。",
+        "after": "\"",
+        "context": "replace块[36:44]→[61:67]"
+      },
+      {
+        "reduced_words": {
+          "了": {
+            "before": 2,
+            "after": 0
+          }
+        },
+        "before": "他夹了一筷豆腐，送进嘴里，慢慢嚼了。",
+        "after": "他夹一筷豆腐，送进嘴里，慢慢嚼。",
+        "context": "replace块[46:52]→[69:74]"
+      },
+      {
+        "reduced_words": {
+          "着": {
+            "before": 1,
+            "after": 0
+          }
+        },
+        "before": "豆腐是凉的，入口却像搁着一桩心事，怎么也咽不干净。",
+        "after": "豆腐是凉的，入口却像搁一桩心事，怎么也咽不干净。",
+        "context": "replace块[46:52]→[69:74]"
+      },
+      {
+        "reduced_words": {
+          "着": {
+            "before": 1,
+            "after": 0
+          }
+        },
+        "before": "可那口凉豆腐落下去，他身上那层看不见的压着的东西，松了一松。",
+        "after": "可那口凉豆腐落下去，他身上那层看不见的压住的东西，松一松，像一只绷了太久的弦，松半扣。",
+        "context": "replace块[46:52]→[69:74]"
+      },
+      {
+        "reduced_words": {
+          "了": {
+            "before": 2,
+            "after": 0
+          },
+          "的": {
+            "before": 1,
+            "after": 0
+          }
+        },
+        "before": "像一只绷了太久的弦，松了半扣。",
+        "after": "他做成一局，命续上一段。",
+        "context": "replace块[46:52]→[69:74]"
+      },
+      {
+        "reduced_words": {
+          "了": {
+            "before": 1,
+            "after": 0
+          }
+        },
+        "before": "他做成了一局，命续上一段。",
+        "after": "他没搭脉，没数息，但他知道，自己又赚一段活头。",
+        "context": "replace块[46:52]→[69:74]"
+      },
+      {
+        "reduced_words": {
+          "了": {
+            "before": 2,
+            "after": 0
+          }
+        },
+        "before": "他低头看了一眼自己的手，稳了。",
+        "after": "他低头看一眼自己的手，还算稳。",
+        "context": "replace块[55:59]→[77:81]"
+      },
+      {
+        "reduced_words": {
+          "了": {
+            "before": 1,
+            "after": 0
+          },
+          "着": {
+            "before": 1,
+            "after": 0
+          }
+        },
+        "before": "老人没接话，转身进了灶间，再出来时手里端着一碗热茶，搁在他手边。",
+        "after": "老人没接话，转身进灶间，再出来时手里端一碗热茶，搁在他手边。",
+        "context": "replace块[55:59]→[77:81]"
+      },
+      {
+        "reduced_words": {
+          "着": {
+            "before": 1,
+            "after": 0
+          },
+          "的": {
+            "before": 1,
+            "after": 0
+          }
+        },
+        "before": "那茶冒着白气，与满桌的凉菜格格不入。",
+        "after": "那茶冒白气，与满桌凉菜格格不入。",
+        "context": "replace块[55:59]→[77:81]"
+      },
+      {
+        "reduced_words": {
+          "了": {
+            "before": 1,
+            "after": 0
+          }
+        },
+        "before": "\"这碗是热的，\"老人说，\"先生坐了一晚上，喝口热的再走。",
+        "after": "\"这碗是热的，\"老人道，\"先生坐一晚上，喝口热的再走。",
+        "context": "replace块[55:59]→[77:81]"
+      },
+      {
+        "reduced_words": {
+          "了": {
+            "before": 1,
+            "after": 0
+          }
+        },
+        "before": "顾衡端起那碗茶，喝了一口，滚过喉咙，一路暖到胃里。",
+        "after": "顾衡端起那碗茶，喝一口，滚过喉咙，一路暖到胃里。",
+        "context": "replace块[60:62]→[82:84]"
+      },
+      {
+        "reduced_words": {
+          "了": {
+            "before": 1,
+            "after": 0
+          }
+        },
+        "before": "他这一晚上坐在凉席上替人看了一晚的心，头一回喝到一口热汤。",
+        "after": "他这一晚上坐凉席上替人看一晚的心，头一回喝到一口热汤。",
+        "context": "replace块[60:62]→[82:84]"
+      },
+      {
+        "reduced_words": {
+          "着": {
+            "before": 1,
+            "after": 0
+          }
+        },
+        "before": "那里搁着一本旧账册，边角卷了，纸页发黄，搁在碗碟之间，像被人随手忘在那儿的。",
+        "after": "那里搁一本旧账册，边角卷了，纸页发黄，搁在碗碟之间，像被人随手忘在那儿的。",
+        "context": "replace块[63:64]→[85:86]"
+      },
+      {
+        "reduced_words": {
+          "着": {
+            "before": 3,
+            "after": 0
+          }
+        },
+        "before": "账册上记着今晚的席面，九道菜，每一道后头跟着一个名字，名字后头跟着一笔账。",
+        "after": "账册封皮是粗麻纸，摸上去发涩，指腹蹭过去能感到纸面上细碎的毛刺。",
+        "context": "replace块[65:67]→[87:93]"
+      },
+      {
+        "reduced_words": {
+          "着": {
+            "before": 1,
+            "after": 0
+          }
+        },
+        "before": "他一页页翻过去，翻到最后一页，最后一道菜后头写着两个字。",
+        "after": "翻开第一页，墨迹是新研的，黑得发亮，字迹端正，是老人的手笔。",
+        "context": "replace块[65:67]→[87:93]"
+      },
+      {
+        "reduced_words": {
+          "了": {
+            "before": 1,
+            "after": 0
+          },
+          "着": {
+            "before": 1,
+            "after": 0
+          }
+        },
+        "before": "他顺着那行字往右看，看到了一个名字。",
+        "after": "他沿那行字往右看，看到一个名字。",
+        "context": "replace块[68:69]→[94:95]"
+      },
+      {
+        "reduced_words": {
+          "了": {
+            "before": 1,
+            "after": 0
+          },
+          "着": {
+            "before": 1,
+            "after": 0
+          }
+        },
+        "before": "可他再往左看，\"欠款人\"那栏的上头还写着一行小字，字迹极旧，旧得墨迹都泛了灰。",
+        "after": "可他再往左看，\"欠款人\"那栏的上头还有一行小字，字迹极旧，旧得墨迹泛灰，像是用另一支笔、另一种墨，在许多年前写下的。",
+        "context": "replace块[70:71]→[96:97]"
+      },
+      {
+        "reduced_words": {
+          "的": {
+            "before": 1,
+            "after": 0
+          }
+        },
+        "before": "他不是欠局头的。",
+        "after": "顾衡盯住那页旧账，看了很久。",
+        "context": "replace块[72:78]→[98:118]"
+      },
+      {
+        "reduced_words": {
+          "了": {
+            "before": 1,
+            "after": 0
+          },
+          "着": {
+            "before": 1,
+            "after": 0
+          }
+        },
+        "before": "顾衡盯着那页旧账，看了很久。",
+        "after": "\"那您早知道今晚会剩我一个人。",
+        "context": "replace块[72:78]→[98:118]"
+      },
+      {
+        "reduced_words": {
+          "着": {
+            "before": 1,
+            "after": 0
+          }
+        },
+        "before": "老人没答，只望着他，那双枯眼忽然亮了一下。",
+        "after": "老人没答，那双枯眼忽然亮了一下。",
+        "context": "replace块[82:84]→[122:124]"
+      },
+      {
+        "reduced_words": {
+          "了": {
+            "before": 2,
+            "after": 0
+          }
+        },
+        "before": "\"先生，\"他说，\"您替人看了一辈子心，可曾想过，也有一个人，替您记了一辈子？",
+        "after": "\"先生，\"老人道，\"您替人看一辈子心，可曾想过，也有一个人，替您记一辈子？",
+        "context": "replace块[82:84]→[122:124]"
+      },
+      {
+        "reduced_words": {
+          "了": {
+            "before": 1,
+            "after": 0
+          }
+        },
+        "before": "走到门槛，他停了一下。",
+        "after": "走到门槛，他停一下。",
+        "context": "replace块[86:92]→[126:132]"
+      },
+      {
+        "reduced_words": {
+          "了": {
+            "before": 1,
+            "after": 0
+          }
+        },
+        "before": "门外的巷子黑得深，风从巷口吹进来，掀了一下他的衣角。",
+        "after": "门外的巷子黑得深，风从巷口吹进来，掀一下他的衣角。",
+        "context": "replace块[86:92]→[126:132]"
+      },
+      {
+        "reduced_words": {
+          "了": {
+            "before": 1,
+            "after": 0
+          },
+          "着": {
+            "before": 2,
+            "after": 0
+          }
+        },
+        "before": "他低头看了一眼自己怀里揣着的那只破碗，碗口那道豁在灯影里像一张没合上的嘴，花生米还在碗底，硌着肋骨。",
+        "after": "他低头看一眼怀里揣的那只破碗，碗口那道豁在灯影里像一张没合上的嘴，花生米还在碗底，抵住肋骨。",
+        "context": "replace块[86:92]→[126:132]"
+      },
+      {
+        "reduced_words": {
+          "了": {
+            "before": 1,
+            "after": 0
+          }
+        },
+        "before": "他回头，看了一眼那老人。",
+        "after": "他回头，看一眼那老人。",
+        "context": "replace块[86:92]→[126:132]"
+      },
+      {
+        "reduced_words": {
+          "了": {
+            "before": 1,
+            "after": 0
+          }
+        },
+        "before": "\"您的心事，\"他说，\"我记下了。",
+        "after": "\"东家，\"顾衡道，\"您守这屋，守的是什么？",
+        "context": "replace块[86:92]→[126:132]"
+      },
+      {
+        "reduced_words": {
+          "了": {
+            "before": 1,
+            "after": 0
+          },
+          "地": {
+            "before": 1,
+            "after": 0
+          }
+        },
+        "before": "堂屋里，那半截香无声地落了最后一截灰。",
+        "after": "\"先生走之前，\"老人道，\"喝完那碗茶。",
+        "context": "replace块[93:96]→[133:148]"
+      },
+      {
+        "reduced_words": {
+          "着": {
+            "before": 2,
+            "after": 0
+          }
+        },
+        "before": "桌上那副旧碗筷还摆着，碗底刻着一个字，被磨得只剩一道浅痕。",
+        "after": "\"",
+        "context": "replace块[93:96]→[133:148]"
+      },
+      {
+        "reduced_words": {
+          "了": {
+            "before": 1,
+            "after": 0
+          }
+        },
+        "before": "而顾衡走在夜色里，心里那点刚松下来的东西，忽然又绷紧了。",
+        "after": "而顾衡走在巷子里，心里那点刚松下来的东西，忽然又绷紧。",
+        "context": "replace块[97:100]→[149:152]"
+      },
+      {
+        "reduced_words": {
+          "了": {
+            "before": 3,
+            "after": 0
+          }
+        },
+        "before": "他这辈子替人看了一辈子心，解了一辈子结，可直到今夜他才知道，也有一个人，记了他一辈子。",
+        "after": "他这辈子替人看一辈子的心，解一辈子的结，可直到今夜他才知道，也有一个人，记他一辈子。",
+        "context": "replace块[97:100]→[149:152]"
+      },
+      {
+        "reduced_words": {
+          "了": {
+            "before": 2,
+            "after": 0
+          },
+          "着": {
+            "before": 2,
+            "after": 0
+          }
+        },
+        "before": "那个替他记了一辈子的人，守着一本写着他名字的旧账，等了他不知道多少年。",
+        "after": "那个替他记一辈子的人，守一本写他名字的旧账，等他不知道多少年。",
+        "context": "replace块[97:100]→[149:152]"
+      },
+      {
+        "reduced_words": {
+          "了": {
+            "before": 1,
+            "after": 0
+          },
+          "着": {
+            "before": 1,
+            "after": 0
+          }
+        },
+        "before": "很小的时候，他发过一场高烧，醒来时床边搁着一碗粥，凉透了。",
+        "after": "很小的时候，他发过一场高烧，烧得浑身滚烫，迷迷糊糊睡不知道几天。",
+        "context": "replace块[101:102]→[153:160]"
+      },
+      {
+        "reduced_words": {
+          "了": {
+            "before": 1,
+            "after": 0
+          }
+        },
+        "before": "他低头，看了一眼自己的手。",
+        "after": "那只碗口磕一道小豁的粗瓷碗，和怀里这一只，是不是同一道磕法？",
+        "context": "replace块[103:107]→[161:165]"
+      },
+      {
+        "reduced_words": {
+          "了": {
+            "before": 1,
+            "after": 0
+          }
+        },
+        "before": "他抬头，望了一眼巷子尽头那一点将明未明的天光。",
+        "after": "他抬头，望一眼巷子尽头那一点将明未明的天光。",
+        "context": "replace块[103:107]→[161:165]"
+      }
+    ],
+    "dialogue_loss_candidates": [
+      {
+        "before": "\"我恨我恨得好。",
+        "after": "那语气认了命似的坦然，坦然里透一丝好笑。",
+        "context": "replace块[36:44]→[61:67]"
+      },
+      {
+        "before": "\"他说。",
+        "after": "他替人看一辈子的心，到头来，最该看的那桩心事，在自己身上。",
+        "context": "replace块[36:44]→[61:67]"
+      },
+      {
+        "before": "在\"被欠\"的那边。",
+        "after": "他不是欠局头的，是局头欠他的。",
+        "context": "replace块[72:78]→[98:118]"
+      }
+    ],
+    "removed_sentences": [
+      {
+        "sentence": "那语气不像自嘲，倒像一个将死之人终于认了命，认得坦然，认得有点好笑。",
+        "had_simile": true,
+        "had_dialogue": false
+      },
+      {
+        "sentence": "他替人看了一辈子的心，到头来，最该看的那桩心事，在自己身上。",
+        "had_simile": false,
+        "had_dialogue": false
+      },
+      {
+        "sentence": "他没搭脉，没数息，可他知道，自己又赚了一段活头。",
+        "had_simile": false,
+        "had_dialogue": false
+      }
+    ]
+  },
+  "lint_diff": {
+    "before": {
+      "short_para_ratio": 1,
+      "short_para_run": 1,
+      "simile_total": 1,
+      "simile_stacked": 1,
+      "ranhou": 1,
+      "dialogue_ratio": 1,
+      "le_pattern": 5
+    },
+    "after": {
+      "simile_total": 1,
+      "dialogue_ratio": 1
+    },
+    "increased_or_new": {},
+    "resolved": {
+      "short_para_ratio": {
+        "before": 1,
+        "after": 0
+      },
+      "short_para_run": {
+        "before": 1,
+        "after": 0
+      },
+      "simile_stacked": {
+        "before": 1,
+        "after": 0
+      },
+      "ranhou": {
+        "before": 1,
+        "after": 0
+      },
+      "le_pattern": {
+        "before": 5,
+        "after": 0
+      }
+    }
+  }
+}

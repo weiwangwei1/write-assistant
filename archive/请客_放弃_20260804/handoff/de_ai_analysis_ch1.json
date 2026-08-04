@@ -1,0 +1,42 @@
+{
+  "card_type": "de_ai_analysis",
+  "mode": "analysis_mode",
+  "timestamp": "2026-08-03T04:50:00+08:00",
+  "from_agent": "de-ai-processor",
+  "to_agent": "review-merger",
+  "chapter_num": 1,
+  "ai_score_before": 2.0,
+  "detected_issues": [
+    {
+      "category": "summary_ending",
+      "location": "第62段",
+      "original": "他这辈子替人销过太多账，最清楚一件事，账这东西，得等它自己把底翻出来，才动得了笔。",
+      "severity": "minor",
+      "suggestion": "此句为哲理警句，有轻微'总结式'味道，但符合断账人设（'账要等它自己翻底'是核心信条），且承接章末'他按回念头'，收束有力。判定：保留，不改为空白。",
+      "revised": ""
+    },
+    {
+      "category": "summary_ending",
+      "location": "第45段",
+      "original": "他忽然明白了这局是什么。鸿门宴好歹还有个逃的机会，这一桌席，是把锅端到你面前……",
+      "severity": "minor",
+      "suggestion": "'他忽然明白了'是认知宣告，但紧接具体画面（鸿门宴/端锅舀菜/成一锅里的一味菜）支撑，非纯总结。判定：保留。",
+      "revised": ""
+    }
+  ],
+  "stats": {
+    "total_issues": 2,
+    "by_category": {
+      "sentence_uniformity": 0,
+      "de_density": 0,
+      "emotion_telling": 0,
+      "formal_transition": 0,
+      "word_repetition": 0,
+      "dialogue_written": 0,
+      "four_char_idiom": 0,
+      "precise_number": 0,
+      "summary_ending": 2
+    }
+  },
+  "note": "正文经 style_lint（tell_marker/not-a-is-b/情绪直说词已清除）+ yanyujiangnan 风格包抑制，AI 痕迹已很低。8 维评分约 2.0，已达目标（≤2.0）。2 处 summary_ending 均判定保留（符合断账人设且收束有力）。无需机械修改，避免过度矫正。"
+}

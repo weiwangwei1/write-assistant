@@ -1,0 +1,273 @@
+{
+  "card_type": "fix_audit",
+  "from_agent": "fix_auditor(script)",
+  "to_agent": "detail-reviewer",
+  "note": "本卡只含 diff 证据，不做判定——是否构成过度矫正由 detail-reviewer 第8层判断",
+  "pre_ref": "please/handoff/pre_lint_ch1.txt",
+  "post_ref": "please/output/chapter_001_draft.txt",
+  "summary": {
+    "simile_changes": 0,
+    "function_word_reductions": 11,
+    "dialogue_loss_candidates": 3,
+    "removed_sentences": 13,
+    "lint_issues_before": 5,
+    "lint_issues_after": 1
+  },
+  "evidence": {
+    "simile_changes": [],
+    "function_word_reductions": [
+      {
+        "reduced_words": {
+          "的": {
+            "before": 2,
+            "after": 1
+          }
+        },
+        "before": "这一眼，他看的不是冷盘摆得多齐整，不是红木桌椅多体面，他数的是这十二道菜，一共能顶成多少笔糊涂账。",
+        "after": "这一眼他瞧的，就落在那十二道菜上。",
+        "context": "replace块[7:9]→[7:17]"
+      },
+      {
+        "reduced_words": {
+          "地": {
+            "before": 1,
+            "after": 0
+          }
+        },
+        "before": "他盘起手，十根指头下意识地搭在一起，指节一动，像在拨一把不存在的算盘。",
+        "after": "他盘起手，十根指头搭在一起，指节一动，像在拨一把不存在的算盘。",
+        "context": "replace块[15:19]→[22:31]"
+      },
+      {
+        "reduced_words": {
+          "了": {
+            "before": 3,
+            "after": 2
+          }
+        },
+        "before": "老人愣住，随即又笑了，像是等这句话等了很久：“先生问在点子上了。",
+        "after": "老人愣住，随即又笑了，像是等这句话等了很久。",
+        "context": "replace块[36:38]→[47:50]"
+      },
+      {
+        "reduced_words": {
+          "着": {
+            "before": 1,
+            "after": 0
+          },
+          "的": {
+            "before": 1,
+            "after": 0
+          }
+        },
+        "before": "”他抬手指了指门外，“按理说，今儿这局是这么个规矩——桌上每道菜，都对应着这位主人生前欠下的一笔账。",
+        "after": "他抬手指了指门外：“先生问在点子上了。",
+        "context": "replace块[36:38]→[47:50]"
+      },
+      {
+        "reduced_words": {
+          "着": {
+            "before": 1,
+            "after": 0
+          }
+        },
+        "before": "他端着茶碗的手，在半空停了两息，才缓缓放回桌上。",
+        "after": "“那一”他顿了顿，改了口，“我今儿是来给人销账的。",
+        "context": "replace块[41:44]→[53:55]"
+      },
+      {
+        "reduced_words": {
+          "的": {
+            "before": 1,
+            "after": 0
+          }
+        },
+        "before": "鸿门宴好歹还有个逃的机会。",
+        "after": "“东家，”他放下茶碗，忽然换了个称呼，“这十二道菜，都有主吗？",
+        "context": "replace块[56:65]→[67:69]"
+      },
+      {
+        "reduced_words": {
+          "了": {
+            "before": 1,
+            "after": 0
+          }
+        },
+        "before": "“可您方才说，得‘等人齐了’才上最后一道菜。",
+        "after": "“有。",
+        "context": "replace块[66:70]→[70:73]"
+      },
+      {
+        "reduced_words": {
+          "着": {
+            "before": 1,
+            "after": 0
+          },
+          "的": {
+            "before": 2,
+            "after": 0
+          }
+        },
+        "before": "”顾衡盯着他的眼睛，“那道菜，是留给谁的？",
+        "after": "”他说，“道道有主，一菜一主，一筷一销。",
+        "context": "replace块[66:70]→[70:73]"
+      },
+      {
+        "reduced_words": {
+          "了": {
+            "before": 1,
+            "after": 0
+          }
+        },
+        "before": "老人的手，在门框上停了停。",
+        "after": "“那我先问一句，”顾衡道，“这席上，坐主的是谁？",
+        "context": "replace块[71:74]→[74:75]"
+      },
+      {
+        "reduced_words": {
+          "了": {
+            "before": 1,
+            "after": 0
+          },
+          "的": {
+            "before": 1,
+            "after": 0
+          }
+        },
+        "before": "他端起茶碗，抿了一口，茶是凉的。",
+        "after": "”",
+        "context": "replace块[77:81]→[136:151]"
+      },
+      {
+        "reduced_words": {
+          "了": {
+            "before": 1,
+            "after": 0
+          },
+          "的": {
+            "before": 2,
+            "after": 0
+          }
+        },
+        "before": "满桌的菜，只上齐了十一二样里的一半。",
+        "after": "”",
+        "context": "replace块[77:81]→[136:151]"
+      }
+    ],
+    "dialogue_loss_candidates": [
+      {
+        "before": "顾衡没搭茬，拣了张椅子坐下，那椅子“吱呀”一声，像答应了他一声。",
+        "after": "顾衡没搭茬，拣了张椅子坐下，那椅子吱呀一声，像答应了他一声。",
+        "context": "replace块[15:19]→[22:31]"
+      },
+      {
+        "before": "老人愣住，随即又笑了，像是等这句话等了很久：“先生问在点子上了。",
+        "after": "老人愣住，随即又笑了，像是等这句话等了很久。",
+        "context": "replace块[36:38]→[47:50]"
+      },
+      {
+        "before": "顾衡：“……”",
+        "after": "顾衡端着茶碗的手，在半空停了两息，才缓缓放回桌上。",
+        "context": "replace块[41:44]→[53:55]"
+      }
+    ],
+    "removed_sentences": [
+      {
+        "sentence": "得等人齐了。",
+        "had_simile": false,
+        "had_dialogue": false
+      },
+      {
+        "sentence": "“这一席，谁欠谁的账？",
+        "had_simile": false,
+        "had_dialogue": true
+      },
+      {
+        "sentence": "“也就是说，”他慢慢说，“我今儿是来给人销账的。",
+        "had_simile": false,
+        "had_dialogue": true
+      },
+      {
+        "sentence": "这是把锅端到你面前，让你自己舀着吃；吃干净了才放你走，吃不完，你就成了一锅里的一味菜。",
+        "had_simile": false,
+        "had_dialogue": false
+      },
+      {
+        "sentence": "他正要开口，眼光扫过门口那老人时，却停住了。",
+        "had_simile": false,
+        "had_dialogue": false
+      },
+      {
+        "sentence": "老人守在那扇门边，一只枯手虚扶在门框上，像是在看门，又像是在等人。",
+        "had_simile": true,
+        "had_dialogue": false
+      },
+      {
+        "sentence": "他等得很稳，稳得不像是在等一桌还没上齐的席——倒像他已经在这儿等了很多年了。",
+        "had_simile": true,
+        "had_dialogue": false
+      },
+      {
+        "sentence": "顾衡心里那本账，忽然多了一笔对不上的地方。",
+        "had_simile": false,
+        "had_dialogue": false
+      },
+      {
+        "sentence": "“老……这位东家，”他改了称呼，“恕我多嘴。",
+        "had_simile": false,
+        "had_dialogue": true
+      },
+      {
+        "sentence": "您说，今儿这桌席，是您替主人摆的，收大家欠他的账。",
+        "had_simile": false,
+        "had_dialogue": false
+      },
+      {
+        "sentence": "谁还没来？",
+        "had_simile": false,
+        "had_dialogue": false
+      },
+      {
+        "sentence": "他笑了笑，那笑里带着点疲惫，又带着点说不清的执拗：",
+        "had_simile": false,
+        "had_dialogue": false
+      },
+      {
+        "sentence": "“那道菜，”他说，“是留给一个……最不该来，又最欠着我的人。",
+        "had_simile": false,
+        "had_dialogue": true
+      }
+    ]
+  },
+  "lint_diff": {
+    "before": {
+      "simile_total": 1,
+      "simile_stacked": 1,
+      "dialogue_ratio": 1,
+      "tell_marker": 1,
+      "tell_exposition": 1
+    },
+    "after": {
+      "simile_total": 1
+    },
+    "increased_or_new": {},
+    "resolved": {
+      "simile_stacked": {
+        "before": 1,
+        "after": 0
+      },
+      "dialogue_ratio": {
+        "before": 1,
+        "after": 0
+      },
+      "tell_marker": {
+        "before": 1,
+        "after": 0
+      },
+      "tell_exposition": {
+        "before": 1,
+        "after": 0
+      }
+    }
+  }
+}

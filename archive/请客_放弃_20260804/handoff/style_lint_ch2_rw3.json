@@ -1,0 +1,213 @@
+{
+  "card_type": "style_lint",
+  "from_agent": "style_lint(script)",
+  "to_agent": "chapter-writer",
+  "status": "pass",
+  "style_pack": null,
+  "blocking_count": 0,
+  "advisory_count": 1,
+  "non_blocking_count": 8,
+  "issues": [
+    {
+      "rule": "short_para_ratio",
+      "severity": "critical",
+      "level": "L1",
+      "chapter": "chapter_002_draft.txt",
+      "line": 0,
+      "excerpt": "",
+      "message": "碎段占比63%（106/168）> 上限45%"
+    },
+    {
+      "rule": "short_para_run",
+      "severity": "minor",
+      "level": "L1",
+      "chapter": "chapter_002_draft.txt",
+      "line": 33,
+      "excerpt": "\"您放不下他，放了很久。\"",
+      "message": "连续碎段超过6段"
+    },
+    {
+      "rule": "short_para_run",
+      "severity": "minor",
+      "level": "L1",
+      "chapter": "chapter_002_draft.txt",
+      "line": 123,
+      "excerpt": "他替那汉子倒了杯茶，推到他面前。",
+      "message": "连续碎段超过6段"
+    },
+    {
+      "rule": "le_pattern",
+      "severity": "minor",
+      "level": "L2",
+      "chapter": "chapter_002_draft.txt",
+      "line": 40,
+      "excerpt": "那汉子脸上的血色，一下子褪了",
+      "message": "短句以“了”收尾（共19处 > 上限3）——AI腔特征：建议用连词衔接为长句，而非删除语法必需的“了”"
+    },
+    {
+      "rule": "le_pattern",
+      "severity": "minor",
+      "level": "L2",
+      "chapter": "chapter_002_draft.txt",
+      "line": 46,
+      "excerpt": "\"桌上摆得出来，您就坐不住了",
+      "message": "短句以“了”收尾（共19处 > 上限3）——AI腔特征：建议用连词衔接为长句，而非删除语法必需的“了”"
+    },
+    {
+      "rule": "le_pattern",
+      "severity": "minor",
+      "level": "L2",
+      "chapter": "chapter_002_draft.txt",
+      "line": 69,
+      "excerpt": "\"进门这一会儿，就该沤出味儿来了",
+      "message": "短句以“了”收尾（共19处 > 上限3）——AI腔特征：建议用连词衔接为长句，而非删除语法必需的“了”"
+    },
+    {
+      "rule": "le_pattern",
+      "severity": "minor",
+      "level": "L2",
+      "chapter": "chapter_002_draft.txt",
+      "line": 82,
+      "excerpt": "\"他就那么，没了",
+      "message": "短句以“了”收尾（共19处 > 上限3）——AI腔特征：建议用连词衔接为长句，而非删除语法必需的“了”"
+    },
+    {
+      "rule": "le_pattern",
+      "severity": "minor",
+      "level": "L2",
+      "chapter": "chapter_002_draft.txt",
+      "line": 94,
+      "excerpt": "那汉子一愣，半晌，才说：\"我……我记不清了",
+      "message": "短句以“了”收尾（共19处 > 上限3）——AI腔特征：建议用连词衔接为长句，而非删除语法必需的“了”"
+    },
+    {
+      "rule": "emotion_telling",
+      "severity": "minor",
+      "level": "L3",
+      "chapter": "chapter_002_draft.txt",
+      "line": 0,
+      "excerpt": "不敢",
+      "message": "情绪直说词“不敢”出现4次"
+    }
+  ],
+  "timeline_clues": {},
+  "config": {
+    "not_a_is_b_max_per_chapter": 2,
+    "short_para_len": 15,
+    "short_para_ratio_max": 0.45,
+    "short_para_run_max": 6,
+    "simile_max_per_chapter": 8,
+    "simile_max_per_para": 1,
+    "ban_yizhong_feeling": true,
+    "ban_feeling_enum": true,
+    "ban_summary_voice": true,
+    "ranhou_max_per_chapter": 1,
+    "dialogue_ratio_min": 0.35,
+    "dialogue_ratio_max": 0.6,
+    "chapter_len_min": 2400,
+    "chapter_len_max": 2600,
+    "dash_max_per_1000": 20.0,
+    "ellipsis_max_per_1000": 5.0,
+    "le_max_per_1000": 60.0,
+    "zhe_max_per_1000": 25.0,
+    "conjunction_min_per_1000": 0.0,
+    "dialogue_guide_min_per_1000": 0.0,
+    "name_starter_run_max": 8,
+    "emotion_telling_words": [
+      "不敢",
+      "害怕",
+      "悲伤",
+      "震撼",
+      "激动"
+    ],
+    "four_char_cliches": [
+      "不急不缓",
+      "不紧不慢",
+      "取而代之",
+      "不约而同",
+      "悄无声息"
+    ],
+    "era_wrong_words": [
+      "路灯",
+      "火柴",
+      "同频",
+      "电话",
+      "汽车",
+      "手机"
+    ],
+    "tell_marker_words": [
+      "习惯性地",
+      "不由得",
+      "下意识地",
+      "情不自禁",
+      "自然而然地",
+      "本能地",
+      "条件反射般",
+      "潜意识里"
+    ],
+    "cliche_vehicles": [
+      "山",
+      "风",
+      "火",
+      "水",
+      "刀",
+      "剑",
+      "雷",
+      "电",
+      "铁",
+      "石",
+      "雾",
+      "冰",
+      "蛇",
+      "虎",
+      "龙",
+      "潮",
+      "浪",
+      "云",
+      "雨",
+      "雪"
+    ],
+    "short_le_ending_max": 3,
+    "narrative_dialogue_max": 1,
+    "certain_markers": [
+      "就是",
+      "分明是",
+      "肯定是",
+      "无疑是",
+      "确实是"
+    ],
+    "ending_family_window": 4,
+    "ending_family_max_in_window": 2,
+    "opening_channel_max_run": 2,
+    "dup_sentence_min_len": 6,
+    "recurring_phrase_min_len": 8,
+    "recurring_phrase_max_across": 2,
+    "signature_line_max_per_5ch": 2,
+    "tell_exposition_patterns": [
+      "是.{2,10}的命脉",
+      "是.{2,10}的命根",
+      "意味着",
+      "对于.{1,8}来说.{2,15}就是",
+      "换句话说",
+      "也就是说"
+    ],
+    "golden_three_chapter_len_max": 2600,
+    "golden_three_beat_max": 4,
+    "golden_three_major_beat_max": 3,
+    "regular_beat_max": 5,
+    "regular_major_beat_max": 3,
+    "note": "《请客》篇幅配置（2026-08-03 建）：novel_config chapter_word_count 2500，区间2400-2600；黄金三章≤2600字（ensure 新读者完读），beat≤4(major≤3)；H1 篇幅硬检经 --config 注入"
+  },
+  "advisory": [
+    {
+      "rule": "short_para_ratio",
+      "severity": "critical",
+      "level": "L1",
+      "chapter": "chapter_002_draft.txt",
+      "line": 0,
+      "excerpt": "",
+      "message": "碎段占比63%（106/168）> 上限45%"
+    }
+  ],
+  "overrides": []
+}

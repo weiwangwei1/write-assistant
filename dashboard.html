@@ -123,7 +123,7 @@
 
 <script>
 // ===== 配置 =====
-const KNOWN_PROJECTS = []; // 已知有 memory 系统的项目（2026-08-01《征诏之界》已放弃归档至 archive/征诏之界_放弃_20260801；2026-07-28《镜渊》已放弃归档至 archive/镜渊_20260728）
+const KNOWN_PROJECTS = []; // 已知有 memory 系统的项目（2026-08-04《请客》已放弃归档至 archive/请客_放弃_20260804；2026-08-01《征诏之界》已放弃归档至 archive/征诏之界_放弃_20260801；2026-07-28《镜渊》已放弃归档至 archive/镜渊_20260728）
 const PROJECT_DISPLAY_NAMES = {}; // 目录名 → 书名映射（下拉框展示用）
 
 function getProject() {
@@ -153,6 +153,38 @@ function renderNoProject() {
 
 function dataUrl(file) {
   return `${getProject()}/${file}`;
+}
+
+// 目录信息：默认引用文件清单（按项目实际常备文件排列）
+function DEFAULT_DIR_REFS(project) {
+  return [
+    { label: '大纲', path: `${project}/memory/outline.json` },
+    { label: '会话指针', path: `${project}/memory/session_pointer.json` },
+    { label: '目标追踪', path: `${project}/memory/goal_tracker.json` },
+    { label: '伏笔追踪', path: `${project}/memory/foreshadowing_tracker.json` },
+    { label: '角色索引', path: `${project}/memory/characters.json` },
+    { label: '决策日志', path: `${project}/memory/decision_log.jsonl` },
+    { label: '设定圣经', path: `${project}/memory/setting_bible.json` },
+    { label: 'Lint配置', path: `${project}/lint_config.json` },
+    { label: '全局配置', path: `${project}/config/novel_config.json` },
+    { label: '章节全文', path: `${project}/output/请客_全文.txt` },
+    { label: '世界观', path: `${project}/03_worldview.md` },
+    { label: '术语', path: `${project}/00_terminology.md` },
+    { label: '写作日志', path: `${project}/logs/writing_log.jsonl` },
+    { label: '质量评审', path: `${project}/quality_review_golden3.json` }
+  ];
+}
+
+// 探测目录引用文件是否存在（http.server 对缺失文件返回 404）
+async function checkDirRefs(project) {
+  const refs = DEFAULT_DIR_REFS(project);
+  const results = await Promise.all(refs.map(async r => {
+    try {
+      const resp = await fetch(r.path);
+      return { ...r, exists: resp.ok };
+    } catch { return { ...r, exists: false }; }
+  }));
+  return results;
 }
 
 // ===== 工具函数 =====
@@ -394,24 +426,14 @@ function render(session, goal, foreshadowing, characters, config, dirInfo, outli
   let dirHtml = '<div class="dir-tree">';
   dirHtml += `<div class="dir">📁 ${project}/</div>`;
   const cfg = config || {};
-  const refs = [
-    { label: '大纲', path: cfg.outline_ref || `${project}/04_outline.json` },
-    { label: '世界观', path: cfg.worldview_ref || `${project}/03_worldview.md` },
-    { label: '术语', path: cfg.terminology_ref || `${project}/00_terminology.md` },
-    { label: 'Lint配置', path: cfg.lint_config_ref || `${project}/lint_config.json` },
-    { label: '全局配置', path: `${project}/config/novel_config.json` },
-    { label: '会话指针', path: `${project}/memory/session_pointer.json` },
-    { label: '目标追踪', path: `${project}/memory/goal_tracker.json` },
-    { label: '伏笔追踪', path: `${project}/memory/foreshadowing_tracker.json` },
-    { label: '角色索引', path: `${project}/memory/characters.json` },
-    { label: '决策日志', path: `${project}/memory/decision_log.jsonl` },
-    { label: '写作日志', path: `${project}/logs/writing_log.jsonl` },
-    { label: '质量评审', path: `${project}/quality_review_golden3.json` },
-    { label: 'Ch4任务', path: `${project}/handoff/chapter_assignment_ch4.json` },
-  ];
+  // 探测结果（dirInfo 由 init 传入，含每个文件的 exists 标记）
+  const refs = (dirInfo && Array.isArray(dirInfo) && dirInfo.length) ? dirInfo : DEFAULT_DIR_REFS(project);
   refs.forEach(r => {
-    const href = r.path.replace(`${project}/`, `./${project}/`);
-    dirHtml += `  <div>  <span class="file">📄</span> <a href="${href}" target="_blank">${r.label}</a> <span class="size">${r.path}</span></div>`;
+    if (r.exists) {
+      dirHtml += `  <div>  <span class="file">📄</span> <a href="javascript:void(0)" onclick="viewFileInModal('${r.label}', '${r.path}')" style="color:var(--accent);cursor:pointer;">${r.label}</a> <span class="size">${r.path}</span></div>`;
+    } else {
+      dirHtml += `  <div>  <span class="file">📄</span> <span style="color:var(--muted);">${r.label}</span> <span class="size muted">未生成</span></div>`;
+    }
   });
   dirHtml += `  <div>  <span class="dir">📁 output/</span> <span class="size">章节终稿 (Ch1-${ps.completed_chapters || 0})</span></div>`;
   dirHtml += `  <div>  <span class="dir">📁 characters/</span> <span class="size">角色卡 (${(characters.characters || []).length} 张)</span></div>`;
@@ -624,16 +646,33 @@ function getChapterFilePath(chapterNum, title, filePath) {
   return `${getProject()}/output/chapter_${num}.txt`;
 }
 
+// 统一读取章节正文：兼容 chapter_NNN.txt 与 chapter_NNN_draft.txt 两种命名
+async function fetchChapterText(chapterNum, filePath) {
+  const num = String(chapterNum).padStart(3, '0');
+  const candidates = [];
+  if (filePath) {
+    candidates.push(filePath.startsWith('test/') ? filePath : `${getProject()}/${filePath}`);
+  } else {
+    candidates.push(`${getProject()}/output/chapter_${num}.txt`);
+    candidates.push(`${getProject()}/output/chapter_${num}_draft.txt`);
+  }
+  for (const url of candidates) {
+    try {
+      const resp = await fetch(encodeURI(url));
+      if (resp.ok) return { url, text: await resp.text() };
+    } catch (e) { /* 尝试下一个候选路径 */ }
+  }
+  return { url: candidates[0], text: null };
+}
+
 // 并行加载所有已写章节的实时字数
 async function loadChapterWordCounts(summaryMap) {
   const entries = Object.values(summaryMap).filter(s => s.title);
   const promises = entries.map(async s => {
     try {
-      const url = getChapterFilePath(s.chapter_num, s.title, s.file_path);
-      const resp = await fetch(encodeURI(url));
-      if (!resp.ok) return { chapter_num: s.chapter_num, word_count: null };
-      const text = await resp.text();
-      return { chapter_num: s.chapter_num, word_count: countWords(text) };
+      const result = await fetchChapterText(s.chapter_num, s.file_path);
+      if (result.text === null) return { chapter_num: s.chapter_num, word_count: null };
+      return { chapter_num: s.chapter_num, word_count: countWords(result.text) };
     } catch {
       return { chapter_num: s.chapter_num, word_count: null };
     }
@@ -795,19 +834,10 @@ async function viewChapterContent(chapterNum, title, filePath) {
   document.body.style.overflow = 'hidden';
   
   try {
-    // 构建文件路径：优先使用 filePath，否则从章号构造默认路径
-    let url;
-    if (filePath) {
-      // test/ 路径是根级路径，不加项目前缀
-      url = filePath.startsWith('test/') ? filePath : `${getProject()}/${filePath}`;
-    } else {
-      const num = String(chapterNum).padStart(3, '0');
-      url = `${getProject()}/output/chapter_${num}.txt`;
-    }
-    
-    const resp = await fetch(encodeURI(url));
-    if (!resp.ok) throw new Error(`HTTP ${resp.status}: ${url}`);
-    const text = await resp.text();
+    // 统一读取正文（兼容 chapter_NNN.txt 与 chapter_NNN_draft.txt）
+    const result = await fetchChapterText(chapterNum, filePath);
+    if (result.text === null) throw new Error(`HTTP 404: ${result.url}`);
+    const text = result.text;
     
     // 解析内容：兼容 .txt（纯文本）和 .md（Markdown）
     const lines = text.split('\n');
@@ -839,6 +869,42 @@ function closeChapterModal() {
   const overlay = document.getElementById('chapterModalOverlay');
   overlay.classList.remove('active');
   document.body.style.overflow = '';
+}
+
+// 在面板内弹窗查看任意项目文件（目录信息板块点击用）
+async function viewFileInModal(label, path) {
+  const overlay = document.getElementById('chapterModalOverlay');
+  const modalTitle = document.getElementById('chapterModalTitle');
+  const modalBody = document.getElementById('chapterModalBody');
+  modalTitle.textContent = `${label} · ${path}`;
+  modalBody.innerHTML = '<div class="loading-text">正在加载...</div>';
+  overlay.classList.add('active');
+  document.body.style.overflow = 'hidden';
+  try {
+    const resp = await fetch(encodeURI(path));
+    if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+    const text = await resp.text();
+    const lower = path.toLowerCase();
+    let body;
+    if (lower.endsWith('.json') || lower.endsWith('.jsonl')) {
+      // JSON/JSONL 美化展示
+      const pretty = text.split('\n').filter(l => l.trim()).map(l => {
+        try {
+          const obj = JSON.parse(l);
+          return JSON.stringify(obj, null, 2);
+        } catch { return l; }
+      }).join('\n\n');
+      body = `<pre style="white-space:pre-wrap;word-break:break-word;margin:0;font-family:inherit;font-size:13px;line-height:1.7;">${esc(pretty)}</pre>`;
+    } else {
+      // 纯文本/Markdown 逐行展示
+      const lines = text.split('\n').map(l => l.trim()).filter(Boolean);
+      const html = lines.map(l => `<p>${esc(l)}</p>`).join('');
+      body = html || '<div class="error-text">文件内容为空</div>';
+    }
+    modalBody.innerHTML = body;
+  } catch (e) {
+    modalBody.innerHTML = `<div class="error-text">加载失败: ${esc(e.message)}<br><span style="font-size:12px;color:var(--muted);">路径: ${esc(path)}</span></div>`;
+  }
 }
 
 // ESC 关闭弹窗
@@ -996,6 +1062,8 @@ async function init() {
     ]);
     const completedChapters = (session.project_status && session.project_status.completed_chapters) || session.total_chapters_written || 0;
     const chapterSummaries = await loadChapterSummaries(completedChapters);
+    // 探测目录引用文件存在性（存 200 显示链接，404 灰显"未生成"）
+    const dirInfo = await checkDirRefs(getProject());
     // 用 session.chapters 的终审数据丰富 chapterSummaries（补 quality_status）
     if (session.chapters) {
       chapterSummaries.forEach(s => {
@@ -1038,7 +1106,7 @@ async function init() {
     // 将更新后的 chapterSummaries 传回（summary 优先的已包含实时字数）
     const updatedSummaries = chapterSummaries.map(s => summaryMap[s.chapter_num] || s);
     
-    document.getElementById('app').innerHTML = render(session, goal, foreshadowing, characters, config, null, outline, updatedSummaries, explorationData);
+    document.getElementById('app').innerHTML = render(session, goal, foreshadowing, characters, config, dirInfo, outline, updatedSummaries, explorationData);
   } catch (e) {
     renderError(e.message);
   }

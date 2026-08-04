@@ -1,0 +1,28 @@
+{
+  "timestamp": "2026-08-04T05:00:00+08:00",
+  "chapter_num": 4,
+  "title": "凉粥",
+  "word_count": 2406,
+  "quality_score": 8.85,
+  "review_passed": true,
+  "release_basis": "用户决策放行（2026-08-04）：独处铺垫过渡章，技术分8.85<9.5系结构性上限，用户明确'按铺垫章放行'",
+  "agent_calls": [
+    {"agent": "writer", "status": "success", "note": "第3轮修订：主动追查+结尾钩子锚+木箱删除，ch4_draft改写"},
+    {"agent": "detail-reviewer", "status": "success", "note": "复核3轮评审意见，落实主动追查+物证细节"},
+    {"agent": "quality-reviewer", "status": "success", "score": 8.85, "note": "第3轮，通过放行（铺垫章定位）"},
+    {"agent": "de-ai-processor", "status": "success", "note": "2项：'他捏着那页纸'重复/章末'忽然想起'重复删除"},
+    {"agent": "fanqie-adapter", "status": "success", "adaptations_count": 6, "note": "无敏感词/无爽点补充，保留城南茶馆期待型钩子"},
+    {"agent": "final-reviewer", "status": "success", "score": 8.95, "note": "verdict=approved，用户决策放行"},
+    {"agent": "memory-manager", "status": "success"}
+  ],
+  "errors": [],
+  "memory_updates": {
+    "chapter_summary_created": true,
+    "sliding_window_updated": true,
+    "characters_updated": ["顾衡", "孟守拙"],
+    "new_character_added": ["孟守拙"],
+    "volume_summary_created": false,
+    "full_text_appended": true,
+    "header_updated": true
+  }
+}

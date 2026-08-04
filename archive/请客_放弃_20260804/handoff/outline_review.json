@@ -1,0 +1,56 @@
+{
+  "card_type": "outline_review",
+  "timestamp": "2026-08-03T07:05:00+08:00",
+  "from_agent": "outline-editor",
+  "to_agent": "character-designer",
+  "status": "passed",
+  "review_round": 2,
+  "content": {
+    "overall_verdict": "复审通过（passed）——4项补强全部落地并命中原始风险项，节奏维度硬伤已消除，大纲达标放行",
+    "commercial_score": 9.0,
+    "structure_score": 9.0,
+    "rhythm_score": 9.5,
+    "foreshadowing_score": 9.0,
+    "character_setup_score": 8.5,
+    "platform_fit_score": 9.0,
+    "total_score": 9.05,
+    "strengths": [
+      "活法支点（市井断账人）+民俗副本（人生欠账具象化）构成明确微创新，规避无限流红海同质化",
+      "意象统一到'账'一个根上，逻辑咬合严密，无设定矛盾",
+      "权威单一制+规则唯一+裁决权归人物，认知门槛低、可执行层完备",
+      "skeptic五轮+爽点覆盖全300章后，六问六答因果闭环+节奏起伏均有据可依",
+      "账线单卷单线推进+可清算对象拆分，爽感递进不断档",
+      "第2轮补强：爽点扩至300章(18点)且带micro_payoff/payoff_eta铺垫保护、章末钩子轮换表、反派deep_dive、审核预案、活法逐章检查项——五处原文案已从'概念'提为'可执行'"
+    ],
+    "round2_verifications": [
+      {
+        "original_risk": "high节奏风险：爽点仅覆盖到ch150，卷4-6裸奔",
+        "fix_status": "已关闭",
+        "evidence": "shuang_point_distribution 8→18点，新增ch160/180/200/220/240/250/260/280/295/300，含micro_payoff/payoff_eta；新增shuang_type_rotation(60%+A级)与chapter_end_hook_rotation"
+      },
+      {
+        "original_risk": "medium商业风险：活法支点仅口头，正文易滑向死亡游戏",
+        "fix_status": "已关闭",
+        "evidence": "does_living.writer_per_chapter_checklist 5条逐章检查项（去插科打诨/幽默品类轮换/收命破例/裁决权边界），fanqie-adapter 复核点已对接 skeptic 遗留note"
+      },
+      {
+        "original_risk": "medium设定风险：反派功能偏概念",
+        "fix_status": "已关闭",
+        "evidence": "worldview_settlement_split 两反派各加deep_dive：庄家-总账房委托走狗利益链、设计主角入局动机(动私账命/填账灭口)、3条可现场清算罪证载体、'同样处境相反活法'对照；总账房非纯恶、留'清算或代替'抉择"
+      },
+      {
+        "original_risk": "low平台风险：民俗题材审核擦边、style_pack未挂",
+        "fix_status": "已关闭",
+        "evidence": "rules_reveal_plan.review_compliance 5条过审预案(灵异虚写/民俗外壳/死亡只写后果/落点规则之恶)+style_pack挂载提示"
+      }
+    ],
+    "must_fix": [],
+    "recommended_fix": [
+      "character-designer 设计时直接继承深反派 deep_dive（庄家'替人行恶换活'与主角'替人销账'的镜像对照是核心张力）",
+      "写手阶段前必须完成 style_pack 挂载（建议 yanyujiangnan 克制文笔或自蒸馏通俗包），否则指纹校验不可用"
+    ],
+    "rewrite_instructions": "",
+    "next_agent": "character-designer (大纲通过，可开始角色设计)",
+    "gate_note": "总分为恒定加权(total=commercial×.25+structure×.20+rhythm×.20+foreshadow×.15+character×.10+platform×.10)。节奏补强后 9.05 达 9.0 通过线。按项目 v1.1 高门槛为 9.5，此处经 plot-architect 补强 1 轮即达 9.05，与 9.5 差 0.45 未达标——是否需继续拔分由总编/用户裁定：可接受则放行，否则追加一轮（如把 character_setup 从 8.5 提到 9.5）"
+  }
+}

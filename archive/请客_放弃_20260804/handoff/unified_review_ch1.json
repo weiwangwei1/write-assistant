@@ -1,0 +1,155 @@
+{
+  "card_type": "unified_review",
+  "chapter": 1,
+  "chapter_title": "送客宴（一）",
+  "review_mode": "unified",
+  "review_basis": "quality-reviewer v1.8 + final-reviewer v1.1 merged",
+  "timestamp": "2026-08-03T08:10:00+08:00",
+
+  "merge_phase": {
+    "phase": "Phase 1 (Merge)",
+    "ref": "handoff/merged_review_ch1.json",
+    "applied_changes": 5,
+    "critical": 0,
+    "major": 0,
+    "minor": 5,
+    "conflict_resolved": 1,
+    "merge_summary": "detail_review 3处（2处已落地+1处保留）、de_ai_analysis 2处全保留；正文较草稿无实质改动，字数2486，L0 lint 通过"
+  },
+
+  "technical_dimensions": {
+    "attraction": {
+      "score": 9.5,
+      "weight": 0.12,
+      "weighted": 1.14,
+      "detail": "开头'一桌待赴的席'民俗瘴意压场，3句内构筑画面+悬念。顾衡断账职业病（见物先过账）与局头守门等菜双人立起来，均有'人味'细节。核心期待清晰（菜=债规则+最后一道菜留给谁+身世反向钩），爽感路径2步（看穿→反将），无500字死区。前300字画面+主角登场，符合黄金一章抓人要求。"
+    },
+    "shuang_point": {
+      "score": 8.8,
+      "weight": 0.09,
+      "weighted": 0.792,
+      "detail": "本章爽点=1个A级（看穿：顾衡尝出当铺豆腐'旧账'、反将镇住局头，局头'手收拢/笑意褪了些'有即时反馈），reveal（销账规则）不计入。看穿扎实非虚标。黄金一章定位（立规则+立人物）下1个A级达标，但前段铺垫至看穿约1200字偏长，记录为节奏风险点，不构成critical。"
+    },
+    "rhythm": {
+      "score": 9.3,
+      "weight": 0.075,
+      "weighted": 0.6975,
+      "detail": "60/30/10结构清晰：对话交锋为主段，看穿中段，断章钩（那双没落座的手）收尾。对话占比41%（interlace场景略高但可接受），长短句交替（'香燃了半截'长段 vs '老人斟茶的手一顿。'短句），香燃半截贯穿提供时间锚，节奏张弛有度。"
+    },
+    "hook": {
+      "score": 9.5,
+      "weight": 0.075,
+      "weighted": 0.7125,
+      "detail": "章末强钩：'是那一双，还没来得及落座的手。'具体可感（一双未落座的手），悬念指向明确（最后一道菜留给最恨之人/人还没齐），含感官细节（半截香无声落灰）。套环式悬念：旧冲突（看穿账目有鬼）解决+新危机（最后一道菜可能轮到自己）登场。新开悬念2条（≤3），合规。"
+    },
+    "character": {
+      "score": 9.5,
+      "weight": 0.06,
+      "weighted": 0.57,
+      "detail": "顾衡语言指纹鲜明（'先问谁欠谁'/'这账您认不得我也认不得'/'替人把销掉的那一份'），断账职业病具象化（盘算盘/见菜先过账），章末'很想问又按回'落点算不清人情账的弱点。局头守门等菜、滴水不漏布席，有独立目标非工具人。配角局头有可怜处（等那道菜），镜像反衬主角。无OOC。"
+    },
+    "plot": {
+      "score": 9.5,
+      "weight": 0.06,
+      "weighted": 0.57,
+      "detail": "完全遵循大纲 golden_three_chapters ch1：一桌席开场→荒诞规则反讽（报菜名报成报账）→落座/局头登场→知道吃不完就是欠→ending_hook（最后一道菜没上/人还没齐）。单一规则（菜=债）+权威单一制（庄家任务/局头是挑战）落地。首章无前文冲突。"
+    },
+    "logic": {
+      "score": 9.4,
+      "weight": 0.06,
+      "weighted": 0.564,
+      "detail": "当铺账数字验算自洽（一两八+二钱=二两，滚三年成三两二，五年前已销），逻辑链严密。对话追问链自洽（'谁欠谁的账'→'都有主吗'→'坐主的是谁'层层递进）。视角统一顾衡，无上帝视角（'局头'改'那老人'已修）。裁决权边界维持：只对理得清的账下断语，最后一道菜属下确认（partial）。"
+    },
+    "writing": {
+      "score": 9.5,
+      "weight": 0.06,
+      "weighted": 0.57,
+      "detail": "核心意象统一在'账'（旧账本/不存在的算盘/记账/销账/核账），3处有规划AA级比喻（枯瘦像旧账本/椅子像答应一声/盘手像拨算盘）。对话口语自然（'我今儿是来给人销账的'/'您不该怕我算'）。情绪用动作克制（手收拢/笑意褪/指尖停住），de-ai ai_score=2.0达标。冷面吐槽+荒诞规则反讽维持黑色幽默。"
+    }
+  },
+  "technical_score": 9.36,
+
+  "supplementary_dimensions": {
+    "commercial_potential": {
+      "score": 9.3,
+      "weight": 0.12,
+      "weighted": 1.116,
+      "detail": "无限流/系统流+民俗悬念+黑色幽默贴合番茄主流；书名《请客》有民俗烟火气与文化内涵。核心卖点（主角活法：体面人干净收尾）清晰，爽感路径1-2步。暗基调由'荒诞规则反讽+冷面吐槽'持续对冲，符合单章补偿。字面风险：前段铺垫节奏对爽感猎人略慢，商业潜力高但需靠后续章节兑现。"
+    },
+    "reader_abandon_risk": {
+      "score": 9.0,
+      "weight": 0.10,
+      "weighted": 0.9,
+      "detail": "弃书风险 low-moderate。开头3句有画面有悬念，碎片党前300字不闷。爽感猎人看穿爽点在~60%处略偏后，为主要风险点（记录在案）。无限流框架老书虫眼熟，但断账人活法原创支点形成辨色。综合追读指数8.6>8.5阈值。"
+    },
+    "platform_compliance": {
+      "score": 9.8,
+      "weight": 0.08,
+      "weighted": 0.784,
+      "detail": "灵异场面虚写（香烛/空椅/瘴意用感官+人物反应侧面烘托），无直接超自然惊悚暴力。民俗元素保留文化外壳（请客/席面/账本/规矩），突出'规矩与公道'非'吓人'。死亡场景只写后果与情绪，主角'不收命'温和价值导向。无敏感词/无血腥/无尺度问题。"
+    },
+    "cross_chapter_consistency": {
+      "score": 9.6,
+      "weight": 0.10,
+      "weighted": 0.96,
+      "detail": "首章无前章衔接。专名一致（顾衡/局头/张家/绸缎庄），规则一致（菜=债），人物设定一致（顾衡断账人/局头守关人）。3处伏笔新埋设（最后一道菜/F-P1、局头账目有鬼/F-P2、身世反向钩/F-P3）均在大纲计划内，无跳级无提前，埋设自然。"
+    }
+  },
+  "supplementary_score": 9.40,
+
+  "unified_score": 9.38,
+  "retention_index": 8.6,
+  "pass_threshold": 9.5,
+  "verdict": "approved",
+  "critical_count": 0,
+
+  "monitoring": {
+    "shuang_type_check": "pass — 交接卡 shuang_types 标注 1个A级（看穿）+1个reveal（销账规则）。reveal不计入，本章爽点=1（A级），非0。看穿为实质爽点（顾衡道破旧账+局头手收拢反应），非虚标。",
+    "three_chapter_rolling": "N/A — 首章，无前2章可比（第3章起启用）。",
+    "suspense_throttle": "pass — 首章无历史悬念，新开2条（①最后一道菜留给谁/谁没来 ②局头账目有鬼），active≤3合规。",
+    "goal_stall_check": "N/A — 首章，goal_tracker 未建（第2章起启用）。",
+    "padawan_protection": {
+      "consecutive_padawan": "0 — 首章为亮相/立规章，非铺垫章",
+      "small_payoff": "有 — 看穿 A级爽点（当铺豆腐反将）为本章小兑现",
+      "expectation_anchor": "有 — 最后一道菜留给谁 + 身世反向钩双锚"
+    }
+  },
+
+  "cross_check": {
+    "dialogue_consistency": "pass — 追问链自洽，无自相矛盾",
+    "terminology_consistency": "pass — 首章无正式术语需核，'局头'统一称呼",
+    "cross_chapter_continuity": "pass — 首章无前文",
+    "foreshadowing_status": "pass — 3处新埋设均在大纲计划内，无跳级"
+  },
+
+  "abandon_risk_assessment": {
+    "risk_level": "low",
+    "risk_points": [
+      "爽感猎人视角：前段铺垫至看穿爽点约1200字偏长，潜在弃书触发点（需Ch2前段快速给到小爽点对冲）",
+      "无限流框架眼熟，老书虫前期可能判定'又是死亡游戏'，需靠断账人活法差异化尽快释放"
+    ]
+  },
+
+  "reader_profiles": {
+    "retention_index": 8.6,
+    "market_risk": false,
+    "risk_readers": [],
+    "profiles": [
+      {"name": "爽感猎人·阿爽", "追读意愿": 8, "弃书概率": "15%", "verdict": "追读", "feedback": "看穿当铺豆腐那一下爽到，但前段铺垫有点长，追看下一章怎么收尾"},
+      {"name": "逻辑警察·老缜", "追读意愿": 9, "弃书概率": "5%", "verdict": "追读", "feedback": "账目数字验算自洽，追问链严密，'菜=债'规矩立得住"},
+      {"name": "角色粉·小迷", "追读意愿": 9, "弃书概率": "8%", "verdict": "追读", "feedback": "顾衡断账职业病很戳，局头守着那道菜有点可怜，想看他的结局"},
+      {"name": "氛围党·画师", "追读意愿": 10, "弃书概率": "2%", "verdict": "追读", "feedback": "一桌席的民俗瘴意画面感绝了，账本意象全章统一，像在看旧电影"},
+      {"name": "碎片党·地铁客", "追读意愿": 8, "弃书概率": "15%", "verdict": "追读", "feedback": "开头前300字有画面有悬念，没划走，翻到结尾被'那双没落座的手'勾住了"},
+      {"name": "老书虫·毒舌", "追读意愿": 8, "弃书概率": "15%", "verdict": "追读", "feedback": "无限流框架眼熟，但断账人活法有点新鲜，先看三章再说"}
+    ]
+  },
+
+  "rework_instructions": {
+    "needed": false,
+    "reason": "",
+    "target_agents": [],
+    "priority_fixes": []
+  },
+
+  "summary": "统一审核通过（approved）。critical_count=0，问题清单制门禁通过。unified_score=9.38（technical 9.36×0.6 + supplementary 9.40×0.4），追读指数 8.6>8.5。本章立住'一桌席'民俗瘴意、单一规则'菜=债'、主角断账人活法三大支点，1个A级看穿爽点+章末强钩（那双没落座的手）达标黄金一章。遗留风险：前段铺垫节奏偏长（爽感猎人），需 Ch2 前段快速给小爽点对冲；此条记入 Ch2 写作注意项。"
+}

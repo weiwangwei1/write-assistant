@@ -1,0 +1,93 @@
+{
+  "card_type": "goal_tracker",
+  "project": "请客",
+  "last_updated_chapter": 5,
+  "goals": [
+    {
+      "id": "G001",
+      "title": "在《送客宴》死局里销账续命",
+      "type": "task",
+      "established_chapter": 1,
+      "expected_close_chapter": 3,
+      "status": "closed",
+      "closed_chapter": 3,
+      "progress_log": [
+        {"chapter": 1, "action": "established", "detail": "顾衡入局，读穿局头'等的那个人'，先后拆了'没伸手'汉子与'记给死人看的账'两桩心事，点破'人还没齐'"},
+        {"chapter": 2, "action": "progressed", "detail": "替'没伸手'的汉子读穿他捂了半辈子的亏心、送他走；发现局头记的账和自己算的对不上，点破'记给死人看的账'"},
+        {"chapter": 3, "action": "closed", "detail": "送走所有人，局头点破'先生就是那最后一个'，最后那道菜（当铺豆腐）端上顾衡面前，续命兑现（'够我走出这道门槛'）；章末局头掏出写着他名字的旧纸，'守了一辈子，写给一个我记了一辈子的人'——黄金三章收束"}
+      ],
+      "chapters_since_progress": 2,
+      "alert": null
+    },
+    {
+      "id": "G002",
+      "title": "查明孟守拙是谁/为何替他记了27年（身世暗线推进）",
+      "type": "quest",
+      "established_chapter": 4,
+      "expected_close_chapter": 50,
+      "status": "active",
+      "progress_log": [
+        {"chapter": 4, "action": "established", "detail": "顾衡回城南旧宅，发现有人替他守了二十七年，床沿底下发现'孟守拙'旧纸（与昨夜那页同一人手笔）；读不穿孟守拙，决定去城南茶馆东窗下找代笔穷秀才，问满城认不认得这个名字"},
+        {"chapter": 5, "action": "progressed", "detail": "顾衡在城南茶馆找到代笔穷秀才。获知：孟守拙每隔两三个月来写一封信，写给顾衡，写了十五年从不寄；孟守拙瘦、背驼、每次带凉粥坐门槛吃完才写信、鞋磨得薄；留了一封信给顾衡（不来就烧）。孟守拙身份/动机/与顾衡渊源仍未明。"}
+      ],
+      "chapters_since_progress": 0,
+      "alert": null
+    }
+  ],
+  "main_quest_progress": {
+    "id": "MQ001",
+    "title": "清算庄家（终极主线：从续命求生到清算庄家）",
+    "total_stages": 4,
+    "completed_stages": 0,
+    "current_chapter": 5,
+    "stage_log": [
+      {"chapter": 1, "action": "stage_start", "detail": "卷1续命求生期开启：被庄家丢进第一个死局《送客宴》，靠读心解心结续命"},
+      {"chapter": 3, "action": "stage1_initial_payoff", "detail": "续命机制首次兑现：做成一局、续一段命（'命数松半扣，够我走出这道门槛'），续命求生stage1首个节点落地"},
+      {"chapter": 4, "action": "stage1_extended", "detail": "身世暗线首节点：旧宅发现'孟守拙'名字，'谁记了他一辈子'初次落地，续命求生期从'只求活'延伸出'为何被记'——为后期'不是他欠庄家，是庄家欠他'立场翻转埋线"},
+      {"chapter": 5, "action": "stage1_deepened", "detail": "身世暗线深化：孟守拙写了十五年信给顾衡从不寄、带凉粥坐门槛、留了一封信（不来就烧）、顾衡今年二十七岁而宅子空了二十七年（暗示从出生就开始守）。身世暗线层层递进但核心谜底仍在。"}
+    ],
+    "health": "on_track",
+    "stalled_chapters": 0
+  },
+  "villain_ladder": [
+    {
+      "tier": "第一副本守关人",
+      "name": "局头",
+      "planned_window": "Ch1-3",
+      "status": "cleared",
+      "first_appear_chapter": 1,
+      "cleared_chapter": 3,
+      "clear_detail": "局头把守了一辈子的'记给死人看的账'交出，'了了这一桩，就该走了'；顾衡点破'他才是被欠的那笔没人管的账'，守关人收束"
+    },
+    {
+      "tier": "终极对手",
+      "name": "庄家",
+      "planned_window": "Ch1 暗示，Ch100+ 显形",
+      "status": "foreshadowed",
+      "first_appear_chapter": null,
+      "cleared_chapter": null
+    },
+    {
+      "tier": "最大局头",
+      "name": "总账房",
+      "planned_window": "Ch251-300",
+      "status": "not_started",
+      "first_appear_chapter": null,
+      "cleared_chapter": null
+    }
+  ],
+  "suspense_window": {
+    "max_active": 3,
+    "active": [
+      {"id": "S004", "title": "谁趁顾衡不知情替他记的这笔账（身世暗线反向钩）——孟守拙", "opened_chapter": 3, "type": "character"},
+      {"id": "S005", "title": "孟守拙是谁/为什么记了顾衡一辈子——Ch5推进：写了十五年信从不寄+带凉粥+留了一封信", "opened_chapter": 4, "type": "character"},
+      {"id": "S006", "title": "信里写了什么？/ 七岁那碗凉粥是不是孟守拙搁的？", "opened_chapter": 5, "type": "character"}
+    ],
+    "closed": [
+      {"id": "S002", "title": "局头账目有鬼（两道已销旧账仍上桌）", "opened_chapter": 1, "closed_chapter": 2, "closed_actively": true, "detail": "顾衡点破局头多算三分利、章末发现账目对不上，点破'记给死人看的账'——S002部分闭环，升级置换为S003"},
+      {"id": "S001", "title": "最后一道菜留给谁/谁没来（那双没落座的手）", "opened_chapter": 1, "closed_chapter": 3, "closed_actively": true, "detail": "最后一道菜=顾衡自己，独坐空席——黄金三章收束"},
+      {"id": "S003", "title": "那本'记给死人看的账'第一页记着谁的名字（局头账目有鬼的更深一层）", "opened_chapter": 2, "closed_chapter": 3, "closed_actively": true, "detail": "第一页=顾衡自己，他才是被欠的那笔没人管的账——反向钩，置换升级为S004"}
+    ],
+    "overflow_alerts": []
+  }
+}

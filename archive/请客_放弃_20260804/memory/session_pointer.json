@@ -1,0 +1,90 @@
+{
+  "card_type": "session_pointer",
+  "last_updated": "2026-08-04T12:00:00+08:00",
+  "last_updated_chapter": 5,
+  "project_status": {
+    "novel_title": "请客",
+    "current_phase": "chapter_loop",
+    "current_volume": 1,
+    "current_chapter": 6,
+    "total_chapters": 300,
+    "completed_chapters": 5,
+    "overall_progress": "1.67%",
+    "daily_target": 1,
+    "daily_completed": 1
+  },
+  "recent_milestone": {
+    "type": "chapter_release",
+    "chapter": 5,
+    "summary": "Ch5《代笔》发布。顾衡去城南茶馆找代笔穷秀才，开场先读穿当铺伙计偷银打脸（S级爽点），穷秀才透露孟守拙写了十五年信给顾衡从不寄、带凉粥坐门槛、留了一封信（不来就烧）。顾衡精算失效（杯沿画三圈/茶凉了没察觉），接过信没拆。章末钩子：七岁那碗凉粥到底是谁搁的。身世暗线F-P3推进到deepened_plus，悬念S006新开（信+凉粥），active=3未超阈值。"
+  },
+  "character_quick_state": [
+    {"name": "顾衡", "location": "城南茶馆→走出茶馆，在街上走", "emotion": "精算失效深化——一百封信/二十七年/凉粥，信息量更大但更读不懂孟守拙；克制承接（信不拆）；凉粥记忆被唤起（七岁那碗凉粥是谁搁的）", "power": "读心（金手指级天赋，非世界规则）+续命机制（做成一局兑一段命）", "last_chapter": 5},
+    {"name": "孟守拙", "location": "未出场，通过穷秀才描述侧面展现", "emotion": "新增细节：瘦、背驼、带凉粥坐门槛吃完才写信、鞋磨得薄、每隔两三个月来写信、写了十五年从不寄、留了一封信给顾衡（不来就烧）；身份/动机/与顾衡渊源仍未明", "power": "未知", "last_chapter": 5},
+    {"name": "穷秀才", "location": "城南茶馆东窗下", "emotion": "代笔为生，坐了十五年；认得孟守拙的字；替孟守拙保管那封信；为人谨慎（比对顾衡的脸和纸上名字才拿信）", "power": "代笔写字", "last_chapter": 5},
+    {"name": "局头", "location": "《送客宴》副本（副本已收束，守关人卸任）", "emotion": "'了了这一桩，就该走了'，把守了一辈子的'记给死人看的账'交出，恨被一场等磨平", "power": "设席成局/记账之眼", "last_chapter": 3}
+  ],
+  "foreshadowing_quick_status": [
+    {"id": "F-P1", "status": "half_revealed", "last_action_chapter": 3, "next_milestone": 50},
+    {"id": "F-P3", "status": "deepened_plus", "last_action_chapter": 5, "next_milestone": 50, "note": "Ch5再推：孟守拙写了十五年信从不寄+带凉粥+留信+二十七年=从出生就守，半揭仍计划Ch50"}
+  ],
+  "last_session_summary": "第5章《代笔》全流程通过入库。技术分9.06，追读指数8.95，终审综合9.43通过。detail-review修掉3个major（展示-解释冗余×3）+ 数字验算（二十七岁/二十七年自洽=从出生就守）。de-ai 4项minor微调。本章为身世暗线推进章，1个S级开场爽点+高密度信息揭示，符合该类型章节的结构性质量预期。顾衡从旧宅→城南茶馆追查孟守拙，获知一百封信/凉粥/留信等关键信息，精算失效场景深化（杯沿画三圈/茶凉了没察觉）。伏笔F-P3推进到deepened_plus。悬念：S004维持/S005推进/S006新开=3条，≤max_active=3。目标：G002身世暗线推进。",
+  "next_action": "第6章：顾衡找个地方拆信（或继续追查孟守拙下落）。需注意：悬念窗口已满（3条），下一章优先闭环一个旧悬念再开新的。信的内容可以揭示部分身世信息但不能全揭（半揭仍在Ch50）。",
+  "quality_trend": {
+    "last_10_avg": 9.35,
+    "trend": "stable",
+    "weakest_dimension": "shuang_density（Ch4铺垫章/Ch5推进章均为信息型章节，爽点密度结构性偏低，但有S级开场锚定）",
+    "note": "Ch1 9.38 / Ch2 9.5 / Ch3 9.5 / Ch4 8.85（铺垫章放行） / Ch5 9.06（推进章通过）。追读指数稳定在8.5+。3章滚动S/A硬指标：Ch3(S)+Ch4(铺垫)+Ch5(S)=✓。"
+  },
+  "open_decisions": [],
+  "pending_override_conditions": [
+    {"id": "OC001", "source_chapter": 1, "condition": "Ch2前段需快速给小爽点对冲（Ch1遗留：前段铺垫至看穿爽点约1200字偏长）", "due_chapter": 2, "status": "completed", "type": "cross_chapter", "completed_chapter": 2, "completed_detail": "Ch2压缩'三笔不对劲'铺垫，看穿'有人把客记漏'提前到前300字，开场即进账，爽点提前落地"}
+  ],
+  "outline_drift_log": [
+    {
+      "chapter": 1,
+      "planned_beat": "黄金三章ch1：一桌席开场→报菜名报成报账→落座/局头登场→知道吃不完就是欠→ending_hook最后一道菜没上/人还没齐",
+      "actual_beat": "一桌席开场→规则亮相→落座→看穿两道旧账反将局头→坐主位→ending_hook最后一道菜留给最恨之人/人还没齐",
+      "drift_type": "无漂移",
+      "decision": "accept",
+      "make_up_plan": "",
+      "decided_by": "unified-reviewer"
+    },
+    {
+      "chapter": 2,
+      "planned_beat": "黄金三章ch2：看穿破绽（数清这桌席几笔账）→替仇人夹菜劝'吃啊别浪费'（错位幽默）→小爽：把人送出去一个→章末钩：局头记的账和顾衡算的对不上（F-P2 half_reveal）",
+      "actual_beat": "数出三笔不对劲点破席面破绽→替欠一斗米的汉子销账（点破多算三分利）→夹菜劝吃+反讽局头'请客请得够客气'→送人出门→章末钩：局头记的账和顾衡算的对不上，点破'记给死人看的账'（F-P2 half_reveal）",
+      "drift_type": "无漂移",
+      "decision": "accept",
+      "make_up_plan": "",
+      "decided_by": "chief-editor"
+    },
+    {
+      "chapter": 3,
+      "planned_beat": "黄金三章ch3：主角送走所有人→独坐空席→那道留给'最恨之人'的菜端上自己面前→自嘲'我恨我恨得好'（自嘲品类）→续命兑现→身世暗线反向钩",
+      "actual_beat": "送走所有人→局头点破'先生就是那最后一个'→最后那道菜（当铺豆腐）端上自己面前→自嘲'我恨我恨得好'→续命兑现（'够我走出这道门槛'）→章末账本'欠款人'栏=顾衡（他才是被欠的）反向钩（C7）",
+      "drift_type": "无漂移",
+      "decision": "accept",
+      "make_up_plan": "",
+      "decided_by": "unified-reviewer"
+    },
+    {
+      "chapter": 4,
+      "planned_beat": "黄金三章后过渡章（大纲未逐章细化，按vol1 gist）：脱离《送客宴》副本，揭开'他为何欠'的第一层（身世暗线首层解释），自然续接ch3反向钩",
+      "actual_beat": "顾衡离开副本，顺着那页写着他名字的旧纸回城南旧宅；发现有人替他守了二十七年（床/结壳凉粥/磕口碗/布老虎/铜烛台/掸灰），床沿底下发现'孟守拙'旧纸，与昨夜那页同一人手笔；读不穿孟守拙，决定去城南茶馆东窗下找代笔穷秀才问认不认得这名字",
+      "drift_type": "无漂移",
+      "decision": "accept",
+      "make_up_plan": "",
+      "decided_by": "chief-editor"
+    },
+    {
+      "chapter": 5,
+      "planned_beat": "Ch5：顾衡去城南茶馆找代笔穷秀才问孟守拙，遇活人+事实验证兑现（认得字+替孟守拙写信），补足Ch4铺垫章缺失的爽点/互动",
+      "actual_beat": "顾衡进城南茶馆→开场S级爽点（当铺伙计偷银打脸）→穷秀才认出顾衡→透露孟守拙写了十五年信给顾衡从不寄→顾衡精算失效（杯沿画三圈/茶凉没察觉）→穷秀才拿出孟守拙留的信（不来就烧）→顾衡接过信没拆→问孟先生长什么样（瘦/背驼/凉粥/鞋磨）→章末钩子（七岁那碗凉粥是谁搁的）",
+      "drift_type": "无漂移",
+      "decision": "accept",
+      "make_up_plan": "",
+      "decided_by": "chief-editor"
+    }
+  ]
+}
