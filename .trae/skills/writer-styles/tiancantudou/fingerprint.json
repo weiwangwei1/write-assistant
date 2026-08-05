@@ -1,0 +1,322 @@
+{
+  "card_type": "style_fingerprint_baseline",
+  "metric_version": "2.0",
+  "status": "ready",
+  "confidence": "high",
+  "note": "",
+  "metrics": {
+    "author": "天蚕土豆",
+    "source": "D:\\personFile\\corpus\\writer-styles\\tiancantudou\\原作_utf8\\大主宰.txt;D:\\personFile\\corpus\\writer-styles\\tiancantudou\\原作_utf8\\武动乾坤.txt",
+    "sample_chars": 7792751,
+    "sample_sents": 193175,
+    "sample_paras": 181846,
+    "func_words_per_1000": {
+      "的": 44.574,
+      "了": 12.65,
+      "在": 11.205,
+      "是": 26.284,
+      "不": 11.979,
+      "他": 11.069,
+      "她": 1.608,
+      "我": 3.115,
+      "你": 3.121,
+      "也": 7.17,
+      "都": 4.283,
+      "就": 3.405,
+      "又": 0.469,
+      "还": 2.208,
+      "与": 2.031,
+      "和": 0.334,
+      "或": 0.322,
+      "着": 10.868,
+      "过": 4.195,
+      "把": 0.355,
+      "被": 1.924,
+      "向": 1.145,
+      "从": 1.141,
+      "但": 2.077,
+      "而": 8.242,
+      "却": 2.203,
+      "只": 2.535,
+      "已": 1.366,
+      "曾": 0.344,
+      "将": 2.829
+    },
+    "sent_len_mean": 40.34,
+    "sent_len_stdev": 32.82,
+    "short_sent_ratio": 0.1887,
+    "long_sent_ratio": 0.4721,
+    "para_len_mean": 42.85,
+    "short_para_ratio": 0.2204,
+    "dialogue_ratio": 0.1563,
+    "comma_period_ratio": 4.48,
+    "dash_per_1000": 0.014,
+    "ellipsis_per_1000": 1.63,
+    "sensory_dist": {
+      "视觉": 20.166,
+      "听觉": 7.03,
+      "嗅觉": 0.674,
+      "触觉": 4.139,
+      "味觉": 0.65
+    },
+    "metaphor_per_1000": 2.196,
+    "conjunction_starter_ratio": 0.092,
+    "dialogue_guide_per_1000": 1.359,
+    "le_ending_ratio": 0.0149,
+    "imagery_top20": [
+      {
+        "word": "能够",
+        "count": 15066,
+        "per_1000": 1.933
+      },
+      {
+        "word": "出来",
+        "count": 11051,
+        "per_1000": 1.418
+      },
+      {
+        "word": "目光",
+        "count": 10371,
+        "per_1000": 1.331
+      },
+      {
+        "word": "灵力",
+        "count": 9844,
+        "per_1000": 1.263
+      },
+      {
+        "word": "没有",
+        "count": 9244,
+        "per_1000": 1.186
+      },
+      {
+        "word": "然后",
+        "count": 9237,
+        "per_1000": 1.185
+      },
+      {
+        "word": "显然",
+        "count": 9071,
+        "per_1000": 1.164
+      },
+      {
+        "word": "起来",
+        "count": 8725,
+        "per_1000": 1.12
+      },
+      {
+        "word": "至尊",
+        "count": 8360,
+        "per_1000": 1.073
+      },
+      {
+        "word": "旋即",
+        "count": 8326,
+        "per_1000": 1.068
+      },
+      {
+        "word": "强者",
+        "count": 8276,
+        "per_1000": 1.062
+      },
+      {
+        "word": "直接",
+        "count": 8211,
+        "per_1000": 1.054
+      },
+      {
+        "word": "犹如",
+        "count": 8130,
+        "per_1000": 1.043
+      },
+      {
+        "word": "实力",
+        "count": 7816,
+        "per_1000": 1.003
+      },
+      {
+        "word": "出现",
+        "count": 7315,
+        "per_1000": 0.939
+      },
+      {
+        "word": "下来",
+        "count": 7116,
+        "per_1000": 0.913
+      },
+      {
+        "word": "因为",
+        "count": 6637,
+        "per_1000": 0.852
+      },
+      {
+        "word": "知道",
+        "count": 6427,
+        "per_1000": 0.825
+      },
+      {
+        "word": "竟然",
+        "count": 6418,
+        "per_1000": 0.824
+      },
+      {
+        "word": "时候",
+        "count": 6406,
+        "per_1000": 0.822
+      }
+    ]
+  },
+  "n_groups": 1568,
+  "chapter_stats": {
+    "sent_len_mean": {
+      "mean": 40.0597,
+      "stdev": 5.8709,
+      "p5": 31.477,
+      "p95": 50.5275,
+      "cv": 0.1466
+    },
+    "sent_len_stdev": {
+      "mean": 28.6054,
+      "stdev": 4.6539,
+      "p5": 22.54,
+      "p95": 37.4,
+      "cv": 0.1627
+    },
+    "short_sent_ratio": {
+      "mean": 0.1699,
+      "stdev": 0.0652,
+      "p5": 0.0647,
+      "p95": 0.2808,
+      "cv": 0.384
+    },
+    "long_sent_ratio": {
+      "mean": 0.4832,
+      "stdev": 0.0843,
+      "p5": 0.3512,
+      "p95": 0.6296,
+      "cv": 0.1745
+    },
+    "para_len_mean": {
+      "mean": 42.5738,
+      "stdev": 5.5943,
+      "p5": 34.284,
+      "p95": 52.9155,
+      "cv": 0.1314
+    },
+    "short_para_ratio": {
+      "mean": 0.2081,
+      "stdev": 0.0673,
+      "p5": 0.1,
+      "p95": 0.3205,
+      "cv": 0.3232
+    },
+    "dialogue_ratio": {
+      "mean": 0.1402,
+      "stdev": 0.0919,
+      "p5": 0.0239,
+      "p95": 0.3163,
+      "cv": 0.6556
+    },
+    "comma_period_ratio": {
+      "mean": 4.2539,
+      "stdev": 0.6943,
+      "p5": 3.284,
+      "p95": 5.487,
+      "cv": 0.1632
+    },
+    "dash_per_1000": {
+      "mean": 0.0002,
+      "stdev": 0.0055,
+      "p5": 0.0,
+      "p95": 0.0,
+      "cv": 0.0273
+    },
+    "ellipsis_per_1000": {
+      "mean": 1.9906,
+      "stdev": 1.3243,
+      "p5": 0.3414,
+      "p95": 4.5719,
+      "cv": 0.6653
+    },
+    "metaphor_per_1000": {
+      "mean": 2.3676,
+      "stdev": 1.5903,
+      "p5": 0.3503,
+      "p95": 5.1739,
+      "cv": 0.6717
+    },
+    "conjunction_starter_ratio": {
+      "mean": 0.1092,
+      "stdev": 0.0608,
+      "p5": 0.0261,
+      "p95": 0.2202,
+      "cv": 0.5565
+    },
+    "dialogue_guide_per_1000": {
+      "mean": 1.6659,
+      "stdev": 1.3672,
+      "p5": 0.0,
+      "p95": 4.2287,
+      "cv": 0.8207
+    },
+    "le_ending_ratio": {
+      "mean": 0.0161,
+      "stdev": 0.016,
+      "p5": 0.0,
+      "p95": 0.0455,
+      "cv": 0.8012
+    },
+    "func_words_cosine": {
+      "mean": 0.0169,
+      "stdev": 0.0099,
+      "p5": 0.0064,
+      "p95": 0.0356
+    },
+    "sensory_cosine": {
+      "mean": 0.0292,
+      "stdev": 0.0452,
+      "p5": 0.0021,
+      "p95": 0.0967
+    }
+  },
+  "tolerance": {
+    "func_words_cosine": 0.08,
+    "sent_len_mean": 0.293,
+    "sent_len_stdev": 0.35,
+    "short_sent_ratio": 0.768,
+    "long_sent_ratio": 0.5,
+    "para_len_mean": 0.35,
+    "short_para_ratio": 0.646,
+    "dialogue_ratio": 1.0,
+    "comma_period_ratio": 0.35,
+    "dash_per_1000": 0.6,
+    "ellipsis_per_1000": 1.0,
+    "sensory_cosine": 0.15,
+    "metaphor_per_1000": 1.0,
+    "conjunction_starter_ratio": 1.0,
+    "dialogue_guide_per_1000": 1.0,
+    "le_ending_ratio": 1.0
+  },
+  "tolerance_source": {
+    "sent_len_mean": "derived_2cv",
+    "sent_len_stdev": "default_floor",
+    "short_sent_ratio": "derived_2cv",
+    "long_sent_ratio": "default_floor",
+    "para_len_mean": "default_floor",
+    "short_para_ratio": "derived_2cv",
+    "dialogue_ratio": "derived_2cv",
+    "comma_period_ratio": "default_floor",
+    "dash_per_1000": "default_floor",
+    "ellipsis_per_1000": "derived_2cv",
+    "metaphor_per_1000": "derived_2cv",
+    "conjunction_starter_ratio": "derived_2cv",
+    "dialogue_guide_per_1000": "derived_2cv",
+    "le_ending_ratio": "derived_2cv",
+    "func_words_cosine": "default_floor",
+    "sensory_cosine": "default_floor"
+  },
+  "exclude_names": [
+    "牧尘",
+    "林动"
+  ]
+}

@@ -20,6 +20,8 @@
 - `jinhezai/` 今何在——诗意碎片、哲思独白、剧本式对话，破折号/省略号为签名手法（fingerprint v2.0 high，《悟空传》6.1万字）
 - `maibao/` 卖报小郎君——轻快爽文、段子手叙事（fingerprint v2.0 high，两本657万字）
 - `wuzei/` 爱潜水的乌贼——克制悬疑、设定流、长短句大开大合（fingerprint v2.0 high，三本1016万字）
+- `wochixihongshi/` 我吃西红柿——明快直给、短句口语、对话驱动，省略号为签名手法（fingerprint v2.0 high，两本全本791万字）
+- `tiancantudou/` 天蚕土豆——绵密铺陈、长句流转、叙述驱动，破折号近乎为零+着字高频为签名手法（fingerprint v2.0 high，两本全本779万字）
 
 ## 挂载方式
 

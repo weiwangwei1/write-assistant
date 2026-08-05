@@ -1,0 +1,172 @@
+{
+  "card_type": "style_fingerprint_check",
+  "from_agent": "style_fingerprint(script)",
+  "to_agent": "chapter-writer",
+  "status": "fail",
+  "baseline_ref": ".trae/skills/writer-styles/tiancantudou/fingerprint.json",
+  "baseline_confidence": "high",
+  "failed_dims": [
+    "func_words_cosine",
+    "para_len_mean",
+    "short_para_ratio",
+    "comma_period_ratio",
+    "metaphor_per_1000",
+    "le_ending_ratio"
+  ],
+  "dims": [
+    {
+      "dim": "func_words_cosine",
+      "current": 0.2459,
+      "baseline": 0.0,
+      "deviation": 0.2459,
+      "tolerance": 0.08,
+      "pass": false
+    },
+    {
+      "dim": "sent_len_mean",
+      "current": 50.53,
+      "baseline": 40.34,
+      "deviation": 0.2526,
+      "tolerance": 0.293,
+      "pass": true
+    },
+    {
+      "dim": "sent_len_stdev",
+      "current": 28.35,
+      "baseline": 32.82,
+      "deviation": 0.1362,
+      "tolerance": 0.35,
+      "pass": true
+    },
+    {
+      "dim": "short_sent_ratio",
+      "current": 0.0667,
+      "baseline": 0.1887,
+      "deviation": 0.6465,
+      "tolerance": 0.768,
+      "pass": true
+    },
+    {
+      "dim": "long_sent_ratio",
+      "current": 0.6,
+      "baseline": 0.4721,
+      "deviation": 0.2709,
+      "tolerance": 0.5,
+      "pass": true
+    },
+    {
+      "dim": "para_len_mean",
+      "current": 64.97,
+      "baseline": 42.85,
+      "deviation": 0.5162,
+      "tolerance": 0.35,
+      "pass": false
+    },
+    {
+      "dim": "short_para_ratio",
+      "current": 0.0571,
+      "baseline": 0.2204,
+      "deviation": 0.7409,
+      "tolerance": 0.646,
+      "pass": false
+    },
+    {
+      "dim": "dialogue_ratio",
+      "current": 0.1038,
+      "baseline": 0.1563,
+      "deviation": 0.3359,
+      "tolerance": 1.0,
+      "pass": true
+    },
+    {
+      "dim": "comma_period_ratio",
+      "current": 6.471,
+      "baseline": 4.48,
+      "deviation": 0.4444,
+      "tolerance": 0.35,
+      "pass": false
+    },
+    {
+      "dim": "dash_per_1000",
+      "current": 0.0,
+      "baseline": 0.014,
+      "deviation": 0.07,
+      "tolerance": 0.6,
+      "pass": true
+    },
+    {
+      "dim": "ellipsis_per_1000",
+      "current": 0.0,
+      "baseline": 1.63,
+      "deviation": 1.0,
+      "tolerance": 1.0,
+      "pass": true
+    },
+    {
+      "dim": "metaphor_per_1000",
+      "current": 4.398,
+      "baseline": 2.196,
+      "deviation": 1.0027,
+      "tolerance": 1.0,
+      "pass": false
+    },
+    {
+      "dim": "conjunction_starter_ratio",
+      "current": 0.0857,
+      "baseline": 0.092,
+      "deviation": 0.0685,
+      "tolerance": 1.0,
+      "pass": true
+    },
+    {
+      "dim": "dialogue_guide_per_1000",
+      "current": 0.0,
+      "baseline": 1.359,
+      "deviation": 1.0,
+      "tolerance": 1.0,
+      "pass": true
+    },
+    {
+      "dim": "le_ending_ratio",
+      "current": 0.0444,
+      "baseline": 0.0149,
+      "deviation": 1.475,
+      "tolerance": 1.0,
+      "pass": false
+    },
+    {
+      "dim": "sensory_cosine",
+      "current": 0.021,
+      "baseline": 0.0,
+      "deviation": 0.021,
+      "tolerance": 0.15,
+      "pass": true
+    }
+  ],
+  "advice": [
+    {
+      "dim": "func_words_cosine",
+      "advice": "func_words_cosine 距离 0.2459（容差 0.08）。检查'了/着/的/是'等虚词频率是否贴近基线方向。改法：短促的'了'字收尾句与连词衔接的流动句互相换算"
+    },
+    {
+      "dim": "para_len_mean",
+      "advice": "para_len_mean 偏高——原作基线 42.85，当前 64.97。合并碎段或拆分长段（按偏差方向），注意两句段与单句段的配比"
+    },
+    {
+      "dim": "short_para_ratio",
+      "advice": "short_para_ratio 偏低——原作基线 0.2204，当前 0.0571。减少单句段，合并为两句段"
+    },
+    {
+      "dim": "comma_period_ratio",
+      "advice": "comma_period_ratio 偏高——原作基线 4.48，当前 6.471。逗号与句号配比偏差——用逗号串联分句增加流动感，或增加句号断句提升力度（按偏差方向）"
+    },
+    {
+      "dim": "metaphor_per_1000",
+      "advice": "metaphor_per_1000 偏高——原作基线 2.196，当前 4.398。比喻密度偏差——按基线方向增减；喻体优先取自故事世界本身的物质"
+    },
+    {
+      "dim": "le_ending_ratio",
+      "advice": "le_ending_ratio 偏高——原作基线 0.0149，当前 0.0444。短句'了'收尾率偏差——'他点燃了灯。'式的了字收尾改为连词衔接的流动句，或反向调整（按基线方向）"
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "style": "wochixihongshi",
+  "overrides": {
+    "simile_max_per_chapter": 10,
+    "not_a_is_b_max_per_chapter": 1,
+    "dialogue_ratio_min": 0.20,
+    "dialogue_ratio_max": 0.45,
+    "dash_max_per_1000": 1.5,
+    "ellipsis_max_per_1000": 8.0,
+    "le_max_per_1000": 22.0,
+    "zhe_max_per_1000": 12.0,
+    "conjunction_min_per_1000": 1.0,
+    "dialogue_guide_min_per_1000": 0.0,
+    "name_starter_run_max": 5
+  },
+  "disabled_rules": [],
+  "disabled_reason": {},
+  "custom_ban_words": [],
+  "signature_exemptions": {
+    "ellipsis": {
+      "reason": "省略号5.462/千字为签名手法——用于对话犹豫/停顿/语气拖尾，非抒情停顿",
+      "max_per_1000": 8.0,
+      "usage_note": "仅限对话内使用，叙述中不用省略号"
+    }
+  },
+  "fingerprint_ref": {
+    "source": "《吞噬星空》《莽荒纪》两本全本（791万字）",
+    "confidence": "high",
+    "key_metrics": {
+      "sent_len_mean": 21.0,
+      "short_sent_ratio": 0.314,
+      "dialogue_ratio": 0.319,
+      "dash_per_1000": 0.511,
+      "ellipsis_per_1000": 5.462,
+      "comma_period_ratio": 1.71,
+      "le_per_1000": 13.015,
+      "zhe_per_1000": 6.385,
+      "conjunction_starter_ratio": 0.0204,
+      "dialogue_guide_per_1000": 0.488,
+      "le_ending_ratio": 0.0354,
+      "metaphor_per_1000": 1.555
+    },
+    "note": "我吃西红柿风格特征：短句口语化（句长21字）、对话驱动（31.9%）、省略号签名（5.462/千字，对话犹豫/停顿）、连词起段极少（2.0%）、对话引导极少（0.488/千字，偏裸对话）。lint覆盖层：省略号上限放宽至8.0（签名手法），连词下限降至1.0（原作仅2.0%段首连词），对话引导下限设0（原作近裸对话）。L0通用反AI红线全开。"
+  },
+  "rule_level_strategy": {
+    "L0": "通用反AI红线全开——不是A是B≤1/通货意象0容忍/情绪直说/总结式心声不可豁免",
+    "L1": "身份：短句占比25-38%/比喻≤10/对话占比20-45%",
+    "L2": "签名：省略号≤8.0（签名手法豁免）/破折号≤1.5/了≤22/着≤12（渐进达标，不阻断）",
+    "L3": "偏好：段首同名连跑≤5段（原作重复称呼是签名特征，适度放宽）"
+  },
+  "note": "我吃西红柿方向：明快直给、短句口语、对话驱动。省略号是最高辨识度签名（5.462/千字），用于对话语气而非抒情，上限放宽。连词和对话引导极低（原作风格），下限设最低值不强制。v1.0（2026-08-05）：基于791万字全本指纹基线创建。"
+}

@@ -123,8 +123,8 @@
 
 <script>
 // ===== 配置 =====
-const KNOWN_PROJECTS = []; // 已知有 memory 系统的项目（2026-08-04《请客》已放弃归档至 archive/请客_放弃_20260804；2026-08-01《征诏之界》已放弃归档至 archive/征诏之界_放弃_20260801；2026-07-28《镜渊》已放弃归档至 archive/镜渊_20260728）
-const PROJECT_DISPLAY_NAMES = {}; // 目录名 → 书名映射（下拉框展示用）
+const KNOWN_PROJECTS = ['.']; // 《第三纪元》memory 文件直接在根目录 memory/ 下，用 '.' 表示当前目录
+const PROJECT_DISPLAY_NAMES = {'.': '第三纪元'}; // 目录名 → 书名映射（下拉框展示用）
 
 function getProject() {
   const params = new URLSearchParams(location.search);

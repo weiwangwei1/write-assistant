@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>自主蒸馏方法论 v3：决策精粹法</title>
+<style>
+  :root {
+    --bg: #1a1a1a;
+    --surface: #242424;
+    --border: #333;
+    --text: #d4d4d4;
+    --text-dim: #888;
+    --accent: #c9952b;
+    --accent-dim: #8a6818;
+    --red: #b54545;
+    --green: #5a8a5a;
+    --blue: #5a7a9a;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Noto Sans CJK SC', 'WenQuanYi Micro Hei', 'Microsoft YaHei', sans-serif;
+    line-height: 1.8;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 40px 24px 80px;
+  }
+  h1 {
+    font-size: 1.8em;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 4px;
+    letter-spacing: 1px;
+  }
+  .subtitle {
+    color: var(--text-dim);
+    font-size: 0.9em;
+    margin-bottom: 36px;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 20px;
+  }
+  h2 {
+    font-size: 1.35em;
+    color: var(--text);
+    margin-top: 44px;
+    margin-bottom: 14px;
+    padding-left: 12px;
+    border-left: 3px solid var(--accent);
+  }
+  h3 {
+    font-size: 1.1em;
+    color: var(--accent);
+    margin-top: 26px;
+    margin-bottom: 10px;
+  }
+  p { margin-bottom: 12px; }
+  strong { color: var(--accent); font-weight: 600; }
+  em { color: var(--text-dim); font-style: italic; }
+  ul { margin: 8px 0 12px 20px; }
+  li { margin-bottom: 5px; }
+  blockquote {
+    border-left: 2px solid var(--accent-dim);
+    padding: 8px 16px;
+    margin: 12px 0;
+    color: var(--text-dim);
+    background: var(--surface);
+    border-radius: 0 4px 4px 0;
+    font-size: 0.9em;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 14px 0;
+    font-size: 0.88em;
+  }
+  th, td {
+    border: 1px solid var(--border);
+    padding: 8px 12px;
+    text-align: left;
+    vertical-align: top;
+  }
+  th {
+    background: var(--surface);
+    color: var(--accent);
+    font-weight: 600;
+  }
+  tr:nth-child(even) td { background: rgba(36, 36, 36, 0.5); }
+  .callout {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 14px 18px;
+    margin: 16px 0;
+  }
+  .callout-key {
+    border-color: var(--accent-dim);
+    border-left: 4px solid var(--accent);
+  }
+  .callout-warn {
+    border-color: var(--red);
+    border-left: 4px solid var(--red);
+  }
+  .callout-new {
+    border-color: var(--green);
+    border-left: 4px solid var(--green);
+  }
+  .tag {
+    display: inline-block;
+    font-size: 0.72em;
+    padding: 2px 8px;
+    border-radius: 3px;
+    margin-right: 4px;
+    font-weight: 600;
+  }
+  .tag-v1 { background: var(--red); color: #fff; }
+  .tag-v2 { background: var(--blue); color: #fff; }
+  .tag-v3 { background: var(--green); color: #fff; }
+  .flow-diagram {
+    margin: 20px 0;
+    padding: 20px;
+    background: var(--surface);
+    border-radius: 6px;
+    border: 1px solid var(--border);
+  }
+  .flow-step {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    margin-bottom: 14px;
+  }
+  .flow-step:last-child { margin-bottom: 0; }
+  .flow-num {
+    background: var(--accent-dim);
+    color: #fff;
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    flex-shrink: 0;
+    font-size: 0.85em;
+  }
+  .flow-num.v3 { background: var(--green); }
+  .flow-content { flex: 1; }
+  .flow-content strong { color: var(--text); }
+  .compare-table td:first-child {
+    width: 20%;
+    font-weight: 600;
+    color: var(--accent);
+  }
+  .layer-diagram {
+    margin: 20px 0;
+    padding: 24px;
+    background: var(--surface);
+    border-radius: 6px;
+    border: 1px solid var(--border);
+  }
+  .layer {
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 14px 16px;
+    margin-bottom: 10px;
+    position: relative;
+  }
+  .layer:last-child { margin-bottom: 0; }
+  .layer-label {
+    position: absolute;
+    top: -10px;
+    left: 12px;
+    background: var(--surface);
+    padding: 0 8px;
+    font-size: 0.8em;
+    color: var(--accent);
+    font-weight: 600;
+  }
+  .layer-core { border-color: var(--red); }
+  .layer-engine { border-color: var(--accent); }
+  .layer-decision { border-color: var(--green); }
+  .layer-fingerprint { border-color: var(--blue); }
+  .footer {
+    margin-top: 56px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+    color: var(--text-dim);
+    font-size: 0.85em;
+    text-align: center;
+  }
+  code {
+    background: var(--surface);
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-size: 0.9em;
+    color: var(--accent);
+  }
+</style>
+</head>
+<body>
+
+<h1>自主蒸馏方法论 v3：决策精粹法</h1>
+<p class="subtitle">从「提取表面特征」到「提取决策逻辑」· 基于三国文风包实战的改进方案</p>
+
+<!-- ========== 问题诊断 ========== -->
+<h2>一、v2 的瓶颈：统计指纹捕捉"形"但丢失"神"</h2>
+
+<p>v2 方法（四阶段自主蒸馏）在烟雨江南文风包上验证有效，但在蒸馏我吃西红柿和天蚕土豆时暴露了一个根本问题：<strong>统计指纹能告诉你"他用了短句"，但无法告诉你"他为什么在这里用短句"</strong>。</p>
+
+<div class="callout callout-warn">
+<strong>问题诊断</strong>：v2 的规则提取依赖"从指纹推导规则"——看到句长21字就写"用短句"，看到着字10.87/千字就写"多用着字"。这产出的是<strong>表面指标清单</strong>，不是<strong>决策逻辑</strong>。写手拿到这种清单，只能做到"形似"——短句用了、着字加了，但故事读起来不像那个作家。
+</div>
+
+<p>具体表现：</p>
+<ul>
+<li><strong>规则无情境</strong>："用短句"——但在什么情境下用？开篇用还是战斗用？对话用还是叙述用？没有说明</li>
+<li><strong>规则无逻辑</strong>："多用着字"——为什么要用着字？着字在叙事中起什么作用？没有解释</li>
+<li><strong>规则无对比</strong>："对话占比31.9%"——这高还是低？和我吃西红柿的15.6%比意味着什么？没有参照</li>
+<li><strong>规则无边界</strong>："长句为骨"——多长算长？什么时候该断句？没有边界</li>
+</ul>
+
+<p>本质上，v2 产出的是"指标的口语化翻译"——把数字翻译成人话，但没有提取出<strong>作家在特定情境下做特定选择的决策逻辑</strong>。这就是"徒有其形，没有提取精粹"的根源。</p>
+
+<!-- ========== v3 核心思想 ========== -->
+<h2>二、v3 核心思想：从"是什么"到"为什么"</h2>
+
+<p>v3 的核心转变：<strong>不再提取"作家用了什么"，而是提取"作家在什么情境下、面对什么选项、选择了什么、为什么选这个"</strong>。</p>
+
+<table class="compare-table">
+<tr><th style="width:20%">维度</th><th style="width:40%"><span class="tag tag-v2">v2</span> 统计指纹推导</th><th style="width:40%"><span class="tag tag-v3">v3</span> 决策精粹蒸馏</th></tr>
+<tr>
+<td><strong>提取对象</strong></td>
+<td>表面特征（句长、标点、词汇）</td>
+<td>决策逻辑（情境→选项→选择→原因）</td>
+</tr>
+<tr>
+<td><strong>规则形态</strong></td>
+<td>"用短句""多用着字"</td>
+<td>"战斗时用短句快切，因为叙事引擎是需求-反馈链，读者需要即时反馈"</td>
+</tr>
+<tr>
+<td><strong>例证方式</strong></td>
+<td>引用统计数据</td>
+<td>引用原文段落 + 决策分析</td>
+</tr>
+<tr>
+<td><strong>跨作者对比</strong></td>
+<td>无</td>
+<td>同一情境下不同作者的不同选择</td>
+</tr>
+<tr>
+<td><strong>失真预测</strong></td>
+<td>无</td>
+<td>预测仿写时最可能出现的"形似神不似"</td>
+</tr>
+</table>
+
+<div class="callout callout-key">
+<strong>关键区分</strong>：v2 问的是"这个作家的统计特征是什么"；v3 问的是"这个作家在面对'如何开篇''如何释放信息''如何处理情感'等关键决策点时，他选了什么、为什么选这个、不选那个会怎样"。前者产出指标清单，后者产出可复现的决策逻辑。
+</div>
+
+<!-- ========== 三层精粹结构 ========== -->
+<h2>三、三层精粹结构</h2>
+
+<p>v3 将作家的风格精粹提炼为三层，从内到外：</p>
+
+<div class="layer-diagram">
+<div style="text-align:center; margin-bottom:16px; color:var(--accent); font-weight:600; font-size:1.1em;">v3 三层精粹结构</div>
+
+<div class="layer layer-core">
+<div class="layer-label">第一层 · 核心气质</div>
+<strong style="color:var(--red);">一句话定位</strong>——用一句话概括"这个作家与其他所有作家的根本区别是什么"。<br>
+<em>不是统计特征（"他用短句"），而是写作哲学（"他用最短的距离把信息送到读者面前"）。</em><br>
+<strong>提取方法</strong>：读完代表作后，问自己"如果只能用一句话告诉另一个写手'这个作家的核心是什么'，这句话是什么？"
+</div>
+
+<div class="layer layer-engine">
+<div class="layer-label">第二层 · 叙事引擎</div>
+<strong style="color:var(--accent);">什么驱动故事前进</strong>——每个作家都有一个核心叙事引擎，决定了故事的推进方式。<br>
+<em>我吃西红柿 = 需求-反馈链（角色想要→行动→反馈→新需求）；天蚕土豆 = 潜力-阻碍-突破-升级（潜力暗示→阻碍→突破→格局升级）；烟雨江南 = 克制留白（不说的比说的更重要）。</em><br>
+<strong>提取方法</strong>：拿原作的三章，逐段标注"这段在做什么"（释放信息/建立角色/推进冲突/营造氛围），找出反复出现的推进模式。
+</div>
+
+<div class="layer layer-decision">
+<div class="layer-label">第三层 · 情境决策</div>
+<strong style="color:var(--green);">六种关键情境下的选择逻辑</strong>——作家在特定叙事情境下做的选择，每种选择附原文例证、❌/✅对照、边界说明。<br>
+<em>六种情境：开篇 / 信息释放 / 情感处理 / 角色出场 / 动作战斗 / 章末收束。</em><br>
+<strong>提取方法</strong>：对每种情境，找原作中的3-5个实例，问"作家在这里有哪些选项？他选了哪个？为什么不选其他？这个选择服务于什么叙事目标？"
+</div>
+</div>
+
+<div class="callout callout-key">
+<strong>三层之间的关系</strong>：核心气质是"为什么"（写作哲学），叙事引擎是"怎么推进"（故事驱动力），情境决策是"具体怎么做"（可执行规则）。核心气质决定叙事引擎，叙事引擎决定情境决策——三者是从抽象到具体的递进关系。指纹数据（句长、标点等）降级为<em>验证手段</em>而非<em>提取对象</em>。
+</div>
+
+<!-- ========== 跨作者对比 ========== -->
+<h2>四、跨作者对比作为蒸馏工具</h2>
+
+<p>v3 引入了一个 v2 完全没有的工具：<strong>跨作者对比</strong>。同一个情境决策点，不同作家的选择截然不同，这种差异恰恰是每个作家的"精粹"所在。</p>
+
+<table>
+<tr><th>情境</th><th>我吃西红柿</th><th>天蚕土豆</th><th>烟雨江南</th></tr>
+<tr>
+<td><strong>开篇</strong></td>
+<td>极简环境→人物行动（1-2句环境后立即进入动作）</td>
+<td>环境铺陈→人物浮现（2-4句环境后人物在画面中出现）</td>
+<td>氛围沉浸→人物独行（大段环境描写营造情绪后人物才出现）</td>
+</tr>
+<tr>
+<td><strong>信息释放</strong></td>
+<td>对话释放（设定在角色说话中流出）</td>
+<td>叙述者旁白（叙述者像导游展开设定）</td>
+<td>行为暗示（设定通过角色行动和环境细节暗示）</td>
+</tr>
+<tr>
+<td><strong>情感处理</strong></td>
+<td>直给不藏（"暗恋很苦涩"直接说）</td>
+<td>环境映射+内心独白（不说"他伤心"，写环境映射）</td>
+<td>演出来别说（不解释情感，让画面自己说话）</td>
+</tr>
+<tr>
+<td><strong>章末</strong></td>
+<td>信息钩/行动钩（短句干脆收尾）</td>
+<td>意境钩/悬念钩（长句留余韵）</td>
+<td>留白收束（不点题，让前文自己说话）</td>
+</tr>
+</table>
+
+<div class="callout callout-new">
+<strong>对比的价值</strong>：单独看一个作家，你只能知道"他这么做"；对比多个作家，你才知道"他选择这么做而不是那么做"——选择的意义只有在对比中才显现。跨作者对比不是装饰，是蒸馏的核心工具。
+</div>
+
+<!-- ========== 仿写失真预测 ========== -->
+<h2>五、仿写失真预测</h2>
+
+<p>v3 的另一个创新：<strong>在蒸馏时就预测仿写时最容易犯的错</strong>。这是基于烟雨江南文风包迭代中积累的经验——仿写者最常犯的不是"不知道规则"，而是"知道规则但执行走了样"。</p>
+
+<p>每种失真预测包含三个要素：</p>
+<ul>
+<li><strong>陷阱描述</strong>：仿写者会怎么误读这条规则</li>
+<li><strong>判断标准</strong>：如何检测是否掉入陷阱</li>
+<li><strong>修复建议</strong>：掉入后怎么修</li>
+</ul>
+
+<blockquote>
+<p><strong>示例（天蚕土豆·长句僵化陷阱）</strong>：</p>
+<p>陷阱描述：看到"长句为骨"就写40字以上不分句的黏稠长句，忘记原作的长句是"逗号串联的分句群"——每个分句都有信息增量。</p>
+<p>判断标准：读完这个长句后，能否复述出3个以上信息点？如果不能，说明长句是空转的辞藻堆砌。</p>
+<p>修复建议：把长句拆成逗号连接的分句群，确保每个分句贡献一个独立信息点（动作/状态/环境/反应）。</p>
+</blockquote>
+
+<div class="callout callout-key">
+<strong>为什么失真预测有效</strong>：因为"形似神不似"的模式是可预测的——每个统计指标被翻译成规则时，都有一个最常见的误读方向。提前预测这些误读，相当于给写手装了一个"反陷阱雷达"。
+</div>
+
+<!-- ========== v3 完整流程 ========== -->
+<h2>六、v3 完整流程</h2>
+
+<p>v3 保留了 v2 的四阶段骨架，但在阶段2（规则提取）中引入三层精粹结构，在阶段3（生成+迭代）中加入失真预测。</p>
+
+<div class="flow-diagram">
+<div style="text-align:center; margin-bottom:16px; color:var(--accent); font-weight:600; font-size:1.1em;">v3 决策精粹蒸馏流程</div>
+
+<div class="flow-step">
+<div class="flow-num" style="background:var(--red);">1</div>
+<div class="flow-content">
+<strong>文体指纹提取</strong> <span class="tag tag-v1">v1</span> <span class="tag tag-v2">v2</span><br>
+输入代表作原文，提取量化指纹（功能词、句长、标点模式等）。输出 fingerprint.json。<br>
+<em>v3 定位：降级为<strong>验证手段</strong>，不再是规则提取的主要来源。指纹数据用于事后校验，不用于推导规则。</em>
+</div>
+</div>
+
+<div class="flow-step">
+<div class="flow-num v3">2</div>
+<div class="flow-content">
+<strong>三层精粹提取</strong> <span class="tag tag-v3">v3 新增</span><br>
+<div style="margin-top:8px;">
+<strong>2a. 核心气质</strong>（一句话定位）：读完代表作后，用一句话概括这个作家与其他作家的根本区别。不是统计特征，是写作哲学。<br>
+<strong>2b. 叙事引擎</strong>（什么驱动故事）：拿原作3章，逐段标注"这段在做什么"，找出反复出现的推进模式。与已知作者的引擎对比确认独特性。<br>
+<strong>2c. 情境决策</strong>（六种关键情境的选择逻辑）：对每种情境（开篇/信息释放/情感处理/角色出场/动作战斗/章末），找原作3-5个实例，逆向推断"作家选了什么、为什么不选其他"。<br>
+<strong>2d. 跨作者对比</strong>：将六种情境决策与已入库作者对比，凸显独特选择。<br>
+<strong>2e. 失真预测</strong>：基于已有文风包的迭代经验，预测仿写时最可能出现的3-4种"形似神不似"。
+</div>
+<em>输出 style_card.md（注入用）+ SKILL-full.md（完整报告）。</em>
+</div>
+</div>
+
+<div class="flow-step">
+<div class="flow-num">3</div>
+<div class="flow-content">
+<strong>生成 + AI 自评 + 迭代</strong> <span class="tag tag-v2">v2</span><br>
+用初版 style_card 写测试文章 → 6维 rubric 自评 → 定位 gap → 双轨修正（改文本+补规则）→ 指纹校验。<br>
+<em>v3 改进：自评 rubric 新增"决策逻辑一致性"维度——不只检查表面特征，还检查"这个段落的叙事决策是否符合情境决策规则"。</em>
+</div>
+</div>
+
+<div class="flow-step">
+<div class="flow-num">4</div>
+<div class="flow-content">
+<strong>指纹校验 + 失真检测</strong> <span class="tag tag-v2">v2</span> <span class="tag tag-v3">v3 增强</span><br>
+对最终文本提取文体指纹，与原作指纹对比。同时运行失真预测检查——逐条验证是否掉入了预测的陷阱。<br>
+<em>v3 改进：指纹校验从"唯一校验手段"降级为"校验手段之一"，与失真检测并行。</em>
+</div>
+</div>
+</div>
+
+<!-- ========== v1-v2-v3 演进 ========== -->
+<h2>七、v1 → v2 → v3 演进对比</h2>
+
+<table>
+<tr><th style="width:16%">维度</th><th style="width:28%"><span class="tag tag-v1">v1</span> 双轨迭代</th><th style="width:28%"><span class="tag tag-v2">v2</span> 四阶段自主</th><th style="width:28%"><span class="tag tag-v3">v3</span> 决策精粹</th></tr>
+<tr>
+<td><strong>规则来源</strong></td>
+<td>读后凭感觉写</td>
+<td>从指纹推导</td>
+<td>三层精粹提取（气质→引擎→决策）</td>
+</tr>
+<tr>
+<td><strong>规则形态</strong></td>
+<td>抽象原则（"要克制"）</td>
+<td>指标翻译（"用短句"）</td>
+<td>决策逻辑（"战斗时用短句快切，因为需求-反馈链需要即时反馈"）</td>
+</tr>
+<tr>
+<td><strong>情境适配</strong></td>
+<td>无情境区分</td>
+<td>无情境区分</td>
+<td>六种关键情境分别决策</td>
+</tr>
+<tr>
+<td><strong>跨作者对比</strong></td>
+<td>无</td>
+<td>无</td>
+<td>同一情境不同作者的选择对比</td>
+</tr>
+<tr>
+<td><strong>失真预测</strong></td>
+<td>迭代中被动发现</td>
+<td>无</td>
+<td>蒸馏时主动预测</td>
+</tr>
+<tr>
+<td><strong>指纹定位</strong></td>
+<td>无</td>
+<td>核心提取工具</td>
+<td>验证手段（降级）</td>
+</tr>
+<tr>
+<td><strong>评价方式</strong></td>
+<td>人工逐段评</td>
+<td>6维 rubric + AI自评</td>
+<td>6维 rubric + AI自评 + 决策逻辑一致性检查</td>
+</tr>
+<tr>
+<td><strong>产出物</strong></td>
+<td>SKILL.md</td>
+<td>SKILL.md + fingerprint.json</td>
+<td>style_card.md + SKILL-full.md + fingerprint.json + lint_overlay.json</td>
+</tr>
+</table>
+
+<div class="callout callout-new">
+<strong>v3 保留了什么</strong>：v1 的双轨迭代（改文本+补规则）和 v2 的四阶段骨架（指纹→提取→生成→校验）都保留了。v3 改变的是<strong>阶段2的提取方法</strong>——从"指纹推导"升级为"三层精粹提取"，以及在阶段3-4中加入失真预测和决策逻辑检查。
+</div>
+
+<!-- ========== 实战验证 ========== -->
+<h2>八、实战验证：三国文风包对比</h2>
+
+<p>v3 方法已应用于三个文风包的蒸馏，效果对比如下：</p>
+
+<table>
+<tr><th>维度</th><th>烟雨江南（v1+v2迭代）</th><th>我吃西红柿（v3）</th><th>天蚕土豆（v3）</th></tr>
+<tr>
+<td><strong>核心气质</strong></td>
+<td>黑暗中的微光，信任读者</td>
+<td>用最短的距离把信息送到读者面前</td>
+<td>用绵密的画面把读者按进场景里</td>
+</tr>
+<tr>
+<td><strong>叙事引擎</strong></td>
+<td>克制留白（不说的更重要）</td>
+<td>需求-反馈链（想要→行动→反馈→新需求）</td>
+<td>潜力-阻碍-突破-升级（冰山浮出水面）</td>
+</tr>
+<tr>
+<td><strong>规则数量</strong></td>
+<td>10条克制原则 + 前四层规则</td>
+<td>6种情境决策 + 3项失真预测</td>
+<td>6种情境决策 + 4项失真预测</td>
+</tr>
+<tr>
+<td><strong>跨作者对比</strong></td>
+<td>无（当时只有1个包）</td>
+<td>与天蚕土豆/烟雨江南对比</td>
+<td>与我吃西红柿/烟雨江南对比</td>
+</tr>
+<tr>
+<td><strong>仿写可执行性</strong></td>
+<td>高（经4稿迭代验证）</td>
+<td>待验证</td>
+<td>待验证</td>
+</tr>
+</table>
+
+<div class="callout callout-key">
+<strong>验证结论</strong>：v3 的三层精粹结构在"规则可执行性"上显著优于 v2——每条规则不再是"用短句"而是"在战斗情境下用短句快切，因为叙事引擎需要即时反馈"，写手知道<strong>什么时候用、为什么用、用了服务于什么</strong>。但 v3 的仿写可执行性仍需通过实际写作迭代验证（如同 v1 经历了4稿迭代才封稿）。
+</div>
+
+<!-- ========== 局限 ========== -->
+<h2>九、v3 的局限与风险</h2>
+
+<ul>
+<li><strong>三层精粹的主观性</strong>：核心气质和叙事引擎的提取依赖蒸馏者的文学判断，不同人可能得出不同结论。缓解方法：用跨作者对比来验证独特性——如果两个作家的"核心气质"无法区分，说明提取不够精确</li>
+<li><strong>情境决策的覆盖度</strong>：六种情境是否覆盖了所有关键决策点？可能遗漏"过渡段处理""多线叙事切换""时间跳跃"等情境。后续迭代中可按需扩展</li>
+<li><strong>失真预测的完备性</strong>：预测基于已有经验，无法覆盖所有可能的失真模式。实际仿写中可能出现未预测到的新陷阱</li>
+<li><strong>跨作者对比的偏差</strong>：对比需要有已入库的文风包作为参照，第一个文风包蒸馏时无法使用此工具</li>
+<li><strong>仍需迭代验证</strong>：v3 提取的规则是否准确，最终仍需通过"写测试文章→评价→修正"的迭代来验证。v3 改善了初始规则的质量，但不能完全替代迭代</li>
+</ul>
+
+<!-- ========== 总结 ========== -->
+<h2>十、总结</h2>
+
+<div class="callout callout-new">
+<strong>v3 的核心改进</strong>：不是抛弃 v2，而是在 v2 的四阶段骨架上，将阶段2从"指纹推导"升级为"三层精粹提取"——
+<ol>
+<li><strong>核心气质</strong>：一句话定位作家的写作哲学</li>
+<li><strong>叙事引擎</strong>：提取驱动故事前进的核心机制</li>
+<li><strong>情境决策</strong>：六种关键情境下的选择逻辑，附原文例证</li>
+</ol>
+同时引入<strong>跨作者对比</strong>（凸显独特选择）和<strong>仿写失真预测</strong>（预判常见误读），使规则从"指标翻译"升级为"可复现的决策逻辑"。
+</div>
+
+<p>v3 的意义在于：v2 让蒸馏过程<strong>可扩展</strong>（一个人同时蒸馏多个作家），v3 让蒸馏结果<strong>可执行</strong>（写手拿到的不再是指标清单，而是决策指南）。统计指纹仍然重要——但它从"规则的主要来源"降级为"规则的验证手段"，把规则提取的主导权交还给对原作的深度阅读和决策逆向分析。</p>
+
+<div class="footer">
+<p>自主蒸馏方法论 v3 · 决策精粹法 · 基于三国文风包（烟雨江南/我吃西红柿/天蚕土豆）实战 · 2026-08-05</p>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,60 @@
+{
+  "style": "tiancantudou",
+  "overrides": {
+    "simile_max_per_chapter": 12,
+    "not_a_is_b_max_per_chapter": 1,
+    "dialogue_ratio_min": 0.08,
+    "dialogue_ratio_max": 0.30,
+    "dash_max_per_1000": 0.5,
+    "ellipsis_max_per_1000": 3.0,
+    "le_max_per_1000": 18.0,
+    "zhe_max_per_1000": 15.0,
+    "conjunction_min_per_1000": 3.0,
+    "dialogue_guide_min_per_1000": 0.5,
+    "name_starter_run_max": 4,
+    "transition_word_max_per_chapter": 3,
+    "protagonist_silence_max_per_chapter": 2,
+    "triple_short_sentence_max_per_book": 1
+  },
+  "disabled_rules": [],
+  "disabled_reason": {},
+  "custom_ban_words": [],
+  "signature_exemptions": {
+    "zhe_high": {
+      "reason": "着字10.87/千字为签名手法——进行态画面感，'XX着XX着'叠用是节奏签名",
+      "max_per_1000": 15.0,
+      "usage_note": "用于动作持续/状态延续/环境流动，不是被动语态堆砌"
+    },
+    "dash_near_zero": {
+      "reason": "破折号0.014/千字，原作几乎不用——这是强签名特征",
+      "max_per_1000": 0.5,
+      "usage_note": "需要转折用连词，需要补充用逗号分句，绝不用破折号"
+    }
+  },
+  "fingerprint_ref": {
+    "source": "《大主宰》《武动乾坤》两本全本（779万字）",
+    "confidence": "high",
+    "key_metrics": {
+      "sent_len_mean": 40.34,
+      "short_sent_ratio": 0.1887,
+      "dialogue_ratio": 0.1563,
+      "dash_per_1000": 0.014,
+      "ellipsis_per_1000": 1.63,
+      "comma_period_ratio": 4.48,
+      "le_per_1000": 12.65,
+      "zhe_per_1000": 10.868,
+      "conjunction_starter_ratio": 0.092,
+      "dialogue_guide_per_1000": 1.359,
+      "le_ending_ratio": 0.0149,
+      "metaphor_per_1000": 2.196
+    },
+    "note": "天蚕土豆风格特征：长句绵延（句长40字）、叙述驱动（对话仅15.6%）、破折号近乎为零（0.014/千字，强签名）、着字高频（10.87/千字，进行态画面）、逗句比高（4.48，复合长句）、连词起段多（9.2%）。lint覆盖层：破折号上限极低0.5（签名约束），着字上限放宽至15.0（签名手法），连词下限3.0（原作9.2%，适度设低给空间）。L0通用反AI红线全开。"
+  },
+  "rule_level_strategy": {
+    "L0": "通用反AI红线全开——不是A是B≤1/通货意象0容忍/情绪直说/总结式心声不可豁免",
+    "L1": "身份：短句占比≤25%/比喻≤12/对话占比8-30%",
+    "L2": "签名：破折号≤0.5（强签名约束）/着≤15.0（签名手法）/了≤18/连词≥3.0（渐进达标，不阻断）",
+    "L3": "偏好：段首连词率≥5%（原作9.2%，连词软过渡是签名）"
+  },
+  "note": "天蚕土豆方向：绵密铺陈、长句流转、叙述驱动。破折号近乎为零是强签名（0.014/千字），上限设0.5极严格。着字高频是进行态画面签名（10.87/千字），上限放宽。逗句比高（4.48）意味着复合长句，连词起段多（9.2%）。v1.0（2026-08-05）：基于779万字全本指纹基线创建。"
+}

@@ -1,0 +1,157 @@
+{
+  "card_type": "style_fingerprint_check",
+  "from_agent": "style_fingerprint(script)",
+  "to_agent": "chapter-writer",
+  "status": "fail",
+  "baseline_ref": ".trae/skills/writer-styles/tiancantudou/fingerprint.json",
+  "baseline_confidence": "high",
+  "failed_dims": [
+    "sent_len_stdev",
+    "short_sent_ratio",
+    "dialogue_guide_per_1000"
+  ],
+  "dims": [
+    {
+      "dim": "func_words_cosine",
+      "current": 0.0653,
+      "baseline": 0.0,
+      "deviation": 0.0653,
+      "tolerance": 0.08,
+      "pass": true
+    },
+    {
+      "dim": "sent_len_mean",
+      "current": 40.66,
+      "baseline": 40.34,
+      "deviation": 0.0079,
+      "tolerance": 0.293,
+      "pass": true
+    },
+    {
+      "dim": "sent_len_stdev",
+      "current": 14.32,
+      "baseline": 32.82,
+      "deviation": 0.5637,
+      "tolerance": 0.35,
+      "pass": false
+    },
+    {
+      "dim": "short_sent_ratio",
+      "current": 0.0299,
+      "baseline": 0.1887,
+      "deviation": 0.8415,
+      "tolerance": 0.768,
+      "pass": false
+    },
+    {
+      "dim": "long_sent_ratio",
+      "current": 0.5075,
+      "baseline": 0.4721,
+      "deviation": 0.075,
+      "tolerance": 0.5,
+      "pass": true
+    },
+    {
+      "dim": "para_len_mean",
+      "current": 40.06,
+      "baseline": 42.85,
+      "deviation": 0.0651,
+      "tolerance": 0.35,
+      "pass": true
+    },
+    {
+      "dim": "short_para_ratio",
+      "current": 0.0882,
+      "baseline": 0.2204,
+      "deviation": 0.5998,
+      "tolerance": 0.646,
+      "pass": true
+    },
+    {
+      "dim": "dialogue_ratio",
+      "current": 0.0841,
+      "baseline": 0.1563,
+      "deviation": 0.4619,
+      "tolerance": 1.0,
+      "pass": true
+    },
+    {
+      "dim": "comma_period_ratio",
+      "current": 3.774,
+      "baseline": 4.48,
+      "deviation": 0.1576,
+      "tolerance": 0.35,
+      "pass": true
+    },
+    {
+      "dim": "dash_per_1000",
+      "current": 0.0,
+      "baseline": 0.014,
+      "deviation": 0.07,
+      "tolerance": 0.6,
+      "pass": true
+    },
+    {
+      "dim": "ellipsis_per_1000",
+      "current": 0.0,
+      "baseline": 1.63,
+      "deviation": 1.0,
+      "tolerance": 1.0,
+      "pass": true
+    },
+    {
+      "dim": "metaphor_per_1000",
+      "current": 1.836,
+      "baseline": 2.196,
+      "deviation": 0.1639,
+      "tolerance": 1.0,
+      "pass": true
+    },
+    {
+      "dim": "conjunction_starter_ratio",
+      "current": 0.1471,
+      "baseline": 0.092,
+      "deviation": 0.5989,
+      "tolerance": 1.0,
+      "pass": true
+    },
+    {
+      "dim": "dialogue_guide_per_1000",
+      "current": 3.304,
+      "baseline": 1.359,
+      "deviation": 1.4312,
+      "tolerance": 1.0,
+      "pass": false
+    },
+    {
+      "dim": "le_ending_ratio",
+      "current": 0.0,
+      "baseline": 0.0149,
+      "deviation": 0.745,
+      "tolerance": 1.0,
+      "pass": true
+    },
+    {
+      "dim": "sensory_cosine",
+      "current": 0.0302,
+      "baseline": 0.0,
+      "deviation": 0.0302,
+      "tolerance": 0.15,
+      "pass": true
+    }
+  ],
+  "advice": [
+    {
+      "dim": "sent_len_stdev",
+      "advice": "sent_len_stdev 偏低——原作基线 32.82，当前 14.32。长短句交替形成节奏对比。一章至少有1个≥200字的长段（推理/氛围/动作），与短句形成对比"
+    },
+    {
+      "dim": "short_sent_ratio",
+      "advice": "short_sent_ratio 偏低——原作基线 0.1887，当前 0.0299。碎短句合并为复合长句；短句是稀缺武器，只在重音处使用"
+    },
+    {
+      "dim": "dialogue_guide_per_1000",
+      "advice": "dialogue_guide_per_1000 偏高——原作基线 1.359，当前 3.304。引前引导（某某道：）密度偏差——全裸对话与引前引导的配比按基线方向调整"
+    }
+  ]
+}
