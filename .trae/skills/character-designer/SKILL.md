@@ -1,10 +1,10 @@
 ---
 name: "character-designer"
-version: "1.7"
-description: "Character designer for novels. v1.7: Show vs Tell 新增「掌控者型主角展示结构」——预埋冷动作兑现素材，禁止内心独白自夸. v1.6: 新增性格DNA层(personality_dna)+物件生态(object_ecology)+关系互动生态(interaction_ecology)+DNA优先工作流+动作化出口铁律——设定是衣服性格是身体，先立身体再穿衣服. v1.5: 新增并行设计模式(单角色并行+关系网络合并). v1.4: 新增主角4型模板+反派4型分类法+Show vs Tell角色塑造规则. v1.3: 新增三维度反差化框架+性格对应故事交叉约束. Creates character cards, relationship networks, and growth arcs. Invoke after outline is created or when adding new characters."
+version: "1.8"
+description: "Character designer for novels. v1.8: 新增core_fear(存在主义深层恐惧)/vulnerability_leak(非理性漏洞行为)/depth_type(关系深度类型:镜像自我/锚点/共犯/牺牲见证)——来自《第三纪元》人物形象意见深度分析. v1.7: Show vs Tell 新增「掌控者型主角展示结构」——预埋冷动作兑现素材，禁止内心独白自夸. v1.6: 新增性格DNA层(personality_dna)+物件生态(object_ecology)+关系互动生态(interaction_ecology)+DNA优先工作流+动作化出口铁律——设定是衣服性格是身体，先立身体再穿衣服. v1.5: 新增并行设计模式(单角色并行+关系网络合并). v1.4: 新增主角4型模板+反派4型分类法+Show vs Tell角色塑造规则. v1.3: 新增三维度反差化框架+性格对应故事交叉约束. Creates character cards, relationship networks, and growth arcs. Invoke after outline is created or when adding new characters."
 ---
 
-# 角色师 (Character Designer) v1.6
+# 角色师 (Character Designer) v1.8
 
 ## 角色定位
 
@@ -208,6 +208,24 @@ description: "Character designer for novels. v1.7: Show vs Tell 新增「掌控�
 - 日常细节必须**暗示世界观纵深**，不是"喜欢看书"，而是"周末去旧货市场淘机械表"
 - 配角独立目标必须在首次出场时暗示，后续可偶尔提及，不需要展开
 
+### 角色卡新增字段说明（v1.8 ★）
+
+| 字段 | 类型 | 说明 | 必需 |
+|------|------|------|------|
+| `core_fear` | string | **存在主义深层恐惧**：不是具体弱点（怕高/不擅做饭），而是驱动角色深层行为的抽象恐惧（怕遗忘/怕变成机器/怕失去与人的连接）。越强大的人恐惧越抽象。与 `weaknesses` 的区别：weaknesses 是可被利用的具体弱点，core_fear 是角色自己可能都不自知的深层驱动力 | 主要角色必需 |
+| `vulnerability_leak` | object | **非理性漏洞行为**：在角色核心性格的相反方向，保留一个极小的非理性行为。含 `leak_action`(漏洞行为) / `leak_meaning`(漏洞含义) / `trigger_condition`(触发条件)。与 `personality_extreme.contrast_trait` 的区别：contrast_trait 是"偶尔的反差表现"，vulnerability_leak 是"在极端条件下的非理性选择"——如极度理性的人在生死关头护住没用的旧物而非值钱的工具 | 主要角色必需 |
+
+**core_fear 设计要求**：
+- 必须是抽象的、存在主义层面的恐惧，不是"怕蛇""怕高"这种具体恐惧
+- 必须驱动角色的深层行为——角色做某些事的原因，表面看是为了目标，深层是为了对抗 core_fear
+- 核心恐惧不应在正文中直接说出，而是通过行为暗示（如不停数齿轮=怕遗忘）
+
+**vulnerability_leak 设计要求**：
+- 漏洞行为必须**非理性**——与角色的核心性格矛盾，不是"算出来的最优解"
+- 漏洞必须**极小**——不是大段的情感爆发，而是一个动作/一个选择
+- 漏洞只在**极端条件**下触发——生死关头/本能反应，日常不出现
+- 漏洞的作用：把"神"拉回"人"——让读者瞬间看到角色外壳下的软肋
+
 ### 关系网格式
 
 ```json
@@ -215,6 +233,7 @@ description: "Character designer for novels. v1.7: Show vs Tell 新增「掌控�
   "character_a": "林逸",
   "character_b": "苏晚",
   "relationship_type": "恋人",
+  "depth_type": "锚点——一方是另一方的人性锚，用凡人的方式把非人化的一方拽回地面",
   "collision_type": "冷热对冲",
   "interaction_template": "苏晚接林逸的冷话茬→林逸回一句更冷的→苏晚被噎住→赵天磊打圆场",
   "object_collision": "林逸的旧打火机 × 苏晚的翡翠手镯——穷体面对照",
@@ -247,6 +266,7 @@ description: "Character designer for novels. v1.7: Show vs Tell 新增「掌控�
 | 字段 | 类型 | 说明 | 必需 |
 |------|------|------|------|
 | `collision_type` | string | 碰撞类型：冷热对冲/镜像失态/穷体面对照/新旧交替/碎物对峙 | 关键关系必需 |
+| `depth_type` | string | **关系深度类型（v1.8新增★）**：镜像自我（互为硬币两面，相同过去走向相反极端）/锚点（一方用凡人方式把非人化的一方拽回地面）/共犯（共享不能说的秘密，被秘密永远钉在一起）/牺牲见证（一方为另一方的道而死，死不是悲剧而是完成）。与 `relationship_type` 的区别：relationship_type 管"是什么关系"（盟友/恋人），depth_type 管"为什么是这段关系而非其他"（因为互为镜像/因为你是我的锚） | 关键关系标注 |
 | `interaction_template` | string | 互动模板：一个具体的碰撞场景序列（A做X→B做Y→…），写手可直接调用 | 关键关系≥1个 |
 | `object_collision` | string | 物件碰撞：两个角色的情感物件同框时的碰撞效果 | 有情感物件的角色对标注 |
 | `human_flavor_output` | string | 产出什么人味：节奏喘息/幽默控场/生活底色/反差并置 | 关键关系标注 |

@@ -1,54 +1,76 @@
 {
-  "version": "0.1",
-  "status": "角色索引，详细角色卡待 character-designer 设计",
+  "version": "0.2",
+  "status": "角色索引+力量体系定位，详细角色卡待 character-designer 设计",
   "characters": [
     {
       "name": "顾衡",
       "role": "男主",
       "core": "掌控全局的天才",
-      "profession": "构装师（能力线之一，非全部）",
-      "abilities": ["全局掌控（天才底色，非金手指）", "构装师（造物/扩张）", "献祭/位面掠夺（资源引擎）"],
+      "profession": "构装师（主）+位面行者（副）",
+      "current_rank": "三阶匠师（构装师）",
+      "abilities": [
+        "全局掌控（天才底色，非金手指）",
+        "构装师匠师级手艺（能造三阶构装，能扛壳兽群）",
+        "遗器核心越阶（用第二纪元遗物可临时达到四阶效果，代价：核心不可再生）",
+        "献祭/位面掠夺（资源引擎）：用前纪元遗物献祭可规避本纪元规则惩罚"
+      ],
+      "power_system_position": {
+        "常规战力": "三阶匠师级——能造三阶构装，但缺活核只能上弦动两个时辰",
+        "越阶能力": "用遗器核心可临时达到四阶效果（Ch3引导器一击灭纹兽）",
+        "限制": "构装靠活核驱动，没有活核构装只是死物；活核只有位面生物体内有",
+        "成长路径": "匠师→大师（需活核）→宗师（需大量遗器）；同步位面行者路线：裂隙客→深潜者→征服者",
+        "读者期待锚": "Ch3结束时引导器四条槽只填了一条，剩下三条空着——读者会期待槽填满后的战力"
+      },
       "personality_dna_hint": ["全局视角/多线程思维", "掌控欲（什么都要算清）", "冷静决断", "冷幽默控场"],
       "show_structure": "掌控者型——冷动作兑现结构（character-designer v1.7 第4条）",
-      "appearance_contrast_hint": "待设计——落魄外表 vs 精密大脑",
+      "appearance_contrast_hint": "落魄外表 vs 精密大脑",
       "object_ecology_hint": "一把旧锉刀（工具/武器）+ 一枚旧齿轮（标志性物件：来历不明、齿尖磨圆、从不派用场，暗示与'沈'或过去的关联；遇大事时习惯性在指间转动，是掌控欲的外化锚点）",
-      "identity_contrast_hint": "表面：边境城里的普通人/逃难者；隐藏：掌控全局的天才构装师",
+      "identity_contrast_hint": "表面：边境城里的普通人/逃难者；隐藏：三阶匠师级构装师，能用遗器越阶杀纹兽",
       "weaknesses_hint": "掌控欲太强——什么都要算清、什么都放不下，反而容易被困住",
       "goals": {
-        "short_term": "守住边境城，获取城下古构装残骸",
-        "long_term": "扩张势力+追寻世界真相"
+        "short_term": "守住锈关挖出城下残骸，造出构装小队",
+        "long_term": "去位面取活核→造大师级构装→扩张势力+追寻世界真相"
       },
       "status": "待 character-designer 完整设计（personality_dna≥6条 + action_outlets + object_ecology + interaction_template）"
+    },
+    {
+      "name": "守军头目",
+      "role": "配角",
+      "function": "Ch1质疑顾衡/Ch2求他造东西/Ch3见证顾衡越阶/社交确认观众",
+      "appearance_chapter": 1,
+      "power_level": "一阶普通武师（无纹路），拿着凡器长矛",
+      "independent_goals_hint": "守城活命+老婆孩子在南边娘家（那边也开始闹兽潮了），不完全信任顾衡",
+      "status": "待设计"
+    },
+    {
+      "name": "老兵（老周头）",
+      "role": "功能性配角",
+      "function": "Ch3献祭对照——浅祭者，铜符四十年念想换二阶临时效果",
+      "appearance_chapter": 3,
+      "power_level": "一阶普通老兵，献祭后临时二阶（暗铜色光），结果：壳裂一条缝又愈合",
+      "status": "Ch3功能性角色，不需完整角色卡"
+    },
+    {
+      "name": "年轻兵",
+      "role": "功能性配角",
+      "function": "Ch3献祭对照——命祭者，生辰木牌换三阶临时效果但人废了",
+      "appearance_chapter": 3,
+      "power_level": "一阶普通兵，献祭后临时三阶（青白色光），结果：壳裂更深但两鬓白了一片",
+      "status": "Ch3功能性角色，不需完整角色卡"
     },
     {
       "name": "小孩",
       "role": "功能性配角",
       "function": "Ch1 冷动作①执行者——顾衡塞粮传信",
       "appearance_chapter": 1,
-      "status": "待设计（简单配角，不需完整角色卡）"
+      "status": "简单配角，不需完整角色卡"
     },
     {
-      "name": "守军头目",
-      "role": "配角",
-      "function": "Ch1 质疑顾衡/Ch2 求他造东西/社交确认观众",
-      "appearance_chapter": 1,
-      "independent_goals_hint": "守城活命，不完全信任顾衡",
-      "status": "待设计"
-    },
-    {
-      "name": "本不该认识的人",
+      "name": "本不该认识的人（沈）",
       "role": "悬念角色",
-      "function": "Ch1 章末钩子/与守城动机有关/古构装残骸知情人或旧识",
+      "function": "Ch1章末钩子/Ch2残骸刻痕/Ch3齿轮刻痕——谁在顾衡的齿轮上留了痕？",
       "appearance_chapter": 1,
-      "status": "待设计（身份待定，可能是旧识/同行/残骸线索人）"
-    },
-    {
-      "name": "献祭对照角色",
-      "role": "配角",
-      "function": "Ch3 献祭衬托顾衡的献祭'更贵更冷'",
-      "appearance_chapter": 3,
-      "hint": "老人或士兵，献出压箱底的东西/寿数，用他的献祭衬托顾衡的算计和冷静",
-      "status": "待设计"
+      "status": "待设计（身份待定，可能是旧识/同行/残骸线索人，已死在昭关城下）"
     }
   ]
 }
