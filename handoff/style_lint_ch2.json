@@ -2,21 +2,12 @@
   "card_type": "style_lint",
   "from_agent": "style_lint(script)",
   "to_agent": "chapter-writer",
-  "status": "fail",
+  "status": "pass",
   "style_pack": null,
-  "blocking_count": 1,
+  "blocking_count": 0,
   "advisory_count": 0,
-  "non_blocking_count": 1,
+  "non_blocking_count": 4,
   "issues": [
-    {
-      "rule": "simile_stacked",
-      "severity": "critical",
-      "level": "L0",
-      "chapter": "chapter_002.txt",
-      "line": 51,
-      "excerpt": "铜齿咬合的声响在地窖里密密地起来，一层咬着一层，细得像虫啃朽木，远远听着又像有人在墙里拨算盘，那声音",
-      "message": "单段多喻体堆叠（一段一喻）"
-    },
     {
       "rule": "dialogue_ratio",
       "severity": "minor",
@@ -25,6 +16,33 @@
       "line": 0,
       "excerpt": "",
       "message": "对话占比26% < 下限35%"
+    },
+    {
+      "rule": "phrase_repeat",
+      "severity": "minor",
+      "level": "L1",
+      "chapter": "chapter_002.txt",
+      "line": 0,
+      "excerpt": "守军头目看",
+      "message": "章内重复'守军头目看'×4 > 上限3（意象/句式自我繁殖——高级AI痕迹）"
+    },
+    {
+      "rule": "phrase_repeat",
+      "severity": "minor",
+      "level": "L1",
+      "chapter": "chapter_002.txt",
+      "line": 0,
+      "excerpt": "停了一下",
+      "message": "章内重复'停了一下'×4 > 上限3（意象/句式自我繁殖——高级AI痕迹）"
+    },
+    {
+      "rule": "phrase_repeat",
+      "severity": "minor",
+      "level": "L1",
+      "chapter": "chapter_002.txt",
+      "line": 0,
+      "excerpt": "两个时辰",
+      "message": "章内重复'两个时辰'×4 > 上限3（意象/句式自我繁殖——高级AI痕迹）"
     }
   ],
   "timeline_clues": {},

@@ -15,18 +15,10 @@
       "chapter": "chapter_003.txt",
       "line": 0,
       "excerpt": "",
-      "message": "对话占比24% < 下限35%"
+      "message": "对话占比11% < 下限35%"
     }
   ],
-  "timeline_clues": {
-    "chapter_003.txt": [
-      {
-        "line": 75,
-        "hit": "二十年",
-        "context": "两个人，两样献祭，压箱底的铜符换了四十年，一条命换了二十年寿数，到头来只在那壳上"
-      }
-    ]
-  },
+  "timeline_clues": {},
   "config": {
     "not_a_is_b_max_per_chapter": 2,
     "short_para_len": 15,
