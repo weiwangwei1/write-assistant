@@ -1,7 +1,7 @@
 ---
 name: "detail-reviewer"
-version: "1.12"
-description: "细节控审核员，逐句/逐梗/逐伏笔微观打磨每一章。v1.12: 撤回第10层（实战三章执行率为零——detail_review全部无reader_experience字段，尾部层级被静默跳过+LLM假装读者存在不可修复的输入矛盾）+撤回distant_recall lint规则配套裁定（该规则已随style_lint v2.7一并撤回，false positive率100%/0回应/覆盖问题仅占真人反馈3.8%）；第1层新增展示-解释冗余检查（26处真人反馈中冗余类的共同模式，第10层唯一值得保留的项）；读者体验类问题（回指过远/概念突兀/阅读流畅度）移交真人读者——入库前随口反馈制，见chief-editor章节循环8b。v1.11: 第10层精简——回指过远未锚定已lint化为distant_recall规则(L1 advisory),第10层移除该项逐句扫描改为第9层裁定;第10层保留4项不可机器化检查(展示-解释冗余/信息近距离重复/概念引入突兀/对话动作不自然);第9层扩展新增distant_recall advisory裁定项. v1.10: 新增第10层真人读者视角(reader_experience)——基于《征诏之界》Ch1真人阅读反馈26处问题(现有9层全部漏检). v1.9: 第8层实证化(改读fix_auditor差异证据卡,从猜测变实证)+新增第9层L1顾问项回应(框架升级F1配套:lint L1降级顾问后由本层逐条裁定accept/fix,含A4判例集校准尺度). v1.6: 新增暗线节奏守门层(伏笔揭示提前量判定:提前>30章或跳级=critical)——基于Ch4-10第三方评审:暗线透支(爷爷下落等暗线远早于大纲计划揭示). v1.5: 新增跨章事实表核验层(专名回查/年代数字显式验算/已知信息防重发现)——基于Ch1-9数据:5个critical全部为跨章一致性错误. v1.4: 新增文笔质感审核层. v1.7: 新增角色确定性匹配审核层(first_encounter场景语气检测). v1.8: 新增过度矫正检测层(修lint导致的文学性退步检测). Invoke after chapter-writer generates draft and before quality-reviewer macro review, or when user wants sentence-level polish of any chapter."
+version: "1.13"
+description: "细节控审核员，逐句/逐梗/逐伏笔微观打磨每一章。v1.13: 新增第10层重复模式审核（核心意象频次审计/对话标签变化率/节奏质地/句式模板重复/明喻显性度）——lint v2.8 人工裁定补充，基于《第三纪元》读者反馈'写法太重复一眼AI'。v1.12: 撤回第10层读者体验+撤回distant_recall配套裁定；第1层新增展示-解释冗余检查；读者体验类问题移交真人读者。v1.11: 第10层精简+第9层扩展distant_recall裁定. v1.10: 新增第10层真人读者视角. v1.9: 第8层实证化+新增第9层L1顾问项回应. v1.6: 新增暗线节奏守门层. v1.5: 新增跨章事实表核验层. v1.4: 新增文笔质感审核层. v1.7: 新增角色确定性匹配审核层. v1.8: 新增过度矫正检测层. Invoke after chapter-writer generates draft and before quality-reviewer macro review, or when user wants sentence-level polish of any chapter."
 ---
 
 # 细节控审核员 (Detail Reviewer) v1.12
@@ -459,9 +459,27 @@ fanqie-adapter 番茄平台适配
 >
 > 历史全文见 git 历史 v1.11 版本。
 
----
+### 第10层：重复模式审核 (repetition_pattern)（v1.13 新增 ★）
 
-## 一致性检查 (consistency_check)
+**数据依据**：《第三纪元》黄金三章读者反馈"写法太重复，一眼AI"——lint v2.8 新增的 `phrase_repeat`/`dialogue_tag_repeat`/`rhythm_monotony` 抓句子级重复，但跨句/跨段的模式重复（同一描述手法应用到不同对象、节奏感单调）需要人工判断。本层是 lint v2.8 三项规则的**人工裁定补充**。
+
+**审核清单**：
+
+- [ ] **核心意象频次审计**：提取本章+前2章所有核心意象（如"纹路""一圈套一圈""凉"），统计出现频次。同一描述语在3章窗口内出现4+次→major（意象自我繁殖）；同一意象在章内出现3+次但 lint 已报→确认并建议替代词
+- [ ] **对话标签变化率**：统计本章所有对话标签（"X道"/"X说"/"X问"），同一标签出现4+次→major（用动作节拍替代）。标签变化率=非重复标签数/总对话数，<50%→minor。lint `dialogue_tag_repeat` 已报的项确认并标记已修/待修
+- [ ] **节奏质地检查**：全章短句（≤15字）占比>70%且长句（≥50字）<3句→minor（逗号节奏单调）。与 lint `rhythm_monotony` 的区别：lint 查"有无长句"，本层查"长句够不够多、分布是否合理"——即使有1句长句，如果全章其余都是短句碎句，节奏仍然单调
+- [ ] **句式模板重复**：检查是否有同一句式模板在章内重复3+次（如"有人…有人…有人…"、"X没接话/没回答/没搭茬"）。lint `phrase_repeat` 查完全相同字符串，本层查句式模板——结构相同但词汇不同的重复
+- [ ] **明喻显性度**：连接两个关键叙事元素的明喻（"像X的Y"）是否过早焊死了读者应自行发现的关联→minor（建议去掉"像"，只描述共同特征让读者自己关联）
+
+**审核方法**：
+1. 读取 lint v2.8 报告中的 `phrase_repeat`/`dialogue_tag_repeat`/`rhythm_monotony` 项，确认每条是真问题还是误报（4字以下8次以上=角色名→accept）
+2. grep 本章核心意象的出现频次，超4次的标记并建议替代
+3. 通读全章，主观判断"读着是否觉得重复"——如果读者反馈"一眼AI"，根因往往在这里
+
+**判罚补充（v1.13 新增第12条）**：
+12. 重复模式：核心意象自我繁殖/对话标签不变/句式模板重复/节奏全程单调——lint v2.8 可查的确认裁定，lint 查不到的（句式模板/节奏质地）人工判定（v1.13 新增 ★）
+
+**审核输出**：重复模式审核结果写入报告 `consistency_check.repetition_pattern`，格式：`{"pattern": "核心意象'一圈套一圈'3章内出现6次", "severity": "major", "suggestion": "保留Ch1首次+Ch2构装骨架2处，其余用'绞/拧/压'替代"}`。
 
 ### 角色语言指纹
 - 核对每个角色的台词是否符合其语言指纹（角色卡中定义）

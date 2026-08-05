@@ -10,6 +10,14 @@ style_lint.py — 网文章节文风校验器（write-assistant 流水线前置�
 
 退出码：0=通过  1=存在 L0 critical（供流水线拦截；v2.3 起 L1 降级为顾问，报告但不阻断）
 
+v2.8：新增三项章内重复检测（L1 顾问项），针对"高级AI痕迹——重复模式"：
+  ① phrase_repeat：章内短语重复（同一4-8字片段出现3+次→意象/句式自我繁殖）
+  ② dialogue_tag_repeat：对话标签重复（同一"X道/X说"出现4+次→应用动作节拍替代）
+  ③ rhythm_monotony：节奏单调（短句占比>80%且无≥50字长句→逗号节奏全程不变化）
+  三项均为 L1 minor，报告但不阻断，由 detail-reviewer 逐条裁定。
+  动机：《第三纪元》黄金三章读者反馈"写法太重复，一眼AI"——lint 抓句子级AI痕迹，
+  但抓不到跨句/跨段的重复模式，而这些恰恰是更高级的AI痕迹。
+
 v2.7：撤回 distant_recall 规则（v2.6 引入，2026-07-28 撤回）——实战中 2 次标记全是同段落
   false positive、0 次回应、0 次真实拦截；其覆盖的回指过远问题仅占真人反馈 3.8%，ROI 为负。
   检测职责移交真人读者（入库前随口反馈制，见 chief-editor 章节循环 8b）。
@@ -76,6 +84,14 @@ DEFAULT_CONFIG = {
     "recurring_phrase_min_len": 8,        # 重复短语最小长度（汉字数）
     "recurring_phrase_max_across": 2,     # 同一短语跨章出现的最大次数（超过报minor）
     "signature_line_max_per_5ch": 2,      # 角色签名台词每5章窗口内最大使用次数
+    # 六c、章内重复检测（v2.8新增——高级AI痕迹：重复模式）
+    "phrase_repeat_min_len": 4,           # 章内重复短语最小长度（汉字数）
+    "phrase_repeat_max_len": 8,           # 章内重复短语最大长度
+    "phrase_repeat_max_in_chapter": 3,    # 同一片段章内最大出现次数（超过报minor）
+    "phrase_repeat_name_threshold": 8,    # 4字以下短语出现此次数以上判定为角色名，跳过
+    "dialogue_tag_max_repeat": 4,         # 同一对话标签（X道/X说）章内最大重复次数
+    "short_sentence_ratio_max": 0.80,     # 短句(≤15字)占比上限（节奏单调检测）
+    "long_sentence_min_len": 50,          # 长句最小字数（至少1句≥此值，否则报rhythm_monotony）
     # 七b、旁白式设定解释检测（v2.5新增，L2级）
     "tell_exposition_patterns": [
         r"是.{2,10}的命脉", r"是.{2,10}的命根", r"意味着",
@@ -102,6 +118,8 @@ RULE_LEVELS = {
     "narrative_dialogue": "L2", "certain_marker_mismatch": "L2",
     # v2.5 新增：旁白式设定解释（L2，顾问项）
     "tell_exposition": "L2",
+    # v2.8 新增：章内重复检测（L1，顾问项——高级AI痕迹）
+    "phrase_repeat": "L1", "dialogue_tag_repeat": "L1", "rhythm_monotony": "L1",
     # L3: 偏好规则 — 仅提示
     "name_starter_run": "L3", "ranhou": "L3",
     "four_char": "L3", "emotion_telling": "L3",
@@ -377,6 +395,60 @@ def lint_chapter(ch, cfg, disabled, custom_bans, rule_levels=None):
     for ln, s in ch.body_lines:
         for m in re.finditer(r"([甲乙丙丁戊己庚辛壬癸][子丑寅卯辰巳午未申酉戌亥]年|\d+年|二十年|三十年|六十年|三百年|半年|\d+年前|上一次献祭)", s):
             time_hits.append({"line": ln, "hit": m.group(0), "context": s[:40]})
+
+    # v2.8 新增：章内重复模式检测（意象繁殖/标签重复/节奏单调）——高级AI痕迹
+    
+    # 1. 章内短语重复（catches "一圈套一圈" × 3+ within one chapter）
+    ngram_min = cfg.get("phrase_repeat_min_len", 4)
+    ngram_max = cfg.get("phrase_repeat_max_len", 8)
+    ngram_threshold = cfg.get("phrase_repeat_max_in_chapter", 3)
+    bad_starts_local = set("的了着过在地")
+    bad_ends_local = set("的他她它在地")
+    ngram_counts = {}
+    for seq_match in re.finditer(r"[\u4e00-\u9fff]+", ch.text):
+        seq = seq_match.group()
+        if len(seq) < ngram_min:
+            continue
+        for length in range(ngram_min, min(ngram_max, len(seq)) + 1):
+            for i in range(len(seq) - length + 1):
+                ng = seq[i:i+length]
+                if ng[0] in bad_starts_local or ng[-1] in bad_ends_local:
+                    continue
+                ngram_counts[ng] = ngram_counts.get(ng, 0) + 1
+    reported_ngrams = set()
+    name_threshold = cfg.get("phrase_repeat_name_threshold", 8)
+    for ng, cnt in sorted(ngram_counts.items(), key=lambda x: (-x[1], -len(x[0]))):
+        if cnt <= ngram_threshold:
+            continue
+        # 启发式：4字以下短语出现8次以上判定为角色名，跳过（"守军头目"等）
+        if len(ng) <= 4 and cnt >= name_threshold:
+            continue
+        if any(ng in r and r != ng for r in reported_ngrams):
+            continue
+        reported_ngrams.add(ng)
+        add("phrase_repeat", "minor", 0, ng,
+            f"章内重复'{ng}'×{cnt} > 上限{ngram_threshold}（意象/句式自我繁殖——高级AI痕迹）")
+
+    # 2. 对话标签重复（catches "顾衡道" × 4+ within one chapter）
+    tag_counts = {}
+    for m in re.finditer(r"([\u4e00-\u9fff]{2,4})(?:道|说|问|答)[：:，,]", ch.text):
+        tag = m.group(1) + m.group(0)[-2]
+        tag_counts[tag] = tag_counts.get(tag, 0) + 1
+    for tag, cnt in tag_counts.items():
+        if cnt > cfg.get("dialogue_tag_max_repeat", 4):
+            add("dialogue_tag_repeat", "minor", 0, tag,
+                f"对话标签'{tag}'×{cnt} > 上限{cfg.get('dialogue_tag_max_repeat', 4)}（用动作节拍替代标签）")
+
+    # 3. 节奏单调（catches "all short choppy sentences, no long sentence breathing"）
+    sentences = [s.strip() for s in re.split(r"[。！？]", ch.text) if s.strip()]
+    sent_lens = [han_len(s) for s in sentences if han_len(s) > 0]
+    if sent_lens:
+        short_count = sum(1 for l in sent_lens if l <= 15)
+        short_ratio = short_count / len(sent_lens)
+        max_sent_len = max(sent_lens)
+        if short_ratio > cfg.get("short_sentence_ratio_max", 0.80) and max_sent_len < cfg.get("long_sentence_min_len", 50):
+            add("rhythm_monotony", "minor", 0, "",
+                f"短句占比{short_ratio*100:.0f}%（{short_count}/{len(sent_lens)}），最长句{max_sent_len}字 < {cfg.get('long_sentence_min_len', 50)}字——逗号节奏单调，需在情感节点放长句")
 
     # v2.2: 合理覆写过滤——被覆写的行级问题从 issues 中移除
     if ch.overrides:

@@ -1,7 +1,7 @@
 ---
 name: "character-designer"
-version: "1.6"
-description: "Character designer for novels. v1.6: 新增性格DNA层(personality_dna)+物件生态(object_ecology)+关系互动生态(interaction_ecology)+DNA优先工作流+动作化出口铁律——设定是衣服性格是身体，先立身体再穿衣服. v1.5: 新增并行设计模式(单角色并行+关系网络合并). v1.4: 新增主角4型模板+反派4型分类法+Show vs Tell角色塑造规则. v1.3: 新增三维度反差化框架+性格对应故事交叉约束. Creates character cards, relationship networks, and growth arcs. Invoke after outline is created or when adding new characters."
+version: "1.7"
+description: "Character designer for novels. v1.7: Show vs Tell 新增「掌控者型主角展示结构」——预埋冷动作兑现素材，禁止内心独白自夸. v1.6: 新增性格DNA层(personality_dna)+物件生态(object_ecology)+关系互动生态(interaction_ecology)+DNA优先工作流+动作化出口铁律——设定是衣服性格是身体，先立身体再穿衣服. v1.5: 新增并行设计模式(单角色并行+关系网络合并). v1.4: 新增主角4型模板+反派4型分类法+Show vs Tell角色塑造规则. v1.3: 新增三维度反差化框架+性格对应故事交叉约束. Creates character cards, relationship networks, and growth arcs. Invoke after outline is created or when adding new characters."
 ---
 
 # 角色师 (Character Designer) v1.6
@@ -526,6 +526,15 @@ AI写作最大的角色塑造暴露点：用"告诉"代替"展示"——直接�
    - 角色卡中的 `personal_habits` 和 `weaknesses` 是供chapter-writer轮换使用的素材池，不是每次都调用的固定标签
    - **替代方式**：用不同的行为展示同一个性格特质——精算性格可以通过"记账""比价""算时间成本""评估风险收益"等不同行为来展示，不必每次都是"算到个位"
    - 角色卡中每个核心性格特质应提供≥3种不同的展示方式，标注 `show_variants` 字段
+
+4. **掌控者型主角展示结构（v1.7 新增 ★）**：
+   - 适用对象：聪明/掌控全局/天才型主角（如《无尽武装》后期、《罪恶之城》理查）。这类主角最大的AI写作暴露点是"内心独白自夸"——让主角在脑子里盘算"我早看穿了"，把掌控感"告诉"读者。
+   - 预埋原则：角色设计阶段就为这类主角预埋"冷动作兑现"素材——**3个单看"看不懂"、事后同时兑现的冷动作**，让读者自己惊觉"他是天才"，而非被告知。这是 chapter-writer 5.8b 的正向配合。
+   - 展示事件模板：`{掌控特质} → {乱局触发} → {主角做3个冷动作} → {3个冷动作同时兑现救局} → {读者自行得出"他掌控全局"}`
+   - 示例：掌控全局 → 破城乱局 → 给小孩塞粮说"往东第三道门"、翻倒一摞木板、拦住逃跑的民兵 → 传信点燃油槽+木板绊住兽潮+民兵守住唯一缺口 → 读者恍然"他进城第一眼就把全城当棋局看完了"
+   - **每个冷动作必须独立成立**（读者当时看不明白，但单独看是合理行为），且**必须有客观后果**（改变了局面），不是摆姿态
+   - **禁忌**：角色卡里不得写纯形容词式的掌控设定（"他掌控全局"是Tell），必须落到"3个冷动作"这种可被写手调用的具体动作素材
+   - 与 personality_dna 衔接：掌控者型主角的 `personality_dna` 应有"全局视角/多线程思维"类特质，其 `action_outlets` 直接产出冷动作素材
 
 ### 角色卡新增字段（v1.4）
 
