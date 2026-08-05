@@ -1,5 +1,5 @@
 {
-  "version": "0.2",
+  "version": "0.3",
   "main_quest": {
     "goal": "扩张势力+追寻世界真相",
     "progress": "not_started",
@@ -7,12 +7,14 @@
   },
   "suspense_window": {
     "active": [
-      {"id": "s1", "question": "顾衡为什么守这座城？", "opened_chapter": 1, "target_close": 2, "status": "open"},
-      {"id": "s2", "question": "城下埋着什么？", "opened_chapter": 2, "target_close": 3, "status": "open"},
-      {"id": "s3", "question": "顾衡献祭了什么？代价是什么？", "opened_chapter": 3, "target_close": 4, "status": "open"}
+      {"id": "s1", "question": "顾衡为什么守这座城？", "opened_chapter": 1, "target_close": 2, "status": "partial", "note": "Ch2揭示为获取残骸，但深层原因（与收刀者的关系）未解"},
+      {"id": "s2", "question": "城下埋着什么？", "opened_chapter": 2, "target_close": 3, "status": "closed", "note": "Ch3揭示为第二纪元构装残骸，芯子被献祭"},
+      {"id": "s3", "question": "顾衡献祭了什么？代价是什么？", "opened_chapter": 3, "target_close": 4, "status": "open"},
+      {"id": "s4", "question": "收刀者是谁？昭关城下发生了什么？", "opened_chapter": 2, "target_close": null, "status": "open", "note": "v0.3新增——'沈'名字已推迟揭晓，目标10-15万字（约Ch40-60）完成第一层揭秘，但不彻底讲完，转化为新悬念"}
     ],
     "count": 3,
-    "max": 3
+    "max": 3,
+    "note": "s2已闭环，s4新开，活跃数仍为3。s4为长线悬念，不计入3章窗口限制"
   },
   "villain_ladder": {
     "status": "not_started",
@@ -23,7 +25,7 @@
     "planned_upgrades": [
       {"chapter": 1, "upgrade": "展示掌控全局的天赋（非超能力）"},
       {"chapter": 2, "upgrade": "展示构装师造物能力"},
-      {"chapter": 3, "upgrade": "展示献祭能力+决断力"}
+      {"chapter": 3, "upgrade": "展示献祭能力+决断力+生理代价暗示（指甲缝渗血）"}
     ]
   },
   "emotional_intensity": {
@@ -32,8 +34,8 @@
     "chapters": [
       {"chapter": 1, "intensity": 4, "type": "紧绷灰", "note": "城破乱局，冷动作兑现，情感克制"},
       {"chapter": 2, "intensity": 3, "type": "冷静蓝", "note": "工坊造物，技术展示，守军头目家庭暗线"},
-      {"chapter": 3, "intensity": 9, "type": "灼烧红", "note": "老兵献铜符+士兵献寿数=凡人牺牲极致。后续不能重复打'某人献出珍贵之物'这张牌"},
-      {"chapter": 4, "intensity": null, "type": null, "note": "待写。情感质地须切换：非人孤独/跨纪元记忆重量/造物者与被造物关系，不能再写凡人牺牲"},
+      {"chapter": 3, "intensity": 9, "type": "灼烧红", "note": "老兵献铜符+士兵献寿数+无效献祭对照=凡人牺牲极致。后续不能重复打'某人献出珍贵之物'这张牌"},
+      {"chapter": 4, "intensity": null, "type": null, "note": "待写。情感质地须切换：非人孤独/跨纪元记忆重量/造物者与被造物关系，不能再写凡人牺牲。须降温至≤6，插入松弛章节（修整工坊/日常互动）"},
       {"chapter": 5, "intensity": null, "type": null, "note": "待写"}
     ],
     "rules": [
@@ -41,6 +43,30 @@
       "同一情感类型（如'凡人牺牲'）3章内不得重复使用",
       "位面探索章节的情感质地须与城防章节不同——非人孤独/跨纪元记忆/造物者困境",
       "longline-guardian 每10章检查情感坡度：是否断崖式下降、是否重复打同一张牌"
+    ]
+  },
+  "creative_warnings": {
+    "note": "v0.3新增——第二轮读者反馈的后续创作预警，plot-architect设计后续大纲时须遵守",
+    "warnings": [
+      {
+        "id": "w1",
+        "topic": "节奏变速",
+        "detail": "黄金三章高密度输出，Ch4须适当插入松弛章节（顾衡修整工坊、与守军头目日常互动），避免读者审美疲劳",
+        "applies_from": "Ch4"
+      },
+      {
+        "id": "w2",
+        "topic": "收刀者揭晓时机",
+        "detail": "建议10-15万字（约Ch40-60）完成'收刀者'第一层揭秘，但不彻底讲完，转化为新悬念（如'此人为何会出现在第二纪元残骸上'）",
+        "applies_from": "Ch4",
+        "target": "Ch40-60"
+      },
+      {
+        "id": "w3",
+        "topic": "构装体系扩展边界",
+        "detail": "目前'6具小队'设定很克制，后续须始终保持'每一具构装都有独特代价/故事'的原则，避免沦为普通召唤物/量产化陷阱",
+        "applies_from": "Ch4"
+      }
     ]
   }
 }
