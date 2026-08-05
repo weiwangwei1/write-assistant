@@ -1,0 +1,24 @@
+{
+  "version": "0.1",
+  "current_chapter": 0,
+  "current_phase": "黄金三章设计完成，待进入正式生产流程",
+  "protagonist": "顾衡",
+  "project_title": "第三纪元",
+  "milestones": [
+    {"milestone": "选题方向确认", "status": "done", "note": "构装师+献祭+位面掠夺，掌控全局天才主角"},
+    {"milestone": "黄金三章设计", "status": "done", "note": "Ch1乱局/Ch2造物/Ch3献祭，beat sheet 已落 outline.json"},
+    {"milestone": "框架升级", "status": "done", "note": "chapter-writer v3.4 + character-designer v1.7 沉淀行动化立人设方法论"},
+    {"milestone": "topic-screener 预筛", "status": "pending", "note": "新项目必须先通过 topic-screener 预筛"},
+    {"milestone": "plot-architect 完整大纲", "status": "pending", "note": "在黄金三章基础上扩展6卷300章完整大纲"},
+    {"milestone": "character-designer 角色设计", "status": "pending", "note": "顾衡完整角色卡（personality_dna≥6 + action_outlets + object_ecology）"},
+    {"milestone": "黄金三章写作", "status": "pending", "note": "Ch1-3 正文生产"}
+  ],
+  "next_action": "走 topic-screener 预筛 → plot-architect 完整大纲 → skeptic → outline-editor → character-designer → chapter-writer",
+  "character_snapshot": {
+    "顾衡": {
+      "location": "边境城",
+      "status": "未出场",
+      "mood": null
+    }
+  }
+}

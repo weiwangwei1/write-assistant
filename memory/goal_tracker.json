@@ -1,0 +1,46 @@
+{
+  "version": "0.2",
+  "main_quest": {
+    "goal": "扩张势力+追寻世界真相",
+    "progress": "not_started",
+    "current_sub_goal": "守住边境城，获取城下古构装残骸"
+  },
+  "suspense_window": {
+    "active": [
+      {"id": "s1", "question": "顾衡为什么守这座城？", "opened_chapter": 1, "target_close": 2, "status": "open"},
+      {"id": "s2", "question": "城下埋着什么？", "opened_chapter": 2, "target_close": 3, "status": "open"},
+      {"id": "s3", "question": "顾衡献祭了什么？代价是什么？", "opened_chapter": 3, "target_close": 4, "status": "open"}
+    ],
+    "count": 3,
+    "max": 3
+  },
+  "villain_ladder": {
+    "status": "not_started",
+    "note": "待 plot-architect 设计反派三级体系"
+  },
+  "ability_progression": {
+    "note": "前10章每3-4章须有1次主角能力成长的微暗示",
+    "planned_upgrades": [
+      {"chapter": 1, "upgrade": "展示掌控全局的天赋（非超能力）"},
+      {"chapter": 2, "upgrade": "展示构装师造物能力"},
+      {"chapter": 3, "upgrade": "展示献祭能力+决断力"}
+    ]
+  },
+  "emotional_intensity": {
+    "note": "v0.2新增——追踪每章情感浓度，防止峰值过早或重复打同一张牌。longline-guardian 卷末复盘时检查情感坡度是否合理",
+    "scale": "1-10（1=冷叙述/10=全文情感峰值）",
+    "chapters": [
+      {"chapter": 1, "intensity": 4, "type": "紧绷灰", "note": "城破乱局，冷动作兑现，情感克制"},
+      {"chapter": 2, "intensity": 3, "type": "冷静蓝", "note": "工坊造物，技术展示，守军头目家庭暗线"},
+      {"chapter": 3, "intensity": 9, "type": "灼烧红", "note": "老兵献铜符+士兵献寿数=凡人牺牲极致。后续不能重复打'某人献出珍贵之物'这张牌"},
+      {"chapter": 4, "intensity": null, "type": null, "note": "待写。情感质地须切换：非人孤独/跨纪元记忆重量/造物者与被造物关系，不能再写凡人牺牲"},
+      {"chapter": 5, "intensity": null, "type": null, "note": "待写"}
+    ],
+    "rules": [
+      "情感峰值（intensity≥8）后下一章必须降温≥3档",
+      "同一情感类型（如'凡人牺牲'）3章内不得重复使用",
+      "位面探索章节的情感质地须与城防章节不同——非人孤独/跨纪元记忆/造物者困境",
+      "longline-guardian 每10章检查情感坡度：是否断崖式下降、是否重复打同一张牌"
+    ]
+  }
+}

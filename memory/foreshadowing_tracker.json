@@ -1,0 +1,53 @@
+{
+  "version": "0.1",
+  "foreshadowings": [
+    {
+      "id": "f1",
+      "planted_chapter": 1,
+      "content": "顾衡守城的真正动机——城下古构装残骸",
+      "target_reveal_chapter": 2,
+      "status": "planted",
+      "reveal_layer": 1
+    },
+    {
+      "id": "f2",
+      "planted_chapter": 1,
+      "content": "'本不该认识的人'——与守城动机有关",
+      "target_reveal_chapter": 2,
+      "status": "planted",
+      "reveal_layer": 1
+    },
+    {
+      "id": "f3",
+      "planted_chapter": 2,
+      "content": "顾衡正在造的东西缺一件原料——只有位面里有",
+      "target_reveal_chapter": 3,
+      "status": "planned",
+      "reveal_layer": 1
+    },
+    {
+      "id": "f4",
+      "planted_chapter": 3,
+      "content": "顾衡献祭了古构装残骸核心——缺了关键一环",
+      "target_reveal_chapter": 4,
+      "status": "planned",
+      "reveal_layer": 1
+    },
+    {
+      "id": "f5",
+      "planted_chapter": 3,
+      "content": "位面里的某样资源——能让他造出'足以改变格局'之物",
+      "target_reveal_chapter": "第二卷",
+      "status": "planned",
+      "reveal_layer": 1
+    },
+    {
+      "id": "f6",
+      "planted_chapter": "待定",
+      "content": "位面嵌套真相——世界本身是一座被造出来的巨构",
+      "target_reveal_chapter": "后期卷",
+      "status": "planned",
+      "reveal_layer": 3
+    }
+  ]
+}

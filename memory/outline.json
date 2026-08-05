@@ -1,0 +1,182 @@
+{
+  "version": "0.2",
+  "status": "黄金三章设计完成+纪元点题，待 plot-architect 扩展完整大纲",
+  "title": "第三纪元",
+  "prologue": "世界不是永恒的。它死过两次，这是第三次活着——但也在死了。",
+  "genre": "位面入侵·献祭流·智斗",
+  "protagonist": "顾衡",
+  "core_loop": "看全局→知道缺什么→去位面抢资源→构装师造出来→更强→看更大的全局",
+  "golden_three_chapters": {
+    "ch1": {
+      "title": "乱局",
+      "function": "立人+点题：掌控全局天才（冷动作兑现）+ 第三纪元崩塌波及边境",
+      "type_hook": "纪元末世感（不解释机制，只让读者感到'这个世界在崩'）",
+      "shuang_type": "B",
+      "word_count_target": 2500,
+      "opening_type": "钩子句开头",
+      "ending_type": "悬念型",
+      "beats": [
+        {
+          "beat_id": 1,
+          "weight": "major",
+          "summary": "破城乱局。第三纪元的边境城，兽潮今晚破城，秩序崩了。这不是一座城的灾难——是整个纪元崩塌的边缘。顾衡混在人群中，读者看不出他是谁——就是个普通逃难者。",
+          "purpose": "氛围+人设铺垫+纪元点题",
+          "shuang_type": null,
+          "info_delivery": "sensory"
+        },
+        {
+          "beat_id": 2,
+          "weight": "major",
+          "summary": "三个冷动作。①蹲下把一小袋粮食塞给小孩说'往东第三道门，说怀里的信'；②路过巷子顺手把一摞木板横翻在路中央；③在城门口拦住一个跑反方向的民兵，两句话让他折回去守某段墙。读者以为他添乱/送死。",
+          "purpose": "人设（冷动作铺垫）",
+          "shuang_type": null,
+          "info_delivery": "action"
+        },
+        {
+          "beat_id": 3,
+          "weight": "major",
+          "summary": "兑现。兽潮破城，3个动作同时生效：传的信点燃东墙油槽、木板绊住兽潮阵型、民兵守住唯一没塌的缺口。整城溃败被他盘成'刚好撑到天亮'的局。读者恍然：他进城第一眼就把全城当棋局看完了。",
+          "purpose": "爽点（智力碾压B级）",
+          "shuang_type": "B",
+          "info_delivery": "action"
+        },
+        {
+          "beat_id": 4,
+          "weight": "minor",
+          "summary": "钩子挂账。城破后他救下的人里，有一个他'本不该认识'的；或他对着城的方向看了一眼，说了句'还差一点'。让读者知道他守城不是圣人，是他自己有账要在这座城算——城下埋着什么。",
+          "purpose": "伏笔（守城动机挂账）",
+          "shuang_type": null,
+          "info_delivery": "action"
+        }
+      ],
+      "hook_sentence": "血腥味先到的，城墙还没塌。",
+      "human_flavor_check": {
+        "private_detail": "待写手填充（如：蹲在台阶上系鞋带，或数口袋里的铜板）",
+        "absurd_contrast": "乱局中所有人都在逃，他蹲下给小孩塞粮食——穷到在逃命还舍得给吃的",
+        "dark_humor_control": "死局里说'这城要是塌了，我攒的那批材料就白搭了'",
+        "action_over_monologue": "全程不让他在心里说'我早看穿了'"
+      },
+      "cold_action_structure": {
+        "rule": "chapter-writer 5.8b 冷动作兑现结构",
+        "action_1": {"what": "给小孩塞粮传信", "looks_like": "打发小孩走", "actual_function": "传讯点燃东墙油槽"},
+        "action_2": {"what": "翻倒一摞木板", "looks_like": "闲着没事/破坏", "actual_function": "堵兽潮通道绊住阵型"},
+        "action_3": {"what": "拦住跑反的民兵", "looks_like": "送死/添乱", "actual_function": "守住唯一没塌的缺口"},
+        "payoff": "3个动作同一时刻全部兑现，读者自行惊觉'他是天才'"
+      },
+      "纪元点题": "Ch1不直说'第三纪元'，但通过序言+破城氛围让读者感到'这个世界在崩塌，不是一座城的事'"
+    },
+    "ch2": {
+      "title": "造物",
+      "function": "亮构装师：造物能力+角色多面+城下第二纪元残骸揭示",
+      "type_hook": "构装师造物+第二纪元遗物",
+      "shuang_type": "A",
+      "word_count_target": 2500,
+      "opening_type": "动作开头",
+      "ending_type": "信息揭示型",
+      "beats": [
+        {
+          "beat_id": 1,
+          "weight": "major",
+          "summary": "工坊/据点。城守住了，顾衡回到自己的据点，展示他造过的东西——不是账本，是造物（一具半完成的构装、一件反常的武器）。读者第一次看到他除了脑子还有手艺。",
+          "purpose": "人设（构装师亮出）",
+          "shuang_type": null,
+          "info_delivery": "discovery"
+        },
+        {
+          "beat_id": 2,
+          "weight": "major",
+          "summary": "有人来求/质疑。守军头目来求他造点东西，或质疑他'城里不需要你这些东西'。展示他作为构装师的本事——把'看懂的全局'变成'造出来的东西'。",
+          "purpose": "爽点（专业碾压A级）+社交确认",
+          "shuang_type": "A",
+          "info_delivery": "dialogue"
+        },
+        {
+          "beat_id": 3,
+          "weight": "major",
+          "summary": "缺一样东西+残骸揭示。通过这段，暴露他有个正在造的东西，卡在一件原料上——只有位面里有。同时揭示城下埋着的是第二纪元的古构装残骸，他守城就是为了这个。",
+          "purpose": "伏笔（位面掠夺引子+第二纪元遗物揭示）",
+          "shuang_type": null,
+          "info_delivery": "dialogue"
+        },
+        {
+          "beat_id": 4,
+          "weight": "minor",
+          "summary": "章末钩子。那个'本不该认识的人'浮出第一层——和第二纪元残骸有关，可能是残骸线索人/旧识/知情者。",
+          "purpose": "伏笔（守城动机第一层揭示+跨纪元种族暗示）",
+          "shuang_type": null,
+          "info_delivery": "discovery"
+        }
+      ],
+      "hook_sentence": "待定",
+      "human_flavor_check": {
+        "private_detail": "他的情感物件——一把旧锉刀/一枚磨损的齿轮",
+        "absurd_contrast": "待写手填充",
+        "dark_humor_control": "待写手填充",
+        "action_over_monologue": "待写手填充"
+      }
+    },
+    "ch3": {
+      "title": "献祭",
+      "function": "亮核心机制+点题：献祭+位面掠夺+强势决断+献祭第二纪元遗物换本纪元喘息",
+      "type_hook": "献祭=拿珍惜之物换力量，点题=用上一纪元遗产换本纪元喘息",
+      "shuang_type": "S",
+      "word_count_target": 2500,
+      "opening_type": "对话开头",
+      "ending_type": "期待感型",
+      "beats": [
+        {
+          "beat_id": 1,
+          "weight": "major",
+          "summary": "绝境。深夜，强敌/兽潮头领/城防缺口突袭，现有东西不够，全员要死。第三纪元的崩塌追上来了。",
+          "purpose": "压抑",
+          "shuang_type": null,
+          "info_delivery": "sensory"
+        },
+        {
+          "beat_id": 2,
+          "weight": "major",
+          "summary": "献祭机制亮出。通过旁人或主角展示：献祭是这个世界通行的规则——拿你身上'值得献祭的东西'换力量。老人献出压箱底的旧物、士兵献出记忆/寿数。不是主角专属，人人可用，分的是你肯不肯拿、拿得出什么。",
+          "purpose": "设定释放（核心机制亮出）",
+          "shuang_type": null,
+          "info_delivery": "action"
+        },
+        {
+          "beat_id": 3,
+          "weight": "major",
+          "summary": "强势决断+点题。顾衡不献祭'命'这种廉价的东西。他献出城下第二纪元古构装残骸的核心部分——上一纪元的遗产，换本纪元的喘息。对他而言极贵、但经过计算值得。换来关键翻盘。他全程冷静，因为这是他算好的。",
+          "purpose": "爽点（付出代价换力量S级）+纪元点题",
+          "shuang_type": "S",
+          "info_delivery": "action"
+        },
+        {
+          "beat_id": 4,
+          "weight": "minor",
+          "summary": "章末钩子。翻盘后，残骸缺了关键一环，他盯上了位面里的某样资源——那个能让他造出'足以改变格局'之物的东西。下一卷的核心目标=去位面掠夺它。",
+          "purpose": "伏笔（位面掠夺目标确立）",
+          "shuang_type": null,
+          "info_delivery": "action"
+        }
+      ],
+      "hook_sentence": "待定",
+      "human_flavor_check": {
+        "private_detail": "待写手填充",
+        "absurd_contrast": "他冷静地献祭上一纪元的遗物，旁边的人在哭",
+        "dark_humor_control": "待写手填充",
+        "action_over_monologue": "待写手填充"
+      },
+      "纪元点题": "Ch3是核心点题章——献祭第二纪元遗物换第三纪元喘息，纪元轮回的缩影"
+    }
+  },
+  "cross_chapter_hooks": {
+    "ch1_end": "他为什么守这座城+城下埋着什么（挂账）",
+    "ch2_end": "城下是第二纪元古构装残骸+缺的原料在位面",
+    "ch3_end": "他献祭了残骸核心换翻盘，去位面抢原料的目标确立"
+  },
+  "守城动机闭环": "守城→城下第二纪元古构装残骸→Ch3献祭残骸核心→缺了关键一环→去位面找替代→下一卷目标",
+  "点题闭环": "序言（世界死过两次）→Ch1（第三纪元崩塌波及边境）→Ch3（献祭第二纪元遗物换本纪元喘息）→后期（追寻世界反复毁灭的真相）",
+  "long_term_drivers": {
+    "layer_1": "求生——第三纪元在崩塌，他必须造出能扛住的东西",
+    "layer_2": "野心——他是这个世代最不该被埋没的构装师，他要靠造物把自己立起来",
+    "layer_3": "真相——世界为什么反复毁灭？第一纪元、第二纪元怎么终结的？谁造了这个世界？"
+  }
+}

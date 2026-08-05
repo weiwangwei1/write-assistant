@@ -1,0 +1,54 @@
+{
+  "version": "0.1",
+  "status": "角色索引，详细角色卡待 character-designer 设计",
+  "characters": [
+    {
+      "name": "顾衡",
+      "role": "男主",
+      "core": "掌控全局的天才",
+      "profession": "构装师（能力线之一，非全部）",
+      "abilities": ["全局掌控（天才底色，非金手指）", "构装师（造物/扩张）", "献祭/位面掠夺（资源引擎）"],
+      "personality_dna_hint": ["全局视角/多线程思维", "掌控欲（什么都要算清）", "冷静决断", "冷幽默控场"],
+      "show_structure": "掌控者型——冷动作兑现结构（character-designer v1.7 第4条）",
+      "appearance_contrast_hint": "待设计——落魄外表 vs 精密大脑",
+      "object_ecology_hint": "待设计——一把旧锉刀/一枚磨损的齿轮",
+      "identity_contrast_hint": "表面：边境城里的普通人/逃难者；隐藏：掌控全局的天才构装师",
+      "weaknesses_hint": "掌控欲太强——什么都要算清、什么都放不下，反而容易被困住",
+      "goals": {
+        "short_term": "守住边境城，获取城下古构装残骸",
+        "long_term": "扩张势力+追寻世界真相"
+      },
+      "status": "待 character-designer 完整设计（personality_dna≥6条 + action_outlets + object_ecology + interaction_template）"
+    },
+    {
+      "name": "小孩",
+      "role": "功能性配角",
+      "function": "Ch1 冷动作①执行者——顾衡塞粮传信",
+      "appearance_chapter": 1,
+      "status": "待设计（简单配角，不需完整角色卡）"
+    },
+    {
+      "name": "守军头目",
+      "role": "配角",
+      "function": "Ch1 质疑顾衡/Ch2 求他造东西/社交确认观众",
+      "appearance_chapter": 1,
+      "independent_goals_hint": "守城活命，不完全信任顾衡",
+      "status": "待设计"
+    },
+    {
+      "name": "本不该认识的人",
+      "role": "悬念角色",
+      "function": "Ch1 章末钩子/与守城动机有关/古构装残骸知情人或旧识",
+      "appearance_chapter": 1,
+      "status": "待设计（身份待定，可能是旧识/同行/残骸线索人）"
+    },
+    {
+      "name": "献祭对照角色",
+      "role": "配角",
+      "function": "Ch3 献祭衬托顾衡的献祭'更贵更冷'",
+      "appearance_chapter": 3,
+      "hint": "老人或士兵，献出压箱底的东西/寿数，用他的献祭衬托顾衡的算计和冷静",
+      "status": "待设计"
+    }
+  ]
+}
