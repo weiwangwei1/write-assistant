@@ -1,0 +1,5 @@
+{
+  "chapter_len_min": 2400,
+  "chapter_len_max": 2600,
+  "note": "《第三纪元》篇幅配置（2026-08-06 建）：novel_config chapter_word_count 2500，区间2400-2600；H1 篇幅硬检经 --config 注入"
+}

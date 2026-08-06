@@ -4,7 +4,7 @@
   "author": "铁锈生",
   "platform": "fanqie",
   "total_chapters": 300,
-  "volume_plan_hint": "6 卷，待 plot-architect 设计后回填",
+  "volume_plan_hint": "已回填（plot-architect 2026-08-06）：见 volume_plan，逐章 beat 见 memory/outline.json",
   "chapter_word_count": 2500,
   "chapter_word_count_range": [2400, 2600],
   "daily_target_chapters": 1,
@@ -40,7 +40,14 @@
     "final_score": 9.5
   },
   "product": "每章2400-2600字；初稿写长宁删勿补；分段排版；单段≤200字",
-  "volume_plan": [],
+  "volume_plan": [
+    {"vol": 1, "title": "锈关灰", "chapters": "1-50", "theme": "立足：第一次进位面+第一具活核构装+第二槽填充", "core_loop_progress": "首次完整闭环", "main_stage": "锈关+位面第一层/深层+裂隙客聚落", "villain_tier": "第一级立完（裂隙客团伙），第二级渐进（内陆收灰网络）", "volume_end_hook": "献掉的旧锉刀回到工作台+刀下一道收刀的钩（沈线→卷2昭关方向）", "truth_layer": "L0现象层：前纪元力量渗透（霜/灰/残骸异象）"},
+    {"vol": 2, "title": "裂隙行", "chapters": "51-100", "theme": "扩张：位面深层与裂隙客世界，势力伸进位面", "core_loop_progress": "第二次循环（第三槽+第二、三具构装）", "main_stage": "位面深层+聚落网+昭关方向", "villain_tier": "第二级正面（收灰网络/行会外围）", "volume_end_hook": "第三槽填充+兽将首次正面+沈的第一件实物", "truth_layer": "L1：第二纪元终结的第一份实证"},
+    {"vol": 3, "title": "内陆", "chapters": "101-150", "theme": "入局：内陆大城权力层，势力成型", "core_loop_progress": "第三次循环升级（第四槽+名分与盟友）", "main_stage": "内陆大城+昭关（实到）", "villain_tier": "第二级收束+第三级登场（伪装盟友）", "volume_end_hook": "盟友身份疑云+沈'收'过的东西清单（收刀者第二层）", "truth_layer": "L2：纪元轮回机制半揭"},
+    {"vol": 4, "title": "深潜", "chapters": "151-200", "theme": "身世与代价：位面最深层，顾衡的过去追上了他", "core_loop_progress": "第四次循环变形（第五槽+引导器本质）", "main_stage": "位面最深层/巨构边缘", "villain_tier": "第三级真面目揭露；跨纪元种族首次直接出场", "volume_end_hook": "记忆裂缝实证+兽王动+'另一个顾衡'", "truth_layer": "L3：前纪元终结人为证据+位面嵌套初揭"},
+    {"vol": 5, "title": "巨构", "chapters": "201-250", "theme": "世界真相半揭：位面嵌套，世界是被造出来的巨构", "core_loop_progress": "第五次循环升维（第六槽+纪元器雏形）", "main_stage": "巨构内部/多位面", "villain_tier": "终极反派行动+跨纪元种族分裂", "volume_end_hook": "第三纪元终结倒计时+沈线收束", "truth_layer": "L4前半：嵌套全揭+收割机制"},
+    {"vol": 6, "title": "第三纪元", "chapters": "251-300", "theme": "终卷抉择：献祭轮回还是打破轮回，点题闭环", "core_loop_progress": "终局循环（纪元器+终局献祭/反献祭）", "main_stage": "巨构核心+锈关（首尾呼应）", "villain_tier": "终极对决+跨纪元种族立场落锤", "volume_end_hook": "序言回扣：第三次，第一次由人决定世界怎么活", "truth_layer": "L4全揭：谁造了世界、为何反复毁灭、第三纪元的不同"}
+  ],
   "opening_drive": "初期求生+获取第二纪元古构装残骸，后期扩张势力+追寻世界反复毁灭的真相",
   "topic_screening": {
     "core_commitments": {

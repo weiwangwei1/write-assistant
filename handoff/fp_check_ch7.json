@@ -1,0 +1,172 @@
+{
+  "card_type": "style_fingerprint_check",
+  "from_agent": "style_fingerprint(script)",
+  "to_agent": "chapter-writer",
+  "status": "fail",
+  "baseline_ref": ".trae/skills/writer-styles/tiancantudou/fingerprint.json",
+  "baseline_confidence": "high",
+  "failed_dims": [
+    "sent_len_mean",
+    "sent_len_stdev",
+    "long_sent_ratio",
+    "para_len_mean",
+    "short_para_ratio",
+    "comma_period_ratio"
+  ],
+  "dims": [
+    {
+      "dim": "func_words_cosine",
+      "current": 0.0597,
+      "baseline": 0.0,
+      "deviation": 0.0597,
+      "tolerance": 0.08,
+      "pass": true
+    },
+    {
+      "dim": "sent_len_mean",
+      "current": 17.31,
+      "baseline": 40.34,
+      "deviation": 0.5709,
+      "tolerance": 0.293,
+      "pass": false
+    },
+    {
+      "dim": "sent_len_stdev",
+      "current": 20.32,
+      "baseline": 32.82,
+      "deviation": 0.3809,
+      "tolerance": 0.35,
+      "pass": false
+    },
+    {
+      "dim": "short_sent_ratio",
+      "current": 0.2126,
+      "baseline": 0.1887,
+      "deviation": 0.1267,
+      "tolerance": 0.768,
+      "pass": true
+    },
+    {
+      "dim": "long_sent_ratio",
+      "current": 0.0079,
+      "baseline": 0.4721,
+      "deviation": 0.9833,
+      "tolerance": 0.5,
+      "pass": false
+    },
+    {
+      "dim": "para_len_mean",
+      "current": 18.95,
+      "baseline": 42.85,
+      "deviation": 0.5578,
+      "tolerance": 0.35,
+      "pass": false
+    },
+    {
+      "dim": "short_para_ratio",
+      "current": 0.4397,
+      "baseline": 0.2204,
+      "deviation": 0.995,
+      "tolerance": 0.646,
+      "pass": false
+    },
+    {
+      "dim": "dialogue_ratio",
+      "current": 0.0077,
+      "baseline": 0.1563,
+      "deviation": 0.9507,
+      "tolerance": 1.0,
+      "pass": true
+    },
+    {
+      "dim": "comma_period_ratio",
+      "current": 1.787,
+      "baseline": 4.48,
+      "deviation": 0.6011,
+      "tolerance": 0.35,
+      "pass": false
+    },
+    {
+      "dim": "dash_per_1000",
+      "current": 0.0,
+      "baseline": 0.014,
+      "deviation": 0.07,
+      "tolerance": 0.6,
+      "pass": true
+    },
+    {
+      "dim": "ellipsis_per_1000",
+      "current": 0.0,
+      "baseline": 1.63,
+      "deviation": 1.0,
+      "tolerance": 1.0,
+      "pass": true
+    },
+    {
+      "dim": "metaphor_per_1000",
+      "current": 1.365,
+      "baseline": 2.196,
+      "deviation": 0.3784,
+      "tolerance": 1.0,
+      "pass": true
+    },
+    {
+      "dim": "conjunction_starter_ratio",
+      "current": 0.0345,
+      "baseline": 0.092,
+      "deviation": 0.625,
+      "tolerance": 1.0,
+      "pass": true
+    },
+    {
+      "dim": "dialogue_guide_per_1000",
+      "current": 0.0,
+      "baseline": 1.359,
+      "deviation": 1.0,
+      "tolerance": 1.0,
+      "pass": true
+    },
+    {
+      "dim": "le_ending_ratio",
+      "current": 0.0157,
+      "baseline": 0.0149,
+      "deviation": 0.04,
+      "tolerance": 1.0,
+      "pass": true
+    },
+    {
+      "dim": "sensory_cosine",
+      "current": 0.0069,
+      "baseline": 0.0,
+      "deviation": 0.0069,
+      "tolerance": 0.15,
+      "pass": true
+    }
+  ],
+  "advice": [
+    {
+      "dim": "sent_len_mean",
+      "advice": "sent_len_mean 偏低——原作基线 40.34，当前 17.31。用逗号串联分句形成流动长句，或拆长句为短句（按偏差方向）。段首优先用连词起段（不过/然而/虽然）"
+    },
+    {
+      "dim": "sent_len_stdev",
+      "advice": "sent_len_stdev 偏低——原作基线 32.82，当前 20.32。长短句交替形成节奏对比。一章至少有1个≥200字的长段（推理/氛围/动作），与短句形成对比"
+    },
+    {
+      "dim": "long_sent_ratio",
+      "advice": "long_sent_ratio 偏低——原作基线 0.4721，当前 0.0079。用书面连词（不过/然而/虽然/而且）串联多个分句形成绵长复合句，或反向拆分（按偏差方向）"
+    },
+    {
+      "dim": "para_len_mean",
+      "advice": "para_len_mean 偏低——原作基线 42.85，当前 18.95。合并碎段或拆分长段（按偏差方向），注意两句段与单句段的配比"
+    },
+    {
+      "dim": "short_para_ratio",
+      "advice": "short_para_ratio 偏高——原作基线 0.2204，当前 0.4397。减少单句段，合并为两句段"
+    },
+    {
+      "dim": "comma_period_ratio",
+      "advice": "comma_period_ratio 偏低——原作基线 4.48，当前 1.787。逗号与句号配比偏差——用逗号串联分句增加流动感，或增加句号断句提升力度（按偏差方向）"
+    }
+  ]
+}

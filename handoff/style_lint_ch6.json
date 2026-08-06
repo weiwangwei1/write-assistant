@@ -6,61 +6,16 @@
   "style_pack": null,
   "blocking_count": 0,
   "advisory_count": 0,
-  "non_blocking_count": 6,
+  "non_blocking_count": 1,
   "issues": [
     {
       "rule": "dialogue_ratio",
       "severity": "minor",
       "level": "L1",
-      "chapter": "chapter_004.txt",
+      "chapter": "chapter_006.txt",
       "line": 0,
       "excerpt": "",
-      "message": "对话占比15% < 下限35%"
-    },
-    {
-      "rule": "le_pattern",
-      "severity": "minor",
-      "level": "L2",
-      "chapter": "chapter_004.txt",
-      "line": 53,
-      "excerpt": "\"那你就当地窖塌了",
-      "message": "短句以“了”收尾（共6处 > 上限3）——AI腔特征：建议用连词衔接为长句，而非删除语法必需的“了”"
-    },
-    {
-      "rule": "le_pattern",
-      "severity": "minor",
-      "level": "L2",
-      "chapter": "chapter_004.txt",
-      "line": 75,
-      "excerpt": "数到一半，手悬在半空，停住了",
-      "message": "短句以“了”收尾（共6处 > 上限3）——AI腔特征：建议用连词衔接为长句，而非删除语法必需的“了”"
-    },
-    {
-      "rule": "le_pattern",
-      "severity": "minor",
-      "level": "L2",
-      "chapter": "chapter_004.txt",
-      "line": 85,
-      "excerpt": "火石两块，盐一小包，用油纸裹了",
-      "message": "短句以“了”收尾（共6处 > 上限3）——AI腔特征：建议用连词衔接为长句，而非删除语法必需的“了”"
-    },
-    {
-      "rule": "le_pattern",
-      "severity": "minor",
-      "level": "L2",
-      "chapter": "chapter_004.txt",
-      "line": 95,
-      "excerpt": "顾衡没问，走了",
-      "message": "短句以“了”收尾（共6处 > 上限3）——AI腔特征：建议用连词衔接为长句，而非删除语法必需的“了”"
-    },
-    {
-      "rule": "le_pattern",
-      "severity": "minor",
-      "level": "L2",
-      "chapter": "chapter_004.txt",
-      "line": 129,
-      "excerpt": "远处的灰雾里，一团影子顿住了",
-      "message": "短句以“了”收尾（共6处 > 上限3）——AI腔特征：建议用连词衔接为长句，而非删除语法必需的“了”"
+      "message": "对话占比21% < 下限35%"
     }
   ],
   "timeline_clues": {},

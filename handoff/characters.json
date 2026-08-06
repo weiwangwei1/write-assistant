@@ -1,0 +1,13 @@
+{
+  "card_type": "characters",
+  "timestamp": "2026-08-06T04:35:51+08:00",
+  "from_agent": "character-designer",
+  "to_agent": "chapter-writer",
+  "status": "ready",
+  "characters_ref": "memory/characters.json",
+  "content": {
+    "main_characters": ["顾衡", "守军头目", "沈（收刀的人）", "猎核队头目（收脚印的）", "老周头", "年轻兵", "小孩（灰娃）", "少年"],
+    "new_for_volume_1": ["猎核队头目(收脚印的)", "老周头(管库)", "年轻兵", "小孩(灰娃)", "少年(Ch36)"],
+    "note": "角色卡与关系网已就绪（8张单角色卡+8条关系，均含interaction_template/object_collision）；正文称呼约束：守军头目/猎核队头目/小孩/少年不启用姓名，'沈'Ch48前禁用；顾衡3组冷动作素材(cas_ch1已用/cas_plane_trap/cas_deep_time)供位面篇调用"
+  }
+}

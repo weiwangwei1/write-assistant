@@ -1,31 +1,49 @@
 {
-  "version": "0.3",
+  "version": "0.6",
+  "last_updated_chapter": 7,
+  "last_updated": "2026-08-07T10:40:00+08:00",
   "main_quest": {
     "goal": "扩张势力+追寻世界真相",
-    "progress": "not_started",
-    "current_sub_goal": "守住边境城，获取城下古构装残骸"
+    "progress": "in_progress",
+    "current_sub_goal": "入位面取活核与遗器料，填满引导器剩余三条槽（第一颗够格活核到手，第二槽认料，剩两条）",
+    "progress_bar": "锈关守城阶段完成（Ch1-3），位面探索阶段深入（Ch4-6：规则立用+首核到手+盐槽主人交易线建立）",
+    "villain_ladder_note": "反派梯子待plot-architect完整大纲设计"
   },
   "suspense_window": {
     "active": [
-      {"id": "s1", "question": "顾衡为什么守这座城？", "opened_chapter": 1, "target_close": 2, "status": "partial", "note": "Ch2揭示为获取残骸，但深层原因（与收刀者的关系）未解"},
-      {"id": "s2", "question": "城下埋着什么？", "opened_chapter": 2, "target_close": 3, "status": "closed", "note": "Ch3揭示为第二纪元构装残骸，芯子被献祭"},
-      {"id": "s3", "question": "顾衡献祭了什么？代价是什么？", "opened_chapter": 3, "target_close": 4, "status": "open"},
-      {"id": "s4", "question": "收刀者是谁？昭关城下发生了什么？", "opened_chapter": 2, "target_close": null, "status": "open", "note": "v0.3新增——'沈'名字已推迟揭晓，目标10-15万字（约Ch40-60）完成第一层揭秘，但不彻底讲完，转化为新悬念"}
+      {"id": "s2", "question": "城下埋着什么？", "opened_chapter": 2, "target_close": 3, "status": "closed", "note": "Ch3闭环：第二纪元构装残骸，芯子被献祭"},
+      {"id": "s3", "question": "顾衡献祭的完整代价是什么？", "opened_chapter": 3, "target_close": 6, "status": "closed", "note": "Ch6第一层全量按期闭合：右手使力时长量化（全力数到五十劲先泄，从前攥满小半更不带抖）——代价量化而非卖惨；深层代价以'四条槽的账，先记在了这只右手上'转长线挂账，不计窗口"},
+      {"id": "s4", "question": "收刀者是谁？昭关城下发生了什么？旧齿轮上的刻痕是谁刻的？", "opened_chapter": 2, "target_close": null, "status": "open", "note": "Ch3末升级：顾衡从未刻过的左钩出现在他贴身的旧齿轮上。目标Ch40-60第一层揭秘，不彻底讲完", "long_term": true},
+      {"id": "s5", "question": "位面里面是什么？顾衡一个人进去会怎样？", "opened_chapter": 3, "target_close": 8, "status": "open", "note": "Ch3末挂账，Ch4-5给第一层画面，Ch8位面第一层全貌交付闭合；Ch6进展：f17第一层兑现（主人现身被证实：兽皮裹头/看不出年纪/石头不报信）即转第二层（盐填槽'早就开好等着填，填了很多年'不解释，挂s5自然延伸）；兽道+辨壳法情报到手（那人口述+当场验证）；'活人比兽危险'警告=单元2前菜；Ch8闭合路径不变"},
+      {"id": "s6", "question": "守军头目矛杆上的霜为什么没化？", "opened_chapter": 3, "target_close": 15, "status": "open", "note": "Ch12切镜头半揭（霜漫矛身）→Ch15锈关场景闭合（霜=蚀，不化只漫）"},
+      {"id": "s7", "question": "猎核队背后的'收货人'是谁？", "opened_chapter": 10, "target_close": 38, "status": "planned", "note": "Ch38闭合=收货人轮廓（收前纪元的灰与遗器料）→转s10"},
+      {"id": "s8", "question": "构装黄昏躁动，它'听'谁的？", "opened_chapter": 17, "target_close": 24, "status": "planned", "note": "Ch24闭合=残留意志认主闭环（f13联动）"},
+      {"id": "s9", "question": "兽潮不追人在'走'——走去哪儿？", "opened_chapter": 19, "target_close": 43, "status": "planned", "note": "Ch43闭合=兽潮终点被挪到敌营"},
+      {"id": "s10", "question": "谁在收灰/目的是什么？", "opened_chapter": 38, "target_close": "卷2", "status": "planned"},
+      {"id": "s11", "question": "位面深处有什么在'赶'兽/'见'顾衡？", "opened_chapter": 44, "target_close": "卷2", "status": "planned"},
+      {"id": "s12", "question": "献掉的旧锉刀回来了（还形不还价）", "opened_chapter": 50, "target_close": "长线", "status": "planned", "note": "异象型悬念，不追近期答案，以'不安的余味'呈现"}
     ],
-    "count": 3,
+    "count": 2,
     "max": 3,
-    "note": "s2已闭环，s4新开，活跃数仍为3。s4为长线悬念，不计入3章窗口限制"
+    "note": "活跃窗口任意时点≤3（按outline.suspense_window_plan滚动）；s4/f2收刀者为长线不计入窗口；s12为异象型悬念不追近期答案；Ch6后s3第一层闭合转长线，当前active=s5/s6=2，为s7（Ch10开）预留额度"
   },
   "villain_ladder": {
-    "status": "not_started",
-    "note": "待 plot-architect 设计反派三级体系"
+    "status": "designed",
+    "tier_1": {"name": "裂隙客猎核团伙（喽啰级）", "feature": "实力与主角接近（三阶裂隙客带队），'人比兽危险'具象化", "debut": "Ch7影子→Ch9-14正面→Ch14打残，头目逃脱留线", "function": "短期爽点+测试主角智斗模式+引出收货人网络"},
+    "tier_2": {"name": "内陆'收灰'网络/行会外围（隐藏级）", "feature": "实力高于主角（资源/兵力/人脉碾压），不直接下场，间接施压", "debut": "Ch10远影→Ch22-38渐进接触→Ch39-44正面围困→卷2主对手", "function": "中期悬念+主角成长目标+'收货人'与刻痕记号关联"},
+    "tier_3": {"name": "伪装盟友（终极级，卷1仅埋不设）", "feature": "卷3以盟友/引路人身份登场；与跨纪元种族/沈线交叉", "debut": "卷3正面；卷1只埋两个远因（残骸为何恰在城下+七道刻痕'计数'含义）", "function": "终极反转+全书主线对手"},
+    "no_skip_rule": "顾衡卷1只对tier_1正面动手；tier_2止于周旋与借势——留给卷2",
+    "note": "v0.4回填自outline.json villain_ladder（outline-editor验收确认）"
   },
   "ability_progression": {
     "note": "前10章每3-4章须有1次主角能力成长的微暗示",
     "planned_upgrades": [
       {"chapter": 1, "upgrade": "展示掌控全局的天赋（非超能力）"},
       {"chapter": 2, "upgrade": "展示构装师造物能力"},
-      {"chapter": 3, "upgrade": "展示献祭能力+决断力+生理代价暗示（指甲缝渗血）"}
+      {"chapter": 3, "upgrade": "展示献祭能力+决断力+生理代价暗示（指甲缝渗血）"},
+      {"chapter": 4, "upgrade": "位面生存规则习得（静音/辨向/更算）+皮绳获赠（凡人羁绊物件）"},
+      {"chapter": 5, "upgrade": "位面三规矩立用闭环（观察→归纳→实战反杀）"},
+      {"chapter": 6, "upgrade": "首次位面猎杀取核（机关+算计非蛮力）+辨壳法习得+第二槽认料（金手指成长暗示配额兑现）"}
     ]
   },
   "emotional_intensity": {
@@ -35,8 +53,10 @@
       {"chapter": 1, "intensity": 4, "type": "紧绷灰", "note": "城破乱局，冷动作兑现，情感克制"},
       {"chapter": 2, "intensity": 3, "type": "冷静蓝", "note": "工坊造物，技术展示，守军头目家庭暗线"},
       {"chapter": 3, "intensity": 9, "type": "灼烧红", "note": "老兵献铜符+士兵献寿数+无效献祭对照=凡人牺牲极致。后续不能重复打'某人献出珍贵之物'这张牌"},
-      {"chapter": 4, "intensity": null, "type": null, "note": "待写。情感质地须切换：非人孤独/跨纪元记忆重量/造物者与被造物关系，不能再写凡人牺牲。须降温至≤6，插入松弛章节（修整工坊/日常互动）"},
-      {"chapter": 5, "intensity": null, "type": null, "note": "待写"}
+      {"chapter": 4, "intensity": 5, "type": "冷灰·非人孤独", "note": "降温达标（9→5），质地切换为非人孤独/跨纪元记忆，未打凡人牺牲牌；前半送别段还清Ch3情感债务（皮绳/数账/门闩），后半孤身段感官剥离"},
+      {"chapter": 5, "intensity": 6, "type": "冷灰·职业兴奋", "note": "连续两章非人孤独质地，Ch6人声恢复后质地须变；本章职业兴奋（认出'同行的手'）压住疑云，中段反杀爆点+章末时间压力钩托底，未打凡人牺牲牌"},
+      {"chapter": 6, "intensity": 7, "type": "冷灰·人声恢复/冷交互", "note": "人声恢复但质地切换为警惕试探的冷交互（问一句露一句底）；猎杀零心理+代价一刻（五十个数）滞重+分肉谈判冷幽默微松弛（w1节奏变速达标）；未打凡人牺牲牌；等兽段约300字low级闷感已登记不阻塞"},
+      {"chapter": 7, "intensity": 6, "type": "冷灰·痕迹推理/人险阴影", "note": "独处探索章（零活人对话，Ch6刚恢复人声单章独处合规）；六笔账推理链+翻板坑揭示托底信息密度；'他没有绕'决断+咬线头微动作压住疑云；未打凡人牺牲牌；C级铺垫章micro_payoff真实兑现（连续铺垫计数=1）"}
     ],
     "rules": [
       "情感峰值（intensity≥8）后下一章必须降温≥3档",
@@ -44,6 +64,29 @@
       "位面探索章节的情感质地须与城防章节不同——非人孤独/跨纪元记忆/造物者困境",
       "longline-guardian 每10章检查情感坡度：是否断崖式下降、是否重复打同一张牌"
     ]
+  },
+  "style_quotas": {
+    "note": "v0.5新增——全书级手法配额追踪，防止签名手法滥用稀释效力",
+    "short_sentence_hammer": {
+      "rule": "三连短句连击全书配额1/1已用完；后续章节章末收束改用'长句铺垫+短句收束'结构，不得再现三连短句连击",
+      "used": [
+        {"chapter": 4, "location": "L177-179", "text": "甜的。风是甜的，甜得像血。他顺着风走过去。", "type": "三连短句连击（章末钩子核心节拍）", "quota": "1/1"},
+        {"chapter": 4, "location": "L189-191章末", "text": "来路没有，去路也没有。位面里有人。", "type": "短句收束", "note": "merged_review_4 memory_notes第6项登记"}
+      ]
+    },
+    "phrase_frequency": {
+      "rule": "高频短语频次管控：满额后后续章节禁用/禁增，防复沓稀释（merged_review_5 memory_notes第5项登记）",
+      "entries": [
+        {"phrase": "间距分毫不差", "usage": [{"chapter": 4, "location": "石棱纹路", "text": "极细的纹路，间距分毫不差"}, {"chapter": 5, "location": "L21 凹槽", "text": "一道是一道，间距分毫不差"}], "quota": "跨章2/2", "status": "满额禁增——后续章节不得再用"},
+        {"phrase": "几百上千遍", "usage": [{"chapter": 5, "location": "L23 凹槽磨法", "text": "做上几百上千遍"}], "quota": "章内1/1", "status": "章内满额（L137章末已用变体'千百遍'）——后续章节禁用同式"}
+      ]
+    },
+    "signature_sentences": {
+      "rule": "签名句式登记：已逐字重复使用的仪式锚句式，后续章节引用时须微变奏（防逐字复沓稀释仪式感）",
+      "entries": [
+        {"sentence": "灰天没有日头，他按心里的更算走", "usage": [{"chapter": 5, "location": "观察立规段"}, {"chapter": 6, "location": "卧石等兽段"}], "status": "已登记（Ch5/Ch6逐字相同）——Ch7+引用须微变奏"}
+      ]
+    }
   },
   "creative_warnings": {
     "note": "v0.3新增——第二轮读者反馈的后续创作预警，plot-architect设计后续大纲时须遵守",

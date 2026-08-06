@@ -1,0 +1,55 @@
+{
+  "card_type": "fix_audit",
+  "from_agent": "fix_auditor(script)",
+  "to_agent": "detail-reviewer",
+  "note": "本卡只含 diff 证据，不做判定——是否构成过度矫正由 detail-reviewer 第8层判断",
+  "pre_ref": "handoff/pre_lint_ch7.txt",
+  "post_ref": "output/chapter_007.txt",
+  "summary": {
+    "simile_changes": 0,
+    "function_word_reductions": 2,
+    "dialogue_loss_candidates": 0,
+    "removed_sentences": 0,
+    "lint_issues_before": 1,
+    "lint_issues_after": 1
+  },
+  "evidence": {
+    "simile_changes": [],
+    "function_word_reductions": [
+      {
+        "reduced_words": {
+          "的": {
+            "before": 3,
+            "after": 2
+          }
+        },
+        "before": "瓷实的灰上，脚印叠着脚印，进出的方向杂，像集市收摊后的地。",
+        "after": "瓷实的灰上，脚印叠着脚印，进出方向杂，像集市收摊后的地。",
+        "context": "replace块[39:40]→[39:40]"
+      },
+      {
+        "reduced_words": {
+          "的": {
+            "before": 15,
+            "after": 13
+          }
+        },
+        "before": "两处火堆一新一旧，旧的灰埋了半截，新的灰只盖住半个脚印，这伙人在洼里进出了不止一趟，最后一趟走了没多久；木签二十七根，一把快刀，一只手削的，照一人三签算，是八九张嘴的一顿；铺位七处，靠洼口的一处压得最深，是值夜的窝，铺位的数和签子的数对得上；洼底的骨头数得出三头兽，三头兽的壳腹都叫刀挑开了软缝，核取走了，肉剩着，厚处还挂着整条的，不为吃，为核；皮从腹线开，一整张起，刀口没有回刀，是猎户营生的手，这样的手，洼里不止一双；灰沿上半角火镰，钢口泛青，熟皮缠柄，一圈压着一圈，是内陆的做工，边地的猎户手，用不起这样一把镰，也不该有。",
+        "after": "两处火堆一新一旧，旧的灰埋了半截，新的灰只盖住半个脚印，这伙人在洼里进出了不止一趟，最后一趟走了没多久；木签二十七根，一把快刀，一只手削的，照一人三签算，是八九张嘴的一顿；铺位七处，靠洼口的一处压得最深，是值夜的窝，铺位数和签子数对得上；洼底的骨头数得出三头兽，三头兽的壳腹都叫刀挑开了软缝，核取走了，肉剩着，厚处还挂着整条的，不为吃，为核；皮从腹线开，一整张起，刀口没有回刀，是猎户营生的手，这样的手，洼里不止一双；灰沿上半角火镰，钢口泛青，熟皮缠柄，一圈压着一圈，是内陆的做工，边地的猎户手，用不起这样一把镰，也不该有。",
+        "context": "replace块[90:91]→[90:91]"
+      }
+    ],
+    "dialogue_loss_candidates": [],
+    "removed_sentences": []
+  },
+  "lint_diff": {
+    "before": {
+      "dialogue_ratio": 1
+    },
+    "after": {
+      "dialogue_ratio": 1
+    },
+    "increased_or_new": {},
+    "resolved": {}
+  }
+}

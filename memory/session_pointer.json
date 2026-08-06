@@ -1,24 +1,61 @@
 {
-  "version": "0.1",
-  "current_chapter": 0,
-  "current_phase": "黄金三章设计完成，待进入正式生产流程",
-  "protagonist": "顾衡",
+  "version": "1.2",
   "project_title": "第三纪元",
+  "current_phase": "init",
+  "phase_note": "黄金三章Ch1-3已终稿入库，Ch4《裂口》、Ch5《灰天》已终稿入库（位面篇深入：三规矩立用闭环+'有人住过'）；初始化补全仍在进行：完整大纲/角色卡/设定三件套",
+  "current_volume": 1,
+  "current_chapter": 7,
+  "next_chapter": 8,
+  "completed_chapters": [1, 2, 3, 4, 5, 6, 7],
+  "overall_progress": "7/300",
+  "protagonist": "顾衡",
+  "last_updated_chapter": 7,
+  "last_updated": "2026-08-07T10:40:00+08:00",
   "milestones": [
     {"milestone": "选题方向确认", "status": "done", "note": "构装师+献祭+位面掠夺，掌控全局天才主角"},
-    {"milestone": "黄金三章设计", "status": "done", "note": "Ch1乱局/Ch2造物/Ch3献祭，beat sheet 已落 outline.json"},
-    {"milestone": "框架升级", "status": "done", "note": "chapter-writer v3.4 + character-designer v1.7 沉淀行动化立人设方法论"},
-    {"milestone": "topic-screener 预筛", "status": "pending", "note": "新项目必须先通过 topic-screener 预筛"},
-    {"milestone": "plot-architect 完整大纲", "status": "pending", "note": "在黄金三章基础上扩展6卷300章完整大纲"},
-    {"milestone": "character-designer 角色设计", "status": "pending", "note": "顾衡完整角色卡（personality_dna≥6 + action_outlets + object_ecology）"},
-    {"milestone": "黄金三章写作", "status": "pending", "note": "Ch1-3 正文生产"}
+    {"milestone": "黄金三章设计", "status": "done", "note": "Ch1乱局/Ch2造物/Ch3献祭"},
+    {"milestone": "黄金三章写作", "status": "done", "note": "Ch1-3终稿，lint L0全绿+指纹校验通过，五轮精修（读者反馈/人物形象/故事情节/情感心理意见已评估）"},
+    {"milestone": "框架升级", "status": "done", "note": "chapter-writer v4.0（技法23-28）+ detail-reviewer v1.18（第11层19项）"},
+    {"milestone": "topic-screener 预筛", "status": "pending", "note": "第三纪元正式预筛待补（handoff/topic_screening.json为已归档《请客》的）"},
+    {"milestone": "plot-architect 完整大纲", "status": "pending", "note": "6卷300章总纲+第一卷详细分章beat sheet"},
+    {"milestone": "character-designer 角色设计", "status": "pending", "note": "顾衡完整角色卡+守军头目+沈+第一卷新角色"},
+    {"milestone": "设定三件套+setting-reviewer", "status": "pending", "note": "world_setting/ability_system/conflict_rules，≥9.5"}
   ],
-  "next_action": "走 topic-screener 预筛 → plot-architect 完整大纲 → skeptic → outline-editor → character-designer → chapter-writer",
+  "next_action": "Ch8（大纲：位面第一层全貌交付s5闭合+猎杀计划成型'他不猎兽，他改道'+章末钩'兽群改了道，直奔他挖好的地方——可那里还躺着另一伙人设的套'）开写前交接卡beat_sheet显式标注：①Ch7末陷阱揭示与Ch8改道计划的衔接——改道物理支点已立（坡上观察位'看得见窄口，窄口里看不见坡'）、套的归属已立（翻板坑+坑外三步桩阵）、改道动机已点题（'他的更算里，第一次排进了别人的更'），Ch8开篇直接进计划成型不必重述痕迹；②f18揭示窗口Ch6-8，Ch8为窗口末章，须给沟里大东西第一层画面（远影/声响/痕迹任一具象），防窗口逾期；③配比预警：Ch7为C级铺垫章（连续铺垫计数=1），Ch8若再计铺垫则连续2章触顶，Ch9必须含开奖级事件；④签名句式微变奏沿用：'照老拍子'/'他心里的更算自己走'已登记变体、'归了位'第4用建议换'归了档/入了账'、'停拍'家族每章≤2次（第三次换压住/落住/收住）；⑤指纹位面篇目标带16-23沿用；⑥f12挂账：这伙人'会回来收坑'，Ch8改道施工须处理'避开收坑人'时间窗，'灰上没有一个印是他的'单向透明不得无理由破功；⑦饼账余量约4块整+大半块；⑧若Ch8仍为低对话章则连续2章低对话触观察线，Ch9须恢复人声交互（与outline Ch9-14 tier_1正面遭遇排期兼容）。",
+  "last_session_summary": "Ch7《人影》终稿入库：钩子句开头即时回响'往深处走的第一天，引路的不是眼睛'→核温感应校准（认料槽应/烧空槽不应，四向各试三遍温的都是东南，f4机制应用）→兽群活动区确认（micro_payoff：蹄印叠亮/碎壳成片'不是一头。是一群。'）→f12痕迹链六笔账（两处火堆一新一旧/木签27根八九张嘴/铺位七处值夜窝/三头兽取核弃肉/剥皮腹线无回刀猎户手/内陆火镰钢口泛青=第二级远影）→窄口翻板坑+尖桩阵（'兽踩坑。人来看坑，桩收人。'桩尖朝坑外三步）→'他没有绕''他的更算里第一次排进了别人的更'→单向透明撤离（'灰上没有一个印是他的'）+坡上留路→章末信息揭示'陷阱不是他布的，是冲着人和兽一起算去的'；终审approved，overall 9.43（quality技术9.41×0.6+终审补充9.47×0.4，ai 1.1，lint pass，指纹override pass_with_registration sent_len_mean 17.31带内）",
   "character_snapshot": {
     "顾衡": {
-      "location": "边境城",
-      "status": "未出场",
-      "mood": null
+      "location": "位面第一层深处坡上观察位（兽群活动区窄口上方）",
+      "status": "兽群位置确认（东南方向，核温感应定向）+识破猎核队翻板坑尖桩阵+单向透明撤离（'灰上没有一个印是他的'）；原开猎计划作废，更算里第一次排进别人的更；饼约4块整+大半块，盐尽，核贴心口",
+      "mood": "静冷警觉——'他没有绕'",
+      "power": "三阶匠师，遗器核心已烧；引导器烧一空二认料（第二槽）；核温感应定向机制可用"
+    },
+    "那人（盐槽主人）": {
+      "location": "位面灰原废弃居所（火堆边）",
+      "status": "未命名新角色：收盐指路+让石分肉+盐填槽+约'下回带盐'；'这地方的，我都有'；身份/目的不明（f17第二层挂s5延伸）；装死避大沟之物",
+      "mood": "平稳无波，各怀心思"
+    },
+    "守军头目": {
+      "location": "锈关城墙",
+      "status": "守城+盯守城北区地底地窖（奉令'见灰封阶封死别回头挖'）；断矛已无皮绳（赠顾衡），矛杆凝霜未化",
+      "mood": "敬畏+隐忧，家人在南方生死未卜"
+    },
+    "老周头": {
+      "location": "锈关城南库房",
+      "status": "管库：擦锁对天光看/数账三遍数错从头数；胸口空处（Ch3献祭代价）；门后半截断矛杆充门闩",
+      "mood": "平静木然"
     }
-  }
+  },
+  "foreshadowing_quick_status": {
+    "active_count": 6,
+    "critical": ["旧齿轮左钩刻痕是谁刻的（Ch3末炸弹，Ch5搭痕第2次递进）", "三条空槽→第二槽已认料（Ch7核温感应定向机制建立，剩两条）", "位面里面有什么（Ch8第一层全貌闭合）", "矛杆凝霜未化", "盐槽主人是谁/为何以盐填槽（f17第二层）", "沟里大东西（f18'这两天躁'，Ch7静了一回地皮远麻，Ch8窗口末章须给第一层画面）", "猎核队痕迹+翻板坑尖桩'冲着人和兽一起算'（f12已埋，对方会回来收坑）"],
+    "long_term": ["收刀者/沈（目标Ch40-60第一层揭秘）", "位面嵌套真相（后期）", "位面建造痕迹/石棱螺纹（f11环境预埋）", "献祭深层代价（s3第一层已闭合，深层挂账'四条槽的账先记在右手上'）"]
+  },
+  "quality_trend": "Ch1-3 lint L0全绿+tiancantudou指纹校验通过；用户驱动五轮精修定稿，无评分卡（黄金三章走用户直评通道）；Ch4 unified 9.11；Ch5 unified 9.28；Ch6 overall 9.44（指纹override pass_with_registration位面质地带16-23）；Ch7 overall 9.43（quality技术9.41×0.6+终审补充9.47×0.4，ai 1.1，lint pass，指纹override带内17.31）——全部终审approved",
+  "open_decisions": [
+    "书名与简介待 final（用户建议方向：突出第三纪元/灰烬/旧齿轮/刻痕意象，忌俗套重生流书名）",
+    "第一卷卷名与章节规模待 plot-architect 设计回填",
+    "指纹基线终裁：位面篇（Ch15归城）结束后由用户裁决——用Ch4-15自语料重建派生基线，或回炉统一向tiancantudou基线靠拢（merged_review_6.fingerprint_override.action_items[1]，final_review_6裁定须随入库挂账）"
+  ],
+  "pending_override_conditions": []
 }

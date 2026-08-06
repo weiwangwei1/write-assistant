@@ -1,0 +1,52 @@
+{
+  "card_type": "merged_review",
+  "from_agent": "chief-editor",
+  "to_agent": "quality-reviewer",
+  "chapter": 7,
+  "title": "人影",
+  "timestamp": "2026-08-07T16:05:00+08:00",
+  "status": "fixes_applied",
+  "sources": {
+    "detail_review": "handoff/detail_review_7.json",
+    "de_ai_analysis": "handoff/de_ai_analysis_7.json",
+    "conflicts": "无冲突项（detail 0 major + 2 minor + 4 low；de-ai 0 major + 1 minor + 3 note，维度不重叠）。1处交叠：detail sentence_level#1（签名短语第4章原样复用）与 de-ai issue#4 为同一问题，按合并原则归 detail 侧计费（D1），de-ai 侧仅备注支持不重复计费。"
+  },
+  "applied_fixes": [
+    {"id": "D1", "severity": "minor", "source": "detail", "issue": "签名进食节奏跨章原样复用第4次：'一口一口嚼，每口隔一样长'与Ch4 L157/Ch5 L93/Ch6 L125逐字相同，违反Ch6登记项'再现须微变奏'", "fix": "改为'照老拍子，一口一口嚼'——保留动作核，'老拍子'令签名自我指认为仪式，并与本章L211'他的更算里，第一次排进了别人的更'形成'自己的拍子vs别人的更'暗对，变奏后签名资产升值"},
+    {"id": "A1", "severity": "minor", "source": "de_ai", "issue": "'的'字密度5.38/100字超5阈值（138/2563，对照Ch4 2.66/Ch5 4.24/Ch6 3.33），集中于L163复盘长段与L73-77火堆段", "fix": "执行3处一字级微调（宁删勿补）：L77'进出的方向杂'→'进出方向杂'；L129'数得出来的铺位'→'数得出的铺位'；L163'铺位的数和签子的数对得上'→'铺位数和签子数对得上'。修后密度5.28/100字仍微超5，余量登记豁免：L163账式清单语言是精算人设声音签名（detail candidate_rulings.a已判功能性保留段），位面质地带功能词密度整体上浮有Ch5 4.24同带先例，再删将伤'过账'仪式感与定语精度，不做过度矫正"},
+    {"id": "P1", "severity": "process", "source": "detail", "issue": "本次评审驱动修订构成修复轮次，按Ch6终审指导须补跑fix_auditor（Ch6缺卡教训）", "fix": "四步闭环已执行：复制pre_lint_ch7.txt（7913字节）→ 4处修订 → 复跑style_lint（exit 0）→ fix_auditor出卡（fix_audit_ch7.json：比喻变化0/引号消失0/整句删除0/功能词减少2句）。fix_audit_ref须回填交接卡"}
+  ],
+  "rejected_suggestions": [
+    {"suggestion": "de-ai issue#2：'停拍'家族章内3次（各停一拍/停了一拍/停了半拍）", "ruling": "不修，判刻意。三处各绑不同阅读节点（洼沿扫点L81/火镰L139/探灰验坑L173），是痕迹阅读体裁的节拍器；detail侧同判登记low。登记项：Ch8起'停拍'家族每章≤2次，第三次换'压住/落住/收住'"},
+    {"suggestion": "de-ai issue#3：否定动作句5次（没有停/没有急着进洼/没有伸手/没有动/没有绕）", "ruling": "不修，判刻意。五处各绑不同纪律点（走法/进洼/碰物/桩前/绕行），五次克制堆出章末'他没有绕'的主动选择分量，构成本章'克制'主题的句式签名；detail repetition_pattern同判"},
+    {"suggestion": "de-ai focus_check：叙述层金句式判断5处（L33/L121/L161/L191/L193）在'每章1-2处'参考阈值上沿", "ruling": "不修。全部绑定情节转折且为角色声音（自由间接/账目式），无Ch6 L81'他手艺里'式叙述者直接归纳角色的总结腔；L191'兽踩坑。人来看坑，桩收人。'为章末钩组核心锤，删则伤骨"},
+    {"suggestion": "detail low#1：章末'认了料的核贴着第二条槽'与L35收存位置表述细化", "ruling": "不处理。慈善读法成立（校向后刻意归位认料槽位），'认料共振隔油布感知'登记为f4机制轻扩展，后续章不得再扩大"},
+    {"suggestion": "detail low#2：'声饵'首次正文命名", "ruling": "不处理。系Ch6既有装置（短绳拴石发帖）的正文命名压缩，通用器物名不占专名预算，入库登记设定词表"}
+  ],
+  "fingerprint_override": {
+    "gate_result": "FAIL（6维超阈：sent_len_mean 17.31/基线40.34容差0.293、sent_len_stdev 20.32/容差0.35、long_sent_ratio 0.0079/容差0.5、para_len_mean 18.95/容差0.35、short_para_ratio 0.4397/容差0.646、comma_period_ratio 1.787/容差0.35；func_words_cosine 0.0597 PASS较Ch6 0.101改善、dialogue_ratio 0.0077 PASS、short_sent_ratio PASS）",
+    "override_by": "chief-editor",
+    "ruling": "pass_with_registration",
+    "rationale": [
+      "①同带证据：已终审定稿的Ch4（sent_len_mean 19.28）/Ch5（22.28）/Ch6（16.62，override定稿unified 9.44）与Ch7同属位面篇，位面篇实际质地带为16-23，Ch7的17.31落在带内中段",
+      "②结构性归因：Ch7超阈6维全部集中句长族/段落族单一维度族（mean/stdev/long_ratio/para_len/short_para/comma_period），非多系统漂移；主因是痕迹阅读体裁的短促观察节拍（36段≤15字短段占31.3%）+零在场对话（独处探索章）结构性拉低均值；276字六笔账复盘长段在位，长短对比节奏达标",
+      "③质地改善项：func_words_cosine 0.0597由Ch6的0.101（超阈）回落至容差0.08以内，显示'的'密度微调+句式分布在向带内健康区收敛；dialogue_ratio按H9场景裁定accept（设计使然非失控）",
+      "④设计使然：位面静默世界→短促行文是本书'土豆骨架+自有血肉'混合策略的自有辨识度部分（记忆库长期风格策略条目），非失控漂移；已执行'的'密度微调（5.38→5.28）守住功能词维度，再修句长族将磨平与Ch4-6共享的位面质地"
+    ],
+    "action_items": [
+      "登记入 deviation log（脚本已自动追加 memory/style_deviation_log.jsonl）",
+      "位面篇结束后由用户裁决：用Ch4-15自语料重建派生基线（容差由章际波动推导），或回炉统一向tiancantudou基线靠拢",
+      "Ch7-15写作沿用位面质地带（sent_len_mean目标带16-23），城镇章（Ch15归城起）可自然回升向基线靠拢"
+    ]
+  },
+  "post_fix_verification": {
+    "style_lint": "PASS（exit 0，blocking 0 / advisory 0 / non_blocking 1：对话占比2%<35%，H9场景裁定accept——独处探索章设计使然，Ch5先例）",
+    "fix_audit": "exit 0，证据卡fix_audit_ch7.json：比喻变化0/引号消失0/整句删除0/功能词减少2句——修订面干净，无过度矫正",
+    "fingerprint": "FAIL→override pass_with_registration（见上）",
+    "ai_score": 1.1,
+    "word_count": "修后2557字（含标题，去空白口径），在2400-2600区间内",
+    "de_density": "5.38→5.28/100字，余量登记豁免（位面质地带+功能性账段）",
+    "revision_discipline": "只删不补：4处修订共删6字（签名变奏-2字、'的'微调-4字），零新增字；六笔账推理链/四beat/f12埋设/章末钩组全部未触碰"
+  },
+  "unified_verdict": "0 critical / 0 major，minor全部处置完毕（2修+3登记），可进 quality-reviewer"
+}

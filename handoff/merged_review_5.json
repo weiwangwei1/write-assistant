@@ -1,0 +1,26 @@
+{
+  "card_type": "merged_review",
+  "chapter": 5,
+  "timestamp": "2026-08-07T02:10:00+08:00",
+  "from_agent": "chief-editor",
+  "to_agent": "chapter-writer",
+  "sources": ["handoff/detail_review_5.json (pass, 0c/0M/7m)", "handoff/de_ai_analysis_5.json (pass, ai=1.1, 3m)"],
+  "verdict": "minor_fix",
+  "must_fix": [
+    {"id": "mf1", "location": "L33-34", "problem": "'他把这四个字在心里放稳'指代悬空——'活核'两字、'够格的活核'五字，无四字对应", "fix": "改为'他把这句话在心里放稳'或同级表述"},
+    {"id": "mf2", "location": "L25", "problem": "'三年下来'挤压昭关破城→流浪→定居锈关时间线（顾衡在锈关未必满三年）", "fix": "模糊化为'几年下来'或'长年累月'"},
+    {"id": "mf3", "location": "L23/L113/L133区域", "problem": "'几百上千遍'章内3次近距离重复", "fix": "保留1处（建议留L23首用），其余2处换表述（如'千百遍'/'不知多少遍'），注意'间距分毫不差'跨章已2/2满额本章不得再增"},
+    {"id": "mf4", "location": "L145", "problem": "'只有一个解释'显性推理标记（作者引导味）", "fix": "软化为动作化呈现，如'石头摆成这样，他只想得到一个解释'或更冷处理"}
+  ],
+  "rejected_suggestions": [],
+  "memory_notes_for_manager": [
+    "干饼消耗：Ch5掰半块，余量约4.5块（Ch4掰成6块）",
+    "extended_leaks[0]用量：第2次递进（'指腹搭刻痕不按也不抹'，比Ch3更轻更慢）合规，剩余额度递减",
+    "f2 escalation补记：Ch5顾衡独处触摸刻痕变奏",
+    "大沟痕迹挂账：一人宽大兽拖沟（Ch5远影），Ch6-7须有回响防断线",
+    "频次满额登记：'间距分毫不差'跨章2/2、'几百上千遍'章内满额——后续章节禁用",
+    "兽避石棱生态规则建立（Ch5首次，单次观察下注成立，后续可强化）",
+    "f17推进记录：磨平坐石/浅凹槽/码齐兽骨/新旧痕迹'离开不超过两天'——第一层分寸达标，主人仍未现身"
+  ],
+  "next": "修复后de-ai完整模式+fanqie适配，再进quality评审"
+}

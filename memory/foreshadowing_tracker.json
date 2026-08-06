@@ -1,44 +1,60 @@
 {
-  "version": "0.1",
+  "version": "0.6",
+  "last_updated_chapter": 7,
+  "last_updated": "2026-08-07T11:00:00+08:00",
   "foreshadowings": [
     {
       "id": "f1",
       "planted_chapter": 1,
       "content": "顾衡守城的真正动机——城下古构装残骸",
       "target_reveal_chapter": 2,
-      "status": "planted",
-      "reveal_layer": 1
+      "status": "revealed",
+      "revealed_chapter": 2,
+      "reveal_layer": 1,
+      "note": "Ch2地底空膛揭示全貌"
     },
     {
       "id": "f2",
       "planted_chapter": 1,
-      "content": "'本不该认识的人'——与守城动机有关",
-      "target_reveal_chapter": 2,
-      "status": "planted",
-      "reveal_layer": 1
+      "content": "收刀者/'本不该认识的人'——左钩刻痕（Ch2残骸上→Ch3末顾衡贴身旧齿轮上同款，他从未刻过）",
+      "target_reveal_chapter": "Ch40-60（第一层）",
+      "status": "escalated",
+      "reveal_layer": 2,
+      "note": "长线。三层规划：第一层=刻痕与'沈'/昭关的关联（Ch40-60）；第二层=沈与第二纪元残骸的关系；第三层=与顾衡自身记忆/过去的关系（'另一个顾衡'恐)",
+      "escalation_log": [
+        {"chapter": 2, "event": "残骸土壁面发现左钩收刀刻痕，'昭关城下的土还没把这个人埋干净'"},
+        {"chapter": 3, "event": "章末旧齿轮齿根同款刻痕，顾衡从未刻过任何东西"},
+        {"chapter": 5, "event": "齿轮搭痕不按不抹——顾衡独处摸出旧齿轮，不举耳边也不转，指腹沿齿纹走到齿根在刻痕上搭住（不按也不抹就搭着），extended_leaks[0]第2次递进，比Ch3'死死按住用力抹'更轻更慢，剩余额度递减"}
+      ]
     },
     {
       "id": "f3",
       "planted_chapter": 2,
-      "content": "顾衡正在造的东西缺一件原料——只有位面里有",
+      "content": "构装缺'心'——活核只有位面里有",
       "target_reveal_chapter": 3,
-      "status": "planned",
-      "reveal_layer": 1
+      "status": "revealed",
+      "revealed_chapter": 3,
+      "reveal_layer": 1,
+      "note": "Ch3末顾衡明示'料在位面'，转入位面线"
     },
     {
       "id": "f4",
       "planted_chapter": 3,
-      "content": "顾衡献祭了古构装残骸核心——缺了关键一环",
-      "target_reveal_chapter": 4,
-      "status": "planned",
-      "reveal_layer": 1
+      "content": "引导器四条槽填一剩三——三条空槽填满是什么光景",
+      "target_reveal_chapter": "第一卷内逐槽填充",
+      "status": "planted",
+      "reveal_layer": 1,
+      "note": "读者期待锚：每填一槽=一次大爽点；填充节奏与位面探索绑定",
+      "escalation_log": [
+        {"chapter": 6, "event": "轻触激活（outline hook_sentence原文兑现）：核贴近第二条空槽，槽壁上的纹路轻轻转了一下——'三条空槽，有一条先认了料'；第一颗够格活核到手但未填实，剩两条埋在灰的深处"}
+      ]
     },
     {
       "id": "f5",
       "planted_chapter": 3,
-      "content": "位面里的某样资源——能让他造出'足以改变格局'之物",
+      "content": "位面里的资源——能让他造出'足以改变格局'之物",
       "target_reveal_chapter": "第二卷",
-      "status": "planned",
+      "status": "planted",
       "reveal_layer": 1
     },
     {
@@ -48,6 +64,94 @@
       "target_reveal_chapter": "后期卷",
       "status": "planned",
       "reveal_layer": 3
+    },
+    {
+      "id": "f7",
+      "planted_chapter": 3,
+      "content": "守军头目矛杆上的灰白色霜——蹭了两下没化，他揣进怀里没再看",
+      "target_reveal_chapter": "Ch8-15",
+      "status": "planted",
+      "reveal_layer": 2,
+      "note": "前纪元力量对低维世界的'侵蚀'暗示；与灰烬渗进城基同源；Ch4联动备注：温灰堆的灰与矛杆霜的灰同属'灰'母题，不点破"
+    },
+    {
+      "id": "f8",
+      "planted_chapter": 3,
+      "content": "灰烬渗进城的骨头里，几个人同时打寒颤——第二纪元遗产不是消失而是渗透",
+      "target_reveal_chapter": "第一卷中后期",
+      "status": "planted",
+      "reveal_layer": 2,
+      "note": "污染性维度，与f7联动；锈关后续可能出现'灰'相关的异象"
+    },
+    {
+      "id": "f9",
+      "planted_chapter": 1,
+      "content": "顾衡的触感记忆/core_fear——手指认得纹路弯法而脑子追不上，'这种凉他碰过，在别的地方，在很久以前'",
+      "target_reveal_chapter": "与f2联动，Ch40-60",
+      "status": "planted",
+      "reveal_layer": 3,
+      "note": "顾衡身世与'沈'的深层绑定；怕遗忘的存在主义恐惧"
+    },
+    {
+      "id": "f10",
+      "planted_chapter": 2,
+      "content": "守军头目老婆孩子在南边娘家，那边也闹兽潮——生死未卜",
+      "target_reveal_chapter": "第一卷内（Ch15-30区间给回响）",
+      "status": "planted",
+      "reveal_layer": 1,
+      "note": "配角独立目标；可在顾衡位面归来后给第一层信息（南边的消息）"
+    },
+    {
+      "id": "f11",
+      "planted_chapter": 4,
+      "content": "位面建造痕迹——石棱笔直十几步没入雾中，棱面极细纹路间距分毫不差如构装螺纹，那端雾更浓发黑",
+      "target_reveal_chapter": "第一卷中后期（位面文明/建造者线）",
+      "status": "planted",
+      "reveal_layer": 2,
+      "note": "环境预埋级，位面'被建造'的最早正文暗示；与f6位面嵌套真相同线不同层，不点破",
+      "escalation_log": [
+        {"chapter": 4, "event": "石棱笔直十几步没入雾中，棱面纹路间距分毫不差如构装螺纹，顾衡绕了过去"}
+      ]
+    },
+    {
+      "id": "f17",
+      "planted_chapter": 4,
+      "content": "位面温灰堆——'位面里有人'，甜风来源与灰堆主人",
+      "target_reveal_chapter": "Ch5-8区间",
+      "status": "partial",
+      "reveal_layer": 2,
+      "note": "第一层Ch6兑现（主人现身被证实）；第二层转'主人是谁/什么/为何以盐填槽'，归入s5自然延伸不算新支线，Ch7不强行推进，Ch8随位面第一层全貌闭合统一口径；甜味位面级来处口径在本窗口（Ch5-8）内统一",
+      "escalation_log": [
+        {"chapter": 4, "event": "章末五拍钩子：甜风→甜得像血→灰拢得齐四边高中间低是人手的活→灰是温的→无脚印→'位面里有人'"},
+        {"chapter": 5, "event": "第一层痕迹清单：一高一矮磨平坐石/一排浅凹槽/石角群落挡风摆法/烧黑石头/码齐兽骨/'离开不超过两天'——全章不见活人不见人形；章末钩'而屋子，总有主人回来的时候'"},
+        {"chapter": 6, "event": "第一层兑现：主人现身被证实——兽皮裹到头顶/眼白多眼黑少/看不出年纪/走近时石头不报信/陈述代问/拨灰对数；收盐指路（兽道+辨壳法）+让石分肉+约'下回带盐''拿你想要的换，这地方的我都有'；同章转第二层：盐填槽反转——'槽倒像早就开好了，一道一道等着填，填了很多年'，用途不解释"}
+      ]
+    },
+    {
+      "id": "f12",
+      "planted_chapter": 7,
+      "content": "猎核队痕迹——另一伙人在位面猎核：两处火堆一新一旧/木签27根八九张嘴/铺位七处值夜窝/三头兽取核弃肉/剥皮腹线无回刀猎户手/内陆火镰钢口泛青（第二级远影：内陆有炉口的铺子）/翻板坑+坑外三步尖桩阵'冲着人和兽一起算'",
+      "target_reveal_chapter": "Ch9-14（tier_1正面遭遇）",
+      "status": "planted",
+      "reveal_layer": 1,
+      "note": "反派梯子tier_1落地章；'他们会回来收坑'时间窗挂账；内陆火镰=第二级远影预埋（tier_2收灰网络）；顾衡单向透明'灰上没有一个印是他的'不得无理由破功；Ch8改道计划动机已立'他的更算里第一次排进了别人的更'",
+      "escalation_log": [
+        {"chapter": 7, "event": "痕迹链六笔账全量交付：火堆新旧/木签27根/铺位七处/取核弃肉/猎户剥皮手/内陆火镰；窄口翻板坑+尖桩阵揭示'兽踩坑。人来看坑，桩收人。'；章末'陷阱不是他布的，是冲着人和兽一起算去的'"}
+      ]
+    },
+    {
+      "id": "f18",
+      "planted_chapter": 5,
+      "content": "一人宽大兽拖沟远影——有什么很大的东西不久前过去",
+      "target_reveal_chapter": "Ch6-8区间",
+      "status": "planted",
+      "reveal_layer": 1,
+      "note": "Ch6回响×2+Ch7回响×1已交付；揭示窗口Ch6-8，Ch8为窗口末章须给第一层画面（远影/声响/痕迹任一具象），防窗口逾期",
+      "escalation_log": [
+        {"chapter": 5, "event": "新埋：沟一人宽从雾里来到雾里去，沟底灰压瓷实两边新土，'过去得不久'；顾衡不顺不逆横切过去把沟留在下风处"},
+        {"chapter": 6, "event": "回响×2：'沟别下。过路的大东西，不认日子。''不知道。它过路的时候，我都在装死。'+章末'沟里的东西，这两天躁。绕远些。'——超一句话级但未揭形体；'躁'=活动频率上升，为Ch7-8遭遇/远影铺垫"},
+        {"chapter": 7, "event": "回响×1：沟在下风处今天很静，只有一回地皮远远地麻了一下又收住——一句话级回响防断线，Ch8窗口末章须给第一层画面"}
+      ]
     }
   ]
 }

@@ -1,0 +1,146 @@
+{
+  "card_type": "setting_review",
+  "timestamp": "2026-08-06T04:49:13+08:00",
+  "from_agent": "setting-reviewer",
+  "to_agent": "chief-editor",
+  "verdict": "revise",
+  "total_score": 9.08,
+  "dimensions": [
+    {
+      "name": "机制完整性",
+      "score": 8.5,
+      "issues": [
+        {
+          "severity": "major",
+          "location": "ability_system.json: 六大职业[1].燃命者.分级 vs 献祭规则.三级献祭对照[1] vs 献祭规则.视觉标记",
+          "problem": "内部直接矛盾：燃命者分级记'命祭者（四阶临时）'，而三级献祭对照将'深祭/命祭'合并记为'三阶临时，献祭者废掉'（Ch3年轻兵生辰木牌实例）；跨阶挑战规则'燃命者命祭可临时越一阶'的起算阶位因此含糊（从三阶越到四阶？还是命祭者本身即四阶？）。同时视觉标记光色表只有'暗铜=二阶/青白=三阶/无光只有灰=前纪元规则（四阶+）'，本纪元路径下的四阶临时（命祭者）没有对应光色，机制闭环缺一环。注：该矛盾源自 setting_bible（职业分级'命祭者=四阶临时'与献祭规则2'生辰木牌=三阶临时'并存），但 ability_system 的'深祭/命祭'合并行使矛盾在本文件内显性化。",
+          "fix_suggestion": "①三级献祭对照将'深祭/命祭'拆为两行：深祭=三阶临时（青白光）；命祭=四阶临时·本纪元极限·仅职业燃命者可达，并注明Ch3年轻兵属'非职业者以命格献祭'故仅达三阶临时（与正文不冲突）；②视觉标记补本纪元四阶临时光色（如'青白炽极'）或显式注明'本纪元四阶临时无光色新规，沿用青白炽化'；③跨阶挑战规则注明起算基准（'命祭=三阶燃命者越至四阶临时'）。"
+        },
+        {
+          "severity": "minor",
+          "location": "ability_system.json: 同阶对照表.statement vs 武器装备分级[1].祭器.对应阶位",
+          "problem": "口径不一：同阶对照表将祭器锚定在二阶（'二阶：精锐武师=壳兽=祭器'），武器装备分级记祭器'对应阶位：二-三阶'。虽可解释（祭器阶位随献祭档位浮动：浅祭二阶/深祭三阶），但无明文，写手易误用为固定二阶。",
+          "fix_suggestion": "武器装备分级.祭器行加一句注：'阶位随献祭档位浮动（浅祭=二阶临时/深祭=三阶临时），对照表锚定二阶为浅祭基准'。"
+        },
+        {
+          "severity": "minor",
+          "location": "ability_system.json: 跨阶挑战规则.statement",
+          "problem": "'位面行者利用位面环境以弱胜强（代价：高风险）'机制颗粒度粗，而本文件'位面环境对冲（卷1能力暗示）'已补了一半（Ch10引导器的灰进位面反而安静），两条目未交叉引用，机制链断裂。",
+          "fix_suggestion": "跨阶挑战规则末加'（卷1实例详见「位面环境对冲」Ch10）'。"
+        }
+      ]
+    },
+    {
+      "name": "设定自洽",
+      "score": 8.5,
+      "issues": [
+        {
+          "severity": "major",
+          "location": "world_setting.json: 专名纪律（对照 output/chapter_001.txt:36、chapter_002.txt:103）",
+          "problem": "专名计数与已发布正文脱节：①Ch1:36'待在铁壁城那种大城里'——'铁壁城'为新造城池专名，未收录于专名纪律（已用4）、setting_bible.naming_conventions（已用4）与 outline.naming_budget（used_count=4）任一文件；②'第二纪元'（Ch2:103'第二纪元的构装'）与已计数的'第三纪元'结构平行，却挂于 setting_bible 待定专名、未计入已用数，计数口径不一致；③昭关首现章节记错（记Ch2，实为Ch1:20/146，见下条）。若铁壁城与第二纪元均严格计入，前30章已用数达6>5，topic_screening红线合规状态未知；'余额1冻结备用'的声明失真，若Ch4-30动用该'余额'将实际破线。",
+          "fix_suggestion": "①裁定计数口径：一次性提及地名（铁壁城）与纪元系列词（第二纪元）是否计入新造专名，形成明文规则；②按裁定口径重核Ch1-3实际专名清单，更正已用数与余额（严格口径下已用=5-6，余额=0或已透支，须明示Ch4-30禁用新专名且卷1紧急余额不存在）；③同步修订 setting_bible.naming_conventions 与 outline.naming_budget 的同一漏记。"
+        },
+        {
+          "severity": "minor",
+          "location": "world_setting.json: 地理.昭关.已披露细节 / disclosure_status",
+          "problem": "披露标注不准确：记'仅名字（Ch2正文）'，实则昭关首现于Ch1:20（'昭关最惨，一个时辰就被碾平'）与Ch1:146（'昭关来过一头带螺旋纹的，一个时辰城就没了'），且Ch1已披露'昭关被纹兽所破'这一超出名字的事实；outline.naming_budget注记'昭关Ch2首现'同样错误。另写作禁令'只允许旁人之口的短句提及（Ch31/Ch48）'未追认Ch1-2既有叙述式提及的口径。",
+          "fix_suggestion": "改为'已披露：名字+被一头纹兽一个时辰所破（Ch1:20/146）；昭关城下的土/与收刀者关联（Ch2:151）；城市本体与顾衡经历未披露'；禁令补'Ch1-2叙述式提及为既有事实，卷1后续仅限旁人之口短句（Ch31/Ch48）'。"
+        },
+        {
+          "severity": "minor",
+          "location": "world_setting.json: 地理.位面裂隙.disclosure_status",
+          "problem": "章节定位错误：记'已披露（Ch3章末提及位面，Ch4进入）'，实则Ch1:14已出现'从位面裂隙里涌出来的东西'，Ch2:127已展开'兽潮从位面裂隙里涌出来，裂隙那边的兽体内有活核'。",
+          "fix_suggestion": "改为'已披露（Ch1:14提及位面裂隙/Ch2:127展开裂隙-活核资源链/Ch4进入）'。"
+        },
+        {
+          "severity": "minor",
+          "location": "ability_system.json: 武器装备分级[0].凡器 / [3].遗器 / [1].祭器 的 disclosure_status",
+          "problem": "术语级披露标注与正文不符：经全文检索，'凡器''遗器'二术语均未在Ch1-3正文出现（仅概念画面展示：Ch1长矛/箭为凡器概念，Ch2-3残骸/芯子为遗器概念），而标注为'已披露（Ch1）''已披露（Ch2-3）'；'祭器'首现于Ch1:18（'得武师或者祭器才杀得动'）而非标注的Ch2。若写手按'术语已披露'在Ch4叙述中直接以术语指称，读者并无术语认知。",
+          "fix_suggestion": "凡器/遗器改标'概念已披露（Ch1/Ch2-3），术语名未点破——正文首次使用术语时需以展示带出'；祭器章节引用改为'Ch1:18首现，Ch2祭器矛头，Ch3三级献祭'。"
+        },
+        {
+          "severity": "minor",
+          "location": "ability_system.json: 通用阶位表[3].四阶.disclosure_status",
+          "problem": "记'Ch2-3遗器纹路已展示画面'，实则流动纹画面首现于Ch1:158-160（'纹路在动，像水在金属表面慢慢流''活人做不出会动的纹路'）。",
+          "fix_suggestion": "改为'Ch1-3遗器流动纹画面已展示（Ch1:158首现）'。"
+        },
+        {
+          "severity": "minor",
+          "location": "world_setting.json: 势力.锈关守军.定位（对照 chapter_003.txt:65）",
+          "problem": "'老周头伤后管库'混入已披露条目：Ch3:65'老兵头兽一爪拍飞没声'未交代生死，'伤后存活'目前仅有 outline.character_charm_design 支持（'老周头=伤后管库'），正文未披露。",
+          "fix_suggestion": "该句补注'（卷1计划，依outline；Ch3正文未交代生死）'，或移入'卷1发展'字段。"
+        }
+      ]
+    },
+    {
+      "name": "世界合理性",
+      "score": 9.0,
+      "issues": [
+        {
+          "severity": "minor",
+          "location": "world_setting.json: 地理.锈关.已披露细节（对照 chapter_001.txt:20）",
+          "problem": "未收录Ch1:20'上一座城撑两夜就破'——'边境方向已连续有城失守'是支撑'崩塌波及边境'因果链的已披露世界事实，与昭关被破并列，设定文件缺失该条。",
+          "fix_suggestion": "锈关.已披露细节补'Ch1:20 上一座城撑两夜即破（方位未命名，属边境连续失守背景）'。"
+        },
+        {
+          "severity": "minor",
+          "location": "conflict_rules.json: 资源争夺规则（对照 world_setting.json: 势力.锈关守军.卷1发展）",
+          "problem": "两经济体系无接口：聚落核市'核串子当钱/核成色定地位'（Ch26-28）与锈关据点'工分换粮/旧物换械'（Ch36立规）并存于卷1后半，兑换/冲突关系未说明，写手到Ch36-38双线交汇时无据可依。",
+          "fix_suggestion": "资源争夺规则加一行接口原则（如'核与工分互不通用，跨体系只以物易物'，或显式留白'接口卷1后半写作时定，两体系暂不相兑'）。"
+        }
+      ]
+    },
+    {
+      "name": "体系丰富度",
+      "score": 9.5,
+      "issues": [
+        {
+          "severity": "minor",
+          "location": "ability_system.json: 六大职业[5].御兽师.分级",
+          "problem": "体例不齐：其余五职业均有专属分级名（武师五档/燃命者三档/构装师四档/灵纹师三档/位面行者三档），唯御兽师为'按能控制的兽类等级分阶'，无分级名。属可接受留白，但体例缺口宜注记。",
+          "fix_suggestion": "加'（分级名封存，卷2+启用时补）'注记，与'深潜者/征服者分级封存'体例对齐。"
+        }
+      ]
+    },
+    {
+      "name": "冲突平衡",
+      "score": 9.5,
+      "issues": [
+        {
+          "severity": "minor",
+          "location": "conflict_rules.json: 反派梯子.tier_1（对照 world_setting.json: 势力.裂隙客猎核团伙.活跃区间）",
+          "problem": "执行要求不同步：world_setting记'Ch14打残，头目断后逃脱留线（卷2前10章须给去向交代）'，conflict_rules的tier_1.debut止于'头目逃脱留线'，丢失'卷2前10章给去向交代'这一收口义务，卷2大纲易漏账。",
+          "fix_suggestion": "tier_1.debut或function补'头目去向须于卷2前10章交代'。"
+        },
+        {
+          "severity": "minor",
+          "location": "conflict_rules.json: 冲突升级节奏表_卷1.差异化护栏",
+          "problem": "护栏覆盖不全：现有4条覆盖Ch45-46对Ch3的献祭越阶复刻与情感类型重复，但Ch14（S级反杀打脸，强度7，位面遭遇战）与Ch33（S级做局夺料，强度7，聚落预设局）同为人际正面S级爽点，无质地差异护栏，存在同型爽点复刻风险。",
+          "fix_suggestion": "差异化护栏补第5条：'Ch14（遭遇战反杀）与Ch33（预设做局）同为S级人际爽点，冲突发起方/主角主导度/战果形式禁止复刻——Ch14被动遇袭反杀，Ch33主动设局夺料'。"
+        }
+      ]
+    },
+    {
+      "name": "扩展性",
+      "score": 9.5,
+      "issues": [
+        {
+          "severity": "minor",
+          "location": "world_setting.json: 纪元体系.深层真相（对照 ability_system.json: 封存清单_卷1禁用[6]）",
+          "problem": "后期真相时间轴分散两文件：巨构/嵌套L1-L4分卷节点在world_setting（卷2实证→卷3半揭→卷4初揭→卷5全揭），'献祭规则来源=不等价交换是税（卷5揭示）'在ability_system封存清单，缺一处统一索引，longline-guardian卷末核查时需跨文件拼凑。",
+          "fix_suggestion": "在conflict_rules.json新增'后期真相时间轴'索引字段，汇总：巨构嵌套L1-L4（world_setting）+献祭规则来源卷5（ability_system）+沈线三层Ch40-60/卷3/卷4（f2）+跨纪元种族卷4首出场，各条注明事实源文件。"
+        }
+      ]
+    }
+  ],
+  "recommended_fix": [
+    "P0-major｜ability_system.json：拆开'深祭/命祭'合并行，明确命祭=四阶临时仅限职业燃命者（Ch3年轻兵为非职业者命格献祭故三阶临时），补本纪元四阶临时光色规则，跨阶挑战规则注明起算基准——消除献祭体系内部矛盾",
+    "P0-major｜world_setting.json专名纪律：裁定铁壁城（Ch1:36）与第二纪元（Ch2:103）计数口径并重核已用数/余额（严格口径已用5-6、余额0），更正昭关首现章节（Ch1非Ch2），同步修订setting_bible.naming_conventions与outline.naming_budget同一漏记",
+    "P1-minor｜术语级disclosure批量更正：凡器/遗器改'概念已披露·术语未点破'；祭器首现改Ch1:18；位面裂隙披露链改Ch1→Ch2→Ch4；四阶流动纹画面改Ch1-3",
+    "P1-minor｜world_setting.json锈关守军.定位：'老周头伤后管库'补注'卷1计划（Ch3正文未交代生死）'；昭关条目补'已被纹兽所破（Ch1）'为已披露事实",
+    "P2-minor｜conflict_rules.json：tier_1补'头目去向卷2前10章交代'；差异化护栏补Ch14/Ch33同型S级爽点区分条；新增'后期真相时间轴'跨文件索引",
+    "P2-minor｜世界事实补录：锈关.已披露细节补'上一座城两夜即破（Ch1:20）'；资源争夺规则补核市经济与据点工分经济接口原则",
+    "P2-minor｜ability_system.json：祭器加'阶位随献祭档位浮动'注；跨阶挑战规则交叉引用位面环境对冲；御兽师分级名加封存注记"
+  ],
+  "note": "三件套与setting_bible逐字一致性极佳、封存项对Ch1-3零泄漏、四槽/献祭/反派梯子/悬念窗口机制闭环严密——底子已达9.5水准，但命祭口径内部矛盾（major）与专名计数脱离正文实况（major）两项必须先修，配合13处minor级标注/同步缺口清零后可复审冲线。"
+}

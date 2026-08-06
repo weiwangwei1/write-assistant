@@ -1,19 +1,25 @@
 {
-  "novel_title": "请客",
-  "phase": "init",
-  "current_chapter": 1,
-  "completed_chapters": [],
+  "novel_title": "第三纪元",
+  "phase": "chapter_loop",
+  "current_chapter": 6,
+  "completed_chapters": [1, 2, 3, 4, 5],
   "daily_target": 1,
-  "daily_completed": 0,
-  "current_date": "2026-08-02",
+  "daily_completed": 2,
+  "current_date": "2026-08-07",
   "rewrite_count": {},
   "errors": [
     {
       "chapter": 0,
-      "stage": "topic_screening",
-      "message": "《征诏之界》2026-08-01 归档，新书《请客》重新立项",
+      "stage": "project_switch",
+      "message": "《请客》2026-08-04归档；《第三纪元》为当前在产项目，Ch1-3黄金三章已终稿（本卡由请客旧卡重建）",
+      "resolved": true
+    },
+    {
+      "chapter": 3,
+      "stage": "memory_debt",
+      "message": "Ch1-3记忆欠账已补：chapter_summaries三件+session_pointer+goal_tracker+foreshadowing_tracker同步",
       "resolved": true
     }
   ],
-  "last_updated": "2026-08-02T22:30:00+08:00"
+  "last_updated": "2026-08-07T07:10:00+08:00"
 }

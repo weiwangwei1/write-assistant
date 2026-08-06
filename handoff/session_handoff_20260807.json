@@ -1,0 +1,86 @@
+{
+  "card_type": "session_handoff",
+  "created_at": "2026-08-07T11:30:00+08:00",
+  "project": "第三纪元",
+  "purpose": "上下文压缩前完整状态快照，供新会话无缝续接",
+  "current_state": {
+    "current_volume": 1,
+    "current_chapter": 7,
+    "next_chapter": 8,
+    "completed_chapters": [1, 2, 3, 4, 5, 6, 7],
+    "overall_progress": "7/300",
+    "total_word_count": "~21680字",
+    "style_pack": "tiancantudou",
+    "quality_trend": "Ch1-3 lint L0全绿+指纹校验通过（用户驱动五轮精修定稿）；Ch4 unified 9.11；Ch5 unified 9.28；Ch6 overall 9.44；Ch7 overall 9.43——全部终审approved",
+    "phase": "位面探索篇（Ch4-15），当前在位面第一层深处"
+  },
+  "protagonist_status": {
+    "name": "顾衡",
+    "location": "位面第一层深处坡上观察位（兽群活动区窄口上方）",
+    "power": "三阶匠师，遗器核心已烧；引导器烧一空二认料（第二槽）；核温感应定向机制可用",
+    "equipment": "锉刀（缠皮绳静音改造）、引导器（四条槽：第一条烧空、第二条认料、剩两条空）、第一颗够格活核（油布裹三层贴心口）、旧齿轮（左钩刻痕不明来历）、断矛皮绳（Ch3获赠）、火石",
+    "supplies": "饼约4块整+大半块，盐尽，水囊",
+    "mood": "静冷警觉——'他没有绕'",
+    "key_decisions": "原开猎计划作废（有人先一步盯上兽群）；'他的更算里第一次排进了别人的更'；坡上留路观察"
+  },
+  "next_action_detail": {
+    "chapter": 8,
+    "outline_beat": "位面第一层全貌交付s5闭合+猎杀计划成型'他不猎兽，他改道'+章末钩'兽群改了道，直奔他挖好的地方——可那里还躺着另一伙人设的套'",
+    "pre_conditions": [
+      "Ch7末陷阱揭示与Ch8改道计划的衔接——改道物理支点已立（坡上观察位'看得见窄口，窄口里看不见坡'）、套的归属已立（翻板坑+坑外三步桩阵）、改道动机已点题（'他的更算里，第一次排进了别人的更'），Ch8开篇直接进计划成型不必重述痕迹",
+      "f18揭示窗口Ch6-8，Ch8为窗口末章，须给沟里大东西第一层画面（远影/声响/痕迹任一具象），防窗口逾期",
+      "配比预警：Ch7为C级铺垫章（连续铺垫计数=1），Ch8若再计铺垫则连续2章触顶，Ch9必须含开奖级事件",
+      "签名句式微变奏沿用：'照老拍子'/'他心里的更算自己走'已登记变体、'归了位'第4用建议换'归了档/入了账'、'停拍'家族每章≤2次（第三次换压住/落住/收住）",
+      "指纹位面篇目标带sent_len_mean 16-23沿用",
+      "f12挂账：这伙人'会回来收坑'，Ch8改道施工须处理'避开收坑人'时间窗，'灰上没有一个印是他的'单向透明不得无理由破功",
+      "饼账余量约4块整+大半块",
+      "若Ch8仍为低对话章则连续2章低对话触观察线，Ch9须恢复人声交互（与outline Ch9-14 tier_1正面遭遇排期兼容）"
+    ]
+  },
+  "active_foreshadowing": {
+    "critical": [
+      "f2: 旧齿轮左钩刻痕是谁刻的（Ch3末炸弹，Ch5搭痕第2次递进，目标Ch40-60第一层揭秘）",
+      "f4: 三条空槽→第二槽已认料（Ch7核温感应定向机制建立，剩两条）",
+      "f12: 猎核队痕迹+翻板坑尖桩阵'冲着人和兽一起算'（Ch7埋设，对方会回来收坑；tier_1 Ch9-14正面遭遇）",
+      "f17: 盐槽主人是谁/为何以盐填槽（第二层，挂s5延伸）",
+      "f18: 沟里大东西（'这两天躁'，Ch6-8窗口末章须给第一层画面）",
+      "s5: 位面里面有什么（Ch8第一层全貌闭合）",
+      "s6: 矛杆凝霜未化（Ch12切镜头半揭→Ch15闭合）"
+    ],
+    "long_term": [
+      "f7: 矛杆霜=前纪元侵蚀",
+      "f8: 灰烬渗进城基=第二纪元遗产渗透",
+      "f9: 顾衡触感记忆/core_fear（与f2联动）",
+      "f10: 守军头目家人在南边生死未卜",
+      "f11: 位面建造痕迹/石棱螺纹"
+    ]
+  },
+  "key_files_to_read_on_startup": [
+    "memory/session_pointer.json（会话指针：当前章节/角色快照/里程碑/next_action——开局必读）",
+    "memory/outline.json（章节大纲，含beat sheet和suspense_window_plan——太大需分段读）",
+    "memory/goal_tracker.json（目标/悬念窗口/反派梯子/能力升级/情感强度/风格配额）",
+    "memory/foreshadowing_tracker.json（伏笔追踪，含f12新埋和f18更新）",
+    "memory/setting_bible.json（设定圣经：时间线/世界观唯一事实源）",
+    "memory/characters.json（角色索引指针）",
+    "config/novel_config.json（小说全局配置）",
+    "output/第三纪元_全文_header.txt（全文头部：进度/点题闭环/章次目录/生产记录/技法验证）",
+    "handoff/final_review_6.json（Ch6终审卡，含指纹override裁定范例）",
+    "handoff/merged_review_6.json（Ch6合并审核卡，含修订范例和指纹override rationale）"
+  ],
+  "open_decisions": [
+    "书名与简介待 final（用户建议方向：突出第三纪元/灰烬/旧齿轮/刻痕意象，忌俗套重生流书名）",
+    "第一卷卷名与章节规模待 plot-architect 设计回填",
+    "指纹基线终裁：位面篇（Ch15归城）结束后由用户裁决——用Ch4-15自语料重建派生基线，或回炉统一向tiancantudou基线靠拢"
+  ],
+  "production_pipeline": "chapter-writer → style_lint(L0红线) → detail-reviewer ∥ de-ai-processor → merged_review → quality-reviewer → final-reviewer → memory-manager（硬门禁：终审通过后必须先完成记忆入库才允许开写下一章）",
+  "quality_gate": "unified_review v3.0问题清单制：critical清零即通过，分数仅作参考，不以≥9.5为门禁；指纹FAIL→chief-editor override pass_with_registration（位面质地带sent_len_mean 16-23同带证据）",
+  "user_preferences_reminder": [
+    "维持冷硬废土风，通过情感泄漏点（微动作/物件叙事）而非直接心理描写传递情感",
+    "每章技术分≥9.5为基本门槛，追求'读者放不下'的吸引力",
+    "每句一行（TXT文件便于预览）",
+    "用多个Agent并行处理提升速度",
+    "interactive mode continuation：关键节点用AskUserQuestion暂停报告",
+    "Ch4切入'准备进入位面'或'位面内的诡异'，保持高压快节奏",
+    "主角顾衡：掌控全局天才型，无创伤背景，旧齿轮为标志性物件"
+  ]
+}

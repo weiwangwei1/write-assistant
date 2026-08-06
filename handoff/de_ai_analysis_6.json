@@ -1,0 +1,115 @@
+{
+  "card_type": "de_ai_analysis",
+  "mode": "analysis_mode",
+  "timestamp": "2026-08-06T08:03:33+08:00",
+  "from_agent": "de-ai-processor",
+  "to_agent": "review-merger",
+  "chapter_num": 6,
+  "title": "盐",
+  "draft_ref": "output/chapter_006.txt",
+  "reference_chapters": ["output/chapter_004.txt", "output/chapter_005.txt"],
+  "ai_score_before": 1.1,
+  "verdict": "绿灯（≤2.5）。14类检测无 critical/major，仅 4 条 minor + 2 条观察级 note；多数疑似点为冷硬废土风的刻意签名手法，与 Ch4/Ch5 口径一致，不建议改动。",
+  "dimension_scores": {
+    "sentence_uniformity": 1.0,
+    "de_density": 1.5,
+    "emotion_telling": 0.0,
+    "formal_transition": 1.0,
+    "dialogue_orality": 1.0,
+    "word_repetition": 2.5,
+    "four_char_idiom": 0.5,
+    "paragraph_uniformity": 1.0,
+    "note": "ai_score = 8维平均 = (1.0+1.5+0+1.0+1.0+2.5+0.5+1.0)/8 ≈ 1.1。'的'字密度实测约2.3-3.2次/100字（≤5阈值内）；情绪直说0处；四字成语0处；段落长短悬殊（230字猎杀长段 vs 单句成段）；'而后'2次为Ch4-5既有语汇，不构成书面转折高频。"
+  },
+  "focus_check": {
+    "dialogue_ratio_21pct": "不判AI痕迹。位面静默规则+独居者多年不开口的人设密度服从设定；且第1行即对话、前1/3活人交互达标。标签多样性评估：'说'×5（L17/31/53/57/71）、'道'×4（L23/117/119/121）、动作标签×8（拨灰/抿盐/伸指/勒卷等）、无标签对白若干——四类交替出现，总体合格；唯'那人说'原样三连见 issue#4。",
+    "aphorism_density": "叙述层格言式短句5处（L9'等是登门，藏是入室'/L81'等，是他手艺里最便宜的工具'/L101'数出来的东西，一遍就够'/L153'从来没有几乎'/L159'雾没有边，可他要的东西，有了方向'），超'每章1-2处'阈值；但全部绑定情节转折（登门礼仪/更算等待/代价量化/认料/方向确立），且L71'兽只要你死。活人，要你活着有用。'为对白属角色声音不计入叙述层。判 minor 而非 major：仅 L81 为叙述者对角色的直接归纳（'他手艺里'总结腔），是首选删减候选，见 issue#1。",
+    "simile_explicitness": "'像'字全章3次（L5门轴/L13'像在对一个只有它知道的数'/L147刚离火的铁），零标记隐喻1处（L95拧成一张弓），暗喻1处（L79声音是帖子=Ch5规则意象变奏）。一段一喻、载体无重复（门轴/数/弓/铁），显性度与Ch4（像×4）/Ch5（像×2）口径一致。注意：写手自检卡称明喻3处，实际L13第2个'像'未计入——密度仍合规，仅提示台账口径。",
+    "short_hammer_repeat": "'五十。五十个数，劲先走一步。'（L101）与'嘣的一下，什么都不剩'（L95）属'数字锤+拟声锤'两拍，分别钉在代价量化与拧劲断裂两个不同转折点，非同点重复；'它来了。'（L85）单句成段与Ch5'在蓄。''麻一下，近一步。'同一节奏签名。不判重复模式。",
+    "inner_explanation_density": "'他没有问。问一句，就露一句自己的底。'类内心说明全章3处（L33/L101/L153），每条≤12字且各绑DNA动作（藏底/精算失效/手艺人确定性），密度可接受；其中L33与L101同为'否定动作+顶真式理由'结构，见 issue#5（观察级）。"
+  },
+  "detected_issues": [
+    {
+      "id": 1,
+      "category": "author_summary",
+      "location": "第81行（更算等待段末）",
+      "original": "等，是他手艺里最便宜的工具。",
+      "severity": "minor",
+      "suggestion": "全章叙述层金句5处超1-2处阈值，本条是唯一由叙述者直接归纳角色（'他手艺里'）的总结腔，且前文'指头在袖子里一根根轮着捏热'已用动作展示'等'，属展示-解释冗余的轻症。首选删减候选；其余4处（L9/L101/L153/L159）均绑定转折且为内心/收束声音，建议保留。",
+      "revised": "删去该句，段落于'他不动，指头在袖子里一根根轮着捏热。'收束。"
+    },
+    {
+      "id": 2,
+      "category": "word_repetition",
+      "location": "第95行（猎杀长段内）",
+      "original": "腕子忽然不听使唤……那身拧劲忽然断了",
+      "severity": "minor",
+      "suggestion": "同一长段内'忽然'×2（500字窗口内重复的非刻意用词）。前一处写右手失控、后一处写拧劲断裂，保留前一处（失控的意外感更强），后一处改直写。",
+      "revised": "数到一百二十，那身拧劲毫无预兆地断了，嘣的一下，什么都不剩。"
+    },
+    {
+      "id": 3,
+      "category": "word_repetition",
+      "location": "第25/43/89行",
+      "original": "半晌，把灰沿上……／半晌，那只手伸到一半……／半晌，他指尖一沉……",
+      "severity": "minor",
+      "suggestion": "'半晌'全章3次。第43行处与'停了半拍'语义重叠（同句已有停顿拍），删'半晌'最干净；其余两处保留。",
+      "revised": "那只手伸到一半，停了半拍，才把纸包捏过去，捻了一星放进嘴里。"
+    },
+    {
+      "id": 4,
+      "category": "dialogue_tag_pattern",
+      "location": "第17/31/71行",
+      "original": "'你没动骨头。'那人说。／'外头来的，熬不过三个甜味。'那人说。／'什么都要。'那人说。",
+      "severity": "minor",
+      "suggestion": "标签多样性整体合格（说/道/动作标签/无标签交替，那人侧另有8处拨灰类动作标签），但'那人说'原样三连落在同一轮冷交互里，听感单一。第31行并入既有动作标签即可，与L61/L135'那人垂着眼拨灰'同路数。",
+      "revised": "'外头来的，熬不过三个甜味。'那人把灰沿上一线看不出的塌抹平，'前头来的那些，一个都没熬过去。'"
+    },
+    {
+      "id": 5,
+      "category": "sentence_pattern_repeat",
+      "location": "第33行 vs 第101行",
+      "original": "他没有问。问一句，就露一句自己的底。／他没有再数第二遍，数出来的东西，一遍就够。",
+      "severity": "note",
+      "suggestion": "两条同为'否定动作+顶真式理由'的内心说明模板，各绑DNA动作（藏底/精算），密度2处未超阈，判观察级。若后续统一修订轮要求再降模板感，第101条可削为'他没有再数第二遍。'，让前文的'五十'自己说话；本轮不动。",
+      "revised": null
+    },
+    {
+      "id": 6,
+      "category": "signature_gesture_repeat",
+      "location": "第61行 vs 第135行",
+      "original": "那人垂着眼拨灰（6字原样重复）",
+      "severity": "note",
+      "suggestion": "'拨灰'为那人的签名动作锚点，全章7拍（L13/25/39/61/67/135/139），属'物件重复作节奏锚点'的刻意手法，与Ch4老周头擦锁同路数，不修。仅提示L61与L135两拍完全同字，若detail-reviewer裁定过近，L135可换'垂着眼，把灰拨回四边高'以微调字面。",
+      "revised": null
+    }
+  ],
+  "clean_categories": [
+    "emotion_telling（0处情绪直说，'那道疼压进膝盖底下，压成力气'为生理性转译，合格）",
+    "character_telling（0处性格标签，'稳得没有一丝多余的抖'经手展示而非形容词堆砌）",
+    "logic_chain（关键段落均为镜头链：盐填槽段='看着→原以为→如今看'认知反转，无'这意味着/他意识到'）",
+    "summary_ending（章末'明天往那边走'为动作收束，无总结句）",
+    "formal_transition（然而/但是/因此/于是0处；'接着'1次、'而后'2次为既有语汇）",
+    "four_char_idiom（0处成语；'安安静静'为叠词非成语）",
+    "over_connection（意合衔接为主，无连续显式连接）",
+    "over_describe（场景单感官聚焦：地皮触觉/灰视觉，无全感官铺陈）",
+    "pov_shift（单一POV顾衡贯穿；L13'他拢回去的样子'指顾衡拢灰旧活，与'它'的指代区分刻意，非视角漂移）",
+    "parallel_piling（无三连以上排比；'低，哑，像一口锈了很多年的门轴'仅两项叠加即收）",
+    "abstract_noun（无'一种感觉'式抽象名词；'方向/力气/日子'均有具体依附）",
+    "precise_number（'五十/一百二十/三块/十几步/百步'全部为代价量化与猎法情报的关键数字，属剧情必要精确，判保留）"
+  ],
+  "stats": {
+    "total_issues": 6,
+    "critical": 0,
+    "major": 0,
+    "minor": 4,
+    "note": 2,
+    "by_category": {
+      "author_summary": 1,
+      "word_repetition": 2,
+      "dialogue_tag_pattern": 1,
+      "sentence_pattern_repeat": 1,
+      "signature_gesture_repeat": 1
+    }
+  }
+}

@@ -1,0 +1,115 @@
+{
+  "card_type": "quality_review",
+  "from_agent": "quality-reviewer",
+  "to_agent": "final-reviewer",
+  "chapter": 6,
+  "title": "盐槽",
+  "timestamp": "2026-08-06T09:06:14+08:00",
+  "status": "reviewed",
+  "inputs": {
+    "draft": "output/chapter_006.txt",
+    "merged_review": "handoff/merged_review_6.json",
+    "chapter_draft": "handoff/chapter_draft_6.json",
+    "previous_chapter": "output/chapter_005.txt",
+    "memory": ["session_pointer.json", "goal_tracker.json", "foreshadowing_tracker.json", "characters.json", "outline.json"]
+  },
+  "scores": {
+    "plot_consistency": 9.5,
+    "character_consistency": 9.5,
+    "logical_rationality": 9.5,
+    "writing_quality": 9.5,
+    "shuang_density": 9.0,
+    "pacing_control": 9.5,
+    "chapter_hook": 9.0,
+    "attractiveness": 9.5
+  },
+  "total_score": 9.38,
+  "quality_technical_score": 9.41,
+  "score_notes": {
+    "plot_consistency": "大纲Ch6'猎法'四beat全落地（智斗猎杀/取核获宝/代价量化s3闭合/火堆数口粮冷幽默），hook_sentence'第二条空槽槽壁纹轻轻转了一下'原文兑现；漂移均经裁定：f17主人现身按Ch5终审强制建议前置、Ch7'兽群定位'功能由'盐换两句话'部分预支（见issues第4条衔接面评估）。与Ch5直连无缝（章末'屋子总有主人回来'→开篇'灰，动过。'即时收钩）。",
+    "character_consistency": "顾衡五条DNA出口全部兑现（全局视角'把这几句话归了位'/越乱越慢'它不动他也不动'/蹲着的人'等是登门藏是入室'/精算失效'五十个数据先泄'/行动立人'没有应也没有说不应'）；台词纯短句账目式。新角色'那人'零命名合规（预算remaining=0），声口独立（陈述代问'你没动骨头。不是问'+格言式'兽只要你死。活人，要你活着有用。'），遮名可辨。",
+    "logical_rationality": "猎杀因果链严密（下风处选位/压套比灰平/声饵发帖/更算等待）；交易逻辑先货后价；代价量化与Ch3献祭同源同账；饼账修复后4.5块精确（D1）；裹核油布来源已立（D3）。'熬不过三个甜味'标口述经验不作设定数字，口径干净。",
+    "writing_quality": "位面质地纯熟：短锤节拍（'它来了。''五十。''四条槽的账，先记在了这只右手上。'）与猎杀长段流动对比；明喻4处全部精准落地（门轴/对一个只有它知道的数/拧成一张弓/刚离火的铁）+'帖子'意象武器化变奏；冷幽默有效（'套是我下的。刀也是我扎的。'+那人半天没出声让出一块石头）。对话占比21%低于35%下限，系静默规则+问一句露一句底纪律的场景裁定accept项，非缺陷。",
+    "shuang_density": "A·获宝真实无虚标：beat5猎杀取核（机关+算计而非蛮力，机制对抗有认知碾压）+beat7辨壳法当场兑现（'每一道的尾都收成一点'）+盐填槽反转+第二槽认料，收获感多点分布，无>1500字无收获段。扣分项：本章爽为'静爽'质地——无打脸/碾压式外放爆点，对爽感猎人的外放刺激偏克制（见画像阿爽8分）。",
+    "pacing_control": "张弛结构完整：冷交互（慢）→卧石布套（铺）→猎杀长段（爆）→五十个数（滞重一拍）→分肉数饼（w1节奏变速松弛达标）→盐填槽反转（提）→期待感收束。三连短句连击配额遵守（全书1/1已用于Ch4，本章用'长句铺垫+短句收束'替代）。",
+    "chapter_hook": "期待感型结尾与Ch4悬念型/Ch5信息揭示型不重复；主钩具体可感（第二槽'纹路轻轻转了一下'+'三条空槽有一条先认了料'+'明天往深处走'），辅钩双挂（'下回带盐'交易钩+'沟里的东西这两天躁'f18二次回响）。B+级钩，安静但多线；扣分项：无当章爆点级悬念，钩子拉力依赖读者对'填槽'主线的既有投入。",
+    "attractiveness": "开头三句内即时兑现前章钩（对话开头，前100字冲突在场）；核心期待（填满三条空槽/位面取核）本章实质推进并强化；代入感经由'右手五十个数'的可量化脆弱性加深；零新造术语；人味细节密集（数饼每口隔一样长/拢手回袖攥两下/让石头礼数递进）。期待感双要素：情绪8.5（想要他填满槽+担心右手）×事件8.5（明天往深处走/下回之约/沟里东西躁），双高型。"
+  },
+  "reader_reactions": {
+    "追读指数": 8.29,
+    "综合弃书率": "17%",
+    "readers": [
+      {"name": "爽感猎人·阿爽", "追读意愿": 8, "弃书概率": "20%", "verdict": "追读", "feedback": "布套猎杀+取核到手是实在进账，'套是我下的，刀也是我扎的'够硬；但没有打脸式爆点，爽得偏静，靠'下回带盐/往深处走'吊着。"},
+      {"name": "逻辑警察·老缜", "追读意愿": 9, "弃书概率": "10%", "verdict": "追读", "feedback": "Ch5灰堆主人本章兑现且当场转第二层（盐填槽），右手代价量化有账感，饼的数目都对上了；f18两次回响形体不给，分寸好。"},
+      {"name": "角色粉·小迷", "追读意愿": 8, "弃书概率": "20%", "verdict": "追读", "feedback": "'那人'太有味道——兽皮裹头、陈述代问、'活人，要你活着有用。'想二创；交易戏两个犟人互相试探火花足。扣点：锈关旧角色零回场。"},
+      {"name": "氛围党·画师", "追读意愿": 9.5, "弃书概率": "5%", "verdict": "追读", "feedback": "贴地皮的人声、被灰吃掉半截的嗞声、刚离火的铁——每一帧都能画；静默规则连对话戏都在执行，质地统一。"},
+      {"name": "碎片党·地铁客", "追读意愿": 7.5, "弃书概率": "25%", "verdict": "追读", "feedback": "开头'灰，动过。'直接进戏不用回看；等兽那几百字略闷，但猎杀段很顶，章末'明天往深处走'会想点下一章。"},
+      {"name": "老书虫·毒舌", "追读意愿": 8.5, "弃书概率": "15%", "verdict": "追读", "feedback": "盐换两句话、槽早开好等着填——交易戏没见过这么写的；静默位面的规矩自洽且能武器化，有作者自己的东西。"}
+    ],
+    "market_risk": false,
+    "risk_readers": [],
+    "expectation_elements": {"情绪": 8.5, "事件": 8.5, "type": "双高型——读者既在乎顾衡填槽/右手的账，又明确预期'往深处走/下回带盐/沟里东西躁'三组事件"},
+    "summary": "追读指数8.29稳在爆款线以上，六画像无≤5者，零高风险画像。最强拉力在氛围（画师9.5）与逻辑（老缜9）；相对短板在阿爽8/地铁客7.5——'静爽'质地对外放型爽感需求克制，系位面篇既定质地（与Ch4-5同带），非失控。"
+  },
+  "ratio_monitoring": {
+    "shuang_type_verification": "PASS。交接卡标注A（获宝：猎杀取核+辨壳法兑现），正文核验为真实收益（核到手/肉到手/辨壳法当场验证/第二槽认料），非reveal虚标；本章S/A/B/C合计=1个A级，无'揭示当爽'项。",
+    "rolling_3ch_SA": "PASS。Ch4（B）+Ch5（A·规则反制）+Ch6（A·获宝），连续3章含2个A级，远超≥1硬指标。",
+    "suspense_window": "PASS。本章无新开悬念；s3第一层按期全量闭合（target_close=6，右手使力时长量化交付='五十个数据先泄'，深层以'四条槽的账先记在这只右手上'继续挂账）；窗口滚动后active=s5+s6=2条≤3，无overflow_alerts。",
+    "goal_progress": "PASS。主线'取活核填三条空槽'本章实质推进（第一颗够格活核到手+第二槽认料），无目标断头。",
+    "s3_closure_rhythm": "合规。s3 opened Ch3→target_close Ch6，第4章准时交付第一层全量（量化而非卖惨：'从前攥满小半更不带抖的'对照'五十'），闭合节奏与suspense_window_plan逐字一致。"
+  },
+  "unit_protection": {
+    "chapter_type": "单元1高潮兑现章（非铺垫章），不适用连续铺垫上限检测。",
+    "micro_payoff_check": "N/A（兑现章，本章即开奖）。",
+    "ch7_interface": "Ch7'人影'余留功能衔接面评估：'盐换两句话'已预支Ch7大纲beat1'够格兽道位置'（贴着沟走/三块卧石/天天过那个口），Ch7重心须让位于f12人影痕迹（火堆/剥皮手法/内陆火镰远影）+章末'陷阱不是他布的'悬念；本章'活人比兽凶'双重警告恰为Ch7人影线的前菜，衔接顺向无冲突，但Ch7写作时需重新锚定功能重心，避免与已交付的兽道信息重复计费。"
+  },
+  "process_compliance": {
+    "l1_advisory_response": "PASS。style_lint卡advisory列表为空、non_blocking仅1条（对话占比21%<35%），detail_review_6.json consistency_check.l1_advisory_response已逐条回应（decision=accept，理由：静默规则+问一句露一句底纪律，密度服从设定），回应率100%。",
+    "style_plan_adherence": "PASS。metaphor_plan 4处抽查全部落地：门轴（L5人声）/拧成一张弓（L93猎杀）/刚离火的铁（L145核余温）/帖子变奏（L77声饵武器化），叙事功能与plan一致。",
+    "fix_audit_closure": "MINOR。本章lint修复轮次经'合一修订一次性交付'，fix_audit_ref=null未生成fix_auditor证据卡；detail_review第8层overcorrection_check已以人工替代抽检覆盖（无语法残缺/无比喻退步/无批量替换，只删不补2604→2595未伤骨），merged_review_6.applied_fixes 12处修复+D1/D2两处major的前后文对照构成事实证据链。证据实质闭环、形式缺卡，记minor。",
+    "fingerprint_gate": "FAIL→chief-editor override pass_with_registration。本席复核rationale成立：超阈集中于句长族单一维度族（mean/stdev/long_ratio/comma_period/para_len），非多系统漂移；同带证据充分（Ch4 19.28/Ch5 22.28/Ch6 16.62同落位面质地带16-23）；21%超短对话为静默规则×双寡言角色的结构性使然。登记入style_deviation_log，位面篇结束后基线裁决留用户。非质量缺陷，不扣分。",
+    "lint_gate": "PASS（exit 0，blocking 0/advisory 0/minor 1已裁定）。de-ai ai_score=1.1绿灯。"
+  },
+  "issues": [
+    {
+      "type": "process_compliance",
+      "severity": "minor",
+      "description": "fix_audit卡缺失：本章经历lint修复轮次但未生成fix_auditor证据卡（fix_audit_ref=null），证据闭环由detail第8层人工替代抽检+merged_review修复清单兜底。",
+      "suggestion": "后续章节若经历独立lint修复轮次，补跑fix_auditor生成证据卡；本章不重补，以merged_review_6.applied_fixes为证据存档。"
+    },
+    {
+      "type": "chapter_length",
+      "severity": "minor",
+      "description": "修订后约2620字，微超2400-2600区间上限（merged已裁定'微超可接受，终审复核'）。",
+      "suggestion": "终审复核字数；若需回收，候选删减位为布套段说明性半句，不动短锤节拍与猎杀长段。"
+    },
+    {
+      "type": "ensemble_presence",
+      "severity": "low",
+      "description": "群像预留检测：本章未提及任何锈关侧旧角色（守军头目/老周头线零回场），位面章结构性使然，'那人'作为第二角色补偿了交互密度。",
+      "suggestion": "按既定计划执行即可：Ch12切镜头锈关（f7霜漫矛身半揭）回补旧角色存在感，本章不处理。"
+    },
+    {
+      "type": "plot_consistency",
+      "severity": "low",
+      "description": "Ch7功能预支：'盐换两句话'已交付够格兽道位置（Ch7大纲beat1部分功能），Ch7需重新锚定重心至f12人影线。",
+      "suggestion": "Ch7开写前在交接卡beat_sheet中显式标注'兽道位置已由Ch6交付，本章beat1改为循核纹感应校准兽群活动区'，避免重复计费。"
+    },
+    {
+      "type": "style_registration",
+      "severity": "low",
+      "description": "两项风格登记在案备查：①'灰天没有日头，他按心里的更算走'与Ch5逐字相同，已登记为跨章仪式锚（签名句式），后续章须微变奏；②指纹FAIL已override登记，位面篇结束后由用户裁决派生基线或回炉。",
+      "suggestion": "memory-manager入库时同步style_quotas/风格登记条目；Ch7+仪式锚句式须变奏。"
+    }
+  ],
+  "veto_check": "无一票否决项：角色名无混淆/时间线无矛盾（全程更算，与Ch4-5一致）/能力无超限（猎杀靠机关+刀+规则武器化）/核心剧情无冲突。",
+  "unified_score": 9.45,
+  "unified_breakdown": {"technical": 9.41, "supplementary": 9.5, "formula": "technical×0.6 + supplementary×0.4 = 9.41×0.6 + 9.5×0.4"},
+  "issue_counts": {"critical": 0, "major": 0, "minor": 2, "low": 3},
+  "verdict": "通过",
+  "passed": true,
+  "weakest_dimension": "shuang_density（9.0）——A级获宝为'静爽'质地：机制对抗与取核兑现扎实，但无打脸/碾压式外放爆点，对爽感猎人型读者的即时刺激偏克制。",
+  "rewrite_instructions": "",
+  "next_agent": "final-reviewer",
+  "handoff_note": "本章为detail+de-ai并行→合并修订后的定稿候选，12处修复（2 major+10 minor/process）已全部应用并复核；quality阶段critical/major双零，建议final-reviewer重点复核：①字数微超上限的终裁；②指纹override的登记完备性；③Ch7功能预支的衔接标注是否进入下一章交接卡。"
+}
