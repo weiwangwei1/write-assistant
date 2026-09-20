@@ -92,7 +92,7 @@
 
 - [ ] **outline 重排**：黄金三章（Ch1-3）+ 卷1 前 15 章 + 悬念窗口 + 伏笔编号（老龙线为新增 f，需编号与梯度）+ shuang_point_distribution + opening_three_questions + 序言处理
 - [ ] **设定三件套**：新增「献祭对接者」条目（含绝境门槛机制、披露节奏、来源不定义、与跨纪元种族/位面在地者互不归属）
-- [ ] **角色卡**：老龙（character-designer 流程；部分显现形态）+ 顾衡卡关系更新（隐藏渠道）
+- [ ] **角色卡**：老龙（character-designer 流程；部分显现形态）+ 顾衡卡关系更新（隐藏渠道）——**部分已落**：Ch1 v9 新增的"行商底子"（一副担子→两间门面、字据、柜上）已于 2026-09-20 按用户裁定进卡（`顾衡.json.merchant_prehistory_ch1v9`），老龙/隐藏渠道关系仍待
 - [ ] **命名**：「老龙」过 keyword-expert + 专名预算（前 30 章余额 0，须裁定浑名是否计新造专名）
 - [ ] **衔接检查**：旧账本（城下残骸/守城动机/三冷动作）在 Ch2+ 的落点；Ch4-15 位面篇去重（"首次感"已被 Ch1 消耗）
 - [x] **变更落档**：AGENTS（SKILL 版本/lint 条目）/ master_instruction v4.2 摘要 / 本文件第五节 / memory（session_pointer + style_deviation_log）已落（2026-09-20）；提交推送见本轮 commit
