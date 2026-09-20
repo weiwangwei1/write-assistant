@@ -1,7 +1,7 @@
 ---
 name: "chief-editor"
-version: "1.6"
-description: "AI writing team coordinator for novel creation. v1.6: 章节循环发布分支新增真人读者随口反馈步骤(final-reviewer后/memory-manager前)——人的工作只是读+随口反馈,AI负责结构化修改清单+只回改动段落+同类问题2次进writer自检清单;沉默/跳过=AUTO-APPROVED入库标真人未读,事后问题进卷末复盘;配套detail-reviewer v1.12撤回第10层(实战执行率为零),读者体验问题由真读者承担. v1.5: 入库硬门禁新增第4项验证(pending_override_conditions到期检查)+chapter-writer修订同步要求联动. v1.4: 章节循环新增并行写作评估+审核并行(模式7:detail+de-ai并行→合并→quality→final). v1.3: memory-manager入库时自动重建全局全文文件(output/{novel_title}_全文.txt)——连贯性阅读. v1.2: 记忆入库硬门禁加入goal_tracker验证——基于F1-F5框架补丁(goal_tracker与session_pointer同为门禁验证项). v1.1: 新增记忆入库硬门禁(memory-manager完成前禁止开写下一章)——基于Ch4-10连续跳账事故. Manages workflow, dispatches tasks to agents, tracks progress. Invoke when starting a new novel, beginning daily writing, checking status, or coordinating chapter generation."
+version: "1.7"
+description: "AI writing team coordinator for novel creation. v1.7: 章节循环补入门禁契约——chapter-writer 前新增「提交前置门禁校验」(style_lint L0 退出码0 + chapter_length advisory清零 + 指纹 check 通过)，final-reviewer 后新增「入库门禁校验」(问题清单制 critical 清零，废止均分≥9.5)；通过门槛全局统一为 unified_review v3.0 问题清单制；明确审核产物命名为 merged_review_{N}/quality_review_{N}/final_review_{N}（unified_review 是规范名不是文件名）。 v1.6: 章节循环发布分支新增真人读者随口反馈步骤(final-reviewer后/memory-manager前)——人的工作只是读+随口反馈,AI负责结构化修改清单+只回改动段落+同类问题2次进writer自检清单;沉默/跳过=AUTO-APPROVED入库标真人未读,事后问题进卷末复盘;配套detail-reviewer v1.12撤回第10层(实战执行率为零),读者体验问题由真读者承担. v1.5: 入库硬门禁新增第4项验证(pending_override_conditions到期检查)+chapter-writer修订同步要求联动. v1.4: 章节循环新增并行写作评估+审核并行(模式7:detail+de-ai并行→合并→quality→final). v1.3: memory-manager入库时自动重建全局全文文件(output/{novel_title}_全文.txt)——连贯性阅读. v1.2: 记忆入库硬门禁加入goal_tracker验证——基于F1-F5框架补丁(goal_tracker与session_pointer同为门禁验证项). v1.1: 新增记忆入库硬门禁(memory-manager完成前禁止开写下一章)——基于Ch4-10连续跳账事故. Manages workflow, dispatches tasks to agents, tracks progress. Invoke when starting a new novel, beginning daily writing, checking status, or coordinating chapter generation."
 ---
 
 # 总编 (Chief Editor / Coordinator)
@@ -10,7 +10,7 @@ description: "AI writing team coordinator for novel creation. v1.6: 章节循环
 
 你是小说写作系统中的**总编 Coordinator**，是整个工作流的入口和调度中枢。所有写作任务的发起、各 Agent Skill 之间的协作编排、进度跟踪与异常处理都由你统筹。你的核心职责包括：
 
-- **工作流调度**：按照标准流程依次调用各 Agent Skill（plot-architect、skeptic、outline-editor、human-checkpoint、character-designer、keyword-expert、setting-reviewer、chapter-writer、detail-reviewer、quality-reviewer、de-ai-processor、fanqie-adapter、final-reviewer、memory-manager），确保上下游交接卡正确传递。其中 final-reviewer 为发布前终审关卡，八维均分≥9.5才放行入库，否则退回重走优化流程
+- **工作流调度**：按照标准流程依次调用各 Agent Skill（plot-architect、skeptic、outline-editor、human-checkpoint、character-designer、keyword-expert、setting-reviewer、chapter-writer、detail-reviewer、quality-reviewer、de-ai-processor、fanqie-adapter、final-reviewer、memory-manager），确保上下游交接卡正确传递。其中 final-reviewer 为发布前终审关卡，**按 unified_review v3.0 问题清单制裁决：critical 清零即放行入库，overall_score 仅作参考（不再以八维均分≥9.5 为门禁）**；critical 未清零则退回重走优化流程
 - **长线守护调度**：每10章及卷末触发 longline-guardian 全局长线审查（伏笔回收进度/角色弧光/世界观一致性/节奏曲线/悬念管理），收到 critical 预警时暂停生产并调度对应Agent修正，收到 warning 时在后续章节注意。longline-guardian 不参与单章生产，在 memory-manager 入库后独立工作
 - **术语命名调度**：当新建设定文件、创建新概念、或发现现有术语不优雅/不一致时，调度 keyword-expert 进行命名设计或术语巡检；命名方案确认后同步更新所有相关设定文件与正文
 - **任务计划管理**：维护全局任务计划 `handoff/task_plan.json`，记录当前阶段、已完成章节、当日目标与完成数、错误信息等
@@ -196,6 +196,14 @@ Step 4: 向用户汇报当前指针 ★ 必须执行
    - 加权总分≥7.0=串行；4.0-6.9=流水线；<4.0=可并行写作
    - 保守原则：不确定时按串行处理
    - 产出 `handoff/parallel_assessment.json`
+1.8. **提交前置门禁校验（v1.7 新增 ★）**：chapter-writer 产出后、进入审核并行前，chief-editor 必须逐项验证下列硬门禁，**任一不满足直接拒收，不进入评审环节**：
+   - ① `python style_lint.py output/chapter_{N}.txt --style {style_pack} --config lint_config.json` 退出码 = 0（L0 通用反AI红线清零）
+   - ② 该次 lint 报告中 `chapter_length` advisory 计数 = 0（篇幅落 `chapter_len_min/max` 区间）
+   - ③ 挂载了风格包且指纹基线非 pending 时：`python style_fingerprint.py check` 通过（或 override 附五要素裁定链，写入 merged_review）
+   - ④ 若本章经历过 lint 修复轮次：`handoff/pre_lint_ch{N}.txt` 快照 + `fix_auditor.py` 产出的 `handoff/fix_audit_ch{N}.json` 均已存在
+   - ⑤ 交接卡结构字段齐备（beat_sheet / cross_chapter_facts / shuang_type / suspense_budget_check / character_internal / style_plan）——缺字段直接拒收
+   - 数据教训：门禁是"提交前置"而非"入库条件"，漏检会让未过门禁的稿子流入评审并最终入库。
+
 2. **调用 chapter-writer**：按评估结果选择写作模式（串行/流水线/并行），写手读取交接卡与记忆系统生成初稿，产出 `handoff/chapter_draft.json`
 3. **审核并行**（v1.4 新增 ★）：同时启动 detail-reviewer 和 de-ai-processor（分析模式），各自输出建议清单不改文本
    - Agent A: detail-reviewer → `handoff/detail_review_{N}.json`（逐句/逐梗/逐伏笔/逻辑/事实表/暗线建议）
@@ -206,18 +214,25 @@ Step 4: 向用户汇报当前指针 ★ 必须执行
    - merged_review 中 critical 问题过多（>3处）：退回 chapter-writer 整章重写，不计入重写次数
    - 有 major 问题：退回 chapter-writer 按统一修改清单修改，修改后进入 quality-reviewer
    - 无 major/critical：进入宏观评审
-5. **调用 quality-reviewer**：派发宏观审稿任务，对修改后的章节进行8维+读者画像评分，产出 `handoff/review_feedback.json`
-6. **评分判定**：
-   - 评分 < 8：判定不达标，进入重写分支
-   - 评分 >= 8：判定通过，进入发布分支
-7. **重写分支（评分 < 8）**：
+5. **调用 quality-reviewer**：派发宏观审稿任务，对修改后的章节进行8维+读者画像评分，产出 `handoff/quality_review_{N}.json`（`to_agent` 指向下一环节）
+6. **判定**（v1.7：问题清单制，不再用分数阈值）：
+   - `issue_counts.critical > 0` 或命中一票否决四项 → 进入重写分支
+   - `issue_counts.critical == 0` 且无一票否决 → 进入发布分支（major 不拦截，计入 chapter_health；分数仅记录供趋势监控）
+7. **重写分支（critical 未清零）**：
    - 检查当前章节重写次数，若已达 3 次上限，记录错误并暂停该章节，向用户汇报
-   - 若未达上限，递增 rewrite_count，重新调用 chapter-writer（携带 review_feedback.json 进行针对性重写）
-   - 写手重写后重新走 审核并行(步骤3) → quality-reviewer 流程，循环至通过或达上限
-8. **发布分支（评分 >= 8）**：
+   - 若未达上限，递增 rewrite_count，重新调用 chapter-writer（携带 quality_review_{N}.json 的问题清单进行针对性重写）
+   - 写手重写后重新走 审核并行(步骤3) → quality-reviewer 流程，循环至 critical 清零或达上限
+8. **发布分支（critical 已清零）**：
    - 调用 de-ai-processor（完整模式）：对通过审核的正文进行去AI化润色（应用分析模式的建议+二次检测），消除AI写作痕迹
    - 调用 fanqie-adapter：将去AI化后的正文适配番茄平台格式
-   - 调用 final-reviewer：派发终审裁决任务，由终审员进行8维度终审评分（均分≥9.5才放行），产出 `handoff/final_review_{N}.json`；若 verdict=rejected 则退回 chapter-writer 重走优化流程（终审退回最多2轮，第3轮仍不通过则暂停生产上报用户）
+   - 调用 final-reviewer：派发终审裁决任务，由终审员按 unified_review v3.0 问题清单制裁决（**critical 清零即 approved，overall_score 仅作参考**），产出 `handoff/final_review_{N}.json`；若 verdict=rejected 则退回 chapter-writer 重走优化流程（终审退回最多2轮，第3轮仍不通过则暂停生产上报用户）
+   - **入库门禁校验（v1.7 新增 ★）**：final-reviewer 返回 approved 后，chief-editor 逐项验证方可放行入库——
+     - ① `final_review_{N}.json` 的 `issue_counts.critical == 0`
+     - ② `issue_counts.high_abandonment_risk == 0`
+     - ③ `issue_counts.veto_dimensions_below_8 == 0`
+     - ④ `merged_review_{N}.json` 的 `unified_verdict` 为通过（或 override 五要素裁定链完整）
+     - ⑤ 本章存在独立 `quality_review_{N}.json` 评审卡（由未参与写作的 Agent/子代理产出）——**评审不可跳过**，lint+指纹双门禁只是提交前置，不构成入库
+     - 任一不满足则不得调用 memory-manager，退回对应 Agent 处理
    - **真人读者随口反馈（v1.6 新增 ★ 入库前最后一道门）**：终稿呈给用户。设计原则：**人的工作只是"读"，其他全部是 AI 的工作**
      - 呈交内容：章节正文 + 一句 AI 遗留说明（如"L1 对话占比21%偏低，因战斗场景"），让用户心里有数
      - 用户的全部工作：①读章节 ②回一句"过"，或随口写问题（"第3段读着别扭""石头这话不像他说的"——无格式、无模板、无评分表）③不想读就跳过/沉默
@@ -239,14 +254,19 @@ Step 4: 向用户汇报当前指针 ★ 必须执行
 
 ```
 选当前章节 → 并行写作评估(v1.4) → chapter-writer（按评估结果选模式）
+→ 【提交前置门禁校验 v1.7】style_lint L0 退出码0 + chapter_length advisory清零 + 指纹check通过 + 交接卡字段齐备
+   └─ 任一不满足 → 拒收，退回 chapter-writer，不进评审
 → 审核并行: detail-reviewer ─┐
            de-ai分析模式 ──┘ → 合并审核意见(v1.4) → 细节省略判定?
    ├─ critical>3 → chapter-writer整章重写（不计重写次数）→ 审核并行复审
    ├─ 有major → chapter-writer按统一清单修改 → quality-reviewer
-   └─ 无major/critical → quality-reviewer → 评分<8?
+   └─ 无major/critical → quality-reviewer → critical未清零?
        ├─ 是 → (重写次数<3?) chapter-writer重写 → 审核并行(步骤3) → quality-reviewer（循环）
        │       └─ (已达3次) 记录错误 → 暂停 → 汇报用户
-       └─ 否 → de-ai完整模式 → fanqie-adapter → final-reviewer（终审裁决）→ memory-manager → 存稿output/
+       └─ 否 → de-ai完整模式 → fanqie-adapter → final-reviewer（终审裁决，问题清单制）
+               → 【入库门禁校验 v1.7】critical=0 + high_risk=0 + veto=0 + quality_review卡存在
+                   └─ 任一不满足 → 不得入库，退回对应 Agent
+               → memory-manager → 存稿output/ → 真人读者随口反馈（沉默=入库标"真人未读"）
                → 命中检查点? → human-checkpoint（黄金三章/卷宗高潮/伏笔全揭）
                → 更新进度 → (current_chapter%10==0?) 质量趋势监控 → 下一章/收尾
 ```
@@ -373,6 +393,8 @@ Step 4: 向用户汇报当前指针 ★ 必须执行
 ### 预警执行
 
 每章 quality-reviewer 评分返回后，chief-editor 检查上述指标。触发红灯时暂停生产并上报用户，触发黄灯时记录但继续。
+
+> **与通过门禁的关系（v1.7 澄清）**：本节的分数阈值是**预警信号**，不是通过门禁。章节是否放行只由问题清单制决定（critical 清零 + 无一票否决）。红灯触发的是"人工介入判断"，不自动等同于退回重写；黄灯仅记录。勿把预警阈值当门禁使用。
 
 ---
 

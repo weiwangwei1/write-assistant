@@ -22,6 +22,15 @@ v2.7：撤回 distant_recall 规则（v2.6 引入，2026-07-28 撤回）——�
   false positive、0 次回应、0 次真实拦截；其覆盖的回指过远问题仅占真人反馈 3.8%，ROI 为负。
   检测职责移交真人读者（入库前随口反馈制，见 chief-editor 章节循环 8b）。
 
+v2.5：修复 chapter_length 篇幅口径（2026-09-20）。
+  原用 han_len()（仅汉字+数字，排除全部中文标点）作篇幅数，而 lint_config 的
+  chapter_len_min/max、novel_config 的 chapter_word_count、写手与终审核对字数
+  均按"去空白字符数（含标点）"，两者系统性相差约 15%。实测 Ch5/6/7 因此长期
+  误报"低于下限"（2228/2128/2192 < 2400），advisory 从未真正清零。
+  修法：新增 word_count() 专供篇幅硬检；**han_len() 保持不动**——它是全部
+  *_per_1000 千字率规则的分母，阈值由 8 个风格包从原作语料按同一口径校准。
+  修复后 Ch5/6/7 = 2547/2586/2557，与终审员人工核对数一致。
+
 v2.3（框架升级 F1）：L1 作者身份规则从阻断降级为顾问——退出码只看 L0 critical；
   L1 critical 仍作为 advisory 报告，由 detail-reviewer 逐条回应（接受超阈值附理由/需修复）；
   OVERRIDE 覆写对 L0 不再生效（修复越级豁免漏洞），L1 顾问化后覆写机制废弃。
@@ -156,6 +165,19 @@ OPENING_CHANNELS = {
 
 def han_len(s):
     return sum(1 for c in s if '一' <= c <= '鿿' or c.isdigit())
+
+def word_count(s):
+    """篇幅口径：去空白字符数（含中文标点）。
+
+    ⚠️ 不要用本函数替换 han_len()——所有 *_per_1000 千字率规则的分母绑定
+    han_len()，其阈值是从原作语料按同一口径实测校准的（8 个风格包的
+    lint_overlay.json）。改动会一次性移动全部阈值基线。
+    本函数仅供 chapter_length 篇幅硬检使用，与 lint_config.json 的
+    chapter_len_min/max、novel_config 的 chapter_word_count、以及写手/终审
+    核对字数时的口径保持一致（v2.5 修复：此前误用 han_len，导致篇幅门禁与
+    书籍标准系统性相差约 15%，advisory 从未真正清零）。
+    """
+    return sum(1 for c in s if not c.isspace())
 
 class Chapter:
     def __init__(self, path, text):
@@ -303,12 +325,14 @@ def lint_chapter(ch, cfg, disabled, custom_bans, rule_levels=None):
     # 标点指纹（破折号/省略号频率，风格包按原作指纹收紧）
     total_chars = max(1, sum(han_len(p) for p in ch.paras))
     # v2.4: 篇幅硬检（L1 advisory，提交前必须清零；初稿写长，宁删勿补）
-    if cfg.get("chapter_len_min", 0) > 0 and total_chars < cfg["chapter_len_min"]:
+    # v2.5: 口径修正——篇幅用 word_count（去空白含标点），千字率仍用 han_len
+    length = word_count(ch.text)
+    if cfg.get("chapter_len_min", 0) > 0 and length < cfg["chapter_len_min"]:
         add("chapter_length", "critical", 0, "",
-            f"篇幅{total_chars}字 < 下限{cfg['chapter_len_min']}字——初稿写长，宁删勿补，扩场景/加冲突，不凑字")
-    if cfg.get("chapter_len_max", 0) > 0 and total_chars > cfg["chapter_len_max"]:
+            f"篇幅{length}字 < 下限{cfg['chapter_len_min']}字——初稿写长，宁删勿补，扩场景/加冲突，不凑字")
+    if cfg.get("chapter_len_max", 0) > 0 and length > cfg["chapter_len_max"]:
         add("chapter_length", "critical", 0, "",
-            f"篇幅{total_chars}字 > 上限{cfg['chapter_len_max']}字")
+            f"篇幅{length}字 > 上限{cfg['chapter_len_max']}字")
 
     dash_cnt = ch.text.count("——") + ch.text.count("—")
     dash_per_1k = round(dash_cnt / total_chars * 1000, 3)

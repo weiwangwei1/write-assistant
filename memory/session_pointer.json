@@ -14,9 +14,9 @@
   "milestones": [
     {"milestone": "选题方向确认", "status": "done", "note": "构装师+献祭+位面掠夺，掌控全局天才主角"},
     {"milestone": "黄金三章设计", "status": "done", "note": "Ch1乱局/Ch2造物/Ch3献祭"},
-    {"milestone": "黄金三章写作", "status": "done", "note": "Ch1-3终稿，lint L0全绿+指纹校验通过，五轮精修（读者反馈/人物形象/故事情节/情感心理意见已评估）"},
+    {"milestone": "黄金三章写作", "status": "done", "note": "Ch1-3终稿，lint L0全绿+指纹校验通过（注：定稿时口径，2026-09-20 复核当前配置下 Ch1-3 各报 not_a_is_b L0×2——tiancantudou 覆盖层阈值 not_a_is_b_max_per_chapter=1 系后续收紧，按「框架升级不追溯」不重写，卷末复盘窗口再议），五轮精修（读者反馈/人物形象/故事情节/情感心理意见已评估）"},
     {"milestone": "框架升级", "status": "done", "note": "chapter-writer v4.0（技法23-28）+ detail-reviewer v1.18（第11层19项）"},
-    {"milestone": "topic-screener 预筛", "status": "pending", "note": "第三纪元正式预筛待补（handoff/topic_screening.json为已归档《请客》的）"},
+    {"milestone": "topic-screener 预筛", "status": "done", "note": "2026-08-06 完成，verdict=pass_with_note（6维：题材耐久度/爽感路径/认知门槛/失败模式匹配 pass；暗基调补偿可行性/平台基调匹配 pass_with_note），卡在 handoff/topic_screening.json（2026-09-20 更正：此前误标 pending，实为已完成但归档在非标准名 topic_screening_disanjiyuan.json 下，已改名为契约名）"},
     {"milestone": "plot-architect 完整大纲", "status": "pending", "note": "6卷300章总纲+第一卷详细分章beat sheet"},
     {"milestone": "character-designer 角色设计", "status": "pending", "note": "顾衡完整角色卡+守军头目+沈+第一卷新角色"},
     {"milestone": "设定三件套+setting-reviewer", "status": "pending", "note": "world_setting/ability_system/conflict_rules，≥9.5"}

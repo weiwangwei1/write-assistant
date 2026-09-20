@@ -1,4 +1,11 @@
-# 统一审核规范 (Unified Review Specification) v2.0
+# 统一审核规范 (Unified Review Specification) v2.1
+
+> **命名澄清（v2.1）**：本规范定义的是**通过门槛**（unified_review v3.0 问题清单制）与 **12 维统一评分口径**，但章节循环**实际产出的文件不叫 unified_review**。实测命名链为：
+> - `handoff/merged_review_{N}.json`（Phase 1 合并修改清单，含 `fingerprint_override` 五要素裁定链）
+> - `handoff/quality_review_{N}.json`（Phase 2 宏观审稿，含 `unified_score` / `issue_counts` / `veto_check`）
+> - `handoff/final_review_{N}.json`（终审裁决，含 `gate_mode=unified_review_v3.0` / `formula` / `issue_counts`）
+>
+> `unified_review` 是规范名/门槛名，不是文件名。写 SKILL/交接卡时务必用上述真实文件名，避免总编按名找不到产物。
 
 ## 概述
 
@@ -71,25 +78,25 @@ v2.0 将 Merge 步骤整合到 Unified Review 中，每章从6步减少到5步�
 | `memory/goal_tracker.json` | 目标+悬念窗口（v1.7监控） | 是（第2章起） |
 | `memory/foreshadowing_tracker.json` | 伏笔追踪表 | 是 |
 | `config/novel_config.json` | 写作规则+平台配置 | 是 |
-| `handoff/chapters/detail_review_ch{NNN}.json` | 细节审核结果（Phase 1 输入） | 是 |
-| `handoff/chapters/de_ai_analysis_ch{NNN}.json` | 去AI化分析结果（Phase 1 输入） | 是 |
+| `handoff/detail_review_{N}.json` | 细节审核结果（Phase 1 输入） | 是 |
+| `handoff/de_ai_analysis_{N}.json` | 去AI化分析结果（Phase 1 输入） | 是 |
 
-> 注：v2.0 起 `handoff/chapters/merged_review_ch{NNN}.json` 由本步骤的 Phase 1 产出，不再是输入文件。
+> 注：`handoff/merged_review_{N}.json` 由本步骤的 Phase 1 产出，不再是输入文件。
 
 ---
 
 ## 输出规范
 
-本步骤产出以下文件：
-- `output/chapter_{NNN}.txt`：Phase 1 合并修订后的正文（覆盖原始正文）
-- `handoff/chapters/merged_review_ch{NNN}.json`：Phase 1 合并修改清单（记录冲突解决与采纳来源）
-- `handoff/chapters/unified_review_ch{NNN}.json`：Phase 2 统一审核结果（12维评分+裁决）
+本步骤产出以下文件（**采用仓库实际命名，不使用 `chapters/` 子目录与 `unified_review_*` 文件名**）：
+- `output/chapter_{N}.txt`：Phase 1 合并修订后的正文（覆盖原始正文）
+- `handoff/merged_review_{N}.json`：Phase 1 合并修改清单（记录冲突解决与采纳来源）
+- `handoff/quality_review_{N}.json`：Phase 2 统一审核结果（12维评分+裁决）；若走传统两步模式，则继续产出 `handoff/final_review_{N}.json` 作终审裁决
 
 ### 输出格式
 
 ```json
 {
-  "card_type": "unified_review",
+  "card_type": "quality_review",
   "chapter": 12,
   "chapter_title": "章节标题",
   "review_mode": "unified",
@@ -197,7 +204,8 @@ v2.0 将 Merge 步骤整合到 Unified Review 中，每章从6步减少到5步�
 
   "unified_score": 9.51,
   "retention_index": 9.0,
-  "pass_threshold": 9.5,
+  "gate_mode": "unified_review_v3.0 问题清单制：critical 清零即通过，分数仅作参考，不以 ≥9.5 为门禁",
+  "issue_counts": {"critical": 0, "major": 0, "minor": 1},
   "verdict": "approved",
 
   "monitoring": {
@@ -248,7 +256,7 @@ v2.0 将 Merge 步骤整合到 Unified Review 中，每章从6步减少到5步�
     "priority_fixes": []
   },
 
-  "summary": "统一审核结论：通过/退回。unified_score=X.XX（阈值9.5）。..."
+  "summary": "统一审核结论：通过/退回。critical=X，unified_score 参考分 X.XX。..."
 }
 ```
 
@@ -264,8 +272,8 @@ v2.0 将原独立的 merge 步骤整合进 unified_review，执行分两个阶�
 
 **输入**：
 - `output/chapter_{NNN}.txt`（原始正文）
-- `handoff/chapters/detail_review_ch{NNN}.json`
-- `handoff/chapters/de_ai_analysis_ch{NNN}.json`
+- `handoff/detail_review_{N}.json`
+- `handoff/de_ai_analysis_{N}.json`
 
 **冲突解决规则**：
 
@@ -279,7 +287,7 @@ v2.0 将原独立的 merge 步骤整合进 unified_review，执行分两个阶�
 
 **输出**：
 - `output/chapter_{NNN}.txt`：修订后正文（覆盖原文件）
-- `handoff/chapters/merged_review_ch{NNN}.json`：合并修改清单，记录每条修改的来源、位置、严重度、冲突解决方式
+- `handoff/merged_review_{N}.json`：合并修改清单，记录每条修改的来源、位置、严重度、冲突解决方式
 
 ### Phase 2 (Review)：12维评分
 
@@ -291,7 +299,7 @@ v2.0 将原独立的 merge 步骤整合进 unified_review，执行分两个阶�
 
 **执行**：按本规范「12维统一评分表」逐维打分，计算 technical_score、supplementary_score、unified_score，输出裁决。
 
-**输出**：`handoff/chapters/unified_review_ch{NNN}.json`
+**输出**：`handoff/quality_review_{N}.json`
 
 ### 评分客观性保障
 
@@ -377,12 +385,12 @@ unified_score = technical_score × 0.6 + supplementary_score × 0.4
   {
     "id": 4, "name": "Ch{N}质量审核", "agent": "quality-reviewer",
     "depends_on": [3], "parallel_group": null,
-    "output_files": ["handoff/chapters/quality_review_ch{N}.json"]
+    "output_files": ["handoff/quality_review_{N}.json"]
   },
   {
     "id": 5, "name": "Ch{N}终审", "agent": "final-reviewer",
     "depends_on": [4], "parallel_group": null,
-    "output_files": ["handoff/chapters/final_review_ch{N}.json"]
+    "output_files": ["handoff/final_review_{N}.json"]
   }
 ]
 ```
@@ -393,7 +401,7 @@ unified_score = technical_score × 0.6 + supplementary_score × 0.4
 [
   {
     "id": 4, "name": "Ch{N}统一审稿(含merge)", "agent": "quality-reviewer",
-    "instruction": "以统一审核模式v2.0(unified_review)评审第{N}章。读取 auto-runner/unified_review_spec.md 了解双阶段执行规范。Phase 1(Merge)：合并 detail_review_ch{N} + de_ai_analysis_ch{N} 修改到正文(冲突规则：same-loc diff-cause→take higher severity；same-loc conflict→detail priority；one-sided→keep，先修critical再修major)，输出修订后正文 output/chapter_{NNN}.txt 与合并清单 merged_review_ch{N}.json。Phase 2(Review)：基于修改后文本进行12维评分(8技术维+4补充维+监控检测+交叉终检)，产出unified_review_ch{N}.json。unified_score=technical_score×0.6+supplementary_score×0.4，≥9.5为approved。",
+    "instruction": "以统一审核模式v2.1(unified_review)评审第{N}章。读取 auto-runner/unified_review_spec.md 了解双阶段执行规范。Phase 1(Merge)：合并 detail_review_ch{N} + de_ai_analysis_ch{N} 修改到正文(冲突规则：same-loc diff-cause→take higher severity；same-loc conflict→detail priority；one-sided→keep，先修critical再修major)，输出修订后正文 output/chapter_{NNN}.txt 与合并清单 merged_review_ch{N}.json。Phase 2(Review)：基于修改后文本进行12维评分(8技术维+4补充维+监控检测+交叉终检)，产出质量审稿卡。unified_score=technical_score×0.6+supplementary_score×0.4，**仅作参考趋势数据；门禁为问题清单制——critical 清零即 approved，不以 ≥9.5 为通过条件**。",
     "depends_on": [3], "parallel_group": null,
     "input_files": [
       "output/chapter_{NNN}.txt",
@@ -403,16 +411,16 @@ unified_score = technical_score × 0.6 + supplementary_score × 0.4
       "memory/goal_tracker.json",
       "memory/foreshadowing_tracker.json",
       "config/novel_config.json",
-      "handoff/chapters/detail_review_ch{NNN}.json",
-      "handoff/chapters/de_ai_analysis_ch{NNN}.json",
+      "handoff/detail_review_{N}.json",
+      "handoff/de_ai_analysis_{N}.json",
       "auto-runner/unified_review_spec.md"
     ],
     "output_files": [
-      "output/chapter_{NNN}.txt",
-      "handoff/chapters/merged_review_ch{NNN}.json",
-      "handoff/chapters/unified_review_ch{NNN}.json"
+      "output/chapter_{N}.txt",
+      "handoff/merged_review_{N}.json",
+      "handoff/quality_review_{N}.json"
     ],
-    "pass_criteria": "输出3个文件：修订后正文 output/chapter_{NNN}.txt + merged_review合并清单 + unified_review评分。unified_review含merge_phase字段+12维评分+unified_score+verdict+critical_count，critical_count=0为approved（v3.0问题清单制门禁）",
+    "pass_criteria": "输出3个文件：修订后正文 output/chapter_{N}.txt + handoff/merged_review_{N}.json 合并清单 + handoff/quality_review_{N}.json 评分卡。quality_review 含 12维评分 + unified_score + issue_counts + verdict；门禁为 v3.0 问题清单制——critical=0 即 approved（分数仅参考）",
     "max_retries": 3
   }
 ]

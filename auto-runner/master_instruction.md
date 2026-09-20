@@ -1,4 +1,25 @@
-# 无人值守自动执行代理指令 v3.1
+# 无人值守自动执行代理指令 v3.5
+
+## v3.5变更摘要（style_lint v2.5 篇幅口径修复，2026-09-20）
+
+> 起因：巡检实测发现 Ch7 的 `chapter_length` 报"篇幅2192字 < 下限2400字"，而终审卡写"字数实测2557字落区间中段"——**同一章两个数**。追查为 `style_lint.py` 的 `han_len()` 只统计汉字+数字、排除全部中文标点，而书籍级标准（`lint_config.json` 2400-2600）、`novel_config.chapter_word_count`（2500）、写手与终审核对字数均用"去空白字符数"，两者系统性相差约 15%。
+
+- **style_lint v2.5**：新增独立函数 `word_count()`（去空白字符数，含标点），`chapter_length` 规则改用它。**明确不改动 `han_len()`**——它是 `dash/ellipsis/le/zhe/conjunction/dialogue_guide` 等全部 `*_per_1000` 千字率规则的分母，其阈值是 8 个风格包的 `lint_overlay.json` 从原作语料按同一口径实测校准的，改动会一次性移动全部阈值基线。函数 docstring 已写入该约束警告
+- **实测影响**：修复前 Ch5/6/7 三章的 `chapter_length` advisory **从未清零**（2228/2128/2192 < 2400），但 L1 不阻断退出码故无人发现——"advisory 提交前必须清零"这条硬性要求在实战中从未被满足；修复后 Ch5/6/7 = 2547/2586/2557 全部落区间，与终审员人工核对数**完全一致**。新暴露：Ch4 按真实口径 2897 字超上限（旧判定为"区间内"）
+- **回归验证**：Ch1-7 修复前/后完整 lint 输出逐条比对，**差异仅 `chapter_length` 一条**，千字率家族全部一致；`style_pack_check.py --all` 8 个真实风格包全 PASS
+- **连带清理**：删除 `handoff/topic_screening.json`（已归档《请客》的遗留数据占用契约名，实测 `ref.book_title=《请客》`），《第三纪元》预筛卡保留在 `topic_screening_disanjiyuan.json`（待改名为契约名）
+- **设计原则**：①同一指标在系统内只能有一个口径，否则门禁形同虚设——本次的教训是"分母不同，双方都没错，但门禁永远不会触发" ②修复统计口径时先查清该函数的全部调用点，避免为修 A 而破坏 B 的校准基线
+
+## v3.4变更摘要（框架契约统一：门槛单一口径 + 门禁入调度器，2026-09-20）
+
+> 起因：框架巡检发现**三套通过口径并存**且真执行的是没写进 chief-editor 的那一套。实测 `final_review_7.json` 的 `gate_mode` 为「unified_review_v3.0 问题清单制：critical 清零即通过，分数仅作参考」，`overall_score=9.43 < pass_threshold=9.5` 却判 approved——即"问题清单制"已在实战执行，但 quality-reviewer / chief-editor / final-reviewer 三个 SKILL 里仍写着已废止的「八维均分≥9.5」。
+
+- **门槛单一口径**：章节循环统一为**问题清单制**（critical 清零即通过，分数仅作趋势数据）。清除 4 处 9.5 死规则：quality-reviewer 双门槛表（技术≥9.5 且追读≥8.5）、final-reviewer「均分≥9.5」与 `pass_threshold` 字段、chief-editor 角色定位与步骤 5/6/7/8、unified_review_spec 自相矛盾处。final-reviewer 版本 1.1→1.2，chief-editor 1.6→1.7，quality-reviewer 通过标准节重写
+- **初始化门槛保留（有意差异）**：setting-reviewer（设定≥9.5）/ outline-editor（大纲≥9.5）**保留分数门槛**——一次性产物，高门槛边际成本低；两个 SKILL 内已加「口径差异说明」注明理由，避免被误当遗漏
+- **门禁写入调度器（补漏）**：chief-editor 新增两个显式校验点——①**提交前置门禁校验**（步骤 1.8）：lint L0 退出码 0 + `chapter_length` advisory 清零 + 指纹 check + pre_lint 快照/fix_audit 存在 + 交接卡字段齐备，任一不满足**直接拒收不进评审**；②**入库门禁校验**：`critical=0` + `high_abandonment_risk=0` + `veto_dimensions_below_8=0` + 独立 quality_review 卡存在。此前门禁存在于各 SKILL 但**调度器不校验**，属结构性缺口
+- **命名澄清**：`unified_review` 是规范名/门槛名，**不是文件名**。实际产物为 `handoff/merged_review_{N}.json` → `quality_review_{N}.json` → `final_review_{N}.json`；修正 `unified_review_spec.md` 中 14 处 `handoff/chapters/xxx_ch{NNN}.json` 假路径（该子目录从不存在）
+- **预警与门禁解耦**：chief-editor 质量预警阈值（追读<7.5 红灯等）明确为**预警信号，非通过门禁**，红灯触发人工介入判断而非自动退回
+- **设计原则**：①同一概念在系统内只能有一个口径，历史口径显式标注"已废止" ②门禁必须落在调度器的可执行校验点上，写在被调用方 SKILL 里等于不执行 ③有意保留的差异必须写明理由，否则会被后续维护者当 bug 抹平
 
 ## v3.3变更摘要（审核链精简：撤回失效机制+真人读者前置，2026-07-28）
 
@@ -96,11 +117,13 @@
 
 ## 工作目录
 
-- 工作空间：`d:\personFile\write-assistant`
+- 工作空间：`d:\personFile\write-assist\write-assistant`（⚠️ 2026-09-20 修正：原写 `d:\personFile\write-assistant`，是仓库上一层的旧路径，已失效）
 - 状态文件：`auto-runner/state.json`
 - 任务配置：`auto-runner/task_config.json`
 - 执行日志：`auto-runner/execution_log.md`
 - 本指令文件：`auto-runner/master_instruction.md`
+
+> **启用状态（2026-09-20 核验）**：本 Auto-Runner 目前**未启用**——`state.json`、`task_config.json`、`context_cache.json` 三个运行态文件均不存在。本文档描述的是"启用后"的执行协议；启用前须先运行 `generate_task_config.ps1` 生成 `task_config.json` 与初始 `state.json`。若你（Agent）是被定时任务唤起并读到本文件，却找不到 `state.json`，说明启用步骤未完成，应直接退出并提示用户。
 
 ## 执行流程（每次触发按此循环）
 
