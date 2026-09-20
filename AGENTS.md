@@ -237,18 +237,29 @@ powershell -ExecutionPolicy Bypass -File auto-runner/generate_task_config.ps1 # 
 
 **当前待决**（session_pointer.open_decisions）：①书名与简介待 final（忌俗套重生流书名）②第一卷卷名与章节规模待 plot-architect 设计回填 ③指纹基线终裁——位面篇（Ch15 归城）结束后由用户裁决：用 Ch4-15 自语料重建派生基线，或回炉统一向 tiancantudou 基线靠拢。
 
-### 初始化欠账（待处理）
+### 初始化欠账（2026-09-20 核实修正）
 
-《第三纪元》的初始化流程未走完即已进入章节循环，四项里程碑曾标 `pending`（其中第一项经核查为误标，实为已完成）：
+《第三纪元》的初始化流程未走完即已进入章节循环。**经逐项取证，四项欠账的真实性质与初判不同**——不是"没做"，而是**"已做/已整改，但复审未执行"**：
 
-| 里程碑 | 状态 | 影响 | 建议 |
-|--------|------|------|------|
-| topic-screener 正式预筛 | ✅ **已完成**（2026-08-06），卡已在契约名 `handoff/topic_screening.json`（详见缺陷 #2） | — | 无需补做 |
-| plot-architect 完整大纲 | 部分（6 卷总纲已在 `novel_config.volume_plan`，逐章 beat 见 `memory/outline.json`） | 中后段 beat 缺失 | Ch8 前补齐第一卷 beat sheet，后续卷按滚动方式生成 |
-| character-designer 角色卡 | 部分（`memory/characters/*.json` 已有 8 张卡） | 卡未过 outline-editor 审核 | 补角色卡审核 |
-| 设定三件套 + setting-reviewer | 部分（`world_setting/ability_system/conflict_rules` 均已存在） | 未过 setting-reviewer ≥9.5 门槛 | 补审核，重点查 `disclosure_status` 是否齐全 |
+| 里程碑 | 真实状态（取证结论） | 是否阻塞 Ch8 |
+|--------|---------------------|:---:|
+| topic-screener 预筛 | ✅ **已完成**（2026-08-06，verdict=pass_with_note，6 维全评）。此前标 pending 系归档错名所致，已更正 | 否 |
+| plot-architect 完整大纲 | ✅ **第一卷已覆盖**：`memory/outline.json` 含 `volumes`（6 卷总纲）+ `volume_1_chapters`（第一卷逐章 beat）+ `naming_budget`/`suspense_window_plan`/`shuang_point_distribution`。卷 2+ 逐章 beat 未生成，但**这是设计意图**（滚动生成），非欠账 | 否 |
+| character-designer 角色卡 | ⚠️ **已审核 8.45（revise）→ 已整改 → 未复审**。`handoff/character_review.json` 的 C1（齿轮刻痕断代三方冲突）+ M1（关系⑤证据误植）+ M2（沈.json 断代接口）**整改均已落地**：`沈.json` 内有显式标注「【断代注记（M2修复）】」「【M2修复新增：刻痕断代表，与C1'新痕'仲裁咬合】」，C1 按审核推荐方案 (a) 裁定（齿轮左钩=近期新痕，作者=收刀的传人）；M1 的「还息」段已在 `characters.json` | **否**（C1 已按 (a) 落定，与 Ch5「搭痕第2次递进」不冲突） |
+| 设定三件套 + setting-reviewer | ⚠️ **已审核 9.08（revise）→ 多数整改已落地 → 未复审**。`handoff/setting_review.json` 的 7 项 recommended_fix 中，P0 两项（命祭口径拆行/专名计数口径裁定）与 P2 多项已可在文件中验证（`ability_system` 有「燃命者」「光色」、`world_setting` 有「铁壁城」「计数口径」、`conflict_rules` 有「后期真相时间轴」）；**仅 P1-3「术语级 disclosure 批量更正」未应用**（`world_setting` 中查无"概念已披露·术语未点破"） | 否 |
 
-**补账优先级建议**：设定三件套审核 > 角色卡审核 > 第一卷 beat sheet（前者直接影响 Ch8+ 写作正确性）。**补账不应阻塞 Ch8**——Ch8 的 beat 与衔接要求在 session_pointer.next_action 中已完整给出。
+**取证方法说明**（可复现）：三件套、角色卡、两张审核卡**全部提交于同一个 commit**（`d60cfc9`），故无法用文件时间或 git 历史判断"整改是否在审核之后发生"。判定依据是**文件内的显式修复标注**（如「【M2修复】」字样）与整改项的关键词落地情况——这是间接证据，**最终确认须以重跑复审为准**。
+
+**补账方案（按优先级，均不阻塞 Ch8）**：
+
+| # | 动作 | 依据 | 成本 |
+|---|------|------|------|
+| 1 | 补 `world_setting.json` 的术语级 disclosure（凡器/遗器→"概念已披露·术语未点破"；祭器首现→Ch1:18；位面裂隙披露链→Ch1→Ch2→Ch4；四阶流动纹→Ch1-3） | setting_review 的 P1-3（唯一确认未应用项） | 小 |
+| 2 | 重跑 **setting-reviewer** 复审三件套，确认 ≥9.5 并冲线（原 9.08，note 称"底子已达9.5水准，配合 minor 清零后可复审冲线"） | 复审未执行 | 中 |
+| 3 | 重跑 **outline-editor（角色卡审核）**，确认 C1/M1/M2 整改后 verdict（原 8.45 revise） | 复审未执行 | 中 |
+| 4 | 卷 2 逐章 beat 按滚动方式生成（当前最新章节 +2 章即够） | 设计意图 | 随生产进行 |
+
+**关键判断**：**四项均不阻塞 Ch8**。Ch8 的 beat 与衔接要求在 `session_pointer.next_action` 中已完整给出；且 C1 已按方案 (a) 落定，Ch8 即便触及刻痕线也有裁定可依。建议**先开写 Ch8，把 1-3 项作为并行的补账任务穿插执行**。
 
 ### 已知缺陷（2026-09-20 巡检发现）
 
