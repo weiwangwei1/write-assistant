@@ -148,7 +148,7 @@ write-assistant/
   1. **提交前置门禁**（chapter-writer 产出后、进评审前，chief-editor 校验，任一不满足直接拒收）：
      - `style_lint.py` 退出码 0（v2.3 起仅 L0 通用反AI红线阻断，L1 降为顾问项由 detail-reviewer 逐条回应）
      - 含 **篇幅硬检**（v2.4 `chapter_length` 规则，书籍级标准经 `--config` 注入，当前书用根目录 `lint_config.json`；advisory 提交前必须清零；原则：**宁删勿补**——初稿写长，修订只删不补）
-     - `style_fingerprint.py check` 通过（挂载风格包且基线非 pending 时）
+     - `style_fingerprint.py check` **仅作参考对照**（2026-09-20 用户终裁，见第九节「指纹基线与风格冲突」）——**不作为拒收依据**：该基线自天蚕土豆原作语料派生，切句只认 `。！？`（分号不切句），口径天然偏好"分号/逗号缝合的复合句"；与本书"句号为主、靠段落层级做长短交错"的定稿口味方向相反。卡照产、数据照记，基线待黄金三章定稿后用本书自语料重建
      - 若经历 lint 修复轮次：`handoff/pre_lint_ch{N}.txt` 快照 + `fix_auditor.py` 产出的证据卡（只产证据不判定）
      - 交接卡结构字段齐备（`beat_sheet` / `cross_chapter_facts` / `shuang_type` / `suspense_budget_check` / `character_internal` / `style_plan`）
   2. detail-reviewer 微观审核 ∥ de-ai-processor 去 AI 化分析（并行，各出建议清单不改文本）→ chief-editor 合并为 `merged_review_{N}.json`；
@@ -160,7 +160,7 @@ write-assistant/
 
   **通过门槛 = 问题清单制（v3.0，唯一口径）**：critical 清零即通过，分数（`unified_score = technical×0.6 + supplementary×0.4`）仅作参考趋势数据，**不再以 ≥9.5 为门禁**（LLM 自评分数通胀无区分度，实测 Ch4-7 落在 9.11–9.44）。例外：**初始化阶段的 setting-reviewer（设定）/ outline-editor（大纲）仍保留 ≥9.5 分数门槛**——一次性产物，高门槛边际成本低，属有意差异，两个 SKILL 内已注明理由。
 
-  **评审不可跳过（v2.4 新增）**：lint + 指纹双门禁只是**提交前置**，不构成入库。正式入库的每章必须有独立 quality_review 评审卡（由未参与写作的 Agent/子代理按 quality-reviewer rubric 产出，critical 清零）。《万纹师》黄金三章曾因走"轻量流程"漏掉评审，被用户追问后补评（`wanwenshi/quality_review_golden3.json` 2026-07-26 17:30）查出 4 个 major——verdict="需修改"尚未清零，待修 major：①Ch3 第14行沈拓误称老铁匠"爹"（角色死穴专属称呼）②Ch3 章末"温到了天明"余韵收尾违反 chapter_end_hook_rule ③雷横角色卡"指针疯转"与正文"锈死"矛盾 ④Ch3"登记册六十年"无信息来源。此为本条的数据教训。
+  **评审不可跳过（v2.4 新增）**：lint 门禁（指纹自 2026-09-20 起降为参考，见第九节）只是**提交前置**，不构成入库。正式入库的每章必须有独立 quality_review 评审卡（由未参与写作的 Agent/子代理按 quality-reviewer rubric 产出，critical 清零）。《万纹师》黄金三章曾因走"轻量流程"漏掉评审，被用户追问后补评（`wanwenshi/quality_review_golden3.json` 2026-07-26 17:30）查出 4 个 major——verdict="需修改"尚未清零，待修 major：①Ch3 第14行沈拓误称老铁匠"爹"（角色死穴专属称呼）②Ch3 章末"温到了天明"余韵收尾违反 chapter_end_hook_rule ③雷横角色卡"指针疯转"与正文"锈死"矛盾 ④Ch3"登记册六十年"无信息来源。此为本条的数据教训。
 
 ## 四、常用命令
 
@@ -232,11 +232,11 @@ powershell -ExecutionPolicy Bypass -File auto-runner/generate_task_config.ps1 # 
 
 ## 九、当前进度快照
 
-**当前状态**：在产项目《第三纪元》**已于 2026-09-20 重启**——旧稿 Ch1-7 正文与全部章级过程产物（含黄金三章精修证据）完整归档至 `archive/第三纪元_重启_20260920/`（output 9 / handoff 48 / golden3_revisions 43 / memory 10）；**保留**大纲（`memory/outline.json`）、世界观（`setting_bible`/`world_setting`/`ability_system`/`conflict_rules`）、角色设定（8 张角色卡 + `characters.json`）、立项与审核卡（topic_screening / 大纲与设定审核卡）。指针已归零（`session_pointer.current_chapter=0`，`handoff/task_plan.json` phase=init），8 张角色卡 `current_state` 已回退 Ch1 基线，**下一步从序言+Ch1 按现有大纲重写**（适用 chapter-writer v4.3 / detail-reviewer v1.21）。全书规划 300 章 / 6 卷，tiancantudou（天蚕土豆）文风包，2500 字/章（区间 2400-2600，见根目录 `lint_config.json`）。**初始化欠账仍在**（角色卡复审未跑；设定三件套 3 项登记项源自旧稿、暂缓）——见下方「初始化欠账」小节。
+**当前状态**：在产项目《第三纪元》**已于 2026-09-20 重启**——旧稿 Ch1-7 正文与全部章级过程产物（含黄金三章精修证据）完整归档至 `archive/第三纪元_重启_20260920/`（output 9 / handoff 48 / golden3_revisions 43 / memory 10）；**保留**大纲（`memory/outline.json`）、世界观（`setting_bible`/`world_setting`/`ability_system`/`conflict_rules`）、角色设定（8 张角色卡 + `characters.json`）、立项与审核卡（topic_screening / 大纲与设定审核卡）。指针已归零（`session_pointer.current_chapter=0`，`handoff/task_plan.json` phase=init），8 张角色卡 `current_state` 已回退 Ch1 基线，**下一步从序言+Ch1 按现有大纲重写**（适用 chapter-writer v4.4 / detail-reviewer v1.22；指纹已降为参考，见第九节）。全书规划 300 章 / 6 卷，tiancantudou（天蚕土豆）文风包，2500 字/章（区间 2400-2600，见根目录 `lint_config.json`）。**初始化欠账仍在**（角色卡复审未跑；设定三件套 3 项登记项源自旧稿、暂缓）——见下方「初始化欠账」小节。
 
 **质量趋势**：旧稿 Ch1-7 记录（Ch1-3 走用户直评通道；Ch4 unified 9.11；Ch5 9.28；Ch6 overall 9.44；Ch7 overall 9.43，全部终审 approved）已随重启归档（`archive/第三纪元_重启_20260920/`）；新稿自 Ch1 起重新累积。
 
-**当前待决**（session_pointer.open_decisions）：①书名与简介待 final（忌俗套重生流书名）②指纹基线终裁——新稿位面篇（Ch15 归城）结束后由用户裁决（旧稿证据已随重启归档，届时重新裁决）③番茄「多书名实验」测试时机（20-50 万/100 万字后，发布后执行）。
+**当前待决**（session_pointer.open_decisions）：①书名与简介待 final（忌俗套重生流书名）②~~指纹基线终裁~~ **已裁决（2026-09-20）**：指纹降为参考指标 + 黄金三章定稿后用本书自语料重建派生基线（证据与口径见第九节「指纹基线与风格冲突」）③番茄「多书名实验」测试时机（20-50 万/100 万字后，发布后执行）。
 
 ### 初始化欠账（2026-09-20 核实修正）
 
@@ -281,6 +281,21 @@ powershell -ExecutionPolicy Bypass -File auto-runner/generate_task_config.ps1 # 
 > 本次因此先后误判两次：把"已整改未复审"说成"未审核"，把"已应用的 P1-3"说成"唯一未应用项"。**结论须以重跑复审为准，关键词匹配只能作线索。**
 
 **关键判断（2026-09-20 重启后口径）**：四项欠账**均不阻塞从 Ch1 重写**；C1 已按方案 (a) 落定（刻痕线裁定仍有效）。建议**新稿开写的同时并行执行 1-2 项补账（重跑复审）**，3 项随生产进行。
+
+### 指纹基线与风格冲突（2026-09-20 用户终裁：降参考 + 自语料重建）
+
+**冲突本体**：`style_fingerprint.py` 的基线自天蚕土豆原作语料派生，而它切句只认 `。！？`（**分号不切句**）——"分号/逗号缝合的复合句"在同口径下被算作"长句"，基线因此呈现"长句占比 47.2%、逗号/句号 4.48"的偏好。追求该基线 = 追求分号缝合式长句。
+
+**实测证据（《第三纪元》Ch1）**：
+
+| 版本 | 标点处理 | 句均长 | 长句占比 | 标准差 | 逗号/句号 | 超阈维度 |
+|---|---|---|---|---|---|---|
+| v9 | 31 个分号缝合长句 | 34.48 | 41.3% | 23.76 | 3.78 | 1 |
+| v9.1 | 分号 → 3 个（其余改句号） | 21.96 | 8.0% | 13.23 | 2.32 | 5 |
+
+即 v9 的"达标"主要由分号撑出；而真人读者对 v9.1（多句号版）打 8.8/10，明确要求"放心用句号，文字会更沉稳、有力"——**基线口径与定稿口味方向相反**。
+
+**裁决（用户，2026-09-20）**：①指纹**由提交前置门禁降为参考指标**（不作为拒收依据，卡照产、数据照记、偏差日志照写）；②**黄金三章定稿后用本书自语料重建派生基线**（`style_fingerprint.py build` 本书正文 + `selfcheck` 派生容差），此后衡量"本书自己的呼吸"；③风格执行以定稿口味为准——句号为主，长短交错靠段落层级排布，而非用分号把四五个意群缝进一句。
 
 ### 已知缺陷（2026-09-20 巡检发现）
 
