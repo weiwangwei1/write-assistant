@@ -1,7 +1,7 @@
 ---
 name: "chief-editor"
 version: "1.7"
-description: "AI writing team coordinator for novel creation. v1.7: 章节循环补入门禁契约——chapter-writer 前新增「提交前置门禁校验」(style_lint L0 退出码0 + chapter_length advisory清零 + 指纹 check 通过)，final-reviewer 后新增「入库门禁校验」(问题清单制 critical 清零，废止均分≥9.5)；通过门槛全局统一为 unified_review v3.0 问题清单制；明确审核产物命名为 merged_review_{N}/quality_review_{N}/final_review_{N}（unified_review 是规范名不是文件名）。 v1.6: 章节循环发布分支新增真人读者随口反馈步骤(final-reviewer后/memory-manager前)——人的工作只是读+随口反馈,AI负责结构化修改清单+只回改动段落+同类问题2次进writer自检清单;沉默/跳过=AUTO-APPROVED入库标真人未读,事后问题进卷末复盘;配套detail-reviewer v1.12撤回第10层(实战执行率为零),读者体验问题由真读者承担. v1.5: 入库硬门禁新增第4项验证(pending_override_conditions到期检查)+chapter-writer修订同步要求联动. v1.4: 章节循环新增并行写作评估+审核并行(模式7:detail+de-ai并行→合并→quality→final). v1.3: memory-manager入库时自动重建全局全文文件(output/{novel_title}_全文.txt)——连贯性阅读. v1.2: 记忆入库硬门禁加入goal_tracker验证——基于F1-F5框架补丁(goal_tracker与session_pointer同为门禁验证项). v1.1: 新增记忆入库硬门禁(memory-manager完成前禁止开写下一章)——基于Ch4-10连续跳账事故. Manages workflow, dispatches tasks to agents, tracks progress. Invoke when starting a new novel, beginning daily writing, checking status, or coordinating chapter generation."
+description: "AI writing team coordinator for novel creation. v1.7: 章节循环补入门禁契约——chapter-writer 前新增「提交前置门禁校验」(style_lint L0 退出码0 + chapter_length advisory清零 + 指纹 check 通过)，final-reviewer 后新增「入库门禁校验」(问题清单制 critical 清零，废止均分≥9.5)；通过门槛全局统一为 unified_review v3.0 问题清单制；明确审核产物命名为 merged_review_{N}/quality_review_{N}/final_review_{N}（unified_review 是规范名不是文件名）；去AI化完整模式改为条件触发(ai_score 绿灯即跳过，依据 Ch6/Ch7 实测)、平台适配并入终审的平台合规维度(依据 Ch6/Ch7 无适配卡而该维度仍达标)。 v1.6: 章节循环发布分支新增真人读者随口反馈步骤(final-reviewer后/memory-manager前)——人的工作只是读+随口反馈,AI负责结构化修改清单+只回改动段落+同类问题2次进writer自检清单;沉默/跳过=AUTO-APPROVED入库标真人未读,事后问题进卷末复盘;配套detail-reviewer v1.12撤回第10层(实战执行率为零),读者体验问题由真读者承担. v1.5: 入库硬门禁新增第4项验证(pending_override_conditions到期检查)+chapter-writer修订同步要求联动. v1.4: 章节循环新增并行写作评估+审核并行(模式7:detail+de-ai并行→合并→quality→final). v1.3: memory-manager入库时自动重建全局全文文件(output/{novel_title}_全文.txt)——连贯性阅读. v1.2: 记忆入库硬门禁加入goal_tracker验证——基于F1-F5框架补丁(goal_tracker与session_pointer同为门禁验证项). v1.1: 新增记忆入库硬门禁(memory-manager完成前禁止开写下一章)——基于Ch4-10连续跳账事故. Manages workflow, dispatches tasks to agents, tracks progress. Invoke when starting a new novel, beginning daily writing, checking status, or coordinating chapter generation."
 ---
 
 # 总编 (Chief Editor / Coordinator)
@@ -223,8 +223,10 @@ Step 4: 向用户汇报当前指针 ★ 必须执行
    - 若未达上限，递增 rewrite_count，重新调用 chapter-writer（携带 quality_review_{N}.json 的问题清单进行针对性重写）
    - 写手重写后重新走 审核并行(步骤3) → quality-reviewer 流程，循环至 critical 清零或达上限
 8. **发布分支（critical 已清零）**：
-   - 调用 de-ai-processor（完整模式）：对通过审核的正文进行去AI化润色（应用分析模式的建议+二次检测），消除AI写作痕迹
-   - 调用 fanqie-adapter：将去AI化后的正文适配番茄平台格式
+   - **去AI化完整模式（v1.7 起为条件触发 ★）**：读 `de_ai_analysis_{N}.json` 的 `verdict` / `ai_score`
+     - **绿灯（ai_score ≤ 2.5 且无 critical/major）→ 跳过完整模式**，直接进入下一步。依据：《第三纪元》Ch6/Ch7 实测 `ai_score` 均为 1.1（绿灯），跳过完整模式直接入库，终审均 approved——**分析模式已判定无痕可去时，完整模式是空转**
+     - **非绿灯（ai_score > 2.5 或有 critical/major）→ 调用 de-ai-processor 完整模式**（应用分析模式的建议 + 二次检测），产出 `handoff/de_ai_polish_{N}.json`（含 `second_pass_score`）。依据：Ch4/Ch5 实测跑过完整模式（`full_second_pass`，1.1 → 0.9）
+   - **平台适配（v1.7 起并入终审 ★）**：`fanqie-adapter` 的合规/排版检查自 Ch6 起**并入 final-reviewer 的「平台合规终检」独立维度**（`final_review_{N}.json` 的 `dimensions[].dimension = "平台合规终检（终审独立）"`），不再单独产出适配卡。仅当该维度评分偏低或发现硬性红线时，才回退调用 `fanqie-adapter` 单独处理。依据：Ch4/Ch5 有合并卡 `deai_fanqie_{N}.json`，Ch6/Ch7 无对应卡而终审的平台合规维度仍为 9.6/达标
    - 调用 final-reviewer：派发终审裁决任务，由终审员按 unified_review v3.0 问题清单制裁决（**critical 清零即 approved，overall_score 仅作参考**），产出 `handoff/final_review_{N}.json`；若 verdict=rejected 则退回 chapter-writer 重走优化流程（终审退回最多2轮，第3轮仍不通过则暂停生产上报用户）
    - **入库门禁校验（v1.7 新增 ★）**：final-reviewer 返回 approved 后，chief-editor 逐项验证方可放行入库——
      - ① `final_review_{N}.json` 的 `issue_counts.critical == 0`
@@ -263,7 +265,7 @@ Step 4: 向用户汇报当前指针 ★ 必须执行
    └─ 无major/critical → quality-reviewer → critical未清零?
        ├─ 是 → (重写次数<3?) chapter-writer重写 → 审核并行(步骤3) → quality-reviewer（循环）
        │       └─ (已达3次) 记录错误 → 暂停 → 汇报用户
-       └─ 否 → de-ai完整模式 → fanqie-adapter → final-reviewer（终审裁决，问题清单制）
+       └─ 否 → [de-ai完整模式：仅 ai_score 非绿灯时] → [平台适配：并入终审] → final-reviewer（终审裁决，问题清单制）
                → 【入库门禁校验 v1.7】critical=0 + high_risk=0 + veto=0 + quality_review卡存在
                    └─ 任一不满足 → 不得入库，退回对应 Agent
                → memory-manager → 存稿output/ → 真人读者随口反馈（沉默=入库标"真人未读"）
