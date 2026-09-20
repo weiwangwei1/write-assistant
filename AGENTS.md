@@ -28,8 +28,8 @@ write-assistant/
 │   ├── setting-reviewer/      # 设定审核员：世界观 6 维评分
 │   ├── character-designer/    # 角色师：人物设定、关系网、成长弧线
 │   ├── keyword-expert/        # 命名专家：术语命名与巡检
-│   ├── chapter-writer/        # 写手：章节正文生成（v4.3，H1-H11 + 倾向库；5.9 技法按 A-E 组 24 条 + 黄金三章开篇量化）
-│   ├── detail-reviewer/       # 细节控：逐句/逐伏笔微观审核（v1.21，第11层 18 项 + 黄金三章开篇量化附节，ID 与写手对应）
+│   ├── chapter-writer/        # 写手：章节正文生成（v4.4，H1-H11 + 倾向库；5.9 技法按 A-E 组 24 条 + 黄金三章开篇量化 + 呼吸感/首章赌注）
+│   ├── detail-reviewer/       # 细节控：逐句/逐伏笔微观审核（v1.22，第11层 18 项 + 黄金三章开篇量化附节 + 第1层句式呼吸/怕与欲，ID 与写手对应）
 │   ├── de-ai-processor/       # 去AI化师：消除 AI 写作痕迹（分析/完整模式）
 │   ├── quality-reviewer/      # 审稿员：8维技术分 + 6读者画像
 │   ├── fanqie-adapter/        # 适配师：番茄平台爽点/节奏/合规适配
@@ -100,8 +100,8 @@ write-assistant/
 │                          #   罪恶之城世界观分析.html（《罪恶之城》文本分析，驱动 style_card v2.3 叙事引擎改造）
 ├── 作家分享.txt            # 外部资料：阅文作家经验分享（learning 子系统输入）
 ├── 第三方评价.txt          # 外部资料：第三方评审意见汇总
-├── lint_config.json       # ★ 当前书籍的篇幅配置（--config 注入 style_lint）
-├── style_lint.py          # ★ 文风硬约束校验器（提交前门禁，v2.5）
+├── lint_config.json       # ★ 当前书籍配置（篇幅硬检 2400-2600 + 核心意象词根表 motif_repeat_words，--config 注入 style_lint）
+├── style_lint.py          # ★ 文风硬约束校验器（提交前门禁，v2.9）
 ├── style_fingerprint.py   # ★ 文体指纹提取与偏差校验（v2.0：章际分布/派生容差/selfcheck）
 ├── fix_auditor.py         # ★ lint 修复差异证据卡（只产证据不判定）
 ├── style_pack_check.py    # ★ 风格包入库验收清单（三件套+模板合规）

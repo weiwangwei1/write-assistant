@@ -10,6 +10,16 @@ style_lint.py — 网文章节文风校验器（write-assistant 流水线前置�
 
 退出码：0=通过  1=存在 L0 critical（供流水线拦截；v2.3 起 L1 降级为顾问，报告但不阻断）
 
+v2.9：新增两项"主语/母题层重复"检测（L1 顾问项），针对 Ch1 外评四诊之②③：
+  ① subject_start_repeat：句首主语超载——句首同一主语占比超阈，或同主语连续起句超阈。
+     原稿被读者点名"他怎么他怎么怎么，一看就是AI"即此模式（人工修完需门禁防复发）。
+  ② motif_repeat：核心意象词根复读——按书籍级词根表（lint_config 的 motif_repeat_words，
+     如《第三纪元》["账","算","亏","价"]）统计章内频次；原有 phrase_repeat 只查 4-8 字
+     整片段，抓不到单字词根刷屏（原稿"账/算/亏/价/记账"合计 21 次，修订版 5 次）。
+  阈值经 v8（修订前草稿）与 v9（修订后）两版实测校准：
+     句首主语占比 v8=9.5% / v9=22.2%（上限 0.35，两版均通过，留作防复发门禁——"他"字超载的旧稿会触发）；
+     同主语连续起句 v8/v9 均为 2（上限 2）；词根合计 v8=21 / v9=5（单词上限 4，v8 的"账/算"各 6 次触发）。
+
 v2.8：新增三项章内重复检测（L1 顾问项），针对"高级AI痕迹——重复模式"：
   ① phrase_repeat：章内短语重复（同一4-8字片段出现3+次→意象/句式自我繁殖）
   ② dialogue_tag_repeat：对话标签重复（同一"X道/X说"出现4+次→应用动作节拍替代）
@@ -101,6 +111,12 @@ DEFAULT_CONFIG = {
     "dialogue_tag_max_repeat": 4,         # 同一对话标签（X道/X说）章内最大重复次数
     "short_sentence_ratio_max": 0.80,     # 短句(≤15字)占比上限（节奏单调检测）
     "long_sentence_min_len": 50,          # 长句最小字数（至少1句≥此值，否则报rhythm_monotony）
+    # 六d、主语/母题层重复（v2.9新增——"他怎么他怎么"式样句 / 意象词根刷屏）
+    "subject_start_pronouns": ["他", "她", "它"],  # 句首主语统计范围（第一人称书经 --config 改为 ["我"]）
+    "subject_start_ratio_max": 0.35,      # 句首主语占全部句子的比例上限
+    "subject_start_run_max": 2,           # 同主语连续起句上限（3连即报）
+    "motif_repeat_words": [],             # 核心意象词根（书籍级配置，如 ["账","算","亏","价"]；空=不启用）
+    "motif_repeat_max_per_chapter": 4,    # 单一词根章内出现次数上限
     # 七b、旁白式设定解释检测（v2.5新增，L2级）
     "tell_exposition_patterns": [
         r"是.{2,10}的命脉", r"是.{2,10}的命根", r"意味着",
@@ -129,6 +145,8 @@ RULE_LEVELS = {
     "tell_exposition": "L2",
     # v2.8 新增：章内重复检测（L1，顾问项——高级AI痕迹）
     "phrase_repeat": "L1", "dialogue_tag_repeat": "L1", "rhythm_monotony": "L1",
+    # v2.9 新增：主语/母题层重复（L1，顾问项——样句感 / 意象词根刷屏）
+    "subject_start_repeat": "L1", "motif_repeat": "L1",
     # L3: 偏好规则 — 仅提示
     "name_starter_run": "L3", "ranhou": "L3",
     "four_char": "L3", "emotion_telling": "L3",
@@ -473,6 +491,37 @@ def lint_chapter(ch, cfg, disabled, custom_bans, rule_levels=None):
         if short_ratio > cfg.get("short_sentence_ratio_max", 0.80) and max_sent_len < cfg.get("long_sentence_min_len", 50):
             add("rhythm_monotony", "minor", 0, "",
                 f"短句占比{short_ratio*100:.0f}%（{short_count}/{len(sent_lens)}），最长句{max_sent_len}字 < {cfg.get('long_sentence_min_len', 50)}字——逗号节奏单调，需在情感节点放长句")
+
+    # 4. 句首主语超载（v2.9 新增——"他怎么他怎么怎么"式样句，读者一眼AI的典型特征）
+    subj_pronouns = cfg.get("subject_start_pronouns", ["他", "她", "它"])
+    if subj_pronouns and sentences:
+        starts = [s[0] if s[0] in subj_pronouns else None for s in sentences]
+        n_subj = sum(1 for x in starts if x)
+        s_ratio = n_subj / len(starts)
+        s_ratio_max = cfg.get("subject_start_ratio_max", 0.35)
+        if s_ratio > s_ratio_max:
+            add("subject_start_repeat", "minor", 0, "",
+                f"句首主语占{s_ratio*100:.0f}%（{n_subj}/{len(starts)}）> 上限{s_ratio_max*100:.0f}%——主语连打=样句感，隔句改从动作/环境/宾语起句")
+        s_run_max = cfg.get("subject_start_run_max", 2)
+        run, run_ch = 0, None
+        for i, x in enumerate(starts):
+            if x and x == run_ch:
+                run += 1
+            elif x:
+                run, run_ch = 1, x
+            else:
+                run, run_ch = 0, None
+            if run == s_run_max + 1:
+                add("subject_start_repeat", "minor", 0, sentences[i][:30],
+                    f"连续{run}句以“{run_ch}”起句 > 上限{s_run_max}（中间至少一句换起句方式）")
+
+    # 5. 核心意象词根复读（v2.9 新增——母题词高频刷屏=刻意感；phrase_repeat 只查整片段）
+    motif_cap = cfg.get("motif_repeat_max_per_chapter", 4)
+    for w in cfg.get("motif_repeat_words", []):
+        cnt = ch.text.count(w)
+        if cnt > motif_cap:
+            add("motif_repeat", "minor", 0, w,
+                f"核心意象词根“{w}”章内{cnt}次 > 上限{motif_cap}（母题复读——把主题落到具体动作/感官，别反复点名）")
 
     # v2.2: 合理覆写过滤——被覆写的行级问题从 issues 中移除
     if ch.overrides:

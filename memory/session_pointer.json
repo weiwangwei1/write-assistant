@@ -10,18 +10,18 @@
   "overall_progress": "0/300",
   "protagonist": "顾衡",
   "last_updated_chapter": 0,
-  "last_updated": "2026-09-20T15:41:37+08:00",
+  "last_updated": "2026-09-20T19:04:27+08:00",
   "milestones": [
     {"milestone": "选题方向确认", "status": "done", "note": "构装师+献祭+位面掠夺，掌控全局天才主角"},
     {"milestone": "黄金三章设计", "status": "done", "note": "Ch1乱局/Ch2造物/Ch3献祭"},
-    {"milestone": "黄金三章写作", "status": "pending", "note": "2026-09-20 重启：旧稿 Ch1-7（含旧黄金三章）完整归档至 archive/第三纪元_重启_20260920/（output 9 / handoff 48 / golden3_revisions 43 / memory 10），旧稿的 lint/指纹/终审/五轮精修记录随归档留存、不追溯；从序言+Ch1 按现有大纲重写"},
+    {"milestone": "黄金三章写作", "status": "pending", "note": "2026-09-20 重启：旧稿 Ch1-7（含旧黄金三章）完整归档至 archive/第三纪元_重启_20260920/（output 9 / handoff 48 / golden3_revisions 43 / memory 10），旧稿的 lint/指纹/终审/五轮精修记录随归档留存、不追溯；从序言+Ch1 按现有大纲重写；2026-09-20 晚：开场方案 v2（GANTZ 化）落地 Ch1 v9 正文（人味瞬间=饿；lint L0 0/L1crit 0，指纹超阈 5→1 维），4 条框架补丁同步（style_lint v2.9 / chapter-writer v4.4 / detail-reviewer v1.22）——待用户通读验收"},
     {"milestone": "框架升级", "status": "done", "note": "chapter-writer v4.2（5.9 技法 5 组 24 条，按决策场景分组：A章际衔接/B场景节奏/C角色反应/D描写信息/E机制结构；v4.2 补录：C1 扩群体生态尺度+B5 反差法+B6 大场面段落次序+C6 差异化反应）+ detail-reviewer v1.20（第11层同步对齐，18项，检查项 ID 与写手一一对应）+ chief-editor v1.8（真人读者随口反馈新增 1 个不计分必答引导问题）。历史：v4.0 新增技法23-28、v4.1 由 28 条重构为 5 组 21 条、v1.18 第11层扩至19项、v1.19 合并为 15 项。Ch6/Ch7 的 detail_review 卡按 19 项旧版产出，属历史记录不追溯（旧稿已归档）；重启后新稿从 Ch1 起按 18 项审核。二轮（同日晚）：chapter-writer v4.3（E1 禁道德选择题边界 + 5.4 黄金三章开篇量化）+ detail-reviewer v1.21（第11层附·黄金三章开篇量化）+ quality-reviewer v1.10（读者分裂标记 + 五轻毒/五重毒/五过度清单）+ title-reviewer v1.2（书名≤15字等硬阈值 + 简介工具箱）；refSkill/ 番茄官方参考库（74 篇 35 万字）入库"},
     {"milestone": "topic-screener 预筛", "status": "done", "note": "2026-08-06 完成，verdict=pass_with_note（6维：题材耐久度/爽感路径/认知门槛/失败模式匹配 pass；暗基调补偿可行性/平台基调匹配 pass_with_note），卡在 handoff/topic_screening.json（2026-09-20 更正：此前误标 pending，实为已完成但归档在非标准名 topic_screening_disanjiyuan.json 下，已改名为契约名）"},
     {"milestone": "plot-architect 完整大纲", "status": "pending", "note": "6卷300章总纲+第一卷详细分章beat sheet"},
     {"milestone": "character-designer 角色设计", "status": "pending", "note": "顾衡完整角色卡+守军头目+沈+第一卷新角色"},
     {"milestone": "设定三件套+setting-reviewer", "status": "pending", "note": "world_setting/ability_system/conflict_rules，≥9.5"}
   ],
-  "next_action": "从序言+Ch1 开写（按 outline.golden_three_chapters：Ch1 乱局立人 / Ch2 造物亮构装师 / Ch3 献祭亮机制闭环）。Ch1 四个 beat：破城乱局（sensory 点题）→三个冷动作（action，5.8 冷动作兑现结构）→同一刻全部兑现（B级智力碾压）→动机挂账'城下埋着什么'；章首钩子句'血腥味先到的，城墙还没塌'。写作适用 chapter-writer v4.2（H1-H11 + 5.9 24 条技法）与 detail-reviewer v1.20（第11层 18 项）。开写前需确认的初始化欠账：角色卡复审未跑；设定三件套 3 项登记项源自旧稿已暂缓，新稿写到对应机制时重新登记。旧稿全部正文与过程见 archive/第三纪元_重启_20260920/ 可随时对照。",
+  "next_action": "【开场方案 v2 实施中·Ch1 v9 已落盘】Ch1 正文（output/chapter_001_draft.txt，2526 字，lint L0 0/L1crit 0，指纹超阈 5→1 维）已按 v9 四条改法完成；4 条框架补丁已实施：style_lint v2.9（subject_start_repeat / motif_repeat）+ lint_config 词根表 + chapter-writer v4.4 + detail-reviewer v1.22（实测与校准见 memory.ch1_v9_20260920 与 docs/第三纪元_开场方案v2 第五节）。剩余实施顺序：①outline 重排（黄金三章 Ch1-3 + 卷1前15章 + 悬念窗口 + 伏笔编号 + 序言处理）→②setting_bible 增『献祭对接者』条目→③老龙角色卡 + 顾衡卡关系更新→④『老龙』命名（keyword-expert，前30章专名余额 0）→⑤衔接检查（旧账本 Ch2+ 落点、Ch4-15 位面篇去重）。待办：v9 草稿待用户通读验收。【设计记录】《第三纪元》GANTZ 化 + 老龙并入：Ch1=位面任务最险一刻进行中（锈关前史延后，黄金三章重排）；老龙=献祭对接者体系顶层（人人可献祭，对接对象分层：低能神灵/恶魔→老龙；卷1 低能存在仅传闻；资格=付得起+被接单；形态卷1部分显现；冷化气质；来源不定义，不归跨纪元种族/位面在地者——两条硬禁令不碰）；献祭四条规则加法不改法（对接者=规则背后真相层，卷1 不点破），老龙=顾衡隐藏渠道。实施顺序：①Ch1 beat sheet + 试写样张（验质感）→②改 outline（黄金三章重排+卷1前15章重排+悬念窗口+伏笔编号）→③setting_bible/world_setting/ability_system 增『献祭对接者』条目→④老龙角色卡（character-designer 流程）→⑤落档+提交。待办：『老龙』命名需过 keyword-expert + 专名预算（前30章余额 0）。写作适用 chapter-writer v4.4（H1-H11+24技法+黄金三章开篇量化+呼吸感/首章赌注）/ detail-reviewer v1.22。旧稿全文与过程见 archive/第三纪元_重启_20260920/。",
   "last_session_summary": "2026-09-20 项目重启：旧稿 Ch1-7 正文+全部章级过程卡+记忆摘要完整归档至 archive/第三纪元_重启_20260920/；保留大纲/世界观/角色设定/立项/框架资产；指针归零（current_chapter 0 / completed []）、task_plan 重建为 init、8 张角色卡 current_state 回退 Ch1 基线；下一步从序言+Ch1 按现有大纲重写",
   "character_snapshot": {},
   "foreshadowing_quick_status": {
@@ -39,7 +39,7 @@
   ],
   "pending_override_conditions": [],
   "framework_maintenance_20260920": {
-    "session_summary": "2026-09-20 框架巡检 + 初始化补账会话（用户驱动）。共 12 个 commit（cfedffd / 04373f1 / 36f68c8 / 07b190c / b083644 / 5e3ff47 / cb95f3b / 6cbfbf8 / 10dbc47 / d85169b / 5cf03ab / 4b8479b）。内容：①通过门槛统一为问题清单制（清 4 处已废止的 8维≥9.5 死规则）②提交前置门禁与入库门禁正式写入 chief-editor 调度器 ③chapter-writer v4.1（5.9 技法 28 条→5 组 21 条）+ detail-reviewer v1.19 同步 ④handoff 命名规范制定 + Ch1-3 的 43 个中间版本归档 ⑤产物命名契约全仓对齐（9 SKILL + 4 auto-runner 脚本，修 state_validator 死代码）⑥生成器默认改两步审核模式 ⑦chief-editor 去AI化完整模式改条件触发、平台适配并入终审 ⑧技法补录（本轮续）：chapter-writer v4.2（5.9 补 4 条，21→24 条）+ detail-reviewer v1.20（第11层 15→18 项）+ chief-editor v1.8（真人读者随口反馈新增不计分必答引导问题）+ master_instruction v4.0；未采纳外部经验文的层名体系与『AI 十大硬伤』二元论（判据缺失/与实测矛盾） ⑨番茄官方方法论吸收（同日二轮）：chapter-writer v4.3 + detail-reviewer v1.21 + quality-reviewer v1.10 + title-reviewer v1.2；refSkill/ 参考库（74 篇）入库",
+    "session_summary": "2026-09-20 框架巡检 + 初始化补账会话（用户驱动）。共 12 个 commit（cfedffd / 04373f1 / 36f68c8 / 07b190c / b083644 / 5e3ff47 / cb95f3b / 6cbfbf8 / 10dbc47 / d85169b / 5cf03ab / 4b8479b）。内容：①通过门槛统一为问题清单制（清 4 处已废止的 8维≥9.5 死规则）②提交前置门禁与入库门禁正式写入 chief-editor 调度器 ③chapter-writer v4.1（5.9 技法 28 条→5 组 21 条）+ detail-reviewer v1.19 同步 ④handoff 命名规范制定 + Ch1-3 的 43 个中间版本归档 ⑤产物命名契约全仓对齐（9 SKILL + 4 auto-runner 脚本，修 state_validator 死代码）⑥生成器默认改两步审核模式 ⑦chief-editor 去AI化完整模式改条件触发、平台适配并入终审 ⑧技法补录（本轮续）：chapter-writer v4.2（5.9 补 4 条，21→24 条）+ detail-reviewer v1.20（第11层 15→18 项）+ chief-editor v1.8（真人读者随口反馈新增不计分必答引导问题）+ master_instruction v4.0；未采纳外部经验文的层名体系与『AI 十大硬伤』二元论（判据缺失/与实测矛盾） ⑨番茄官方方法论吸收（同日二轮）：chapter-writer v4.3 + detail-reviewer v1.21 + quality-reviewer v1.10 + title-reviewer v1.2；refSkill/ 参考库（74 篇）入库 ⑩开场方案 v2 实施（同日三轮）：Ch1 v9 正文落盘（output/chapter_001_draft.txt，v8 存 chapter_001_draft_v8.txt）+ 4 条补丁——style_lint v2.9（subject_start_repeat / motif_repeat 两条 L1 顾问项，v8/v9 前后校准：词根 21→5、句首主语 9.5%→22.2%）、lint_config 增词根表 [账,算,亏,价]、chapter-writer v4.4（5.1 呼吸感可操作版 + 5.3 首章 immediate stakes）、detail-reviewer v1.22（第1层加句式呼吸 + 怕与欲是否可见）+ master_instruction v4.2 变更摘要；3 条『框架已有、执行漏了』只落档不改框架",
     "defects_found_and_fixed": [
       "chapter_length 篇幅口径不一致（han_len 只数汉字不含标点，与书籍标准差 15%）→ style_lint v2.5 新增独立 word_count()，Ch5-7 恢复达标",
       "handoff/topic_screening.json 被已归档《请客》占用 → 删除并用《第三纪元》预筛卡补位，里程碑由误标 pending 更正为 done",
@@ -62,5 +62,20 @@
     "summary": "旧稿归档+状态归零：Ch1-7 正文与过程产物 → archive/第三纪元_重启_20260920/（output 9 / handoff 48 / golden3_revisions 43 / memory 10）；保留大纲/世界观/角色设定/立项/框架资产",
     "reset_actions": "指针归零（current_chapter 0 / completed []）；task_plan 重建为 init；8 张角色卡 current_state 回退 Ch1 基线（旧状态随归档留存）",
     "next": "从序言+Ch1 开写（outline.golden_three_chapters 四 beat：乱局→三冷动作→同刻兑现→动机挂账）"
+  },
+  "design_20260920_gantz_merge": {
+    "scope": "《第三纪元》开场 GANTZ 化 + 老龙（献祭对接者顶层）并入——用户驱动的结构级设计，全部关键决策已确认，待实施",
+    "decisions": "①完整 GANTZ 化：Ch1=位面任务最险一刻，锈关前史延后，黄金三章重排 ②老龙=献祭对接者分层制顶层（低能神灵/恶魔→老龙），需资格（付得起+被接单），顾衡资格来源留悬念 ③卷1 低能存在仅传闻；老龙部分显现（一只眼/轮廓/声音/契印级）；冷化气质；来源不定义（不碰『跨纪元种族锁卷4』『位面在地者第二同类』两条硬禁令）④献祭四条规则加法不改法（对接者=规则背后真相层——第3条『不等价惩罚』的暗示答案；老龙=顾衡隐藏渠道）⑤形态=『任务-结算』双子结构：任务由顾衡自主发起（保掌控者人设），结算（鉴价/兑换/代价）由老龙承担 ⑥核心机制：绝境=接单门槛（『没有退路的人，才排得上号』，GANTZ『死亡→黑球』同构，用户已拍板收下、不加例外）⑦Ch1 试写样张 v4 已 4 轮迭代验收（样张+beat sheet 存档 docs/第三纪元_开场方案v2_GANTZ化与老龙并入.md）",
+    "reference": "参照系：罪恶之城老龙（远古存在/契约交易/条件苛刻，repo 内 zuiezhicheng-analysis.html 第6节）+ 未立项《献祭万界》（老龙资产可复用，archive/newbook_位面老龙_未立项_20260726）",
+    "open_items": "『老龙』命名（keyword-expert+专名预算余额0）；老龙与跨纪元种族/收割体系的关系=卷2-3 中期悬念（作者侧暂不定死）；书名/简介方向待 final（老龙进入后可能影响）；Ch1-3 旧设计（乱局/造物/献祭三章+城下残骸账本）在新结构中的保留与后置方式待 beat 级设计"
+  },
+  "ch1_v9_20260920": {
+    "status": "Ch1 v9 正文已落盘（待用户通读验收）｜4 条框架补丁已实施",
+    "draft": "output/chapter_001_draft.txt（2526 字）；修订前 v8 版本存 output/chapter_001_draft_v8.txt（供规则前后校准）",
+    "review_source": "外部评审+读者对 Ch1 v7 四诊：①句式一个节奏到底（一眼AI）②主角像执行程序 ③算账词根复读 ④钩子全是空头支票",
+    "v9_fixes": "①句式呼吸（短拍只留重音：口子塌了/他饿/成交/空就空；推理与氛围走 60-105 字流动长句）②血肉三补（怕=宁可拿命来填也不填这句话；欲与失=字据+七年铺子；人味瞬间=饿，4 处贯穿）③算账词根 12→4 ④钩子具体化（城下挖东西→站在它眼皮底下谈一笔大的→这辈子不用再求人）",
+    "metrics": "lint：L0 0 / L1crit 0 / 非阻断 2（对话占比 2%、对话引导 0.46/千字——冷章单台词，记为可接受）；指纹 v8→v9：句均长 12.77→34.48、长句占比 1.2%→41.3%、标准差 10.95→23.76、逗号/句号 1.60→3.78、超阈维度 5→1（仅虚词分布 0.143，容差 0.08，判读为章际波动）",
+    "framework_patches": "style_lint v2.9（subject_start_repeat：句首主语占比>35% 或同主语 3 连；motif_repeat：书籍级词根表、单词>4 次）+ lint_config.motif_repeat_words=[账,算,亏,价] + chapter-writer v4.4（5.1 呼吸感可操作版 / 5.3 首章 immediate stakes）+ detail-reviewer v1.22（第1层句式呼吸 / 怕与欲是否可见）；前后校准：v8 触发（账6/算6 超限）、v9 零告警",
+    "logged_not_framed": "框架已有、执行漏了（只落档不改框架）：①5.1 长短交替与 5.3 钩子具体可感早有要求，v7/v8 执行时漏了 ②写手定稿前应自行跑 style_fingerprint 校验，原未执行"
   }
 }

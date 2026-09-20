@@ -1,5 +1,6 @@
 {
   "chapter_len_min": 2400,
   "chapter_len_max": 2600,
-  "note": "《第三纪元》篇幅配置（2026-08-06 建）：novel_config chapter_word_count 2500，区间2400-2600；H1 篇幅硬检经 --config 注入"
+  "motif_repeat_words": ["账", "算", "亏", "价"],
+  "note": "《第三纪元》篇幅配置（2026-08-06 建）：novel_config chapter_word_count 2500，区间2400-2600；H1 篇幅硬检经 --config 注入。motif_repeat_words（2026-09-20 增）：本书核心意象词根为'账/算/亏/价'，Ch1 实测修订前 21 次、修订后 5 次，单词上限 4"
 }
