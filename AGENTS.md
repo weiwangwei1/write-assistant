@@ -28,8 +28,8 @@ write-assistant/
 │   ├── setting-reviewer/      # 设定审核员：世界观 6 维评分
 │   ├── character-designer/    # 角色师：人物设定、关系网、成长弧线
 │   ├── keyword-expert/        # 命名专家：术语命名与巡检
-│   ├── chapter-writer/        # 写手：章节正文生成（v4.2，H1-H11 + 倾向库；5.9 技法按 A-E 组 24 条）
-│   ├── detail-reviewer/       # 细节控：逐句/逐伏笔微观审核（v1.20，第11层 18 项，ID 与写手对应）
+│   ├── chapter-writer/        # 写手：章节正文生成（v4.3，H1-H11 + 倾向库；5.9 技法按 A-E 组 24 条 + 黄金三章开篇量化）
+│   ├── detail-reviewer/       # 细节控：逐句/逐伏笔微观审核（v1.21，第11层 18 项 + 黄金三章开篇量化附节，ID 与写手对应）
 │   ├── de-ai-processor/       # 去AI化师：消除 AI 写作痕迹（分析/完整模式）
 │   ├── quality-reviewer/      # 审稿员：8维技术分 + 6读者画像
 │   ├── fanqie-adapter/        # 适配师：番茄平台爽点/节奏/合规适配
@@ -89,6 +89,7 @@ write-assistant/
 │   └── learning_workflow.md       # 学习工作流说明（选文→提取→对比→提案→用户决策）
 ├── archive/               # 项目批次归档（含 2026-09-20《第三纪元》重启归档：旧稿 Ch1-7 正文与全部过程产物）
 ├── review/                # 第三方评审意见（人物形象/情感/故事情节 → 驱动了 ch-writer v3.9~v4.0 技法）
+├── refSkill/              # 番茄官方写作方法论参考库（精读版 74 篇/13 主题 35 万字 + 5 个合集；2026-09-20 入库，驱动 ch-writer v4.3 等 4 项升级）
 ├── docs/                  # 文档区
 │   ├── style-distillation/        # 文风自主蒸馏方法论（HTML）
 │   └── topic-notes/               # 选题过程记录（选题构思/选题推进 AB 细化，2026-08-02，孕育了《第三纪元》）
@@ -231,11 +232,11 @@ powershell -ExecutionPolicy Bypass -File auto-runner/generate_task_config.ps1 # 
 
 ## 九、当前进度快照
 
-**当前状态**：在产项目《第三纪元》**已于 2026-09-20 重启**——旧稿 Ch1-7 正文与全部章级过程产物（含黄金三章精修证据）完整归档至 `archive/第三纪元_重启_20260920/`（output 9 / handoff 48 / golden3_revisions 43 / memory 10）；**保留**大纲（`memory/outline.json`）、世界观（`setting_bible`/`world_setting`/`ability_system`/`conflict_rules`）、角色设定（8 张角色卡 + `characters.json`）、立项与审核卡（topic_screening / 大纲与设定审核卡）。指针已归零（`session_pointer.current_chapter=0`，`handoff/task_plan.json` phase=init），8 张角色卡 `current_state` 已回退 Ch1 基线，**下一步从序言+Ch1 按现有大纲重写**（适用 chapter-writer v4.2 / detail-reviewer v1.20）。全书规划 300 章 / 6 卷，tiancantudou（天蚕土豆）文风包，2500 字/章（区间 2400-2600，见根目录 `lint_config.json`）。**初始化欠账仍在**（角色卡复审未跑；设定三件套 3 项登记项源自旧稿、暂缓）——见下方「初始化欠账」小节。
+**当前状态**：在产项目《第三纪元》**已于 2026-09-20 重启**——旧稿 Ch1-7 正文与全部章级过程产物（含黄金三章精修证据）完整归档至 `archive/第三纪元_重启_20260920/`（output 9 / handoff 48 / golden3_revisions 43 / memory 10）；**保留**大纲（`memory/outline.json`）、世界观（`setting_bible`/`world_setting`/`ability_system`/`conflict_rules`）、角色设定（8 张角色卡 + `characters.json`）、立项与审核卡（topic_screening / 大纲与设定审核卡）。指针已归零（`session_pointer.current_chapter=0`，`handoff/task_plan.json` phase=init），8 张角色卡 `current_state` 已回退 Ch1 基线，**下一步从序言+Ch1 按现有大纲重写**（适用 chapter-writer v4.3 / detail-reviewer v1.21）。全书规划 300 章 / 6 卷，tiancantudou（天蚕土豆）文风包，2500 字/章（区间 2400-2600，见根目录 `lint_config.json`）。**初始化欠账仍在**（角色卡复审未跑；设定三件套 3 项登记项源自旧稿、暂缓）——见下方「初始化欠账」小节。
 
 **质量趋势**：旧稿 Ch1-7 记录（Ch1-3 走用户直评通道；Ch4 unified 9.11；Ch5 9.28；Ch6 overall 9.44；Ch7 overall 9.43，全部终审 approved）已随重启归档（`archive/第三纪元_重启_20260920/`）；新稿自 Ch1 起重新累积。
 
-**当前待决**（session_pointer.open_decisions）：①书名与简介待 final（忌俗套重生流书名）②指纹基线终裁——新稿位面篇（Ch15 归城）结束后由用户裁决（旧稿证据已随重启归档，届时重新裁决）。
+**当前待决**（session_pointer.open_decisions）：①书名与简介待 final（忌俗套重生流书名）②指纹基线终裁——新稿位面篇（Ch15 归城）结束后由用户裁决（旧稿证据已随重启归档，届时重新裁决）③番茄「多书名实验」测试时机（20-50 万/100 万字后，发布后执行）。
 
 ### 初始化欠账（2026-09-20 核实修正）
 

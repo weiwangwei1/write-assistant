@@ -1,10 +1,17 @@
 ---
 name: "quality-reviewer"
-version: "1.9"
-description: "Quality reviewer for novel chapters. v1.9: 新增流程合规检测3项(L1 advisory回应率/style_plan遵循抽查/fix_audit证据闭环)——框架升级F1配套:lint L1降级顾问后质量判断权移交审核层,防止advisory无人回应. v1.8: 输出格式优化——评分卡新增quality_technical_score字段(8维加权技术分)，供final-reviewer引用避免重复评分。 v1.7: 新增配比监控检测(爽点类型核验揭示≠爽/3章滚动S-A硬指标/悬念限流≤3/目标断头≥4章报警)——基于Ch4-10第三方评审:爽点断顿/悬念过载/目标断头. v1.6: 新增铺垫单元保护检测(连续铺垫≤2章/每章小兑现/期待锚)——基于Ch1-9数据:铺垫章爽点9.2垫底/追读8.50压线. v1.5: 新增读者反馈驱动检测5项. v1.4: 新增期待感双要素公式+长篇不崩四防线检测. v1.3: 加权评分体系+吸引力提权+期待感评估维度+龙空读者画像更新。Invoke after chapter draft is generated or when reviewing content quality."
+version: "1.10"
+description: "Quality reviewer for novel chapters. v1.10: 新增通用否决项(读者分裂标记 reader_split_risk，对应 chapter-writer v4.3 E1 边界)+命名毒点清单(五轻毒/五重毒/五过度，跨画像通用)。v1.9: 新增流程合规检测3项(L1 advisory回应率/style_plan遵循抽查/fix_audit证据闭环)——框架升级F1配套:lint L1降级顾问后质量判断权移交审核层,防止advisory无人回应. v1.8: 输出格式优化——评分卡新增quality_technical_score字段(8维加权技术分)，供final-reviewer引用避免重复评分。 v1.7: 新增配比监控检测(爽点类型核验揭示≠爽/3章滚动S-A硬指标/悬念限流≤3/目标断头≥4章报警)——基于Ch4-10第三方评审:爽点断顿/悬念过载/目标断头. v1.6: 新增铺垫单元保护检测(连续铺垫≤2章/每章小兑现/期待锚)——基于Ch1-9数据:铺垫章爽点9.2垫底/追读8.50压线. v1.5: 新增读者反馈驱动检测5项. v1.4: 新增期待感双要素公式+长篇不崩四防线检测. v1.3: 加权评分体系+吸引力提权+期待感评估维度+龙空读者画像更新。Invoke after chapter draft is generated or when reviewing content quality."
 ---
 
-# 质量审稿员 (Quality Reviewer) v1.9
+# 质量审稿员 (Quality Reviewer) v1.10
+
+## v1.10 变更说明（2026-09-20，番茄官方方法论吸收）
+
+**数据来源**：番茄官方课程（refSkill/ 精读版）+ 框架对照分析首批采纳项。
+
+1. **通用否决项**：新增"读者分裂标记"（reader_split_risk）——对应 chapter-writer v4.3 E1 边界（两难只取利害层，禁止道德选择题）
+2. **命名毒点清单**：新增跨画像通用的五轻毒/五重毒/五过度清单，补齐原画像触发点未覆盖项（报应慢/拆CP/换图频/单剧情长等）
 
 ## v1.9 变更说明（2026-07-26，框架升级 F1 配套）
 
@@ -542,6 +549,16 @@ description: "Quality reviewer for novel chapters. v1.9: 新增流程合规检�
 - 追读指数 < 6.0：危险，多数读者会弃书，必须重写
 
 **画像交叉分析**：当3个及以上画像追读意愿≤5时，即使技术总分≥8.0，也判定为"市场风险章"，需附带读者反馈强制重写。
+
+### 通用否决项与命名毒点清单（v1.10 新增，来源：番茄官方课程 + chapter-writer v4.3 E1 边界）
+
+**① 读者分裂标记（reader_split_risk）**：本章主角是否面临"读者会分裂站队"的伦理选择题（对行为本身的正当性存在两说，如杀不杀无辜者类）？命中 → 在 issues 标记 `reader_split_risk`（**high**），不因画像分数高而豁免（两难只允许落在利害层，判定口径见 chapter-writer E1 边界）。
+
+**② 命名毒点清单**（命中 → 重毒记 **high** / 轻毒·过度记 **medium**）：
+- **五轻毒**：成长太快、报应太慢、人设偏离、单剧情太漫长、换地图太频繁
+- **五重毒**：太弱智、太圣母、总被虐、反三观、拆CP
+- **五过度**：过度调皮变小丑、过度深情变油腻、过度高冷变傲慢、过度深刻变说教、过度善良变圣母
+- 与画像弃书触发点的关系：本清单为**跨画像通用**补充（原触发点按画像分散），两者命中同一问题时按本清单记级。
 
 ---
 

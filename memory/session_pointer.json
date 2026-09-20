@@ -15,7 +15,7 @@
     {"milestone": "选题方向确认", "status": "done", "note": "构装师+献祭+位面掠夺，掌控全局天才主角"},
     {"milestone": "黄金三章设计", "status": "done", "note": "Ch1乱局/Ch2造物/Ch3献祭"},
     {"milestone": "黄金三章写作", "status": "pending", "note": "2026-09-20 重启：旧稿 Ch1-7（含旧黄金三章）完整归档至 archive/第三纪元_重启_20260920/（output 9 / handoff 48 / golden3_revisions 43 / memory 10），旧稿的 lint/指纹/终审/五轮精修记录随归档留存、不追溯；从序言+Ch1 按现有大纲重写"},
-    {"milestone": "框架升级", "status": "done", "note": "chapter-writer v4.2（5.9 技法 5 组 24 条，按决策场景分组：A章际衔接/B场景节奏/C角色反应/D描写信息/E机制结构；v4.2 补录：C1 扩群体生态尺度+B5 反差法+B6 大场面段落次序+C6 差异化反应）+ detail-reviewer v1.20（第11层同步对齐，18项，检查项 ID 与写手一一对应）+ chief-editor v1.8（真人读者随口反馈新增 1 个不计分必答引导问题）。历史：v4.0 新增技法23-28、v4.1 由 28 条重构为 5 组 21 条、v1.18 第11层扩至19项、v1.19 合并为 15 项。Ch6/Ch7 的 detail_review 卡按 19 项旧版产出，属历史记录不追溯（旧稿已归档）；重启后新稿从 Ch1 起按 18 项审核"},
+    {"milestone": "框架升级", "status": "done", "note": "chapter-writer v4.2（5.9 技法 5 组 24 条，按决策场景分组：A章际衔接/B场景节奏/C角色反应/D描写信息/E机制结构；v4.2 补录：C1 扩群体生态尺度+B5 反差法+B6 大场面段落次序+C6 差异化反应）+ detail-reviewer v1.20（第11层同步对齐，18项，检查项 ID 与写手一一对应）+ chief-editor v1.8（真人读者随口反馈新增 1 个不计分必答引导问题）。历史：v4.0 新增技法23-28、v4.1 由 28 条重构为 5 组 21 条、v1.18 第11层扩至19项、v1.19 合并为 15 项。Ch6/Ch7 的 detail_review 卡按 19 项旧版产出，属历史记录不追溯（旧稿已归档）；重启后新稿从 Ch1 起按 18 项审核。二轮（同日晚）：chapter-writer v4.3（E1 禁道德选择题边界 + 5.4 黄金三章开篇量化）+ detail-reviewer v1.21（第11层附·黄金三章开篇量化）+ quality-reviewer v1.10（读者分裂标记 + 五轻毒/五重毒/五过度清单）+ title-reviewer v1.2（书名≤15字等硬阈值 + 简介工具箱）；refSkill/ 番茄官方参考库（74 篇 35 万字）入库"},
     {"milestone": "topic-screener 预筛", "status": "done", "note": "2026-08-06 完成，verdict=pass_with_note（6维：题材耐久度/爽感路径/认知门槛/失败模式匹配 pass；暗基调补偿可行性/平台基调匹配 pass_with_note），卡在 handoff/topic_screening.json（2026-09-20 更正：此前误标 pending，实为已完成但归档在非标准名 topic_screening_disanjiyuan.json 下，已改名为契约名）"},
     {"milestone": "plot-architect 完整大纲", "status": "pending", "note": "6卷300章总纲+第一卷详细分章beat sheet"},
     {"milestone": "character-designer 角色设计", "status": "pending", "note": "顾衡完整角色卡+守军头目+沈+第一卷新角色"},
@@ -34,11 +34,12 @@
   "open_decisions": [
     "书名与简介待 final（用户建议方向：突出第三纪元/灰烬/旧齿轮/刻痕意象，忌俗套重生流书名）",
     "第一卷卷名与章节规模待 plot-architect 设计回填",
-    "指纹基线终裁：位面篇（Ch15归城）结束后由用户裁决——用新稿自语料重建派生基线，或回炉统一向tiancantudou基线靠拢（旧稿 merged_review_6 / final_review_6 的裁定与证据已随归档留存，新稿推进到该节点时重新裁决）"
+    "指纹基线终裁：位面篇（Ch15归城）结束后由用户裁决——用新稿自语料重建派生基线，或回炉统一向tiancantudou基线靠拢（旧稿 merged_review_6 / final_review_6 的裁定与证据已随归档留存，新稿推进到该节点时重新裁决）",
+    "番茄「多书名实验」测试时机：20-50 万字、100 万字后各一次（title-reviewer v1.2 记录，发布后执行）"
   ],
   "pending_override_conditions": [],
   "framework_maintenance_20260920": {
-    "session_summary": "2026-09-20 框架巡检 + 初始化补账会话（用户驱动）。共 12 个 commit（cfedffd / 04373f1 / 36f68c8 / 07b190c / b083644 / 5e3ff47 / cb95f3b / 6cbfbf8 / 10dbc47 / d85169b / 5cf03ab / 4b8479b）。内容：①通过门槛统一为问题清单制（清 4 处已废止的 8维≥9.5 死规则）②提交前置门禁与入库门禁正式写入 chief-editor 调度器 ③chapter-writer v4.1（5.9 技法 28 条→5 组 21 条）+ detail-reviewer v1.19 同步 ④handoff 命名规范制定 + Ch1-3 的 43 个中间版本归档 ⑤产物命名契约全仓对齐（9 SKILL + 4 auto-runner 脚本，修 state_validator 死代码）⑥生成器默认改两步审核模式 ⑦chief-editor 去AI化完整模式改条件触发、平台适配并入终审 ⑧技法补录（本轮续）：chapter-writer v4.2（5.9 补 4 条，21→24 条）+ detail-reviewer v1.20（第11层 15→18 项）+ chief-editor v1.8（真人读者随口反馈新增不计分必答引导问题）+ master_instruction v4.0；未采纳外部经验文的层名体系与『AI 十大硬伤』二元论（判据缺失/与实测矛盾）",
+    "session_summary": "2026-09-20 框架巡检 + 初始化补账会话（用户驱动）。共 12 个 commit（cfedffd / 04373f1 / 36f68c8 / 07b190c / b083644 / 5e3ff47 / cb95f3b / 6cbfbf8 / 10dbc47 / d85169b / 5cf03ab / 4b8479b）。内容：①通过门槛统一为问题清单制（清 4 处已废止的 8维≥9.5 死规则）②提交前置门禁与入库门禁正式写入 chief-editor 调度器 ③chapter-writer v4.1（5.9 技法 28 条→5 组 21 条）+ detail-reviewer v1.19 同步 ④handoff 命名规范制定 + Ch1-3 的 43 个中间版本归档 ⑤产物命名契约全仓对齐（9 SKILL + 4 auto-runner 脚本，修 state_validator 死代码）⑥生成器默认改两步审核模式 ⑦chief-editor 去AI化完整模式改条件触发、平台适配并入终审 ⑧技法补录（本轮续）：chapter-writer v4.2（5.9 补 4 条，21→24 条）+ detail-reviewer v1.20（第11层 15→18 项）+ chief-editor v1.8（真人读者随口反馈新增不计分必答引导问题）+ master_instruction v4.0；未采纳外部经验文的层名体系与『AI 十大硬伤』二元论（判据缺失/与实测矛盾） ⑨番茄官方方法论吸收（同日二轮）：chapter-writer v4.3 + detail-reviewer v1.21 + quality-reviewer v1.10 + title-reviewer v1.2；refSkill/ 参考库（74 篇）入库",
     "defects_found_and_fixed": [
       "chapter_length 篇幅口径不一致（han_len 只数汉字不含标点，与书籍标准差 15%）→ style_lint v2.5 新增独立 word_count()，Ch5-7 恢复达标",
       "handoff/topic_screening.json 被已归档《请客》占用 → 删除并用《第三纪元》预筛卡补位，里程碑由误标 pending 更正为 done",
