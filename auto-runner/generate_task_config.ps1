@@ -10,7 +10,14 @@
   End chapter number
 
 .PARAMETER ReviewMode
-  unified (default) or traditional
+  traditional (default) or unified
+
+  v1.1（2026-09-20）：**默认值由 unified 改为 traditional（两步）**。
+  依据：《第三纪元》Ch4-7 实测走的就是两步（quality_review_{N}.json 与
+  final_review_{N}.json 各自独立产出），两步能分别定位"技术层问题"与
+  "发布层风险"。而 unified 模式把两步合并、**不产出 final_review 卡**，
+  与 chief-editor v1.7 的入库门禁（要求 final_review 的 issue_counts 三项）
+  冲突——故降为可选模式，启用前须先调整入库门禁。
 
 .PARAMETER Workspace
   Workspace path (default: parent of script directory)
@@ -22,7 +29,7 @@ param(
     [Parameter(Mandatory=$true)]
     [int]$EndChapter,
     [ValidateSet("unified", "traditional")]
-    [string]$ReviewMode = "unified",
+    [string]$ReviewMode = "traditional",
     [string]$Workspace = (Split-Path $PSScriptRoot -Parent)
 )
 
@@ -167,7 +174,12 @@ for ($i = 0; $i -lt $totalChapters; $i++) {
     $stepId++
 
     # --- Step D: Unified Review + Merge (v2.5: Merge integrated into Review) ---
+    # ⚠️ v1.1（2026-09-20）：unified 模式已降为可选，不再是默认值。
+    #   该分支把 quality-reviewer 与 final-reviewer 合并为一步，**不产出 final_review_{N}.json**，
+    #   因此与 chief-editor v1.7 的入库门禁冲突（门禁校验 final_review 的 issue_counts 三项）。
+    #   如需启用：先调整 chief-editor 的入库门禁，或改为让本步骤同时产出 final_review 卡。
     if ($ReviewMode -eq "unified") {
+        Write-Host "  [WARN] ReviewMode=unified —— 该模式不产出 final_review 卡，与当前入库门禁不兼容（详见脚本头部说明）" -ForegroundColor Yellow
         $reviewInstr = "Read auto-runner/context_cache.json (reference cached summary for quality-reviewer) OR Read .trae/skills/quality-reviewer/SKILL.md if cache miss. Unified review+merge mode for Ch$chNum. Read auto-runner/unified_review_spec.md for 12-dimension spec. PHASE 1 (Merge): Read handoff/detail_review_$chNum.json and handoff/de_ai_analysis_$chNum.json. Apply conflict rules: same-loc diff-cause -> take higher severity; same-loc conflict -> detail priority; one-sided -> keep. Fix critical first, then major. Apply to output/chapter_$ch3.txt. Output merged_review to handoff/merged_review_$chNum.json. PHASE 2 (Review): Based on the MERGED text, execute 8 technical + 4 supplementary dimensions + monitoring + cross-check. unified_score = technical_score x 0.6 + supplementary_score x 0.4 (reference trend only). GATE: problem-list mode v3.0 —— critical_count=0 = approved; do NOT use the >=9.5 score threshold as a gate."
         $reviewInputs = @("output/chapter_$ch3.txt", "memory/outline.json", "memory/characters.json", "memory/goal_tracker.json", "memory/foreshadowing_tracker.json", "config/novel_config.json", "handoff/detail_review_$chNum.json", "handoff/de_ai_analysis_$chNum.json", "auto-runner/unified_review_spec.md")
         $reviewOutputs = @("output/chapter_$ch3.txt", "handoff/merged_review_$chNum.json", "handoff/quality_review_$chNum.json")
@@ -197,23 +209,23 @@ for ($i = 0; $i -lt $totalChapters; $i++) {
         $reviewId = $stepId
         $stepId++
     } else {
-        $qInstr = "Read auto-runner/context_cache.json (reference cached summary for quality-reviewer) OR Read .trae/skills/quality-reviewer/SKILL.md if cache miss. Quality review+merge Ch$chNum. PHASE 1 (Merge): Read handoff/detail_review_$chNum.json and handoff/de_ai_analysis_$chNum.json. Apply conflict rules, fix critical first. Apply to output/chapter_$ch3.txt. Output merged_review to handoff/merged_review_$chNum.json. PHASE 2 (Quality): Score 8 dimensions (attraction/shuang/rhythm/hook/character/plot/logic/writing). technical_score >= 9.5 = pass. Output to handoff/quality_review_$chNum.json."
+        $qInstr = "Read auto-runner/context_cache.json (reference cached summary for quality-reviewer) OR Read .trae/skills/quality-reviewer/SKILL.md if cache miss. Quality review+merge Ch$chNum. PHASE 1 (Merge): Read handoff/detail_review_$chNum.json and handoff/de_ai_analysis_$chNum.json. Apply conflict rules, fix critical first. Apply to output/chapter_$ch3.txt. Output merged_review to handoff/merged_review_$chNum.json. PHASE 2 (Quality): Score 8 dimensions (attraction/shuang/rhythm/hook/character/plot/logic/writing). GATE: problem-list mode v3.0 —— critical_count=0 = passed; scores are reference trend data only, do NOT gate on >=9.5. Output to handoff/quality_review_$chNum.json."
         $qInputs = @("output/chapter_$ch3.txt", "memory/outline.json", "memory/characters.json", "memory/goal_tracker.json", "handoff/detail_review_$chNum.json", "handoff/de_ai_analysis_$chNum.json", ".trae/skills/quality-reviewer/SKILL.md")
         $qStep = @{
             id = $stepId; name = "Ch$chNum Quality Review+Merge"; agent = "quality-reviewer"
             instruction = $qInstr; input_files = $qInputs
             output_files = @("output/chapter_$ch3.txt", "handoff/merged_review_$chNum.json", "handoff/quality_review_$chNum.json")
-            pass_criteria = "All critical fixed, output has 8-dim scores, technical_score >= 9.5, verdict = pass"
+            pass_criteria = "All critical fixed; output has 8-dim scores + issue_counts + verdict; critical_count=0 = passed (v3.0 problem-list gate, not score gate)"
             max_retries = 3; parallel_group = $null; depends_on = @(($stepId - 2), ($stepId - 1))
         }
         $null = $steps.Add($qStep)
         $qId = $stepId
         $stepId++
 
-        $fInstr = "Read auto-runner/context_cache.json (reference cached summary for final-reviewer) OR Read .trae/skills/final-reviewer/SKILL.md if cache miss. Final review Ch$chNum. Reference quality technical_score x 0.6 + supplementary 4-dim x 0.4 = final_score. >= 9.5 = approved."
+        $fInstr = "Read auto-runner/context_cache.json (reference cached summary for final-reviewer) OR Read .trae/skills/final-reviewer/SKILL.md if cache miss. Final review Ch$chNum. Reference quality technical_score x 0.6 + supplementary 4-dim x 0.4 = overall_score (reference only). GATE: problem-list mode v3.0 —— issue_counts.critical/high_abandonment_risk/veto_dimensions_below_8 all = 0 = approved; do NOT gate on >=9.5."
         $fInputs = @("output/chapter_$ch3.txt", "handoff/quality_review_$chNum.json", "memory/foreshadowing_tracker.json", ".trae/skills/final-reviewer/SKILL.md")
         $fOutputs = @("handoff/final_review_$chNum.json")
-        $fPass = "Output has final_score >= 9.5, verdict = approved"
+        $fPass = "Output has gate_mode + formula + issue_counts + verdict; all three issue_counts = 0 = approved (v3.0 problem-list gate, not score gate)"
 
         if ($isLast) {
             $finalStep = @{

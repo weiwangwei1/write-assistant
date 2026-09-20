@@ -1,4 +1,15 @@
-# 无人值守自动执行代理指令 v3.8
+# 无人值守自动执行代理指令 v3.9
+
+## v3.9变更摘要（生成器默认改两步审核模式，2026-09-20）
+
+> 起因：v3.8 自查的遗留项——`generate_task_config.ps1` 的 **unified 模式（原默认值）把 quality-reviewer 与 final-reviewer 合并为一步**，而《第三纪元》Ch4-7 实测跑的是**两步**（`quality_review_{N}.json` 与 `final_review_{N}.json` 各自独立产出）。更关键的是：unified 分支**不产出 final_review 卡**，与 chief-editor v1.7 的入库门禁（校验 `final_review` 的 `issue_counts` 三项）**直接冲突**——即启用 unified 会导致门禁无法通过。
+
+- **默认值改为 `traditional`（两步）**：`-ReviewMode` 默认由 `unified` 改为 `traditional`。依据：①实测即为两步 ②两步能分别定位"技术层问题"（quality-reviewer）与"发布层风险"（final-reviewer），合并会丢失分层 ③与入库门禁兼容
+- **unified 分支降为可选并加警告**：运行到该分支时打印 `[WARN]`，明示"不产出 final_review 卡，与当前入库门禁不兼容"；脚本头部补充启用前置条件（须先调整门禁或让该步同时产出 final_review）
+- **清除该分支残留的 9.5 门禁**：`$qStep`/`$finalStep` 的 instruction 与 pass_criteria 原写"technical_score >= 9.5 = pass"、"final_score >= 9.5 = approved"，与 B 步骤统一的口径矛盾 → 改为问题清单制（`critical_count=0` / 三项 issue_counts=0 为通过，分数仅参考）
+- **验证**：实跑 `-StartChapter 8 -EndChapter 9`（默认模式）→ 产出 **6 步/章**（Write → Detail∥De-AI → Quality Review+Merge → Final Review → Memory Commit），`handoff/` 产物含 `quality_review_{N}` 与 `final_review_{N}` **两者**；`chapters/`、`_ch{N}` 零残留，非法 9.5 门禁 0 处，无 mojibake。验证后删除生成的 state.json/task_config.json
+- **另发现（未处理，需定流程）**：生成器流程中**没有 de-ai-processor 完整模式与 fanqie-adapter 两步**，而 chief-editor 的章节循环里列有这两步（quality → de-ai完整 → fanqie → final）。实测 Ch4-5 产出过合并卡 `deai_fanqie_{4,5}.json`，Ch6-7 则无对应卡。这三者（生成器 / chief-editor / 实测）互不一致，属**流程组成差异**，改动前须先确认这两步在当前是否仍为必需——留待专项决策
+- **设计原则**：①同一个系统里"默认行为"必须与实测行为一致，否则默认值就是错的默认值 ②合并步骤会连带失效下游门禁——改流程组成时必须同步检查门禁的校验对象是否还存在
 
 ## v3.8变更摘要（产物命名契约全仓对齐：修脱钩 + 修我引入的两处回归，2026-09-20）
 
