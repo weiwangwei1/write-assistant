@@ -1,7 +1,7 @@
 ---
 name: "chief-editor"
-version: "1.7"
-description: "AI writing team coordinator for novel creation. v1.7: 章节循环补入门禁契约——chapter-writer 前新增「提交前置门禁校验」(style_lint L0 退出码0 + chapter_length advisory清零 + 指纹 check 通过)，final-reviewer 后新增「入库门禁校验」(问题清单制 critical 清零，废止均分≥9.5)；通过门槛全局统一为 unified_review v3.0 问题清单制；明确审核产物命名为 merged_review_{N}/quality_review_{N}/final_review_{N}（unified_review 是规范名不是文件名）；去AI化完整模式改为条件触发(ai_score 绿灯即跳过，依据 Ch6/Ch7 实测)、平台适配并入终审的平台合规维度(依据 Ch6/Ch7 无适配卡而该维度仍达标)。 v1.6: 章节循环发布分支新增真人读者随口反馈步骤(final-reviewer后/memory-manager前)——人的工作只是读+随口反馈,AI负责结构化修改清单+只回改动段落+同类问题2次进writer自检清单;沉默/跳过=AUTO-APPROVED入库标真人未读,事后问题进卷末复盘;配套detail-reviewer v1.12撤回第10层(实战执行率为零),读者体验问题由真读者承担. v1.5: 入库硬门禁新增第4项验证(pending_override_conditions到期检查)+chapter-writer修订同步要求联动. v1.4: 章节循环新增并行写作评估+审核并行(模式7:detail+de-ai并行→合并→quality→final). v1.3: memory-manager入库时自动重建全局全文文件(output/{novel_title}_全文.txt)——连贯性阅读. v1.2: 记忆入库硬门禁加入goal_tracker验证——基于F1-F5框架补丁(goal_tracker与session_pointer同为门禁验证项). v1.1: 新增记忆入库硬门禁(memory-manager完成前禁止开写下一章)——基于Ch4-10连续跳账事故. Manages workflow, dispatches tasks to agents, tracks progress. Invoke when starting a new novel, beginning daily writing, checking status, or coordinating chapter generation."
+version: "1.8"
+description: "AI writing team coordinator for novel creation. v1.8: 步骤8 真人读者随口反馈新增 1 个不计分必答引导问题（『这章读完后，有没有一个没被说出口的东西留在你心里？』）——针对 LLM 自评不可靠的『言外之意/余味』维度，只向真读者收集，不设评分、不阻塞入库。v1.7: 章节循环补入门禁契约——chapter-writer 前新增「提交前置门禁校验」(style_lint L0 退出码0 + chapter_length advisory清零 + 指纹 check 通过)，final-reviewer 后新增「入库门禁校验」(问题清单制 critical 清零，废止均分≥9.5)；通过门槛全局统一为 unified_review v3.0 问题清单制；明确审核产物命名为 merged_review_{N}/quality_review_{N}/final_review_{N}（unified_review 是规范名不是文件名）；去AI化完整模式改为条件触发(ai_score 绿灯即跳过，依据 Ch6/Ch7 实测)、平台适配并入终审的平台合规维度(依据 Ch6/Ch7 无适配卡而该维度仍达标)。 v1.6: 章节循环发布分支新增真人读者随口反馈步骤(final-reviewer后/memory-manager前)——人的工作只是读+随口反馈,AI负责结构化修改清单+只回改动段落+同类问题2次进writer自检清单;沉默/跳过=AUTO-APPROVED入库标真人未读,事后问题进卷末复盘;配套detail-reviewer v1.12撤回第10层(实战执行率为零),读者体验问题由真读者承担. v1.5: 入库硬门禁新增第4项验证(pending_override_conditions到期检查)+chapter-writer修订同步要求联动. v1.4: 章节循环新增并行写作评估+审核并行(模式7:detail+de-ai并行→合并→quality→final). v1.3: memory-manager入库时自动重建全局全文文件(output/{novel_title}_全文.txt)——连贯性阅读. v1.2: 记忆入库硬门禁加入goal_tracker验证——基于F1-F5框架补丁(goal_tracker与session_pointer同为门禁验证项). v1.1: 新增记忆入库硬门禁(memory-manager完成前禁止开写下一章)——基于Ch4-10连续跳账事故. Manages workflow, dispatches tasks to agents, tracks progress. Invoke when starting a new novel, beginning daily writing, checking status, or coordinating chapter generation."
 ---
 
 # 总编 (Chief Editor / Coordinator)
@@ -238,6 +238,7 @@ Step 4: 向用户汇报当前指针 ★ 必须执行
    - **真人读者随口反馈（v1.6 新增 ★ 入库前最后一道门）**：终稿呈给用户。设计原则：**人的工作只是"读"，其他全部是 AI 的工作**
      - 呈交内容：章节正文 + 一句 AI 遗留说明（如"L1 对话占比21%偏低，因战斗场景"），让用户心里有数
      - 用户的全部工作：①读章节 ②回一句"过"，或随口写问题（"第3段读着别扭""石头这话不像他说的"——无格式、无模板、无评分表）③不想读就跳过/沉默
+     - **必答引导问题（v1.8 新增 ★）**：呈交时附 1 个**不计分但须回答**的问题——「这章读完后，有没有一个'没被说出口'的东西留在你心里？」（有 → 指出是哪一处；没有 → 直说没有）。设计依据：此类"言外之意/余味"维度**不交给 LLM 自评**（主观维度自评已证分数通胀），恰是真读者能给出、AI 给不出的最有价值信号。不计分、不构成退回理由、不写进评分卡；回答内容记入本轮反馈的结构化清单，同类信号第 2 次出现同样走反馈闭环（写入 chapter-writer 自检清单）
      - 用户反馈有问题：chief-editor 将随口反馈转成结构化修改清单 → chapter-writer 修 → **只回改动段落给用户确认（不重读全章）** → 入库
      - 用户跳过/沉默：`[AUTO-APPROVED]` 直接入库，章节标记"真人未读"；事后读到问题 → 进卷末复盘窗口统一润色（沿用框架既有"已定稿章节卷末复盘"机制，零新增）
      - **反馈闭环**：同类问题第 2 次被用户指出 → 写入 chapter-writer 自检清单（反馈直达写作端，不再经审核层衰减）

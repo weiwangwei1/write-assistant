@@ -28,8 +28,8 @@ write-assistant/
 │   ├── setting-reviewer/      # 设定审核员：世界观 6 维评分
 │   ├── character-designer/    # 角色师：人物设定、关系网、成长弧线
 │   ├── keyword-expert/        # 命名专家：术语命名与巡检
-│   ├── chapter-writer/        # 写手：章节正文生成（v4.1，H1-H11 + 倾向库；5.9 技法按 A-E 组 21 条）
-│   ├── detail-reviewer/       # 细节控：逐句/逐伏笔微观审核（v1.19，第11层 15 项，ID 与写手对应）
+│   ├── chapter-writer/        # 写手：章节正文生成（v4.2，H1-H11 + 倾向库；5.9 技法按 A-E 组 24 条）
+│   ├── detail-reviewer/       # 细节控：逐句/逐伏笔微观审核（v1.20，第11层 18 项，ID 与写手对应）
 │   ├── de-ai-processor/       # 去AI化师：消除 AI 写作痕迹（分析/完整模式）
 │   ├── quality-reviewer/      # 审稿员：8维技术分 + 6读者画像
 │   ├── fanqie-adapter/        # 适配师：番茄平台爽点/节奏/合规适配
@@ -39,7 +39,7 @@ write-assistant/
 │   ├── human-checkpoint/      # 人工检查点
 │   └── writer-styles/         # 作者文风包（见下文"文风包"）
 ├── auto-runner/           # 无人值守自动执行器（Auto-Runner）基建
-│   ├── master_instruction.md      # 自动执行代理指令 v3.9（运行协议主文档）
+│   ├── master_instruction.md      # 自动执行代理指令 v4.0（运行协议主文档）
 │   ├── task_config.json           # 步骤序列与并行组配置（由 generate_task_config.ps1 生成）
 │   ├── state.json                 # 运行状态（current_step / parallel_groups / steps[]）
 │   ├── execution_log.md           # 追加式执行日志（>50KB 自动轮转）
