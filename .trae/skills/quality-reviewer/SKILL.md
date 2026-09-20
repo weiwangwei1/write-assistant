@@ -68,14 +68,14 @@ description: "Quality reviewer for novel chapters. v1.9: 新增流程合规检�
 
 | 文件路径 | 说明 | 必需 |
 |---------|------|------|
-| `handoff/chapter_draft.json` | 来自写手的章节草稿交接卡，包含 chapter_num、title、draft_text 等字段 | 是 |
+| `handoff/chapter_draft_{N}.json` | 来自写手的章节草稿交接卡，包含 chapter_num、title、draft_text 等字段 | 是 |
 | `memory/outline.json` | 全局大纲，包含卷宗划分、章节大纲、剧情线规划 | 是 |
 | `memory/characters.json` | 角色卡，包含角色设定、性格、能力、关系网络及 current_state | 是 |
 | `memory/chapter_summaries/chapter_*.json` | 前文章节摘要，用于核对连续性和伏笔 | 是 |
 | `memory/recent_chapters/` | 最近 3 章全文，用于细粒度核对上下文衔接 | 否（首章时无） |
 | `memory/goal_tracker.json` | 目标闭环+主线进度条+悬念活跃窗口（v1.7 新增）：配比监控检测的数据源 | 是（第2章起） |
 
-### 输入交接卡格式 (chapter_draft.json)
+### 输入交接卡格式 (chapter_draft_{N}.json)
 
 ```json
 {
@@ -95,7 +95,7 @@ description: "Quality reviewer for novel chapters. v1.9: 新增流程合规检�
 
 ## 输出规范
 
-审稿员输出审稿反馈卡，保存至 `handoff/review_feedback.json`。
+审稿员输出审稿反馈卡，保存至 `handoff/quality_review_{N}.json`。
 
 ### 反馈卡格式
 
@@ -782,7 +782,7 @@ total_score = attractiveness × 0.20      # 吸引力（20%）——读者留存
 ## 工作流程
 
 ```
-1. 读交接卡 (handoff/chapter_draft.json)
+1. 读交接卡 (handoff/chapter_draft_{N}.json)
    └─ 获取章节号、标题、草稿正文、情节概述
 
 2. 读记忆文件
@@ -839,7 +839,7 @@ total_score = attractiveness × 0.20      # 吸引力（20%）——读者留存
    └─ 如不通过：passed=false, 附rewrite_instructions(含读者反馈), next_agent="writer"
 
 8. 保存反馈卡
-   └─ 写入 handoff/review_feedback.json
+   └─ 写入 handoff/quality_review_{N}.json
 
 9. 通知总编
    └─ 报告审核结果（章节号、技术总分、追读指数、是否通过、高风险画像、主要问题）
@@ -871,7 +871,7 @@ total_score = attractiveness × 0.20      # 吸引力（20%）——读者留存
 
 | 场景 | fast_io 写法 | 加速比 |
 |------|-------------|--------|
-| 读取章节草稿交接卡 | `FastReadJson "handoff/chapter_draft.json"` | 1.91x |
+| 读取章节草稿交接卡 | `FastReadJson "handoff/chapter_draft_{N}.json"` | 1.91x |
 | 读取全局大纲 | `FastReadJson "memory/outline.json"` | 1.91x |
 | 读取角色卡 | `FastReadJson "memory/characters.json"` | 1.91x |
 | 读取目标追踪表（配比监控数据源） | `FastReadJson "memory/goal_tracker.json"` | 1.91x |
@@ -879,4 +879,4 @@ total_score = attractiveness × 0.20      # 吸引力（20%）——读者留存
 | 批量读取前文章节摘要 | `FastReadJsonBatch "memory/chapter_summaries/"` | 1.24x |
 | 列出最近章节目录 | `FastListFiles "memory/recent_chapters/"` | 3.01x |
 | 批量读取最近3章全文 | `FastReadBatch "memory/recent_chapters/"` | 2.13x |
-| 写入审稿反馈卡 | `FastWriteJson -Path "handoff/review_feedback.json" -Object $feedback` | 1.83x |
+| 写入审稿反馈卡 | `FastWriteJson -Path "handoff/quality_review_{N}.json" -Object $feedback` | 1.83x |

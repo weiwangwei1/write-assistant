@@ -76,8 +76,8 @@ memory-manager 记忆入库 → 真人读者随口反馈 → 发布到番茄
 | `memory/foreshadowing_tracker.json` | 伏笔追踪表 | 是 |
 | `config/novel_config.json` | 写作规则+平台配置 | 是 |
 | `handoff/detail_review_{N}.json` | detail-reviewer 报告（核查是否遗漏） | 否 |
-| `handoff/review_feedback_ch{N}.json` | quality-reviewer 报告（核查是否遗漏） | 否 |
-| `handoff/de_ai_polish_ch{N}.json` | de-ai-processor 报告（核查ai_score） | 否 |
+| `handoff/quality_review_{N}.json` | quality-reviewer 报告（核查是否遗漏） | 否 |
+| `handoff/de_ai_polish_{N}.json` | de-ai-processor 完整模式报告（核查 ai_score） | 否 |
 
 ---
 
@@ -163,7 +163,7 @@ memory-manager 记忆入库 → 真人读者随口反馈 → 发布到番茄
 
 ## 终审评分维度 (v1.1)
 
-### 引用维度（直接读取 quality_review_ch{N}.json 的评分）
+### 引用维度（直接读取 `handoff/quality_review_{N}.json` 的评分）
 - 角色一致性 → 引用 quality_reviewer 评分
 - 世界观一致性 → 引用 quality_reviewer 评分  
 - 文笔质量 → 引用 quality_reviewer 评分
@@ -428,6 +428,6 @@ final-reviewer 判定 rejected
 | 读取伏笔追踪表 | `FastReadJson "memory/foreshadowing_tracker.json"` | 1.91x |
 | 读取写作配置 | `FastReadJson "config/novel_config.json"` | 1.91x |
 | 批量读取已有章节摘要 | `FastReadJsonBatch "memory/chapter_summaries/"` | 1.24x |
-| 检查前序Agent报告是否存在 | `FastFileExists "handoff/review_feedback_ch{N}.json"` | 1.76x |
+| 检查前序Agent报告是否存在 | `FastFileExists "handoff/quality_review_{N}.json"` | 1.76x |
 | 批量读取前序Agent报告 | `FastReadJsonBatch "handoff/"` | 1.24x |
 | 写入终审报告 | `FastWriteJson -Path "handoff/final_review_{N}.json" -Object $report` | 1.83x |

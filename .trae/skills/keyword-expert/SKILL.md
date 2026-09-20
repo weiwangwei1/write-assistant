@@ -154,7 +154,7 @@ description: "关键词专家，专门为小说中的概念、能力、功法、
       }
     ],
     "impact_analysis": {
-      "files_to_update": ["conflict_rules.json", "outline.json", "chapter_draft.json"],
+      "files_to_update": ["conflict_rules.json", "outline.json", "chapter_draft_{N}.json"],
       "estimated_replacements": 45,
       "consistency_notes": "需同步更新所有章节正文中出现的旧术语"
     },
@@ -242,7 +242,7 @@ description: "关键词专家，专门为小说中的概念、能力、功法、
     ],
     "degraded_terms": [
       {
-        "file": "chapter_draft.json",
+        "file": "chapter_draft_{N}.json",
         "location": "Ch1 Beat 2",
         "term_used": "三线程",
         "should_be": "三弦",

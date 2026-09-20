@@ -96,8 +96,9 @@ def scan_detail_reviews(handoff_dir):
     """扫描所有 detail_review JSON，提取过度矫正问题"""
     issues = []
     scanned = 0
-    # v1.1：扫描 handoff/ 顶层 + chapters/ + archive/ch{N}/——detail_review 实际产出在
-    # chapters/ 并在合并后归档到 archive/，此前只扫顶层目录导致采集恒为空（空转）
+    # v1.2（2026-09-20）：三处扫描路径均保留以兼容历史——实际产出在 handoff/ 顶层（扁平+裸章号），
+    #   chapters/ 从未存在（已废弃目录方案），archive/{子目录}/ 用于捞取归档后的历史卡。
+    #   注：v1.1 曾注释"detail_review 实际产出在 chapters/"，该说法有误，已更正。
     fnames = []
     scan_dirs = [handoff_dir, os.path.join(handoff_dir, "chapters")]
     archive_root = os.path.join(handoff_dir, "archive")

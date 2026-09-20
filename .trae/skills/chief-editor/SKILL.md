@@ -204,7 +204,7 @@ Step 4: 向用户汇报当前指针 ★ 必须执行
    - ⑤ 交接卡结构字段齐备（beat_sheet / cross_chapter_facts / shuang_type / suspense_budget_check / character_internal / style_plan）——缺字段直接拒收
    - 数据教训：门禁是"提交前置"而非"入库条件"，漏检会让未过门禁的稿子流入评审并最终入库。
 
-2. **调用 chapter-writer**：按评估结果选择写作模式（串行/流水线/并行），写手读取交接卡与记忆系统生成初稿，产出 `handoff/chapter_draft.json`
+2. **调用 chapter-writer**：按评估结果选择写作模式（串行/流水线/并行），写手读取交接卡与记忆系统生成初稿，产出 `handoff/chapter_draft_{N}.json`
 3. **审核并行**（v1.4 新增 ★）：同时启动 detail-reviewer 和 de-ai-processor（分析模式），各自输出建议清单不改文本
    - Agent A: detail-reviewer → `handoff/detail_review_{N}.json`（逐句/逐梗/逐伏笔/逻辑/事实表/暗线建议）
    - Agent B: de-ai-processor 分析模式 → `handoff/de_ai_analysis_{N}.json`（14类AI痕迹检测建议）
@@ -469,7 +469,7 @@ Step 4: 向用户汇报当前指针 ★ 必须执行
 | 批量读取大纲/目标/伏笔追踪（并行评估） | `FastReadJsonBatch "memory/"` | 1.24x |
 | 按行读取写作日志（质量趋势） | `FastReadLines "logs/writing_log.jsonl"` | 3.94x |
 | 列出交接卡目录（进度检查） | `FastListFiles "handoff/"` | 3.01x |
-| 检查交接卡是否已生成 | `FastFileExists "handoff/chapter_draft.json"` | 1.76x |
+| 检查交接卡是否已生成 | `FastFileExists "handoff/chapter_draft_{N}.json"` | 1.76x |
 | 批量读取质量趋势报告 | `FastReadJsonBatch "logs/quality_trend/"` | 1.24x |
 | 写入任务计划 | `FastWriteJson -Path "handoff/task_plan.json" -Object $plan` | 1.83x |
 | 写入合并审核意见 | `FastWriteJson -Path "handoff/merged_review_{N}.json" -Object $merged` | 1.83x |

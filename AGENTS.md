@@ -39,7 +39,7 @@ write-assistant/
 │   ├── human-checkpoint/      # 人工检查点
 │   └── writer-styles/         # 作者文风包（见下文"文风包"）
 ├── auto-runner/           # 无人值守自动执行器（Auto-Runner）基建
-│   ├── master_instruction.md      # 自动执行代理指令 v3.7（运行协议主文档）
+│   ├── master_instruction.md      # 自动执行代理指令 v3.8（运行协议主文档）
 │   ├── task_config.json           # 步骤序列与并行组配置（由 generate_task_config.ps1 生成）
 │   ├── state.json                 # 运行状态（current_step / parallel_groups / steps[]）
 │   ├── execution_log.md           # 追加式执行日志（>50KB 自动轮转）

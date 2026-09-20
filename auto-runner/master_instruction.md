@@ -1,4 +1,22 @@
-# 无人值守自动执行代理指令 v3.7
+# 无人值守自动执行代理指令 v3.8
+
+## v3.8变更摘要（产物命名契约全仓对齐：修脱钩 + 修我引入的两处回归，2026-09-20）
+
+> 起因：自查发现**同一产物存在 5 个名字且没有一个等于现实**。写手实际产出 `chapter_draft_7.json`、`quality_review_7.json`、`de_ai_analysis_7.json`（Ch4-7 实测一致收敛），但：写手 SKILL 声明 `chapter_draft_ch{N}.json`、调度器声明 `chapter_draft.json`（无章号）、审稿员声明 `review_feedback.json`（无章号）、终审员声明 `review_feedback_ch{N}.json`、去AI化师声明 `de_ai_analysis_ch{N}.json` 与 `chapters/deai_analysis_chNNN.json`——**调度器要校验的文件名与写手实际会写的文件名不是同一个**，按 B 步骤自己定的原则（门禁必须落在可执行校验点上），这条链是断的。
+
+- **SKILL 层对齐（9 个文件）**：产出方与消费方统一到现实名——`chapter_draft_{N}.json` / `detail_review_{N}.json` / `de_ai_analysis_{N}.json` / `merged_review_{N}.json` / `quality_review_{N}.json` / `final_review_{N}.json` / `de_ai_polish_{N}.json`。涉及 chapter-writer、quality-reviewer、de-ai-processor、fanqie-adapter、final-reviewer、memory-manager、detail-reviewer、chief-editor、keyword-expert
+- **auto-runner 层对齐（4 个文件）**：
+  - `generate_task_config.ps1`：生成的 task_config 从 `handoff/chapters/*_ch{N}.json` 改为扁平+裸章号；并修正生成指令里残留的「≥9.5 = approved」门禁（与 B 步骤统一口径矛盾）
+  - `state_validator.ps1` §5：**原本是死代码**——要求 `handoff/chapters/` 存在（该目录从未存在），故每次跑都跳过。改为扫 `handoff/` 顶层 `merged_review_*`/`quality_review_*` 触发；另补 DryRun 报告行，使该步骤**可被验证**（此前不实际移动就无法确认是否工作）
+  - `state_validator.ps1` §8：日志轮转章号原从 `handoff/chapters/` 推导 → 缺失时恒为 `execution_log_ch0.md`；改为扫顶层，无法判定时用 `unknown`
+  - `parallel_task_config_template.json`：路径与门禁表述同步
+- **根因定位**：`migrate_directory_structure.ps1` 是 `handoff/chapters/` 约定的源头——它设计的分区结构**从未落地**，却污染了全部下游脚本。已加醒目废弃头（"请勿运行"），保留以记录该架构决策痕迹
+- **回归修复（本轮自查发现由我引入）★**：
+  - `generate_task_config.ps1` 原为纯 ASCII（无 BOM），我加入中文注释后 PowerShell 5.1 按 GBK 读取，生成 JSON 出现 `鈥斺€?` 乱码 → 已改为 **UTF-8 + BOM**（与仓库另外 3 个含中文的 .ps1 一致）
+  - 我用 Edit 工具改 `migrate_directory_structure.ps1` 时**丢掉了它原有的 BOM** → 已恢复；`state_validator.ps1` 同样补 BOM
+- **验证**：实跑 `generate_task_config.ps1 -StartChapter 8 -EndChapter 9` 生成 task_config 并逐项核验——14 类 output_files 全部扁平+裸章号，`chapters/` 与 `_ch{N}` 零残留，无 mojibake；实跑 `state_validator.ps1 -DryRun` 确认 §5 正确识别 Ch4-7 的 8 个待归档文件（修复前该步骤恒跳过）。**验证后已删除生成的 state.json/task_config.json，恢复"Auto-Runner 未启用"状态**
+- **另有发现但未处理**：生成器的 `unified` 模式把 quality-reviewer 与 final-reviewer 合并为一步（`replaces: 步骤18+步骤19 → 合并为1步`），而 Ch4-7 实际跑的是**两步**（quality_review 与 final_review 各自独立产出）。这属**流程设计差异**而非命名问题，改动它需要先定流程，故留待专项决策
+- **设计原则**：①改工具脚本前先查它的调用方与生成物——`generate_task_config.ps1` 会**生成**路径，比手写文档影响更广 ②`.ps1` 含中文必须带 UTF-8 BOM（PS 5.1 无 BOM 时按 ANSI 读）③改动会让 BOM 丢失——用 Edit/Write 改 .ps1 后须复核 BOM ④死代码的特征是"永远走 else 分支"，会给所有执行者一个"已检查"的假象
 
 ## v3.7变更摘要（产物治理：handoff 命名规范 + 散落文件归置，2026-09-20）
 

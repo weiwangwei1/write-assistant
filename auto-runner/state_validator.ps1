@@ -1,4 +1,4 @@
-<#
+﻿<#
 .SYNOPSIS
   State.json validator and repair script (v2.5)
 #>
@@ -202,30 +202,27 @@ if ($state.parallel_groups -and $state.parallel_groups.Count -gt 0) {
 }
 
 # 5. Archive intermediate review files (v2.5 - Optimization C, updated for unified review)
+# v2.6（2026-09-20 修正）：改用仓库实际命名（扁平 handoff/ 顶层 + 裸章号），
+#   此前用 handoff/chapters/ + *_ch{N}.json —— 该目录从未存在过，本步一直是死代码
 Write-Host ""
 Write-Host "[5/8] Archiving intermediate review files..." -ForegroundColor Yellow
-$chaptersDir = Join-Path $workspace "handoff\chapters"
+$handoffDir = Join-Path $workspace "handoff"
 $archiveBase = Join-Path $workspace "handoff\archive"
 $archivedCount = 0
-if (FastFileExists $chaptersDir) {
-    # v2.5: trigger on unified_review_ch{N}.json OR merged_review_ch{N}.json
-    # (v2.5 merged Merge into Unified Review, no standalone is_merger step)
+if (FastFileExists $handoffDir) {
+    # trigger on quality_review_{N}.json OR merged_review_{N}.json（二者产出即表示该章审核已合并）
     $triggerChapters = @{}
-    $unifiedFiles = Get-ChildItem $chaptersDir -Filter "unified_review_ch*.json" -ErrorAction SilentlyContinue
-    foreach ($uf in $unifiedFiles) {
-        if ($uf.Name -match 'unified_review_ch(\d+)\.json') {
-            $triggerChapters[$Matches[1]] = $true
-        }
-    }
-    $mergedFiles = Get-ChildItem $chaptersDir -Filter "merged_review_ch*.json" -ErrorAction SilentlyContinue
-    foreach ($mf in $mergedFiles) {
-        if ($mf.Name -match 'merged_review_ch(\d+)\.json') {
-            $triggerChapters[$Matches[1]] = $true
+    foreach ($pat in @("merged_review_*.json", "quality_review_*.json")) {
+        $files = Get-ChildItem $handoffDir -Filter $pat -ErrorAction SilentlyContinue
+        foreach ($f in $files) {
+            if ($f.Name -match '^[a-z_]+_(\d+)\.json$') {
+                $triggerChapters[$Matches[1]] = $true
+            }
         }
     }
     foreach ($chNum in $triggerChapters.Keys) {
-        $detailFile = Join-Path $chaptersDir "detail_review_ch$chNum.json"
-        $deaiFile = Join-Path $chaptersDir "de_ai_analysis_ch$chNum.json"
+        $detailFile = Join-Path $handoffDir "detail_review_$chNum.json"
+        $deaiFile = Join-Path $handoffDir "de_ai_analysis_$chNum.json"
         $archiveDir = Join-Path $archiveBase "ch$chNum"
         foreach ($srcFile in @($detailFile, $deaiFile)) {
             if (FastFileExists $srcFile) {
@@ -238,6 +235,9 @@ if (FastFileExists $chaptersDir) {
                     Move-Item -Path $srcFile -Destination $destFile -Force
                     $archivedCount++
                     Write-Host "  Archived: $fileName -> handoff/archive/ch$chNum/" -ForegroundColor Green
+                } else {
+                    $archivedCount++
+                    Write-Host "  [DRY RUN] Would archive: $fileName -> handoff/archive/ch$chNum/" -ForegroundColor DarkCyan
                 }
                 $details.Add("Archived $fileName for ch$chNum") | Out-Null
             }
@@ -249,7 +249,7 @@ if (FastFileExists $chaptersDir) {
         Write-Host "  No intermediate files to archive" -ForegroundColor DarkGray
     }
 } else {
-    Write-Host "  No handoff/chapters/ directory" -ForegroundColor DarkGray
+    Write-Host "  No handoff/ directory" -ForegroundColor DarkGray
 }
 
 # 6. Clean up completed parallel groups (v2.5 - Optimization F)
@@ -322,12 +322,12 @@ $logPath = Join-Path $workspace "auto-runner\execution_log.md"
 if (FastFileExists $logPath) {
     $logSize = FastFileSize $logPath
     if ($logSize -gt 51200) {
-        # Determine last processed chapter number from handoff/chapters/
+        # Determine last processed chapter number from handoff/ top level（v2.6 修正：原读 handoff/chapters/，该目录不存在会导致恒为 ch0）
         $lastChapter = 0
-        if (FastFileExists $chaptersDir) {
-            $chFiles = Get-ChildItem $chaptersDir -Filter '*_ch*.json' -ErrorAction SilentlyContinue
+        if (FastFileExists $handoffDir) {
+            $chFiles = Get-ChildItem $handoffDir -Filter '*_*.json' -ErrorAction SilentlyContinue
             foreach ($cf in $chFiles) {
-                if ($cf.Name -match 'ch(\d+)') {
+                if ($cf.Name -match '_(\d+)\.json$') {
                     $n = [int]$Matches[1]
                     if ($n -gt $lastChapter) {
                         $lastChapter = $n
@@ -335,6 +335,7 @@ if (FastFileExists $logPath) {
                 }
             }
         }
+        if ($lastChapter -eq 0) { $lastChapter = 'unknown' }
         $sizeKB = [math]::Round($logSize / 1024, 1)
         Write-Host "  execution_log.md size: ${sizeKB}KB > 50KB, rotating..." -ForegroundColor Yellow
         $rotatedName = "execution_log_ch$lastChapter.md"

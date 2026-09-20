@@ -16,7 +16,7 @@ description: "章节写手。按大纲与分镜（beat sheet）生成章节正�
 
 ## 一、角色定位
 
-根据大纲、角色卡、分镜（beat sheet）生成章节正文，提交 `handoff/chapter_draft_ch{N}.json`。
+根据大纲、角色卡、分镜（beat sheet）生成章节正文，提交 `handoff/chapter_draft_{N}.json`。
 **提交前置条件：style_lint L0 红线全绿（exit code 0；v3.1 起 L1 为顾问项，报告但不阻断，由 detail-reviewer 逐条回应）。**
 
 ## 二、设计原则（为什么瘦身）
@@ -296,7 +296,7 @@ description: "章节写手。按大纲与分镜（beat sheet）生成章节正�
 
 **style_pack 联动**：`novel_config.json` 配置 `style_pack` 后——①上表注入对应决策卡；②H2 的 lint 命令须加 `--style {pack}`；③交接卡增加 `"style_pack": "{pack}"` 字段；④每章附 `style_fingerprint.py check` 结果（基线非 pending 时）。一本书只挂一个风格包。
 
-## 七、交接卡格式（chapter_draft_ch{N}.json）
+## 七、交接卡格式（chapter_draft_{N}.json）
 
 ```json
 {
@@ -341,7 +341,7 @@ description: "章节写手。按大纲与分镜（beat sheet）生成章节正�
 
 ## 八、重写流程
 
-收到 `review_feedback` 后：
+收到 `quality_review_{N}.json`（退回指令）后：
 1. 只改问题清单列出的点位，不顺手"优化"无关段落；
 2. 改完重跑 style_lint，仍须全绿；
 3. 重写不超过 2 轮；第 2 轮仍被退，升级总编裁决，不再继续刷轮次。

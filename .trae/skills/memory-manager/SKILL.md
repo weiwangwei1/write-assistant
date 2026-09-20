@@ -877,7 +877,7 @@ Step 4: 向用户汇报
 | `chapter_num` | int | 章节号 |
 | `title` | string | 章节标题 |
 | `word_count` | int | 终稿字数 |
-| `quality_score` | float | 审稿评分（来自 review_feedback.json） |
+| `quality_score` | float | 审稿评分（来自 `quality_review_{N}.json`） |
 | `review_passed` | bool | 是否一次通过审核 |
 | `agent_calls` | array | 各 Agent 的调用记录 |
 | `errors` | array | 过程中的错误记录（空数组表示无错误） |
@@ -894,7 +894,7 @@ Step 4: 向用户汇报
 
 1.5 终审条件验证（v1.4 新增）★
    ├─ 读取 handoff/final_review_{N}.json 的 conditions 字段
-   ├─ 对照 chapter_draft.json 的 revision_sync 字段，检查终审条件中的管理项是否已执行
+   ├─ 对照 chapter_draft_{N}.json 的 revision_sync 字段，检查终审条件中的管理项是否已执行
    ├─ 已执行的标记为 completed
    ├─ 未执行的管理项（如角色卡同步/伏笔补登）标记为 pending，在步骤7中记入 session_pointer 的 pending_override_conditions
    ├─ 跨章条件（如"ch12-13必须闭环1条悬念"）记入 pending_override_conditions，标注 due_chapter（到期章节）

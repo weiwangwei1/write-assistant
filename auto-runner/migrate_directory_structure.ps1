@@ -1,9 +1,24 @@
 ﻿<#
 .SYNOPSIS
-    将 handoff 目录从平铺结构迁移到分区结构。
+    [已废弃 · 请勿运行] 将 handoff 目录从平铺结构迁移到分区结构。
+
+.IMPORTANT
+    ⚠️ **本脚本已废弃（2026-09-20 标注），不要运行。**
+
+    它设计的"分区结构"（`handoff/setup/`、`handoff/chapters/`、`handoff/archive/ch{N}/`）
+    **从未被采纳**——《第三纪元》Ch1-7 的实际实践是 **handoff/ 顶层扁平存放 + 裸章号**
+    （`detail_review_7.json`、`merged_review_7.json` ……），且该约定已于 2026-09-20
+    写入 `AGENTS.md` 的「handoff 命名规范」成为正式标准。
+
+    本脚本是 `handoff/chapters/` 这一错路径的源头：auto-runner 的
+    `generate_task_config.ps1` / `state_validator.ps1` / `execution_dashboard.html` 都曾按它
+    生成/读取路径，而这些脚本因此长期空转或成死代码。上述脚本已于 2026-09-20 全部改回扁平命名。
+
+    保留本文件仅为记录"目录方案未落地却污染了下游脚本"这次架构决策的痕迹。
+    如未来确需分区结构，请先更新 AGENTS.md 的命名规范并在全仓同步引用方，不要直接跑本脚本。
 
 .DESCRIPTION
-    本脚本将 handoff/ 目录下的文件从平铺（扁平）结构重新组织为分区结构：
+    以下为原设计（已废弃）：将 handoff/ 目录下的文件从平铺（扁平）结构重组为分区结构：
 
         handoff/
         ├── setup/                   立项期文件（一次性产物）

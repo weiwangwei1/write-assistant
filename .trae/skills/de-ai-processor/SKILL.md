@@ -14,8 +14,8 @@ description: "De-AI processor for novel chapters. v1.3: 新增分析模式(analy
 
 检测AI痕迹 → 直接修改文本 → 输出润色后的全文。用于串行流水线（当前标准流程）。
 
-- 前置条件：`review_feedback.json` 的 `passed=true`
-- 输出：`handoff/de_ai_polish.json`（含 polished_text 全文）
+- 前置条件：`quality_review_{N}.json` 的 `passed=true`
+- 输出：`handoff/de_ai_polish_{N}.json`（含 polished_text 全文）
 - 直接修改文本
 
 ### 模式2：分析模式 (analysis_mode)（v1.3 新增 ★）
@@ -23,7 +23,7 @@ description: "De-AI processor for novel chapters. v1.3: 新增分析模式(analy
 只执行检测，输出建议清单，**不修改文本**。用于审核并行+统一合并（parallel-execution.md 模式7）。
 
 - 前置条件：无 passed 门禁（与 detail-reviewer 同时启动，不依赖 quality-reviewer 通过）
-- 输出：`handoff/de_ai_analysis_ch{N}.json`（检测报告，含建议但不含修改后文本）
+- 输出：`handoff/de_ai_analysis_{N}.json`（检测报告，含建议但不含修改后文本）
 - **不修改文本**，不输出 polished_text
 
 ### 分析模式输出格式
@@ -66,12 +66,12 @@ description: "De-AI processor for novel chapters. v1.3: 新增分析模式(analy
 ### 分析模式工作流程
 
 ```
-1. 读取章节草稿（handoff/chapter_draft.json 或 output/chapter_00N.txt）
+1. 读取章节草稿（handoff/chapter_draft_{N}.json 或 output/chapter_00N.txt）
 2. 读取参考文件（characters.json + recent_chapters/）
 3. 执行14类AI痕迹检测（同完整模式的检测清单）
 4. 为每处问题生成建议（含 original/suggestion/revised）
 5. 计算 ai_score_before
-6. 输出检测报告到 handoff/de_ai_analysis_ch{N}.json
+6. 输出检测报告到 handoff/de_ai_analysis_{N}.json
    （不修改文本，不输出 polished_text，不执行修复）
 ```
 
@@ -98,21 +98,21 @@ description: "De-AI processor for novel chapters. v1.3: 新增分析模式(analy
 
 | 文件路径 | 说明 | 必需 |
 |---------|------|------|
-| `handoff/review_feedback.json` | 来自审稿员的通过反馈卡，`passed` 必须为 `true` | 是 |
-| `handoff/chapter_draft.json` | 章节草稿正文（需从反馈卡 chapter_num 关联获取） | 是 |
+| `handoff/quality_review_{N}.json` | 来自审稿员的通过反馈卡，`passed` 必须为 `true` | 是 |
+| `handoff/chapter_draft_{N}.json` | 章节草稿正文（需从反馈卡 chapter_num 关联获取） | 是 |
 | `memory/characters.json` | 角色卡，用于核对角色说话风格 | 是 |
 | `memory/recent_chapters/` | 最近章节全文，用于匹配既有文风 | 否 |
 
 ### 前置条件
 
-- `review_feedback.json` 中 `passed` 必须为 `true`
+- `quality_review_{N}.json` 中 `passed` 必须为 `true`
 - 若 `passed` 为 `false`，不执行去AI化，直接返回错误
 
 ---
 
 ## 输出规范
 
-去AI化师输出润色交接卡，保存至 `handoff/de_ai_polish.json`。
+去AI化师输出润色交接卡，保存至 `handoff/de_ai_polish_{N}.json`。
 
 ### 交接卡格式
 
@@ -460,8 +460,8 @@ description: "De-AI processor for novel chapters. v1.3: 新增分析模式(analy
 
 ```
 1. 读交接卡
-   ├─ handoff/review_feedback.json → 确认 passed=true，获取 chapter_num
-   └─ handoff/chapter_draft.json → 获取章节正文
+   ├─ handoff/quality_review_{N}.json → 确认 passed=true，获取 chapter_num
+   └─ handoff/chapter_draft_{N}.json → 获取章节正文
 
 2. 读参考文件
    ├─ memory/characters.json → 获取角色说话风格设定
@@ -489,7 +489,7 @@ description: "De-AI processor for novel chapters. v1.3: 新增分析模式(analy
    └─ stats 统计汇总
 
 7. 保存交接卡
-   └─ 写入 handoff/de_ai_polish.json
+   └─ 写入 handoff/de_ai_polish_{N}.json
 
 8. 通知适配师
    └─ 章节已去AI化，流转至 fanqie-adapter
@@ -520,5 +520,5 @@ description: "De-AI processor for novel chapters. v1.3: 新增分析模式(analy
 |------|-------------|--------|
 | 读取章节正文 | `FastReadFile "output/chapter_NNN.txt"` | 1.80x |
 | 按行读取（逐句分析） | `FastReadLines $path` | 3.94x |
-| 写入去AI化报告 | `FastWriteJson -Path "handoff/chapters/deai_analysis_chNNN.json" -Object $report` | 1.83x |
+| 写入去AI化报告 | `FastWriteJson -Path "handoff/de_ai_analysis_{N}.json" -Object $report` | 1.83x |
 | 写入润色后正文 | `FastWriteFile -Path $path -Content $polishedText` | 1.48x |

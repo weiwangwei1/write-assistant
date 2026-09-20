@@ -27,8 +27,8 @@ description: "Fanqie novel platform adapter. Injects shuang-points, adjusts paci
 
 | 文件路径 | 说明 | 必需 |
 |---------|------|------|
-| `handoff/de_ai_polish.json` | 来自去AI化师的润色交接卡，包含 polished_text 和变更日志 | 是 |
-| `handoff/review_feedback.json` | 审稿员的通过反馈卡（参考用，确认 passed=true） | 否 |
+| `handoff/de_ai_polish_{N}.json` | 来自去AI化师的润色交接卡，包含 polished_text 和变更日志 | 是 |
+| `handoff/quality_review_{N}.json` | 审稿员的通过反馈卡（参考用，确认 passed=true） | 否 |
 | `config/novel_config.json` | 小说配置，包含 `fanqie_config` 平台适配参数 | 是 |
 | `memory/recent_chapters/` | 最近章节全文，用于风格一致性参考 | 否 |
 
@@ -305,9 +305,9 @@ description: "Fanqie novel platform adapter. Injects shuang-points, adjusts paci
 ## 工作流程
 
 ```
-1. 读交接卡 (handoff/review_feedback.json)
+1. 读交接卡 (handoff/quality_review_{N}.json)
    ├─ 确认 passed=true（如为false则拒绝处理并通知总编）
-   └─ 获取 chapter_num，关联读取 chapter_draft.json
+   └─ 获取 chapter_num，关联读取 chapter_draft_{N}.json
 
 2. 读配置 (config/novel_config.json)
    ├─ 获取 fanqie_config 参数
@@ -363,7 +363,7 @@ description: "Fanqie novel platform adapter. Injects shuang-points, adjusts paci
 
 | 场景 | fast_io 写法 | 加速比 |
 |------|-------------|--------|
-| 读取去AI化后正文 | `FastReadJson "handoff/de_ai_polish.json"` | 1.91x |
+| 读取去AI化后正文 | `FastReadJson "handoff/de_ai_polish_{N}.json"` | 1.91x |
 | 读取小说配置（fanqie_config） | `FastReadJson "config/novel_config.json"` | 1.91x |
 | 读取敏感词列表 | `FastReadJson "config/sensitive_words.json"` | 1.91x |
 | 列出最近章节目录 | `FastListFiles "memory/recent_chapters/"` | 3.01x |

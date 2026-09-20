@@ -36,10 +36,10 @@
       "replaces": "步骤18(Ch1宏观评分)+步骤19(Ch1终审) → 合并为1步",
       "example": {
         "id": 18, "name": "Ch1统一审稿", "agent": "quality-reviewer",
-        "instruction": "以统一审核模式(unified_review)评审第1章。读取auto-runner/unified_review_spec.md了解12维评分规范。同时执行8维技术评分+4维补充评分+监控检测+交叉终检，一步产出unified_review_ch001.json。unified_score=technical_score×0.6+supplementary_score×0.4，≥9.5为approved。",
-        "input_files": ["output/chapter_001.txt", "memory/outline.json", "memory/characters.json", "memory/goal_tracker.json", "memory/foreshadowing_tracker.json", "config/novel_config.json", "handoff/chapters/merged_review_ch001.json", "auto-runner/unified_review_spec.md"],
-        "output_files": ["handoff/chapters/unified_review_ch001.json"],
-        "pass_criteria": "输出文件含12维评分+unified_score+verdict，unified_score≥9.5为approved",
+        "instruction": "以统一审核模式(unified_review v3.0)评审第1章。读取auto-runner/unified_review_spec.md了解12维评分规范。同时执行8维技术评分+4维补充评分+监控检测+交叉终检，一步产出 handoff/merged_review_1.json + handoff/quality_review_1.json。unified_score=technical_score×0.6+supplementary_score×0.4 仅作参考趋势；门禁为问题清单制——critical=0 即 approved，不以 ≥9.5 为通过条件。",
+        "input_files": ["output/chapter_001.txt", "memory/outline.json", "memory/characters.json", "memory/goal_tracker.json", "memory/foreshadowing_tracker.json", "config/novel_config.json", "handoff/merged_review_1.json", "handoff/detail_review_1.json", "handoff/de_ai_analysis_1.json", "auto-runner/unified_review_spec.md"],
+        "output_files": ["output/chapter_001.txt", "handoff/merged_review_1.json", "handoff/quality_review_1.json"],
+        "pass_criteria": "输出文件含12维评分+unified_score+issue_counts+verdict；critical=0 为 approved（v3.0 问题清单制，分数不作门禁）",
         "max_retries": 3, "parallel_group": "pipeline_1_2", "parallel_index": 0, "parallel_total": 2, "depends_on": [17]
       },
       "note": "使用unified模式时，pipeline组的parallel_total从2变2（unified+Ch2写作），但步骤总数-1/章"

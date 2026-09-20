@@ -726,5 +726,5 @@ fanqie-adapter 番茄平台适配
 | 按行读取逐句审核 | `FastReadLines $path` | 3.94x |
 | 读取大纲伏笔计划 | `FastReadJson "memory/outline.json"` | 1.91x |
 | 读取角色卡 | `FastReadJson "memory/characters/{name}.json"` | 1.91x |
-| 写入审核报告 | `FastWriteJson -Path "handoff/chapters/detail_review_chNNN.json" -Object $report` | 1.83x |
+| 写入审核报告 | `FastWriteJson -Path "handoff/detail_review_{N}.json" -Object $report` | 1.83x |
 | 检查文件存在性 | `FastFileExists $path` | 1.76x |
