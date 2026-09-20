@@ -2,60 +2,39 @@
   "version": "1.2",
   "project_title": "第三纪元",
   "current_phase": "init",
-  "phase_note": "黄金三章Ch1-3已终稿入库，Ch4《裂口》、Ch5《灰天》已终稿入库（位面篇深入：三规矩立用闭环+'有人住过'）；初始化补全仍在进行：完整大纲/角色卡/设定三件套",
+  "phase_note": "2026-09-20 重启：旧稿（Ch1-7 正文/全部章级过程卡/记忆摘要）完整归档至 archive/第三纪元_重启_20260920/；保留大纲/世界观/角色设定/立项/框架资产，从序言+Ch1 按现有大纲重写（适用 chapter-writer v4.2 / detail-reviewer v1.20）。初始化补全仍在进行：角色卡复审未跑；设定三件套 3 项登记欠账源自旧稿 Ch6-7 内容，随旧稿归档暂缓",
   "current_volume": 1,
-  "current_chapter": 7,
-  "next_chapter": 8,
-  "completed_chapters": [1, 2, 3, 4, 5, 6, 7],
-  "overall_progress": "7/300",
+  "current_chapter": 0,
+  "next_chapter": 1,
+  "completed_chapters": [],
+  "overall_progress": "0/300",
   "protagonist": "顾衡",
-  "last_updated_chapter": 7,
-  "last_updated": "2026-08-07T10:40:00+08:00",
+  "last_updated_chapter": 0,
+  "last_updated": "2026-09-20T15:41:37+08:00",
   "milestones": [
     {"milestone": "选题方向确认", "status": "done", "note": "构装师+献祭+位面掠夺，掌控全局天才主角"},
     {"milestone": "黄金三章设计", "status": "done", "note": "Ch1乱局/Ch2造物/Ch3献祭"},
-    {"milestone": "黄金三章写作", "status": "done", "note": "Ch1-3终稿，lint L0全绿+指纹校验通过（注：定稿时口径，2026-09-20 复核当前配置下 Ch1-3 各报 not_a_is_b L0×2——tiancantudou 覆盖层阈值 not_a_is_b_max_per_chapter=1 系后续收紧，按「框架升级不追溯」不重写，卷末复盘窗口再议），五轮精修（读者反馈/人物形象/故事情节/情感心理意见已评估）"},
-    {"milestone": "框架升级", "status": "done", "note": "chapter-writer v4.2（5.9 技法 5 组 24 条，按决策场景分组：A章际衔接/B场景节奏/C角色反应/D描写信息/E机制结构；v4.2 补录：C1 扩群体生态尺度+B5 反差法+B6 大场面段落次序+C6 差异化反应）+ detail-reviewer v1.20（第11层同步对齐，18项，检查项 ID 与写手一一对应）+ chief-editor v1.8（真人读者随口反馈新增 1 个不计分必答引导问题）。历史：v4.0 新增技法23-28、v4.1 由 28 条重构为 5 组 21 条、v1.18 第11层扩至19项、v1.19 合并为 15 项。Ch6/Ch7 的 detail_review 卡按 19 项旧版产出，属历史记录不追溯；Ch8 起按新 18 项审核"},
+    {"milestone": "黄金三章写作", "status": "pending", "note": "2026-09-20 重启：旧稿 Ch1-7（含旧黄金三章）完整归档至 archive/第三纪元_重启_20260920/（output 9 / handoff 48 / golden3_revisions 43 / memory 10），旧稿的 lint/指纹/终审/五轮精修记录随归档留存、不追溯；从序言+Ch1 按现有大纲重写"},
+    {"milestone": "框架升级", "status": "done", "note": "chapter-writer v4.2（5.9 技法 5 组 24 条，按决策场景分组：A章际衔接/B场景节奏/C角色反应/D描写信息/E机制结构；v4.2 补录：C1 扩群体生态尺度+B5 反差法+B6 大场面段落次序+C6 差异化反应）+ detail-reviewer v1.20（第11层同步对齐，18项，检查项 ID 与写手一一对应）+ chief-editor v1.8（真人读者随口反馈新增 1 个不计分必答引导问题）。历史：v4.0 新增技法23-28、v4.1 由 28 条重构为 5 组 21 条、v1.18 第11层扩至19项、v1.19 合并为 15 项。Ch6/Ch7 的 detail_review 卡按 19 项旧版产出，属历史记录不追溯（旧稿已归档）；重启后新稿从 Ch1 起按 18 项审核"},
     {"milestone": "topic-screener 预筛", "status": "done", "note": "2026-08-06 完成，verdict=pass_with_note（6维：题材耐久度/爽感路径/认知门槛/失败模式匹配 pass；暗基调补偿可行性/平台基调匹配 pass_with_note），卡在 handoff/topic_screening.json（2026-09-20 更正：此前误标 pending，实为已完成但归档在非标准名 topic_screening_disanjiyuan.json 下，已改名为契约名）"},
     {"milestone": "plot-architect 完整大纲", "status": "pending", "note": "6卷300章总纲+第一卷详细分章beat sheet"},
     {"milestone": "character-designer 角色设计", "status": "pending", "note": "顾衡完整角色卡+守军头目+沈+第一卷新角色"},
     {"milestone": "设定三件套+setting-reviewer", "status": "pending", "note": "world_setting/ability_system/conflict_rules，≥9.5"}
   ],
-  "next_action": "Ch8（大纲：位面第一层全貌交付s5闭合+猎杀计划成型'他不猎兽，他改道'+章末钩'兽群改了道，直奔他挖好的地方——可那里还躺着另一伙人设的套'）开写前交接卡beat_sheet显式标注：①Ch7末陷阱揭示与Ch8改道计划的衔接——改道物理支点已立（坡上观察位'看得见窄口，窄口里看不见坡'）、套的归属已立（翻板坑+坑外三步桩阵）、改道动机已点题（'他的更算里，第一次排进了别人的更'），Ch8开篇直接进计划成型不必重述痕迹；②f18揭示窗口Ch6-8，Ch8为窗口末章，须给沟里大东西第一层画面（远影/声响/痕迹任一具象），防窗口逾期；③配比预警：Ch7为C级铺垫章（连续铺垫计数=1），Ch8若再计铺垫则连续2章触顶，Ch9必须含开奖级事件；④签名句式微变奏沿用：'照老拍子'/'他心里的更算自己走'已登记变体、'归了位'第4用建议换'归了档/入了账'、'停拍'家族每章≤2次（第三次换压住/落住/收住）；⑤指纹位面篇目标带16-23沿用；⑥f12挂账：这伙人'会回来收坑'，Ch8改道施工须处理'避开收坑人'时间窗，'灰上没有一个印是他的'单向透明不得无理由破功；⑦饼账余量约4块整+大半块；⑧若Ch8仍为低对话章则连续2章低对话触观察线，Ch9须恢复人声交互（与outline Ch9-14 tier_1正面遭遇排期兼容）。",
-  "last_session_summary": "Ch7《人影》终稿入库：钩子句开头即时回响'往深处走的第一天，引路的不是眼睛'→核温感应校准（认料槽应/烧空槽不应，四向各试三遍温的都是东南，f4机制应用）→兽群活动区确认（micro_payoff：蹄印叠亮/碎壳成片'不是一头。是一群。'）→f12痕迹链六笔账（两处火堆一新一旧/木签27根八九张嘴/铺位七处值夜窝/三头兽取核弃肉/剥皮腹线无回刀猎户手/内陆火镰钢口泛青=第二级远影）→窄口翻板坑+尖桩阵（'兽踩坑。人来看坑，桩收人。'桩尖朝坑外三步）→'他没有绕''他的更算里第一次排进了别人的更'→单向透明撤离（'灰上没有一个印是他的'）+坡上留路→章末信息揭示'陷阱不是他布的，是冲着人和兽一起算去的'；终审approved，overall 9.43（quality技术9.41×0.6+终审补充9.47×0.4，ai 1.1，lint pass，指纹override pass_with_registration sent_len_mean 17.31带内）",
-  "character_snapshot": {
-    "顾衡": {
-      "location": "位面第一层深处坡上观察位（兽群活动区窄口上方）",
-      "status": "兽群位置确认（东南方向，核温感应定向）+识破猎核队翻板坑尖桩阵+单向透明撤离（'灰上没有一个印是他的'）；原开猎计划作废，更算里第一次排进别人的更；饼约4块整+大半块，盐尽，核贴心口",
-      "mood": "静冷警觉——'他没有绕'",
-      "power": "三阶匠师，遗器核心已烧；引导器烧一空二认料（第二槽）；核温感应定向机制可用"
-    },
-    "那人（盐槽主人）": {
-      "location": "位面灰原废弃居所（火堆边）",
-      "status": "未命名新角色：收盐指路+让石分肉+盐填槽+约'下回带盐'；'这地方的，我都有'；身份/目的不明（f17第二层挂s5延伸）；装死避大沟之物",
-      "mood": "平稳无波，各怀心思"
-    },
-    "守军头目": {
-      "location": "锈关城墙",
-      "status": "守城+盯守城北区地底地窖（奉令'见灰封阶封死别回头挖'）；断矛已无皮绳（赠顾衡），矛杆凝霜未化",
-      "mood": "敬畏+隐忧，家人在南方生死未卜"
-    },
-    "老周头": {
-      "location": "锈关城南库房",
-      "status": "管库：擦锁对天光看/数账三遍数错从头数；胸口空处（Ch3献祭代价）；门后半截断矛杆充门闩",
-      "mood": "平静木然"
-    }
-  },
+  "next_action": "从序言+Ch1 开写（按 outline.golden_three_chapters：Ch1 乱局立人 / Ch2 造物亮构装师 / Ch3 献祭亮机制闭环）。Ch1 四个 beat：破城乱局（sensory 点题）→三个冷动作（action，5.8 冷动作兑现结构）→同一刻全部兑现（B级智力碾压）→动机挂账'城下埋着什么'；章首钩子句'血腥味先到的，城墙还没塌'。写作适用 chapter-writer v4.2（H1-H11 + 5.9 24 条技法）与 detail-reviewer v1.20（第11层 18 项）。开写前需确认的初始化欠账：角色卡复审未跑；设定三件套 3 项登记项源自旧稿已暂缓，新稿写到对应机制时重新登记。旧稿全部正文与过程见 archive/第三纪元_重启_20260920/ 可随时对照。",
+  "last_session_summary": "2026-09-20 项目重启：旧稿 Ch1-7 正文+全部章级过程卡+记忆摘要完整归档至 archive/第三纪元_重启_20260920/；保留大纲/世界观/角色设定/立项/框架资产；指针归零（current_chapter 0 / completed []）、task_plan 重建为 init、8 张角色卡 current_state 回退 Ch1 基线；下一步从序言+Ch1 按现有大纲重写",
+  "character_snapshot": {},
   "foreshadowing_quick_status": {
-    "active_count": 6,
-    "critical": ["旧齿轮左钩刻痕是谁刻的（Ch3末炸弹，Ch5搭痕第2次递进）", "三条空槽→第二槽已认料（Ch7核温感应定向机制建立，剩两条）", "位面里面有什么（Ch8第一层全貌闭合）", "矛杆凝霜未化", "盐槽主人是谁/为何以盐填槽（f17第二层）", "沟里大东西（f18'这两天躁'，Ch7静了一回地皮远麻，Ch8窗口末章须给第一层画面）", "猎核队痕迹+翻板坑尖桩'冲着人和兽一起算'（f12已埋，对方会回来收坑）"],
-    "long_term": ["收刀者/沈（目标Ch40-60第一层揭秘）", "位面嵌套真相（后期）", "位面建造痕迹/石棱螺纹（f11环境预埋）", "献祭深层代价（s3第一层已闭合，深层挂账'四条槽的账先记在右手上'）"]
+    "active_count": 0,
+    "critical": [],
+    "long_term": [],
+    "restart_note": "2026-09-20 重启清零：旧稿已埋/已递进的伏笔全部作废（随归档留存）；伏笔计划见 outline，待新稿重新登记"
   },
-  "quality_trend": "Ch1-3 lint L0全绿+tiancantudou指纹校验通过；用户驱动五轮精修定稿，无评分卡（黄金三章走用户直评通道）；Ch4 unified 9.11；Ch5 unified 9.28；Ch6 overall 9.44（指纹override pass_with_registration位面质地带16-23）；Ch7 overall 9.43（quality技术9.41×0.6+终审补充9.47×0.4，ai 1.1，lint pass，指纹override带内17.31）——全部终审approved",
+  "quality_trend": "（重启清零）旧稿 Ch1-7 评分与实测记录见 archive/第三纪元_重启_20260920/；新稿自 Ch1 起重新累积",
   "open_decisions": [
     "书名与简介待 final（用户建议方向：突出第三纪元/灰烬/旧齿轮/刻痕意象，忌俗套重生流书名）",
     "第一卷卷名与章节规模待 plot-architect 设计回填",
-    "指纹基线终裁：位面篇（Ch15归城）结束后由用户裁决——用Ch4-15自语料重建派生基线，或回炉统一向tiancantudou基线靠拢（merged_review_6.fingerprint_override.action_items[1]，final_review_6裁定须随入库挂账）"
+    "指纹基线终裁：位面篇（Ch15归城）结束后由用户裁决——用新稿自语料重建派生基线，或回炉统一向tiancantudou基线靠拢（旧稿 merged_review_6 / final_review_6 的裁定与证据已随归档留存，新稿推进到该节点时重新裁决）"
   ],
   "pending_override_conditions": [],
   "framework_maintenance_20260920": {
@@ -75,6 +54,12 @@
       "world_setting.usage_rule 与两条『未披露』势力条目的枚举冲突"
     ],
     "character_review_status": "角色卡首轮审核 8.45 revise（C1/M1/M2 整改已落地，见 沈.json 内『【M2修复】』标注），但**复审尚未执行**。首轮卡已归档至 handoff/archive/character_review_首轮_8.45_revise.json",
+    "post_restart_note": "2026-09-20 重启后：setting_remaining_items 三项均源自旧稿 Ch6-7 正文内容，随旧稿归档暂缓（新稿写到对应机制时再登记）；角色卡复审仍待执行",
     "open_methodology_note": "本次会话因『关键词匹配代替实质核验』误判 4 次（已整改说成未审核／已应用说成未应用／正则方向性假 False／把 Ch6:31 主语读反）。教训已写入 AGENTS.md 第九节的「取证方法论警告」。后续判断『某要求是否落实』须以重跑复审为准，关键词只能作线索。"
+  },
+  "project_restart_20260920": {
+    "summary": "旧稿归档+状态归零：Ch1-7 正文与过程产物 → archive/第三纪元_重启_20260920/（output 9 / handoff 48 / golden3_revisions 43 / memory 10）；保留大纲/世界观/角色设定/立项/框架资产",
+    "reset_actions": "指针归零（current_chapter 0 / completed []）；task_plan 重建为 init；8 张角色卡 current_state 回退 Ch1 基线（旧状态随归档留存）",
+    "next": "从序言+Ch1 开写（outline.golden_three_chapters 四 beat：乱局→三冷动作→同刻兑现→动机挂账）"
   }
 }

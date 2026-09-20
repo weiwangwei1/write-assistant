@@ -4,7 +4,7 @@
 
 ## 一、项目概述
 
-这不是一个传统软件项目，而是一套**多智能体网文创作系统**：通过多个专业化 LLM Agent（Skill）协作，完成从选题预筛、大纲构思、角色设计到章节写作、多层审核、去AI化、平台适配、记忆入库的全流程，目标平台为**番茄小说（fanqie）**。**当前在产项目：《第三纪元》**（Ch1-7 已入库，下一章 Ch8；位面入侵·献祭流·智斗，tiancantudou 文风包，300 章 / 6 卷，详见第九节）。此前《请客》《征诏之界》《镜渊》《万纹师》《有龙则灵》《补天人》《献祭纪元：赊刀人》《临渊》《玩家请就位》均已放弃或归档至 `archive/`。
+这不是一个传统软件项目，而是一套**多智能体网文创作系统**：通过多个专业化 LLM Agent（Skill）协作，完成从选题预筛、大纲构思、角色设计到章节写作、多层审核、去AI化、平台适配、记忆入库的全流程，目标平台为**番茄小说（fanqie）**。**当前在产项目：《第三纪元》**（2026-09-20 重启：旧稿 Ch1-7 已完整归档至 `archive/第三纪元_重启_20260920/`，保留大纲/世界观/角色设定，从序言+Ch1 重写；位面入侵·献祭流·智斗，tiancantudou 文风包，300 章 / 6 卷，详见第九节）。此前《请客》《征诏之界》《镜渊》《万纹师》《有龙则灵》《补天人》《献祭纪元：赊刀人》《临渊》《玩家请就位》均已放弃或归档至 `archive/`。
 
 系统的"代码"主要是三类：
 
@@ -81,13 +81,13 @@ write-assistant/
 │   ├── fp_check_ch{N}.json        # 指纹校验卡
 │   ├── fix_audit_ch{N}.json       # lint 修复差异证据卡（经历修复轮次时才有）
 │   ├── pre_lint_ch{N}.txt         # lint 修复前快照（fix_auditor 输入）
-│   ├── archive/golden3_revisions/ # Ch1-3 黄金三章的 43 个中间版本（25 个 lint 卡 + 18 个指纹卡，见下方"命名规范"）
+│   ├── archive/                    # handoff 占位归档（ch4-7 空目录 + 角色卡/设定首轮审核卡）；Ch1-3 精修证据 golden3_revisions 已随重启移至 archive/第三纪元_重启_20260920/handoff/
 │   └── task_plan.json / topic_screening.json / setting_review.json / characters.json 等阶段卡
 ├── output/                # 章节终稿（chapter_{N:03d}.txt）+ 全文合并文件 + header
 ├── logs/writing_log.jsonl # 写作日志
 ├── learning/              # 学习子系统：持续学习阅文作家专栏，产出 Skill 优化提案
 │   └── learning_workflow.md       # 学习工作流说明（选文→提取→对比→提案→用户决策）
-├── archive/               # 已完成/废弃的项目批次归档
+├── archive/               # 项目批次归档（含 2026-09-20《第三纪元》重启归档：旧稿 Ch1-7 正文与全部过程产物）
 ├── review/                # 第三方评审意见（人物形象/情感/故事情节 → 驱动了 ch-writer v3.9~v4.0 技法）
 ├── docs/                  # 文档区
 │   ├── style-distillation/        # 文风自主蒸馏方法论（HTML）
@@ -133,7 +133,7 @@ write-assistant/
 2. **章号一律用裸数字**（`_7.json` 而非 `_ch7.json`）；历史遗留的 `style_lint_ch{N}` / `fp_check_ch{N}` 保留 `ch` 前缀不再改动（300 章规模迁移成本高于收益，且已是既成约定）。
 3. **中间审核产物不长期堆在顶层**——`detail_review` + `de_ai_analysis` 在 merge 完成后可移至 `handoff/archive/ch{N}/`（Auto-Runner 的 state_validator 会自动做；手动流程下由总编在章末整理）。
 
-**已知遗留**：`deai_fanqie_{4,5}.json` 是早期"去AI化+适配"合并产物，Ch6 起改为独立流程后不再产生，属历史遗留。Ch1-3 的 44 个多版本 lint/指纹文件已归档至 `handoff/archive/golden3_revisions/`（**保留不删**——它们是黄金三章七轮精修的过程证据，对复盘有价值）。
+**已知遗留（2026-09-20 更新）**：`deai_fanqie_{4,5}.json`（早期"去AI化+适配"合并产物）与 Ch1-3 的 44 个多版本 lint/指纹文件均已随《第三纪元》重启归档——前者在 `archive/第三纪元_重启_20260920/handoff/`，后者在 `archive/第三纪元_重启_20260920/handoff/golden3_revisions/`（**保留不删**——黄金三章七轮精修的过程证据，对复盘有价值）。
 
 ## 三、技术栈与运行架构
 
@@ -231,17 +231,17 @@ powershell -ExecutionPolicy Bypass -File auto-runner/generate_task_config.ps1 # 
 
 ## 九、当前进度快照
 
-**当前状态**：在产项目《第三纪元》（`config/novel_config.json` 当前配置），Ch1-7 已终稿入库（`output/chapter_001.txt` ~ `chapter_007.txt`），下一章 Ch8。全书规划 300 章 / 6 卷，tiancantudou（天蚕土豆）文风包，2500 字/章（区间 2400-2600，见根目录 `lint_config.json`）。**注意：该项目的初始化阶段仍有欠账**——session_pointer 中 topic-screener 正式预筛、plot-architect 完整大纲、character-designer 角色卡、设定三件套四项里程碑均标 `pending`，但章节已写到 Ch7。此为「初始化未闭环即进入章节循环」的状态，补账路径见下方「初始化欠账」小节。
+**当前状态**：在产项目《第三纪元》**已于 2026-09-20 重启**——旧稿 Ch1-7 正文与全部章级过程产物（含黄金三章精修证据）完整归档至 `archive/第三纪元_重启_20260920/`（output 9 / handoff 48 / golden3_revisions 43 / memory 10）；**保留**大纲（`memory/outline.json`）、世界观（`setting_bible`/`world_setting`/`ability_system`/`conflict_rules`）、角色设定（8 张角色卡 + `characters.json`）、立项与审核卡（topic_screening / 大纲与设定审核卡）。指针已归零（`session_pointer.current_chapter=0`，`handoff/task_plan.json` phase=init），8 张角色卡 `current_state` 已回退 Ch1 基线，**下一步从序言+Ch1 按现有大纲重写**（适用 chapter-writer v4.2 / detail-reviewer v1.20）。全书规划 300 章 / 6 卷，tiancantudou（天蚕土豆）文风包，2500 字/章（区间 2400-2600，见根目录 `lint_config.json`）。**初始化欠账仍在**（角色卡复审未跑；设定三件套 3 项登记项源自旧稿、暂缓）——见下方「初始化欠账」小节。
 
-**质量趋势（截至 Ch7）**：Ch1-3 走用户直评通道（lint L0 全绿 + 指纹通过，无评分卡）；Ch4 unified 9.11；Ch5 unified 9.28；Ch6 overall 9.44；Ch7 overall 9.43（quality 技术 9.41×0.6 + 终审补充 9.47×0.4，ai 1.1，lint pass，指纹 override `pass_with_registration`）。全部终审 approved。
+**质量趋势**：旧稿 Ch1-7 记录（Ch1-3 走用户直评通道；Ch4 unified 9.11；Ch5 9.28；Ch6 overall 9.44；Ch7 overall 9.43，全部终审 approved）已随重启归档（`archive/第三纪元_重启_20260920/`）；新稿自 Ch1 起重新累积。
 
-**当前待决**（session_pointer.open_decisions）：①书名与简介待 final（忌俗套重生流书名）②第一卷卷名与章节规模待 plot-architect 设计回填 ③指纹基线终裁——位面篇（Ch15 归城）结束后由用户裁决：用 Ch4-15 自语料重建派生基线，或回炉统一向 tiancantudou 基线靠拢。
+**当前待决**（session_pointer.open_decisions）：①书名与简介待 final（忌俗套重生流书名）②指纹基线终裁——新稿位面篇（Ch15 归城）结束后由用户裁决（旧稿证据已随重启归档，届时重新裁决）。
 
 ### 初始化欠账（2026-09-20 核实修正）
 
 《第三纪元》的初始化流程未走完即已进入章节循环。**经逐项取证，四项欠账的真实性质与初判不同**——不是"没做"，而是**"已做/已整改，但复审未执行"**：
 
-| 里程碑 | 真实状态（取证结论） | 是否阻塞 Ch8 |
+| 里程碑 | 真实状态（取证结论） | 是否阻塞重写 |
 |--------|---------------------|:---:|
 | topic-screener 预筛 | ✅ **已完成**（2026-08-06，verdict=pass_with_note，6 维全评）。此前标 pending 系归档错名所致，已更正 | 否 |
 | plot-architect 完整大纲 | ✅ **第一卷已覆盖**：`memory/outline.json` 含 `volumes`（6 卷总纲）+ `volume_1_chapters`（第一卷逐章 beat）+ `naming_budget`/`suspense_window_plan`/`shuang_point_distribution`。卷 2+ 逐章 beat 未生成，但**这是设计意图**（滚动生成），非欠账 | 否 |
@@ -270,7 +270,7 @@ powershell -ExecutionPolicy Bypass -File auto-runner/generate_task_config.ps1 # 
 | P2-6 | 补"上一座城两夜即破（Ch1:20）"；补核市经济与工分经济接口原则 | `world_setting` 含「两夜」；`conflict_rules` 含核市/工分经济表述 |
 | P2-7 | 祭器加阶位浮动注；跨阶规则交叉引用位面环境对冲；御兽师分级加封存注记 | `ability_system`：祭器「对应阶位：二-三阶（**随献祭档位浮动**：浅祭=二阶临时/深祭=三阶临时）」；跨阶规则含"卷1实例详见「位面环境对冲」Ch10"；御兽师条目含封存注记 |
 
-**正文交叉验证（关键三项，以 `output/chapter_*.txt` 为准）**：
+**正文交叉验证（关键三项，以旧稿 `output/chapter_*.txt` 为准；旧稿已随重启归档至 `archive/第三纪元_重启_20260920/output/`）**：
 - 祭器 Ch1:18 —— 实测 Ch1 第 18 行「得武师或者祭器才杀得动」，**与设定一致** ✓
 - 位面裂隙 Ch1→Ch2→Ch4 —— 实测 Ch1:14「从位面裂隙里涌出来」→ Ch2:127「裂隙那边的兽体内有活核」→ Ch4:105「裂隙卧在乱石滩深处」，**与设定一致** ✓
 - 四阶流动纹 Ch1-3 —— 实测 Ch1:158-160「纹路在动，像水在金属表面慢慢流」「这截金属上的纹路是活的，在流」、Ch2:107/135、Ch3:97/103，**画面确已展示**（正文按"术语未点破"原则从未出现"流动纹"三字，验算一致）✓
@@ -279,7 +279,7 @@ powershell -ExecutionPolicy Bypass -File auto-runner/generate_task_config.ps1 # 
 > 本文件的心脏教训：①"术语未点破"意味着**正文刻意不出现该术语**，用术语字面搜索必然误判为"未落实" ②整改可能落在**与被审文件不同的另一个文件**里（如 P1-3 落在 `ability_system` 而非被点名的 `world_setting`） ③正则的方向性错误会假报 False（"祭器…Ch1:18" 与 "Ch1:18…祭器" 是两种顺序）。
 > 本次因此先后误判两次：把"已整改未复审"说成"未审核"，把"已应用的 P1-3"说成"唯一未应用项"。**结论须以重跑复审为准，关键词匹配只能作线索。**
 
-**关键判断**：**四项均不阻塞 Ch8**。Ch8 的 beat 与衔接要求在 `session_pointer.next_action` 中已完整给出；且 C1 已按方案 (a) 落定，Ch8 即便触及刻痕线也有裁定可依。建议**先开写 Ch8，把 1-3 项作为并行的补账任务穿插执行**。
+**关键判断（2026-09-20 重启后口径）**：四项欠账**均不阻塞从 Ch1 重写**；C1 已按方案 (a) 落定（刻痕线裁定仍有效）。建议**新稿开写的同时并行执行 1-2 项补账（重跑复审）**，3 项随生产进行。
 
 ### 已知缺陷（2026-09-20 巡检发现）
 
