@@ -94,7 +94,7 @@
         "action_over_monologue": "全程不让他在心里说'我早看穿了'"
       },
       "cold_action_structure": {
-        "rule": "chapter-writer 5.8b 冷动作兑现结构",
+        "rule": "chapter-writer 5.8 冷动作兑现结构",
         "action_1": {"what": "给小孩塞粮传信", "looks_like": "打发小孩走", "actual_function": "传讯点燃东墙油槽"},
         "action_2": {"what": "翻倒一摞木板", "looks_like": "闲着没事/破坏", "actual_function": "堵兽潮通道绊住阵型"},
         "action_3": {"what": "拦住跑反的民兵", "looks_like": "送死/添乱", "actual_function": "守住唯一没塌的缺口"},
