@@ -39,7 +39,7 @@ write-assistant/
 │   ├── human-checkpoint/      # 人工检查点
 │   └── writer-styles/         # 作者文风包（见下文"文风包"）
 ├── auto-runner/           # 无人值守自动执行器（Auto-Runner）基建
-│   ├── master_instruction.md      # 自动执行代理指令 v3.6（运行协议主文档）
+│   ├── master_instruction.md      # 自动执行代理指令 v3.7（运行协议主文档）
 │   ├── task_config.json           # 步骤序列与并行组配置（由 generate_task_config.ps1 生成）
 │   ├── state.json                 # 运行状态（current_step / parallel_groups / steps[]）
 │   ├── execution_log.md           # 追加式执行日志（>50KB 自动轮转）
@@ -76,30 +76,64 @@ write-assistant/
 │   ├── merged_review_{N}.json     # 总编合并清单（含 fingerprint_override 裁定链）
 │   ├── quality_review_{N}.json    # 审稿员（含 unified_score / issue_counts / veto_check）
 │   ├── final_review_{N}.json      # 终审裁决（含 gate_mode / formula / issue_counts）
-│   ├── style_lint_ch{N}.json / fix_audit_ch{N}.json / fp_check_ch{N}.json
+│   ├── style_lint_ch{N}.json      # lint 首次运行卡
+│   ├── style_lint_ch{N}_final.json # lint 定稿卡（经历修订时才有）
+│   ├── fp_check_ch{N}.json        # 指纹校验卡
+│   ├── fix_audit_ch{N}.json       # lint 修复差异证据卡（经历修复轮次时才有）
 │   ├── pre_lint_ch{N}.txt         # lint 修复前快照（fix_auditor 输入）
-│   └── task_plan.json / topic_screening*.json / setting_review.json 等
+│   ├── archive/golden3_revisions/ # Ch1-3 黄金三章的 43 个中间版本（25 个 lint 卡 + 18 个指纹卡，见下方"命名规范"）
+│   └── task_plan.json / topic_screening.json / setting_review.json / characters.json 等阶段卡
 ├── output/                # 章节终稿（chapter_{N:03d}.txt）+ 全文合并文件 + header
 ├── logs/writing_log.jsonl # 写作日志
 ├── learning/              # 学习子系统：持续学习阅文作家专栏，产出 Skill 优化提案
 │   └── learning_workflow.md       # 学习工作流说明（选文→提取→对比→提案→用户决策）
 ├── archive/               # 已完成/废弃的项目批次归档
-├── review/                # 第三方评审意见（人物形象/情感/故事情节）
-├── docs/                  # 文风自主蒸馏方法论文档（HTML）
+├── review/                # 第三方评审意见（人物形象/情感/故事情节 → 驱动了 ch-writer v3.9~v4.0 技法）
+├── docs/                  # 文档区
+│   ├── style-distillation/        # 文风自主蒸馏方法论（HTML）
+│   └── topic-notes/               # 选题过程记录（选题构思/选题推进 AB 细化，2026-08-02，孕育了《第三纪元》）
 ├── ref/ test/ tmp_golden3/ topic-evaluation/ novel-distillation/
 ├── style-distillation-summary/ zuiezhicheng-analysis/   # 实验区/参考资料（历史遗留）
-├── *.html                 # 各类可视化报告（大纲/读者/执行仪表盘等）
+├── *.html                 # 各类可视化报告：dashboard.html（进度面板，见第九节）、
+│                          #   fusion-style-guide.html / writing-style-analysis.html（文风蒸馏分析）、
+│                          #   罪恶之城世界观分析.html（《罪恶之城》文本分析，驱动 style_card v2.3 叙事引擎改造）
+├── 作家分享.txt            # 外部资料：阅文作家经验分享（learning 子系统输入）
+├── 第三方评价.txt          # 外部资料：第三方评审意见汇总
 ├── lint_config.json       # ★ 当前书籍的篇幅配置（--config 注入 style_lint）
-├── style_lint.py          # ★ 文风硬约束校验器（提交前门禁）
+├── style_lint.py          # ★ 文风硬约束校验器（提交前门禁，v2.5）
 ├── style_fingerprint.py   # ★ 文体指纹提取与偏差校验（v2.0：章际分布/派生容差/selfcheck）
 ├── fix_auditor.py         # ★ lint 修复差异证据卡（只产证据不判定）
 ├── style_pack_check.py    # ★ 风格包入库验收清单（三件套+模板合规）
-├── style_signature.py     # 作者签名手法自动提取（N-gram 交叉对比）
-├── style_trend.py         # 风格偏差趋势分析
+├── style_signature.py     # 作者签名手法自动提取（N-gram 交叉对比；子命令 extract/compare/vocabulary）
+├── style_trend.py         # 风格偏差趋势分析（读 memory/style_deviation_log.jsonl）
 └── serve.py               # dashboard 静态服务器（正确声明 UTF-8 Content-Type）
 ```
 
-> **不存在的旧路径**（若在本文件其他位置看到，属历史遗留）：`skills/`（空占位目录已删）、`handoff/chapters/`、`handoff/archive/ch{N}/`、`handoff/setup/`、`third/`——交接卡现为 **handoff/ 下扁平存放**。
+> **不存在的旧路径**（若在本文件其他位置看到，属历史遗留）：`skills/`（空占位目录已删）、`handoff/chapters/`、`handoff/setup/`、`third/`——交接卡现为 **handoff/ 下扁平存放**。
+
+### handoff 命名规范（2026-09-20 制定）
+
+**规范形态**（Ch4 起已收敛执行，Ch1-3 为收敛前的多版本形态）：
+
+| 产物 | 规范文件名 | 说明 |
+|------|-----------|------|
+| 写手草稿卡 | `chapter_draft_{N}.json` | 每章必有 |
+| 细节控审核 | `detail_review_{N}.json` | 每章必有 |
+| 去AI化分析 | `de_ai_analysis_{N}.json` | 每章必有 |
+| 合并清单 | `merged_review_{N}.json` | 每章必有（含 override 裁定链） |
+| 审稿卡 | `quality_review_{N}.json` | 每章必有（入库门禁验证项） |
+| 终审卡 | `final_review_{N}.json` | 每章必有 |
+| lint 卡 | `style_lint_ch{N}.json` | 首次运行；经历修订则加 `_final` |
+| 指纹卡 | `fp_check_ch{N}.json` | 挂包时必有 |
+| 修复证据 | `fix_audit_ch{N}.json` | **仅经历 lint 修复轮次时产生** |
+| 修复前快照 | `pre_lint_ch{N}.txt` | 同上，与 fix_audit 成对 |
+
+**三条规则**：
+1. **禁止 `_v2`/`_v3`/`_v6b` 式版本后缀**——迭代版本应就地覆盖同名文件（`git` 已是版本控制，不需要在文件名里再叠一层）。确需留存某个关键中间态时，写进 `handoff/archive/`。
+2. **章号一律用裸数字**（`_7.json` 而非 `_ch7.json`）；历史遗留的 `style_lint_ch{N}` / `fp_check_ch{N}` 保留 `ch` 前缀不再改动（300 章规模迁移成本高于收益，且已是既成约定）。
+3. **中间审核产物不长期堆在顶层**——`detail_review` + `de_ai_analysis` 在 merge 完成后可移至 `handoff/archive/ch{N}/`（Auto-Runner 的 state_validator 会自动做；手动流程下由总编在章末整理）。
+
+**已知遗留**：`deai_fanqie_{4,5}.json` 是早期"去AI化+适配"合并产物，Ch6 起改为独立流程后不再产生，属历史遗留。Ch1-3 的 44 个多版本 lint/指纹文件已归档至 `handoff/archive/golden3_revisions/`（**保留不删**——它们是黄金三章七轮精修的过程证据，对复盘有价值）。
 
 ## 三、技术栈与运行架构
 
