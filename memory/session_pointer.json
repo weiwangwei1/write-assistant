@@ -57,5 +57,24 @@
     "第一卷卷名与章节规模待 plot-architect 设计回填",
     "指纹基线终裁：位面篇（Ch15归城）结束后由用户裁决——用Ch4-15自语料重建派生基线，或回炉统一向tiancantudou基线靠拢（merged_review_6.fingerprint_override.action_items[1]，final_review_6裁定须随入库挂账）"
   ],
-  "pending_override_conditions": []
+  "pending_override_conditions": [],
+  "framework_maintenance_20260920": {
+    "session_summary": "2026-09-20 框架巡检 + 初始化补账会话（用户驱动）。共 7 个 commit 已推送 GitHub（cfedffd / 04373f1 / 36f68c8 / 07b190c / b083644 / 5e3ff47 / cb95f3b / 6cbfbf8 / 10dbc47 / d85169b / 5cf03ab）。内容：①通过门槛统一为问题清单制（清 4 处已废止的 8维≥9.5 死规则）②提交前置门禁与入库门禁正式写入 chief-editor 调度器 ③chapter-writer v4.1（5.9 技法 28 条→5 组 21 条）+ detail-reviewer v1.19 同步 ④handoff 命名规范制定 + Ch1-3 的 43 个中间版本归档 ⑤产物命名契约全仓对齐（9 SKILL + 4 auto-runner 脚本，修 state_validator 死代码）⑥生成器默认改两步审核模式 ⑦chief-editor 去AI化完整模式改条件触发、平台适配并入终审",
+    "defects_found_and_fixed": [
+      "chapter_length 篇幅口径不一致（han_len 只数汉字不含标点，与书籍标准差 15%）→ style_lint v2.5 新增独立 word_count()，Ch5-7 恢复达标",
+      "handoff/topic_screening.json 被已归档《请客》占用 → 删除并用《第三纪元》预筛卡补位，里程碑由误标 pending 更正为 done",
+      "auto-runner state_validator §5 归档逻辑为死代码（要求不存在的 handoff/chapters/）→ 改扫顶层",
+      "generate_task_config 默认 unified 模式不产出 final_review 卡，与入库门禁冲突 → 默认改 traditional 两步",
+      "outline.naming_budget 自相矛盾（note 说按4个执行 vs used_count=5）→ 会让写手误判有 1 个专名余额触碰 ≤5 红线，已修"
+    ],
+    "own_regressions_fixed": "本次改动自身引入并已修：①.ps1 加中文后 PS5.1 按 GBK 读出现乱码 → 补 UTF-8 BOM ②Edit 工具改 .ps1 丢失原有 BOM → 恢复 ③编辑 memory JSON 时两次用未转义直双引号致解析失败 → 改用单引号/『』",
+    "setting_review_status": "设定三件套经 4 轮复审（独立子代理）：9.08 → 9.48 → 9.48 → 9.48，verdict 均为 revise，6 维唯一未达标是「设定自洽 9.4」。首轮 7 项整改已全部落地；round4 修正了「位面在地者」类别的误读依据（原误读 Ch6:31『外头来的』为盐槽主人自称，实指顾衡；正确依据是 Ch6:23『主人/客人』+Ch6:117『你走的是我的地界』+Ch6:137『这地方的，我都有』）。卡在 handoff/setting_review.json（round4）",
+    "setting_remaining_items": [
+      "Ch7『核温方位感应』机制未在 ability_system 登记",
+      "『甜味/盐』登记子项未落地",
+      "world_setting.usage_rule 与两条『未披露』势力条目的枚举冲突"
+    ],
+    "character_review_status": "角色卡首轮审核 8.45 revise（C1/M1/M2 整改已落地，见 沈.json 内『【M2修复】』标注），但**复审尚未执行**。首轮卡已归档至 handoff/archive/character_review_首轮_8.45_revise.json",
+    "open_methodology_note": "本次会话因『关键词匹配代替实质核验』误判 4 次（已整改说成未审核／已应用说成未应用／正则方向性假 False／把 Ch6:31 主语读反）。教训已写入 AGENTS.md 第九节的「取证方法论警告」。后续判断『某要求是否落实』须以重跑复审为准，关键词只能作线索。"
+  }
 }
