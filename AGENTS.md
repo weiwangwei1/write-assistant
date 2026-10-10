@@ -232,7 +232,7 @@ powershell -ExecutionPolicy Bypass -File auto-runner/generate_task_config.ps1 # 
 
 ## 九、当前进度快照
 
-**当前状态**：在产项目《第三纪元》**已于 2026-09-20 重启**——旧稿 Ch1-7 正文与全部章级过程产物（含黄金三章精修证据）完整归档至 `archive/第三纪元_重启_20260920/`（output 9 / handoff 48 / golden3_revisions 43 / memory 10）；**保留**大纲（`memory/outline.json`）、世界观（`setting_bible`/`world_setting`/`ability_system`/`conflict_rules`）、角色设定（8 张角色卡 + `characters.json`）、立项与审核卡（topic_screening / 大纲与设定审核卡）。指针已归零（`session_pointer.current_chapter=0`，`handoff/task_plan.json` phase=init），8 张角色卡 `current_state` 已回退 Ch1 基线，**下一步从序言+Ch1 按现有大纲重写**（适用 chapter-writer v4.4 / detail-reviewer v1.22；指纹已降为参考，见第九节）。全书规划 300 章 / 6 卷，tiancantudou（天蚕土豆）文风包，2500 字/章（区间 2400-2600，见根目录 `lint_config.json`）。**初始化欠账仍在**（角色卡复审未跑；设定三件套 3 项登记项源自旧稿、暂缓）——见下方「初始化欠账」小节。
+**当前状态**：在产项目《第三纪元》**已于 2026-09-20 重启**——旧稿 Ch1-7 正文与全部章级过程产物（含黄金三章精修证据）完整归档至 `archive/第三纪元_重启_20260920/`（output 9 / handoff 48 / golden3_revisions 43 / memory 10）；**保留**大纲（`memory/outline.json`）、世界观（`setting_bible`/`world_setting`/`ability_system`/`conflict_rules`）、角色设定（8 张角色卡 + `characters.json`）、立项与审核卡（topic_screening / 大纲与设定审核卡）。指针已归零（`session_pointer.current_chapter=0`，`handoff/task_plan.json` phase=init），8 张角色卡 `current_state` 已回退 Ch1 基线，**下一步从序言+Ch1 按现有大纲重写**（适用 chapter-writer v4.5 / detail-reviewer v1.23；指纹已降为参考，见第九节）。全书规划 300 章 / 6 卷，tiancantudou（天蚕土豆）文风包，2500 字/章（区间 2400-2600，见根目录 `lint_config.json`）。**初始化欠账仍在**（角色卡复审未跑；设定三件套 3 项登记项源自旧稿、暂缓）——见下方「初始化欠账」小节。
 
 **质量趋势**：旧稿 Ch1-7 记录（Ch1-3 走用户直评通道；Ch4 unified 9.11；Ch5 9.28；Ch6 overall 9.44；Ch7 overall 9.43，全部终审 approved）已随重启归档（`archive/第三纪元_重启_20260920/`）；新稿自 Ch1 起重新累积。
 
