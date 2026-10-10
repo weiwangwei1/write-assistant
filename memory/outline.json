@@ -1,7 +1,10 @@
 {
-  "version": "1.1",
-  "status": "完整大纲v1.1（skeptic质疑 verdict=pass，护栏修订已落实），待 outline-editor 验收",
+  "version": "1.3",
+  "status": "完整大纲v1.3（2026-10-10：黄金三章按'债汇聚=高潮'重排 + debt_table/convergence_nodes 入库 + A2 账节点密度改造与位面篇去重完成；序言处理与伏笔编号梯度待收尾），待 outline-editor 验收",
   "changelog": [
+    {"v": "1.3", "date": "2026-10-10", "change": "A2 完成（账节点密度+位面篇去重）：Ch4 入场改'老手感＋人险'（首次感已由 Ch1 交付）；Ch5 改判为作业层规则；Ch6/Ch8 改造为双债（D6+D7部分 / D7全清+D14半揭）；Ch11 补 A 级小汇聚（D12 先收利息＋D6 第二层，强度让给 Ch14）；convergence_nodes 与 debt_table 同步；suspense_window_plan 注记 s5 新定义"},
+    {"v": "1.2", "date": "2026-10-10", "change": "Ch1-3 重排（方案 v2 GANTZ 化 + 债为第一维度）：Ch1=开价（已定稿 v9.2，挂 D1-D5、清 0）；Ch2=交割（B 级小汇聚：D1+D2 同期清算=以工抵店，半揭 D3）；Ch3=献祭（S 级第一次真汇聚：D3 兑出+D5 部分清算+D6 挂账+D4 轻回响）。旧 ch1/ch2/ch3 保留为归档参考（不再作写手依据）；新增 debt_table（D1-D15）与 convergence_nodes；旧 Ch1 破城戏改为'以回城所见给结果'。来源：docs/第三纪元_故事债表草案_Ch1-15.md"},
+    {"v": "1.1", "date": "2026-09-20", "change": "skeptic 质疑 verdict=pass，护栏修订落实（shuang_point_distribution 补录 Ch5/Ch12；suspense_window_plan 卷末并发注记）"},
     {
       "version": "1.1",
       "date": "2026-08-06",
@@ -44,6 +47,65 @@
   },
   "character_charm_design": "顾衡反差：算得清全城生死，算不清贴身齿轮上的刻痕是谁留的；献祭前一秒还在喝碗底剩粥。配角独立目标：守军头目=寻南边家人+用凡人方式锚住顾衡；老周头=伤后管库，凡人的体面；少年=传承种子（Ch36起，不命名）",
   "golden_three_chapters": {
+    "rework_v2": {
+      "note": "2026-10-10 重排（方案 v2 GANTZ 化 + 债为第一维度）：本组取代下方 ch1/ch2/ch3——旧版是已归档旧稿的行为规格，仅作参考，写手与审核一律以本组为准",
+      "principle": "事件是债的载体：先定每章清哪几笔、挂哪几笔，再回填 beat；单线清算=转折，≥2 笔同期清算=汇聚高潮",
+      "ch1": {
+        "title": "开价",
+        "status": "done（v9.2 定稿，正文 output/chapter_001_draft.txt）",
+        "function": "挂账章＋转折：位面任务最险一刻，绝境摆摊议价，押掉七年家底换命——立人（敢还价、会算、不肯求人）＋机制首秀（对接者交易，术语不点破）",
+        "debt_ops": {"plant": ["D1 字据/铺子", "D2 不开口求人", "D3 城下为什么值钱", "D4 被记上那一眼", "D5 断绳被剩下"], "clear": []},
+        "convergence": "无（不计高潮：桌上 1 笔、清算 0 笔，反挂 5 笔）",
+        "shuang_type": "B（算计胜）",
+        "opening_type": "钩子句开头", "ending_type": "期待感型", "emotional_intensity": 6,
+        "beats": [
+          {"summary": "口子塌了：退路断，他反倒松了口气（反常识首拍）", "purpose": "hook+人设"},
+          {"summary": "摆摊：不找路不后退，三样东西（残片/料/断绳）摆正，像守摊", "purpose": "看不懂的冷动作"},
+          {"summary": "规则与耐心：没有退路的人才排得上号；两天两夜摸习性；饿（人味瞬间）", "purpose": "规则+血肉"},
+          {"summary": "灰雾睁眼：一只眼，壳兽伏低，报价落进脑子", "purpose": "机制首秀"},
+          {"summary": "还价与全押：只说一个字'贵'，推料、推残片，断绳被剩下", "purpose": "立人+冷幽默"},
+          {"summary": "成交与交割：掌心空，死石深处咔地裂开一道缝", "purpose": "买卖当场兑现"},
+          {"summary": "脱身与那一眼：窄缝、干粮渣、眼睛合上前把他记上", "purpose": "悬念挂账 D4"},
+          {"summary": "结尾账：城下挖东西→站到它眼皮底下谈一笔大的→这辈子不用再求人", "purpose": "期待感"}
+        ],
+        "hook_sentence": "这一笔，才是他真正要算的那一笔。"
+      },
+      "ch2": {
+        "title": "交割",
+        "status": "planned",
+        "function": "B 级小汇聚（专业碾压）：字据到期，他不求人、递手艺，以工抵店（D1+D2 同期清算）；半揭城下＝第二纪元古构装残骸（D3）",
+        "debt_ops": {"plant": [], "clear": ["D1（部分：认罚抵店）", "D2（部分：不求人、以工抵店）"], "half_reveal": ["D3 城下＝第二纪元古构装残骸"]},
+        "convergence": "✅ 小汇聚（B）：D1+D2 同期清算",
+        "shuang_type": "A（专业碾压）",
+        "opening_type": "场景开头", "ending_type": "期待感型", "emotional_intensity": 6,
+        "beats": [
+          {"summary": "回城所见：破城残局只给结果——油槽烧黑的墙、巷口仍横着的木板、民兵守住的缺口（旧 Ch1 三冷动作不重演）", "purpose": "前史承接+人设余响"},
+          {"summary": "交割日：柜上收铺；他不开口求，当场把柜上压仓的坏件修好、把抵店谈成'前铺抵出、后作坊留下'", "purpose": "D1+D2 同期清算（B 级）"},
+          {"summary": "半揭：柜上一句'料是好料，不是我要的那路'／他翻到城下货的收购记录 → 城下埋着第二纪元古构装残骸", "purpose": "D3 半揭"},
+          {"summary": "章末：他把镐插进后作坊的地里，方向朝着城下", "purpose": "期待感+转向城下"}
+        ],
+        "hook_sentence": "镐把上还留着他的手印，朝的是城下的方向。"
+      },
+      "ch3": {
+        "title": "献祭",
+        "status": "planned",
+        "function": "S 级第一次真汇聚＋机制首秀：绝境夜袭；三级献祭对照；献前纪元芯子换四阶（D3 兑出）＋断绳不响应（D5 部分清算）＋代价挂账（D6）＋灰中异象（D4 轻回响）",
+        "debt_ops": {"plant": ["D6 献祭代价（量化起）"], "clear": ["D3（兑出：残骸核心=前纪元遗物通道）", "D5（部分：断绳不响应）"], "echo": ["D4 一句不解释"]},
+        "convergence": "✅ 真汇聚（S）：D3+D5 同期清算",
+        "shuang_type": "S（献祭越阶）",
+        "opening_type": "对话开头", "ending_type": "期待感型", "emotional_intensity": 9,
+        "beats": [
+          {"summary": "绝境：兽潮残部/头领级夜袭城防缺口，现有手段不够，全员要死", "purpose": "压抑+绝境门槛再点（术语不点破）"},
+          {"summary": "机制首秀：三级献祭对照——浅祭（老兵铜符·暗铜色光）／命祭（生辰木牌·青白色光、人废掉）／他手里那件东西", "purpose": "四条献祭规则同章释放（设定已备）"},
+          {"summary": "决断：他献出前纪元芯子——烧完无光只有灰，四阶级，一击灭纹兽", "purpose": "S 级爽点+D3 兑出"},
+          {"summary": "断绳：缠着芯子一起丢进去，没烧——无附着不响应；他捡回来收好", "purpose": "D5 部分清算（最轻的东西就是不被收）"},
+          {"summary": "代价：指甲缝渗血、耳后冷汗（Ch6 量化为使力时长变短）", "purpose": "D6 挂账"},
+          {"summary": "灰中异象：一小撮灰自己聚拢又摊平，像有人顺手抹了一下（一句，不解释）", "purpose": "D4 轻回响（异象型）"},
+          {"summary": "章末：残骸缺了关键一环——替代物在位面里", "purpose": "再进位面动机（衔接 Ch4）"}
+        ],
+        "hook_sentence": "缺的那一环，位面里有。"
+      }
+    },
     "ch1": {
       "title": "乱局",
       "function": "立人+点题：掌控全局天才（冷动作兑现）+ 第三纪元崩塌波及边境",
@@ -205,9 +267,9 @@
     }
   },
   "cross_chapter_hooks": {
-    "ch1_end": "他为什么守这座城+城下埋着什么（挂账）",
-    "ch2_end": "城下是第二纪元古构装残骸+缺的原料在位面",
-    "ch3_end": "他献祭了残骸核心换翻盘，去位面抢原料的目标确立"
+    "ch1_end": "位面里那笔买卖成交——押掉七年家底换回一条命；被记上的那一笔，早晚要还",
+    "ch2_end": "字据清了（以工抵店）：城下＝第二纪元古构装残骸，手里只剩一把镐和朝城下的方向",
+    "ch3_end": "献掉前纪元芯子换来喘息，残骸缺了关键一环——替代物在位面里"
   },
   "守城动机闭环": "守城→城下第二纪元古构装残骸→Ch3献祭残骸核心→缺了关键一环→去位面找替代→下一卷目标",
   "点题闭环": "序言（世界死过两次）→Ch1（第三纪元崩塌波及边境）→Ch3（献祭第二纪元遗物换本纪元喘息）→后期（追寻世界反复毁灭的真相）",
@@ -299,17 +361,17 @@
     {"unit_id": 5, "chapters": "41-50", "unit_title": "卷高潮·第二槽", "unit_goal": "双线危机（围城+兽潮）收束+第二槽填充大爽点+收刀者第一层大暗示+卷末双钩", "unit_climax": "Ch46第二槽填充一击退四阶潮头（S级）", "mainline_progress": "f4槽2填充+f15闭环+f2第一层揭秘（沈/昭关联）→新悬念转化+f16埋设", "shuang_type": "借兽破围+献祭越阶+信息炸弹", "transition_hook": "Ch50末：献出去的东西回来了——卷2开启"}
   ],
   "volume_1_chapters": [
-    {"chapter": 1, "title": "乱局", "status": "done", "function": "立人+点题：冷动作兑现展示掌控全局天才，破城=第三纪元崩塌波及边境", "shuang_type": "B", "opening_type": "钩子句开头", "ending_type": "悬念型", "emotional_intensity": 4, "note": "beat sheet 见 golden_three_chapters.ch1"},
-    {"chapter": 2, "title": "造物", "status": "done", "function": "亮构装师：造物能力+城下第二纪元残骸揭示+活核需求", "shuang_type": "A", "opening_type": "动作开头", "ending_type": "信息揭示型", "emotional_intensity": 3, "note": "beat sheet 见 golden_three_chapters.ch2"},
-    {"chapter": 3, "title": "献祭", "status": "done", "function": "亮核心机制+点题：三级献祭对照+遗器核心越阶灭头兽+位面目标确立", "shuang_type": "S", "opening_type": "对话开头", "ending_type": "期待感型", "emotional_intensity": 9, "note": "beat sheet 见 golden_three_chapters.ch3"},
-    {"chapter": 4, "title": "裂口", "status": "planned", "unit": 1, "function": "进位面+高压开局：准备冷动作+裂隙第一感受（非人孤独质地）", "shuang_type": "B", "opening_type": "动作开头", "ending_type": "悬念型", "beats": [{"summary": "顾衡收拾进位面的东西，极少但每样有用；旧齿轮换到最贴身里兜（物件锚点）", "purpose": "人设+掌控者准备"}, {"summary": "与守军头目交底：地窖交给对方，'灰要是漫过门槛，就封阶'（关系锚点+f8轻触）", "purpose": "关系+渗透线轻触"}, {"summary": "裂隙进入：声音被吃掉、天是灰的、方向感失效（位面质地=非人孤独）", "purpose": "氛围+类型兑现"}, {"summary": "落地即险：他按城里习惯发声，立刻意识到这里声音会引来东西（规则①）", "purpose": "规则展示+高压"}], "hook_sentence": "远处有一小堆火，灰烬还是温的——位面里有人。", "emotional_intensity": 5, "foreshadowing_ops": ["s5:第一层画面开始兑现", "f11:环境预埋"], "ability_hint": false, "new_terms": []},
-    {"chapter": 5, "title": "灰天", "status": "planned", "unit": 1, "function": "位面规则展示+掌控者观察全局+建造痕迹（f11埋设）", "shuang_type": "A", "opening_type": "感官开头", "ending_type": "信息揭示型", "beats": [{"summary": "灰天静默生态：兽的习性与锈关外完全不同（展示不解释）", "purpose": "世界观兑现"}, {"summary": "顾衡半日不动只做观察默记规则（掌控者本色）", "purpose": "人设"}, {"summary": "微兑现：他用静默规则反杀一头盯上他的小兽——不作声，借地形", "purpose": "规则反制小爽点（A）"}, {"summary": "他发现石堆/凹槽排列太整齐，不像天然", "purpose": "f11埋设（建造痕迹）"}], "hook_sentence": "石头摆成这样只有一个解释：有人在这儿'住'过——而且住了很久。", "emotional_intensity": 5, "foreshadowing_ops": ["s5:兑现中", "f11:plant"], "ability_hint": false, "new_terms": []},
-    {"chapter": 6, "title": "猎法", "status": "planned", "unit": 1, "function": "首次猎杀获核+献祭代价第一层全量（s3闭合）+松弛微节拍", "shuang_type": "A", "opening_type": "动作开头", "ending_type": "悬念型", "beats": [{"summary": "按总结的规则猎一头够格的位面兽：机关+算计而非蛮力", "purpose": "智斗猎杀"}, {"summary": "取核：核在指间还在跳，纹路比壳兽核密（获宝A）", "purpose": "获宝爽点"}, {"summary": "代价释放：献祭后他右手使力的时长变短了，他掐着更算这个——代价被量化而非卖惨", "purpose": "s3闭合（第一层全量）"}, {"summary": "火堆边数口粮的冷幽默微松弛（w1节奏变速）", "purpose": "缓冲带"}], "hook_sentence": "核贴近引导器时，第二条空槽的槽壁纹，轻轻转了一下。", "emotional_intensity": 6, "foreshadowing_ops": ["s3:close", "f4:轻触"], "ability_hint": true, "new_terms": []},
+    {"chapter": 1, "title": "开价", "status": "done（v9.2 定稿）", "function": "挂账章＋转折：位面任务最险一刻；绝境摆摊议价、押掉七年家底换命——立人＋机制首秀（术语不点破）", "shuang_type": "B", "opening_type": "钩子句开头", "ending_type": "期待感型", "emotional_intensity": 6, "debt_ops": "挂 D1-D5 / 清 0（不计汇聚高潮）", "note": "beat sheet 见 golden_three_chapters.rework_v2.ch1；正文 output/chapter_001_draft.txt（v9.2）"},
+    {"chapter": 2, "title": "交割", "status": "planned", "function": "B 级小汇聚（专业碾压）：字据到期，以工抵店（D1+D2 同期清算）＋半揭城下＝第二纪元古构装残骸（D3）", "shuang_type": "A", "opening_type": "场景开头", "ending_type": "期待感型", "emotional_intensity": 6, "debt_ops": "清 D1（部分）+D2（部分）；半揭 D3", "note": "beat sheet 见 golden_three_chapters.rework_v2.ch2；旧『造物亮出』并入本节；旧 Ch1 破城戏只以回城所见给结果"},
+    {"chapter": 3, "title": "献祭", "status": "planned", "function": "S 级第一次真汇聚＋机制首秀：绝境夜袭；三级献祭对照；献前纪元芯子换四阶（D3 兑出）＋断绳不响应（D5 部分清算）＋代价挂账（D6）＋灰中异象（D4 轻回响）", "shuang_type": "S", "opening_type": "对话开头", "ending_type": "期待感型", "emotional_intensity": 9, "debt_ops": "清 D3+D5（部分）；挂 D6", "note": "beat sheet 见 golden_three_chapters.rework_v2.ch3；四条献祭规则同章释放（设定已备）；残骸缺环→再进位面动机"},
+    {"chapter": 4, "title": "裂口", "status": "planned", "unit": 1, "function": "入场作业：带着目标与备品二次进裂隙——首次感已由 Ch1 交付，本章走'老手感＋人险阴影'", "shuang_type": "B", "opening_type": "动作开头", "ending_type": "悬念型", "beats": [{"summary": "顾衡收拾进位面的东西，极少但每样有用；旧齿轮换到最贴身里兜（物件锚点）", "purpose": "人设+掌控者准备"}, {"summary": "与守军头目交底：地窖交给对方，'灰要是漫过门槛，就封阶'（关系锚点+f8轻触）", "purpose": "关系+渗透线轻触"}, {"summary": "再进裂隙：他已知这里吃声音、影子会跟、火光是给别人看的——这次不等不试，直奔兽路", "purpose": "氛围+类型兑现"}, {"summary": "落地即查：风向、兽路、退路，三条看一遍——Ch1 用三天换来的东西，这次一眼就用上（老手感）", "purpose": "规则展示+高压"}], "hook_sentence": "远处有一小堆火，灰烬还是温的——位面里有人。", "emotional_intensity": 5, "foreshadowing_ops": ["s5:第一层画面开始兑现", "f11:环境预埋"], "ability_hint": false, "new_terms": []},
+    {"chapter": 5, "title": "灰天", "status": "planned", "unit": 1, "function": "作业层规则展示（位面表层已由 Ch1 交付）+掌控者观察全局+建造痕迹（f11埋设）", "shuang_type": "A", "opening_type": "感官开头", "ending_type": "信息揭示型", "beats": [{"summary": "兽的层级与资格：什么样够格出核、什么时辰不挪窝（作业层规则）", "purpose": "世界观兑现"}, {"summary": "顾衡半日不动只做观察默记规则（掌控者本色）", "purpose": "人设"}, {"summary": "微兑现：他用静默规则反杀一头盯上他的小兽——不作声，借地形", "purpose": "规则反制小爽点（A）"}, {"summary": "他发现石堆/凹槽排列太整齐，不像天然", "purpose": "f11埋设（建造痕迹）"}], "hook_sentence": "石头摆成这样只有一个解释：有人在这儿'住'过——而且住了很久。", "emotional_intensity": 5, "foreshadowing_ops": ["s5:兑现中", "f11:plant"], "ability_hint": false, "new_terms": []},
+    {"chapter": 6, "title": "猎法", "status": "planned", "unit": 1, "function": "首次猎杀获核+献祭代价第一层全量（s3闭合）+松弛微节拍", "shuang_type": "A", "opening_type": "动作开头", "ending_type": "悬念型", "beats": [{"summary": "按总结的规则猎一头够格的位面兽：机关+算计而非蛮力", "purpose": "智斗猎杀"}, {"summary": "取核：核在指间还在跳，纹路比壳兽核密（获宝A）", "purpose": "获宝爽点"}, {"summary": "代价释放：献祭后他右手使力的时长变短了，他掐着更算这个——代价被量化而非卖惨", "purpose": "s3闭合（第一层全量）"}, {"summary": "火堆边数口粮的冷幽默微松弛（w1节奏变速）", "purpose": "缓冲带"}], "hook_sentence": "核贴近引导器时，第二条空槽的槽壁纹，轻轻转了一下。", "emotional_intensity": 6, "foreshadowing_ops": ["s3:close", "f4:轻触"], "ability_hint": true, "new_terms": [], "debt_ops": "双债（A2）：D6 闭合（代价量化）＋D7 部分清算（作业层规则在更深处复核成账）"},
     {"chapter": 7, "title": "人影", "status": "planned", "unit": 1, "function": "确认目标兽群位置+人险阴影（反派第一级影子）", "shuang_type": "C", "micro_payoff": "部分答案：有资格出活核的兽群位置确认", "payoff_eta": "猎杀开奖在Ch11", "opening_type": "钩子句开头", "ending_type": "信息揭示型", "beats": [{"summary": "循核的纹路感应找到有资格出活核的兽群活动区", "purpose": "目标锁定（小兑现）"}, {"summary": "发现另一伙人的痕迹：火堆、削过的木签、剥皮手法", "purpose": "f12埋设（人险阴影）"}, {"summary": "对方遗留物里有一样不该在这儿的：内陆样式的火镰（第二级远影）", "purpose": "反派梯子预埋"}, {"summary": "章末：有人先一步盯上那群兽——陷阱不是他布的", "purpose": "悬念"}], "hook_sentence": "那陷阱的布法很熟——是冲着'人和兽一起算'去的。", "emotional_intensity": 6, "foreshadowing_ops": ["f12:plant", "f4:轻触"], "ability_hint": false, "new_terms": []},
-    {"chapter": 8, "title": "兽踪", "status": "planned", "unit": 2, "function": "位面第一层全貌交付（s5闭合）+猎杀计划成型", "shuang_type": "B", "opening_type": "场景开头", "ending_type": "期待感型", "beats": [{"summary": "兽群结构看清：壳面直纹为主，够格的只有一头，'王'不在", "purpose": "信息交付"}, {"summary": "s5闭合：位面第一层画面给全——灰天、静默、规则、人迹", "purpose": "读者疑问第一层闭环"}, {"summary": "计划成型：他不猎兽，他'改道'——把兽群往他选的地形引", "purpose": "掌控者布局"}, {"summary": "微兑现：第一环改道成功", "purpose": "小兑现"}], "hook_sentence": "兽群改了道，直奔他挖好的地方——可那里还躺着另一伙人设的套。", "emotional_intensity": 5, "foreshadowing_ops": ["s5:close", "f12:强化"], "ability_hint": false, "new_terms": []},
+    {"chapter": 8, "title": "兽踪", "status": "planned", "unit": 2, "function": "位面第一层全貌交付（s5闭合）+猎杀计划成型", "shuang_type": "B", "opening_type": "场景开头", "ending_type": "期待感型", "beats": [{"summary": "兽群结构看清：壳面直纹为主，够格的只有一头，'王'不在", "purpose": "信息交付"}, {"summary": "s5闭合：位面第一层画面给全——灰天、静默、规则、人迹", "purpose": "读者疑问第一层闭环"}, {"summary": "计划成型：他不猎兽，他'改道'——把兽群往他选的地形引", "purpose": "掌控者布局"}, {"summary": "微兑现：第一环改道成功", "purpose": "小兑现"}], "hook_sentence": "兽群改了道，直奔他挖好的地方——可那里还躺着另一伙人设的套。", "emotional_intensity": 5, "foreshadowing_ops": ["s5:close", "f12:强化"], "ability_hint": false, "new_terms": [], "debt_ops": "双债（A2）：D7 全清（s5 闭合）＋D14 半揭（'有人住过'从猜想变确认）"},
     {"chapter": 9, "title": "抢核", "status": "planned", "unit": 2, "function": "人兽夹缝智斗：借兽反制抢核者", "shuang_type": "A", "opening_type": "动作开头", "ending_type": "反转型", "beats": [{"summary": "猎杀开始，兽入套；猎核队出手抢现成", "purpose": "冲突"}, {"summary": "顾衡不争，抽掉局里一根'销'——兽群方向刚好转向猎核队（借兽反制）", "purpose": "智力碾压A"}, {"summary": "微兑现：对方狼狈弃核，他捡走两枚", "purpose": "获宝"}, {"summary": "章末：对方头目远远看清了他的脸", "purpose": "结怨种子"}], "hook_sentence": "那头目没恼，反而笑了——'锈关方向来的，会造东西的那个。'", "emotional_intensity": 6, "foreshadowing_ops": ["f12:强化"], "ability_hint": false, "new_terms": [], "character_personality_requirements": {"顾衡": {"needed_trait": "精算+不逞勇", "reason": "精算→抽销改道而非正面冲突；不逞勇→让兽替他打", "if_different_personality": "热血性格会正面硬刚"}, "猎核队头目": {"needed_trait": "贪+记仇+识货", "reason": "贪→抢核；识货→记住顾衡的价值，为Ch13'要人'埋伏笔", "if_different_personality": "莽夫性格会当场拼命而非记脸"}}},
     {"chapter": 10, "title": "追杀", "status": "planned", "unit": 2, "function": "反派反扑+献祭代价与位面环境的对冲发现（能力暗示）", "shuang_type": "C", "micro_payoff": "脱身成功+摸清对方人数习惯", "payoff_eta": "反杀开奖在Ch13-14", "opening_type": "感官开头", "ending_type": "悬念型", "beats": [{"summary": "猎核队缀上他——位面里追杀比兽难缠（人比兽危险主题推进）", "purpose": "压力升级"}, {"summary": "他连续两日不睡反牵着对方走（掌控者耐力）", "purpose": "人设"}, {"summary": "发现：引导器里的灰进了位面反而'安静'，指甲渗血缓了", "purpose": "能力暗示：代价与位面环境对冲"}, {"summary": "微兑现：甩掉追杀+数清对方七人，只有一人的脚印总落在最后", "purpose": "小兑现+伏笔"}], "hook_sentence": "他数清楚了——对方七个人，只有一个人的脚印，每次都落在最后。", "emotional_intensity": 6, "foreshadowing_ops": ["f12:强化"], "ability_hint": true, "new_terms": []},
-    {"chapter": 11, "title": "借兽", "status": "planned", "unit": 2, "function": "大猎杀：用位面规则杀有资格出活核的兽（机制对抗）", "shuang_type": "A", "opening_type": "场景开头", "ending_type": "动作收束型", "beats": [{"summary": "目标兽出窝，规则连招：静默→改道→地形（机制对抗，非数值碾压）", "purpose": "猎杀高潮"}, {"summary": "追杀他的猎核队被卷进兽的警戒圈边缘（一石二鸟）", "purpose": "智斗"}, {"summary": "兽倒，壳面纹路停转——有资格出活核的死相", "purpose": "兑现"}, {"summary": "微兑现：核现", "purpose": "获宝"}], "hook_sentence": "他剖开兽的胸腔，那颗核还在跳——跳的节奏，和他自己的心跳对上了。", "emotional_intensity": 7, "foreshadowing_ops": ["f13:预埋"], "ability_hint": false, "new_terms": []},
+    {"chapter": 11, "title": "借兽", "status": "planned", "unit": 2, "function": "大猎杀：用位面规则杀有资格出活核的兽（机制对抗）", "shuang_type": "A", "opening_type": "场景开头", "ending_type": "动作收束型", "beats": [{"summary": "目标兽出窝，规则连招：静默→改道→地形（机制对抗，非数值碾压）", "purpose": "猎杀高潮"}, {"summary": "追杀他的猎核队被卷进兽的警戒圈边缘（一石二鸟）", "purpose": "智斗"}, {"summary": "兽倒，壳面纹路停转——有资格出活核的死相", "purpose": "兑现"}, {"summary": "微兑现：核现", "purpose": "获宝"}], "hook_sentence": "他剖开兽的胸腔，那颗核还在跳——跳的节奏，和他自己的心跳对上了。", "emotional_intensity": 7, "foreshadowing_ops": ["f13:预埋"], "ability_hint": false, "new_terms": [], "debt_ops": "小汇聚（A2·A 级）：D12 先收利息（借兽收拾猎核队）＋D6 第二层（代价具体化）——非 S 级，强度让给 Ch14"},
     {"chapter": 12, "title": "活核", "status": "planned", "unit": 2, "function": "活核获取（独特质感）+裂隙客拦路+锈关切镜头（f7半揭）", "shuang_type": "A", "opening_type": "动作开头", "ending_type": "悬念型", "beats": [{"summary": "取活核：它是'活'的，认温度，离开兽体就开始'死'，须以特定手法养", "purpose": "设定质感+获宝"}, {"summary": "活核靠近引导器安分，靠近他本人躁——像在辨认", "purpose": "f13埋设"}, {"summary": "切镜头·锈关：守军头目矛杆上的霜漫到矛身，城里井水有了灰味", "purpose": "f7半揭/f8轻触（切镜头维持锈关存在感）"}, {"summary": "章末：归路上一个带位面气息的裂隙客拦住去路", "purpose": "悬念"}], "hook_sentence": "'核留下。'那人说，'人可以不留下。'", "emotional_intensity": 6, "foreshadowing_ops": ["f13:plant", "f7:半揭", "f8:轻触"], "ability_hint": false, "new_terms": ["裂隙客（设定词，非专名）"]},
     {"chapter": 13, "title": "人险", "status": "planned", "unit": 2, "function": "与裂隙客团伙对峙：位面里人比兽危险（主题章）", "shuang_type": "A", "opening_type": "对话开头", "ending_type": "反转型", "beats": [{"summary": "裂隙客（三阶）带两人围他，要核也要他'入伙'", "purpose": "冲突"}, {"summary": "周旋：他交出两枚次核，话里给对方算了一笔账（用算账当武器）", "purpose": "智斗A"}, {"summary": "对方不收账要收人——他后撤一步，踩进三天前留的'后手'范围", "purpose": "反转铺垫"}, {"summary": "微兑现：账算成了，对方内部先犹豫", "purpose": "小兑现"}], "hook_sentence": "他退到第三步的时候，脚下这块地的土，是他亲手换过的。", "emotional_intensity": 7, "foreshadowing_ops": ["f12:强化"], "ability_hint": false, "new_terms": []},
     {"chapter": 14, "title": "反杀", "status": "planned", "unit": 2, "function": "反杀打脸反派第一级（S级高潮）+反派第一级立完", "shuang_type": "S", "opening_type": "动作开头", "ending_type": "动作收束型", "beats": [{"summary": "后手连环：换过的土+静默规则+被惊动的兽群残部三样叠加（冷动作兑现结构复用）", "purpose": "S级爽点"}, {"summary": "裂隙客团伙折了大半，头目断后逃走（留线）", "purpose": "反派第一级立完"}, {"summary": "逃走的头目放话：核是'收货的人'点着要的那类", "purpose": "f12强化/第二级影子"}, {"summary": "微兑现：缴获对方存货与一本记核的兽皮账", "purpose": "获宝+情报"}], "hook_sentence": "兽皮账上记的最后一笔，收货的落款只有一道刻痕——直、浅、收尾往左带小钩。", "emotional_intensity": 7, "foreshadowing_ops": ["f12:强化", "f2:环境性轻触①（用途维度：刻痕=收货记号，≤1句不解释）"], "ability_hint": false, "new_terms": []},
@@ -350,6 +412,37 @@
     {"chapter": 49, "title": "余烬", "status": "planned", "unit": 5, "function": "战后格局重排+卷2钩子铺设", "shuang_type": "C", "micro_payoff": "部分答案：内陆退兵的真相一角——'收灰'单子价涨三倍", "payoff_eta": "卷2兑现", "opening_type": "对话开头", "ending_type": "期待感型", "beats": [{"summary": "内陆残兵退走，来使临走改口：从'要人'变'相请'（社会认知暗线推进）", "purpose": "暗线推进"}, {"summary": "f12半揭收尾：收货人网络受挫，但'收灰'的单子价涨三倍——更多人会来", "purpose": "危机升级预告"}, {"summary": "深处兽将让出的那条路横在所有人心里：深处有什么在'见'他", "purpose": "卷2主钩铺设"}, {"summary": "微兑现：锈关扩编，第二具构装开工", "purpose": "小兑现"}], "hook_sentence": "第二具构装的胸甲合上那晚，地底残骸停了二十年的流动纹，重新走了一格。", "emotional_intensity": 6, "foreshadowing_ops": ["f12:半揭", "f5:escalate", "f14:强化"], "ability_hint": false, "new_terms": []},
     {"chapter": 50, "title": "还刀", "status": "planned", "unit": 5, "function": "卷末双钩章+卷一收束（首尾呼应）", "shuang_type": "B", "opening_type": "钩子句开头", "ending_type": "悬念型", "beats": [{"summary": "卷一收束画面：锈关今昔——开场破城血腥，此刻炊烟（首尾呼应）", "purpose": "终场画面"}, {"summary": "主钩：工作台上放着那把旧锉刀——献掉的那把，原样，刀柄上还有他捏出的指印", "purpose": "f16埋设：献祭规则被谁打破"}, {"summary": "副钩：刀下压着一张皮纸，只有一道收刀的钩", "purpose": "f2余音→卷2"}, {"summary": "章末：他把锉刀收进怀里，望向位面的方向——深处的路还亮着", "purpose": "卷2接引"}], "hook_sentence": "献出去的东西回来了。这世界的账从来只多不少——可这一笔，是别人先坏了规矩。", "emotional_intensity": 7, "foreshadowing_ops": ["f16:plant", "f2:余音", "f5:卷2接引"], "ability_hint": false, "new_terms": [], "skeptic_note": "v1.1规则护栏锁定（f16）：①归还的是'形'不是'价'——锉刀的情感附着/念想已在Ch45献祭中燃尽，回来的只是器物空壳，此口径为本书献祭规则的永久设定，卷2-3解释时不得另立'赎回''反向收'等其他口径；②顾衡不得从归还的锉刀获得任何实际利益（写作禁令：不得用它当祭品二次献祭、不得恢复其附着）；③还刀质感=不安/被注视感，非温情团圆——章末钩子句'别人先坏了规矩'的不祥基调必须保住；④卷2-3须在揭示收刀者第二层时同步给出规则级解释（谁有能力'还形'），揭示前写手不得让任何角色把此事解读为'献祭可反悔'。"}
   ],
+  "debt_table": {
+    "rule": "债=必须在未来被兑付的义务；四类（契约/关系/认知/情绪）；**汇聚高潮=同一节点≥2笔同期清算**，单线=转折；每笔清算必须长出新债",
+    "note": "2026-10-10 建立（债作为 outline 第一维度）；判定过程与缺口清单见 docs/第三纪元_故事债表草案_Ch1-15.md；Ch4-15 账节点密度改造（Ch6/Ch8/Ch11 双债）待 A2",
+    "debts": [
+      {"id": "D1", "type": "契约", "content": "他欠柜上：字据后日日落为限，交不出铺子抵掉", "anchor": "幌子·字据·两间门面", "planted": 1, "due": 2, "clear": "部分（Ch2 以工抵店）", "new_debt": "挖城下（D3 升级为本金）"},
+      {"id": "D2", "type": "情绪", "content": "他欠自己：不开口求人", "anchor": "宁可拿命来填，也不填这句话", "planted": 1, "due": 2, "clear": "部分（Ch2 以工抵店）", "new_debt": "欠班底一份被护过的人情（Ch23）"},
+      {"id": "D3", "type": "认知", "content": "城下出来的东西凭什么比料值钱", "anchor": "残片+那一眼的看货速度差", "planted": 1, "due": 2, "clear": "半揭（Ch2 城下=第二纪元古构装残骸）→ Ch3 兑出（四阶越阶）", "new_debt": "残骸缺一环→进位面找替代（Ch4 起）"},
+      {"id": "D4", "type": "情绪", "content": "眼睛把这一笔记上（白看的人情要还）", "anchor": "那一眼", "planted": 1, "due": "卷1后段（与 f16 同族·异象型）", "clear": "长线（Ch3 一次轻回响）", "new_debt": "老龙线第一次回访"},
+      {"id": "D5", "type": "契约", "content": "断绳被剩下（没排上号的半笔）", "anchor": "断绳", "planted": 1, "due": 3, "clear": "部分（Ch3 缠芯子一起献——不响应、未烧、捡回）", "new_debt": "长线化（待定）"},
+      {"id": "D6", "type": "契约", "content": "献祭的不等价代价", "anchor": "指甲缝渗血/耳后冷汗", "planted": 3, "due": 6, "clear": "部分（Ch6 量化：右手使力时长变短；Ch11 第二层）", "new_debt": "位面环境对冲代价之谜"},
+      {"id": "D7", "type": "认知", "content": "位面第一层长什么样", "anchor": "裂隙·灰天", "planted": 4, "due": 8, "clear": "部分（Ch6 作业层复核）→ 全清（Ch8 s5 闭合）", "new_debt": "人比兽险（并入 D9）"},
+      {"id": "D8", "type": "悬念", "content": "锈关的霜＝蚀", "anchor": "矛杆的霜", "planted": 12, "due": 15, "clear": "全清", "new_debt": "井水灰味·地底响"},
+      {"id": "D9", "type": "认知", "content": "猎核队背后的收货人是谁", "anchor": "火堆·削木签·内陆火镰", "planted": 7, "due": 38, "clear": "升级链 Ch10→12→14→28→38", "new_debt": "谁在收灰（卷2）"},
+      {"id": "D10", "type": "认知", "content": "活核/构装为什么'不听'", "anchor": "活核'认温度'", "planted": 11, "due": 24, "clear": "全清（认主闭环）", "new_debt": "第二具要更高的格（Ch25）"},
+      {"id": "D11", "type": "关系", "content": "地窖托付（守军头目）", "anchor": "钥匙", "planted": 4, "due": 23, "clear": "部分（Ch19 回响＋Ch23 班底护主）", "new_debt": "南边家人的方向"},
+      {"id": "D12", "type": "情绪", "content": "猎核队记住了他的脸", "anchor": "对方的笑", "planted": 9, "due": 14, "clear": "全清（团灭，头目断后逃走）", "new_debt": "第二级网络（并入 D9）"},
+      {"id": "D13", "type": "遗留", "content": "兽皮账上的刻痕（直、浅、收尾往左带钩）", "anchor": "兽皮账", "planted": 14, "due": 28, "clear": "半揭（帖子落款同款钩）", "new_debt": "昭关（与 D3 同族·地缘）"},
+      {"id": "D14", "type": "认知", "content": "位面里有'造的'东西", "anchor": "太整齐的石堆", "planted": 5, "due": "29-33", "clear": "半揭（Ch8 '有人住过'确认）→ 升级链 Ch29-33", "new_debt": "巨构（长线）"},
+      {"id": "D15", "type": "悬念", "content": "兽潮为什么在'走'（不追人）", "anchor": "逃难者那句话", "planted": 19, "due": 43, "clear": "全清", "new_debt": "被谁'赶'（卷2）"}
+    ]
+  },
+  "convergence_nodes": [
+    {"chapter": 2, "grade": "B", "debts": ["D1", "D2"], "note": "小汇聚：以工抵店（同期清算两笔）"},
+    {"chapter": 3, "grade": "S", "debts": ["D3", "D5"], "note": "第一次真汇聚；同章挂 D6、D4 轻回响"},
+    {"chapter": 14, "grade": "S", "debts": ["D12", "D9升级", "D13挂"], "note": "现有大纲唯一真汇聚，保持"},
+    {"chapter": 15, "grade": "B", "debts": ["D8"], "note": "收锈关线一簇（霜/井/地）"},
+    {"chapter": 6, "grade": "B", "debts": ["D6", "D7（部分）"], "note": "A2 已改造：代价闭合＋作业层规则复核＝双债"},
+    {"chapter": 8, "grade": "B", "debts": ["D7", "D14（半揭）"], "note": "A2 已改造：s5 闭合＋'有人住过'确认＝双债"},
+    {"chapter": 24, "grade": "单线", "debts": ["D10"], "note": "造物收束，保留为转折"},
+    {"chapter": 11, "grade": "A", "debts": ["D12（利息）", "D6（第二层）"], "note": "A2 已补：借兽收拾猎核队先收利息＋代价具体化（避开 Ch14 强度）"}
+  ],
   "villain_ladder": {
     "tier_1": {"name": "裂隙客猎核团伙（喽啰级）", "feature": "实力与主角接近（三阶裂隙客带队），位面里'人比兽危险'的具象化", "debut": "Ch7影子→Ch9-14正面→Ch14打残，头目逃脱留线", "function": "短期爽点+测试主角智斗模式+引出收货人网络"},
     "tier_2": {"name": "内陆'收灰'网络/行会外围（隐藏级）", "feature": "实力高于主角（资源/兵力/人脉碾压），不直接下场，通过兽皮账/来使/夜探间接施压", "debut": "Ch7首现远影（内陆火镰，已落地）→Ch22-38渐进接触→Ch39-44正面围困→卷2主对手", "function": "中期悬念+主角成长目标+'收货人'与刻痕记号的关联（与f2交叉）"},
@@ -383,12 +476,12 @@
       {"range": "Ch44", "active": ["s10", "s11"], "count": 2, "event": "s11开窗：深处有什么在'赶'兽/'见'他（卷2）"},
       {"range": "Ch50", "active": ["s10", "s11", "s12"], "count": 3, "event": "s12开窗：献掉的旧锉刀回来了（f16，长线）"}
     ],
-    "note": "任意时点活跃≤3，全程合规；每个悬念闭合必给第一层答案（非纯埋不揭），符合'信息释放梯度≤2章'原则。v1.1注记：卷末Ch47-50读者体感并发问题达4个（s10收灰目的/s11深处赶兽/s12还刀/f2转化后的沈悖论）——s12(还刀/f16)定性为异象型悬念，不追近期答案，写作时以'不安的余味'呈现而非'待解的谜题'；f2转化后的沈悖论即刻回归长线，不计入窗口。"
+    "note": "任意时点活跃≤3，全程合规；每个悬念闭合必给第一层答案（非纯埋不揭），符合'信息释放梯度≤2章'原则。v1.1注记：卷末Ch47-50读者体感并发问题达4个（s10收灰目的/s11深处赶兽/s12还刀/f2转化后的沈悖论）——s12(还刀/f16)定性为异象型悬念，不追近期答案，写作时以'不安的余味'呈现而非'待解的谜题'；f2转化后的沈悖论即刻回归长线，不计入窗口。 v1.3注记（2026-10-10）：Ch1 已交付位面表层画面（灰天/静默/规则/对接者）——s5 自 Ch4 起改定义为'位面作业层规则全貌（兽的层级与资格/取核手法）'，闭合点 Ch8 不变；Ch1-3 的债码（D1-D6）与 s 系并行登记于 debt_table。"
   },
   "shuang_point_distribution": [
-    {"chapter": 1, "type": "智力碾压", "grade": "B", "description": "三冷动作同时兑现，盘活破城死局"},
-    {"chapter": 2, "type": "专业碾压", "grade": "A", "description": "构装师身份亮出+倒钩矛头+一拨就松"},
-    {"chapter": 3, "type": "献祭越阶", "grade": "S", "description": "献第二纪元芯子一击灭纹兽"},
+    {"chapter": 1, "type": "算计胜（议价）", "grade": "B", "description": "绝境摆摊议价：全押换命（挂账章，清算 0 笔——不计汇聚高潮）"},
+    {"chapter": 2, "type": "专业碾压", "grade": "A", "description": "以工抵店：不求人，用手艺把抵店谈成留作坊（小汇聚 B：D1+D2 同期清算）"},
+    {"chapter": 3, "type": "献祭越阶", "grade": "S", "description": "献前纪元芯子一击灭纹兽（第一次真汇聚：D3+D5 同期清算）"},
     {"chapter": 5, "type": "规则反制", "grade": "A", "description": "用静默规则反杀盯上他的位面小兽（v1.1补录，修正交接卡漏计）"},
     {"chapter": 6, "type": "获宝", "grade": "A", "description": "首次位面猎杀取核"},
     {"chapter": 9, "type": "智斗", "grade": "A", "description": "借兽反制抢核者"},
