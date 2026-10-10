@@ -1,147 +1,200 @@
 {
   "card_type": "outline_review",
-  "timestamp": "2026-08-07T01:20:00+08:00",
+  "timestamp": "2026-10-10T14:30:00+08:00",
   "from_agent": "outline-editor",
-  "to_agent": "chief-editor",
-  "status": "completed",
-  "target": "《第三纪元》完整大纲 v1.1（6卷300章总纲+卷1 Ch1-50逐章beat，skeptic质疑 verdict=pass 后验收）",
-  "inputs_reviewed": [
-    "memory/outline.json (v1.1)",
-    "handoff/skeptic_review.json",
-    "handoff/outline_card_v1.json",
-    "handoff/topic_screening_disanjiyuan.json",
-    "memory/setting_bible.json",
-    "memory/goal_tracker.json",
-    "memory/foreshadowing_tracker.json",
-    "memory/chapter_summaries/chapter_001.json ~ chapter_003.json",
-    "config/novel_config.json"
-  ],
+  "to_agent": "plot-architect",
+  "status": "revise",
+  "reviewed": {
+    "target": "memory/outline.json",
+    "target_version": "1.4",
+    "independence": "未参与本大纲写作，独立审核",
+    "sources_read": [
+      ".trae/skills/outline-editor/SKILL.md（rubric，完整读）",
+      "memory/outline.json（v1.4）",
+      "docs/第三纪元_故事债表草案_Ch1-15.md",
+      "docs/第三纪元_开场方案v2_GANTZ化与老龙并入.md",
+      "memory/session_pointer.json",
+      "memory/setting_bible.json / memory/ability_system.json / memory/characters/顾衡.json",
+      "output/chapter_001_draft.txt（Ch1 v9.2 定稿正文）",
+      "config/novel_config.json"
+    ]
+  },
   "content": {
-    "overall_verdict": "小修（revise）",
-    "verdict": "revise",
-    "dimension_scores": {
-      "commercial_score": {
-        "score": 9.0,
-        "评语": "题材在窗口期：位面入侵+献祭流+智斗=番茄男频玄幻/末世流明确标签，'不等价交换是税'（卷5揭示）给献祭流加了规则纵深。题材耐久度三层结构扎实——位面=无限场景池、构装=无限造物组合（w3禁量产已兑现）、纪元真相=深层悬念主轴；stakes escalation 数量级清晰（Ch1守一座破城→Ch100第三槽+兽将正面+势力跨城→Ch300纪元器+终局献祭），300章耐久成立。卖点一句话炸裂：'他算得清全城人的生死，算不清贴身齿轮上那道刻痕是谁留的'，简介四段式（设定/人物反差/悬念/标签）完整。差异化明确：'纪元轮回支点+构装师职业线+收刀者自我悬念'组合无'像XX书'风险。扣分项：①书名《第三纪元》为意象派（用户偏好命中项，不改），目录页点击欲平，转化压力全压给简介与章节名，目前大纲层无补偿设计；②卷1为立势卷，智斗+氛围章占比高，对最浅层纯爽文读者的首日转化依赖黄金三章质量兜底——虽已实战验证（用户五轮精修定稿），但属受控风险而非优势项。"
-      },
-      "structure_score": {
-        "score": 9.5,
-        "评语": "骨架教科书级。6卷300章每卷50章整，卷卷有主题（立足/扩张/入局/身世与代价/真相半揭/终卷抉择）+新舞台+新真相层（L0-L4）+反派层级推进（tier1立完→tier2正面→收束+tier3登场→真面目→终极对决），切分平衡。主线一条到底：核心循环每卷标注进度（首次闭环/第二次/升级/变形/升维/终局），无迷失风险。四条副线全部服务主线（收刀者线=身世+真相载体；渗透线=献祭规则纵深；势力线=装逼母题；守军头目线=人味锚点），无喧宾夺主。卷间因果链环环相扣（还刀+昭关方向→沈实物→昭关实到+清单→沈与记忆→沈线收束→终局）。卷1五单元串糖葫芦（探索→猎核反杀→造物→做局→卷高潮）单元目标/高潮/转场钩齐备。扩展性充足（位面场景池+构装组合+真相分层），加卷不破结构。卷2-6当前仅卷级骨架属正常滚动规划，不扣分。"
-      },
-      "rhythm_score": {
-        "score": 9.0,
-        "评语": "按修正口径评：A级以上主爽点章25/50=50%（S级4章Ch3/14/33/46+A级21章），低于技能默认60%基准，但skeptic裁定成立——卷1立势卷智斗+氛围章占比高属题材特性，真指标是断顿窗口：48个连续3章窗口全扫描，唯一实质断顿Ch34-36已落修复注记（Ch36须落地A级立规反制）；C级12章全单章孤立且每章带micro_payoff+payoff_eta；每章保底B级小兑现。爽点类型16种（智力碾压/献祭越阶/规则反制/做局夺料/借兽破围/造物/信息揭示…），糖衣口味轮换无连续3章同类型。黄金三章已实战验证，Ch4即入位面零拖延。4个S级间隔11/19/13章分布精准，卷高潮Ch46双线收束+四阶首退爆点足。章末钩每章有hook_sentence且开头/结尾格式全卷零连续重复。情感坡度合规（Ch3=9→Ch4=5降4档；Ch46=8→Ch47=5降3档；Ch16谷3落位准确）。扣分项：①50%口径下即时爽感供给是'够'而非'溢'；②Ch40-46连续7章强度6-8高压，缓冲带目前仅为执行注记未落beat位，疲劳风险悬在执行层——此风险应提回大纲层锁死（见recommended_fix #2）。"
-      },
-      "foreshadowing_score": {
-        "score": 9.5,
-        "评语": "伏笔体系机械级合规。f1-f16全链路各有回收点：短中线（f1 Ch2/f3 Ch3/f7 Ch15/f13 Ch24/f15 Ch43）闭合清晰；长线f2收刀者三层揭示（Ch47-48/卷3/卷4）节奏精准；f4槽填充跨卷期待锚贯穿全卷且每单元有轻触（Ch6/15/25/35/39/44）。半揭节奏规范（f7 Ch12切镜头半揭→Ch15闭合；f2四次环境触点维度递进：用途→人际→地缘→器物）。悬念窗口任意时点≤3全程合规，闭合纪律机械化（每闭合必给第一层答案，纯埋不揭≤2章）。逻辑自洽：献祭规则（附着×稀有度/不等价/前纪元规避）内部咬合；f16'还形不还价'经本次验收确认与Ch3附着机制严格一致（详见skeptic移交裁定d）；力量体系纹路=等级全程一致。防断线机制到位（Ch46右手三个月、Ch14逃走头目去向均已落卷2交接注记）。扣分项无大纲层缺陷——m6三项口径差（s6目标章/f4跨卷/naming昭关）均为memory同步项，已列入memory-manager待办（见memory_sync_todo）。"
-      },
-      "character_setup_score": {
-        "score": 9.0,
-        "评语": "主角魅力强且经实战验证：顾衡'掌控全局的天才'+反差（算得清全城生死，算不清贴身刻痕）+core_fear（怕遗忘）+vulnerability_leak（气浪中本能按齿轮非护锉刀），Ch45记忆损耗代价与core_fear绑定，人设纵深到位。配角差异化明确且各有独立目标非工具人：守军头目（锚点型，南边家人线f10有独立弧线）、老周头（伤后管库凡人体面）、少年（Ch36传承种子，不命名的克制处理加分）。反派三级梯子有深度设计：tier1头目'没恼反而笑了'识货记脸非脸谱；tier2怀柔来使三问加码真目的揭示；tier3伪装盟友卷3登场（前期可恨后期可悲镜像待展开）；no_skip_rule防跳级。关系张力充足（顾衡×守军头目锚点、顾衡×构装造物者与被造物、班底护主）。扣分项：①卷1配角数量克制，群像厚度待卷2-3扩展；②女性角色目前为零——番茄男频非硬伤，但卷2内陆舞台权力层若没有女性角色会失真，需卷2规划时补位；③tier3深度待卷3验证。"
-      },
-      "platform_fit_score": {
-        "score": 9.5,
-        "评语": "全项适配。章节2400-2600字/章符合番茄偏好；日更1章支持日更，爆更节点明确（Ch14/33/46）；读者画像覆盖番茄男频玄幻/末世主流；标签分类精准（位面入侵/献祭流/构装师/智斗/纪元末世）。主题基调适配：名义暗（纪元崩塌/献祭不等价）但暗基调补偿3项检测全通过——①每章≥1冷幽默/释放点已在beat层标注（数口粮/喝剩粥/班底护主/构装起名）②主角干涩精准、死局里谈生意的语言风格③情绪循环+情感坡度追踪机制化（峰后降≥3档）；用户暗基调历史4项目放弃的高风险标记，经本项目黄金三章五轮精修实战验证后转为受控。审核风险低（无政治/色情擦边，末世战斗暴力在合规线内）。《请客》教训实质吸收：类型钩子前置（Ch3献祭机制+位面目标+三条空槽全展示），非纯氛围铺垫。冷硬文风偏'重'的既有提示已被'每章爽点兑现+章末硬钩子'对冲设计覆盖。"
-      }
+    "overall_verdict": "小修",
+    "commercial_score": 8.0,
+    "structure_score": 8.0,
+    "rhythm_score": 7.5,
+    "foreshadowing_score": 8.0,
+    "character_setup_score": 8.5,
+    "platform_fit_score": 8.0,
+    "total_score": 7.95,
+    "score_rationale": {
+      "commercial": "位面入侵·献祭流·智斗在番茄窗口期内，卖点（掌控全局天才构装师+债汇聚高潮）清晰；但 GANTZ 化后 Ch1 变成单人冷开场（无对话对象、无破城），商业钩子从『破城三冷动作同刻兑现』退为『议价+被记上』，前 3 章代入感与即时爽感下降，书名《第三纪元》偏文艺、点击欲一般。",
+      "structure": "债表模型把主线钩成一条链，6 卷 stakes 数量级递增（守城→内陆→巨构→纪元轮回），主线清晰、扩展接口明确；扣分在顶层摘要字段与新结构的同步缺口（opening_three_questions 仍描述旧开场）。",
+      "rhythm": "黄金三章 Ch2=A/Ch3=S 密集，Ch4-8 平推段已用双债改造缓解；但 Ch4(B)/Ch7(C)/Ch8(B) 仍偏轻，且爽点分布表漏登多个 A 级章，全卷节奏口径失真。",
+      "foreshadowing": "债表+伏笔梯度+悬念窗口三层规划完整，半揭/闭合节点清晰；扣分在 f 系编号缺漏（f6 被引用未登记）、债→章映射不完整、三套编号并行。",
+      "character": "顾衡反差萌内核强（算得清全城算不清刻痕），反派三级梯子+配角独立目标齐备，关系网有张力；扣分在角色卡尚未随 GANTZ 化同步（属下游连锁）。",
+      "platform_fit": "2400-2600 字/章、支持日更、标签与分类基本对口、审核敏感点低；扣分在 Ch1 冷基调与番茄碎片化阅读的匹配需补偿验证。"
     },
-    "total_score": 9.2,
-    "total_score_calculation": "9.0×0.25 + 9.5×0.20 + 9.0×0.20 + 9.5×0.15 + 9.0×0.10 + 9.5×0.10 = 2.25+1.90+1.80+1.425+0.90+0.95 = 9.225 ≈ 9.2",
-    "veto_check": {
-      "主线断裂": "不触发——核心循环一条到底，卷间因果链完整",
-      "核心设定矛盾": "不触发——f16'还形不还价'口径本次验收确认与附着机制自洽（见裁定d）",
-      "商业方向错误": "不触发——(a)题材属番茄主流玄幻/末世献祭流；(b)爽感路径1-2步（C级4步+长路径=0）；(c)暗基调补偿3项检测全通过",
-      "黄金三章失效": "不触发——Ch1-3已实战验证（用户五轮精修定稿+发书建议认可），爽点B→A→S递进+章末三钩齐备"
-    },
-    "skeptic_acceptance_rulings": [
-      {
-        "item": "a) Ch45/46 差异化护栏是否足够",
-        "ruling": "通过——护栏足够，无需退回重做卷高潮",
-        "reasoning": "三维度差异化全部落到可验收执行条款而非空话：①牺牲主体——Ch3献'世界的过去'（第二纪元芯子，外物）vs Ch45献'他的过去'（半生念想+记忆损耗，内在），情感机制本质不同；②视觉主轴——Ch46锁定'壳面活纹灭一片'新画面，明令禁复刻Ch3'灰柱冲天'主打意象；③代价维度——记忆损耗（'想不起来教他锉第一刀的人长什么样了——一秒，只有一秒'）为Ch3没有的新维度，与f9/core_fear怕遗忘绑定，且明确'献祭动作不得喧宾夺主'。另有两道结构性保险：间隔42章远超'同类型3章不重复'红线；战果尺度差异（Ch3灭三阶纹兽 vs Ch46退而不杀四阶潮头，靠'四阶第一次退'的历史意义撑爽感）。detail-reviewer有明确验收抓手（禁复刻灰柱/活纹灭一片/记忆损耗落点三条可逐条核）。"
-      },
-      {
-        "item": "b) Ch36 修断顿不得毁掉'少年传承'柔情落点",
-        "ruling": "通过——兼容，附执行提醒",
-        "reasoning": "skeptic注记的A级兑现方向（立规遭挑衅→三规反制小打脸）落位章中冲突场景，少年传承钩（'构装认人吗？……那你走了，它们认谁？'）在章末，结构上互不挤压；且'章中硬爽→章末柔远'的情绪切换是爽后余韵的有效手法，反而能抬少年问话的重量。执行提醒（写入本章交接要求）：A级反制须在章中收束完毕，不得拖到章末挤压少年beat的呼吸空间；章末保留至少一个完整静默beat给传承问话。detail-reviewer按双指标验收——A级兑现是否落地+柔情落点是否保住，缺一并打回。"
-      },
-      {
-        "item": "c) 爽点密度按50%（25/50章A级以上）修正口径评",
-        "ruling": "采纳修正口径——节奏维度按50%评，给9.0不因口径差压档",
-        "reasoning": "确认修正：交接卡漏计Ch5（规则反杀）/Ch12（活核获宝）两个A级章，outline.json v1.1已补录，修正后S4+A21=25/50=50%。距技能默认60%基准有口径差，但skeptic round3裁定成立：卷1立势卷智斗+氛围章占比高属正当设计；每章保底B级小兑现+C级12章全带micro_payoff；真指标断顿窗口全扫描仅Ch34-36一处且已修。综合：爽点质量（4个S级精准分布）+类型多样性（16种）+保底机制（每章B）补足百分比差距，节奏维度给9.0（黄金三章实战验证+断顿已修），不因50%vs60%压到7-8档，也不给到9.5（即时爽感供给是'够'而非'溢'，Ch40-46高压段疲劳风险见recommended_fix #2）。"
-      },
-      {
-        "item": "d) f16'还形不还价'已锁永久设定——不认可该口径本身请直接打回（升级critical）",
-        "ruling": "认可该口径——规则自洽按此口径核验通过，不升级critical",
-        "reasoning": "逻辑链核验：①与Ch3已建立的'情感附着'机制严格咬合——献祭规则1明确'只有带情感/命格附着的东西才能激活'，献祭烧掉的是附着（价）而非器物本身（形），'附着已燃尽、器物壳归还'在规则内部无矛盾；②漏洞封堵完备——禁令②（顾衡不得从归还锉刀获利/禁二次献祭/禁恢复附着）堵死'献祭套利'经济漏洞（若可还再献=无限循环，规则崩塌），禁令④（任何角色不得解读为'献祭可反悔'）堵死读者误读；③叙事增益——'别人先坏了规矩'把规则疑点框定为'世界内存在更高位操作者'而非'规则有洞'，为收刀者/跨纪元种族能力预留规则接口，且从'温情返还'反转为'被注视的不祥'，反套路成立并与f2沈线物理绑定（刀下压皮纸）；④单一口径锁定（禁'赎回'/'反向收'另立口径）防止卷2-3即兴解释互相矛盾——skeptic此项处置是正确的规则管理。结论：该口径是本书献祭体系的优秀规则设计，永久设定地位确认。"
-      },
-      {
-        "item": "e) Ch50副钩是否构成第7次收刀者触点过量",
-        "ruling": "不构成过量——通过，附执行建议",
-        "reasoning": "触点全清单核验：Ch2埋设→Ch3末升级→Ch14用途→Ch28人际→Ch31地缘→Ch38器物→Ch47计数（大暗示起）→Ch48姓名（第一层揭秘）→Ch50副钩。skeptic R3裁定的'6次'口径（Ch14/28/31/38+47/48）未含Ch50。关键判定：控温期触点纪律约束的是'揭秘前'的悬念保温；Ch47-48第一层揭秘完成后，f2已按w2要求转化为新悬念（沈悖论：沈销声匿迹早于残骸入土，如何留新痕）并即刻回归长线——Ch50皮纸钩不是控温期第7次触点，而是揭秘后的'余音/卷2接引'。三点支撑：①功能上它与主钩（还刀）物理绑定为双钩合一设计（刀下压皮纸），非独立新增触点；②维度不重复（邀约/接引维度，此前六维为用途/人际/地缘/器物/计数/姓名）；③卷末收束章给卷2方向接引是类型本分。执行建议：Ch50副钩篇幅≤1拍，皮纸一笔带过不得展开解读，保持余音质感——若展开解读则确实构成过量消费，detail-reviewer把关。"
-      },
-      {
-        "item": "f) m6 memory同步项确认列入memory-manager待办",
-        "ruling": "确认列入——六项全部转memory-manager入库门禁执行",
-        "reasoning": "m6三项口径差经逐项核验均为memory同步项非大纲错误：①goal_tracker.s6 target_close=12 vs 大纲Ch12半揭/Ch15闭合——逻辑自洽（闭合需锈关场景），改memory；②foreshadowing_tracker.f4 target_reveal'第一卷内逐槽填充' vs 实际卷1仅填槽2——遵循预筛adjustment与卷高潮设计，改memory；③setting_bible.naming_conventions已用专名缺'昭关'——Ch2定稿正文已出现'昭关城下的土'（chapter_002.json摘要证实），实际已用4个非3个。另合并outline_card的memory_sync_requests三项（villain_ladder回填/suspense_window滚动/f11-f16新增）。完整清单见memory_sync_todo。硬门禁提醒：character-designer开工前必须完成同步，否则角色设计会读到矛盾事实源。"
-      }
-    ],
     "strengths": [
-      "三层耐久结构+清晰stakes escalation：位面场景池×构装组合×纪元真相L0-L4，Ch1守破城→Ch300纪元器终局献祭，300章不重复有机制保障",
-      "卷1五单元串糖葫芦节奏精准：4个S级（Ch3/14/33/46）间隔11/19/13章，爽点类型16种轮换，唯一断顿窗口已修复",
-      "f16'还形不还价'规则设计：与附着机制自洽+双禁令堵漏+温情反转不祥的反套路，把卷末钩升级为世界观纵深",
-      "伏笔窗口机械化合规：任意时点活跃≤3、闭合必给第一层答案、纯埋不揭≤2章，f2收刀者四层触点维度递进零重复",
-      "暗基调补偿机制化：情感坡度追踪（峰后降≥3档）+每章释放点beat层标注+冷幽默主角语言，用户暗基调历史4连败后首次实战破局",
-      "《请客》教训实质吸收：类型钩子前置（Ch3献祭+位面+三空槽全展示），黄金三章经五轮精修实战验证"
+      "债汇聚=高潮模型给『高潮』一个可判读判据（≥2 笔同期清算），并自动暴露平推章，方法论价值高",
+      "rework_v2 的 Ch1 与已定稿正文 v9.2 逐 beat 可对应，黄金三章重排落地度好",
+      "伏笔三层（D 债/f 伏笔/s 悬念）+梯度登记，长线半揭节点明确，避免挖坑不填",
+      "反派三级梯子（裂隙客→收灰网络→伪装盟友）与 no_skip_rule 清晰，卷 1 不越级动手",
+      "老龙线处理克制：作者侧代号、正文禁称、术语不点破、来源不定义，不碰既有硬禁令"
     ],
     "risks": [
       {
-        "severity": "medium",
+        "severity": "high",
+        "category": "结构风险",
+        "description": "顶层 opening_three_questions 未随 GANTZ 化重排更新：Q1 直接描述旧 Ch1（『破城夜兽潮压境+蹲在城墙根转旧齿轮的逃难者/血腥味先到』），Q3 依赖『收刀者左钩刻痕贴身出现』与『三条空槽』——均与定稿 Ch1 v9.2（位面议价、无破城、无齿轮）及 rework_v2.ch3（无刻痕）矛盾",
+        "suggestion": "按 rework_v2 重写 Q1/Q2/Q3：Q1 改为『位面最险一刻+摆摊议价』，Q3 的第三点改为『断绳被剩下/那一眼被记账』等新结构中的实际钩子，删『刻痕贴身出现』『三条空槽』（若引导器四槽不在新 Ch1-3 出现则同步澄清）"
+      },
+      {
+        "severity": "high",
         "category": "节奏风险",
-        "description": "Ch40-46连续7章强度6-8高压，情绪缓冲带目前仅为执行注记（Ch41拖字诀/Ch42冷动作/Ch45献刀前静默），未落到逐章beat位置——疲劳风险悬在执行层，写手若执行不力卷高潮前段会累退读者",
-        "suggestion": "plot-architect在Ch41-45逐章补缓冲带beat位置标注（每章标明缓冲带落在第几拍、什么内容），把w1/R5从执行注记升级为beat层硬设计（recommended_fix #2）"
+        "description": "shuang_point_distribution 漏登 7 个 A 级章（Ch20/22/24/30/31/38/42），现表仅 18 个 A/S 章，与 volume_1_chapters 的逐章 shuang_type 标注（实为 25 个）及 changelog v1.1『A 级以上 25/50=50%』口径冲突",
+        "suggestion": "补录 Ch20/22/24/30/31/38/42 到爽点分布表（或校正对应章的 shuang_type），使分布表与逐章标注一致"
       },
       {
-        "severity": "low",
-        "category": "商业风险",
-        "description": "书名《第三纪元》为意象派，目录页点击欲平；卷1智斗+氛围章占比高，首日转化压力集中在黄金三章与简介",
-        "suggestion": "不改书名（用户偏好命中），改补偿：Ch1-10章节名植入类型钩词（裂口/灰天/猎法/活核/人险/反杀已具备，保持即可——实际已达标，此项转为确认项）；另要求fanqie-adapter发布前备简介A/B版，把'献出去的刀回来了'类反差钩前置测试（recommended_fix #1）"
-      },
-      {
-        "severity": "low",
-        "category": "角色风险",
-        "description": "卷1配角群像克制（守军头目/老周头/少年+反派方寥寥），女性角色为零——卷2内陆权力层舞台若无女性角色与更厚群像会失真",
-        "suggestion": "卷1→卷2交接注记追加：卷2大纲须引入≥1名有独立目标的女性角色+群像扩编方向（聚落/行会/跨纪元种族候选）（recommended_fix #3）"
+        "severity": "high",
+        "category": "设定风险",
+        "description": "foreshadowing_registry 缺 f6：volumes.vol4『f6半揭』、vol5『f6兑现』引用 f6（位面嵌套/巨构真相），但 registry 只登记 f2-f17（且跳号缺 f1/f3），f6 未登记、f1/f3 未标注是否作废",
+        "suggestion": "在 registry 补登记 f6（内容+梯度+状态），并说明 f1/f3 编号是否作废，保证 f 系连续可追溯"
       },
       {
         "severity": "medium",
-        "category": "流程风险",
-        "description": "memory文件与大纲存在三项口径差未同步（s6目标章/f4跨卷/naming昭关），下游character-designer若读旧值会产生矛盾事实",
-        "suggestion": "memory-manager按memory_sync_todo六项清单入库，完成后方可开角色设计（硬门禁）"
+        "category": "结构风险",
+        "description": "债→章可追溯性缺口：debt_table/convergence_nodes 标注的清算点分布在 Ch12/14/15/19/23/24/28/43 等，但只有 Ch1/2/3/6/8/11 带 debt_ops 字段，其余节点章无债操作登记——『债为第一维度』在写手层无法逐章执行",
+        "suggestion": "为所有清算/半揭节点章补齐 debt_ops（或至少补 Ch12/14/15/24/28/43），与 foreshadowing_ops 并列"
+      },
+      {
+        "severity": "medium",
+        "category": "设定风险",
+        "description": "角色卡与设定未随 GANTZ 化同步：顾衡.json 的 no_retcon / master_show_structure.cas_ch1（三冷动作）/ object_ecology（Ch3末齿轮左钩刻痕失态）仍以旧 Ch1-3 正文行为规格为准，且 cas_ch1 显式指向 outline.golden_three_chapters.ch1.cold_action_structure（该字段已降为归档参考），与新 Ch1（无齿轮/无破城）冲突",
+        "suggestion": "同步更新顾衡.json 与 setting_bible（timeline.ch1_time/黄金三章展示策略）到新结构；outline 侧可将归档的旧 ch1/ch2/ch3 明确标记『已废弃-勿引用』，避免下游误读"
       }
     ],
-    "must_fix": [],
+    "must_fix": [
+      "重写 opening_three_questions（Q1/Q3 与定稿 Ch1 及 rework_v2.ch3 矛盾）",
+      "补全 foreshadowing_registry 的 f6 登记，说明 f1/f3 去留",
+      "补齐 shuang_point_distribution 与逐章 shuang_type 的一致使（漏登 7 个 A 级章）"
+    ],
     "recommended_fix": [
-      "#1【商业9.0→9.5】书名点击欲补偿：确认Ch1-10章节名类型钩达标（裂口/灰天/猎法/人险/反杀已具备，仅确认不改）；在synopsis块追加'简介A/B测试预案'字段——A版现四段式，B版把卷末双钩意象（'献出去的刀，回来了'）前置为首句，供fanqie-adapter发布期选用",
-      "#2【节奏9.0→9.5】Ch41-45逐章落缓冲带beat位：在每章beats数组内显式标注缓冲带拍位与内容（如Ch41'拖字诀'已是内容但需标明其缓冲功能落第几拍），把Ch40-46高压段的疲劳风险从执行注记提回大纲层锁死，detail-reviewer凭beat位验收",
-      "#3【角色9.0→9.5】卷1→卷2交接注记（skeptic_vol2_handoff_note）追加一条：卷2内陆/聚落舞台须引入≥1名有独立目标的女性角色+群像扩编方向提示，防卷2权力层失真"
+      "为清算节点章补 debt_ops，闭合『债→章』映射",
+      "同步角色卡/设定三件套到 GANTZ 化新结构（下游连锁）",
+      "更新 naming_budget 中昭关/铁壁城『Ch1』首现引注（指向旧稿正文，新 Ch1 未出现）",
+      "澄清 Ch11 汇聚 grade A 的判据（参与两笔均为部分/利息清算）",
+      "suspense_window_plan 注记补 f17/f16（卷末并发线条数口径）",
+      "统一 D/s/f 三套编号的交叉索引，消除同一对象多 ID",
+      "修正 convergence_nodes.Ch14『唯一真汇聚』陈旧措辞、unit_1.mainline_progress『s5闭环』章位"
     ],
-    "rewrite_instructions": "小修（不推翻、不返skeptic）：plot-architect按recommended_fix三条执行——①synopsis块追加简介A/B预案字段；②Ch41-45 beats内显式标注缓冲带拍位；③volumes[0].skeptic_vol2_handoff_note追加女性角色+群像扩编条目。均为大纲层增量修改，预计改动≤20行，完成后outline-editor复审（仅核三条落实+总分复算，预期≥9.5达标passed）。skeptic六项护栏（Ch36/45/46/48/50注记+unit_1注记）一字不得动。",
-    "memory_sync_todo": [
-      "①goal_tracker.suspense_window.s6：target_close 12→15，note改为'Ch12切镜头半揭（霜漫矛身）→Ch15锈关场景闭合（霜=蚀，不化只漫）'",
-      "②foreshadowing_tracker.f4：target_reveal '第一卷内逐槽填充'→'跨卷逐槽填充（卷1槽2/Ch45-46，卷2槽3，卷3槽4）'",
-      "③setting_bible.naming_conventions.已用专名：补'昭关（Ch2正文：昭关城下的土）'，已用数3→4；同步修正goal_tracker相关计数",
-      "④goal_tracker.villain_ladder：按outline.json villain_ladder字段回填三级体系（status: not_started→designed）",
-      "⑤goal_tracker.suspense_window：按outline.json suspense_window_plan滚动回填（s3 Ch6闭合/s5 Ch8闭合/s6 Ch15闭合/s7-s12开关节点）",
-      "⑥foreshadowing_tracker：新增f11(位面建造痕迹)/f12(收货人网络)/f13(活核残留意志)/f14(失芯残骸变化)/f15(兽潮反常)/f16(献祭物归还-还形不还价)；f7标注Ch15闭合"
+    "rewrite_instructions": "骨架成立，无需重做。退改聚焦三类同步工作：①顶层摘要字段与新结构的对齐（opening_three_questions 最优先，它直接与已定稿正文矛盾）；②登记完整性（f6、debt_ops 覆盖、爽点分布表）；③跨文件同步（角色卡/设定/naming 引注）。改完后请将 open question 标注清楚：新 Ch1-3 是否保留『旧齿轮』物件锚与『刻痕』首现点（现 f2 首触移至 Ch14，但 Q3 与角色卡仍按 Ch3 处理）——这是本轮最需要 plot-architect 明确的单点。",
+    "next_agent": "plot-architect+skeptic (revise)"
+  },
+  "issues": [
+    {
+      "severity": "critical",
+      "location": "outline.opening_three_questions（Q1/Q2/Q3）",
+      "problem": "Q1 直接描述旧 Ch1（『破城夜兽潮压境+蹲在城墙根转旧齿轮的逃难者/Ch1前100字：血腥味先到』），与新定稿 v9.2（『口子塌了』位面议价）矛盾；Q3 第③点『收刀者左钩刻痕贴身出现』与第②点『三条空槽』在 rework_v2.ch3 中均无对应。属大纲与已定稿正文矛盾。",
+      "suggestion": "按 rework_v2 重写三条问题；并裁定新结构中故齿轮与刻痕的首现章（f2 现为 Ch14 首触，Q3/角色卡按 Ch3 处理，需统一）。"
+    },
+    {
+      "severity": "critical",
+      "location": "outline.shuang_point_distribution",
+      "problem": "漏登 Ch20/22/24/30/31/38/42 七个 A 级章（volume_1_chapters 标注为 A），分布表实际仅 18 个 A/S 章，与逐章标注（25 个）及 v1.1『25/50=50%』口径冲突。",
+      "suggestion": "补录七个 A 级章或校正章级 shuang_type，使两处一致。"
+    },
+    {
+      "severity": "major",
+      "location": "outline.foreshadowing_registry",
+      "problem": "f6 被 volumes（vol4 半揭/vol5 兑现）引用却未登记；f1/f3 编号缺失、未标注作废。",
+      "suggestion": "补登记 f6 并标注 f1/f3 去留。"
+    },
+    {
+      "severity": "major",
+      "location": "outline.volume_1_chapters + outline.debt_table",
+      "problem": "debt_table/convergence_nodes 的清算点（Ch12/14/15/19/23/24/28/43）大多无 debt_ops 字段，仅 Ch1/2/3/6/8/11 有；债模型在写手层不可逐章执行。",
+      "suggestion": "为节点章补 debt_ops，与 foreshadowing_ops 并列。"
+    },
+    {
+      "severity": "major",
+      "location": "memory/characters/顾衡.json（no_retcon / master_show_structure.cas_ch1 / object_ecology）＋ memory/setting_bible.json（timeline/golden_three_scope）",
+      "problem": "角色卡与设定仍以旧 Ch1-3 行为规格为准（三冷动作/破城/齿轮左钩刻痕 Ch3末失态），cas_ch1 仍指向已归档的 outline.golden_three_chapters.ch1.cold_action_structure；与新 Ch1-3 冲突，写手读卡可能复演已删内容。",
+      "suggestion": "同步更新下游文件；outline 中旧 ch1/ch2/ch3 标记『已废弃-勿引用』。"
+    },
+    {
+      "severity": "major",
+      "location": "outline.naming_budget.used / memory/setting_bible.naming_conventions",
+      "problem": "『昭关（Ch1，正文 Ch1:20…）』『铁壁城（Ch1:36…）』的行号引注来自旧稿 Ch1；新定稿 v9.2 正文未出现昭关/铁壁城，证据链失效（余额 0 的硬约束未被违反，但引注不实）。",
+      "suggestion": "更新为新落点章号。"
+    },
+    {
+      "severity": "minor",
+      "location": "outline.debt_table.D4",
+      "problem": "D4 due 标『卷1后段』，但 f17 实际规则级解释延至卷2-3，口径不一致。",
+      "suggestion": "改 due 为『卷1后段轻回响，卷2-3 规则级解释』。"
+    },
+    {
+      "severity": "minor",
+      "location": "outline.convergence_nodes[Ch14].note",
+      "problem": "『现有大纲唯一真汇聚』措辞陈旧——Ch3 已被标为 S 级第一次真汇聚。",
+      "suggestion": "改为『非黄金三章部分唯一真汇聚』或删除『唯一』。"
+    },
+    {
+      "severity": "minor",
+      "location": "outline.suspense_window_plan.note",
+      "problem": "卷末并发注记未同步 f17/f16：Ch50 实际并发（s10/s11/s12+f2余音+f16+f17呼应）多于窗口计数口径。",
+      "suggestion": "更新注记，把 f16/f17 定性为异象型不计窗口并说明。"
+    },
+    {
+      "severity": "minor",
+      "location": "outline.debt_table / convergence_nodes / suspense_window_plan / foreshadowing_registry",
+      "problem": "D/s/f 三套编号并行，同一对象多 ID（收货人网络=D9=f12；霜=D8=s6=f7；位面第一层=D7=s5），存在口径漂移风险。",
+      "suggestion": "加交叉索引表。"
+    },
+    {
+      "severity": "minor",
+      "location": "outline.convergence_nodes[Ch11]",
+      "problem": "grade A 与『≥2 笔同期清算』判据张力：参与的 D12（利息）、D6（第二层）均为部分/利息清算。",
+      "suggestion": "注明『部分清算型小汇聚』或调整判据措辞。"
+    },
+    {
+      "severity": "minor",
+      "location": "outline.volume_1_units.unit_1.mainline_progress",
+      "problem": "『s5闭环』列在 unit_1（Ch4-7），但 s5 实际闭合于 Ch8（unit_2）。",
+      "suggestion": "改为『s3 代价第一层（Ch6）』。"
+    },
+    {
+      "severity": "minor",
+      "location": "outline.naming_budget.post_ch30_plan ＋ memory/characters/顾衡.json.naming_ban",
+      "problem": "角色卡『正文前48章不得出现沈字』与 outline『沈 Ch48 启用』冲突（Ch48 属前48章）。",
+      "suggestion": "统一为『Ch48 之前』或把启用移至 Ch49+。"
+    }
+  ],
+  "special_checks": {
+    "ch1_to_3_vs_sealed_ch1": "基本一致：rework_v2.ch1 八条 beat 与定稿 v9.2 正文逐条可对应（口子塌/摆摊三样/规矩与饿/灰雾睁眼报价/还价全押/成交交割/脱身那一眼/结尾账），hook_sentence 与正文末句一致，debt_ops 挂 D1-D5 清 0 与正文相符。问题仅在顶层 opening_three_questions 仍描述旧开场（见 issues[0]）。",
+    "debt_convergence_selfconsistency": "债务 ID 与各章 debt_ops/foreshadowing_ops 大体自洽，无孤债（每笔均有 clear 点）；但存在三处缺口：①清算节点章多数缺 debt_ops（issues[3]）；②D3 due=2 实为清至 Ch3、D4 due 与 f17 不符（issues[6]）；③Ch11 部分清算型汇聚的等级判据张力（issues[10]）。无等级标注硬冲突（Ch3=S/Ch11=A/Ch14=S/Ch15=B/Ch6=B/Ch8=B 与逐章 shuang_type 一致）。",
+    "suspense_vs_debt_maturity": "无硬冲突：s 窗口全程 ≤3（Ch4-5/Ch19/Ch50 达 3）；债务到期点（D6→Ch6/D7→Ch8/D8→Ch15/D9→Ch38/D15→Ch43）与 s 闭合点一一对应，未挤爆窗口。唯一张力在 Ch50 卷末读者体感并发（s10+s11+s12+f2+f16+f17）多于窗口计数（issues[8]）。",
+    "naming_budget_and_long_bans": "余额 0 规则未被违反（计数仍为 5）；老龙只在作者侧字段出现，正文禁称与术语不点破在 rework_v2 中均有标注，定稿 Ch1 正文零违规（无老龙/无对接/无绝境门槛字样）。唯一问题是首现章引注陈旧（issues[5]）。",
+    "prologue_retention": "题记式（≤80 字、不设独立序章、不与 lint 挂钩）对开篇留存是正向处理，且替新 Ch1 承担了点题职能（新 Ch1 已无破城戏，题记成为纪元末世感的唯一释放口）。风险低；建议确认番茄发布时题记的呈现方式（是否并入章首、是否计入首屏字数）。"
+  },
+  "resolution": {
+    "date": "2026-10-10",
+    "by": "chapter-writer/parent（整改执行）",
+    "outline_version_after_fix": "1.5",
+    "cleared": [
+      "critical① opening_three_questions 重写（对齐 rework_v2 与定稿 v9.2）",
+      "critical② shuang_point_distribution 按逐章标注重建 → 25 个 A·S（50%）",
+      "major③ f6 补登 + f1/f3 作废口径（registry.gaps）",
+      "major④ 13 个清算章补 debt_ops（Ch12/13/14/15/19/23/24/28/33/38/43/46/50）",
+      "major⑤ 顾衡卡增 opening_rework_note（旧 Ch1-3 引注降为行为规格）+ naming_ban 口径统一",
+      "major⑥ naming_budget 行号引注归位（旧稿引注→新稿首现章待落）",
+      "minor⑦ D4 期限口径；⑧ Ch14 措辞；⑨ suspense Ch50 并发留证；⑩ ID 映射行；⑪ Ch11 改记半汇聚；⑫ unit_1 s5 更正；⑬ 沈字解禁口径统一"
     ],
-    "execution_notes_for_downstream": [
-      "Ch36双指标验收：A级立规反制落章中收束完毕+章末完整静默beat给少年传承问话，缺一打回（detail-reviewer）",
-      "Ch45/46差异化三条款逐条核：牺牲主体（内在过去）/视觉主轴（活纹灭一片禁灰柱复刻）/代价维度（记忆损耗为情感落点）（detail-reviewer）",
-      "Ch48揭秘重心：名字'沈'+时间悖论为主菜，'昭关联'只作一句话确认项；悖论精确化（残骸新痕≤3个月可坐实，齿轮刻痕年代不得坐实）",
-      "Ch50双钩：f16'还形不还价'永久口径+双禁令执行；副钩皮纸≤1拍不展开解读",
-      "U2位面段（Ch8-15）每章一个非压抑释放点，非人孤独≠全程压抑（unit_1注记延伸执行）",
-      "memory_sync_todo六项完成前，character-designer不得开工（硬门禁）"
-    ],
-    "next_agent": "plot-architect（按rewrite_instructions三条小修）→ outline-editor（复审，预期passed后流转character-designer）"
+    "pending": [
+      "复验（重跑 outline-editor 或抽查）",
+      "设定三件套『献祭对接者』条目（独立待办）"
+    ]
   }
 }

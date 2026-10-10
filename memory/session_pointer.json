@@ -87,6 +87,7 @@
     "validation": "Ch1-15 债表草案跑通（15 笔债、8 个汇聚节点判定）：Ch14 为现有大纲唯一真汇聚（与自标 S 级吻合=模型可复现既有判断）；Ch1 实测『挂 5 笔、清 0 笔』=挂账章（解释了读者『缺尖峰』体感）；暴露缺口：Ch4-8 平推五章、Ch1→Ch14 间隔 13 章、新债未显式登记",
     "landed": "outline v1.2→v1.3：①golden_three_chapters.rework_v2（Ch1 开价=挂账章 / Ch2 交割=B级小汇聚【D1+D2 以工抵店】/ Ch3 献祭=S级第一次真汇聚【D3 兑出+D5 断绳不响应+D6 挂账+D4 轻回响】）；②新增顶层 debt_table（D1-D15，含挂账章/钉子物/到期/清算/新债）与 convergence_nodes（8 条）；③A2 账节点改造：Ch4 入场去重（首次感已由 Ch1 交付→老手感+人险）、Ch5 改作业层规则、Ch6 双债（D6+D7部分）、Ch8 双债（D7全清+D14半揭）、Ch11 补 A 级小汇聚（D12 利息+D6 第二层）；④cross_chapter_hooks / shuang_point_distribution / suspense_window_plan（s5 新定义）同步",
     "pending": "序言处理 + 伏笔编号梯度（老龙线新增 f）收尾；outline-editor 验收未跑；SKILL 固化（plot-architect 增 debt_table 产出字段 + outline-editor 增『汇聚节点≥2 债』验收项）待用户点头",
-    "docs": "docs/第三纪元_故事债表草案_Ch1-15.md（§一-六模型与验证、§七黄金三章重排）"
+    "docs": "docs/第三纪元_故事债表草案_Ch1-15.md（§一-六模型与验证、§七黄金三章重排）",
+    "review_round": "outline-editor 独立验收（子代理）：verdict=小修，总分 7.95（商业8.0/结构8.0/节奏7.5/伏笔8.0/角色8.5/平台8.0），13 条（3 critical/5 major/5 minor）——问题集中在『结构改了但摘要字段/执行层没同步』；通过项：Ch1 正文与 rework_v2 逐 beat 一致、债表无孤债、悬念窗口≤3、专名与老龙禁令合规、序言题记正向。整改已落 outline v1.5（Q1-Q3 重写／爽点表对齐 25 个 A·S=50%／13 个清算章补 debt_ops／f6 补登+f1·f3 作废／ID 映射行／Ch11 半汇聚／naming_budget 引注归位／沈字 Ch1-47 禁字口径／顾衡卡 opening_rework_note）；评审卡回执见 handoff/outline_review.json.resolution。"
   }
 }
