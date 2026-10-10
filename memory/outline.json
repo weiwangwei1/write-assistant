@@ -1,7 +1,8 @@
 {
-  "version": "1.3",
-  "status": "完整大纲v1.3（2026-10-10：黄金三章按'债汇聚=高潮'重排 + debt_table/convergence_nodes 入库 + A2 账节点密度改造与位面篇去重完成；序言处理与伏笔编号梯度待收尾），待 outline-editor 验收",
+  "version": "1.4",
+  "status": "完整大纲v1.4（2026-10-10：黄金三章债表重排 + debt_table/convergence_nodes + A2 账节点改造 + outline 收尾〔序言题记式处理 + foreshadowing_registry，新增 f17 老龙线〕），待 outline-editor 验收",
   "changelog": [
+    {"v": "1.4", "date": "2026-10-10", "change": "outline 收尾：①序言定题记式处理（≤80 字，置 Ch1 前，不设独立序章、不计篇幅、不参与 lint——`prologue_usage`）；②新建 `foreshadowing_registry`（f2-f17 编号与梯度集中登记，含新增 **f17 老龙线**：Ch1 挂账→Ch3 灰中异象→Ch45-46 同通道呼应→Ch50 还刀呼应→卷2-3 规则级解释；并登记铁律：环境性轻触 ≤1 句不解释、揭示不得早于梯度 30 章）"},
     {"v": "1.3", "date": "2026-10-10", "change": "A2 完成（账节点密度+位面篇去重）：Ch4 入场改'老手感＋人险'（首次感已由 Ch1 交付）；Ch5 改判为作业层规则；Ch6/Ch8 改造为双债（D6+D7部分 / D7全清+D14半揭）；Ch11 补 A 级小汇聚（D12 先收利息＋D6 第二层，强度让给 Ch14）；convergence_nodes 与 debt_table 同步；suspense_window_plan 注记 s5 新定义"},
     {"v": "1.2", "date": "2026-10-10", "change": "Ch1-3 重排（方案 v2 GANTZ 化 + 债为第一维度）：Ch1=开价（已定稿 v9.2，挂 D1-D5、清 0）；Ch2=交割（B 级小汇聚：D1+D2 同期清算=以工抵店，半揭 D3）；Ch3=献祭（S 级第一次真汇聚：D3 兑出+D5 部分清算+D6 挂账+D4 轻回响）。旧 ch1/ch2/ch3 保留为归档参考（不再作写手依据）；新增 debt_table（D1-D15）与 convergence_nodes；旧 Ch1 破城戏改为'以回城所见给结果'。来源：docs/第三纪元_故事债表草案_Ch1-15.md"},
     {"v": "1.1", "date": "2026-09-20", "change": "skeptic 质疑 verdict=pass，护栏修订落实（shuang_point_distribution 补录 Ch5/Ch12；suspense_window_plan 卷末并发注记）"},
@@ -23,6 +24,26 @@
   ],
   "title": "第三纪元",
   "prologue": "世界不是永恒的。它死过两次，这是第三次活着——但也在死了。",
+  "prologue_usage": "题记式处理（2026-10-10 定）：以 ≤80 字题记置于 Ch1 之前，**不设独立序章**（开篇不流失是本项目硬偏好）；不进正文、不计入篇幅、不参与 lint 与指纹；Ch1 正文仍从'口子塌了'直接起。",
+  "foreshadowing_registry": {
+    "note": "2026-10-10 建立（outline 收尾①，配合老龙线并入）：f 系编号与梯度集中登记；s 系见 suspense_window_plan；逐章 ops 见各章 foreshadowing_ops。写作铁律：环境性轻触一律 ≤1 句且不解释；揭示不得早于计划梯度（提前 >30 章视为失控）",
+    "items": [
+      {"id": "f2", "content": "收刀者刻痕（直、浅、收尾往左带小钩）", "gradient": "环境性轻触×3（Ch14 用途=收货记号／Ch28 人际=帖子落款／Ch31 地缘=昭关源流）→ Ch48 第一层揭秘（名字＋时间悖论）→ 卷3 第二层", "status": "长线（卷3 核心）"},
+      {"id": "f4", "content": "引导器四槽与旧齿轮", "gradient": "Ch6 槽壁纹轻转 → Ch25 槽壁纹往齿轮方向偏一线 → Ch45-46 第二槽填充", "status": "渐进"},
+      {"id": "f5", "content": "前纪元造物／巨构线索", "gradient": "Ch25 轻触 → Ch27『前纪元的弯法』→ Ch29-33 深层『一座东西』→ Ch49 地底残骸纹走一格", "status": "长线（卷4-5 巨构）"},
+      {"id": "f7", "content": "锈关的霜＝蚀", "gradient": "Ch12 半揭（切镜头）→ Ch15 闭合（不化只慢漫）", "status": "卷内闭合"},
+      {"id": "f8", "content": "灰的渗透（城防线）", "gradient": "Ch4 轻触（『灰漫过门槛就封阶』）→ Ch12 轻触 → Ch15/Ch16/Ch20 升级", "status": "卷内推进"},
+      {"id": "f9", "content": "触感记忆（凉得发甜）", "gradient": "Ch24 轻触 → Ch30 touch → Ch48 联动", "status": "长线（身世线）"},
+      {"id": "f10", "content": "守军头目南边家人", "gradient": "Ch19 回响（给方向不给结果）", "status": "卷内回响"},
+      {"id": "f11", "content": "位面里的建造痕迹", "gradient": "Ch4 环境预埋 → Ch5 plant → Ch29-31／Ch33 强化", "status": "长线"},
+      {"id": "f12", "content": "收货人网络", "gradient": "Ch7 plant → Ch8-10／Ch14 强化 → Ch22-23／Ch26／Ch28 强化 → Ch38 轮廓 → Ch49 半揭", "status": "卷1 主悬念线"},
+      {"id": "f13", "content": "活核／构装的独特故事", "gradient": "Ch11 预埋 → Ch12 plant → Ch16-18 强化 → Ch24 闭合", "status": "卷内闭合"},
+      {"id": "f14", "content": "地底响", "gradient": "Ch15 plant → Ch20 强化 → Ch49 强化", "status": "卷内推进"},
+      {"id": "f15", "content": "兽潮反常（在『走』）", "gradient": "Ch19 plant → Ch43 闭合", "status": "卷内闭合"},
+      {"id": "f16", "content": "旧锉刀献祭后原样归还（还形不还价）", "gradient": "Ch45 献出 → Ch50 归还（异象型，不追近期答案）", "status": "卷末异象"},
+      {"id": "f17", "content": "老龙线（对接者顶层：灰雾里的那只眼／被记上那一笔）", "gradient": "Ch1 挂账（那一眼＋『把这笔记上』）→ Ch3 轻回响（灰中异象：与 Ch1 的灰同源暗示，一句不解释）→ Ch45-46 呼应（献锉刀『无光只有灰』＝同通道）→ Ch50 呼应（还刀异象；与 f16 的关系作者侧暂不定死）→ 卷2-3 定规则级解释", "status": "长线（卷1 部分显现·不点破）", "bans": "正文不得出现『老龙』称呼；『对接／献祭对接者／绝境门槛』等术语卷1 不点破；来源不定义（不归跨纪元种族、不归位面在地者）"}
+    ]
+  },
   "genre": "位面入侵·献祭流·智斗",
   "protagonist": "顾衡",
   "core_loop": "看全局→知道缺什么→去位面抢资源→构装师造出来→更强→看更大的全局",
