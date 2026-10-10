@@ -1,0 +1,32 @@
+{
+  "card_type": "fix_audit",
+  "from_agent": "fix_auditor(script)",
+  "to_agent": "detail-reviewer",
+  "note": "本卡只含 diff 证据，不做判定——是否构成过度矫正由 detail-reviewer 第8层判断",
+  "pre_ref": "handoff/pre_lint_ch2.txt",
+  "post_ref": "output/chapter_002_draft.txt",
+  "summary": {
+    "simile_changes": 0,
+    "function_word_reductions": 0,
+    "dialogue_loss_candidates": 0,
+    "removed_sentences": 0,
+    "lint_issues_before": 1,
+    "lint_issues_after": 1
+  },
+  "evidence": {
+    "simile_changes": [],
+    "function_word_reductions": [],
+    "dialogue_loss_candidates": [],
+    "removed_sentences": []
+  },
+  "lint_diff": {
+    "before": {
+      "dialogue_ratio": 1
+    },
+    "after": {
+      "dialogue_ratio": 1
+    },
+    "increased_or_new": {},
+    "resolved": {}
+  }
+}

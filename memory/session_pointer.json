@@ -1,28 +1,28 @@
 {
   "version": "1.2",
   "project_title": "第三纪元",
-  "current_phase": "init",
-  "phase_note": "2026-09-20 重启：旧稿（Ch1-7 正文/全部章级过程卡/记忆摘要）完整归档至 archive/第三纪元_重启_20260920/；保留大纲/世界观/角色设定/立项/框架资产，从序言+Ch1 按现有大纲重写（适用 chapter-writer v4.2 / detail-reviewer v1.20）。初始化补全仍在进行：角色卡复审未跑；设定三件套 3 项登记欠账源自旧稿 Ch6-7 内容，随旧稿归档暂缓",
+  "current_phase": "writing",
+  "phase_note": "2026-09-20 重启：旧稿（Ch1-7 正文/全部章级过程卡/记忆摘要）完整归档至 archive/第三纪元_重启_20260920/；保留大纲/世界观/角色设定/立项/框架资产，从序言+Ch1 按现有大纲重写（适用 chapter-writer v4.4 / detail-reviewer v1.22）。初始化补全仍在进行：角色卡复审未跑（含 2026-10-10『字据立定时间』口径修正待并入复审）；设定三件套 3 项登记欠账随旧稿归档暂缓；2026-10-10：黄金三章 Ch1 定稿、Ch2 polished，余 Ch3",
   "current_volume": 1,
-  "current_chapter": 0,
-  "next_chapter": 1,
-  "completed_chapters": [],
-  "overall_progress": "0/300",
+  "current_chapter": 2,
+  "next_chapter": 3,
+  "completed_chapters": [1, 2],
+  "overall_progress": "2/300",
   "protagonist": "顾衡",
-  "last_updated_chapter": 0,
-  "last_updated": "2026-09-20T19:04:27+08:00",
+  "last_updated_chapter": 2,
+  "last_updated": "2026-10-10T15:19:30+08:00",
   "milestones": [
     {"milestone": "选题方向确认", "status": "done", "note": "构装师+献祭+位面掠夺，掌控全局天才主角"},
-    {"milestone": "黄金三章设计", "status": "done", "note": "Ch1乱局/Ch2造物/Ch3献祭"},
-    {"milestone": "黄金三章写作", "status": "pending", "note": "2026-09-20 重启：旧稿 Ch1-7（含旧黄金三章）完整归档至 archive/第三纪元_重启_20260920/（output 9 / handoff 48 / golden3_revisions 43 / memory 10），旧稿的 lint/指纹/终审/五轮精修记录随归档留存、不追溯；从序言+Ch1 按现有大纲重写；2026-09-20 晚：开场方案 v2（GANTZ 化）落地 Ch1 v9 正文（人味瞬间=饿；lint L0 0/L1crit 0，指纹超阈 5→1 维），4 条框架补丁同步（style_lint v2.9 / chapter-writer v4.4 / detail-reviewer v1.22）——待用户通读验收"},
+    {"milestone": "黄金三章设计", "status": "done", "note": "重排后：Ch1开价/Ch2交割/Ch3献祭（rework_v2，2026-10-10 定；旧稿『乱局/造物/献祭』设计已随重启归档）"},
+    {"milestone": "黄金三章写作", "status": "in_progress", "note": "2026-09-20 重启归档后重写：①Ch1 v9.2 定稿（output/chapter_001_draft.txt，2587 字，lint 0 阻断，用户通读通过）；②Ch2《交割》2026-10-10 全流程闭环（初稿→lint 0/0/0→用户通读验收→detail-reviewer 一轮 needs_revision 1m14min→用户裁定只改硬项→整改 7 处＋pre_lint/fix_audit 证据→二轮复评 polished，2593 字，handoff/detail_review_2.json 含逐条 resolution）；余 Ch3《献祭》。黄金三章定稿后：按自语料重建指纹基线＋三章统一打磨（含 detail_review_2 residual_notes 3 条）"},
     {"milestone": "框架升级", "status": "done", "note": "chapter-writer v4.2（5.9 技法 5 组 24 条，按决策场景分组：A章际衔接/B场景节奏/C角色反应/D描写信息/E机制结构；v4.2 补录：C1 扩群体生态尺度+B5 反差法+B6 大场面段落次序+C6 差异化反应）+ detail-reviewer v1.20（第11层同步对齐，18项，检查项 ID 与写手一一对应）+ chief-editor v1.8（真人读者随口反馈新增 1 个不计分必答引导问题）。历史：v4.0 新增技法23-28、v4.1 由 28 条重构为 5 组 21 条、v1.18 第11层扩至19项、v1.19 合并为 15 项。Ch6/Ch7 的 detail_review 卡按 19 项旧版产出，属历史记录不追溯（旧稿已归档）；重启后新稿从 Ch1 起按 18 项审核。二轮（同日晚）：chapter-writer v4.3（E1 禁道德选择题边界 + 5.4 黄金三章开篇量化）+ detail-reviewer v1.21（第11层附·黄金三章开篇量化）+ quality-reviewer v1.10（读者分裂标记 + 五轻毒/五重毒/五过度清单）+ title-reviewer v1.2（书名≤15字等硬阈值 + 简介工具箱）；refSkill/ 番茄官方参考库（74 篇 35 万字）入库"},
     {"milestone": "topic-screener 预筛", "status": "done", "note": "2026-08-06 完成，verdict=pass_with_note（6维：题材耐久度/爽感路径/认知门槛/失败模式匹配 pass；暗基调补偿可行性/平台基调匹配 pass_with_note），卡在 handoff/topic_screening.json（2026-09-20 更正：此前误标 pending，实为已完成但归档在非标准名 topic_screening_disanjiyuan.json 下，已改名为契约名）"},
     {"milestone": "plot-architect 完整大纲", "status": "pending", "note": "6卷300章总纲+第一卷详细分章beat sheet"},
     {"milestone": "character-designer 角色设计", "status": "pending", "note": "顾衡完整角色卡+守军头目+沈+第一卷新角色"},
     {"milestone": "设定三件套+setting-reviewer", "status": "pending", "note": "world_setting/ability_system/conflict_rules，≥9.5"}
   ],
-  "next_action": "【开场方案 v2 实施中·Ch1 v9 已落盘】Ch1 正文（output/chapter_001_draft.txt，2526 字，lint L0 0/L1crit 0，指纹超阈 5→1 维）已按 v9 四条改法完成；4 条框架补丁已实施：style_lint v2.9（subject_start_repeat / motif_repeat）+ lint_config 词根表 + chapter-writer v4.4 + detail-reviewer v1.22（实测与校准见 memory.ch1_v9_20260920 与 docs/第三纪元_开场方案v2 第五节）。剩余实施顺序：①outline 重排（黄金三章 Ch1-3 + 卷1前15章 + 悬念窗口 + 伏笔编号 + 序言处理）→②setting_bible 增『献祭对接者』条目→③老龙角色卡 + 顾衡卡关系更新→④『老龙』命名（keyword-expert，前30章专名余额 0）→⑤衔接检查（旧账本 Ch2+ 落点、Ch4-15 位面篇去重）。待办：v9 草稿待用户通读验收。【设计记录】《第三纪元》GANTZ 化 + 老龙并入：Ch1=位面任务最险一刻进行中（锈关前史延后，黄金三章重排）；老龙=献祭对接者体系顶层（人人可献祭，对接对象分层：低能神灵/恶魔→老龙；卷1 低能存在仅传闻；资格=付得起+被接单；形态卷1部分显现；冷化气质；来源不定义，不归跨纪元种族/位面在地者——两条硬禁令不碰）；献祭四条规则加法不改法（对接者=规则背后真相层，卷1 不点破），老龙=顾衡隐藏渠道。实施顺序：①Ch1 beat sheet + 试写样张（验质感）→②改 outline（黄金三章重排+卷1前15章重排+悬念窗口+伏笔编号）→③setting_bible/world_setting/ability_system 增『献祭对接者』条目→④老龙角色卡（character-designer 流程）→⑤落档+提交。待办：『老龙』命名需过 keyword-expert + 专名预算（前30章余额 0）。写作适用 chapter-writer v4.4（H1-H11+24技法+黄金三章开篇量化+呼吸感/首章赌注）/ detail-reviewer v1.22。旧稿全文与过程见 archive/第三纪元_重启_20260920/。",
-  "last_session_summary": "2026-09-20 项目重启：旧稿 Ch1-7 正文+全部章级过程卡+记忆摘要完整归档至 archive/第三纪元_重启_20260920/；保留大纲/世界观/角色设定/立项/框架资产；指针归零（current_chapter 0 / completed []）、task_plan 重建为 init、8 张角色卡 current_state 回退 Ch1 基线；下一步从序言+Ch1 按现有大纲重写",
+  "next_action": "【2026-10-10·Ch2《交割》已 polished 闭环】黄金三章：Ch1 v9.2 定稿＋Ch2 全流程闭环（正文 2593 字，lint 0/0/0；评审 handoff/detail_review_2.json=polished，含逐条 resolution；证据 pre_lint_ch2/fix_audit_ch2）。下一步：①写 Ch3《献祭》——下笔前先厘清『断绳口径』（Ch1 定稿『他没捡那截绳子』 vs Ch3 计划『缠芯子一起献』：建议 Ch1 微调一句收绳，或 Ch3 另设拿回方式）；②黄金三章定稿后：自语料重建指纹基线＋三章统一打磨（detail_review_2 residual_notes 3 条非阻塞）。【历史·2026-09-20 开场方案 v2 实施记录】Ch1 v9 落盘；4 条框架补丁已实施：style_lint v2.9（subject_start_repeat / motif_repeat）+ lint_config 词根表 + chapter-writer v4.4 + detail-reviewer v1.22（实测与校准见 memory.ch1_v9_20260920 与 docs/第三纪元_开场方案v2 第五节）。剩余实施顺序：①outline 重排（黄金三章 Ch1-3 + 卷1前15章 + 悬念窗口 + 伏笔编号 + 序言处理）→②setting_bible 增『献祭对接者』条目→③老龙角色卡 + 顾衡卡关系更新→④『老龙』命名（keyword-expert，前30章专名余额 0）→⑤衔接检查（旧账本 Ch2+ 落点、Ch4-15 位面篇去重）。待办：v9 草稿待用户通读验收。【设计记录】《第三纪元》GANTZ 化 + 老龙并入：Ch1=位面任务最险一刻进行中（锈关前史延后，黄金三章重排）；老龙=献祭对接者体系顶层（人人可献祭，对接对象分层：低能神灵/恶魔→老龙；卷1 低能存在仅传闻；资格=付得起+被接单；形态卷1部分显现；冷化气质；来源不定义，不归跨纪元种族/位面在地者——两条硬禁令不碰）；献祭四条规则加法不改法（对接者=规则背后真相层，卷1 不点破），老龙=顾衡隐藏渠道。实施顺序：①Ch1 beat sheet + 试写样张（验质感）→②改 outline（黄金三章重排+卷1前15章重排+悬念窗口+伏笔编号）→③setting_bible/world_setting/ability_system 增『献祭对接者』条目→④老龙角色卡（character-designer 流程）→⑤落档+提交。待办：『老龙』命名需过 keyword-expert + 专名预算（前30章余额 0）。写作适用 chapter-writer v4.4（H1-H11+24技法+黄金三章开篇量化+呼吸感/首章赌注）/ detail-reviewer v1.22。旧稿全文与过程见 archive/第三纪元_重启_20260920/。",
+  "last_session_summary": "2026-10-10：Ch2《交割》全流程闭环——初稿（压缩定稿 2593 字）→style_lint 0/0/0→用户通读验收→detail-reviewer 一轮 needs_revision（1 major+14 minor）→用户裁定『只改硬项、微调跳过』→整改 7 处（先存 pre_lint 快照＋fix_audit 证据）→二轮复评 polished、15 条逐条 resolution；顾衡卡『字据立定时间』口径对齐 Ch1 定稿（并入后续卡复审）。黄金三章：Ch1 v9.2＋Ch2 done，余 Ch3",
   "character_snapshot": {},
   "foreshadowing_quick_status": {
     "active_count": 0,
@@ -30,7 +30,7 @@
     "long_term": [],
     "restart_note": "2026-09-20 重启清零：旧稿已埋/已递进的伏笔全部作废（随归档留存）；伏笔计划见 outline，待新稿重新登记"
   },
-  "quality_trend": "（重启清零）旧稿 Ch1-7 评分与实测记录见 archive/第三纪元_重启_20260920/；新稿自 Ch1 起重新累积",
+  "quality_trend": "（重启清零）旧稿 Ch1-7 评分与实测记录见 archive/第三纪元_重启_20260920/；新稿：Ch1 v9.2 定稿（lint 0 阻断，用户通读通过）；Ch2 detail-reviewer 二轮 polished（0 残余阻断；residual_notes 3 条非阻塞留黄金三章统一打磨）",
   "open_decisions": [
     "书名与简介待 final（用户建议方向：突出第三纪元/灰烬/旧齿轮/刻痕意象，忌俗套重生流书名）",
     "第一卷卷名与章节规模待 plot-architect 设计回填",
@@ -80,8 +80,9 @@
     "v9_1_polish": "真人读者润色（评分 8.8/10）：①分号 31→3（仅保留两处列举式），其余改句号并拆 3 处长串——读者反馈『分号缝合＝标点疲劳，放心用句号文字更沉稳有力』②交易割肉感两笔（推料＝『指头底下压着的，是那两间门面』；推残片＝『这是最后一样能押上的东西』）。篇幅 2553，lint L0 0/L1crit 0/非阻断 2；指纹 21.96/8.0%/13.23/2.32（4 维超阈）",
     "fingerprint_verdict": "指纹基线终裁（用户，2026-09-20）：①指纹降为参考指标（不作拒收依据）②黄金三章定稿后用本书自语料重建派生基线 ③风格以定稿口味为准（句号为主，长短交错靠段落层级）；证据＝v9 分号版 1 维超阈 vs v9.1 句号版 5 维超阈，基线口径偏好分号缝合",
     "v9_2_micro_polish": "四条微雕（用户第二轮反馈）：①交割物明示（成交后『身后那堵死石深处，咔地裂开一道暗响』+ 后文改『裂开的那道缝还在』——买卖当场兑现）②去重（第二次『一息两息三息』换『连喘气都放到最浅，心跳压到肋骨底下』；『腿在抖』→『膝盖发软』）③触感反差（残片『说不出是石头还是铁，攥在手里多久都焐不热』vs 料『沉甸甸的，是柜上最认的成色』）④市井坐标（『门面那两块幌子，就得连夜换人挂』，不新造专名——前30章专名余额 0）。期间修掉 L0 喻体堆叠（『石头不像石头，铁不像铁』一段两个像）与『他』字3连。篇幅 2587，lint L0 0/L1crit 0/非阻断 2；指纹 4 维超阈（参考态）",
-    "card_update": "顾衡卡 2026-09-20 更新：新增 merchant_prehistory_ch1v9（行商底子作前史：七年挑担起家、进城三个月盘下两间门面、三月前接单立字据、交不出抵店；与构装师/立足期口径不冲突）+ current_state.status 补生计线；用户裁定『进卡』"
+    "card_update": "顾衡卡 2026-09-20 更新：新增 merchant_prehistory_ch1v9（行商底子作前史：七年挑担起家、进城三个月盘下两间门面、三月前接单立字据、交不出抵店；与构装师/立足期口径不冲突）+ current_state.status 补生计线；用户裁定『进卡』（2026-10-10 修正：字据立定时间对齐 Ch1 定稿『三日前立定』）"
   },
+  "ch2_20261010": {"status": "done（二轮复评 polished，0 残余阻断）", "draft": "output/chapter_002_draft.txt（2593 字，lint L0 0/L1crit 0/非阻断 0）", "review": "handoff/detail_review_2.json——一轮 needs_revision（1 major+14 minor）→用户裁定只改硬项（8 项裁量保留已关单）→整改 7 处→二轮 polished（逐条 resolution；residual_notes 3 条非阻塞：『他管它叫构装』命名拍/『他把X』句式模板约6次/段29 轻声点题）", "evidence": "handoff/pre_lint_ch2.txt＋handoff/fix_audit_ch2.json（整句删除/引号消失/比喻替换/功能词减少 均 0）＋handoff/chapter_draft_2.json（beat sheet/跨章事实/口径补登/修订台账）", "debt_ops": "D1 部分＋D2 部分同期清算（以工抵店＝B 级小汇聚）／D3 半揭（城下=第二纪元古构装残骸）／章末镐插地转城下", "open": "断绳口径（Ch3 计划『缠芯子一起献』 vs Ch1 定稿『他没捡那截绳子』）需在写 Ch3 前厘清", "note": "评审硬项：怕与欲指名『求人的话』／幌子绳印『还不深』（未用指腹擦——f2/f9 手势配额留给 Ch14）／齿轮首现锚『一枚＋来历半句』／锉刀案→腰桥接／算盘位置统一／黑件『钩→爪』『铜齿→铜销子』防 f2 形态污染／螺旋纹『往里拧』对齐设定"},
   "debt_model_20261010": {
     "scope": "『债汇聚=高潮』框架（用户提案：不同人物/不同事情的债在一个节点汇聚解决）→ 先验证再固化 → 已落地 outline",
     "validation": "Ch1-15 债表草案跑通（15 笔债、8 个汇聚节点判定）：Ch14 为现有大纲唯一真汇聚（与自标 S 级吻合=模型可复现既有判断）；Ch1 实测『挂 5 笔、清 0 笔』=挂账章（解释了读者『缺尖峰』体感）；暴露缺口：Ch4-8 平推五章、Ch1→Ch14 间隔 13 章、新债未显式登记",
