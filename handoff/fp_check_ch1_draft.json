@@ -15,25 +15,25 @@
   "dims": [
     {
       "dim": "func_words_cosine",
-      "current": 0.1184,
+      "current": 0.119,
       "baseline": 0.0,
-      "deviation": 0.1184,
+      "deviation": 0.119,
       "tolerance": 0.08,
       "pass": false
     },
     {
       "dim": "sent_len_mean",
-      "current": 21.65,
+      "current": 21.67,
       "baseline": 40.34,
-      "deviation": 0.4633,
+      "deviation": 0.4628,
       "tolerance": 0.293,
       "pass": false
     },
     {
       "dim": "sent_len_stdev",
-      "current": 13.49,
+      "current": 13.48,
       "baseline": 32.82,
-      "deviation": 0.589,
+      "deviation": 0.5893,
       "tolerance": 0.35,
       "pass": false
     },
@@ -55,9 +55,9 @@
     },
     {
       "dim": "para_len_mean",
-      "current": 57.18,
+      "current": 57.23,
       "baseline": 42.85,
-      "deviation": 0.3344,
+      "deviation": 0.3356,
       "tolerance": 0.35,
       "pass": true
     },
@@ -103,9 +103,9 @@
     },
     {
       "dim": "metaphor_per_1000",
-      "current": 1.345,
+      "current": 1.344,
       "baseline": 2.196,
-      "deviation": 0.3875,
+      "deviation": 0.388,
       "tolerance": 1.0,
       "pass": true
     },
@@ -145,15 +145,15 @@
   "advice": [
     {
       "dim": "func_words_cosine",
-      "advice": "func_words_cosine 距离 0.1184（容差 0.08）。检查'了/着/的/是'等虚词频率是否贴近基线方向。改法：短促的'了'字收尾句与连词衔接的流动句互相换算"
+      "advice": "func_words_cosine 距离 0.119（容差 0.08）。检查'了/着/的/是'等虚词频率是否贴近基线方向。改法：短促的'了'字收尾句与连词衔接的流动句互相换算"
     },
     {
       "dim": "sent_len_mean",
-      "advice": "sent_len_mean 偏低——原作基线 40.34，当前 21.65。用逗号串联分句形成流动长句，或拆长句为短句（按偏差方向）。段首优先用连词起段（不过/然而/虽然）"
+      "advice": "sent_len_mean 偏低——原作基线 40.34，当前 21.67。用逗号串联分句形成流动长句，或拆长句为短句（按偏差方向）。段首优先用连词起段（不过/然而/虽然）"
     },
     {
       "dim": "sent_len_stdev",
-      "advice": "sent_len_stdev 偏低——原作基线 32.82，当前 13.49。长短句交替形成节奏对比。一章至少有1个≥200字的长段（推理/氛围/动作），与短句形成对比"
+      "advice": "sent_len_stdev 偏低——原作基线 32.82，当前 13.48。长短句交替形成节奏对比。一章至少有1个≥200字的长段（推理/氛围/动作），与短句形成对比"
     },
     {
       "dim": "long_sent_ratio",
