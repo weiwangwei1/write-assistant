@@ -1,0 +1,204 @@
+{
+  "card_type": "detail_review",
+  "timestamp": "2026-10-12T18:20:00+08:00",
+  "from_agent": "detail-reviewer",
+  "to_agent": "chapter-writer",
+  "chapter_num": 3,
+  "chapter_title": "献祭",
+  "overall_verdict": "polished",
+  "re_review": true,
+  "re_review_note": "二轮复评：一轮 11 条（1 major＋10 minor）逐条回执——7 条 resolved、1 条 partial、3 条由用户裁量保留；1 条 major（交接卡跨章自称）随交接卡四处口径修正关单；正文 7 处定点修改经上下文语感核读未引入硬伤（2 条新增 minor：交接卡 style_plan 比喻句未同步、第11段新措辞略松，均非阻断）。第8层（过度矫正）以本轮刷新 fix_audit 卡重新实证——整句删除 2 均为用户批准的评审整改项（非 lint 修复轮），比喻替换/引号消失/功能词减少均 0，无过度矫正残留。lint 终态 PASS 0/0（L2 参考 2：le 24.51／zhe 16.82），指纹 5 维参考态（用户 2026-09-20 终裁，不作退据）。无残余阻断项。",
+  "resolution": [
+    {"location": "sentence_level 第3条（第51/65段·句式模板『把兜里那X摸出来』）", "status": "resolved", "note": "第65段改为『他把断绳抽出来，缠在芯子上』，与第51段齿轮句解耦；章内该模板由 2 现降为 1 现。语感顺、指代（从兜里抽出）可辨。"},
+    {"location": "sentence_level 第4条（第33段·『严丝密缝』）", "status": "resolved", "note": "已改为规范成语『严丝合缝』，上下文（螺旋纹转合、像从没裂开过）不变。"},
+    {"location": "sentence_level 第5条（第39段·年轻兵时序）", "status": "resolved", "note": "『贴着滑下去』→『贴着往下滑』；『往下滑』（进行态）与『倒下之前……才站稳』不再打架，卡片 canon 顺序（收招在前）保留。属最小改动，未动 canon。"},
+    {"location": "sentence_level 第6条（第95段·『头目不敢想。』＋情绪/视点）", "status": "resolved", "note": "删段尾『头目不敢想。』（避情绪词『不敢』、稳视点），并以删除段首『他没答，』改用『他指腹蹭着槽壁翻看。』动作起句——同段解 C2『沉默标签第3现』。头目追问（『你守这座城，就为了这东西？』）后接顾衡纯动作作答，『不答』的签名式应对由动作承接，未失。"},
+    {"location": "logic_level 第1条（major·交接卡『Ch2 已问一遍』跨章自称与实际 Ch2 不符）", "status": "resolved", "note": "交接卡四处口径已改：beat1『（本章首次问询）直问』、desire（守军头目）『本章首次问询』、dna_outlets_used『（本章首次问询）』、certainty_state（顾衡是什么人）『本章首次问询未获答；守军头目卡旧稿残留转角色卡复审』——与 new Ch2 定稿（头目未出场）事实对齐，major 关单。残余风险（非本章范围）：守军头目卡本体未同步（signature_lines『2/3』『地窖/墙头』、growth_arc『质疑者=Ch1-2初』、current_state 旧稿残留），属 pending 角色卡复审范围，建议复审时一并修正，防后续章误引旧 Ch2 地窖。"},
+    {"location": "logic_level 第2条（第11段·头兽螺旋纹『纹在转，自己转』越阶边界）", "status": "resolved", "note": "已按建议改为静态描述『壳面上是螺旋纹，一圈拧着一圈，收口往里收，拧得比壳兽的纹严实』，删除『纹在转，自己转。』；三阶（静螺旋）/四阶（流动纹）标志边界恢复，『转』的动感仅留在第33段受伤自愈处。新增措辞一处轻微问题见 new_issues_this_round。"},
+    {"location": "logic_level 第3条（『芯子』同词异指）", "status": "partial", "note": "第83段『凉气像顺着芯子钻进了骨头里』已改『凉气像顺着铜骨架钻进了骨头里』（指代明确，比喻结构保留）；但第77段『顺着夯土芯子往上窜』仍与遗物『芯子』（第61/65/67/89段）同词并存。核心歧义（凉气句所指）已消，剩余一处为低优先，建议复审/打磨轮统一（遗物→『那截芯子/遗物芯』，地底→『夯土芯/墙芯』）。"},
+    {"location": "logic_level 第4条（第107段·断矛归属歧义）", "status": "resolved", "note": "已改『攥着自己那杆断了半截的矛』，自指限定到位，与第35段老周头那杆两截断矛区分；s6 开窗锚（凝霜）准确挂到头目自带断矛。"},
+    {"location": "sentence_level 第1条（第37段·玉佩段归纳句）", "status": "kept", "note": "用户裁定保留（黄金三章机制首秀需明确；『这世界不认』作冷硬点题）。评审尊重取舍，不再计为 open 项。"},
+    {"location": "sentence_level 第2条（第47段·『能伤，杀不死。代价，已经付清。』）", "status": "kept", "note": "用户裁定保留（冷硬风格点题句）。与其余短判断句（第9/69/81段）同属风格重音，保留。"},
+    {"location": "logic_level 第5条（第51段·齿轮案角→兜里跨章接续）", "status": "kept", "note": "用户裁定保留、登记角色卡复审（交接卡 positions 已自报『案角/里兜存放口径待统一』）。跨 5 夜且出门揣兜合 personal_habits，非硬伤；建议角色卡复审统一 Ch1『里兜空的』/Ch2『案角』/Ch3『兜里』三段口径。"}
+  ],
+  "new_issues_this_round": [
+    {
+      "location": "交接卡 style_plan.metaphor_plan[1] 对照 正文第83段",
+      "original": "交接卡：{\"position\":\"献祭代价段\",\"target\":\"凉气入骨\",\"metaphor\":\"凉气像顺着芯子钻进了骨头里\"}；正文第83段：『凉气像顺着铜骨架钻进了骨头里』",
+      "issue": "卡级残留（硬性要求#3）：本轮把正文该比喻的指代由『芯子』改为『铜骨架』，但交接卡 style_plan.metaphor_plan 第2条未同步，仍引旧句『凉气像顺着芯子钻进了骨头里』——交换卡自称与实际正文不一致。",
+      "severity": "minor",
+      "suggestion": "同步交接卡 style_plan.metaphor_plan[1].metaphor 为『凉气像顺着铜骨架钻进了骨头里』（功能标注『为 Ch6 右手使力时长变短量化埋锚（D6）』不变）。"
+    },
+    {
+      "location": "第11段（本轮新措辞）",
+      "original": "壳面上是螺旋纹，一圈拧着一圈，收口往里收，拧得比壳兽的纹严实。",
+      "issue": "新措辞轻微可读性问题（非设定矛盾）：『拧得比壳兽的纹严实』把『拧』的比较落在壳兽纹上，而壳兽＝直纹/弧线纹（二阶，非螺旋）——以『拧』度作跨纹型比较，读来略松（对比项不在同一纹型）。不构成纹路体系冲突，读者可会意为『更高阶/更密实』。",
+      "severity": "minor",
+      "suggestion": "低优先（可选）。若打磨，可把比较落到相关维度，如『收口往里收，比壳兽那点直纹密得多』或直接『壳面上的螺旋纹，一圈拧着一圈，收口往里收』（不加比较项，用『螺旋』本身即完成越阶暗示）。"
+    }
+  ],
+  "residual_notes": [
+    {"item": "D8 待裁项", "judge": "已闭合（关单）", "note": "outline v1.5.2（2026-10-12）已修正 D8 planted 12→3 并补 f7 梯度『Ch3 首现（矛杆凝霜）』；交接卡 spec_notes/suspense_budget_check 本轮已同步（⑤、D8 对齐口径），正文第107段霜句为计划内首现。"},
+    {"item": "流程项（第8层实证输入）", "judge": "合规关单", "note": "本轮起已按规程先存 pre_lint 快照（pre_lint_ch3.txt＝整改前 v4），fix_audit_ch3.json 同步刷新；v1-v3 轮旧卡随 git 9b16354 存证。无流程违规残留。"},
+    {"item": "保留项（用户裁量，关单）", "judge": "kept", "note": "玉佩段归纳句（第37段）、『能伤，杀不死。代价，已经付清。』（第47段）、齿轮案角→兜里过渡（登记复审）、C4 社会代价维度补充、短判断句密度——均裁定不动，不计 open 项。"},
+    {"item": "lint 参考态 le 24.51／zhe 16.82 超阈（L2）", "judge": "accept（见 l1_advisory_response）", "note": "L0=0、L1crit=0，仅 2 条 L2 参考；le_pattern 未报 AI 腔模式。"},
+    {"item": "梗层（第2层）", "judge": "不适用", "note": "本项目未启用 meme_library；本章无梗，meme_level=[]。"},
+    {"item": "指纹 5 维超阈", "judge": "参考态（不作退据）", "note": "fp 卡 5 维超阈（func_words_cosine/sent_len_mean/sent_len_stdev/long_sent_ratio/comma_period_ratio），沿用户 2026-09-20 终裁＝参考指标，与本轮改动无涉。第1层句式呼吸裁定从宽，仅核『未明显偏离本书口味』→未偏离。"}
+  ],
+  "sentence_level": [
+    {
+      "location": "第37段（玉佩反例段）",
+      "original": "玉佩值钱，上头却没有命，没有情，攒不下四十年。这世界不认。",
+      "issue": "展示-解释冗余＋作者归纳（D1）。画面已展示『无光/跪在自己的碎渣上/手一直没放下来』，随后旁白又替读者总结规则（『没有命，没有情，攒不下四十年』＝规则①直陈，『这世界不认』＝下结论）。相邻老兵(暗铜光)/年轻兵(青白光)两例均无旁白解释，独玉佩例加解说。",
+      "severity": "minor",
+      "suggestion": "删『这世界不认』或将解释前置为对照动作；若黄金三章机制首秀需明确，宜借头目追问或场景对照给。",
+      "revised": "（删『这世界不认。』）玉佩值钱，上头却没有命，没有情，攒不下四十年。",
+      "resolution": "kept（用户裁定保留——机制首秀清晰度优先）"
+    },
+    {
+      "location": "第47段",
+      "original": "能伤，杀不死。代价，已经付清。",
+      "issue": "作者归纳/总结句（D1）。替读者对两级献祭做机制与代价结论；属冷硬风格点题句，为短判断句独立成段连发之一。",
+      "severity": "minor",
+      "suggestion": "可保留；或并入年轻兵收招/两鬓白画面后自然带出，避免独立结论句连发。",
+      "resolution": "kept（用户裁定保留；与第9/69/81段短判断句同属风格重音）"
+    },
+    {
+      "location": "第51段 / 第65段",
+      "original": "把兜里那枚旧齿轮摸出来；……他把兜里那截断绳摸出来",
+      "issue": "句式模板重复（第10层）：『把兜里那＋量词＋物＋摸出来』章内两现近同构。",
+      "severity": "minor",
+      "suggestion": "其一改换起句方式。",
+      "revised": "他把断绳抽出来，缠在芯子上。",
+      "resolution": "resolved（第65段已改『他把断绳抽出来』，模板降为1现）"
+    },
+    {
+      "location": "第33段",
+      "original": "那条缝合得严丝密缝，像是从没裂开过。",
+      "issue": "用词：规范成语为『严丝合缝』，『严丝密缝』为不规范变体。",
+      "severity": "minor",
+      "suggestion": "改为『严丝合缝』。",
+      "revised": "那条缝合得严丝合缝，像是从没裂开过。",
+      "resolution": "resolved（已改『严丝合缝』）"
+    },
+    {
+      "location": "第39段（年轻兵段末）",
+      "original": "头兽尾巴扫过来，把他拍在墙上，贴着滑下去。倒下之前，他收了一次招，膝盖打软，撑了一下，才站稳。",
+      "issue": "时序略乱：『贴着滑下去』（倒地）与『倒下之前……才站稳』（仍站）同段相抵。",
+      "severity": "minor",
+      "suggestion": "调序或用进行态过渡。",
+      "revised": "头兽尾巴扫过来，把他拍在墙上，贴着往下滑。倒下之前……",
+      "resolution": "resolved（已改『贴着往下滑』，进行态与『才站稳』相容，canon 顺序未动）"
+    },
+    {
+      "location": "第95段",
+      "original": "一条槽就灭了头兽，三条一起填满，是什么光景？头目不敢想。",
+      "issue": "情绪克制/视点：『不敢』命中情绪词表；『头目不敢想』把视点轻跳到头目内心。",
+      "severity": "minor",
+      "suggestion": "改身体/动作侧写或明确问句归属。",
+      "resolution": "resolved（删『头目不敢想。』；同段删『他没答，』改动作起句，兼解 C2 标签第3现）"
+    }
+  ],
+  "meme_level": [],
+  "foreshadowing_level": [],
+  "logic_level": [
+    {
+      "location": "交接卡 beat_sheet.beats[0] 与 memory/characters/守军头目.json signature_lines 对照 实际前章正文",
+      "original": "守军头目把矛往地上一顿，扭过头来：“你到底什么人？”；交接卡原自报『Ch2 已问一遍』",
+      "issue": "交换卡/角色卡跨章事实自称与实际正文不符（硬性要求#3）：new Ch2 定稿头目未出场、无此问句，本章应为首次出现。",
+      "severity": "major",
+      "suggestion": "修正交接卡及守军头目卡旧稿残留；或正文加『又问了一遍』标记（若保留复问质感）。",
+      "resolution": "resolved（交接卡 beat1/desire/dna_outlets_used/certainty_state 四处已改『本章首次问询』并注明转角色卡复审→关单；残余＝守军头目卡本体旧稿残留，属 pending 角色卡复审，见 resolution 该条）"
+    },
+    {
+      "location": "第11段（头兽首现）",
+      "original": "壳面上是螺旋纹，一圈拧着一圈，收口往里收。纹在转，自己转。",
+      "issue": "设定一致性：三阶＝螺旋纹（静），四阶＝流动纹（会动）；『纹在转，自己转』使三阶螺旋纹具常态自主转动，越阶边界模糊。",
+      "severity": "minor",
+      "suggestion": "删『纹在转，自己转。』或改静态描述，动感只留受伤自愈处。",
+      "revised": "壳面上是螺旋纹，一圈拧着一圈，收口往里收，拧得比壳兽的纹严实。",
+      "resolution": "resolved（已采纳 revised，删『自己转』并改静态描述；新措辞轻微问题见 new_issues_this_round）"
+    },
+    {
+      "location": "第61/65/67/83/89段 与 第77段",
+      "original": "……凉气像顺着芯子钻进了骨头里；／ 顺着夯土芯子往上窜",
+      "issue": "术语指代歧义：『芯子』兼指①遗物芯②夯土芯③第83段『凉气顺着芯子』（指代不明）。同词异指无限定词。",
+      "severity": "minor",
+      "suggestion": "区隔用词；第83段凉气句改指明确对象。",
+      "resolution": "partial（第83段已改『铜骨架』；第77段『夯土芯子』仍与遗物『芯子』并存，低优先待复审/打磨轮统一）"
+    },
+    {
+      "location": "第35段 与 第107段",
+      "original": "矛杆断成两截，落点离顾衡不到五步。……／ 头目站在原地，攥着那杆断了半截的矛。",
+      "issue": "物品指代歧义：同场两杆断矛（老周头断落地 vs 头目自带旧断矛），s6 开窗锚归属易混。",
+      "severity": "minor",
+      "suggestion": "第107段加自指限定。",
+      "resolution": "resolved（已改『攥着自己那杆断了半截的矛』）"
+    },
+    {
+      "location": "第51段（齿轮首句） 对照 第2章第15段（齿轮搁案角）",
+      "original": "把兜里那枚旧齿轮摸出来，指尖在齿上走了一圈……",
+      "issue": "物品位置跨章接续（登记项）：Ch2 案角→本章兜里无过渡；与 Ch1『里兜空的』三段口径并存。",
+      "severity": "minor",
+      "suggestion": "加半句过渡，或角色卡钉死『出门即揣兜』并统一 Ch1/Ch2 口径。",
+      "resolution": "kept（用户裁量保留、登记角色卡复审）"
+    }
+  ],
+  "consistency_check": {
+    "character_voice": "PASS。顾衡台词仍极简砸实话、以动作代答（『饿着死的更快。』『料在位面。』『还有三个槽没填。』第103段）；本轮删第95段『他没答，』后，『不答』改由『他指腹蹭着槽壁翻看』动作承接（第23/55段仍以『他没答/他没理』各一现），签名式应对未失、标签第3现已消。老周头『跟了四十年，够了』与守军头目问句均合卡；无串味。",
+    "setting_consistency": "PASS（越阶边界已修）。献祭四规则仍逐条对上 setting_bible（玉佩无附着不响应／铜符四十年＝暗铜二阶／木牌命格＝青白三阶／前纪元无光只有灰＝四阶+）；兽潮分级、视觉标记一致。原第11段『纹在转，自己转』越阶边界问题已随本轮改动消除（三阶静螺旋/四阶流动纹读法恢复）。",
+    "timeline_check": "PASS。『第五夜』＝交割后第五夜，衔接 Ch2 交割日，章内无绝对天数冲突；本轮改动不涉时间。",
+    "previous_chapter_continuity": "PASS（卡级已修）。断绳/城下残骸/引导器四槽首次出场/回城所见不重演均承接✓；原『Ch2 已问一遍』卡级自称与实际 Ch2 不符项已由交接卡四处口径修正对齐（见 logic_level 第1条 resolution）。",
+    "dialogue_logic": "PASS。头目追问链自洽（『这是什么？』→『就为了这东西？』→『剩下的三个呢？』递进不矛盾）；本轮删第95段『他没答，』不涉及台词内容，对话链不受影响。",
+    "behavior_consistency": "PASS。头目质问被无视→『站了一息，抬脚跟上』（桥接充分）；顾衡取物→入槽→灭兽→收器冷续；第95段改动作作答与冷控一致。",
+    "number_plausibility": "PASS。四十年/二十出头/三排拒马桩/不到五步/十几步/四条槽——与场景与时间线一致，未变。",
+    "terminology_check": "PASS。仍 0 处『沈』字、无『老龙』称呼、卷1 术语不点破✓；新造专名＝0。『引导器』术语直用口径张力（前5章专业术语）为原观察项，非本轮问题。",
+    "metaphor_consistency": "PASS。『凉』承 Ch1/Ch2（未内化 f9，未越级✓）；『灰』首末呼应（芯子烧成→矛杆同色灰）；第83段比喻指代由『芯子』改『铜骨架』后，比喻体系一致。≥1 AA级比喻（『断口平得像是铡刀切过的』）维持。注：交接卡 style_plan.metaphor_plan[1] 未同步新句——见 new_issues_this_round。",
+    "scene_repetition": "PASS。无逐字/近似重复硬伤；『把兜里那X摸出来』模板重复已由本轮降为1现（resolved）。",
+    "reference_ambiguity": "第83段『凉气顺着铜骨架』已消歧（resolved）；第77段『夯土芯子』仍与遗物『芯子』同词并存（partial，低优先）；第107段断矛已加自指（resolved）。",
+    "cross_chapter_facts": "PASS。专名回查✓；数字验算✓（第五夜＝交割后第5夜）；同章时间自洽✓；位置/状态接续✓（断矛、断绳、芯子、引导器位置链清晰；齿轮案角→兜里为登记保留项）；已知信息防重发现✓。beat 数＝4（major 3）✓；hook_sentence『缺的那一环，位面里有。』＝rework_v2.ch3 spec 原句且为正文末句✓；DNA 出口引用逐条可查✓。word_count 2448（区间内）✓。卡级残留：style_plan.metaphor_plan[1] 未同步（新增 minor）。",
+    "foreshadowing_pacing": "PASS，无跳级/透支。D3 兑出（due Ch3）✓；D5 部分清算✓；D6 挂账✓；D4 一句轻回响✓；f7/s6 开窗锚＝Ch3 末矛杆凝霜（且已加自指限定，载体清晰）✓；f17 轻回响✓；f2/f4/f9 未越级✓。D8 待裁项已由 outline v1.5.2 闭合（见 residual_notes）。",
+    "certainty_match": "PASS。顾衡 full→直陈；守军头目『引导器』first_encounter→疑问句；『霜』first_encounter→合理解释无确定断言；『顾衡是什么人』partial→首次问询未获答（卡已同步）。无漂移。",
+    "overcorrection_check": "PASS（第8层·实证式，以本轮刷新 fix_audit 卡为准）。本轮 fix_audit：比喻替换 0／引号消失 0／功能词减少 0／整句删除 2。两项整句删除——『纹在转，自己转。』（越阶边界修正）与『头目不敢想。』（情绪/视点修正）——均为**用户批准的评审整改项**，非 lint 修复轮产物，且删的都是问题句（非好比喻/非语法必需），不构成语法残缺/比喻退步/对话失现场感/Hack 绕过。另『芯子→铜骨架』为词级指代修正（非『像→如』骗计数器，simile_changes=0），非 Hack。lint_diff 无新增项、le/zhe 参考项不变。结论：无过度矫正残留，本层关单。",
+    "l1_advisory_response": [
+      {"rule": "le_overuse", "lint_message": "『了』24.51/千字 > 上限18.0（L2 参考）", "decision": "accept", "reason": "本书短句+动作句风格使然，『了』多作动作完成标记；le_pattern 未报 AI 腔；黄金三章风格区间内，参考态不阻断。（较上轮 24.45 微升因篇幅降至 2448，属同一量级）"},
+      {"rule": "zhe_overuse", "lint_message": "『着』16.82/千字 > 上限15.0（L2 参考）", "decision": "accept", "reason": "『着』多用于持续态/存在句（蹲着/攥着/亮着/撑着），与全章短句节奏及冷硬语感一致；超阈幅度小（+1.82），参考态不阻断。"}
+    ],
+    "repetition_pattern": "多项较上轮改善。①句式模板『把兜里那X摸出来』2现→1现（resolved）。②C2 沉默标签第3现（第95段『他没答，』）已消，现余第23段『他没答』/第55段『他没理』各一次。③核心意象『灰』（约15处）仍属本章主题母题（无光只有灰），可接受。④短判断句独立成段连发（第9/47/69/81段）为冷硬风格重音手法，用户裁定保留。⑤节奏质地（全短句、长句偏少）＝本书定稿口味，指纹参考态。综上不再计 minor。",
+    "narrative_technique": [
+      {"technique": "A2 悬念钝化逐层加码", "applicable": true, "applied": true, "severity": "pass", "suggestion": "头兽先『那个东西』再借半截喊名，钝刀慢割，维持。"},
+      {"technique": "A3 感官线索呼应与迁移", "applicable": true, "applied": true, "severity": "pass", "suggestion": "『灰』首末呼应、『凉』停外部物件层（留 f9），维持。"},
+      {"technique": "B1 场景三合一", "applicable": true, "applied": true, "severity": "pass", "suggestion": "维持。"},
+      {"technique": "B2 切镜头", "applicable": true, "applied": true, "severity": "pass", "suggestion": "过渡文字删净，维持。"},
+      {"technique": "B3 情绪缓冲带", "applicable": true, "applied": true, "severity": "pass", "suggestion": "末段炊烟味呼吸拍，维持。"},
+      {"technique": "B4 非对称对抗", "applicable": true, "applied": true, "severity": "pass", "suggestion": "被碾压→越阶翻盘，维持。"},
+      {"technique": "B5 反差法", "applicable": true, "applied": true, "severity": "pass", "suggestion": "绝境×嚼饼冷反常＋炊烟活人味，维持。"},
+      {"technique": "B6 大场面段落次序", "applicable": true, "applied": true, "severity": "pass", "suggestion": "五层齐，维持。"},
+      {"technique": "C1 群像主动准备代替被动观望", "applicable": true, "applied": true, "severity": "pass", "suggestion": "溃败参照物齐，维持。"},
+      {"technique": "C2 沉默的处理", "applicable": true, "applied": true, "severity": "pass", "suggestion": "上轮 minor（第3次起仍用标签）已解——第95段删『他没答，』改动作起句；现余标签各一现，且有双方反向动作（第23段）。pass。"},
+      {"technique": "C3 极短暂反应", "applicable": true, "applied": true, "severity": "pass", "suggestion": "『手停一下』＋耳后汗/缩袖，维持。"},
+      {"technique": "C4 高光代价", "applicable": true, "applied": true, "severity": "minor", "suggestion": "生理+资源维度齐，缺心理/社会维度；用户裁定保留不动（不计 open）。维持原判。"},
+      {"technique": "C5 动作上发条", "applicable": true, "applied": true, "severity": "pass", "suggestion": "维持。"},
+      {"technique": "C6 同一刺激差异化反应", "applicable": true, "applied": true, "severity": "pass", "suggestion": "维持。"},
+      {"technique": "D1 不替读者做功课", "applicable": true, "applied": false, "severity": "minor", "suggestion": "第37段归纳句（kept）＋第47段『能伤，杀不死』（kept）——用户裁定保留；不计 open。维持原判。"},
+      {"technique": "E1 双重赌注", "applicable": true, "applied": true, "severity": "pass", "suggestion": "维持。"},
+      {"technique": "E2 机制失败对照", "applicable": true, "applied": true, "severity": "pass", "suggestion": "维持。"},
+      {"technique": "E4 认知反差", "applicable": true, "applied": true, "severity": "pass", "suggestion": "维持。"}
+    ],
+    "golden3_opening": {
+      "note": "黄金三章（Ch1-3）开篇量化，本章逐项判定（本轮改动不涉开篇结构/人物篇幅）。",
+      "insertion_flashback": {"judge": "不适用", "detail": "无插叙/倒叙；开篇为『对话开头』（第3段墙头喊话），符合 spec。"},
+      "event_density": {"judge": "pass", "detail": "2—3 事件（头兽夜袭主＋三级献祭次＋越阶灭头兽主兑现），主事件过半，过渡空行硬切。"},
+      "character_screen_share": {"judge": "pass", "detail": "登场 4 人（顾衡/守军头目/老周头/年轻兵，群演不计）；主角篇幅＞60%。"}
+    }
+  },
+  "summary": {
+    "total_issues": 11,
+    "critical_count": 0,
+    "major_count": 0,
+    "minor_count": 0,
+    "open_blocking": 0,
+    "resolution_breakdown": "原 11 条全部处置：resolved 7（s3 句式模板／s4 严丝合缝／s5 年轻兵时序／s6『头目不敢想』＋C2标签／l1 major 交接卡口径／l2 螺旋纹越阶边界／l4 断矛自指）；partial 1（l3『芯子』：第83段已改『铜骨架』，第77段『夯土芯子』仍并存，低优先）；kept 3（s1 玉佩归纳句、s2『能伤，杀不死』、l5 齿轮口径＝用户/角色卡复审登记）。major 已关单。新增 minor 2（见 new_issues_this_round：交接卡 style_plan 比喻句未同步、第11段新措辞略松）。",
+    "polish_priority": ["无阻断项。新增 2 条 minor（交接卡 style_plan.metaphor_plan[1] 同步、第11段『拧得比壳兽的纹严实』措辞）建议随角色卡复审/后续打磨轮一并处理，不影响本稿过关。"]
+  }
+}

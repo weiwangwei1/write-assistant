@@ -15,7 +15,7 @@
       "chapter": "chapter_003_draft.txt",
       "line": 0,
       "excerpt": "",
-      "message": "“了”24.45/千字 > 上限18.0（参考指标——重点看 le_pattern 是否为 AI 腔模式）"
+      "message": "“了”24.51/千字 > 上限18.0（参考指标——重点看 le_pattern 是否为 AI 腔模式）"
     },
     {
       "rule": "zhe_overuse",
@@ -24,7 +24,7 @@
       "chapter": "chapter_003_draft.txt",
       "line": 0,
       "excerpt": "",
-      "message": "“着”16.78/千字 > 上限15.0"
+      "message": "“着”16.82/千字 > 上限15.0"
     }
   ],
   "timeline_clues": {},
