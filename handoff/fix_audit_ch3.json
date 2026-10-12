@@ -1,0 +1,52 @@
+{
+  "card_type": "fix_audit",
+  "from_agent": "fix_auditor(script)",
+  "to_agent": "detail-reviewer",
+  "note": "本卡只含 diff 证据，不做判定——是否构成过度矫正由 detail-reviewer 第8层判断",
+  "pre_ref": "handoff/pre_lint_ch3.txt",
+  "post_ref": "output/chapter_003_draft.txt",
+  "summary": {
+    "simile_changes": 0,
+    "function_word_reductions": 1,
+    "dialogue_loss_candidates": 0,
+    "removed_sentences": 0,
+    "lint_issues_before": 3,
+    "lint_issues_after": 2
+  },
+  "evidence": {
+    "simile_changes": [],
+    "function_word_reductions": [
+      {
+        "reduced_words": {
+          "的": {
+            "before": 1,
+            "after": 0
+          }
+        },
+        "before": "老兵提矛冲上去，一矛扎进头兽的壳面，裂开一条缝，渗黑汁。",
+        "after": "老兵提矛冲上去。",
+        "context": "replace块[40:41]→[41:44]"
+      }
+    ],
+    "dialogue_loss_candidates": [],
+    "removed_sentences": []
+  },
+  "lint_diff": {
+    "before": {
+      "le_overuse": 1,
+      "zhe_overuse": 1,
+      "phrase_repeat": 1
+    },
+    "after": {
+      "le_overuse": 1,
+      "zhe_overuse": 1
+    },
+    "increased_or_new": {},
+    "resolved": {
+      "phrase_repeat": {
+        "before": 1,
+        "after": 0
+      }
+    }
+  }
+}
