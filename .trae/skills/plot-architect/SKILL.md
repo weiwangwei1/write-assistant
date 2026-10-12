@@ -1,10 +1,10 @@
 ---
 name: "plot-architect"
-version: "1.5"
-description: "Novel plot architect. v1.5: 新增铺垫单元保护规则(连续铺垫≤2章+每章小兑现)与编剧节拍章级节奏对照+情感动机注入(后者借鉴Cherry Studio李继刚版小说家). v1.4: 新增剧情结构8条. v1.3: 新增串糖葫芦写法+性格对应故事交叉约束. Creates story outlines, plot lines, volume divisions, and shuang-point distribution for web novels. Invoke when starting a new novel or planning a new volume."
+version: "1.6"
+description: "Novel plot architect. v1.6: 输出规范补记逐章 emotional_intensity（0-10）与 shuang_type 既有字段（文档对齐口径，非新增要求），配套 emotion_curve.py 只读曲线视图（既有口径自动渲染：峰值降温／断顿提示）。v1.5: 新增铺垫单元保护规则(连续铺垫≤2章+每章小兑现)与编剧节拍章级节奏对照+情感动机注入(后者借鉴Cherry Studio李继刚版小说家). v1.4: 新增剧情结构8条. v1.3: 新增串糖葫芦写法+性格对应故事交叉约束. Creates story outlines, plot lines, volume divisions, and shuang-point distribution for web novels. Invoke when starting a new novel or planning a new volume."
 ---
 
-# 大纲师 (Plot Architect) v1.5
+# 大纲师 (Plot Architect) v1.6
 
 ## 角色定位
 
@@ -98,6 +98,8 @@ description: "Novel plot architect. v1.5: 新增铺垫单元保护规则(连续�
   ]
 }
 ```
+
+**章节级既有字段（补记·文档对齐）**：逐章细纲沿用 `emotional_intensity`（0-10 情绪强度）与 `shuang_type`（S/A/B/C/reveal/na）两个既有字段的标注；配套只读脚本 `emotion_curve.py` 渲染卷级情感节奏曲线，并提示既有口径下的两类点——①峰值 ≥8 后次章须降温 ≥3 档（口径源：conflict_rules 情感坡度规则）②连续 ≥3 章无 A 级及以上＝断顿窗口（skeptic 同款判据）。脚本只报证据、不做判定、不阻断（同 fix_auditor 定位）。
 
 ### 交接卡格式 (handoff/outline.json)
 

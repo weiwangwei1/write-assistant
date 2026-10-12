@@ -85,6 +85,7 @@ python style_fingerprint.py check output/chapter_001.txt --baseline .trae/skills
 | `style_lint.py` | 文风硬约束校验（L0 反AI红线阻断 / L1 顾问项 + 篇幅硬检） |
 | `style_fingerprint.py` | 文体指纹基线构建（build）与偏差校验（check / selfcheck） |
 | `fix_auditor.py` | lint 修复差异证据卡（只产证据不判定） |
+| `emotion_curve.py` | 大纲情感节奏曲线（只读视图）：逐章情绪强度/爽点等级曲线渲染＋降温/断顿提示（只报证据，不阻断） |
 | `style_pack_check.py` | 风格包入库验收清单 |
 | `style_signature.py` | 作者签名手法自动提取（N-gram 交叉对比） |
 | `style_trend.py` | 风格偏差趋势分析（读 style_deviation_log.jsonl） |
