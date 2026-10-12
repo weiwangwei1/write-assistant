@@ -1,10 +1,10 @@
 ---
 name: "character-designer"
-version: "1.8"
-description: "Character designer for novels. v1.8: 新增core_fear(存在主义深层恐惧)/vulnerability_leak(非理性漏洞行为)/depth_type(关系深度类型:镜像自我/锚点/共犯/牺牲见证)——来自《第三纪元》人物形象意见深度分析. v1.7: Show vs Tell 新增「掌控者型主角展示结构」——预埋冷动作兑现素材，禁止内心独白自夸. v1.6: 新增性格DNA层(personality_dna)+物件生态(object_ecology)+关系互动生态(interaction_ecology)+DNA优先工作流+动作化出口铁律——设定是衣服性格是身体，先立身体再穿衣服. v1.5: 新增并行设计模式(单角色并行+关系网络合并). v1.4: 新增主角4型模板+反派4型分类法+Show vs Tell角色塑造规则. v1.3: 新增三维度反差化框架+性格对应故事交叉约束. Creates character cards, relationship networks, and growth arcs. Invoke after outline is created or when adding new characters."
+version: "1.9"
+description: "Character designer for novels. v1.9: 新增scheduled_payoffs(已排期回报)——角色在既定章节/区间被排期的回报/送别/见证/兑现类戏份清单（守军头目卡越界字段转正，配套 plot-architect 角色卡×大纲对账，外部评审 P1·A4）. v1.8: 新增core_fear(存在主义深层恐惧)/vulnerability_leak(非理性漏洞行为)/depth_type(关系深度类型:镜像自我/锚点/共犯/牺牲见证)——来自《第三纪元》人物形象意见深度分析. v1.7: Show vs Tell 新增「掌控者型主角展示结构」——预埋冷动作兑现素材，禁止内心独白自夸. v1.6: 新增性格DNA层(personality_dna)+物件生态(object_ecology)+关系互动生态(interaction_ecology)+DNA优先工作流+动作化出口铁律——设定是衣服性格是身体，先立身体再穿衣服. v1.5: 新增并行设计模式(单角色并行+关系网络合并). v1.4: 新增主角4型模板+反派4型分类法+Show vs Tell角色塑造规则. v1.3: 新增三维度反差化框架+性格对应故事交叉约束. Creates character cards, relationship networks, and growth arcs. Invoke after outline is created or when adding new characters."
 ---
 
-# 角色师 (Character Designer) v1.8
+# 角色师 (Character Designer) v1.9
 
 ## 角色定位
 
@@ -225,6 +225,17 @@ description: "Character designer for novels. v1.8: 新增core_fear(存在主义�
 - 漏洞必须**极小**——不是大段的情感爆发，而是一个动作/一个选择
 - 漏洞只在**极端条件**下触发——生死关头/本能反应，日常不出现
 - 漏洞的作用：把"神"拉回"人"——让读者瞬间看到角色外壳下的软肋
+
+### 角色卡新增字段说明（v1.9 ★）
+
+| 字段 | 类型 | 说明 | 必需 |
+|------|------|------|------|
+| `scheduled_payoffs` | array | **已排期回报**：角色在既定章节/区间被排期的"回报/送别/见证/兑现"类戏份清单，每项含 `chapter`（章号或区间）与 `payoff`（戏份描述）。来源：守军头目卡越界字段转正（2026-10-12，外部评审 P1·A4）；转正后供 plot-architect 细化单元时逐条对账 | 可选（有排期戏份的配角优先） |
+
+**scheduled_payoffs 设计要求**：
+- **每笔须能在 outline 找到承接拍**——plot-architect 细化对应单元时逐条对账；缺失须补 beat 或并入既有拍（见 plot-architect「角色卡×大纲对账」）
+- 描述须**具体可感到"写手能直接执行"**（物件/动作/台词风格，如"塞一卷自己缠矛用的皮绳"），不写"有互动"这类空话
+- 是**排期表不是愿望清单**——不能承接的笔不许挂；挂上即欠账
 
 ### 关系网格式
 

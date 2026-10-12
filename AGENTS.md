@@ -4,7 +4,7 @@
 
 ## 一、项目概述
 
-这不是一个传统软件项目，而是一套**多智能体网文创作系统**：通过多个专业化 LLM Agent（Skill）协作，完成从选题预筛、大纲构思、角色设计到章节写作、多层审核、去AI化、平台适配、记忆入库的全流程，目标平台为**番茄小说（fanqie）**。**当前在产项目：《第三纪元》**（2026-09-20 重启：旧稿 Ch1-7 已完整归档至 `archive/第三纪元_重启_20260920/`，保留大纲/世界观/角色设定，从序言+Ch1 重写；位面入侵·献祭流·智斗，tiancantudou 文风包，300 章 / 6 卷，详见第九节）。此前《请客》《征诏之界》《镜渊》《万纹师》《有龙则灵》《补天人》《献祭纪元：赊刀人》《临渊》《玩家请就位》均已放弃或归档至 `archive/`。
+这不是一个传统软件项目，而是一套**多智能体网文创作系统**：通过多个专业化 LLM Agent（Skill）协作，完成从选题预筛、大纲构思、角色设计到章节写作、多层审核、去AI化、平台适配、记忆入库的全流程，目标平台为**番茄小说（fanqie）**。**当前在产项目：《第三纪元》**（2026-09-20 重启：旧稿 Ch1-7 已完整归档至 `archive/第三纪元_重启_20260920/`，保留大纲/世界观/角色设定，新稿黄金三章重写稿已产出（Ch1-3 经细节控二轮 polished；正式章节循环未启动，处于循环外阶段——见第九节「阶段说明」）；位面入侵·献祭流·智斗，tiancantudou 文风包，300 章 / 6 卷，详见第九节）。此前《请客》《征诏之界》《镜渊》《万纹师》《有龙则灵》《补天人》《献祭纪元：赊刀人》《临渊》《玩家请就位》均已放弃或归档至 `archive/`。
 
 系统的"代码"主要是三类：
 
@@ -28,8 +28,8 @@ write-assistant/
 │   ├── setting-reviewer/      # 设定审核员：世界观 6 维评分
 │   ├── character-designer/    # 角色师：人物设定、关系网、成长弧线
 │   ├── keyword-expert/        # 命名专家：术语命名与巡检
-│   ├── chapter-writer/        # 写手：章节正文生成（v4.4，H1-H11 + 倾向库；5.9 技法按 A-E 组 24 条 + 黄金三章开篇量化 + 呼吸感/首章赌注）
-│   ├── detail-reviewer/       # 细节控：逐句/逐伏笔微观审核（v1.22，第11层 18 项 + 黄金三章开篇量化附节 + 第1层句式呼吸/怕与欲，ID 与写手对应）
+│   ├── chapter-writer/        # 写手：章节正文生成（v4.6，H1-H11 + 倾向库；5.9 技法按 A-E 组 24 条 + 黄金三章开篇量化 + 呼吸感/首章赌注 + D1 禁氛围标签第三抓手；H3 五字段强制 + core_fear_touched 接线）
+│   ├── detail-reviewer/       # 细节控：逐句/逐伏笔微观审核（v1.24，第11层 18 项 + 判罚分层〔A2/C4/D1/E1 可判 major〕+ 黄金三章开篇量化附节 + 第1层句式呼吸/怕与欲 + 第5层氛围克制，ID 与写手对应）
 │   ├── de-ai-processor/       # 去AI化师：消除 AI 写作痕迹（分析/完整模式）
 │   ├── quality-reviewer/      # 审稿员：8维技术分 + 6读者画像
 │   ├── fanqie-adapter/        # 适配师：番茄平台爽点/节奏/合规适配
@@ -62,8 +62,8 @@ write-assistant/
 │   ├── ability_system.json        # 能力体系（分类/等级/获取/限制）
 │   ├── conflict_rules.json        # 冲突规则（核心矛盾/势力对抗/隐藏机制）
 │   ├── characters.json            # 角色索引（指针），独立角色卡在 characters/*.json
-│   ├── goal_tracker.json          # 目标/悬念窗口/反派梯子追踪
-│   ├── foreshadowing_tracker.json # 伏笔追踪
+│   ├── goal_tracker.json          # 目标/悬念窗口/反派梯子追踪（《第三纪元》未建——重启后以 outline.suspense_window_plan 为替代口径）
+│   ├── foreshadowing_tracker.json # 伏笔追踪（《第三纪元》未建——以 outline.foreshadowing_registry 为替代口径）
 │   ├── chapter_summaries/         # 每章结构化摘要
 │   ├── recent_chapters/           # 滑动窗口（按需从 output/ 读取，不维护副本）
 │   ├── volume_summaries/ consistency_check/ longline_review/
@@ -92,7 +92,8 @@ write-assistant/
 ├── refSkill/              # 番茄官方写作方法论参考库（精读版 74 篇/13 主题 35 万字 + 5 个合集；2026-09-20 入库，驱动 ch-writer v4.3 等 4 项升级）
 ├── docs/                  # 文档区
 │   ├── style-distillation/        # 文风自主蒸馏方法论（HTML）
-│   └── topic-notes/               # 选题过程记录（选题构思/选题推进 AB 细化，2026-08-02，孕育了《第三纪元》）
+│   ├── topic-notes/               # 选题过程记录（选题构思/选题推进 AB 细化，2026-08-02，孕育了《第三纪元》）
+│   └── *.md（2026-10 新增）        # 写作系统评审材料_外部评审_20261012、第三纪元_写作体系全景与灵魂缺口诊断_外部评审版_20261012（前置版）、第三纪元_故事债表草案_Ch1-15、外部提示词吸收评估_20261010 等
 ├── ref/ test/ tmp_golden3/ topic-evaluation/ novel-distillation/
 ├── style-distillation-summary/ zuiezhicheng-analysis/   # 实验区/参考资料（历史遗留）
 ├── *.html                 # 各类可视化报告：dashboard.html（进度面板，见第九节）、
@@ -107,6 +108,8 @@ write-assistant/
 ├── style_pack_check.py    # ★ 风格包入库验收清单（三件套+模板合规）
 ├── style_signature.py     # 作者签名手法自动提取（N-gram 交叉对比；子命令 extract/compare/vocabulary）
 ├── style_trend.py         # 风格偏差趋势分析（读 memory/style_deviation_log.jsonl）
+├── emotion_curve.py       # 卷级情感曲线视图（读 memory/outline.json 逐章 emotional_intensity/shuang_type；含降温不足/断顿窗口预警；只读脚本，2026-10 新增）
+├── anchor_check.py        # 结构锚点计数视图（读 memory/outline.json 的 beat_kind；按单元统计 relational/object 有无——每 10 章 ≥1，只查有无；只读脚本，2026-10 新增）
 └── serve.py               # dashboard 静态服务器（正确声明 UTF-8 Content-Type）
 ```
 
@@ -232,11 +235,15 @@ powershell -ExecutionPolicy Bypass -File auto-runner/generate_task_config.ps1 # 
 
 ## 九、当前进度快照
 
-**当前状态**：在产项目《第三纪元》**已于 2026-09-20 重启**——旧稿 Ch1-7 正文与全部章级过程产物（含黄金三章精修证据）完整归档至 `archive/第三纪元_重启_20260920/`（output 9 / handoff 48 / golden3_revisions 43 / memory 10）；**保留**大纲（`memory/outline.json`）、世界观（`setting_bible`/`world_setting`/`ability_system`/`conflict_rules`）、角色设定（8 张角色卡 + `characters.json`）、立项与审核卡（topic_screening / 大纲与设定审核卡）。指针已归零（`session_pointer.current_chapter=0`，`handoff/task_plan.json` phase=init），8 张角色卡 `current_state` 已回退 Ch1 基线，**下一步从序言+Ch1 按现有大纲重写**（适用 chapter-writer v4.5 / detail-reviewer v1.23；指纹已降为参考，见第九节）。全书规划 300 章 / 6 卷，tiancantudou（天蚕土豆）文风包，2500 字/章（区间 2400-2600，见根目录 `lint_config.json`）。**初始化欠账仍在**（角色卡复审未跑；设定三件套 3 项登记项源自旧稿、暂缓）——见下方「初始化欠账」小节。
+**当前状态**：在产项目《第三纪元》。旧稿 Ch1-7 正文与全部章级过程产物（含黄金三章精修证据）已于 2026-09-20 完整归档至 `archive/第三纪元_重启_20260920/`（output 9 / handoff 48 / golden3_revisions 43 / memory 10）；**保留**大纲（`memory/outline.json`）、世界观（`setting_bible`/`world_setting`/`ability_system`/`conflict_rules`）、角色设定（8 张角色卡 + `characters.json`）、立项与审核卡（topic_screening / 大纲与设定审核卡）。重启后黄金三章已按新大纲重写完成（适用 chapter-writer v4.6 / detail-reviewer v1.24）：**Ch1《开价》2587 字定稿 → Ch2《交割》2593 字 polished → Ch3《献祭》2448 字 polished**（各经「初稿 → lint 全绿 → 细节控审核 → 整改二轮复评」闭环，过程卡与证据链在 `handoff/`）。**正式章节循环未启动**（`task_plan.json` 仍为 init/0——本文档所称"完成"均为循环外阶段交付，不产出 quality_review/final_review 等循环产物，见下方「阶段说明」）。**指针现状**：`session_pointer.current_chapter=2`、`completed_chapters=[1,2]`。**2026-10-12：作者发起「写作流程与关键角色」专项外部评审，章节生产暂停中**——评审材料与前置诊断见 `docs/写作系统评审材料_外部评审_20261012.md`、`docs/第三纪元_写作体系全景与灵魂缺口诊断_外部评审版_20261012.md`；评审结论回来后定下一步方向（黄金三章统一打磨 / 指纹基线重建 / 开写 Ch4 / 流程改造）。全书规划 300 章 / 6 卷，tiancantudou（天蚕土豆）文风包，2500 字/章（区间 2400-2600，见根目录 `lint_config.json`）。**初始化欠账仍在**（角色卡复审未跑；设定三件套 3 项登记项源自旧稿、暂缓；2026-10-12 追加 3 项）——见下方「初始化欠账」小节。
 
-**质量趋势**：旧稿 Ch1-7 记录（Ch1-3 走用户直评通道；Ch4 unified 9.11；Ch5 9.28；Ch6 overall 9.44；Ch7 overall 9.43，全部终审 approved）已随重启归档（`archive/第三纪元_重启_20260920/`）；新稿自 Ch1 起重新累积。
+### 阶段说明（循环外阶段与产物口径）
 
-**当前待决**（session_pointer.open_decisions）：①书名与简介待 final（忌俗套重生流书名）②~~指纹基线终裁~~ **已裁决（2026-09-20）**：指纹降为参考指标 + 黄金三章定稿后用本书自语料重建派生基线（证据与口径见第九节「指纹基线与风格冲突」）③番茄「多书名实验」测试时机（20-50 万/100 万字后，发布后执行）。
+本项目存在**"循环外阶段"**（init / 黄金三章重写 / 外部评审等）：此阶段正常产出＝章节草稿、细节控审核卡、lint/指纹卡、修复证据（`handoff/` 实列即此）；**不产出** `de_ai_analysis` / `merged_review` / `quality_review` / `final_review`——正式章节循环未启动，**设计如此，非漏做**。正式章节循环（提交前置门禁 → 细节控 ∥ 去AI化 → 合并 → 审稿 → 适配 → 终审 → 记忆入库）将从下一章（Ch4）起按 chief-editor「章节循环流程」执行；`task_plan.json` 的 phase/current_chapter 以正式循环为准（当前 init/0 与此口径一致）。**两套进度指针的分工（防误读）**：`task_plan.json` 记录**正式章节循环**进度；`session_pointer.json` 记录**会话恢复与工作进度**——其 `current_chapter=2`/`completed_chapters=[1,2]` 指循环外阶段已交付的章节稿（重写稿＋细节控 polished），`current_phase:"writing"` 为"写作期"大阶段标记，`overall_progress:"2/300"` 为稿件累计口径——**均不代表正式章节循环已启动**（正式循环是否启动以 `task_plan.json` 为准）。
+
+**质量趋势**：旧稿 Ch1-7 记录（Ch1-3 走用户直评通道；Ch4 unified 9.11；Ch5 9.28；Ch6 overall 9.44；Ch7 overall 9.43，全部终审 approved）已随重启归档（`archive/第三纪元_重启_20260920/`）；**新稿已累计**：Ch1 v9.2 定稿（lint 0 阻断，用户通读通过）、Ch2 polished（2593 字，lint 0/0/0）、Ch3 polished（2448 字，lint 0/0，L2 参考 2）；三章指纹均为参考态（4-5 维超阈，沿 2026-09-20 终裁，不作拒收依据）。
+
+**当前待决**（session_pointer.open_decisions）：①书名与简介待 final（忌俗套重生流书名）②~~指纹基线终裁~~ **已裁决（2026-09-20）**：指纹降为参考指标 + 黄金三章定稿后用本书自语料重建派生基线（证据与口径见第九节「指纹基线与风格冲突」）③番茄「多书名实验」测试时机（20-50 万/100 万字后，发布后执行）④（2026-10-12 新增）「写作流程与关键角色」专项外部评审进行中；评审后路线待定（黄金三章统一打磨 / 指纹基线重建 / 开写 Ch4 / 流程改造）⑤（2026-10-12）外部评审 P0 整改已落地（detail-reviewer v1.24 判罚分层 / 文档状态对齐＋阶段说明 / 死配置与漂移清理）；待 Ch4 重跑验证——明细见 `docs/写作体系优化计划_20261012.md`。
 
 ### 初始化欠账（2026-09-20 核实修正）
 
@@ -246,7 +253,7 @@ powershell -ExecutionPolicy Bypass -File auto-runner/generate_task_config.ps1 # 
 |--------|---------------------|:---:|
 | topic-screener 预筛 | ✅ **已完成**（2026-08-06，verdict=pass_with_note，6 维全评）。此前标 pending 系归档错名所致，已更正 | 否 |
 | plot-architect 完整大纲 | ✅ **第一卷已覆盖**：`memory/outline.json` 含 `volumes`（6 卷总纲）+ `volume_1_chapters`（第一卷逐章 beat）+ `naming_budget`/`suspense_window_plan`/`shuang_point_distribution`。卷 2+ 逐章 beat 未生成，但**这是设计意图**（滚动生成），非欠账 | 否 |
-| character-designer 角色卡 | ⚠️ **已审核 8.45（revise）→ 已整改 → 未复审**。`handoff/character_review.json` 的 C1（齿轮刻痕断代三方冲突）+ M1（关系⑤证据误植）+ M2（沈.json 断代接口）**整改均已落地**：`沈.json` 内有显式标注「【断代注记（M2修复）】」「【M2修复新增：刻痕断代表，与C1'新痕'仲裁咬合】」，C1 按审核推荐方案 (a) 裁定（齿轮左钩=近期新痕，作者=收刀的传人）；M1 的「还息」段已在 `characters.json` | **否**（C1 已按 (a) 落定，与 Ch5「搭痕第2次递进」不冲突） |
+| character-designer 角色卡 | ⚠️ **已审核 8.45（revise）→ 已整改 → 未复审**。`handoff/character_review.json` 的 C1（齿轮刻痕断代三方冲突）+ M1（关系⑤证据误植）+ M2（沈.json 断代接口）**整改均已落地**：`沈.json` 内有显式标注「【断代注记（M2修复）】」「【M2修复新增：刻痕断代表，与C1'新痕'仲裁咬合】」，C1 按审核推荐方案 (a) 裁定（齿轮左钩=近期新痕，作者=收刀的传人）；M1 的「还息」段已在 `characters.json`；**＋（2026-10-12）6 张卡补登记 `scheduled_payoffs`（A4 对账覆盖率归属，待并入本复审）** | **否**（C1 已按 (a) 落定，与 Ch5「搭痕第2次递进」不冲突） |
 | 设定三件套 + setting-reviewer | ⚠️ **已审核 9.08（revise）→ 整改已全部落地 → 未复审**。7 项 recommended_fix 经逐项复核**均已应用**（详见下方验证表），含 P1-3 术语级 disclosure（落在 `ability_system.武器装备分级`，非被点名的 `world_setting`） | 否 |
 
 **取证方法说明**（可复现）：三件套、角色卡、两张审核卡**全部提交于同一个 commit**（`d60cfc9`），故无法用文件时间或 git 历史判断"整改是否在审核之后发生"。判定依据是**文件内的显式修复标注**（如「【M2修复】」字样）与整改项的关键词落地情况——这是间接证据，**最终确认须以重跑复审为准**。
@@ -281,6 +288,8 @@ powershell -ExecutionPolicy Bypass -File auto-runner/generate_task_config.ps1 # 
 > 本次因此先后误判两次：把"已整改未复审"说成"未审核"，把"已应用的 P1-3"说成"唯一未应用项"。**结论须以重跑复审为准，关键词匹配只能作线索。**
 
 **关键判断（2026-09-20 重启后口径）**：四项欠账**均不阻塞从 Ch1 重写**；C1 已按方案 (a) 落定（刻痕线裁定仍有效）。建议**新稿开写的同时并行执行 1-2 项补账（重跑复审）**，3 项随生产进行。
+
+**2026-10-12 追加（随黄金三章交付发现）**：角色卡复审范围再 +3 项——①守军头目卡旧稿残留口径（「Ch2 地窖」「问句两现」等表述，新稿 Ch2 中头目未出场）②旧齿轮存放三口径（Ch1「里兜空的」/ Ch2 案角 / Ch3 兜里）③「引导器」术语口径确认（keyword-expert）。明细见 `memory/session_pointer.json` 的 ch3 块 open 项。（另：顾衡卡「字据立定时间」口径修正亦并入复审范围。）
 
 ### 指纹基线与风格冲突（2026-09-20 用户终裁：降参考 + 自语料重建）
 
@@ -325,11 +334,7 @@ powershell -ExecutionPolicy Bypass -File auto-runner/generate_task_config.ps1 # 
 - **已处理（2026-09-20）**：①删除被《请客》占用的 `handoff/topic_screening.json`；②将《第三纪元》的预筛卡由非标准名 `topic_screening_disanjiyuan.json` **改名为契约名 `handoff/topic_screening.json`**（实测 `ref.book_title=《第三纪元》`，timestamp 2026-08-06）；③同步把 session_pointer 中该里程碑由 `pending` 更正为 `done`。
 - **连带发现**：《第三纪元》的正式预筛**实际已完成**（6 维全部评分：题材耐久度/爽感路径/认知门槛/失败模式匹配 4 项 pass、暗基调补偿与平台基调 2 项 pass_with_note，verdict=pass_with_note，并附 3 条 adjustment_suggestions）——此前 session_pointer 标为 `pending` 属**误标**，根因是归档在错的文件名下，而非真的没做。
 
-**缺陷 #3：`output/chapter_001~003.txt`（黄金三章）当前 lint 报 L0 阻断 2 项**
-
-- 实测 Ch1-3 各有 `not_a_is_b`（"不是…是…"）2 处，超过 tiancantudou 覆盖层的 `not_a_is_b_max_per_chapter: 1` → L0 critical 2。
-- **已核实为预先存在，与 style_lint v2.5 修复无关**（用 HEAD 原版脚本对照，阻断数一致）。
-- **属文档记载的预期行为**：`handoff/style_lint_ch1_tiancantudou_final.json` 等历史卡记录 `blocking=0`，即黄金三章定稿时该覆盖层阈值尚未生效或未按当前配置运行；按「框架升级不追溯重写」原则，**旧章报 critical 不等于需要改旧章**（AGENTS.md 第六节第 2 条）。
+**缺陷 #3（历史记录·旧稿口径，已随重启归档）**：重启前旧稿黄金三章曾测出 lint L0 阻断 2 项（`not_a_is_b` 各 2 处，超 tiancantudou 覆盖层阈值）——已核实为预先存在、属「框架升级不追溯重写」的预期行为（旧章报 critical ≠ 需要改旧章，见第六节第 2 条；历史卡 `handoff/style_lint_ch1_tiancantudou_final.json` 记录 blocking=0，即定稿时该覆盖层阈值尚未生效）。**新稿 Ch1-3（2026-09-20 → 10-12 重写）lint 全绿（L0=0）**；本条保留为案例记录。
 
 **项目进度面板**：`dashboard.html`（位于 `write-assistant/` 根目录，作为通用工具不绑定具体项目，避免项目归档时被删除）提供实时可视化监控（进度/质量趋势/角色状态/伏笔追踪/悬念窗口/反派梯队/下一步动作/目录信息/章节目录）。支持项目选择器（URL 参数 `?project=<项目名>`）、模块展开/折叠、章节目录按卷分组。启动方式：在 `write-assistant/` 目录下运行 `python serve.py [port]`（或 `python -m http.server 8000`），访问 `http://localhost:8000/dashboard.html`。数据源为各项目 `memory/*.json`。当前 `KNOWN_PROJECTS = ['.']`（《第三纪元》memory 文件直接在根目录 `memory/` 下，用 `.` 表示当前目录），`PROJECT_DISPLAY_NAMES` 映射为「第三纪元」；新项目立项后须在 `dashboard.html` 的 `KNOWN_PROJECTS` 数组中追加项目名。
 

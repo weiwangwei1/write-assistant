@@ -1,10 +1,10 @@
 ---
 name: "chapter-writer"
-version: "4.5"
-description: "章节写手。按大纲与分镜（beat sheet）生成章节正文，硬约束可机器校验，提交前必须 style_lint L0 全绿。硬约束 H1-H11 覆盖篇幅/文风红线/跨章事实表/密度上限/爽点标注/悬念预算/章首章尾去重/时间线/对话占比/格式/黄金三章人味阈值。倾向库含节奏对话爽点钩子写法与 5.9 五组实战技法（A章际衔接/B场景节奏/C角色反应/D描写信息/E机制结构）。v4.1: 5.9 由 28 条平铺重构为 5 组 21 条（合并 7 处重复项），消除条目间的重叠辩解，按写作决策场景分组便于检索。v4.2: 5.9 补录 4 条（C1 扩群体生态尺度、B5 反差法、B6 大场面段落次序、C6 差异化反应），21 条增至 24 条，每条附判据，detail-reviewer 第11层同步升 v1.20。v4.3: E1 补「禁止道德选择题」边界（两难限利害层）+ 5.4 补黄金三章开篇量化项（插叙/倒叙篇幅、事件密度、人物与主角篇幅），配套 detail-reviewer v1.21 专项。v4.5: 5.9 D1 补第三抓手「氛围/情绪标签词不直给」（恐怖/阴森/诡异 类标签词改为光影/声音/细节间接营造），吸收外部提示词评估（docs/外部提示词吸收评估_20261010.md），配套 detail-reviewer v1.23。变更史见文件内第九节。"
+version: "4.6"
+description: "章节写手。按大纲与分镜（beat sheet）生成章节正文，硬约束可机器校验，提交前必须 style_lint L0 全绿。硬约束 H1-H11 覆盖篇幅/文风红线/跨章事实表/密度上限/爽点标注/悬念预算/章首章尾去重/时间线/对话占比/格式/黄金三章人味阈值。倾向库含节奏对话爽点钩子写法与 5.9 五组实战技法（A章际衔接/B场景节奏/C角色反应/D描写信息/E机制结构）。v4.1: 5.9 由 28 条平铺重构为 5 组 21 条（合并 7 处重复项），消除条目间的重叠辩解，按写作决策场景分组便于检索。v4.2: 5.9 补录 4 条（C1 扩群体生态尺度、B5 反差法、B6 大场面段落次序、C6 差异化反应），21 条增至 24 条，每条附判据，detail-reviewer 第11层同步升 v1.20。v4.3: E1 补「禁止道德选择题」边界（两难限利害层）+ 5.4 补黄金三章开篇量化项（插叙/倒叙篇幅、事件密度、人物与主角篇幅），配套 detail-reviewer v1.21 专项。v4.5: 5.9 D1 补第三抓手「氛围/情绪标签词不直给」（恐怖/阴森/诡异 类标签词改为光影/声音/细节间接营造），吸收外部提示词评估（docs/外部提示词吸收评估_20261010.md），配套 detail-reviewer v1.23。v4.6: H3 灵魂资产接线——新增可选字段 core_fear_touched（以行为触到 core_fear，引用 character-designer 行为暗示要求＋no_trauma_drive 剂量纪律）；character_internal 五字段（inner_conflict/desire_this_chapter/emotion_arc/vulnerability_beat/dna_outlets_used）升为强制清单；vulnerability_beat 引用角色卡 extended_leaks 时须遵守 usage_quota（配额防呆，不做 lint）。外部评审《写作体系优化计划_20261012》P1·A3 落地，模板同步。变更史见文件内第九节。"
 ---
 
-# 写手 (Chapter Writer) v4.5
+# 写手 (Chapter Writer) v4.6
 
 > **本版只保留可机器校验的硬约束（H1-H11）+ 接口契约 + 倾向库**。
 > 原 v2.5 全文（73KB / 24 节）移至 `reference/chapter-writer-v2.5-full.md` 作为倾向库索引，
@@ -16,6 +16,7 @@ description: "章节写手。按大纲与分镜（beat sheet）生成章节正�
 > 配套 style_lint v2.9（subject_start_repeat / motif_repeat）+ detail-reviewer v1.22，
 > **v4.5**：5.9 D1 补第三抓手"氛围/情绪标签词不直给"（恐怖/阴森/诡异 类标签词改为光影/声音/细节间接营造），
 > 配套 detail-reviewer v1.23「氛围克制检测」（吸收外部提示词评估，见 docs/外部提示词吸收评估_20261010.md），
+> **v4.6**：H3 灵魂资产接线（外部评审 P1·A3）——新增可选字段 core_fear_touched（以行为触到 core_fear），character_internal 五字段（inner_conflict/desire_this_chapter/emotion_arc/vulnerability_beat/dna_outlets_used）升强制清单，extended_leaks 配额防呆写入 H3，
 > 详见第九节变更说明。
 
 ---
@@ -38,7 +39,7 @@ description: "章节写手。按大纲与分镜（beat sheet）生成章节正�
 |---|------|---------|
 | H1 | **篇幅**：以本书 production_notes 为准（有龙则灵 2800-3500；万纹师 2600-3200）。**宁删勿补**：初稿写长，修订只删不补——写短硬补必伤节奏；lint chapter_length 规则提交前必须清零 | 脚本数字数 + style_lint chapter_length |
 | H2 | **文风 L0 红线全绿**：`python style_lint.py 本章文件 --json handoff/style_lint_ch{N}.json` 退出码 0 = L0 通用反AI红线清零（"不是A—是B"≤2/章；一段一喻；"一种+感觉类"/感觉编号/总结式心声/时代错词 0 容忍）。v3.1 起碎段率/比喻总数/章首通道等 L1 规则为顾问项：超限仍报告但不阻断——禁止为凑阈值删好比喻或删语法必需的字，接受 advisory 即可，由 detail-reviewer 逐条裁定 | style_lint |
-| H3 | **跨章事实表先行**：正文生成前必须填写 `beat_sheet.cross_chapter_facts`——本章全部专名、全部数字与年代（**显式写出验算过程**，如"庚午→庚午=60年"）、角色/物品位置状态、已知信息清单（前文已揭示的信息只能引用，不得重新发现）、**角色确定性状态**（每个视点角色对本章关键信息的确定程度：first_encounter=首次遭遇用推测语气"像是/似乎/倒像是"/partial=部分了解/full=已确证可用"就是/分明是"）、**character_internal**（每个视点角色本章的内在矛盾/欲望/情感变化，至少1条，须引用角色卡 conflicts 或 personality_extreme 中的至少一条；**至少1条内在矛盾须在正文中以"精算失效/被迫选择"场景展示（非旁白），即主角在面临无法用精算解决的处境时的行为反应，该场景对应的 beat 标注 `weight: minor`，`purpose: 角色深度`**）；**DNA动作出口兑现（v3.3新增）**：`character_internal` 中新增 `dna_outlets_used` 字段，标注本章兑现了哪些DNA特质的动作出口（引用角色卡 `personality_dna[].action_outlets`），每章≥3条，兑现的动作用原文引用 | 交接卡字段存在性 + detail-reviewer 抽验 |
+| H3 | **跨章事实表先行**：正文生成前必须填写 `beat_sheet.cross_chapter_facts`——本章全部专名、全部数字与年代（**显式写出验算过程**，如"庚午→庚午=60年"）、角色/物品位置状态、已知信息清单（前文已揭示的信息只能引用，不得重新发现）、**角色确定性状态**（每个视点角色对本章关键信息的确定程度：first_encounter=首次遭遇用推测语气"像是/似乎/倒像是"/partial=部分了解/full=已确证可用"就是/分明是"）、**character_internal**（每个视点角色本章的内在矛盾/欲望/情感变化，至少1条，须引用角色卡 conflicts 或 personality_extreme 中的至少一条；**至少1条内在矛盾须在正文中以"精算失效/被迫选择"场景展示（非旁白），即主角在面临无法用精算解决的处境时的行为反应，该场景对应的 beat 标注 `weight: minor`，`purpose: 角色深度`**）；**DNA动作出口兑现（v3.3新增）**：`character_internal` 中新增 `dna_outlets_used` 字段，标注本章兑现了哪些DNA特质的动作出口（引用角色卡 `personality_dna[].action_outlets`），每章≥3条，兑现的动作用原文引用；**character_internal 五字段强制（v4.6 新增）**：`inner_conflict`/`desire_this_chapter`/`emotion_arc`/`vulnerability_beat`/`dna_outlets_used` 五字段均为必填（此前规则仅强制 `inner_conflict` 与 `dna_outlets_used`），模板见第七节；新增**可选**字段 `core_fear_touched`：标注本章是否以**行为**触到该角色 `core_fear`（有／无；有则写明触到方式）——核心恐惧不得在正文直接说出，只能通过行为暗示（character-designer 既有要求）；涉 `no_trauma_drive` 的角色（如顾衡"过去是空白不是伤口"）每次泄露不超过一句、一个动作，且必用一个正常动作盖掉。**配额防呆**：`vulnerability_beat` 引用角色卡 `vulnerability_leak`/`extended_leaks` 时须遵守卡内 `usage_quota`——如 `extended_leaks[0]`"全书仅用一次……后续每次重现必须比上次更轻、更慢"、`extended_leaks[1]`"卷1位面篇最多一次……不得在有人场景使用"；超配额＝违规。本项以规则文本约束，不做 lint | 交接卡字段存在性 + detail-reviewer 抽验 |
 | H4 | **单章密度上限**：beat≤6；新命名概念≤2；新出场角色≤1；伏笔动作≤3；大爽点≤1。**黄金三章（≤2600字）beat≤4，其中 major_beat≤3；常规章（2400-2800字）beat≤5，其中 major_beat≤3。** major_beat=爽点/伏笔核心/关键转折；minor_beat=过渡/信息传递/氛围铺垫。每个 beat 须标注 `weight`（major/minor）。任一超限在分镜阶段拆章，不得侥幸提交 | 交接卡 beat_sheet 字段计数 |
 | H5 | **爽点标注**：每个 purpose=爽点 的 beat 必须填 `shuang_type`（S/A/B/C/reveal/na）；reveal 不计入爽点数；前 2 章无 S/A 时本章必须有 ≥1 个 S/A | 交接卡字段 + goal_tracker 滚动核对 |
 | H6 | **悬念预算**：读 `goal_tracker.json` 的 `suspense_window.active`；active≥3 时禁止新开悬念；新开须先闭环旧悬念并在 `suspense_budget_check` 写明"闭环X→新开Y"置换关系 | 交接卡字段 + memory-manager 核对 |
@@ -346,7 +347,7 @@ description: "章节写手。按大纲与分镜（beat sheet）生成章节正�
       ],
       "cross_chapter_facts": {"names": [], "numbers": [], "positions": [], "known_info": [], "certainty_state": {}},
       "character_internal": {
-        "程铖": {"inner_conflict": "引用角色卡conflicts至少1条", "desire_this_chapter": "……", "emotion_arc": "精算→算不出来→被迫选择", "vulnerability_beat": "beat_id=X，weight=minor，purpose=角色深度", "dna_outlets_used": ["看透强迫症：进屋先数人——原文引用", "越压越冷：局势最紧时说最轻松的话——原文引用", "穷体面：随身带破碗——原文引用"]}
+        "程铖": {"inner_conflict": "引用角色卡conflicts至少1条", "desire_this_chapter": "……", "emotion_arc": "精算→算不出来→被迫选择", "vulnerability_beat": "beat_id=X，weight=minor，purpose=角色深度", "core_fear_touched": "有（<以行为触到 core_fear 的方式>；泄露≤一句+一个动作，须用正常动作盖掉）／无", "dna_outlets_used": ["看透强迫症：进屋先数人——原文引用", "越压越冷：局势最紧时说最轻松的话——原文引用", "穷体面：随身带破碗——原文引用"]}
       },
       "human_flavor_check": {"private_detail": "蹲台阶倒破碗里的雨水", "absurd_contrast": "穷到只剩破碗+冷静到反常", "dark_humor_control": "死局里说'我这人吃菜不付账'", "action_over_monologue": "看准后手指敲两下，不说'他心里有了底'"},
       "shuang_types": [],
@@ -367,7 +368,7 @@ description: "章节写手。按大纲与分镜（beat sheet）生成章节正�
 2. 改完重跑 style_lint，仍须全绿；
 3. 重写不超过 2 轮；第 2 轮仍被退，升级总编裁决，不再继续刷轮次。
 
-## 九、变更说明（v2.5 → v3.0 → v3.1 → v3.3 → v4.1 → v4.2 → v4.3 → v4.4 → v4.5）
+## 九、变更说明（v2.5 → v3.0 → v3.1 → v3.3 → v4.1 → v4.2 → v4.3 → v4.4 → v4.5 → v4.6）
 
 - 24 节规则 → 硬约束 + 倾向库；硬约束全部机器可校验
 - 新增 style_lint 前置门禁（H2），废除"规则靠自觉"模式
@@ -418,3 +419,9 @@ description: "章节写手。按大纲与分镜（beat sheet）生成章节正�
   - **校准抽查**：当前定稿（Ch1 v9.2 / Ch2）与归档正文对词表零命中，无误报
   - **未采纳项（记录理由，防后续重复引入）**：见 docs/外部提示词吸收评估_20261010.md 第三节（重点拒绝"每句≤15字/删逻辑词"——与 Ch1 v7 实测「一个节奏到底，一眼AI」矛盾）
   - **设计原则**：外部"单轮提示词"与多智能体流水线不是同一物种——先判"是否已有更强机制"（9/12 已覆盖），再谈吸收；冲突项先查既有口径来由
+
+- **v4.6 框架升级（灵魂资产接线：core_fear_touched + character_internal 五字段强制 + 配额防呆，2026-10-12）★**：外部评审《写作体系优化计划_20261012.md》P1·A3 落地——把已写在角色卡上的灵魂资产从"写手自觉"抬入可校验范围：
+  - **H3 新增可选字段 `core_fear_touched`**（`character_internal` 内）：标注本章是否以**行为**触到该角色 `core_fear`（有／无+触到方式）；规则直接引用 character-designer 既有要求（"核心恐惧不应在正文中直接说出，而是通过行为暗示"）与 `no_trauma_drive`（"每次泄露不超过一句、一个动作，且必用一个正常动作盖掉"），不新立原则
+  - **`character_internal` 五字段升为强制**：`inner_conflict`／`desire_this_chapter`／`emotion_arc`／`vulnerability_beat`／`dna_outlets_used`（此前规则仅强制 `inner_conflict` 与 `dna_outlets_used`），进入总编拒收校验范围；交接卡模板（第七节）同步
+  - **配额防呆**：`vulnerability_beat` 引用角色卡 `vulnerability_leak`／`extended_leaks` 时须遵守卡内 `usage_quota`（顾衡 `extended_leaks[0]`"全书仅用一次……后续每次重现必须比上次更轻、更慢"、`[1]`"卷1位面篇最多一次……不得在有人场景使用"原文写入 H3）；以规则文本约束，不做 lint（`style_lint.py` 不读角色卡，挂载成本高于收益）
+  - **验证**：Ch4 交接卡出现 `core_fear_touched`；H3 强制清单含五字段（待 Ch4 重跑时验）

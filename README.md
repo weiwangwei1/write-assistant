@@ -25,7 +25,7 @@
 
 | Agent | Skill | 职责 |
 |-------|-------|------|
-| 写手 | chapter-writer | 章节正文生成（v4.0，11 条硬约束 H1-H11 + 倾向库） |
+| 写手 | chapter-writer | 章节正文生成（v4.6，11 条硬约束 H1-H11 + 倾向库；5.9 技法 24 条 + 黄金三章开篇量化；H3 五字段强制 + core_fear_touched） |
 | 细节控 | detail-reviewer | 逐句/逐梗/逐伏笔/逐逻辑微观审核（出建议不改文本） |
 | 去AI化师 | de-ai-processor | 消除 AI 写作痕迹（分析模式/完整模式） |
 | 审稿员 | quality-reviewer | 8维技术分 + 6读者画像评审（含 `unified_score`） |
@@ -39,7 +39,7 @@
 | Agent | Skill | 职责 |
 |-------|-------|------|
 | 总编 | chief-editor | 全局编排、任务分发、门禁校验、进度管理（**入口角色**） |
-| 人工检查点 | human-checkpoint | 关键节点人工审核（黄金三章/卷宗高潮/伏笔全揭） |
+| 人工检查点 | human-checkpoint | 关键节点人工审核（5 类节点：大纲定稿 / 角色卡完成 / 黄金三章×3 / 卷宗高潮×10 / 伏笔全揭×5） |
 
 ### 文风包
 
@@ -74,6 +74,8 @@ python style_lint.py output/chapter_001.txt --style tiancantudou --config lint_c
 python style_fingerprint.py check output/chapter_001.txt --baseline .trae/skills/writer-styles/tiancantudou/fingerprint.json
 ```
 
+> 说明：指纹校验为参考对照（2026-09-20 终裁：不作拒收依据）；L0 红线与篇幅 advisory 为提交前置硬门槛。
+
 **入库门禁**：问题清单制 —— `issue_counts.critical == 0` 且无一票否决，即放行；分数仅作趋势数据。
 
 > 历史口径提示：v3.0 起已废止「八维均分≥9.5」门禁（LLM 自评分数通胀无区分度）。设定/大纲审核仍保留分数门槛，属有意差异，见对应 SKILL。
@@ -86,6 +88,7 @@ python style_fingerprint.py check output/chapter_001.txt --baseline .trae/skills
 | `style_fingerprint.py` | 文体指纹基线构建（build）与偏差校验（check / selfcheck） |
 | `fix_auditor.py` | lint 修复差异证据卡（只产证据不判定） |
 | `emotion_curve.py` | 大纲情感节奏曲线（只读视图）：逐章情绪强度/爽点等级曲线渲染＋降温/断顿提示（只报证据，不阻断） |
+| `anchor_check.py` | 大纲结构锚点计数（只读视图）：按单元（默认 10 章）统计 beat_kind 分布——每单元 relational≥1、object≥1（只查有无、不查次数） （只报证据，不阻断） |
 | `style_pack_check.py` | 风格包入库验收清单 |
 | `style_signature.py` | 作者签名手法自动提取（N-gram 交叉对比） |
 | `style_trend.py` | 风格偏差趋势分析（读 style_deviation_log.jsonl） |
@@ -115,7 +118,7 @@ python style_fingerprint.py check output/chapter_001.txt --baseline .trae/skills
 
 ```
 并行写作评估 → chapter-writer
-→ 【提交前置门禁】lint L0 退出码0 + 篇幅 advisory 清零 + 指纹通过 + 字段齐备
+→ 【提交前置门禁】lint L0 退出码0 + 篇幅 advisory 清零 + 指纹参考对照（不阻断） + 字段齐备
 → 审核并行：detail-reviewer ∥ de-ai分析模式 → 合并（merged_review）
 → quality-reviewer → critical 清零?
 → de-ai完整模式 → fanqie-adapter → final-reviewer（终审裁决）

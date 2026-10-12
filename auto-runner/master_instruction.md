@@ -1,5 +1,24 @@
 # 无人值守自动执行代理指令 v4.0
 
+## v4.5变更摘要（外部评审 P1：beat_kind 锚点 + core_fear 接线 + 计数门禁 + A4 对账，2026-10-12）
+
+> 来源：外部评审《docs/写作体系优化计划_20261012.md》P1 批次（A2 beat_kind／A3 core_fear 接线／A4 对账／B2 计数门禁）；P0 的 A1/B1/B3 见 v4.4 摘要。
+
+- **plot-architect v1.7（A2）**：输出规范新增 beats 可选结构化字段 `beat_kind`（relational/object/rule/worldview/payoff/hook/persona，从 purpose/summary 既有括注提炼，不新增 beat）；outline 存量回填——Ch4 拍1=object（旧齿轮入里兜）／拍2=relational（地窖托付），Ch1-3 于 rework_v2 同法回填（断绳锚点 object×2）；标注时点规则：滚动细化某单元时须同步标注该单元 beat 的 beat_kind（外部复核补正）
+- **chapter-writer v4.6（A3）**：H3 新增可选字段 `core_fear_touched`（以行为触到 core_fear；引用 character-designer 暗示要求＋no_trauma_drive"不超过一句、一个动作、正常动作盖掉"）；`character_internal` 五字段（inner_conflict/desire_this_chapter/emotion_arc/vulnerability_beat/dna_outlets_used）升强制清单；`vulnerability_beat` 引用 `extended_leaks` 时须遵守卡内 `usage_quota`（配额防呆写入 H3 规则文本，不做 lint）；交接卡模板同步
+- **anchor_check.py（B2·α）**：新只读脚本——读 `memory/outline.json` 按单元（默认 10 章）统计 beat_kind 分布，每单元 relational≥1、object≥1（只查有无、不查次数）；只报证据、退出码恒 0（与 emotion_curve.py 同级定位）
+- **联动同步**：AGENTS.md 写手条目与进度快照 → v4.6；README 写手条目 v4.6＋anchor_check.py 入册脚本表
+- **A4 对账（P1 第二批）★**：character-designer v1.9——`scheduled_payoffs`（已排期回报）字段转正（守军头目卡为来源）；plot-architect 输出规范补「角色卡×大纲对账」（细化单元时逐条对照，每笔回报须有承接拍；不做按章配额）；outline Ch4 补"守望者送别/第一次接住"拍（relational）＋拍1 补断矛×齿轮同框；新建 docs/第三纪元_角色卡x大纲对账表_20261012.md（首版 7+1 条：缺口 3 笔已补拍、已承接 3、部分/待接 2）
+- **验证**：JSON 校验通过；anchor_check 实跑（Ch1-10 通过／Ch11-50 判"未标注（不可判定）"）；外部复核补正三项（标注时点规则／未标注措辞／total_chapters 改读 novel_config）已并入；A4 对账（7+1 条）与 Ch4 五拍已落地、待复核；Ch4 重跑验证待开写时执行
+
+## v4.4变更摘要（外部评审 P0 整改：detail-reviewer v1.24 + 文档状态对齐 + 死配置清理，2026-10-12）
+
+> 来源：外部评审《docs/写作体系优化计划_20261012.md》P0 三项（A1 判罚倒挂修正 / B1 文档-状态对齐 / B3 死配置与漂移清理）；验收方式见该文档 §六。
+
+- **detail-reviewer v1.24（判罚分层，A1）**：第11层 18 项技法中 A2 悬念钝化／C4 高光代价／D1 不替读者做功课／E1 双重赌注 4 项，在适用条件成立且未应用时**提为 major**；其余 14 项与黄金三章开篇量化附节维持 minor；第6/7层红线层不动
+- **文档-状态对齐（B1）**：AGENTS.md 新增「阶段说明」（循环外阶段不产出 de_ai/merged/quality/final 卡属设计如此）；AGENTS.md 与 outline 的 Ch2/Ch3 状态统一为「重写稿完成（细节控二轮 polished；正式章节循环未启动）」
+- **死配置与漂移清理（B3）**：novel_config.json 删除已废止 quality_gate；README 写手 v4.0→v4.5、human-checkpoint 3 节点→5 类、指纹口径修正（参考不阻断）；outline debt_table.rule 四类→六类（补悬念/遗留）；lint 规则层级表（RULE_LEVELS/CROSS_RULE_LEVELS）逐项核查无死规则残留
+
 ## v4.3变更摘要（外部提示词评估吸收：chapter-writer v4.5 + detail-reviewer v1.23，2026-10-10）
 
 > 起因：用户提供的外部写作提示词合集（12 条，单轮对话式通用模板）。逐条比对后判定：**9 条已被现有框架覆盖（且更严）、3 条不采**——其中"每句≤15字/删逻辑词"与 Ch1 v7 实测（"一个节奏到底，一眼AI"）矛盾，重点拒绝落档；真增量 1 条。完整比对见 docs/外部提示词吸收评估_20261010.md。

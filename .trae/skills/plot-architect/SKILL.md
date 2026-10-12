@@ -1,10 +1,10 @@
 ---
 name: "plot-architect"
-version: "1.6"
-description: "Novel plot architect. v1.6: 输出规范补记逐章 emotional_intensity（0-10）与 shuang_type 既有字段（文档对齐口径，非新增要求），配套 emotion_curve.py 只读曲线视图（既有口径自动渲染：峰值降温／断顿提示）。v1.5: 新增铺垫单元保护规则(连续铺垫≤2章+每章小兑现)与编剧节拍章级节奏对照+情感动机注入(后者借鉴Cherry Studio李继刚版小说家). v1.4: 新增剧情结构8条. v1.3: 新增串糖葫芦写法+性格对应故事交叉约束. Creates story outlines, plot lines, volume divisions, and shuang-point distribution for web novels. Invoke when starting a new novel or planning a new volume."
+version: "1.7"
+description: "Novel plot architect. v1.7: 输出规范新增 beat 可选结构化字段 beat_kind（relational/object/rule/worldview/payoff/hook/persona，从 purpose/summary 既有括注提炼，不新增 beat），配套 anchor_check.py 只读计数视图（按单元统计 relational/object 有无，只报证据不阻断；细化单元时须同步标注 beat_kind；并新增「角色卡×大纲对账」——对照 scheduled_payoffs，每笔回报须有承接拍）。v1.6: 输出规范补记逐章 emotional_intensity（0-10）与 shuang_type 既有字段（文档对齐口径，非新增要求），配套 emotion_curve.py 只读曲线视图（既有口径自动渲染：峰值降温／断顿提示）。v1.5: 新增铺垫单元保护规则(连续铺垫≤2章+每章小兑现)与编剧节拍章级节奏对照+情感动机注入(后者借鉴Cherry Studio李继刚版小说家). v1.4: 新增剧情结构8条. v1.3: 新增串糖葫芦写法+性格对应故事交叉约束. Creates story outlines, plot lines, volume divisions, and shuang-point distribution for web novels. Invoke when starting a new novel or planning a new volume."
 ---
 
-# 大纲师 (Plot Architect) v1.6
+# 大纲师 (Plot Architect) v1.7
 
 ## 角色定位
 
@@ -100,6 +100,10 @@ description: "Novel plot architect. v1.6: 输出规范补记逐章 emotional_int
 ```
 
 **章节级既有字段（补记·文档对齐）**：逐章细纲沿用 `emotional_intensity`（0-10 情绪强度）与 `shuang_type`（S/A/B/C/reveal/na）两个既有字段的标注；配套只读脚本 `emotion_curve.py` 渲染卷级情感节奏曲线，并提示既有口径下的两类点——①峰值 ≥8 后次章须降温 ≥3 档（口径源：conflict_rules 情感坡度规则）②连续 ≥3 章无 A 级及以上＝断顿窗口（skeptic 同款判据）。脚本只报证据、不做判定、不阻断（同 fix_auditor 定位）。
+
+**beats 结构化锚点（v1.7 新增）**：逐章细纲的每个 beat **可选**标注 `beat_kind`，取值：`relational`（关系拍）/ `object`（物件拍）/ `rule`（规则拍）/ `worldview`（世界观拍）/ `payoff`（兑现拍）/ `hook`（悬念拍）/ `persona`（人设拍）。**从既有 `purpose`/`summary` 括注提炼**（如"（物件锚点）"→`object`、"（关系锚点）"→`relational`），**不新增 beat、不改 beat 数量**——只把自由文本锚点变为可统计字段。配套只读脚本 `anchor_check.py`：按单元（默认 10 章）统计 beat_kind 分布，每单元 `relational`≥1、`object`≥1（只查有无、不查次数），只报证据、不阻断。**标注时点（硬要求）**：滚动细化某个单元时，须同步标注该单元 beat 的 `beat_kind`——不标注＝未处理，anchor_check 会将全未标注单元报为"未标注（不可判定）"。
+
+**角色卡×大纲对账（v1.7 补 / A4）**：细化某个单元时，须逐条对照相关角色卡的 `scheduled_payoffs`（已排期回报；character-designer v1.9 起为通用字段）与本单元 beat——**每笔回报须有承接拍**（补 beat 或并入既有拍）；不能承接的须登记去向。对账表：`docs/第三纪元_角色卡x大纲对账表_20261012.md`（随单元细化滚动维护）。**不引入按章情感配额**——对账只保证"卡上已排期的戏不丢"，不给每章加戏。
 
 ### 交接卡格式 (handoff/outline.json)
 
