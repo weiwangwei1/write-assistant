@@ -28,8 +28,8 @@ write-assistant/
 │   ├── setting-reviewer/      # 设定审核员：世界观 6 维评分
 │   ├── character-designer/    # 角色师：人物设定、关系网、成长弧线
 │   ├── keyword-expert/        # 命名专家：术语命名与巡检
-│   ├── chapter-writer/        # 写手：章节正文生成（v4.6，H1-H11 + 倾向库；5.9 技法按 A-E 组 24 条 + 黄金三章开篇量化 + 呼吸感/首章赌注 + D1 禁氛围标签第三抓手；H3 五字段强制 + core_fear_touched 接线）
-│   ├── detail-reviewer/       # 细节控：逐句/逐伏笔微观审核（v1.24，第11层 18 项 + 判罚分层〔A2/C4/D1/E1 可判 major〕+ 黄金三章开篇量化附节 + 第1层句式呼吸/怕与欲 + 第5层氛围克制，ID 与写手对应）
+│   ├── chapter-writer/        # 写手：章节正文生成（v4.7，H1-H11 + 倾向库；5.9 技法按 A-E 组 25 条 + 黄金三章开篇量化 + 呼吸感/首章赌注 + D1 禁氛围标签第三抓手 + C7 强情绪双层；H3 五字段强制 + core_fear_touched 接线）
+│   ├── detail-reviewer/       # 细节控：逐句/逐伏笔微观审核（v1.25，第11层 19 项 + 判罚分层〔A2/C4/D1/E1 可判 major〕+ 黄金三章开篇量化附节 + 第1层句式呼吸/怕与欲 + 第5层氛围克制/对话双层判定依据，ID 与写手对应）
 │   ├── de-ai-processor/       # 去AI化师：消除 AI 写作痕迹（分析/完整模式）
 │   ├── quality-reviewer/      # 审稿员：8维技术分 + 6读者画像
 │   ├── fanqie-adapter/        # 适配师：番茄平台爽点/节奏/合规适配
@@ -235,7 +235,7 @@ powershell -ExecutionPolicy Bypass -File auto-runner/generate_task_config.ps1 # 
 
 ## 九、当前进度快照
 
-**当前状态**：在产项目《第三纪元》。旧稿 Ch1-7 正文与全部章级过程产物（含黄金三章精修证据）已于 2026-09-20 完整归档至 `archive/第三纪元_重启_20260920/`（output 9 / handoff 48 / golden3_revisions 43 / memory 10）；**保留**大纲（`memory/outline.json`）、世界观（`setting_bible`/`world_setting`/`ability_system`/`conflict_rules`）、角色设定（8 张角色卡 + `characters.json`）、立项与审核卡（topic_screening / 大纲与设定审核卡）。重启后黄金三章已按新大纲重写完成（适用 chapter-writer v4.6 / detail-reviewer v1.24）：**Ch1《开价》2587 字定稿 → Ch2《交割》2593 字 polished → Ch3《献祭》2448 字 polished**（各经「初稿 → lint 全绿 → 细节控审核 → 整改二轮复评」闭环，过程卡与证据链在 `handoff/`）。**正式章节循环未启动**（`task_plan.json` 仍为 init/0——本文档所称"完成"均为循环外阶段交付，不产出 quality_review/final_review 等循环产物，见下方「阶段说明」）。**指针现状**：`session_pointer.current_chapter=2`、`completed_chapters=[1,2]`。**2026-10-12：作者发起「写作流程与关键角色」专项外部评审，章节生产暂停中**——评审材料与前置诊断见 `docs/写作系统评审材料_外部评审_20261012.md`、`docs/第三纪元_写作体系全景与灵魂缺口诊断_外部评审版_20261012.md`；评审结论回来后定下一步方向（黄金三章统一打磨 / 指纹基线重建 / 开写 Ch4 / 流程改造）。全书规划 300 章 / 6 卷，tiancantudou（天蚕土豆）文风包，2500 字/章（区间 2400-2600，见根目录 `lint_config.json`）。**初始化欠账仍在**（角色卡复审未跑；设定三件套 3 项登记项源自旧稿、暂缓；2026-10-12 追加 3 项）——见下方「初始化欠账」小节。
+**当前状态**：在产项目《第三纪元》。旧稿 Ch1-7 正文与全部章级过程产物（含黄金三章精修证据）已于 2026-09-20 完整归档至 `archive/第三纪元_重启_20260920/`（output 9 / handoff 48 / golden3_revisions 43 / memory 10）；**保留**大纲（`memory/outline.json`）、世界观（`setting_bible`/`world_setting`/`ability_system`/`conflict_rules`）、角色设定（8 张角色卡 + `characters.json`）、立项与审核卡（topic_screening / 大纲与设定审核卡）。重启后黄金三章已按新大纲重写完成（适用 chapter-writer v4.7 / detail-reviewer v1.25）：**Ch1《开价》2587 字定稿 → Ch2《交割》2593 字 polished → Ch3《献祭》2448 字 polished**（各经「初稿 → lint 全绿 → 细节控审核 → 整改二轮复评」闭环，过程卡与证据链在 `handoff/`）。**正式章节循环未启动**（`task_plan.json` 仍为 init/0——本文档所称"完成"均为循环外阶段交付，不产出 quality_review/final_review 等循环产物，见下方「阶段说明」）。**指针现状**：`session_pointer.current_chapter=2`、`completed_chapters=[1,2]`。**2026-10-12：作者发起「写作流程与关键角色」专项外部评审，章节生产暂停中**——评审材料与前置诊断见 `docs/写作系统评审材料_外部评审_20261012.md`、`docs/第三纪元_写作体系全景与灵魂缺口诊断_外部评审版_20261012.md`；评审结论回来后定下一步方向（黄金三章统一打磨 / 指纹基线重建 / 开写 Ch4 / 流程改造）。全书规划 300 章 / 6 卷，tiancantudou（天蚕土豆）文风包，2500 字/章（区间 2400-2600，见根目录 `lint_config.json`）。**初始化欠账仍在**（角色卡复审未跑；设定三件套 3 项登记项源自旧稿、暂缓；2026-10-12 追加 3 项）——见下方「初始化欠账」小节。
 
 ### 阶段说明（循环外阶段与产物口径）
 
@@ -243,7 +243,7 @@ powershell -ExecutionPolicy Bypass -File auto-runner/generate_task_config.ps1 # 
 
 **质量趋势**：旧稿 Ch1-7 记录（Ch1-3 走用户直评通道；Ch4 unified 9.11；Ch5 9.28；Ch6 overall 9.44；Ch7 overall 9.43，全部终审 approved）已随重启归档（`archive/第三纪元_重启_20260920/`）；**新稿已累计**：Ch1 v9.2 定稿（lint 0 阻断，用户通读通过）、Ch2 polished（2593 字，lint 0/0/0）、Ch3 polished（2448 字，lint 0/0，L2 参考 2）；三章指纹均为参考态（4-5 维超阈，沿 2026-09-20 终裁，不作拒收依据）。
 
-**当前待决**（session_pointer.open_decisions）：①书名与简介待 final（忌俗套重生流书名）②~~指纹基线终裁~~ **已裁决（2026-09-20）**：指纹降为参考指标 + 黄金三章定稿后用本书自语料重建派生基线（证据与口径见第九节「指纹基线与风格冲突」）③番茄「多书名实验」测试时机（20-50 万/100 万字后，发布后执行）④（2026-10-12 新增）「写作流程与关键角色」专项外部评审进行中；评审后路线待定（黄金三章统一打磨 / 指纹基线重建 / 开写 Ch4 / 流程改造）⑤（2026-10-12）外部评审 P0 整改已落地（detail-reviewer v1.24 判罚分层 / 文档状态对齐＋阶段说明 / 死配置与漂移清理）；待 Ch4 重跑验证——明细见 `docs/写作体系优化计划_20261012.md`。
+**当前待决**（session_pointer.open_decisions）：①书名与简介待 final（忌俗套重生流书名）②~~指纹基线终裁~~ **已裁决（2026-09-20）**：指纹降为参考指标 + 黄金三章定稿后用本书自语料重建派生基线（证据与口径见第九节「指纹基线与风格冲突」）③番茄「多书名实验」测试时机（20-50 万/100 万字后，发布后执行）④（2026-10-12 新增）「写作流程与关键角色」专项外部评审进行中；评审后路线待定（黄金三章统一打磨 / 指纹基线重建 / 开写 Ch4 / 流程改造）⑤（2026-10-12）外部评审整改进展：P0（A1/B1/B3）＋P1（A2/A3/B2/A4）已落地并复核通过；P2 进行中（B5 human-checkpoint 收敛＋A5 灵魂原则合并已落地，B4 lint 根因修复待做）；待 Ch4 重跑验证——明细见 `docs/写作体系优化计划_20261012.md`。
 
 ### 初始化欠账（2026-09-20 核实修正）
 
@@ -253,7 +253,7 @@ powershell -ExecutionPolicy Bypass -File auto-runner/generate_task_config.ps1 # 
 |--------|---------------------|:---:|
 | topic-screener 预筛 | ✅ **已完成**（2026-08-06，verdict=pass_with_note，6 维全评）。此前标 pending 系归档错名所致，已更正 | 否 |
 | plot-architect 完整大纲 | ✅ **第一卷已覆盖**：`memory/outline.json` 含 `volumes`（6 卷总纲）+ `volume_1_chapters`（第一卷逐章 beat）+ `naming_budget`/`suspense_window_plan`/`shuang_point_distribution`。卷 2+ 逐章 beat 未生成，但**这是设计意图**（滚动生成），非欠账 | 否 |
-| character-designer 角色卡 | ⚠️ **已审核 8.45（revise）→ 已整改 → 未复审**。`handoff/character_review.json` 的 C1（齿轮刻痕断代三方冲突）+ M1（关系⑤证据误植）+ M2（沈.json 断代接口）**整改均已落地**：`沈.json` 内有显式标注「【断代注记（M2修复）】」「【M2修复新增：刻痕断代表，与C1'新痕'仲裁咬合】」，C1 按审核推荐方案 (a) 裁定（齿轮左钩=近期新痕，作者=收刀的传人）；M1 的「还息」段已在 `characters.json`；**＋（2026-10-12）6 张卡补登记 `scheduled_payoffs`（A4 对账覆盖率归属，待并入本复审）** | **否**（C1 已按 (a) 落定，与 Ch5「搭痕第2次递进」不冲突） |
+| character-designer 角色卡 | ⚠️ **已审核 8.45（revise）→ 已整改 → 未复审**。`handoff/character_review.json` 的 C1（齿轮刻痕断代三方冲突）+ M1（关系⑤证据误植）+ M2（沈.json 断代接口）**整改均已落地**：`沈.json` 内有显式标注「【断代注记（M2修复）】」「【M2修复新增：刻痕断代表，与C1'新痕'仲裁咬合】」，C1 按审核推荐方案 (a) 裁定（齿轮左钩=近期新痕，作者=收刀的传人）；M1 的「还息」段已在 `characters.json`；**＋（2026-10-12）6 张卡补登记 `scheduled_payoffs`（A4 对账覆盖率归属，待并入本复审）＋（2026-10-13 复核并入）文风包后续项：P008/P016 全卡推广评估（v2.2 先落 tiancantudou，逐卡推进随本复审一并过）** | **否**（C1 已按 (a) 落定，与 Ch5「搭痕第2次递进」不冲突） |
 | 设定三件套 + setting-reviewer | ⚠️ **已审核 9.08（revise）→ 整改已全部落地 → 未复审**。7 项 recommended_fix 经逐项复核**均已应用**（详见下方验证表），含 P1-3 术语级 disclosure（落在 `ability_system.武器装备分级`，非被点名的 `world_setting`） | 否 |
 
 **取证方法说明**（可复现）：三件套、角色卡、两张审核卡**全部提交于同一个 commit**（`d60cfc9`），故无法用文件时间或 git 历史判断"整改是否在审核之后发生"。判定依据是**文件内的显式修复标注**（如「【M2修复】」字样）与整改项的关键词落地情况——这是间接证据，**最终确认须以重跑复审为准**。
@@ -263,7 +263,7 @@ powershell -ExecutionPolicy Bypass -File auto-runner/generate_task_config.ps1 # 
 | # | 动作 | 依据 | 成本 |
 |---|------|------|------|
 | 1 | 重跑 **setting-reviewer** 复审三件套，确认 ≥9.5 并冲线（原 9.08，note 称"底子已达9.5水准，配合 minor 清零后可复审冲线"） | 7 项 recommended_fix **已全部验证落地**（见下） | 中 |
-| 2 | 重跑 **outline-editor（角色卡审核）**，确认 C1/M1/M2 整改后 verdict（原 8.45 revise） | C1/M1/M2 已落地 | 中 |
+| 2 | 重跑 **outline-editor（角色卡审核）**，确认 C1/M1/M2 整改后 verdict（原 8.45 revise）；一并过：6 卡 `scheduled_payoffs` 补登记＋P008/P016 文风包全卡推广评估（复核并入，防「后续项」静默沉底） | C1/M1/M2 已落地 | 中 |
 | 3 | 卷 2 逐章 beat 按滚动方式生成（当前最新章节 +2 章即够） | 设计意图 | 随生产进行 |
 
 **7 项 recommended_fix 的逐项验证结果（2026-09-20 复核，全部已应用）**：

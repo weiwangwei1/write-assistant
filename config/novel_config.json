@@ -35,6 +35,20 @@
   },
   "tone": "冷厉智斗·造物质感·掌控者底色·纪元末世感",
   "product": "每章2400-2600字；初稿写长宁删勿补；分段排版；单段≤200字",
+  "human_checkpoint": {
+    "enabled": true,
+    "nodes": {
+      "outline_finalized": false,
+      "character_cards": false,
+      "setting_finalized": false,
+      "golden_chapter": true,
+      "volume_climax": true,
+      "foreshadowing_reveal": true
+    },
+    "timeout_hours": 24,
+    "max_questions_per_checkpoint": 2,
+    "max_highlights_per_checkpoint": 5
+  },
   "volume_plan": [
     {"vol": 1, "title": "锈关灰", "chapters": "1-50", "theme": "立足：第一次进位面+第一具活核构装+第二槽填充", "core_loop_progress": "首次完整闭环", "main_stage": "锈关+位面第一层/深层+裂隙客聚落", "villain_tier": "第一级立完（裂隙客团伙），第二级渐进（内陆收灰网络）", "volume_end_hook": "献掉的旧锉刀回到工作台+刀下一道收刀的钩（沈线→卷2昭关方向）", "truth_layer": "L0现象层：前纪元力量渗透（霜/灰/残骸异象）"},
     {"vol": 2, "title": "裂隙行", "chapters": "51-100", "theme": "扩张：位面深层与裂隙客世界，势力伸进位面", "core_loop_progress": "第二次循环（第三槽+第二、三具构装）", "main_stage": "位面深层+聚落网+昭关方向", "villain_tier": "第二级正面（收灰网络/行会外围）", "volume_end_hook": "第三槽填充+兽将首次正面+沈的第一件实物", "truth_layer": "L1：第二纪元终结的第一份实证"},

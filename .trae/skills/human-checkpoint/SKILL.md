@@ -1,7 +1,7 @@
 ---
 name: "human-checkpoint"
-version: "1.0"
-description: "人工参与检查点，在关键节点把设计或章节亮点呈现给用户交互。Invoke at milestone points: outline finalized, character cards done, golden 3 chapters, volume climax, foreshadowing reveal. User can skip but the checkpoint must exist."
+version: "1.1"
+description: "人工参与检查点，在关键节点把设计或章节亮点呈现给用户交互。Invoke at milestone points — default on: golden 3 chapters, volume climax, foreshadowing reveal; optional init-phase nodes (default off): outline finalized, character cards, setting finalized. 节点开关见 config/novel_config.json 的 human_checkpoint.nodes（v1.1）。User can skip but the checkpoint must exist."
 ---
 
 # 人工参与检查点 (Human Checkpoint)
@@ -23,17 +23,25 @@ description: "人工参与检查点，在关键节点把设计或章节亮点呈
 
 ## 触发节点
 
-人工检查点在以下5类里程碑触发：
+人工检查点分两类节点：
+
+**默认节点（3 类，默认开启）**
 
 | 节点 | 触发条件 | 呈现内容 | 默认动作 |
 |------|---------|---------|---------|
-| 大纲定稿 | skeptic 迭代完成 + outline-editor 评分通过后 | 核心设定亮点+黄金三章设计+伏笔规划 | 呈现给用户确认 |
-| 角色卡完成 | character-designer 产出 + outline-editor 审核通过后 | 6个角色核心亮点+关系网 | 呈现给用户确认 |
 | 黄金三章 | 第1/2/3章各自定稿后（共3次） | 本章亮点+钩子+爽点+伏笔 | 呈现给用户确认 |
 | 卷宗高潮 | 每卷高潮章定稿后（共10次） | 本卷亮点+高潮场景+伏笔进展 | 呈现给用户确认 |
 | 伏笔全揭 | F001-F005 全揭章定稿后（共5次） | 真相揭露内容+读者预期反应 | 呈现给用户确认 |
 
-**默认触发**：以上节点默认触发。用户可在 `config/novel_config.json` 的 `human_checkpoint` 配置中关闭特定节点类型。
+**可选初始化节点（3 类，默认关闭——属初始化一次性节点，可在配置中开启）**
+
+| 节点 | 触发条件 | 呈现内容 | 默认动作 |
+|------|---------|---------|---------|
+| 大纲定稿 | skeptic 迭代完成 + outline-editor 评分通过后 | 核心设定亮点+黄金三章设计+伏笔规划 | 默认关闭（开启后呈现给用户确认） |
+| 角色卡完成 | character-designer 产出 + outline-editor 审核通过后 | 6个角色核心亮点+关系网 | 默认关闭（开启后呈现给用户确认） |
+| 设定完成 | 设定审核通过（≥9.5）后 | 世界观核心设定亮点+势力格局+能力体系亮点+核心冲突机制 | 默认关闭（开启后呈现给用户确认） |
+
+**默认触发与开关（v1.1）**：默认节点默认触发（单本约 18 次）；初始化节点默认关闭。全部节点可在 `config/novel_config.json` 的 `human_checkpoint.nodes` 中逐项开关；**键或项缺失时按上述建议默认执行**（键缺失≠关闭）；被关闭的节点在调度到达时**直接跳过**（记录跳过原因，不产出交互）。
 
 ---
 
@@ -42,7 +50,7 @@ description: "人工参与检查点，在关键节点把设计或章节亮点呈
 | 文件路径 | 说明 | 必需 |
 |---------|------|------|
 | 当前里程碑产物 | 大纲/角色卡/章节正文等 | 是 |
-| `config/novel_config.json` | 检查点配置（哪些节点启用） | 是 |
+| `config/novel_config.json` | 检查点配置（`human_checkpoint.nodes` 逐节点开关、超时与呈现上限） | 是 |
 | `handoff/task_plan.json` | 当前进度（判断触发哪个节点） | 是 |
 
 ---
@@ -57,8 +65,8 @@ description: "人工参与检查点，在关键节点把设计或章节亮点呈
 {
   "card_type": "human_checkpoint",
   "timestamp": "ISO8601",
-  "checkpoint_type": "outline_finalized | character_cards | golden_chapter | volume_climax | foreshadowing_reveal",
-  "checkpoint_id": "outline_v3.3 | char_陆夜 | chapter_1 | vol5_climax | F001_full_reveal",
+  "checkpoint_type": "outline_finalized | character_cards | setting_finalized | golden_chapter | volume_climax | foreshadowing_reveal",
+  "checkpoint_id": "outline_v3.3 | char_陆夜 | setting_v1 | chapter_1 | vol5_climax | F001_full_reveal",
   "highlights": [
     {
       "title": "亮点标题（10字内）",
@@ -138,7 +146,8 @@ description: "人工参与检查点，在关键节点把设计或章节亮点呈
 
 ```
 1. 触发检查点
-   └─ chief-editor 识别里程碑节点，调度 human-checkpoint
+   ├─ chief-editor 识别里程碑节点，调度 human-checkpoint
+   └─ 先查 `config/novel_config.json` 的 human_checkpoint.nodes：该节点未启用（或 enabled=false）→ 直接跳过，记录跳过原因，不产出交互
 
 2. 提取亮点
    ├─ 读取当前里程碑产物
@@ -204,15 +213,16 @@ description: "人工参与检查点，在关键节点把设计或章节亮点呈
 
 ## 配置规范
 
-在 `config/novel_config.json` 中增加 `human_checkpoint` 配置：
+`config/novel_config.json` 的 `human_checkpoint` 配置（v1.1 起；**下列为建议默认值**，各书可按需调整；**键缺失时按建议默认执行**）：
 
 ```json
 {
   "human_checkpoint": {
     "enabled": true,
     "nodes": {
-      "outline_finalized": true,
-      "character_cards": true,
+      "outline_finalized": false,
+      "character_cards": false,
+      "setting_finalized": false,
       "golden_chapter": true,
       "volume_climax": true,
       "foreshadowing_reveal": true
@@ -225,7 +235,7 @@ description: "人工参与检查点，在关键节点把设计或章节亮点呈
 ```
 
 - `enabled`：全局开关，false 则所有检查点自动跳过
-- `nodes`：按节点类型单独开关
+- `nodes`：按节点类型单独开关（建议默认：默认节点 true、初始化节点 false，需要时改为 true）
 - `timeout_hours`：用户未响应的超时时间，超时视为跳过
 - `max_questions_per_checkpoint`：每次检查点最多提问数
 - `max_highlights_per_checkpoint`：每次检查点最多呈现亮点数
@@ -252,7 +262,7 @@ description: "人工参与检查点，在关键节点把设计或章节亮点呈
 ## 注意事项
 
 1. **不替代专业质检**：检查点不是让用户当编辑，而是让用户当"第一个读者"。用户意见是参考，专业判断由 Agent 做。
-2. **不频繁打扰**：默认5类节点共约21次检查点（1+1+3+10+5+部分跳过），100万字摊到每次约5万字间隔，不会疲劳。
+2. **不频繁打扰**：默认 3 类节点共约 18 次检查点（黄金三章×3 / 卷宗高潮×10 / 伏笔全揭×5）；初始化节点默认关闭（开启另计 3 次）。全书摊到每次约 4 万字间隔，不会疲劳。
 3. **跳过是合法选择**：用户跳过不是不负责任，是授权。AI跳过时必须给出"我来"的明确回应，不能含糊。
 4. **不采纳要说明理由**：如果用户给了意见但AI基于专业判断不采纳，必须记录理由，不能无视。
 5. **亮点不是全部**：永远只呈现3-5条亮点，不呈现全部内容。用户想看全部可以自己打开文件。

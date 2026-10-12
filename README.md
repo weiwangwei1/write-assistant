@@ -25,7 +25,7 @@
 
 | Agent | Skill | 职责 |
 |-------|-------|------|
-| 写手 | chapter-writer | 章节正文生成（v4.6，11 条硬约束 H1-H11 + 倾向库；5.9 技法 24 条 + 黄金三章开篇量化；H3 五字段强制 + core_fear_touched） |
+| 写手 | chapter-writer | 章节正文生成（v4.7，11 条硬约束 H1-H11 + 倾向库；5.9 技法 25 条 + 黄金三章开篇量化；H3 五字段强制 + core_fear_touched） |
 | 细节控 | detail-reviewer | 逐句/逐梗/逐伏笔/逐逻辑微观审核（出建议不改文本） |
 | 去AI化师 | de-ai-processor | 消除 AI 写作痕迹（分析模式/完整模式） |
 | 审稿员 | quality-reviewer | 8维技术分 + 6读者画像评审（含 `unified_score`） |
@@ -39,7 +39,7 @@
 | Agent | Skill | 职责 |
 |-------|-------|------|
 | 总编 | chief-editor | 全局编排、任务分发、门禁校验、进度管理（**入口角色**） |
-| 人工检查点 | human-checkpoint | 关键节点人工审核（5 类节点：大纲定稿 / 角色卡完成 / 黄金三章×3 / 卷宗高潮×10 / 伏笔全揭×5） |
+| 人工检查点 | human-checkpoint | 关键节点人工审核（默认 3 节点：黄金三章×3 / 卷宗高潮×10 / 伏笔全揭×5；初始化节点（大纲定稿/角色卡完成/设定完成）默认关闭、可在 config 开启，v1.1） |
 
 ### 文风包
 
@@ -113,6 +113,8 @@ python style_fingerprint.py check output/chapter_001.txt --baseline .trae/skills
 → outline-editor → human-checkpoint → character-designer → outline-editor（角色卡）
 → human-checkpoint → 设定三件套 → setting-reviewer（循环至≥9.5）→ human-checkpoint → chapter_loop
 ```
+
+> 注：图中的 3 个初始化检查点（大纲定稿／角色卡完成／设定完成）自 v1.1 起**默认关闭**，config 开启时才呈现；默认呈现的检查点为黄金三章／卷宗高潮／伏笔全揭（见表 :42 与 `human_checkpoint` 配置）。
 
 **章节循环**（每章闭环）：
 
