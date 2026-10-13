@@ -28,8 +28,8 @@ write-assistant/
 │   ├── setting-reviewer/      # 设定审核员：世界观 6 维评分
 │   ├── character-designer/    # 角色师：人物设定、关系网、成长弧线
 │   ├── keyword-expert/        # 命名专家：术语命名与巡检
-│   ├── chapter-writer/        # 写手：章节正文生成（v4.7，H1-H11 + 倾向库；5.9 技法按 A-E 组 25 条 + 黄金三章开篇量化 + 呼吸感/首章赌注 + D1 禁氛围标签第三抓手 + C7 强情绪双层；H3 五字段强制 + core_fear_touched 接线）
-│   ├── detail-reviewer/       # 细节控：逐句/逐伏笔微观审核（v1.25，第11层 19 项 + 判罚分层〔A2/C4/D1/E1 可判 major〕+ 黄金三章开篇量化附节 + 第1层句式呼吸/怕与欲 + 第5层氛围克制/对话双层判定依据，ID 与写手对应）
+│   ├── chapter-writer/        # 写手：章节正文生成（v4.8，H1-H11 + 倾向库；5.9 技法按 A-E 组 25 条 + 黄金三章开篇量化 + 呼吸感/首章赌注 + D1 禁氛围标签第三抓手 + C7 强情绪双层；H3 五字段强制 + core_fear_touched 接线；提交前冷读自检）
+│   ├── detail-reviewer/       # 细节控：逐句/逐伏笔微观审核（v1.26，第1层冷读解析＋句式呼吸/怕与欲；第5层氛围克制/对话双层判定依据；第11层 19 项＋判罚分层〔A2/C4/D1/E1 可判 major〕＋黄金三章开篇量化附节，ID 与写手对应）
 │   ├── de-ai-processor/       # 去AI化师：消除 AI 写作痕迹（分析/完整模式）
 │   ├── quality-reviewer/      # 审稿员：8维技术分 + 6读者画像
 │   ├── fanqie-adapter/        # 适配师：番茄平台爽点/节奏/合规适配
@@ -235,7 +235,7 @@ powershell -ExecutionPolicy Bypass -File auto-runner/generate_task_config.ps1 # 
 
 ## 九、当前进度快照
 
-**当前状态**：在产项目《第三纪元》。旧稿 Ch1-7 正文与全部章级过程产物（含黄金三章精修证据）已于 2026-09-20 完整归档至 `archive/第三纪元_重启_20260920/`（output 9 / handoff 48 / golden3_revisions 43 / memory 10）；**保留**大纲（`memory/outline.json`）、世界观（`setting_bible`/`world_setting`/`ability_system`/`conflict_rules`）、角色设定（8 张角色卡 + `characters.json`）、立项与审核卡（topic_screening / 大纲与设定审核卡）。重启后黄金三章已按新大纲重写完成（适用 chapter-writer v4.7 / detail-reviewer v1.25）：**Ch1《开价》2587 字定稿 → Ch2《交割》2593 字 polished → Ch3《献祭》2448 字 polished**（各经「初稿 → lint 全绿 → 细节控审核 → 整改二轮复评」闭环，过程卡与证据链在 `handoff/`）。**正式章节循环未启动**（`task_plan.json` 仍为 init/0——本文档所称"完成"均为循环外阶段交付，不产出 quality_review/final_review 等循环产物，见下方「阶段说明」）。**指针现状**：`session_pointer.current_chapter=2`、`completed_chapters=[1,2]`。**2026-10-12：作者发起「写作流程与关键角色」专项外部评审，章节生产暂停中**——评审材料与前置诊断见 `docs/写作系统评审材料_外部评审_20261012.md`、`docs/第三纪元_写作体系全景与灵魂缺口诊断_外部评审版_20261012.md`；评审结论回来后定下一步方向（黄金三章统一打磨 / 指纹基线重建 / 开写 Ch4 / 流程改造）。全书规划 300 章 / 6 卷，tiancantudou（天蚕土豆）文风包，2500 字/章（区间 2400-2600，见根目录 `lint_config.json`）。**初始化欠账仍在**（角色卡复审未跑；设定三件套 3 项登记项源自旧稿、暂缓；2026-10-12 追加 3 项）——见下方「初始化欠账」小节。
+**当前状态**：在产项目《第三纪元》。旧稿 Ch1-7 正文与全部章级过程产物（含黄金三章精修证据）已于 2026-09-20 完整归档至 `archive/第三纪元_重启_20260920/`（output 9 / handoff 48 / golden3_revisions 43 / memory 10）；**保留**大纲（`memory/outline.json`）、世界观（`setting_bible`/`world_setting`/`ability_system`/`conflict_rules`）、角色设定（8 张角色卡 + `characters.json`）、立项与审核卡（topic_screening / 大纲与设定审核卡）。重启后黄金三章已按新大纲重写完成（适用 chapter-writer v4.8 / detail-reviewer v1.26）：**Ch1《开价》2587 字定稿 → Ch2《交割》2593 字 polished → Ch3《献祭》2448 字 polished**（**Ch1 走 lint＋直读通道——未过细节控，v1.26 冷读门禁为此补位，证据见 `handoff/ch1_issue_scan_20261013.md`；Ch2/3 经「初稿 → lint 全绿 → 细节控审核 → 整改二轮复评」完整闭环**；过程卡与证据链在 `handoff/`）。**正式章节循环未启动**（`task_plan.json` 仍为 init/0——本文档所称"完成"均为循环外阶段交付，不产出 quality_review/final_review 等循环产物，见下方「阶段说明」）。**指针现状**：`session_pointer.current_chapter=2`、`completed_chapters=[1,2]`。**2026-10-12：作者发起「写作流程与关键角色」专项外部评审，章节生产暂停中**——评审材料与前置诊断见 `docs/写作系统评审材料_外部评审_20261012.md`、`docs/第三纪元_写作体系全景与灵魂缺口诊断_外部评审版_20261012.md`；评审结论回来后定下一步方向（黄金三章统一打磨 / 指纹基线重建 / 开写 Ch4 / 流程改造）。全书规划 300 章 / 6 卷，tiancantudou（天蚕土豆）文风包，2500 字/章（区间 2400-2600，见根目录 `lint_config.json`）。**初始化欠账仍在**（角色卡复审未跑；设定三件套 3 项登记项源自旧稿、暂缓；2026-10-12 追加 3 项）——见下方「初始化欠账」小节。
 
 ### 阶段说明（循环外阶段与产物口径）
 

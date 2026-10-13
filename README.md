@@ -25,7 +25,7 @@
 
 | Agent | Skill | 职责 |
 |-------|-------|------|
-| 写手 | chapter-writer | 章节正文生成（v4.7，11 条硬约束 H1-H11 + 倾向库；5.9 技法 25 条 + 黄金三章开篇量化；H3 五字段强制 + core_fear_touched） |
+| 写手 | chapter-writer | 章节正文生成（v4.8，11 条硬约束 H1-H11 + 倾向库；5.9 技法 25 条 + 黄金三章开篇量化；H3 五字段强制 + core_fear_touched；提交前冷读自检） |
 | 细节控 | detail-reviewer | 逐句/逐梗/逐伏笔/逐逻辑微观审核（出建议不改文本） |
 | 去AI化师 | de-ai-processor | 消除 AI 写作痕迹（分析模式/完整模式） |
 | 审稿员 | quality-reviewer | 8维技术分 + 6读者画像评审（含 `unified_score`） |
