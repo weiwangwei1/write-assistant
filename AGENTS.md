@@ -102,7 +102,7 @@ write-assistant/
 ├── 作家分享.txt            # 外部资料：阅文作家经验分享（learning 子系统输入）
 ├── 第三方评价.txt          # 外部资料：第三方评审意见汇总
 ├── lint_config.json       # ★ 当前书籍配置（篇幅硬检 2400-2600 + 核心意象词根表 motif_repeat_words，--config 注入 style_lint）
-├── style_lint.py          # ★ 文风硬约束校验器（提交前门禁，v2.9）
+├── style_lint.py          # ★ 文风硬约束校验器（提交前门禁，v2.10）
 ├── style_fingerprint.py   # ★ 文体指纹提取与偏差校验（v2.0：章际分布/派生容差/selfcheck）
 ├── fix_auditor.py         # ★ lint 修复差异证据卡（只产证据不判定）
 ├── style_pack_check.py    # ★ 风格包入库验收清单（三件套+模板合规）

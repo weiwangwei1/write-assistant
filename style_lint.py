@@ -10,6 +10,17 @@ style_lint.py — 网文章节文风校验器（write-assistant 流水线前置�
 
 退出码：0=通过  1=存在 L0 critical（供流水线拦截；v2.3 起 L1 降级为顾问，报告但不阻断）
 
+v2.10：比喻计数覆盖"复合形换形喻体"（外部评审 P2·B4——反向修进过度矫正激励）：
+  原 count_similes/classify_similes 仅统计"像"字，写手修 lint 时把"像是X"换成"X似的/仿佛X"
+  即可降低计数（fix_audit_ch1 实证 2 处换形；旧稿审核第8层反复命中"像→如/似骗计数器"）。
+  现 simile_total 与 simile_stacked 同器扩展至：似的/仿佛/宛如/犹如/好似/如同/宛若；
+  「像……似的」同构不双计（"似的"前 15 字内含"像"→跳过）。口径边界（B4 复核 α）：裸"如/似/若"
+  不入计数（歧义：如果/似乎/若干）——由 detail-reviewer 第8层 Hack 项兜底。阈值不动；仅使用换形喻体的文本
+  计数上升（现稿 Ch1-3 换形=0，实测结果不变）。换形不再降计数后，修 lint 只剩"要么删、
+  要么保留并接受 minor"两条正路（与 rule_intents.md 2.1 口径一致）。
+  伴随调整：not_a_is_b 判罚消息补"勿直删"提示；fix_auditor 的 simile_changes 不再把
+  "像→似的"误报为删除比喻（两器共用本计数）。
+
 v2.9：新增两项"主语/母题层重复"检测（L1 顾问项），针对 Ch1 外评四诊之②③：
   ① subject_start_repeat：句首主语超载——句首同一主语占比超阈，或同主语连续起句超阈。
      原稿被读者点名"他怎么他怎么怎么，一看就是AI"即此模式（人工修完需门禁防复发）。
@@ -233,24 +244,49 @@ class Chapter:
         # 被覆写的段落文本（用于从全章计数中排除）
         self.override_texts = set(ov.get("text", "") for ov in self.overrides if ov.get("text"))
 
-def count_similes(text):
-    cnt = 0
+def _iter_xiang(text):
+    """“像”字喻体位置迭代（排除画像/雕像等非比喻用法）"""
     for m in re.finditer(r"像", text):
         tail = text[m.start():m.start()+3]
         if any(tail.startswith(w[:2]) for w in SIMILE_EXCLUDE): continue
-        cnt += 1
+        yield m
+
+# v2.10：换形喻体（B4）——“像→似的/仿佛”类换形不再降低计数
+SIMILE_ALT_MARKERS = ("仿佛", "宛如", "犹如", "好似", "如同", "宛若", "似的")
+
+def _iter_alt(text):
+    """换形喻体位置迭代；「像……似的」同构不双计（“似的”前15字内含“像”则跳过）"""
+    for w in SIMILE_ALT_MARKERS:
+        for m in re.finditer(re.escape(w), text):
+            if w == "似的" and "像" in text[max(0, m.start() - 15):m.start()]:
+                continue
+            yield w, m
+
+def count_similes(text):
+    cnt = sum(1 for _ in _iter_xiang(text))
+    cnt += sum(1 for _ in _iter_alt(text))
     return cnt
 
 def classify_similes(text):
-    """v2.2: 比喻质量分级——返回 (total, quality_count, cliche_count)
+    """v2.2/v2.10: 比喻质量分级——返回 (total, quality_count, cliche_count)
     优质比喻（喻体具体、不在陈词表中）权重0.5，陈词比喻（喻体在CLICHE_VEHICLES中）权重1.0
-    优质占比≥70%时，超限从critical降级为minor——允许保留有效比喻"""
+    优质占比≥70%时，超限从critical降级为minor——允许保留有效比喻。
+    v2.10 起覆盖换形喻体（似的/仿佛/宛如/犹如/好似/如同/宛若）；后置标记“似的”取前6字、
+    其余取后6字作喻体判陈词；「像……似的」同构不双计。"""
     quality_count = 0
     cliche_count = 0
-    for m in re.finditer(r"像", text):
-        tail = text[m.start():m.start()+3]
-        if any(tail.startswith(w[:2]) for w in SIMILE_EXCLUDE): continue
+    for m in _iter_xiang(text):
         vehicle = text[m.end():m.end()+6]
+        is_cliche = any(cv in vehicle for cv in CLICHE_VEHICLES)
+        if is_cliche:
+            cliche_count += 1
+        else:
+            quality_count += 1
+    for w, m in _iter_alt(text):
+        if w == "似的":
+            vehicle = text[max(0, m.start()-6):m.start()]
+        else:
+            vehicle = text[m.end():m.end()+6]
         is_cliche = any(cv in vehicle for cv in CLICHE_VEHICLES)
         if is_cliche:
             cliche_count += 1
@@ -277,7 +313,7 @@ def lint_chapter(ch, cfg, disabled, custom_bans, rule_levels=None):
         if len(hits) > cfg["not_a_is_b_max_per_chapter"]:
             for ln, seg in hits:
                 add("not_a_is_b", "critical", ln, seg,
-                    f"“不是…是…”本章{len(hits)}处 > 上限{cfg['not_a_is_b_max_per_chapter']}")
+                    f"“不是…是…”本章{len(hits)}处 > 上限{cfg['not_a_is_b_max_per_chapter']}——改写用画面/动作呈现对比，勿直删（防语义丢失；v2.10）")
 
     shorts = [p for p in ch.paras if han_len(p) <= cfg["short_para_len"]]
     ratio = len(shorts) / max(1, len(ch.paras))
@@ -290,16 +326,17 @@ def lint_chapter(ch, cfg, disabled, custom_bans, rule_levels=None):
         if run == cfg["short_para_run_max"] + 1:
             add("short_para_run", "minor", ln, s, f"连续碎段超过{cfg['short_para_run_max']}段")
 
-    # 比喻红线（v2.2：质量分级——优质比喻占比≥70%时超限降级为minor）
+    # 比喻红线（v2.2：质量分级——优质比喻占比≥70%时超限降级为minor；v2.10：覆盖换形喻体，见表头说明）
     sim_total, sim_quality, sim_cliche = classify_similes(ch.text)
     if sim_total > cfg["simile_max_per_chapter"]:
         quality_ratio = sim_quality / max(1, sim_total)
         sev = "minor" if quality_ratio >= 0.7 else "critical"
+        xiang_cnt = sum(1 for _ in _iter_xiang(ch.text))
         add("simile_total", sev, 0, "",
-            f"“像”字比喻{sim_total}处 > 上限{cfg['simile_max_per_chapter']}（优质{sim_quality}/陈词{sim_cliche}，优质占比{quality_ratio*100:.0f}%）")
+            f"比喻{sim_total}处（像{xiang_cnt}/换形{sim_total - xiang_cnt}）> 上限{cfg['simile_max_per_chapter']}（优质{sim_quality}/陈词{sim_cliche}，优质占比{quality_ratio*100:.0f}%）")
     for ln, s in ch.body_lines:
         if count_similes(s) > cfg["simile_max_per_para"]:
-            add("simile_stacked", "critical", ln, s, "单段多喻体堆叠（一段一喻）")
+            add("simile_stacked", "critical", ln, s, "单段多喻体堆叠（一段一喻，v2.10 起含换形喻体）")
 
     if cfg["ban_yizhong_feeling"]:
         for ln, s in ch.body_lines:
