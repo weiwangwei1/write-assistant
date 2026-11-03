@@ -1,10 +1,10 @@
 ---
 name: "character-designer"
-version: "1.9"
-description: "Character designer for novels. v1.9: 新增scheduled_payoffs(已排期回报)——角色在既定章节/区间被排期的回报/送别/见证/兑现类戏份清单（守军头目卡越界字段转正，配套 plot-architect 角色卡×大纲对账，外部评审 P1·A4）. v1.8: 新增core_fear(存在主义深层恐惧)/vulnerability_leak(非理性漏洞行为)/depth_type(关系深度类型:镜像自我/锚点/共犯/牺牲见证)——来自《第三纪元》人物形象意见深度分析. v1.7: Show vs Tell 新增「掌控者型主角展示结构」——预埋冷动作兑现素材，禁止内心独白自夸. v1.6: 新增性格DNA层(personality_dna)+物件生态(object_ecology)+关系互动生态(interaction_ecology)+DNA优先工作流+动作化出口铁律——设定是衣服性格是身体，先立身体再穿衣服. v1.5: 新增并行设计模式(单角色并行+关系网络合并). v1.4: 新增主角4型模板+反派4型分类法+Show vs Tell角色塑造规则. v1.3: 新增三维度反差化框架+性格对应故事交叉约束. Creates character cards, relationship networks, and growth arcs. Invoke after outline is created or when adding new characters."
+version: "2.0"
+description: "Character designer for novels. v2.0: 灵魂三引擎——core_desire（进攻型欲望，可量化带进度条，纯防守欲望禁止单独成立）/choice_engine（弧光=关键选择+代价+行为前后对照，非阶段标签）/friction_map（≥2条活人关系，对方也有欲望）；current_state扩弧光状态四字段（desire_progress/last_choice/last_cost/behavior_delta_log）；龙空规则5修订为「DNA底色稳定＋行为与欲望必须变」，化解与人物弧光需求的冲突（2026-11 用户反馈驱动：角色有特征无灵魂、不随剧情变化）. v1.9: 新增scheduled_payoffs(已排期回报)——角色在既定章节/区间被排期的回报/送别/见证/兑现类戏份清单（守军头目卡越界字段转正，配套 plot-architect 角色卡×大纲对账，外部评审 P1·A4）. v1.8: 新增core_fear(存在主义深层恐惧)/vulnerability_leak(非理性漏洞行为)/depth_type(关系深度类型:镜像自我/锚点/共犯/牺牲见证)——来自《第三纪元》人物形象意见深度分析. v1.7: Show vs Tell 新增「掌控者型主角展示结构」——预埋冷动作兑现素材，禁止内心独白自夸. v1.6: 新增性格DNA层(personality_dna)+物件生态(object_ecology)+关系互动生态(interaction_ecology)+DNA优先工作流+动作化出口铁律——设定是衣服性格是身体，先立身体再穿衣服. v1.5: 新增并行设计模式(单角色并行+关系网络合并). v1.4: 新增主角4型模板+反派4型分类法+Show vs Tell角色塑造规则. v1.3: 新增三维度反差化框架+性格对应故事交叉约束. Creates character cards, relationship networks, and growth arcs. Invoke after outline is created or when adding new characters."
 ---
 
-# 角色师 (Character Designer) v1.9
+# 角色师 (Character Designer) v2.0
 
 ## 角色定位
 
@@ -159,6 +159,38 @@ description: "Character designer for novels. v1.9: 新增scheduled_payoffs(已�
     "重生身份带来的信息差逐步缩小",
     "复仇与守住本心之间的挣扎"
   ],
+  "core_desire": {
+    "statement": "攒够十七两，给爹立一块碑",
+    "type": "offensive",
+    "quantified": {"target": "十七两", "current": "八两三钱", "unit": "银子"},
+    "human_face": "为了它抠门到同僚随礼只吃席不随钱",
+    "emotional_root": "爹死后连名字都没留下，碑是证明他活过的唯一东西",
+    "paired_core_fear": "怕被抹掉（core_fear）——怕与要同源，但字段不得互相替代"
+  },
+  "choice_engine": {
+    "arc_stages": [
+      {
+        "stage": "为己",
+        "range": "Ch1-30",
+        "desire_focus": "只为爹的碑和自己活",
+        "trigger_choice": "为拿回被清屋的八两三，放弃唯一能自证清白的机会",
+        "cost": "被全监当成贪财小人（具体、跨章不可轻易收回）",
+        "behavior_delta": "从'只吃席不随钱'→第一次主动替人垫钱",
+        "belief_shift": "以为不欠人就不会被抹掉→发现不欠人也会没"
+      },
+      {"stage": "为人", "range": "Ch31-90", "desire_focus": "不让身边的人被抹掉", "trigger_choice": "……", "cost": "……", "behavior_delta": "……", "belief_shift": "……"},
+      {"stage": "为世", "range": "Ch91-", "desire_focus": "砸了这台抹人的机器", "trigger_choice": "……", "cost": "……", "behavior_delta": "……", "belief_shift": "……"}
+    ]
+  },
+  "friction_map": [
+    {
+      "with": "老崔",
+      "their_desire": "想熬回正式编制，不再被人支使",
+      "friction_point": "他嫉妒主角'命好'，又只有主角肯听他说话",
+      "protect_each_other": "嘴上损人，送饭时多添半勺",
+      "bicker_template": "老崔酸主角→主角回一句更损的→老崔被噎→临走把碗往门洞里推深一点"
+    }
+  ],
   "growth_arc": [
     {
       "stage": "觉醒期",
@@ -180,6 +212,10 @@ description: "Character designer for novels. v1.9: 新增scheduled_payoffs(已�
     "location": "重生初始城市",
     "status": "觉醒，资本为零，开始布局",
     "mood": "冷静，蓄势待发",
+    "desire_progress": "八两三钱 / 十七两",
+    "last_choice": "尚无（开局）",
+    "last_cost": "尚无（开局）",
+    "behavior_delta_log": [],
     "updated_chapter": 0
   }
 }
@@ -236,6 +272,38 @@ description: "Character designer for novels. v1.9: 新增scheduled_payoffs(已�
 - **每笔须能在 outline 找到承接拍**——plot-architect 细化对应单元时逐条对账；缺失须补 beat 或并入既有拍（见 plot-architect「角色卡×大纲对账」）
 - 描述须**具体可感到"写手能直接执行"**（物件/动作/台词风格，如"塞一卷自己缠矛用的皮绳"），不写"有互动"这类空话
 - 是**排期表不是愿望清单**——不能承接的笔不许挂；挂上即欠账
+
+### 角色卡新增字段说明（v2.0 ★ 灵魂三引擎）
+
+> 来源：2026-11 用户反馈——"角色有特征、没灵魂；性格不随剧情变化"。根因：旧卡有 DNA/怪癖/core_fear（特征层），缺"欲望→选择→代价→变化"的发动机。本版把灵魂从"靠写手自觉"改为"卡上有、写手引用、审核可查、记忆可对账"。
+
+| 字段 | 类型 | 说明 | 必需 |
+|------|------|------|------|
+| `core_desire` | object | **进攻型欲望引擎**：`statement`（想要什么，一句话）/ `type`（offensive 进攻／defensive 防守）/ `quantified`（target＋current＋unit，量化进度条）/ `human_face`（人味面：好笑/不体面/私密）/ `emotional_root`（情感根）/ `paired_core_fear`（与 core_fear 的关系） | 主要角色必需 |
+| `choice_engine` | object | **弧光选择引擎**：`arc_stages[]` 每阶段含 `stage`（如 为己→为人→为世，可自定义）/ `range`（章节区间）/ `desire_focus`（本阶段欲望焦点）/ `trigger_choice`（关键选择）/ `cost`（代价）/ `behavior_delta`（行为前后对照）/ `belief_shift`（思想变化） | 主角必需；重要配角至少1阶段 |
+| `friction_map` | array | **活人摩擦图**：每条含 `with`（对象）/ `their_desire`（对方也有欲望）/ `friction_point`（摩擦点）/ `protect_each_other`（互相护着的方式）/ `bicker_template`（拌嘴场景模板） | 主角≥2条 |
+
+**core_desire 设计铁律**：
+1. **纯防守欲望禁止单独成立**——"活下去""不被忘记""别被裁"只能进 `core_fear`，不得充当 core_desire。主角至少 1 条 `type=offensive`（我想要得到什么），因为**进攻型欲望产生行动，防守型欲望只产生焦虑**。
+2. **必须可量化、带进度条**——钱/物/人/名次/一块碑/一封信，读者能"看见进度"。写不出 target/current 的欲望是口号，不是欲望。
+3. **必须有人味面**——好笑、不体面、私密（"为了它随礼只吃席不随钱"），不是宏大口号。
+4. **与 core_fear 配对而不替代**——core_fear 管"怕"，core_desire 管"要"；二者可同源（怕被抹掉→要给爹立碑），但字段不得互相替代。
+5. **章章可用**——写手 H3 的 `desire_this_chapter` 必须引用本字段并写出"本章为推进它采取的主动行动"。
+
+**choice_engine 设计铁律**：
+1. **弧光＝选择＋代价＋变化，不是阶段标签**。旧 `growth_arc`（阶段名+触发章）保留作卷级粗轴，但**可写可审的弧光以 choice_engine 为准**。
+2. **代价必须具体且跨章不可轻易收回**——"被全监当成贪财小人"是代价，"他很难过"不是；当章收回＝假代价（detail-reviewer 第6层专查）。
+3. **behavior_delta 必须可观察**——"从只吃席不随钱→第一次主动替人垫钱"是 delta；"变得更成熟"不是。每阶段至少 1 条，供 detail-reviewer 跨章核对。
+4. **变的是欲望层级/行为模式/价值排序，不是 DNA 底色**——他还是那个抠门认死理的人，只是开始为人花钱。DNA 特质在变化后仍须可辨，否则判 OOC 而非弧光。
+5. **belief_shift 一句话**——"以为不欠人就不会被抹掉→发现不欠人也会没"，是思想变化的可写形态。
+
+**friction_map 设计铁律**：
+1. **对方必须有独立欲望**（their_desire）——没有欲望的摩擦对象就是工具人。
+2. **互相嫌弃又互相护着**——只有嫌弃是仇敌，只有护着是背景板；摩擦要"嘴上损人，送饭时多添半勺"。
+3. 与关系网 `interaction_template` 互补：friction_map 管"**为什么磨**"（双方欲望相撞），interaction_template 管"**怎么磨**"（场景序列）。
+
+**current_state 弧光状态四字段（v2.0 新增，供记忆对账）**：
+`desire_progress`（欲望进度，与 quantified 同步）/ `last_choice`（最近一次关键选择）/ `last_cost`（该选择的代价）/ `behavior_delta_log`（逐章行为变化日志，只记已兑现的 delta）。由 memory-manager 在每章入库时更新，detail-reviewer 第6层据此核对"弧光是否真在动"。
 
 ### 关系网格式
 
@@ -316,7 +384,7 @@ description: "Character designer for novels. v1.9: 新增scheduled_payoffs(已�
 - **配角独立**：配角要有独立性格与自身的小目标，不能仅为服务主角而存在；每个重要配角都应有自己的"高光时刻"
 - **反派合理**：反派要有合理动机与自身逻辑，不能为恶而恶；优秀的反派应让读者既恨又理解其立场
 - **关系动态**：关系网要有动态变化，盟友可能背叛、敌人可能转化、感情线要循序渐进而非一蹴而就
-- **成长可感**：成长弧线的每个阶段需有明确触发条件，让读者能感知角色的变化轨迹
+- **成长可感（v2.0 修订）**：成长弧线的每个阶段需有明确触发条件（关键选择）与代价，并给出**行为前后对照**（behavior_delta），让读者能感知角色的变化轨迹；只写阶段名与触发章的弧光不可写、不可审，一律退回补 choice_engine
 - **角色立体化（v1.1 新增）**：每个主要角色必须有≥3个与剧情无关的个人习惯/爱好/弱点，写入角色卡的 `personal_habits` 和 `weaknesses` 字段。这些"人味"细节是角色从"功能载体"变成"活人"的关键——读者记住的往往不是角色的能力，而是他紧张时数手指、怕某种动物、喜欢吃某样东西这些小细节。配角必须有 `independent_goals`（独立目标）——即使只出场一个场景，也要暗示该配角有自己的生活/计划/烦恼，而非纯工具人
 - **动作化出口铁律（v1.6 新增 ★）**：角色卡中每个维度的描述，必须附带≥1个`action_outlet`（可写进正文的动作）。**禁止只写形容词不写动作**。这是"人味"从设定落到正文的关键桥梁——角色卡写得再好，如果写手不知道"这个性格在正文里长什么样"，等于白写。
   - ❌ `"personality": "外冷内热"` → 没有动作出口，写手不知道怎么"写"外冷内热
@@ -348,12 +416,13 @@ description: "Character designer for novels. v1.9: 新增scheduled_payoffs(已�
 2. **读配置**：读取 `config/novel_config.json`，确认类型与风格，套用对应的角色要素规范
 3. **立 DNA（v1.6 新增 ★）**：先剥离一切小说设定，回答"这个人是什么性格"——为主角设计≥6条、主要角色≥4条 `personality_dna`，每条含不依赖设定的定义+≥3个动作出口。跨设定验证（都市/古代/科幻至少2版通过）后才进入下一步
 4. **穿设定**：把DNA"穿"上设定外衣——每条DNA特质找到它在本书设定里的具体表现，填入 `personality` / `identity_contrast` / `personality_extreme`。`personality_extreme.core_trait` 必须能追溯到某条DNA特质
-5. **补 L1-L4**：填入 `personal_habits` / `weaknesses` / `daily_life`（L1生存底座）/ `personality_extreme`（L2性格内核）/ `show_events` / `scene_sides`（L3对外接口）/ `growth_arc`（L4动态引擎），每个维度附带动作化出口
-6. **设计物件生态**：为主要角色设计 `object_ecology`——情感物件+碰撞伙伴。主角同时填入 `setting_free_actions`（非设定动作清单）
-7. **设计 L5 生态**：构建角色间的关系类型与动态演变，为关键关系设计 `interaction_template`（互动模板）+ `collision_type` + `object_collision`
-8. **写持久化档案**：将所有角色卡与关系网写入 `memory/characters.json`
-9. **创建交接卡**：生成 `handoff/characters.json`，标注 to_agent 为 chapter-writer，列出主要角色名单
-10. **通知总编**：更新任务状态，通知总编角色设计已就绪，可进入章节循环
+5. **补 L1-L4**：填入 `personal_habits` / `weaknesses` / `daily_life`（L1生存底座）/ `personality_extreme`（L2性格内核）/ `show_events` / `scene_sides`（L3对外接口）/ `growth_arc`＋`choice_engine`（L4动态引擎），每个维度附带动作化出口
+6. **装灵魂三引擎（v2.0 新增 ★）**：填 `core_desire`（进攻型欲望＋进度条）→ `friction_map`（≥2条活人摩擦，对方也有欲望）→ `choice_engine.arc_stages`（每阶段：关键选择＋代价＋行为delta＋思想变化）；自检：抽掉设定后，这个人**想要什么**还成立吗？他为这个"想要"做过**有代价的选择**吗？两问有一问答不出，退回补引擎
+7. **设计物件生态**：为主要角色设计 `object_ecology`——情感物件+碰撞伙伴。主角同时填入 `setting_free_actions`（非设定动作清单）
+8. **设计 L5 生态**：构建角色间的关系类型与动态演变，为关键关系设计 `interaction_template`（互动模板）+ `collision_type` + `object_collision`
+9. **写持久化档案**：将所有角色卡与关系网写入 `memory/characters.json`
+10. **创建交接卡**：生成 `handoff/characters.json`，标注 to_agent 为 chapter-writer，列出主要角色名单
+11. **通知总编**：更新任务状态，通知总编角色设计已就绪，可进入章节循环
 
 ```
 读交接卡 → 读配置 →
@@ -399,7 +468,7 @@ description: "Character designer for novels. v1.9: 新增scheduled_payoffs(已�
 
 4. **配角脸谱化原则**：抓住1-2个突出特点塑造鲜明标签，不过度描写配角成长。配角必须有明确功能（送资源/送经验/被打脸/当小弟/当红颜/当向导）。配角要有独立目标而非纯工具人（反派处理见规则3）
 
-5. **主角设计规范**：主角开场三观圆满，符合大众认知，不强行安排成长弧线（过度强调成长可能导致性格变化影响代入感）。主角内心不可设为邪恶（编辑反感）。主角犯错只允许不可抗力/信息差导致的错误，实力不匹配的错误会引发读者反感。主角人设需内外反差（表面vs内心）
+5. **主角设计规范（v2.0 修订）**：主角开场三观圆满，符合大众认知，内心不可设为邪恶（编辑反感）；主角犯错只允许不可抗力/信息差导致的错误，实力不匹配的错误会引发读者反感；主角人设需内外反差（表面vs内心）。**不强行安排"性格标签翻转"式成长**（谨慎变莽夫、好人变坏人——这类翻转让读者失去代入感）；**但必须安排"欲望层级/行为模式/价值排序"的变化**——三观圆满指底色不邪，不等于人物可以一成不变。变化由"有代价的选择"驱动（见 `choice_engine`），不由作者旁白宣布；变化的判据是行为前后对照（behavior_delta），不是"他觉悟了"式独白。
 
 6. **女性角色设计**：性格可极端化（傲娇到极致/对主角爱得深沉），但保持性格一致性，设定后言行始终符合。强大的女性比强大的男性更吸引读者。女性角色不是奖励道具，需有独立目标和行动力
 

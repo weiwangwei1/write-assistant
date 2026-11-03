@@ -1,0 +1,14 @@
+{
+  "project": "天舟（暂名，试跑）",
+  "note": "新项目《天舟》试跑角色索引。角色卡适用 character-designer v2.0（灵魂三引擎：core_desire／choice_engine／friction_map）。本文件只存索引指针，独立角色卡在 memory/characters/{角色名}.json",
+  "style_pack": "maibao",
+  "characters": [
+    {"id": "char_qinjiu", "name": "秦九", "role": "男主", "card": "memory/characters/秦九.json"},
+    {"id": "char_laocui", "name": "老崔", "role": "配角·同僚／friction 对象", "card": "memory/characters/老崔.json"},
+    {"id": "char_wangpo", "name": "王婆子", "role": "配角·房东债主／friction 对象", "card": "memory/characters/王婆子.json"},
+    {"id": "char_huliu", "name": "胡六", "role": "配角·已'飞升'的同僚（秦九的关系锚，先以回忆与旧物出场）", "card": "待补"},
+    {"id": "char_jia", "name": "贾主簿", "role": "反派·上司（梯级：喽啰→踏板）", "card": "待补"},
+    {"id": "char_xunwang", "name": "荀望", "role": "监候·知情者（与秦有余同期）", "card": "待补"}
+  ],
+  "open_cards_todo": ["胡六", "贾主簿", "荀望"]
+}

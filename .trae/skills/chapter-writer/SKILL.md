@@ -1,10 +1,10 @@
 ---
 name: "chapter-writer"
-version: "4.8"
-description: "章节写手。按大纲与分镜（beat sheet）生成章节正文，硬约束可机器校验，提交前必须 style_lint L0 全绿。硬约束 H1-H11 覆盖篇幅/文风红线/跨章事实表/密度上限/爽点标注/悬念预算/章首章尾去重/时间线/对话占比/格式/黄金三章人味阈值。倾向库含节奏对话爽点钩子写法与 5.9 五组实战技法（A章际衔接/B场景节奏/C角色反应/D描写信息/E机制结构）。v4.1: 5.9 由 28 条平铺重构为 5 组 21 条（合并 7 处重复项），消除条目间的重叠辩解，按写作决策场景分组便于检索。v4.2: 5.9 补录 4 条（C1 扩群体生态尺度、B5 反差法、B6 大场面段落次序、C6 差异化反应），21 条增至 24 条，每条附判据，detail-reviewer 第11层同步升 v1.20。v4.3: E1 补「禁止道德选择题」边界（两难限利害层）+ 5.4 补黄金三章开篇量化项（插叙/倒叙篇幅、事件密度、人物与主角篇幅），配套 detail-reviewer v1.21 专项。v4.5: 5.9 D1 补第三抓手「氛围/情绪标签词不直给」（恐怖/阴森/诡异 类标签词改为光影/声音/细节间接营造），吸收外部提示词评估（docs/外部提示词吸收评估_20261010.md），配套 detail-reviewer v1.23。v4.6: H3 灵魂资产接线——新增可选字段 core_fear_touched（以行为触到 core_fear，引用 character-designer 行为暗示要求＋no_trauma_drive 剂量纪律）；character_internal 五字段（inner_conflict/desire_this_chapter/emotion_arc/vulnerability_beat/dna_outlets_used）升为强制清单；vulnerability_beat 引用角色卡 extended_leaks 时须遵守 usage_quota（配额防呆，不做 lint）。外部评审《写作体系优化计划_20261012》P1·A3 落地，模板同步。v4.7: 5.9 补录 1 条（C7 强情绪双层：人前表演、崩溃留独处，场景级触发——重击后/噩耗场景），24→25 条；配套 detail-reviewer v1.25 同步 C7 审核项（外部评审 P2·A5 落地）。v4.8: 提交前自检新增第 4 步「冷读自检」（四类症状排查，先改再送检）＋ 5.5 补「关键对象/旧事首次出现必须落地」条；配套 detail-reviewer v1.26 冷读解析检测（Ch1 反馈复盘驱动）。变更史见文件内第九节。"
+version: "4.9"
+description: "章节写手。按大纲与分镜（beat sheet）生成章节正文，硬约束可机器校验，提交前必须 style_lint L0 全绿。硬约束 H1-H11 覆盖篇幅/文风红线/跨章事实表/密度上限/爽点标注/悬念预算/章首章尾去重/时间线/对话占比/格式/黄金三章人味阈值。倾向库含节奏对话爽点钩子写法与 5.9 五组实战技法（A章际衔接/B场景节奏/C角色反应/D描写信息/E机制结构）。v4.9: 灵魂生产线写手侧——desire_this_chapter强制引用core_desire＋主动行动（进攻型，防守型表述不合规）；H3新增choice_and_cost（连续两章无选择→拒收）/behavior_delta（连续3章平台期→major）/friction_beat（对接friction_map与beat_kind=relational）三强制字段；5.9新增E5情绪先行/E6欲望外化（25→27条）；配套detail-reviewer v1.27与记忆弧光入库. v4.1: 5.9 由 28 条平铺重构为 5 组 21 条（合并 7 处重复项），消除条目间的重叠辩解，按写作决策场景分组便于检索。v4.2: 5.9 补录 4 条（C1 扩群体生态尺度、B5 反差法、B6 大场面段落次序、C6 差异化反应），21 条增至 24 条，每条附判据，detail-reviewer 第11层同步升 v1.20。v4.3: E1 补「禁止道德选择题」边界（两难限利害层）+ 5.4 补黄金三章开篇量化项（插叙/倒叙篇幅、事件密度、人物与主角篇幅），配套 detail-reviewer v1.21 专项。v4.5: 5.9 D1 补第三抓手「氛围/情绪标签词不直给」（恐怖/阴森/诡异 类标签词改为光影/声音/细节间接营造），吸收外部提示词评估（docs/外部提示词吸收评估_20261010.md），配套 detail-reviewer v1.23。v4.6: H3 灵魂资产接线——新增可选字段 core_fear_touched（以行为触到 core_fear，引用 character-designer 行为暗示要求＋no_trauma_drive 剂量纪律）；character_internal 五字段（inner_conflict/desire_this_chapter/emotion_arc/vulnerability_beat/dna_outlets_used）升为强制清单；vulnerability_beat 引用角色卡 extended_leaks 时须遵守 usage_quota（配额防呆，不做 lint）。外部评审《写作体系优化计划_20261012》P1·A3 落地，模板同步。v4.7: 5.9 补录 1 条（C7 强情绪双层：人前表演、崩溃留独处，场景级触发——重击后/噩耗场景），24→25 条；配套 detail-reviewer v1.25 同步 C7 审核项（外部评审 P2·A5 落地）。v4.8: 提交前自检新增第 4 步「冷读自检」（四类症状排查，先改再送检）＋ 5.5 补「关键对象/旧事首次出现必须落地」条；配套 detail-reviewer v1.26 冷读解析检测（Ch1 反馈复盘驱动）。变更史见文件内第九节。"
 ---
 
-# 写手 (Chapter Writer) v4.8
+# 写手 (Chapter Writer) v4.9
 
 > **本版只保留可机器校验的硬约束（H1-H11）+ 接口契约 + 倾向库**。
 > 原 v2.5 全文（73KB / 24 节）移至 `reference/chapter-writer-v2.5-full.md` 作为倾向库索引，
@@ -19,6 +19,7 @@ description: "章节写手。按大纲与分镜（beat sheet）生成章节正�
 > **v4.6**：H3 灵魂资产接线（外部评审 P1·A3）——新增可选字段 core_fear_touched（以行为触到 core_fear），character_internal 五字段（inner_conflict/desire_this_chapter/emotion_arc/vulnerability_beat/dna_outlets_used）升强制清单，extended_leaks 配额防呆写入 H3，
 > **v4.7**：5.9 补录 1 条 C7"强情绪双层：人前表演，崩溃留独处"（场景级触发：重击后/噩耗场景）→ **5 组 25 条**，配套 detail-reviewer v1.25 同步 C7 审核项（外部评审 P2·A5），
 > **v4.8**：提交前自检新增第 4 步"冷读自检"（四类症状排查：语法不通/代词悬空/信息当已知/格言替信息）＋ 5.5 补"关键对象/旧事首次出现必须落地"——配套 detail-reviewer v1.26「冷读解析检测」（Ch1 反馈复盘驱动，2026-10-13），
+> **v4.9**：灵魂生产线写手侧（对接 character-designer v2.0 三引擎）——`desire_this_chapter` 强制引用 `core_desire`＋主动行动；H3 新增 `choice_and_cost`／`behavior_delta`／`friction_beat` 三强制字段；5.9 补 E5 情绪先行／E6 欲望外化（25→27 条），配套 detail-reviewer v1.27 人物活性与弧光检查，
 > 详见第九节变更说明。
 
 ---
@@ -41,7 +42,7 @@ description: "章节写手。按大纲与分镜（beat sheet）生成章节正�
 |---|------|---------|
 | H1 | **篇幅**：以本书 production_notes 为准（有龙则灵 2800-3500；万纹师 2600-3200）。**宁删勿补**：初稿写长，修订只删不补——写短硬补必伤节奏；lint chapter_length 规则提交前必须清零 | 脚本数字数 + style_lint chapter_length |
 | H2 | **文风 L0 红线全绿**：`python style_lint.py 本章文件 --json handoff/style_lint_ch{N}.json` 退出码 0 = L0 通用反AI红线清零（"不是A—是B"≤2/章；一段一喻；"一种+感觉类"/感觉编号/总结式心声/时代错词 0 容忍）。v3.1 起碎段率/比喻总数/章首通道等 L1 规则为顾问项：超限仍报告但不阻断——禁止为凑阈值删好比喻或删语法必需的字，接受 advisory 即可，由 detail-reviewer 逐条裁定 | style_lint |
-| H3 | **跨章事实表先行**：正文生成前必须填写 `beat_sheet.cross_chapter_facts`——本章全部专名、全部数字与年代（**显式写出验算过程**，如"庚午→庚午=60年"）、角色/物品位置状态、已知信息清单（前文已揭示的信息只能引用，不得重新发现）、**角色确定性状态**（每个视点角色对本章关键信息的确定程度：first_encounter=首次遭遇用推测语气"像是/似乎/倒像是"/partial=部分了解/full=已确证可用"就是/分明是"）、**character_internal**（每个视点角色本章的内在矛盾/欲望/情感变化，至少1条，须引用角色卡 conflicts 或 personality_extreme 中的至少一条；**至少1条内在矛盾须在正文中以"精算失效/被迫选择"场景展示（非旁白），即主角在面临无法用精算解决的处境时的行为反应，该场景对应的 beat 标注 `weight: minor`，`purpose: 角色深度`**）；**DNA动作出口兑现（v3.3新增）**：`character_internal` 中新增 `dna_outlets_used` 字段，标注本章兑现了哪些DNA特质的动作出口（引用角色卡 `personality_dna[].action_outlets`），每章≥3条，兑现的动作用原文引用；**character_internal 五字段强制（v4.6 新增）**：`inner_conflict`/`desire_this_chapter`/`emotion_arc`/`vulnerability_beat`/`dna_outlets_used` 五字段均为必填（此前规则仅强制 `inner_conflict` 与 `dna_outlets_used`），模板见第七节；新增**可选**字段 `core_fear_touched`：标注本章是否以**行为**触到该角色 `core_fear`（有／无；有则写明触到方式）——核心恐惧不得在正文直接说出，只能通过行为暗示（character-designer 既有要求）；涉 `no_trauma_drive` 的角色（如顾衡"过去是空白不是伤口"）每次泄露不超过一句、一个动作，且必用一个正常动作盖掉。**配额防呆**：`vulnerability_beat` 引用角色卡 `vulnerability_leak`/`extended_leaks` 时须遵守卡内 `usage_quota`——如 `extended_leaks[0]`"全书仅用一次……后续每次重现必须比上次更轻、更慢"、`extended_leaks[1]`"卷1位面篇最多一次……不得在有人场景使用"；超配额＝违规。本项以规则文本约束，不做 lint | 交接卡字段存在性 + detail-reviewer 抽验 |
+| H3 | **跨章事实表先行**：正文生成前必须填写 `beat_sheet.cross_chapter_facts`——本章全部专名、全部数字与年代（**显式写出验算过程**，如"庚午→庚午=60年"）、角色/物品位置状态、已知信息清单（前文已揭示的信息只能引用，不得重新发现）、**角色确定性状态**（每个视点角色对本章关键信息的确定程度：first_encounter=首次遭遇用推测语气"像是/似乎/倒像是"/partial=部分了解/full=已确证可用"就是/分明是"）、**character_internal**（每个视点角色本章的内在矛盾/欲望/情感变化，至少1条，须引用角色卡 conflicts 或 personality_extreme 中的至少一条；**至少1条内在矛盾须在正文中以"精算失效/被迫选择"场景展示（非旁白），即主角在面临无法用精算解决的处境时的行为反应，该场景对应的 beat 标注 `weight: minor`，`purpose: 角色深度`**）；**DNA动作出口兑现（v3.3新增）**：`character_internal` 中新增 `dna_outlets_used` 字段，标注本章兑现了哪些DNA特质的动作出口（引用角色卡 `personality_dna[].action_outlets`），每章≥3条，兑现的动作用原文引用；**character_internal 五字段强制（v4.6 新增）**：`inner_conflict`/`desire_this_chapter`/`emotion_arc`/`vulnerability_beat`/`dna_outlets_used` 五字段均为必填（此前规则仅强制 `inner_conflict` 与 `dna_outlets_used`），模板见第七节；新增**可选**字段 `core_fear_touched`：标注本章是否以**行为**触到该角色 `core_fear`（有／无；有则写明触到方式）——核心恐惧不得在正文直接说出，只能通过行为暗示（character-designer 既有要求）；涉 `no_trauma_drive` 的角色（如顾衡"过去是空白不是伤口"）每次泄露不超过一句、一个动作，且必用一个正常动作盖掉。**配额防呆**：`vulnerability_beat` 引用角色卡 `vulnerability_leak`/`extended_leaks` 时须遵守卡内 `usage_quota`——如 `extended_leaks[0]`"全书仅用一次……后续每次重现必须比上次更轻、更慢"、`extended_leaks[1]`"卷1位面篇最多一次……不得在有人场景使用"；超配额＝违规。本项以规则文本约束，不做 lint。**灵魂三字段（v4.9 新增，强制，对接 character-designer v2.0 三引擎）**：①`desire_this_chapter` 升级为必须引用角色卡 `core_desire`，并写出本章为推进该欲望采取的**主动行动**（进攻型）；只写"想活下去/别被裁/不被忘记"等防守型表述＝不合规（防守内容归 `core_fear`，归 `inner_conflict` 或 `core_fear_touched`）。②新增 `choice_and_cost`：本章主角的关键选择＋代价（代价须具体、跨章不可轻易收回；过渡章可标"无（过渡章）"，**连续两章标无→总编拒收，退回补选择**）。③新增 `behavior_delta`：与上一章相比主角行为/语言的可辨变化（无则标"平台期"；**连续3章平台期→detail-reviewer 记 major**）。④新增 `friction_beat`：本章关系摩擦场景，须引用角色卡 `friction_map` 的对象与双方欲望相撞点，与 beat 的 `beat_kind=relational` 对应；本章确无 relational 拍时标"无"并说明原因 | 交接卡字段存在性 + detail-reviewer 抽验 |
 | H4 | **单章密度上限**：beat≤6；新命名概念≤2；新出场角色≤1；伏笔动作≤3；大爽点≤1。**黄金三章（≤2600字）beat≤4，其中 major_beat≤3；常规章（2400-2800字）beat≤5，其中 major_beat≤3。** major_beat=爽点/伏笔核心/关键转折；minor_beat=过渡/信息传递/氛围铺垫。每个 beat 须标注 `weight`（major/minor）。任一超限在分镜阶段拆章，不得侥幸提交 | 交接卡 beat_sheet 字段计数 |
 | H5 | **爽点标注**：每个 purpose=爽点 的 beat 必须填 `shuang_type`（S/A/B/C/reveal/na）；reveal 不计入爽点数；前 2 章无 S/A 时本章必须有 ≥1 个 S/A | 交接卡字段 + goal_tracker 滚动核对 |
 | H6 | **悬念预算**：读 `goal_tracker.json` 的 `suspense_window.active`；active≥3 时禁止新开悬念；新开须先闭环旧悬念并在 `suspense_budget_check` 写明"闭环X→新开Y"置换关系 | 交接卡字段 + memory-manager 核对 |
@@ -251,6 +252,10 @@ description: "章节写手。按大纲与分镜（beat sheet）生成章节正�
 **E4. 认知反差**。设计 3 类反差打破读者预期：①**形象反差**（冷外表+暖行为/强能力+生活低能）②**能力反差**（最弱的人打出最强一击/最强手段来自最不起眼的工具）③**价值观反差**（看似自私的动机藏着更深的真相/看似冷酷的选择藏着最深的温柔）。**一个弧内至少 2 类**。
 > 与 H11 的分工：H11 管黄金三章"有没有人味"（有无检测），本条管"预期打破的结构设计"（反差类型的规划）。
 
+**E5. 情绪先行（先反应，后分析）**（v4.9 新增 ★，配套 detail-reviewer 人物活性检查）。角色遭遇重击/惊变/羞辱时，正文顺序必须是**情绪反应→行动→（可选）分析**，禁止"观察→推算→结论"的仪器式顺序。三个抓手：①重击段落开头 3 句内必须有情绪或身体反应（骂、慌、贫、耍赖、手心汗、骂自己），不得先给局势判断；②允许不体面——主角可以喊错人、说错话、后悔（"早知如此那天就不该逞能"），不体面是人味，不是 OOC；③分析若必须出现，放在行动之后且≤2 句。自检：把重击段的心理分析全删掉，读者的情绪还成立吗？不成立＝分析在替情绪打工。与 C5 的分工：C5 管紧张序列"删心理写动作"（加速），本条管重击时刻"先有情绪再谈逻辑"（活人）；与 C7 的分工：C7 管强情绪的人前/独处分配，本条管反应顺序。
+
+**E6. 欲望外化（用行动演欲望，不用旁白说欲望）**（v4.9 新增 ★）。主角的 `core_desire` 每章至少被"行动"展示一次：他做的具体事（数钱/藏钱/为五文钱合伙买饼/偷揣炭条）本身就是欲望的镜头，禁止用旁白或内心独白直接宣布"他想要 X"。两条判据：①把"他想要……"类句子删掉，读者还能从动作推出他想要什么吗？②本章是否有一个"为欲望主动采取的行动"（对应 H3 `desire_this_chapter`），而不是被剧情推着走？欲望是发动机，行动是车轮；只有发动机没有车轮＝空想，只有车轮没有发动机＝工具人。与 5.8 的分工：5.8 管"人设靠行动立"，本条专管"欲望靠行动显"。
+
 ### 5.10 完整倾向库索引
 原 v2.5 第十一至十九节（融合配方/读者视角/龙空经验/开篇沉浸/吸引力放大/形象渐入/微观结构/反馈驱动/文笔质感）全文见
 `reference/chapter-writer-v2.5-full.md`，按需查阅，不构成验收依据。
@@ -353,7 +358,7 @@ description: "章节写手。按大纲与分镜（beat sheet）生成章节正�
       ],
       "cross_chapter_facts": {"names": [], "numbers": [], "positions": [], "known_info": [], "certainty_state": {}},
       "character_internal": {
-        "程铖": {"inner_conflict": "引用角色卡conflicts至少1条", "desire_this_chapter": "……", "emotion_arc": "精算→算不出来→被迫选择", "vulnerability_beat": "beat_id=X，weight=minor，purpose=角色深度", "core_fear_touched": "有（<以行为触到 core_fear 的方式>；泄露≤一句+一个动作，须用正常动作盖掉）／无", "dna_outlets_used": ["看透强迫症：进屋先数人——原文引用", "越压越冷：局势最紧时说最轻松的话——原文引用", "穷体面：随身带破碗——原文引用"]}
+        "程铖": {"inner_conflict": "引用角色卡conflicts至少1条", "desire_this_chapter": "引用core_desire（如'攒十七两给爹立碑'）＋本章主动行动（如'为保八两三，答应替老崔顶一夜台'）", "emotion_arc": "精算→算不出来→被迫选择", "vulnerability_beat": "beat_id=X，weight=minor，purpose=角色深度", "core_fear_touched": "有（<以行为触到 core_fear 的方式>；泄露≤一句+一个动作，须用正常动作盖掉）／无", "dna_outlets_used": ["看透强迫症：进屋先数人——原文引用", "越压越冷：局势最紧时说最轻松的话——原文引用", "穷体面：随身带破碗——原文引用"], "choice_and_cost": "选择：放弃自证清白换回八两三／代价：被全监当成贪财小人（跨章不收回）；过渡章标'无（过渡章）'，连续两章无→拒收", "behavior_delta": "从'只吃席不随钱'→第一次主动替人垫钱；无则标'平台期'，连续3章平台期→major", "friction_beat": "与老崔：他嫉妒我命好×我想留个体面——隔门斗嘴（beat_kind=relational）；无 relational 拍时标'无'并说明"}
       },
       "human_flavor_check": {"private_detail": "蹲台阶倒破碗里的雨水", "absurd_contrast": "穷到只剩破碗+冷静到反常", "dark_humor_control": "死局里说'我这人吃菜不付账'", "action_over_monologue": "看准后手指敲两下，不说'他心里有了底'"},
       "shuang_types": [],
@@ -441,3 +446,10 @@ description: "章节写手。按大纲与分镜（beat sheet）生成章节正�
   - **5.5 补「关键对象/旧事首次出现必须"落地"」**：代词/关键旧事/规则机制首现处必须给最小锚（名字/定义/关联），不得让读者倒推
   - **配套**：detail-reviewer v1.26 第1层「冷读解析检测」独立复检（不新开层——吸取第10层"尾部检查衰减到零"的教训，挂在执行率最高的第1层）
   - **边界与后续**：F1-F3 按惯例走外部复核；Ch1 用新门禁复检后修订（v9.3）；同款症状同法扫 Ch2/3 为后续项
+
+- **v4.9 框架升级（灵魂生产线·写手侧，2026-11-03）★**：动因＝用户反馈"角色有特征无灵魂、性格不随剧情变化"；根因＝旧框架只有特征层（DNA/怪癖/core_fear），缺"欲望→选择→代价→变化"的生产链。对接 character-designer v2.0 三引擎：
+  - **H3 `desire_this_chapter` 升级**：必须引用角色卡 `core_desire` 并写出本章主动行动（进攻型）；防守型表述（活下去/别被裁/不被忘记）不合规，归入 core_fear 系列字段
+  - **H3 新增三强制字段**：`choice_and_cost`（关键选择＋代价，连续两章"无（过渡章）"→总编拒收）、`behavior_delta`（与上章的可辨变化，连续3章平台期→major）、`friction_beat`（引用 friction_map，与 beat_kind=relational 对应）
+  - **5.9 新增两条**（25→27 条）：E5 情绪先行（先反应后分析，允许不体面，分析置于行动后≤2句）、E6 欲望外化（用行动演欲望，禁旁白宣布"他想要"）
+  - **配套**：detail-reviewer v1.27 人物活性与弧光检查（第11层同步 E5/E6，19→21 项）、memory-manager 入库 current_state 弧光四字段（desire_progress/last_choice/last_cost/behavior_delta_log）
+  - **设计原则**：灵魂不靠写手自觉——卡上有（v2.0）、写手引用（本版）、审核可查（v1.27）、记忆可对账（current_state）

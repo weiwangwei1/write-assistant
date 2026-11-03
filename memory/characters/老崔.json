@@ -1,0 +1,29 @@
+{
+  "name": "老崔",
+  "role": "配角·同僚／ friction 对象",
+  "age": 31,
+  "gender": "男",
+  "personality": "嘴酸、认命又不服命。三年前岁校末位被裁，如今在监里打零工，谁都能支使",
+  "independent_goals": [
+    "熬回正式编制，不再被人支使",
+    "把欠饭堂的账还清，挺直一回腰"
+  ],
+  "core_desire": {
+    "statement": "熬回正式编制",
+    "type": "offensive",
+    "quantified": {"target": "一个勾校名额", "current": "打零工第三年", "unit": "名次"},
+    "human_face": "嘴上认命，转头把每个名额的底细都打听清楚",
+    "emotional_root": "被裁那天连人带铺盖出门，他不想再让人看第二回"
+  },
+  "friction_with_protagonist": "嫉妒秦九'命好'，又只有秦九肯听他说话；嘴上损人，送饭时多添半勺",
+  "current_state": {
+    "location": "钦天监后院（打零工，给净室送斋饭）",
+    "status": "嫉妒秦九被荐仙，又隐隐觉得不对",
+    "mood": "酸",
+    "desire_progress": "打零工第三年 / 一个勾校名额",
+    "last_choice": "尚无",
+    "last_cost": "尚无",
+    "behavior_delta_log": [],
+    "updated_chapter": 0
+  }
+}

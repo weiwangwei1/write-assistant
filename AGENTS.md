@@ -4,7 +4,7 @@
 
 ## 一、项目概述
 
-这不是一个传统软件项目，而是一套**多智能体网文创作系统**：通过多个专业化 LLM Agent（Skill）协作，完成从选题预筛、大纲构思、角色设计到章节写作、多层审核、去AI化、平台适配、记忆入库的全流程，目标平台为**番茄小说（fanqie）**。**当前在产项目：《第三纪元》**（2026-09-20 重启：旧稿 Ch1-7 已完整归档至 `archive/第三纪元_重启_20260920/`，保留大纲/世界观/角色设定，新稿黄金三章重写稿已产出（Ch1-3 经细节控二轮 polished；正式章节循环未启动，处于循环外阶段——见第九节「阶段说明」）；位面入侵·献祭流·智斗，tiancantudou 文风包，300 章 / 6 卷，详见第九节）。此前《请客》《征诏之界》《镜渊》《万纹师》《有龙则灵》《补天人》《献祭纪元：赊刀人》《临渊》《玩家请就位》均已放弃或归档至 `archive/`。
+这不是一个传统软件项目，而是一套**多智能体网文创作系统**：通过多个专业化 LLM Agent（Skill）协作，完成从选题预筛、大纲构思、角色设计到章节写作、多层审核、去AI化、平台适配、记忆入库的全流程，目标平台为**番茄小说（fanqie）**。**当前无在产项目**：《第三纪元》已于 2026-10-13 整项目归档至 `archive/第三纪元_归档_20261013/`（含正文/记忆/设定/过程卡/书级配置；归档时点状态见第九节）；工作区已清至框架骨架，**新项目待立项，目标文风包：`maibao`（卖报小郎君）**。此前《请客》《征诏之界》《镜渊》《万纹师》《有龙则灵》《补天人》《献祭纪元：赊刀人》《临渊》《玩家请就位》均已放弃或归档至 `archive/`。
 
 系统的"代码"主要是三类：
 
@@ -26,16 +26,16 @@ write-assistant/
 │   ├── skeptic/               # 质疑者：大纲批判性质疑
 │   ├── outline-editor/        # 大纲编辑：6 维度评分验收（兼角色卡审核）
 │   ├── setting-reviewer/      # 设定审核员：世界观 6 维评分
-│   ├── character-designer/    # 角色师：人物设定、关系网、成长弧线
+│   ├── character-designer/    # 角色师：人物设定、关系网、成长弧线（v2.0 灵魂三引擎：core_desire 进攻型欲望带进度条／choice_engine 选择+代价+行为delta／friction_map 活人摩擦）
 │   ├── keyword-expert/        # 命名专家：术语命名与巡检
-│   ├── chapter-writer/        # 写手：章节正文生成（v4.8，H1-H11 + 倾向库；5.9 技法按 A-E 组 25 条 + 黄金三章开篇量化 + 呼吸感/首章赌注 + D1 禁氛围标签第三抓手 + C7 强情绪双层；H3 五字段强制 + core_fear_touched 接线；提交前冷读自检）
-│   ├── detail-reviewer/       # 细节控：逐句/逐伏笔微观审核（v1.26，第1层冷读解析＋句式呼吸/怕与欲；第5层氛围克制/对话双层判定依据；第11层 19 项＋判罚分层〔A2/C4/D1/E1 可判 major〕＋黄金三章开篇量化附节，ID 与写手对应）
+│   ├── chapter-writer/        # 写手：章节正文生成（v4.9，H1-H11 + 倾向库；5.9 技法按 A-E 组 27 条〔含 E5 情绪先行/E6 欲望外化〕+ 黄金三章开篇量化 + 呼吸感/首章赌注 + D1 禁氛围标签第三抓手 + C7 强情绪双层；H3 五字段强制 + 灵魂三字段〔desire 引用 core_desire＋主动行动/choice_and_cost/behavior_delta/friction_beat〕+ core_fear_touched 接线；提交前冷读自检）
+│   ├── detail-reviewer/       # 细节控：逐句/逐伏笔微观审核（v1.27，第1层冷读解析＋人物活性〔欲望驱动/情绪先行/欲望外化〕；第5层氛围克制＋关系摩擦检测；第6层跨章事实＋弧光对账〔delta兑现/假代价/OOC改判〕；第11层 21 项＋判罚分层〔A2/C4/D1/E1 可判 major〕＋黄金三章开篇量化附节，ID 与写手对应）
 │   ├── de-ai-processor/       # 去AI化师：消除 AI 写作痕迹（分析/完整模式）
 │   ├── quality-reviewer/      # 审稿员：8维技术分 + 6读者画像
 │   ├── fanqie-adapter/        # 适配师：番茄平台爽点/节奏/合规适配
 │   ├── final-reviewer/        # 终审员：发布前终裁
-│   ├── memory-manager/        # 记忆管家：分级存储、摘要、滑动窗口（强制步骤）
-│   ├── longline-guardian/     # 长线守护：每 10 章及卷末全局审查
+│   ├── memory-manager/        # 记忆管家：分级存储、摘要、滑动窗口（强制步骤；v1.7 弧光四字段入库 desire_progress/last_choice/last_cost/behavior_delta_log）
+│   ├── longline-guardian/     # 长线守护：每 10 章及卷末全局审查（v1.2 弧光审查数据化：停滞检测/假代价/OOC改判）
 │   ├── human-checkpoint/      # 人工检查点
 │   └── writer-styles/         # 作者文风包（见下文"文风包"）
 ├── auto-runner/           # 无人值守自动执行器（Auto-Runner）基建
@@ -169,8 +169,8 @@ write-assistant/
 
 ```bash
 # 文风硬约束校验（写手提交前必须退出码 0；1=存在 critical，2=用法/文件错误）
-python style_lint.py output/chapter_001.txt --style tiancantudou --config lint_config.json --json handoff/style_lint_ch1.json
-python style_lint.py output/ --style tiancantudou        # 目录模式含跨章检查，加载风格包覆盖层
+python style_lint.py output/chapter_001.txt --style maibao --config lint_config.json --json handoff/style_lint_ch1.json
+python style_lint.py output/ --style maibao        # 目录模式含跨章检查，加载风格包覆盖层
 
 # 修复差异证据（lint 修复后、detail 审核前；只产证据不判定，退出码恒 0）
 python fix_auditor.py handoff/pre_lint_ch7.txt output/chapter_007.txt --json handoff/fix_audit_ch7.json
@@ -178,7 +178,7 @@ python fix_auditor.py handoff/pre_lint_ch7.txt output/chapter_007.txt --json han
 # 文体指纹：从原作建基线 / 校验章节偏差（退出码 0=通过 1=超阈 2=基线不可用）
 # 原作语料已移出仓库，存放在 d:\personFile\corpus\writer-styles\<作者名>\原作[_utf8]\
 python style_fingerprint.py build "d:\personFile\corpus\writer-styles\作者名\原作_utf8\原作1.txt" "d:\personFile\corpus\writer-styles\作者名\原作_utf8\原作2.txt" --author 作者名 --exclude-names 主角名 --out fingerprint.json
-python style_fingerprint.py check output/chapter_007.txt --baseline .trae/skills/writer-styles/tiancantudou/fingerprint.json --json handoff/fp_check_ch7.json
+python style_fingerprint.py check output/chapter_007.txt --baseline .trae/skills/writer-styles/maibao/fingerprint.json --json handoff/fp_check_ch7.json
 python style_fingerprint.py selfcheck --baseline fingerprint.json   # 容差健康度：原作章节应高比例通过
 python style_pack_check.py --all                                    # 风格包入库验收清单（FAIL 禁止入库）
 
@@ -221,7 +221,7 @@ powershell -ExecutionPolicy Bypass -File auto-runner/generate_task_config.ps1 # 
 
 ## 七、文风包（writer-styles）
 
-`.trae/skills/writer-styles/` 收录蒸馏的作者文风，每包三件套：`style_card.md`（决策卡，每章注入写手）+ `fingerprint.json`（指纹基线）+ `lint_overlay.json`（lint 阈值覆盖/签名手法豁免/专属违禁词）。已收录 **8 位作者**：`tiancantudou`（天蚕土豆，**当前挂载**，《第三纪元》在用）、`yanyujiangnan`（烟雨江南）、`chendong`（辰东）、`jiangnan`、`jinhezai`、`maibao`、`wuzei`、`wochixihongshi`（我吃西红柿）。指纹基线均为 v2.0 口径 ready。挂载方式：`config/novel_config.json` 设 `"style_pack": "<名称>"`，一本书只挂一个包。覆盖层只能调阈值与豁免签名手法，**不能关闭通用反 AI 红线**。蒸馏新作者的四阶段流程、style_card 模板与入库验收见该目录 `README.md` 与 `docs/style-distillation/`。**原作语料（226MB+ txt）已移出仓库，存放在 `d:\personFile\corpus\writer-styles\<作者名>\原作[_utf8]\`，fingerprint.json 的 `source` 字段已更新为绝对路径**。指纹口径 v2.0（2026-07-26 重建）：分句只按句末标点、破折号去重计数（数值约为 v1 的 1/3）、对话占比按引号内字数（低于 v1 口径）、容差由章际波动推导；校验判读：1-2 个轻微超阈≈正常章际波动，≥3 个超阈才需修。
+`.trae/skills/writer-styles/` 收录蒸馏的作者文风，每包三件套：`style_card.md`（决策卡，每章注入写手）+ `fingerprint.json`（指纹基线）+ `lint_overlay.json`（lint 阈值覆盖/签名手法豁免/专属违禁词）。已收录 **8 位作者**：`maibao`（卖报小郎君，**当前目标文风包**——新项目立项挂载）、`tiancantudou`（天蚕土豆，《第三纪元》归档前在用）、`yanyujiangnan`（烟雨江南）、`chendong`（辰东）、`jiangnan`、`jinhezai`、`wuzei`、`wochixihongshi`（我吃西红柿）。指纹基线均为 v2.0 口径 ready。挂载方式：`config/novel_config.json` 设 `"style_pack": "<名称>"`，一本书只挂一个包。覆盖层只能调阈值与豁免签名手法，**不能关闭通用反 AI 红线**。蒸馏新作者的四阶段流程、style_card 模板与入库验收见该目录 `README.md` 与 `docs/style-distillation/`。**原作语料（226MB+ txt）已移出仓库，存放在 `d:\personFile\corpus\writer-styles\<作者名>\原作[_utf8]\`，fingerprint.json 的 `source` 字段已更新为绝对路径**。指纹口径 v2.0（2026-07-26 重建）：分句只按句末标点、破折号去重计数（数值约为 v1 的 1/3）、对话占比按引号内字数（低于 v1 口径）、容差由章际波动推导；校验判读：1-2 个轻微超阈≈正常章际波动，≥3 个超阈才需修。
 
 > **千字率阈值的口径绑定**：`lint_overlay.json` 里的 `*_per_1000` 系列阈值是用 `style_lint.han_len()`（仅汉字+数字）作分母、从原作语料实测推导出来的。**改这个计数函数会同时移动 8 个风格包的全部千字率阈值基线**——改之前必须重跑 `style_pack_check.py --all` 并复核各包 `fingerprint_ref.key_metrics`。
 
@@ -235,7 +235,7 @@ powershell -ExecutionPolicy Bypass -File auto-runner/generate_task_config.ps1 # 
 
 ## 九、当前进度快照
 
-**当前状态**：在产项目《第三纪元》。旧稿 Ch1-7 正文与全部章级过程产物（含黄金三章精修证据）已于 2026-09-20 完整归档至 `archive/第三纪元_重启_20260920/`（output 9 / handoff 48 / golden3_revisions 43 / memory 10）；**保留**大纲（`memory/outline.json`）、世界观（`setting_bible`/`world_setting`/`ability_system`/`conflict_rules`）、角色设定（8 张角色卡 + `characters.json`）、立项与审核卡（topic_screening / 大纲与设定审核卡）。重启后黄金三章已按新大纲重写完成（适用 chapter-writer v4.8 / detail-reviewer v1.26）：**Ch1《开价》2587 字定稿 → Ch2《交割》2593 字 polished → Ch3《献祭》2448 字 polished**（**Ch1 走 lint＋直读通道——未过细节控，v1.26 冷读门禁为此补位，证据见 `handoff/ch1_issue_scan_20261013.md`；Ch2/3 经「初稿 → lint 全绿 → 细节控审核 → 整改二轮复评」完整闭环**；过程卡与证据链在 `handoff/`）。**正式章节循环未启动**（`task_plan.json` 仍为 init/0——本文档所称"完成"均为循环外阶段交付，不产出 quality_review/final_review 等循环产物，见下方「阶段说明」）。**指针现状**：`session_pointer.current_chapter=2`、`completed_chapters=[1,2]`。**2026-10-12：作者发起「写作流程与关键角色」专项外部评审，章节生产暂停中**——评审材料与前置诊断见 `docs/写作系统评审材料_外部评审_20261012.md`、`docs/第三纪元_写作体系全景与灵魂缺口诊断_外部评审版_20261012.md`；评审结论回来后定下一步方向（黄金三章统一打磨 / 指纹基线重建 / 开写 Ch4 / 流程改造）。全书规划 300 章 / 6 卷，tiancantudou（天蚕土豆）文风包，2500 字/章（区间 2400-2600，见根目录 `lint_config.json`）。**初始化欠账仍在**（角色卡复审未跑；设定三件套 3 项登记项源自旧稿、暂缓；2026-10-12 追加 3 项）——见下方「初始化欠账」小节。
+**当前状态（2026-10-13 更新）**：第三纪元已整项目归档至 `archive/第三纪元_归档_20261013/`；无在产项目——工作区清至框架骨架，新项目待立项，**目标文风包：`maibao`（卖报小郎君，包已通过 style_pack_check 验收）**。以下为归档时点前的记录：旧稿 Ch1-7 正文与全部章级过程产物（含黄金三章精修证据）已于 2026-09-20 完整归档至 `archive/第三纪元_重启_20260920/`（output 9 / handoff 48 / golden3_revisions 43 / memory 10）；**保留**大纲（`memory/outline.json`）、世界观（`setting_bible`/`world_setting`/`ability_system`/`conflict_rules`）、角色设定（8 张角色卡 + `characters.json`）、立项与审核卡（topic_screening / 大纲与设定审核卡）。重启后黄金三章已按新大纲重写完成（适用 chapter-writer v4.8 / detail-reviewer v1.26）：**Ch1《开价》2587 字定稿 → Ch2《交割》2593 字 polished → Ch3《献祭》2448 字 polished**（**Ch1 走 lint＋直读通道——未过细节控，v1.26 冷读门禁为此补位，证据见 `handoff/ch1_issue_scan_20261013.md`；Ch2/3 经「初稿 → lint 全绿 → 细节控审核 → 整改二轮复评」完整闭环**；过程卡与证据链在 `handoff/`）。**正式章节循环未启动**（`task_plan.json` 仍为 init/0——本文档所称"完成"均为循环外阶段交付，不产出 quality_review/final_review 等循环产物，见下方「阶段说明」）。**指针现状**：`session_pointer.current_chapter=2`、`completed_chapters=[1,2]`。**2026-10-12：作者发起「写作流程与关键角色」专项外部评审，章节生产暂停中**——评审材料与前置诊断见 `docs/写作系统评审材料_外部评审_20261012.md`、`docs/第三纪元_写作体系全景与灵魂缺口诊断_外部评审版_20261012.md`；评审结论回来后定下一步方向（黄金三章统一打磨 / 指纹基线重建 / 开写 Ch4 / 流程改造）。全书规划 300 章 / 6 卷，tiancantudou（天蚕土豆）文风包，2500 字/章（区间 2400-2600，见根目录 `lint_config.json`）。**初始化欠账仍在**（角色卡复审未跑；设定三件套 3 项登记项源自旧稿、暂缓；2026-10-12 追加 3 项）——见下方「初始化欠账」小节。
 
 ### 阶段说明（循环外阶段与产物口径）
 

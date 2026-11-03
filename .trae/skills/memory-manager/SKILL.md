@@ -1,10 +1,10 @@
 ---
 name: "memory-manager"
-version: "1.6"
-description: "Memory manager for novel writing system. v1.6: 全文文件追加优化——header信息分离到独立文件(output/{novel_title}_全文_header.txt)，正文文件纯追加不重写，每次入库仅重写~200字header+追加~3KB正文. v1.5: 文件I/O优化——recent_chapters改为按需读取output/(不维护副本)+全文文件改为追加模式(非全量重建)+characters.json改为索引指针(独立卡为唯一源). v1.4: 新增终审条件验证(步骤1.5)+override条件追踪(session_pointer.pending_override_conditions). v1.3: 新增全局全文文件维护(output/{novel_title}_全文.txt重建模式)——每章入库时重建连贯性阅读全文，含动态进度头部. v1.2: 新增目标闭环追踪(goal_tracker.json)+主线进度条/反派梯子追踪+悬念活跃窗口维护——基于Ch4-10第三方评审(目标断头/火种断更/悬念过载). v1.1: 新增章节级大纲漂移记录(drift_log)+终审后强制入库定位(硬门禁下游). Manages hierarchical storage, generates summaries, maintains sliding window context. Invoke MANDATORILY after final-reviewer approves each chapter — next chapter must not start until memory is committed."
+version: "1.7"
+description: "Memory manager for novel writing system. v1.7: 弧光状态入库——current_state 新增四字段（desire_progress/last_choice/last_cost/behavior_delta_log），章摘要新增 choice_and_cost 字段；数据源为 chapter_draft 的 character_internal（chapter-writer v4.9 灵魂三字段），供 detail-reviewer v1.27 第6层弧光对账与 longline-guardian 弧光停滞检测（解决"有审查无数据"）. v1.6: 全文文件追加优化——header信息分离到独立文件(output/{novel_title}_全文_header.txt)，正文文件纯追加不重写，每次入库仅重写~200字header+追加~3KB正文. v1.5: 文件I/O优化——recent_chapters改为按需读取output/(不维护副本)+全文文件改为追加模式(非全量重建)+characters.json改为索引指针(独立卡为唯一源). v1.4: 新增终审条件验证(步骤1.5)+override条件追踪(session_pointer.pending_override_conditions). v1.3: 新增全局全文文件维护(output/{novel_title}_全文.txt重建模式)——每章入库时重建连贯性阅读全文，含动态进度头部. v1.2: 新增目标闭环追踪(goal_tracker.json)+主线进度条/反派梯子追踪+悬念活跃窗口维护——基于Ch4-10第三方评审(目标断头/火种断更/悬念过载). v1.1: 新增章节级大纲漂移记录(drift_log)+终审后强制入库定位(硬门禁下游). Manages hierarchical storage, generates summaries, maintains sliding window context. Invoke MANDATORILY after final-reviewer approves each chapter — next chapter must not start until memory is committed."
 ---
 
-# 记忆管家 (Memory Manager) v1.6
+# 记忆管家 (Memory Manager) v1.7
 
 > **流水线城市（v1.1 起强制）**：final-reviewer 终审通过后，memory-manager 是**不可跳过的强制步骤**。chief-editor 在其入库完成前不得启动下一章（硬门禁，见 chief-editor v1.1）。数据教训：Ch4–Ch10 连续跳过记忆入库，导致 session_pointer 停留在旧项目、章节摘要欠账 7 章，chapter-writer 跨章事实表失去数据源——跨章 critical 错误（Ch6-8 年代/人名/位置硬伤）均发生在欠账区间。
 
@@ -149,6 +149,10 @@ description: "Memory manager for novel writing system. v1.6: 全文文件追加�
           "char_002": {"type": "rival", "status": "对立加深"},
           "char_003": {"type": "ally", "status": "信任建立中"}
         },
+        "desire_progress": "八两三钱 / 十七两（core_desire 量化进度，v1.7 新增）",
+        "last_choice": "放弃自证清白换回八两三（v1.7 新增）",
+        "last_cost": "被全监当成贪财小人（v1.7 新增）",
+        "behavior_delta_log": ["Ch5：第一次主动替人垫钱（v1.7 新增，只记已兑现的行为变化）"],
         "last_appeared_chapter": 5
       }
     }
@@ -210,6 +214,7 @@ description: "Memory manager for novel writing system. v1.6: 全文文件追加�
     "foreshadowing_set": ["神秘黑袍人的低语", "血脉觉醒暗示"],
     "foreshadowing_resolved": []
   },
+  "choice_and_cost": "选择：放弃自证清白换回八两三／代价：被全监当成贪财小人（跨章不收回）；过渡章标'无（过渡章）'（v1.7 新增，取自交接卡 character_internal）",
   "word_count": 3450,
   "generated_at": "2026-07-15T11:30:00Z"
 }
@@ -228,6 +233,7 @@ description: "Memory manager for novel writing system. v1.6: 全文文件追加�
 | `plot_progression` | object | 剧情推进信息 |
 | `foreshadowing_set` | array | 本章设置的伏笔 |
 | `foreshadowing_resolved` | array | 本章呼应的伏笔（标注来源章节） |
+| `choice_and_cost` | string | 本章主角的关键选择＋代价（v1.7 新增，取自交接卡 `character_internal.choice_and_cost`；过渡章标"无（过渡章）"），供弧光对账 |
 | `word_count` | int | 章节字数 |
 
 ---
@@ -338,6 +344,10 @@ description: "Memory manager for novel writing system. v1.6: 全文文件追加�
 | 能力 | `power_level` | 角色当前实力等级（如有变化则更新） |
 | 物品 | `inventory` | 角色持有的物品（获取/失去时更新） |
 | 关系 | `relationships` | 与其他角色的关系变化 |
+| 欲望进度 | `desire_progress`（v1.7 新增） | 与角色卡 `core_desire.quantified` 同步的当前进度（如"八两三钱 / 十七两"） |
+| 最近选择 | `last_choice`（v1.7 新增） | 最近一次关键选择（取本章交接卡 `character_internal.choice_and_cost`） |
+| 最近代价 | `last_cost`（v1.7 新增） | 该选择的代价（须具体、跨章不可轻易收回） |
+| 行为变化日志 | `behavior_delta_log`（v1.7 新增） | 逐章追加的已兑现行为变化（只记可观察的 delta；本章为"平台期"则不追加） |
 | 出场 | `last_appeared_chapter` | 最后出场的章节号 |
 
 ### 更新原则
@@ -347,6 +357,7 @@ description: "Memory manager for novel writing system. v1.6: 全文文件追加�
 3. **关系变化记录**：关系状态变化需记录变化方向（加深/缓和/转变）
 4. **新角色注册**：本章首次出现的角色需在 characters.json 中新增角色卡
 5. **能力变化标记**：能力升级/退化需明确记录变化前后的等级
+6. **弧光入库（v1.7 新增 ★）**：弧光四字段的数据源是本章交接卡 `character_internal`（chapter-writer v4.9 灵魂三字段），不是凭正文猜——`desire_this_chapter`→更新 desire_progress；`choice_and_cost`→写入 last_choice/last_cost；`behavior_delta`→追加 behavior_delta_log（标"平台期"则不追加）。缺字段或字段与正文对不上→退回 chapter-writer 补卡，不得入库（detail-reviewer v1.27 第6层依赖这份数据做弧光对账；longline-guardian 依赖它做停滞检测）
 
 ---
 

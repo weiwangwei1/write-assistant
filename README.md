@@ -18,21 +18,21 @@
 | 质疑者 | skeptic | 大纲批判性质疑与迭代优化 |
 | 大纲编辑 | outline-editor | 大纲/角色卡6维度评分验收 |
 | 设定审核员 | setting-reviewer | 世界观设定6维度评分（地图/图鉴/机制） |
-| 角色师 | character-designer | 人物设定、关系网、成长弧线 |
+| 角色师 | character-designer | 人物设定、关系网、成长弧线（v2.0 灵魂三引擎：core_desire／choice_engine／friction_map） |
 | 命名专家 | keyword-expert | 术语命名与全局巡检 |
 
 ### 章节循环
 
 | Agent | Skill | 职责 |
 |-------|-------|------|
-| 写手 | chapter-writer | 章节正文生成（v4.8，11 条硬约束 H1-H11 + 倾向库；5.9 技法 25 条 + 黄金三章开篇量化；H3 五字段强制 + core_fear_touched；提交前冷读自检） |
-| 细节控 | detail-reviewer | 逐句/逐梗/逐伏笔/逐逻辑微观审核（出建议不改文本） |
+| 写手 | chapter-writer | 章节正文生成（v4.9，11 条硬约束 H1-H11 + 倾向库；5.9 技法 27 条〔含 E5 情绪先行/E6 欲望外化〕+ 黄金三章开篇量化；H3 五字段强制＋灵魂三字段（choice_and_cost/behavior_delta/friction_beat）+ core_fear_touched；提交前冷读自检） |
+| 细节控 | detail-reviewer | 逐句/逐梗/逐伏笔/逐逻辑微观审核（出建议不改文本；v1.27 人物活性与弧光检查＋第11层 21 项） |
 | 去AI化师 | de-ai-processor | 消除 AI 写作痕迹（分析模式/完整模式） |
 | 审稿员 | quality-reviewer | 8维技术分 + 6读者画像评审（含 `unified_score`） |
 | 适配师 | fanqie-adapter | 爽点注入、节奏调整、平台合规 |
 | 终端裁决 | final-reviewer | 发布前终审（4 补充维度 + 弃书风险扫描） |
-| 记忆管家 | memory-manager | 分级存储、摘要、滑动窗口、全局全文重建（**硬门禁**） |
-| 长线守护 | longline-guardian | 每 10 章及卷末全局审查 |
+| 记忆管家 | memory-manager | 分级存储、摘要、滑动窗口、全局全文重建（**硬门禁**；v1.7 弧光四字段入库） |
+| 长线守护 | longline-guardian | 每 10 章及卷末全局审查（v1.2 弧光停滞检测） |
 
 ### 支撑角色
 
@@ -70,8 +70,8 @@ write-assistant/
 **提交前置**（写手产出后、进评审前，总编校验，任一不满足直接拒收）：
 
 ```bash
-python style_lint.py output/chapter_001.txt --style tiancantudou --config lint_config.json
-python style_fingerprint.py check output/chapter_001.txt --baseline .trae/skills/writer-styles/tiancantudou/fingerprint.json
+python style_lint.py output/chapter_001.txt --style maibao --config lint_config.json
+python style_fingerprint.py check output/chapter_001.txt --baseline .trae/skills/writer-styles/maibao/fingerprint.json
 ```
 
 > 说明：指纹校验为参考对照（2026-09-20 终裁：不作拒收依据）；L0 红线与篇幅 advisory 为提交前置硬门槛。

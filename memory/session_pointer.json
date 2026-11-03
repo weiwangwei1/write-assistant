@@ -2,7 +2,7 @@
   "version": "1.2",
   "project_title": "",
   "current_phase": "init",
-  "phase_note": "2026-10-13：《第三纪元》整项目归档至 archive/第三纪元_归档_20261013/，工作区清至框架骨架，等待新项目立项；归档前全量快照（含 .git 历史）见 d:\\personFile\\write-assist\\write-assistant_backup_20261013.zip",
+  "phase_note": "2026-10-13：《第三纪元》整项目归档至 archive/第三纪元_归档_20261013/，工作区清至框架骨架，等待新项目立项；归档前全量快照（含 .git 历史）见 d:\\personFile\\write-assist\\write-assistant_backup_20261013.zip；新项目目标文风包：maibao（卖报小郎君，2026-10-13 指令，包已通过 style_pack_check 验收）",
   "current_volume": 0,
   "current_chapter": 0,
   "next_chapter": 0,
@@ -10,7 +10,7 @@
   "overall_progress": "0/0",
   "protagonist": "",
   "last_updated": "2026-10-13T00:00:00+08:00",
-  "next_action": "新项目立项待启动：题材方向 → topic-screener 预筛（等用户发起）",
+  "next_action": "新项目立项待启动：题材方向 → topic-screener 预筛（等用户发起）；立项时在 config/novel_config.json 写 \"style_pack\": \"maibao\"，lint/指纹校验用 --style maibao",
   "milestones": [],
   "open_decisions": []
 }

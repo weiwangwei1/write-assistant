@@ -1,0 +1,29 @@
+{
+  "name": "王婆子",
+  "role": "配角·房东债主／ friction 对象",
+  "age": 58,
+  "gender": "女",
+  "personality": "嘴碎、横、只认钱；可秦九娘死时寿衣是她张罗的。骂得越凶，越不会真把人撵出去",
+  "independent_goals": [
+    "收齐这条巷子的租子",
+    "怕老了没人上门、没人还账——钱是她跟活人打交道的方式"
+  ],
+  "core_desire": {
+    "statement": "把这条巷子的租子收齐，别让人赖账",
+    "type": "offensive",
+    "quantified": {"target": "本月二十三户租子", "current": "还差秦九等四户", "unit": "户"},
+    "human_face": "骂完账，临走让秦九先紧着药钱",
+    "emotional_root": "她见过的老人，都是先没人还账、再没人上门的"
+  },
+  "friction_with_protagonist": "只认钱×秦九只有钱能跟她说话；秦九一家三代都欠她，她骂得最凶也帮得最多",
+  "current_state": {
+    "location": "城南槐树巷／净室门外（来讨二百文）",
+    "status": "秦九被荐仙，她怕这二百文成死账",
+    "mood": "急，且横",
+    "desire_progress": "十九户已收 / 二十三户",
+    "last_choice": "尚无",
+    "last_cost": "尚无",
+    "behavior_delta_log": [],
+    "updated_chapter": 0
+  }
+}

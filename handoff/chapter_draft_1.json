@@ -1,0 +1,70 @@
+{
+  "card_type": "chapter_draft",
+  "from_agent": "chapter-writer",
+  "to_agent": "detail-reviewer",
+  "status": "ready",
+  "content": {
+    "chapter_num": 1,
+    "title": "荐仙",
+    "word_count": 2598,
+    "draft_ref": "output/chapter_001_draft.txt",
+    "opening_type": "感官开头（嗅觉·檀香）",
+    "ending_type": "悬念",
+    "hook_sentence": "门上的锁簧，响了一声。",
+    "style_lint_ref": "handoff/style_lint_ch1.json",
+    "style_pack": "maibao",
+    "style_plan": {
+      "metaphor_plan": [
+        {"position": "开篇", "target": "净室的香", "metaphor": "像有人拿块热毛巾捂在他脸上，一边捂一边问舒服吗", "function": "用身体不适代入，不用形容词写压抑"},
+        {"position": "岁校回忆", "target": "图上的一寸半误差", "metaphor": "像白面里撒了粒老鼠屎", "function": "日常喻体，给羞辱一个具体画面"}
+      ],
+      "dialogue_plan": {"confrontation_scenes": ["老崔隔门送饭", "王婆子隔门讨债"], "format": "直接对话", "reason": "关系摩擦靠对手戏显形，转述会失去双方欲望的碰撞"}
+    },
+    "beat_sheet": {
+      "beats": [
+        {"beat_id": 1, "summary": "秦九在净室被香熏醒，发现自己因岁校'对了'反被列进荐仙名录", "purpose": "压抑/危机", "weight": "major", "shuang_type": null, "info_delivery": "discovery", "beat_kind": null},
+        {"beat_id": 2, "summary": "胡六上月荐仙、人没下来、监里清屋；全监却向秦九道喜", "purpose": "信息＋荒诞反差", "weight": "minor", "shuang_type": null, "info_delivery": "dialogue", "beat_kind": "object"},
+        {"beat_id": 3, "summary": "老崔送饭互损、王婆子隔门讨债；秦九想起爹被抹掉、想起攒了三年的八两三钱", "purpose": "人设＋欲望", "weight": "major", "shuang_type": null, "info_delivery": "dialogue", "beat_kind": "relational"},
+        {"beat_id": 4, "summary": "试逃失败后见岁星当空挪半寸，悟出'飞升＝被推出去'；荐仙未到，锁簧先响", "purpose": "揭示＋悬念", "weight": "major", "shuang_type": "reveal", "info_delivery": "sensory", "beat_kind": null}
+      ],
+      "cross_chapter_facts": {
+        "names": ["秦九", "秦有余（父）", "老崔", "王婆子", "胡六", "贾主簿"],
+        "numbers": ["碑＝十七两；已攒＝八两三钱；欠王婆子＝二百文；父守台＝六十年；荐仙倒计时＝三日；岁校图差＝一寸半（三夜×半寸）；岁星夜移＝半寸；本章去空白字数＝2598"],
+        "positions": ["净室（秦九被关）", "观星台（净室南墙砖缝正对，今夜无人）", "石匠铺（碑料所在）", "监里库房（八两三与父之旧砚同处）"],
+        "known_info": [],
+        "certainty_state": {
+          "秦九": "荐仙＝partial（由胡六前例疑为死局，未确证）；天在动＝partial（三夜实测＋当空亲见，但不知其含义）；'飞升＝被推出去'＝first_encounter 的推测，不作全书定论"
+        }
+      },
+      "character_internal": {
+        "秦九": {
+          "inner_conflict": "引用 conflicts：攒钱立碑的私愿 × '清屋收走一切'的秩序",
+          "desire_this_chapter": "引用 core_desire（攒十七两给爹立碑／当前八两三）＋主动行动：隔门向老崔打探清屋时辰，随后推门、撞门、试窗、试墙、喊人，试图在清屋定局前脱身",
+          "emotion_arc": "得意（岁校赢了）→懵（入净室）→怕（想起胡六）→骂（骂主簿骂檀香骂自己）→挣扎（试逃）→冷（见星移）",
+          "vulnerability_beat": "beat_id=3，weight=minor，purpose=角色深度——想起爹名册留白，没哭没喊，只把荷包攥了攥",
+          "core_fear_touched": "有（清屋＝被抹掉：他的八两三、门框上的名字都将被收走）；泄露≤一句＋一个动作，随即用'接着扒饭'的正常动作盖掉",
+          "dna_outlets_used": [
+            "算计成癖——'饭堂的冷饼三文一个，他跟人合伙买两个，五文'",
+            "嘴上不服软——'你要是眼馋，这位置给你'",
+            "不怕掉价——'爸爸。'",
+            "轴——岁校把旧册子摊上案，一条条念完"
+          ],
+          "choice_and_cost": "无（过渡章·开局基线；本章为处境与欲望的建立，未做关键选择。下一章必须出现 choice_and_cost，否则触发'连续两章无→拒收'）",
+          "behavior_delta": "开局基线（无）",
+          "friction_beat": "与老崔：他嫉妒我命好 × 我想留个体面——隔门互损，临走他把碗推深一点；与王婆子：她只认钱 × 我只有钱能跟她说话——隔门讨债（均 beat_kind=relational）"
+        }
+      },
+      "human_flavor_check": {
+        "private_detail": "数钱数三遍、炭条往袖筒里揣两根、冷饼合伙买",
+        "absurd_contrast": "全监向他道喜 vs 他在净室里算自己的死期",
+        "dark_humor_control": "喊完'监候大人''主簿大人'没人应，最后喊'爸爸'",
+        "action_over_monologue": "推门、撞门、试窗、试墙、摸墙是凉的——不解释他有多怕"
+      },
+      "shuang_types": [],
+      "suspense_budget_check": "开局无旧悬念；新开 2 个（荐仙真相／天在动），active=2 ≤3，未超预算",
+      "opponent_rebuttals": []
+    },
+    "timeline_clues_confirmed": true,
+    "notes_for_reviewer": "本章 lint 全绿 PASS（L0=0 / L1=0 / L2=0，字数 2598 在 maibao 目标 2400-2600 内）。无顾问项。弧光字段：choice_and_cost 标'无（过渡章·开局基线）'，behavior_delta 标'开局基线'——第2章起不得再标无，连续两章无将触发总编拒收"
+  }
+}

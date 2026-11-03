@@ -1,7 +1,7 @@
 ---
 name: "longline-guardian"
-version: "1.1"
-description: "长线一致性守护者，专注跨章/跨卷的长线质量守护。v1.1: 新增第6守护维度(主线进度监控:main_quest_progress停滞检测+反派梯子启动监控)——基于Ch4-10第三方评审:主线断更(火种进度无人追踪)/反派登场节奏失控. 跟踪400章长线伏笔回收、角色发展弧光、世界观一致性。每10章一次全局审查，确保100万字不崩盘。Invoke every 10 chapters or at volume boundaries."
+version: "1.2"
+description: "长线一致性守护者，专注跨章/跨卷的长线质量守护。v1.2: 弧光审查数据化——character_arc_tracking 改读 character-designer v2.0 的 choice_engine 与 memory current_state 弧光四字段（behavior_delta_log/last_choice/last_cost/desire_progress），新增弧光停滞检测（连续3章平台期=warning，连续5章=critical）、假代价识别（代价当章收回=warning）、OOC改判（计划内behavior_delta且DNA可辨→不判偏离）；解决"有弧光审查、无弧光数据"（2026-11 灵魂生产线 P0·D）. v1.1: 新增第6守护维度(主线进度监控:main_quest_progress停滞检测+反派梯子启动监控)——基于Ch4-10第三方评审:主线断更(火种进度无人追踪)/反派登场节奏失控. 跟踪400章长线伏笔回收、角色发展弧光、世界观一致性。每10章一次全局审查，确保100万字不崩盘。Invoke every 10 chapters or at volume boundaries."
 ---
 
 # 长线一致性守护者 (Longline Guardian)
@@ -160,14 +160,18 @@ description: "长线一致性守护者，专注跨章/跨卷的长线质量守�
 
 ### 2. 角色发展弧光 (character_arc_tracking)
 
-**核心问题**：主角和主要配角的角色发展是否符合大纲规划？有没有偏离角色弧光？
+**核心问题**：主角和主要配角的角色发展是否符合大纲规划？有没有偏离角色弧光？**以及——弧光是否根本没在动？**（v1.2 新增：此前只查"偏离"，不查"停滞"，导致"人物一成不变"长期无人拦截）
+
+**数据来源（v1.2 新增 ★）**：角色卡 `choice_engine.arc_stages`（计划内的关键选择/代价/行为前后对照，character-designer v2.0）＋ `memory/characters.json` 的 `current_state` 弧光四字段（desire_progress／last_choice／last_cost／behavior_delta_log，memory-manager v1.7 入库）。**没有数据不审查**——字段缺失先调度 memory-manager 补账，不得凭正文印象写"弧光健康"。
 
 **检查内容**：
 
 | 检查项 | 方法 | 预警阈值 |
 |--------|------|---------|
 | 主角成长曲线 | 对比 current_state 历史与大纲规划的成长节点 | 偏离大纲 = warning |
-| 角色性格一致性 | 检查角色行为是否与 personality 设定偏离 | 严重OOC = critical |
+| **弧光停滞检测**（v1.2 新增） | 读 behavior_delta_log：最近 N 章是否有已兑现的行为变化 | 连续3章平台期 = warning；连续5章平台期 = critical |
+| **假代价识别**（v1.2 新增） | last_cost 是否在后续章节被轻易收回（收回＝无代价＝无弧光） | 代价当章或次章收回 = warning |
+| 角色性格一致性（v1.2 改判） | 行为与卡不符时先查 choice_engine：**计划内 behavior_delta 且 DNA 底色可辨→记"弧光内变化"，不判偏离**；DNA 底色不可辨（谨慎型突然莽夫）才判 OOC | 严重OOC = critical |
 | 角色关系演变 | 检查关系网变化是否符合大纲规划 | 关系突变无解释 = warning |
 | 角色能力成长 | 检查能力升级节奏是否合理 | 升级过快/过慢 = warning |
 | 角色戏份分布 | 统计各角色出场频率 | 主角连续3章不出场 = critical |
@@ -176,13 +180,13 @@ description: "长线一致性守护者，专注跨章/跨卷的长线质量守�
 
 | 状态 | 标准 |
 |------|------|
-| healthy | 角色发展按大纲推进，性格一致，关系演变合理 |
-| warning | 1处轻微偏离或能力升级节奏异常 |
-| critical | 严重OOC或角色发展完全偏离大纲 |
+| healthy | 角色发展按 choice_engine 推进，behavior_delta_log 持续有兑现记录，性格底色一致，关系演变合理 |
+| warning | 1处轻微偏离／能力升级节奏异常／连续3章平台期／代价被收回 |
+| critical | 严重OOC／角色发展完全偏离大纲／**连续5章平台期（人物不随剧情变化）** |
 
 **输出**：
-- character_arc_check：每个主要角色的弧光状态
-- deviation_list：偏离大纲的角色及具体表现
+- character_arc_check：每个主要角色的弧光状态（含 platform_chapters 连续平台期章数）
+- deviation_list：偏离大纲的角色及具体表现（区分"计划内变化"与"真偏离"）
 
 ### 3. 世界观一致性 (worldview_consistency)
 
